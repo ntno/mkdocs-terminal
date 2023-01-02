@@ -5,3 +5,4 @@ terminal theme for MkDocs
 
 - [build](https://pypa-build.readthedocs.io/en/latest/) for building distribution package  
 - [twine](https://twine.readthedocs.io/en/stable/) for uploading to PyPI  
+- [pypa/sampleproject](https://github.com/pypa/sampleproject)
