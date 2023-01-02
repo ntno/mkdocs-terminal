@@ -1,0 +1,41 @@
+[project]
+name = "mkdocs-terminal"
+
+description = "Terminal.css theme for MkDocs"
+
+version = "0.0.0"
+
+authors = [
+    { name = "Natan Organick" }
+]
+
+readme = "README.md"
+
+license = {file = "LICENSE"}
+
+requires-python = ">=3.7"
+
+keywords = ["mkdocs"]
+
+classifiers = [
+  "Development Status :: 1 - Planning",
+  "Environment :: Web Environment",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python",
+  "Topic :: Documentation",
+  "Topic :: Software Development :: Documentation",
+  "Topic :: Text Processing :: Markup :: HTML",
+]
+
+[project.urls]
+Source = "https://github.com/ntno/mkdocs-terminal"
+Issues = "https://github.com/ntno/mkdocs-terminal/issues"
+
+[project.entry-points."mkdocs.themes"]
+terminal = "terminal"
+
+[build-system]
+# These are the assumed default build requirements from pip:
+# https://pip.pypa.io/en/stable/reference/pip/#pep-517-and-518-support
+requires = ["setuptools>=43.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
