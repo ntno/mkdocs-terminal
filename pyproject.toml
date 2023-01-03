@@ -39,3 +39,10 @@ terminal = "terminal"
 # https://pip.pypa.io/en/stable/reference/pip/#pep-517-and-518-support
 requires = ["setuptools>=43.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[options]
+package_dir=
+    =terminal
+
+[options.packages.find]
+where=terminal
