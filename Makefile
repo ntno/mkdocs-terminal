@@ -31,11 +31,13 @@ install-build-requirements:
 build-pip-dist:
 	python -m build
 
-build-theme: clean-dist install-build-requirements build-pip-dist
+build-theme: clean install-build-requirements build-pip-dist
 
 clean-dist:
 	rm -rf mkdocs_terminal.egg-info/
 	rm -rf dist/
+
+clean: clean-demo clean-dist
 
 install-mkdocs-demo-requirements:
 	pip install -r ./requirements.txt
@@ -43,5 +45,8 @@ install-mkdocs-demo-requirements:
 build-mkdocs-demo: install-mkdocs-demo-requirements
 	mkdocs build
 
-serve-mkdocs-demo: install-mkdocs-demo-requirements
+serve-mkdocs-demo: clean install-mkdocs-demo-requirements
 	mkdocs serve -v --dev-addr=0.0.0.0:5000
+
+clean-demo:
+	rm -rf site/
