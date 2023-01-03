@@ -20,6 +20,14 @@
     {% endif %}
 {%- endmacro %}
 
+{% macro level_two_link_or_span(nav_item) -%}
+    {% if nav_item.active %}
+    <span class="side-panel-highlight"><i>{{ nav_item.title }}</i></span>
+    {% else %}
+    <a href="{{ nav_item.url|url }}">{{ nav_item.title }}</a>
+    {% endif %}
+{%- endmacro %}
+
 {% macro render(nav_item, path, level) %}
 
   <li class="terminal-side-panel-level-{{ level }}">
@@ -31,8 +39,6 @@
           {% set ns = namespace(index_matches=[]) %}
           {% set ns.index_matches = nav_item.children|selectattr("title", "eq", "section-index")|list %}
 
-
-
           <!-- section has an index -->
           {% if ns.index_matches|length > 0 %}
           {{ link_or_span(ns.index_matches[0], nav_item.title) }}
@@ -42,6 +48,12 @@
           {{ span( nav_item ) }}
           {% endif %}
 
+          <!-- section items -->
+          {% for second_level in nav_item.children %}
+              <ul>
+                  <li>{{ level_two_link_or_span(second_level) }}</li>
+              </ul>
+          {% endfor %}
       {% else %}
           <!-- navigation.indexes feature is OFF -->
           {{ span( nav_item ) }}
