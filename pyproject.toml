@@ -45,5 +45,5 @@ where = [ "terminal"
         , "terminal/css"
         , "terminal/partials"
         , "terminal/js"
-        , "terminal/legal" ]  # list of folders that contain the packages (["."] by default)
+        , "terminal/legal" ]
 namespaces = false  # to disable scanning PEP 420 namespaces (true by default)
