@@ -1,6 +1,9 @@
 site_name: MkDocs Terminal Theme
 site_url: https://ntno.github.io/mkdocs-terminal-theme
 repo_url: https://github.com/ntno/mkdocs-terminal-theme
+copyright: Copyright 2023 Natan Organick, All rights reserved
+site_author: ntno
 
 theme:
-    name: terminal
+    name: null
+    custom_dir: 'terminal/'
