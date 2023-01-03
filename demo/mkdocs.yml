@@ -1,14 +1,13 @@
 site_name: MkDocs Terminal Theme Demo
-site_url: https://ntno.github.io/mkdocs-terminal-theme
-repo_url: https://github.com/ntno/mkdocs-terminal-theme
+site_url: https://ntno.github.io/mkdocs-terminal
+repo_url: https://github.com/ntno/mkdocs-terminal
 copyright: Copyright 2023 Natan Organick, All rights reserved
 site_author: ntno
 
 
 
 nav:
-    - Home: 'index.md'
-    - TOC Example: 'toc.md'
+    - Home: 'toc.md'
     - About: 
       - section-index: 'about/index.md'
       - Contributing: 'about/contributing.md'

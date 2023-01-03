@@ -1,0 +1,24 @@
+site_name: MkDocs Terminal Theme Documentation
+site_url: https://ntno.github.io/mkdocs-terminal
+repo_url: https://github.com/ntno/mkdocs-terminal
+copyright: Copyright 2023 Natan Organick, All rights reserved
+site_author: ntno
+
+nav:
+    - Home: 'index.md'
+    - Navigation:
+        - Table of Contents: 'navigation/toc.md'
+
+markdown_extensions:
+  - meta
+  - toc:
+      permalink: "#"
+
+theme:
+  name: terminal
+  features:
+    # - toc.hide
+    # - navigation.side.hide
+    - navigation.side.indexes
+    # - navigation.top.hide
+    - navigation.top.terminal_prompt
