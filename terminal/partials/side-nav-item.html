@@ -12,6 +12,14 @@
     {% endif %}
 {%- endmacro %}
 
+{% macro span(nav_item) -%}
+    {% if nav_item.active %}
+        <span class="active"><i>{{ nav_item.title }}</i></span>
+    {% else %}
+        <span>{{ nav_item.title }}</span>
+    {% endif %}
+{%- endmacro %}
+
 {% macro render(nav_item, path, level) %}
 
   <li class="terminal-side-panel-level-{{ level }}">
@@ -31,12 +39,12 @@
           <span><b>{{ ns.index_matches[0].title }}</b></span>
           <!-- section does NOT have an index -->
           {% else %}
-          <span><i>{{ nav_item.title }}</i></span>
+          {{ span( nav_item ) }}
           {% endif %}
 
       {% else %}
           <!-- navigation.indexes feature is OFF -->
-          <span><i>{{ nav_item.title }}</i></span>                 
+          {{ span( nav_item ) }}
       {% endif %}
     {% else %}
     <!-- link for a top level page -->
