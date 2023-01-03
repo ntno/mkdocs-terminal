@@ -1,0 +1,6 @@
+site_name: MkDocs Terminal Theme
+site_url: https://ntno.github.io/mkdocs-terminal-theme
+repo_url: https://github.com/ntno/mkdocs-terminal-theme
+
+theme:
+    name: terminal

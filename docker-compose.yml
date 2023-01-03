@@ -5,3 +5,12 @@ services:
     restart: "no"    
     volumes:
       - $PWD:/usr/src
+  local_development_server:
+    image: ntno/ubuntu-build-base:1.0.0
+    restart: "no"
+    ports:
+      - "5000:5000"
+    environment:
+      LOG_LEVEL: info 
+    volumes:
+      - './:/usr/src/'

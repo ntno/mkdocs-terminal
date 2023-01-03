@@ -21,9 +21,12 @@
 name: Publish Package
 
 on:
-  release:
-    types:
-      - published
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to deploy'
+        required: true
+        type: string
 
 env:
   PYTHON_VERSION: 3.x
@@ -40,6 +43,8 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.tag }}
 
       - name: Set up Python runtime
         uses: actions/setup-python@v4

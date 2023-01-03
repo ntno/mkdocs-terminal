@@ -1,0 +1,65 @@
+# Simple workflow for deploying mkdocs site 
+name: Deploy Demo to GitHub Pages
+
+env:
+  gh-pages-url: https://ntno.github.io/mkdocs-terminal-theme
+
+# only one GitHub Pages Deploy workflow at a time
+concurrency:
+  group: GitHub-Pages-Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to deploy'
+        required: true
+        type: string
+        
+permissions:
+  contents: read
+
+jobs:
+  report-inputs:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Report Inputs
+        run: |
+          export MESSAGE="tag=${{ inputs.tag }}"
+          echo "::notice title=Worfklow Inputs::$MESSAGE"
+  check-out-tag:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.tag }}
+  call-metadata-workflow:
+    needs: [check-out-tag]
+    uses: ./.github/workflows/meta.yml 
+    secrets: inherit 
+  build-deploy-mkdocs:
+    needs: [check-out-tag, call-metadata-workflow]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps: 
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.tag }}
+      - name: Install Requirements
+        run: | 
+          pip install -r ./requirements.txt
+      - name: Build MkDocs
+        run: |
+          mkdocs build
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+      - name: Report Result
+        run: |
+          export MESSAGE="${{ inputs.tag }} deployed to ${{ env.gh-pages-url }} with ${{ needs.call-metadata-workflow.outputs.build-tag }}"        
+          echo "::notice title=GitHub Pages Deployment Complete::$MESSAGE"
