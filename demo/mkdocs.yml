@@ -7,7 +7,7 @@ site_author: ntno
 
 
 nav:
-    - Home: 'toc.md'
+    - Home: 'index.md'
     - About: 
       - section-index: 'about/index.md'
       - Contributing: 'about/contributing.md'
