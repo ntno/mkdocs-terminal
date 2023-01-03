@@ -1,5 +1,6 @@
 recursive-include terminal *.ico *.js *.css *.png *.html *.eot *.svg *.ttf *.woff *.yml
 recursive-include terminal *.py
+recursive-include terminal/legal *.md
 include  LICENSE
 include README.md
 recursive-exclude * __pycache__
