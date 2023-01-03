@@ -42,7 +42,7 @@ clean: clean-demo clean-dist
 install-mkdocs-demo-requirements:
 	pip install -r ./requirements.txt
 
-build-mkdocs-demo: install-mkdocs-demo-requirements
+build-mkdocs-demo: clean install-mkdocs-demo-requirements
 	mkdocs build
 
 serve-mkdocs-demo: clean install-mkdocs-demo-requirements
