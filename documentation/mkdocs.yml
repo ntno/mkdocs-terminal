@@ -6,6 +6,7 @@ site_author: ntno
 
 nav:
     - Home: 'index.md'
+    - Install: 'install.md'
     - Navigation:
         - Table of Contents: 'navigation/toc.md'
 
