@@ -1,4 +1,4 @@
-recursive-include basic_theme *.ico *.js *.css *.png *.html *.eot *.svg *.ttf *.woff *.yml
+recursive-include terminal *.ico *.js *.css *.png *.html *.eot *.svg *.ttf *.woff *.yml
 recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
 include  LICENSE
