@@ -29,8 +29,8 @@
   <li class="terminal-side-panel-level-{{ level }}">
     {% if nav_item.children %}
     
-      {% if "navigation.indexes" in features %}
-          <!-- navigation.indexes feature is ON -->
+      {% if "navigation.side.indexes" in features %}
+          <!-- navigation.side.indexes feature is ON -->
           <!-- determine if section has an index -->
           {% set ns = namespace(index_matches=[]) %}
           {% set ns.index_matches = nav_item.children|selectattr("title", "eq", "section-index")|list %}
@@ -45,7 +45,7 @@
           {{ section_span_no_index( nav_item ) }}
           {% endif %}
       {% else %}
-          <!-- navigation.indexes feature is OFF -->
+          <!-- navigation.side.indexes feature is OFF -->
           <!-- TODO better styling --- grey? -->
           {{ section_span_no_index( nav_item ) }}
       {% endif %}
