@@ -1,28 +1,46 @@
-{% macro link_or_span(nav_item, with_prompt_styling) -%}
+{% macro link_or_span(nav_item, title_override) -%}
     {% if nav_item.active %}
-        <span class="{% if with_prompt_styling %}side-panel-highlight{% endif %}"><i>{{ nav_item.title }}</i></span>
+        <span><i>{{ nav_item.title }}</i></span>
     {% else %}
-        <a href="{{ nav_item.url|url }}">{{ nav_item.title }}</a>
+        <a href="{{ nav_item.url|url }}">
+          {% if title_override %}
+          {{ title_override }}
+          {% else %}
+          {{ nav_item.title }}
+          {% endif %}
+        </a>
     {% endif %}
 {%- endmacro %}
 
 {% macro render(nav_item, path, level) %}
-  {% set class = "terminal-side-panel-nav-item" %}
-  {% if nav_item.active %}
-    {% set class = class ~ " terminal-side-panel-nav-item--active" %}
-  {% endif %}
-
-  
 
   <li class="terminal-side-panel-level-{{ level }}">
     {% if nav_item.children %}
-    <label for="{{ path }}"> 
-      {% if nav_item.url %} <a href="{{ nav_item.url | url }}"> {% endif %} 
-        <span>{{ nav_item.title }} </span>
-      {% if nav_item.url %}</a>{% endif %} 
-    </label> 
+    
+      {% if "navigation.indexes" in features %}
+          <!-- navigation.indexes feature is ON -->
+          <!-- determine if section has an index -->
+          {% set ns = namespace(index_matches=[]) %}
+          {% set ns.index_matches = nav_item.children|selectattr("title", "eq", "section-index")|list %}
+
+
+
+          <!-- section has an index -->
+          {% if ns.index_matches|length > 0 %}
+          {{ link_or_span(ns.index_matches[0], nav_item.title) }}
+          <span><b>{{ ns.index_matches[0].title }}</b></span>
+          <!-- section does NOT have an index -->
+          {% else %}
+          <span><i>{{ nav_item.title }}</i></span>
+          {% endif %}
+
+      {% else %}
+          <!-- navigation.indexes feature is OFF -->
+          <span><i>{{ nav_item.title }}</i></span>                 
+      {% endif %}
     {% else %}
-    {{ link_or_span(nav_item, true) }}
+    <!-- link for a top level page -->
+    {{ link_or_span(nav_item) }}
     {% endif %}
   </li>
 
