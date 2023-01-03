@@ -6,8 +6,8 @@ site_author: ntno
 
 nav:
     - Home: 'index.md'
-    - Notes: 'notes.md'
-    - 'Sections':
+    - TOC Example: 'toc.md'
+    - '':
       - About: 
         - Contributing: 'about/contributing.md'
       - 'User Guide':
@@ -17,8 +17,8 @@ nav:
 
 markdown_extensions:
   - meta
-#   - toc:
-#       permalink: "#"
+  - toc:
+      permalink: "#"
 #   - attr_list
 
 theme:
