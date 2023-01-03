@@ -16,12 +16,12 @@ services:
       - './:/usr/src/'
     working_dir: '/usr/src/demo'
   local_documentation_server:
-    image: ntno/ubuntu-build-base:1.0.0
+    image: python:3.8-bullseye
     restart: "no"
     ports:
       - "8080:8080"
     environment:
-      LOG_LEVEL: info 
+      LOG_LEVEL: debug 
     volumes:
       - './:/usr/src/'      
     working_dir: '/usr/src/documentation'

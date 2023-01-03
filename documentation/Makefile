@@ -2,15 +2,17 @@
 ## run from machine or container with required software
 ## python, pip, GNU Make, etc.
 #########################################################
+upgrade-pip:
+	python3 -m pip install --upgrade pip
 
-install-mkdocs-requirements:
+install-mkdocs-requirements: upgrade-pip
 	pip install -r ./requirements.txt
 
-build-mkdocs: clean-demo install-mkdocs-requirements
-	mkdocs build
+build-mkdocs: clean install-mkdocs-requirements
+	mkdocs build -vvv -t terminal
 
-serve-mkdocs: clean install-mkdocs-requirements
-	mkdocs serve -v --dev-addr=0.0.0.0:8080
+serve-mkdocs: build-mkdocs
+	mkdocs serve -vvv --dev-addr=0.0.0.0:8080 -t terminal
 
 clean:
 	rm -rf site/
