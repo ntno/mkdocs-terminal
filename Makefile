@@ -15,3 +15,9 @@ build-theme: clean-dist install-build-requirements build-pip-dist
 clean-dist:
 	rm -rf mkdocs_terminal.egg-info/
 	rm -rf dist/
+
+install-demo-site-requirements:
+	pip install -r ./requirements.txt
+
+build-demo-site: install-demo-site-requirements
+	mkdocs build
