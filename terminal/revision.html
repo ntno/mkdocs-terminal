@@ -1,0 +1,13 @@
+
+<br>
+<p>
+    {% if page.meta.revision_date %}
+    <small>
+        <i>Page last updated {{ page.meta.revision_date }}.
+        {% if page.edit_url %}
+        See revision history on <a target="_blank" href='{{ page.edit_url | replace("/edit/","/commits/") }}'>github</a>.
+        {% endif %}
+        </i>
+    </small>
+    {% endif %}
+</p>

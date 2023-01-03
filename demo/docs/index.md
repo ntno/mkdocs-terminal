@@ -1,3 +1,6 @@
+---
+---
+
 # MkDocs Basic Theme
 
 This is a very basic theme for MkDocs with the goal of demonstrating all of

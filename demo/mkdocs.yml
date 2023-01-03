@@ -15,6 +15,12 @@ nav:
         - 'Custom Themes': 'user-guide/custom-themes.md'
         - Deployment: 'user-guide/deploying-your-docs.md'
 
+markdown_extensions:
+  - meta
+#   - toc:
+#       permalink: "#"
+#   - attr_list
+
 theme:
     name: null
     custom_dir: '../terminal/'
