@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="terminal-nav">
+        <header class="terminal-logo">
+            <div class="logo {% if 'navigation.top.terminal_prompt' in features %}terminal-prompt{% endif %}"><a href="/" class="no-style">{{ config.site_name }}</a></div>
+        </header>
+        <nav class="terminal-menu">
+            {% if nav|length>1 %}
+            <ul vocab="https://schema.org/" typeof="BreadcrumbList">
+                {% for nav_item in nav %}
+                {% if not nav_item.is_section %}
+                <li property="itemListElement" typeof="ListItem">
+                    <a href="{{ nav_item.url|url }}" class="menu-item {% if nav_item.active%}active{% endif %}" property="item" typeof="WebPage">
+                        <span property="name">{{ nav_item.title }}</span>
+                    </a>
+                    <meta property="position" content="{{ loop.index0 }}">
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </nav>
+    </div>
+</div>

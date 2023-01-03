@@ -1,8 +1,26 @@
+/*! theme.css */
+
 body {
-    margin: 1em;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
 
-.active a {
-    color: red;
-    font-weight: bold;
+.terminal-mkdocs-main-grid {
+    display: grid;
+    grid-column-gap: 1.4em;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+}
+
+@media only screen and (min-width: 70em) {
+    .terminal-mkdocs-main-grid {
+        grid-template-columns: 4fr 9fr;
+    }
+}
+
+/* don't display backticks on `code` items, just highlight */
+code::after,
+code::before {
+    content: "" !important;
+    display: inline;
 }

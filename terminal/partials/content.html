@@ -1,0 +1,12 @@
+<section>
+    {% if page and page.content %}{{ page.content }}{% endif %}
+    {% if page and page.meta %}
+        {% if page.meta.hide %}
+            {% set hide_git_revision_date = "true" if "git_revision_date" in page.meta.hide %}
+        {% endif %}
+    {% endif %}
+
+    {% if not hide_git_revision_date %}
+    {% include "partials/revision.html" %}
+    {% endif %}
+</section>

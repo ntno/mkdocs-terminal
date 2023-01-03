@@ -1,0 +1,16 @@
+<aside id="menu">
+    {% if "navigation.side.hide" in features %}
+    {% else %}
+        {% if not hide_side_nav %}
+        {% include "partials/side-nav.html" %}
+        {% endif %}
+    {% endif %}
+
+    {% if "toc.hide" in features %}
+    {% else %}
+        {% if not hide_toc %}
+        {% include "partials/side-toc.html" %}
+        {% endif %}
+    {% endif %}
+</aside>
+

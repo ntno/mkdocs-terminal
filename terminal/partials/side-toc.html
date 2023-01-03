@@ -1,0 +1,15 @@
+{% if page %}
+{% if page.toc|length > 0 %}
+{% if "navigation.side.hide" in features %}{% else %}<hr>{% endif %}
+<nav>
+    <ul>
+        {% for toc_item in page.toc %}
+        <li><a href="{{ toc_item.url }}">{{ toc_item.title}}</a></li>
+            {% for toc_item in toc_item.children %}
+            <li><a href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>
+            {% endfor %}
+        {% endfor %}
+    </ul>
+</nav>
+{% endif %}
+{% endif %}

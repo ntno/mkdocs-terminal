@@ -1,0 +1,69 @@
+{% macro section_span_no_index(nav_item) -%}
+    {% if nav_item.active %}
+        <span><i>{{ nav_item.title }}</i></span>
+    {% else %}
+        <span>{{ nav_item.title }}</span>
+    {% endif %}
+{%- endmacro %}
+
+{% macro section_span_or_index_link(nav_item) -%}
+  {% if nav_item.active %}
+        <span><i>{{ nav_item.parent.title }}</i></span>
+    {% else %}
+        <a href="{{ nav_item.url|url }}">{{ nav_item.parent.title }}</a>
+    {% endif %}
+{%- endmacro %}
+
+{% macro link_or_span(nav_item) -%}
+    {% if nav_item.active %}
+        <span><i>{{ nav_item.title }}</i></span>
+    {% else %}
+        <a href="{{ nav_item.url|url }}">{{ nav_item.title }}</a>
+    {% endif %}
+{%- endmacro %}
+
+
+
+{% macro render(nav_item, path, level) %}
+
+  <li class="terminal-mkdocs-side-nav-item-level-{{ level }}">
+    {% if nav_item.children %}
+    
+      {% if "navigation.side.indexes" in features %}
+          <!-- navigation.side.indexes feature is ON -->
+          <!-- determine if section has an index -->
+          {% set ns = namespace(index_matches=[]) %}
+          {% set ns.index_matches = nav_item.children|selectattr("title", "eq", "section-index")|list %}
+
+          <!-- section has an index -->
+          {% if ns.index_matches|length > 0 %}
+          {{ section_span_or_index_link(ns.index_matches[0]) }}
+          <!-- TODO - set some flag to skip index page in children listing -->
+
+          <!-- section does NOT have an index -->
+          {% else %}
+          {{ section_span_no_index( nav_item ) }}
+          {% endif %}
+      {% else %}
+          <!-- navigation.side.indexes feature is OFF -->
+          <!-- TODO better styling --- grey? -->
+          {{ section_span_no_index( nav_item ) }}
+      {% endif %}
+      
+      <!-- section items -->
+      {% for second_level in nav_item.children %}
+      <ul>
+          <li>{{ link_or_span(second_level) }}</li>
+      </ul>
+      {% endfor %}
+    {% else %}
+    <!-- link for a top level page -->
+    {{ link_or_span(nav_item) }}
+    {% endif %}
+  </li>
+
+  
+
+{% endmacro %}
+{{ render(nav_item, path, level) }}
+      

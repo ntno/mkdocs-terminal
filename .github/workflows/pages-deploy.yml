@@ -3,6 +3,7 @@ name: Deploy Demo to GitHub Pages
 
 env:
   gh-pages-url: https://ntno.github.io/mkdocs-terminal
+  pages-deployment: https://github.com/ntno/mkdocs-terminal/actions/workflows/pages/pages-build-deployment
 
 # only one GitHub Pages Deploy workflow at a time
 concurrency:
@@ -48,18 +49,17 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: ${{ inputs.tag }}
-      - name: Install Requirements
-        run: | 
-          pip install -r ./requirements.txt
       - name: Build MkDocs
         run: |
-          mkdocs build
+          make build-mkdocs-demo
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./site
+          publish_dir: ./demo/site
       - name: Report Result
         run: |
-          export MESSAGE="${{ inputs.tag }} deployed to ${{ env.gh-pages-url }} with ${{ needs.call-metadata-workflow.outputs.build-tag }}"        
-          echo "::notice title=GitHub Pages Deployment Complete::$MESSAGE"
+          export BUILD_MESSAGE="${{ inputs.tag }} built with ${{ needs.call-metadata-workflow.outputs.build-tag }}"
+          echo "::notice title=GitHub Pages Built::$BUILD_MESSAGE"
+          export REVIEW_DEPLOY="review GitHub Pages Deployment at ${{ env.pages-deployment }}"
+          echo "::notice title=GitHub Pages Deployment Triggered::$REVIEW_DEPLOY"
