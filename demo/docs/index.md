@@ -2,6 +2,17 @@
 
 This site demonstrates the basic features of the `mkdocs-terminal` MkDocs theme.
 
+## Features
+
+```mkdocs.yml
+theme:
+  name: terminal
+  features:
+    - navigation.side.indexes
+    - navigation.top.terminal_prompt
+```
+
+
 ## Hideable Components
 
 ### top-nav
@@ -15,19 +26,18 @@ nav:
 ```
 
 ### side-nav
-This component includes the first through third level pages as defined in the `nav` section of mkdocs.ylm in the left sidebar:
+This component includes the first through second level pages as defined in the `nav` section of mkdocs.ylm in the left sidebar:
 
 ```mkdocs.yml
 nav:
     - Home: 'index.md'
     - TOC Example: 'toc.md'
-    - '':
-      - About: 
-        - Contributing: 'about/contributing.md'
-      - 'User Guide':
-        - Configuration: 'user-guide/configuration.md'
-        - 'Custom Themes': 'user-guide/custom-themes.md'
-        - Deployment: 'user-guide/deploying-your-docs.md'
+    - About: 
+      - Contributing: 'about/contributing.md'
+    - 'User Guide':
+      - Configuration: 'user-guide/configuration.md'
+      - 'Custom Themes': 'user-guide/custom-themes.md'
+      - Deployment: 'user-guide/deploying-your-docs.md'
 ```
 
 ### toc
