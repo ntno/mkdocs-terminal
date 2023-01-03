@@ -10,6 +10,7 @@ nav:
     - Home: 'index.md'
     - TOC Example: 'toc.md'
     - About: 
+      - section-index: 'about/index.md'
       - Contributing: 'about/contributing.md'
     - 'User Guide':
       - Configuration: 'user-guide/configuration.md'
