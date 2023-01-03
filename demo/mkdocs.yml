@@ -27,7 +27,10 @@ theme:
   name: null
   custom_dir: '../terminal/'
   features:
-    - navigation.side.indexes #enabling this will display section title as a link
+    # - toc.hide
+    # - navigation.side.hide
+    - navigation.side.indexes
+    - navigation.top.hide
     - navigation.top.terminal_prompt
 
 watch:
