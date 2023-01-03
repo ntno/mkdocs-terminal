@@ -4,5 +4,6 @@ recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
 recursive-exclude docs *
 exclude mkdocs.yml
+exclude requirements.txt
 include  LICENSE
 include README.md
