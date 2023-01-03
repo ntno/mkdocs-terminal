@@ -21,13 +21,13 @@ hides table of contents on all site pages
 hides side navigation on all site pages
 
 **navigation.side.indexes**  
-enables section links in side nav
+enables section links in side nav.  ignored if `navigation.side.hide` is set.
 
 **navigation.top.hide**  
 hides top navigation on all site pages
 
 **navigation.top.terminal_prompt**  
-enables terminal prompt site name styling in top nav
+enables terminal prompt site name styling in top nav.  ignored if `navigation.top.hide` is set.
 
 ## Hideable Components
 In order to hide components on a per-page basis, you need the meta markdown extension
