@@ -1,8 +1,8 @@
 recursive-include terminal *.ico *.js *.css *.png *.html *.eot *.svg *.ttf *.woff *.yml
-recursive-exclude tests
+recursive-exclude tests *
 recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
-recursive-exclude docs
+recursive-exclude docs *
 exclude mkdocs.yml
 include  LICENSE
 include README.md
