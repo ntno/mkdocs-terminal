@@ -1,6 +1,6 @@
 <nav>
   {% if nav|length>1 %}
-    <ul class="terminal-mkdocs-side-panel-items">
+    <ul class="terminal-mkdocs-side-nav-items">
         {% for nav_item in nav %}
           {% set path = "__nav_" ~ loop.index %}
           {% set level = 1 %}

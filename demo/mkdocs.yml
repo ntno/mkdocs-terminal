@@ -18,7 +18,7 @@ nav:
       - Deployment: 'user-guide/deploying-your-docs.md'
 
 markdown_extensions:
-  # - meta
+  - meta
   - toc:
       permalink: "#"
 #   - attr_list
@@ -27,7 +27,7 @@ theme:
   name: null
   custom_dir: '../terminal/'
   features:
-    # - navigation.side.indexes
+    - navigation.side.indexes #enabling this will display section title as a link
     - navigation.top.terminal_prompt
 
 watch:

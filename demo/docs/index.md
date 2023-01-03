@@ -8,13 +8,19 @@ This site demonstrates the basic features of the `mkdocs-terminal` MkDocs theme.
 theme:
   name: terminal
   features:
-    - navigation.side.indexes
-    - navigation.top.terminal_prompt
+    - toc.hide                          #hides table of contents on all site pages
+    - navigation.side.hide              #hides side navigation on all site pages
+    - navigation.side.indexes           #enables section links in side nav
+    - navigation.top.hide               #hides top navigation on all site pages
+    - navigation.top.terminal_prompt    #enables terminal prompt site name styling in top nav
 ```
 
-
 ## Hideable Components
-
+In order to hide components on a per-page basis, you need the meta markdown extension
+```mkdocs.yml
+markdown_extensions:
+  - meta
+```
 ### top-nav
 This component includes the `site_name` at the top left and the top level pages as defined in the `nav` section of mkdocs.yml at the top right:
 
