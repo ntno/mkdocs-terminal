@@ -6,298 +6,89 @@
   to find out more.
 -->
 <!DOCTYPE html>
+
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  
-  <!--
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--
     The page_title contains the title for a page as shown in the navigation.
     Site name contains the name as defined in the mkdocs.yml
   -->
-  <title>Styling Your Docs - MkDocs Terminal Theme</title>
+    <title>Styling Your Docs - MkDocs Terminal Theme Demo</title>
 
-  <!--
+    <!--
     Just add a favicon.ico image to the docs.
   -->
-     <link rel="shortcut icon" href="../../img/favicon.ico">
+    <link rel="shortcut icon" href="../../ img/favicon.ico ">
 
 
-  <!--
+    <!--
     You can include external assets of course, but be aware that it means the
     documentation may not work well offline.
   -->
-  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
 
-  <link rel="stylesheet" href="../../css/theme.css">
-
-  <!--
+    <link rel="stylesheet" href="../../ css/terminal.css ">
+    <link rel="stylesheet" href="../../ css/theme.css ">
+    <!--
     extra_ess contains paths to CSS files in the users
     documentation directory or a list of CSS files defined in
     their mkdocs.yml.
 
     http://www.mkdocs.org/user-guide/configuration/#extra_css
   -->
-  
+    
 
-  <!--
+    <!--
     To include static assets from our theme, just add
     ../.. beforehand which will be the relative path to
     the root of the documentation.
   -->
-  <script
-  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-  integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
-  crossorigin="anonymous"></script>
-  <script src="../../js/theme.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+    <script src="../../ js/theme.js "></script>
 
-  
-  
+     
 
-  <!--
+    <!--
     extra_javascript contains paths to JavaScript files in the
     users documentation directory or a list of JavaScript files
     defined in their mkdocs.yml.
 
     http://www.mkdocs.org/user-guide/configuration/#extra_javascript
   -->
-  
+    
     <script src="../../search/main.js"></script>
-  
+    
 
-  <!--
+    <!--
     Include Google Analytics tracking code.
 
     http://www.mkdocs.org/user-guide/configuration/#google_analytics
   -->
-  
+    
 
 </head>
 
-<body>
-
-  <h1>This is an example theme for MkDocs.</h1>
-
-  <p>
-    It is designed to be read by looking at the theme HTML which is heavily
-    commented. The easiest way to do that is by
-    <strong><a href="https://github.com/mkdocs/mkdocs-basic-theme/tree/master/basic_theme">
-    looking at the source on GitHub.</a></strong>. Otherwise this is just a
-    demonstration that the theme is fully functional.
-  </p>
-
-  <hr/>
-
-  <h2>Documentation Navigation</h2>
-
-  <!--
-    Create the navigation for the documentation.
-
-    Because we don't know how many levels deep the navigation is, it needs to
-    be included in it's own file so it can be recursive. Otherwise the theme
-    can also only support a specific number of levels.
-
-    See the nav.html file for more details about how this works.
-  -->
-  <ul>
-  
-    <!--
-
--->
-
-<li >
-    <a href="../..">MkDocs Basic Theme</a>
-</li>
-
-  
-    <!--
-
--->
-
-  <li>
-    About
-    <ul>
-        
-            <!--
-
--->
-
-<li >
-    <a href="../../about/contributing/">Contributing</a>
-</li>
-
-        
-            <!--
-
--->
-
-<li >
-    <a href="../../about/license/">License</a>
-</li>
-
-        
-            <!--
-
--->
-
-  <li>
-    Release notes
-    <ul>
-        
-            <!--
-
--->
-
-<li >
-    <a href="../../about/release-notes/version-1/">Version 1 Release Notes</a>
-</li>
-
-        
-            <!--
-
--->
-
-<li >
-    <a href="../../about/release-notes/version-2/">Version 2 Release Notes</a>
-</li>
-
-        
-    </ul>
-  </li>
-
-        
-    </ul>
-  </li>
-
-  
-    <!--
-
--->
-
-  <li>
-    User guide
-    <ul>
-        
-            <!--
-
--->
-
-<li >
-    <a href="../configuration/">Configuration</a>
-</li>
-
-        
-            <!--
-
--->
-
-<li >
-    <a href="../custom-themes/">Custom Themes</a>
-</li>
-
-        
-            <!--
-
--->
-
-<li >
-    <a href="../deploying-your-docs/">Deploying Your Docs</a>
-</li>
-
-        
-            <!--
-
--->
-
-<li class="active">
-    <a href="./">Styling Your Docs</a>
-</li>
-
-        
-            <!--
-
--->
-
-<li >
-    <a href="../writing-your-docs/">Writing Your Docs</a>
-</li>
-
-        
-    </ul>
-  </li>
-
-  
-  </ul>
-
-  <hr/>
-
-  <h2>Support for search</h2>
-  <!--
-    Create a search form that sends the user to the search.html file - this is
-    the other file in the template which adds search to the theme. The only
-    requirement here is that there is a text input with the name 'q' and the
-    action and methods match below.
-  -->
-  <div role="search">
-    <form action="../../search.html" method="get">
-      <input type="search" name="q" placeholder="Search docs" />
-    </form>
-  </div>
-
-  <hr/>
-
-  <h2>Next and previous links</h2>
-  <!--
-    Implement the previous and next links to cycle through the pages.
-  -->
-  
-    <div>
-      
-        <a href="../deploying-your-docs/" title="Deploying Your Docs">&#8592; Previous Page</a>
-      
-      -
-      
-        <a href="../writing-your-docs/" title="Writing Your Docs"/>Next Page &#8594;</a>
-      
-    </div>
-  
-
-  <hr/>
-
-  <h2>Link to the source</h2>
-  <!--
-    Support repo URL
-  -->
-  
-    <a href="https://github.com/ntno/mkdocs-terminal-theme/edit/master/docs/user-guide/styling-your-docs.md">Edit on GitHub</a>
-  
-
-  <hr/>
-
-  <h2>Show the table of contents for the current page</h2>
-  <ul>
-  
-      <li><a href="#testing-page">Testing Page</a></li>
-      
-  
-  </ul>
-
-  <hr/>
-
-  
+<body class="terminal">
+    <div class="container">
+        <div class="main-grid">
+            <main> <section>
     <h1 id="testing-page">Testing Page</h1>
 <p>See the <a href="/">Home Page</a>. All the other pages are for demonstration purposes
 with the navigation only.</p>
-  
-
-  <hr/>
-
-  Built with <a href="https://www.mkdocs.org">MkDocs</a>.
-
-  <!--
-  MkDocs version      : 1.4.2
-  Docs Build Date UTC : 2023-01-03 01:04:20.188587+00:00
-  -->
-
+</section>
+            </main>
+        </div>
+        <hr> <div class="container">
+    <footer>
+        
+        <p class="text-center text-muted">Copyright 2023 Natan Organick, All rights reserved</p>
+         Site built with <a target="_blank" rel="noopener" href="http://www.mkdocs.org">MkDocs</a> and <a target="_blank" rel="noopener" href="https://github.com/ntno/mkdocs-terminal">Terminal for MkDocs</a>.
+    </footer>
+</div>
+    </div>
 </body>
+
 </html>
