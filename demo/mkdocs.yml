@@ -30,7 +30,7 @@ theme:
     # - toc.hide
     # - navigation.side.hide
     - navigation.side.indexes
-    - navigation.top.hide
+    # - navigation.top.hide
     - navigation.top.terminal_prompt
 
 watch:

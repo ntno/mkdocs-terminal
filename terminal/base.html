@@ -78,10 +78,14 @@
       {% set hide_top_nav = "true" if "top-nav" in page.meta.hide %} 
       {% set hide_side_nav = "true" if "side-nav" in page.meta.hide %} 
     {% endif %} 
+    
     {%- block site_nav %} 
-      {% if not hide_top_nav %} 
-        {% include "partials/top-nav.html" %} 
-      {% endif %} 
+      {% if "navigation.top.hide" in features %}
+      {% else %}
+        {% if not hide_top_nav %} 
+          {% include "partials/top-nav.html" %} 
+        {% endif %}
+      {% endif %}
     {%- endblock %}
 
     <div class="container">
