@@ -54,3 +54,7 @@ serve-mkdocs-demo: clean install-mkdocs-demo-requirements
 clean-demo:
 	cd demo && \
 	rm -rf site/
+
+update-demo-tag:
+	git tag -d demo && git push origin :refs/tags/demo
+	git tag demo && git push origin demo
