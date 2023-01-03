@@ -4,16 +4,17 @@ repo_url: https://github.com/ntno/mkdocs-terminal-theme
 copyright: Copyright 2023 Natan Organick, All rights reserved
 site_author: ntno
 
+
+
 nav:
     - Home: 'index.md'
     - TOC Example: 'toc.md'
-    - '':
-      - About: 
-        - Contributing: 'about/contributing.md'
-      - 'User Guide':
-        - Configuration: 'user-guide/configuration.md'
-        - 'Custom Themes': 'user-guide/custom-themes.md'
-        - Deployment: 'user-guide/deploying-your-docs.md'
+    - About: 
+      - Contributing: 'about/contributing.md'
+    - 'User Guide':
+      - Configuration: 'user-guide/configuration.md'
+      - 'Custom Themes': 'user-guide/custom-themes.md'
+      - Deployment: 'user-guide/deploying-your-docs.md'
 
 markdown_extensions:
   - meta
@@ -22,8 +23,10 @@ markdown_extensions:
 #   - attr_list
 
 theme:
-    name: null
-    custom_dir: '../terminal/'
+  name: null
+  custom_dir: '../terminal/'
+  # features:
+  #   - navigation.indexes
 
 watch:
     - '../terminal/'

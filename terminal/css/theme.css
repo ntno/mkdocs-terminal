@@ -18,6 +18,11 @@ body {
     }
 }
 
+.side-nav-section-title-span {
+    color: var(--primary-color);
+    text-decoration: none
+}
+
 .side-panel-highlight {
     position: relative;
     white-space: nowrap;

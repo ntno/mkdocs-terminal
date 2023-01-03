@@ -7,3 +7,9 @@
 - [twine](https://twine.readthedocs.io/en/stable/) for uploading to PyPI  
 - [pypa/sampleproject](https://github.com/pypa/sampleproject)
 - [mkdocs/mkdocs-basic-theme](https://github.com/mkdocs/mkdocs-basic-theme)
+- [oprypin/mkdocs-section-index](https://github.com/oprypin/mkdocs-section-index)
+- section-index support in material theme  
+  - https://github.com/squidfunk/mkdocs-material/commit/accc2a34d15635884448d0c61b9b7f8301c0fddb
+  - https://github.com/squidfunk/mkdocs-material/commit/149b0dbc475fd77a2cf00fdd6365078a900c023b
+  - https://github.com/squidfunk/mkdocs-material/commit/f3926bf444a29310be0d14b1311b3dd832b1c310
+- [mkdocs page struction](https://www.mkdocs.org/dev-guide/themes/#mkdocs.structure.pages.Page)
