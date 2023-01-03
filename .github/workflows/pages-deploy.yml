@@ -2,7 +2,7 @@
 name: Deploy Demo to GitHub Pages
 
 env:
-  gh-pages-url: https://ntno.github.io/mkdocs-terminal-theme
+  gh-pages-url: https://ntno.github.io/mkdocs-terminal
 
 # only one GitHub Pages Deploy workflow at a time
 concurrency:
