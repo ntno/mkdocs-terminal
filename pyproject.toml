@@ -41,9 +41,9 @@ requires = ["setuptools>=43.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
-where = ["terminal"
+where = [ "terminal"
         , "terminal/css"
         , "terminal/partials"
         , "terminal/js"
-        , "terminal/legal ]  # list of folders that contain the packages (["."] by default)
+        , "terminal/legal" ]  # list of folders that contain the packages (["."] by default)
 namespaces = false  # to disable scanning PEP 420 namespaces (true by default)
