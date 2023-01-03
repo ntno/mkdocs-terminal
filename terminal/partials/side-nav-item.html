@@ -1,0 +1,33 @@
+{% macro link_or_span(nav_item, with_prompt_styling) -%}
+    {% if nav_item.active %}
+        <span class="{% if with_prompt_styling %}side-panel-highlight{% endif %}"><i>{{ nav_item.title }}</i></span>
+    {% else %}
+        <a href="{{ nav_item.url|url }}">{{ nav_item.title }}</a>
+    {% endif %}
+{%- endmacro %}
+
+{% macro render(nav_item, path, level) %}
+  {% set class = "terminal-side-panel-nav-item" %}
+  {% if nav_item.active %}
+    {% set class = class ~ " terminal-side-panel-nav-item--active" %}
+  {% endif %}
+
+  
+
+  <li class="terminal-side-panel-level-{{ level }}">
+    {% if nav_item.children %}
+    <label for="{{ path }}"> 
+      {% if nav_item.url %} <a href="{{ nav_item.url | url }}"> {% endif %} 
+        <span>{{ nav_item.title }} </span>
+      {% if nav_item.url %}</a>{% endif %} 
+    </label> 
+    {% else %}
+    {{ link_or_span(nav_item, true) }}
+    {% endif %}
+  </li>
+
+  
+
+{% endmacro %}
+{{ render(nav_item, path, level) }}
+      

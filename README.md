@@ -13,3 +13,5 @@
   - https://github.com/squidfunk/mkdocs-material/commit/149b0dbc475fd77a2cf00fdd6365078a900c023b
   - https://github.com/squidfunk/mkdocs-material/commit/f3926bf444a29310be0d14b1311b3dd832b1c310
 - [mkdocs page struction](https://www.mkdocs.org/dev-guide/themes/#mkdocs.structure.pages.Page)
+- [jinja namespace() added in 2.10](https://jinja.palletsprojects.com/en/3.0.x/changes/#version-2-10)
+- [accessible menu bar nav example](https://www.w3.org/WAI/ARIA/apg/example-index/menubar/menubar-navigation)

@@ -26,8 +26,8 @@ markdown_extensions:
 theme:
   name: null
   custom_dir: '../terminal/'
-  # features:
-  #   - navigation.indexes
+  features:
+    - navigation.indexes
 
 watch:
     - '../terminal/'

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <head>
+    {% set features = config.theme.features or [] %}
     {%- block site_meta %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,8 +15,6 @@
     <link rel="canonical" href="{{ page.canonical_url }}">{% endif %} 
     {% include "favicon.html" %} 
     {%- endblock %} 
-    
-    {% set features = config.theme.features or [] %}
     
     {%- block htmltitle %}
     <title>{% if page and page.title %}{{ page.title }} - {% endif %}{{ config.site_name }}</title>
@@ -71,7 +70,6 @@
         ga('send', 'pageview');
     </script>
     {% endif %}
-
 </head>
 
 <body class="terminal">

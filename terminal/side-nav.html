@@ -1,34 +1,9 @@
-{% import 'nav-macro.html' as nav_macros with context%}
 <nav>
-    {% if nav|length>1 %}
-    <ul>
-        {% if page %}
-            {% for nav_item in nav %}
-                <!-- top level, stand-alone pages -->
-                {% if not nav_item.is_section %}
-                    <li>{{ nav_macros.link_or_span(nav_item) }}</li>
-                {% else %}
-                    <!-- index feature turned on -->
-                    {% if "navigation.indexes" in features %}
-                        <!-- the section has an index.md file -->
-
-                        <!-- the section does NOT have an index.md file -->
-                        <li>{{ nav_macros.li_span(nav_item) }}
-                            {% for second_level in nav_item.children %}
-                                <ul><li>{{ nav_macros.level_two_link_or_span(second_level) }}</li></ul>
-                            {% endfor %}
-                        </li>
-                    <!-- index feature turned off -->
-                    {% else %}
-                    <li>{{ nav_macros.li_span(nav_item) }}
-                        {% for second_level in nav_item.children %}
-                            <ul><li>{{ nav_macros.level_two_link_or_span(second_level) }}</li></ul>
-                        {% endfor %}
-                    </li>
-                    {% endif %}    
-                {% endif %}
-            {% endfor %}
-        {% endif %}
+    <ul class="terminal-side-panel-items">
+        {% for nav_item in nav %}
+          {% set path = "__nav_" ~ loop.index %}
+          {% set level = 1 %}
+          {% include "partials/side-nav-item.html" %}
+        {% endfor %}
     </ul>
-    {% endif %}
 </nav>
