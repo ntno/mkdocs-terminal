@@ -6,20 +6,3 @@
     {% endif %}
 {%- endmacro %}
 
-{% macro level_two_link_or_span(nav_item) -%}
-    {% if nav_item.active %}
-        <span class="side-panel-highlight"><i>{{ nav_item.title }}</i></span>
-    {% else %}
-        <a href="{{ nav_item.url|url }}">{{ nav_item.title }}</a>
-    {% endif %}
-{%- endmacro %}
-
-{% macro level_two_section_link_or_span(nav_item) -%}
-    {% if nav_item.active %}
-        <a class="side-panel-section-lowlight" href="{{ nav_item.title.lower() |url }}"><span>{{ nav_item.title }}</span></a>
-    {% elif page.url.startswith(nav_item.title.lower()) %}
-        <span class="side-panel-highlight"><i>{{ nav_item.title }}</i></span>
-    {% else %}
-        <a href="{{ nav_item.title.lower() |url }}"><span>{{ nav_item.title }}</span></a>
-    {% endif %}
-{%- endmacro %}
