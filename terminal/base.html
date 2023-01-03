@@ -1,37 +1,28 @@
-<!--
-  This Basic theme serves as an example for how to create other
-  themes by demonstrating the features with minimal HTML and CSS.
-  Comments like this will be through the code to explain briefly
-  what each feature is and point you to the MkDocs documentation
-  to find out more.
--->
 <!DOCTYPE html>
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {%- block site_meta %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <meta name="robots" content="noindex"> -->
+    {% if config.site_description %}
+    <meta name="description" content="{{ config.site_description }}">{% endif %} 
+    {% if config.site_author %}
+    <meta name="author" content="{{ config.site_author }}">{% endif %} 
+    {% if page.canonical_url %}
+    <link rel="canonical" href="{{ page.canonical_url }}">{% endif %} 
+    {% include "favicon.html" %} 
+    {%- endblock %} 
+    
+    {%- block htmltitle %}
+    <title>{% if page and page.title %}{{ page.title }} - {% endif %}{{ config.site_name }}</title>
+    {%- endblock %} 
+    
+    {%- block styles %}
+    <link href="{{ 'css/terminal.css' | url }}" rel="stylesheet">
+    <link href="{{ 'css/theme.css' | url }}" rel="stylesheet"> {%- endblock %}
 
-    <!--
-    The page_title contains the title for a page as shown in the navigation.
-    Site name contains the name as defined in the mkdocs.yml
-  -->
-    <title>{% if page.title %}{{ page.title }} - {% endif %}{{ config.site_name }}</title>
-
-    <!--
-    Just add a favicon.ico image to the docs.
-  -->
-    <link rel="shortcut icon" href="{{ " img/favicon.ico "|url }}">
-
-
-    <!--
-    You can include external assets of course, but be aware that it means the
-    documentation may not work well offline.
-  -->
-    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
-
-    <link rel="stylesheet" href="{{ " css/terminal.css "|url }}">
-    <link rel="stylesheet" href="{{ " css/theme.css "|url }}">
     <!--
     extra_ess contains paths to CSS files in the users
     documentation directory or a list of CSS files defined in
@@ -40,16 +31,8 @@
     http://www.mkdocs.org/user-guide/configuration/#extra_css
   -->
     {% for path in config.extra_css %}
-    <link href="{{ path|url }}" rel="stylesheet"> {% endfor %}
-
-    <!--
-    To include static assets from our theme, just add
-    {{ base_url }} beforehand which will be the relative path to
-    the root of the documentation.
-  -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
-    <script src="{{ " js/theme.js "|url }}"></script>
-
+    <link href="{{ path|url }}" rel="stylesheet"> {% endfor %} 
+    
     {% block extrahead %} {% endblock %}
 
     <!--
@@ -90,7 +73,16 @@
 </head>
 
 <body class="terminal">
-    {%- block site_nav %} {% include "top-nav.html" %} {%- endblock %}
+    {% if page and page.meta and page.meta.hide %} 
+      {% set hide_toc = "true" if "toc" in page.meta.hide %} 
+      {% set hide_top_nav = "true" if "top-navigation" in page.meta.hide %} 
+      {% set hide_side_nav = "true" if "side-navigation" in page.meta.hide %} 
+    {% endif %} 
+    {%- block site_nav %} 
+      {% if not hide_top_nav %} 
+        {% include "top-nav.html" %} 
+      {% endif %} 
+    {%- endblock %}
 
     <div class="container">
         <div class="main-grid">

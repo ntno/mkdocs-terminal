@@ -1,0 +1,41 @@
+
+{% import 'nav-macro.html' as nav_macros with context%}
+
+<aside id="menu">
+    {% if not hide_side_nav %}
+    <nav>
+        {% if nav|length>1 %}
+        <ul>
+            {% if page %}
+                {% for nav_item in nav %}
+                    {% if not nav_item.is_section %}
+                        {{ nav_macros.li_link_or_span(nav_item, true) }}
+                    {% else %}
+                    <li>
+                        {% for second_level in nav_item.children %}
+                            {% if second_level.is_section %}
+                                <ul>
+                                    {{ nav_macros.level_two_section_link_or_span(second_level)}}
+                                        {% for third_level in second_level.children %}
+                                            {{ nav_macros.li_link_or_span(third_level, true) }}
+                                        {% endfor %}
+                                </ul> 
+                            {% else %}
+                                <ul>
+                                    {{ nav_macros.level_two_link_or_span(second_level) }}
+                                </ul>
+                            {% endif %}
+                        {% endfor %}
+                    </li>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </ul>
+        {% endif %}
+    </nav>
+    {% endif %}
+    {% if not hide_toc %}
+        {% include "side-toc.html" %}
+    {% endif %}
+</aside>
+
