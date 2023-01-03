@@ -14,19 +14,19 @@ theme:
     - navigation.top.hide
     - navigation.top.terminal_prompt
 ```
-**toc.hide**
+**toc.hide**  
 hides table of contents on all site pages
 
-**navigation.side.hide**
+**navigation.side.hide**  
 hides side navigation on all site pages
 
-**navigation.side.indexes**
+**navigation.side.indexes**  
 enables section links in side nav
 
-**navigation.top.hide**
+**navigation.top.hide**  
 hides top navigation on all site pages
 
-**navigation.top.terminal_prompt**
+**navigation.top.terminal_prompt**  
 enables terminal prompt site name styling in top nav
 
 ## Hideable Components
