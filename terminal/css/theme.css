@@ -5,7 +5,7 @@ body {
     padding-bottom: 50px;
 }
 
-.main-grid {
+.terminal-mkdocs-main-grid {
     display: grid;
     grid-column-gap: 1.4em;
     grid-template-columns: auto;
@@ -13,25 +13,12 @@ body {
 }
 
 @media only screen and (min-width: 70em) {
-    .main-grid {
+    .terminal-mkdocs-main-grid {
         grid-template-columns: 4fr 9fr;
     }
 }
 
-.side-nav-section-title-span {
-    color: var(--primary-color);
-    text-decoration: none
-}
-
-.side-panel-highlight {
-    position: relative;
-    white-space: nowrap;
-}
-
-.side-panel-highlight::after {
-    content: "";
-}
-
+/* don't display backticks on `code` items, just highlight */
 code::after,
 code::before {
     content: "" !important;
