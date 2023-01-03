@@ -5,5 +5,6 @@ recursive-exclude tests *
 recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
 recursive-exclude docs *
+recursive-exclude demo *
 exclude mkdocs.yml
 exclude requirements.txt
