@@ -13,7 +13,7 @@
     <meta name="author" content="{{ config.site_author }}">{% endif %} 
     {% if page.canonical_url %}
     <link rel="canonical" href="{{ page.canonical_url }}">{% endif %} 
-    {% include "favicon.html" %} 
+    {% include "partials/favicon.html" %} 
     {%- endblock %} 
     
     {%- block htmltitle %}
@@ -80,18 +80,18 @@
     {% endif %} 
     {%- block site_nav %} 
       {% if not hide_top_nav %} 
-        {% include "top-nav.html" %} 
+        {% include "partials/top-nav.html" %} 
       {% endif %} 
     {%- endblock %}
 
     <div class="container">
         <div class="terminal-mkdocs-main-grid">
-          {% include "side-panel.html" %}
+          {% include "partials/side-panel.html" %}
             <main>
-                {%- block content %} {% include "content.html" %} {%- endblock %}
+                {%- block content %} {% include "partials/content.html" %} {%- endblock %}
             </main>
         </div>
-        <hr> {%- block footer %} {% include "footer.html" %} {%- endblock %}
+        <hr> {%- block footer %} {% include "partials/footer.html" %} {%- endblock %}
     </div>
 </body>
 
