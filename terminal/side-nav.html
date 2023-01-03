@@ -1,0 +1,18 @@
+{% import 'nav-macro.html' as nav_macros with context%}
+<nav>
+    {% if nav|length>1 %}
+    <ul>
+        {% if page %}
+            {% for nav_item in nav %}
+                <!-- top level, stand-alone pages -->
+                {% if not nav_item.is_section %}
+                    {{ nav_macros.li_link_or_span(nav_item, true) }}
+                {% else %}
+                
+
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </ul>
+    {% endif %}
+</nav>
