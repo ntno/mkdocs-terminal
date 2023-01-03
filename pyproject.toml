@@ -40,9 +40,5 @@ terminal = "terminal"
 requires = ["setuptools>=43.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
-[options]
-package_dir=
-    =terminal
-
-[options.packages.find]
-where=terminal
+[tool.setuptools]
+packages = ["terminal"]
