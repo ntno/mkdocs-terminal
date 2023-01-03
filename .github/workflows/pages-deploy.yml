@@ -1,5 +1,5 @@
 # Simple workflow for deploying mkdocs site 
-name: Deploy MkDocs to GitHub Pages
+name: Deploy Demo to GitHub Pages
 
 env:
   gh-pages-url: https://ntno.github.io/mkdocs-terminal-theme
