@@ -48,14 +48,9 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: ${{ inputs.tag }}
-      - name: Install Requirements
-        run: | 
-          cd demo
-          pip install -r ./requirements.txt
       - name: Build MkDocs
         run: |
-          cd demo
-          mkdocs build
+          make build-mkdocs-demo
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
