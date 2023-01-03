@@ -6,7 +6,6 @@
     {% endif %}
 {%- endmacro %}
 
-
 {% macro section_span_or_index_link(nav_item) -%}
   {% if nav_item.active %}
         <span><i>{{ nav_item.parent.title }}</i></span>
@@ -23,13 +22,7 @@
     {% endif %}
 {%- endmacro %}
 
-{% macro level_two_link_or_span(nav_item) -%}
-    {% if nav_item.active %}
-    <span class="side-panel-highlight"><i>{{ nav_item.title }}</i></span>
-    {% else %}
-    <a href="{{ nav_item.url|url }}">{{ nav_item.title }}</a>
-    {% endif %}
-{%- endmacro %}
+
 
 {% macro render(nav_item, path, level) %}
 
@@ -60,7 +53,7 @@
       <!-- section items -->
       {% for second_level in nav_item.children %}
       <ul>
-          <li>{{ level_two_link_or_span(second_level) }}</li>
+          <li>{{ link_or_span(second_level) }}</li>
       </ul>
       {% endfor %}
     {% else %}
