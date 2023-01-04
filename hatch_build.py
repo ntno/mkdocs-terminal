@@ -7,7 +7,7 @@ class CustomBuildHook(BuildHookInterface):
     def initialize(self, version, build_data):
         from babel.messages.frontend import compile_catalog
 
-        for theme in 'mkdocs', 'readthedocs':
+        for theme in 'mkdocs', 'terminal':
             cmd = compile_catalog()
             cmd.directory = os.path.join('mkdocs', 'themes', theme, 'locales')
             cmd.finalize_options()
