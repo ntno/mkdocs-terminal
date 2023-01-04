@@ -27,7 +27,7 @@ enables section links in side nav.  ignored if `navigation.side.hide` is set.
 hides top navigation on all site pages
 
 **navigation.top.cursor_animation.hide**  
-hides terminal prompt site name styling in top nav.  ignored if `navigation.top.hide` is set.
+hides the blinking cursor animation in the top nav.  ignored if `navigation.top.hide` is set.
 
 ## Hideable Components
 In order to hide components on a per-page basis, you need the meta markdown extension
