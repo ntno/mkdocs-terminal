@@ -12,7 +12,7 @@ theme:
     - navigation.side.hide
     - navigation.side.indexes
     - navigation.top.hide
-    - navigation.top.terminal_prompt
+    - navigation.top.cursor_animation.hide
 ```
 **toc.hide**  
 hides table of contents on all site pages
@@ -26,8 +26,8 @@ enables section links in side nav.  ignored if `navigation.side.hide` is set.
 **navigation.top.hide**  
 hides top navigation on all site pages
 
-**navigation.top.terminal_prompt**  
-enables terminal prompt site name styling in top nav.  ignored if `navigation.top.hide` is set.
+**navigation.top.cursor_animation.hide**  
+hides terminal prompt site name styling in top nav.  ignored if `navigation.top.hide` is set.
 
 ## Hideable Components
 In order to hide components on a per-page basis, you need the meta markdown extension

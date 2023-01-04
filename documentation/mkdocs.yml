@@ -23,4 +23,4 @@ theme:
     # - navigation.side.hide
     - navigation.side.indexes
     # - navigation.top.hide
-    - navigation.top.terminal_prompt
+    # - navigation.top.cursor_animation.hide

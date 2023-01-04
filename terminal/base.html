@@ -22,7 +22,15 @@
     
     {%- block styles %}
     <link href="{{ 'css/terminal.css' | url }}" rel="stylesheet">
-    <link href="{{ 'css/theme.css' | url }}" rel="stylesheet"> {%- endblock %}
+    <link href="{{ 'css/theme.css' | url }}" rel="stylesheet"> 
+    {% if 'navigation.top.cursor_animation.hide' in features %}
+    <style>
+      .terminal-prompt::after {
+          display: none;
+      }
+    </style> 
+    {% endif %}
+    {%- endblock %}
 
     <!--
     extra_ess contains paths to CSS files in the users

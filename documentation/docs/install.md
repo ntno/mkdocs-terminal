@@ -17,6 +17,4 @@ Add `theme` configuration in `mkdocs.yml`:
 ```yaml
 theme:
   name: terminal
-  features:
-    - navigation.top.terminal_prompt
 ```

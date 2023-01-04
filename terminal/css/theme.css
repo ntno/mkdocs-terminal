@@ -18,17 +18,21 @@ body {
     }
 }
 
-/* don't display backticks on `code` items, just highlight */
-code::after,
-code::before {
-    content: "" !important;
-    display: inline;
-}
-
 .terminal-mkdocs-side-nav-item--active {
     font-style: italic;
 }
 
 .terminal-mkdocs-side-nav-item-section-no-index {
     color: var(--secondary-color);
+}
+
+/* ***************************************************************** */
+/* Terminal.css Overrides */
+/* ***************************************************************** */
+
+/* don't display backticks on `code` items, just highlight */
+code::after,
+code::before {
+    content: "" !important;
+    display: inline;
 }
