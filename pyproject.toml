@@ -3,7 +3,7 @@ name = "mkdocs-terminal"
 
 description = "Terminal.css theme for MkDocs"
 
-version = "0.2.4"
+version = "0.2.5"
 
 authors = [
     { name = "Natan Organick" }
