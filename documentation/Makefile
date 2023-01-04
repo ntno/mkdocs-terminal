@@ -9,10 +9,10 @@ install-mkdocs-requirements: upgrade-pip
 	pip install -r ./requirements.txt
 
 build-mkdocs: clean install-mkdocs-requirements
-	mkdocs build -vvv -t terminal
+	mkdocs build -v
 
 serve-mkdocs: build-mkdocs
-	mkdocs serve -vvv --dev-addr=0.0.0.0:8080 -t terminal
+	mkdocs serve -v --dev-addr=0.0.0.0:8080
 
 clean:
 	rm -rf site/
