@@ -1,13 +1,15 @@
+{% set partial_ns = namespace(active_class="terminal-mkdocs-side-nav-item--active") %}
+
 {% macro section_span_no_index( nav_item ) -%}
     {% if nav_item.active %}
-        {% set item_class = "terminal-mkdocs-side-nav-item--active" %}
+        {% set item_class = partial_ns.active_class %}
     {% endif %}
     <span {% if item_class %}class="{{ item_class }}"{% endif %}>{{ nav_item.title }}</span>
 {%- endmacro %}
 
 {% macro section_span_or_index_link( nav_item ) -%}
     {% if nav_item.active %}
-        {% set item_class = "terminal-mkdocs-side-nav-item--active" %}
+        {% set item_class = partial_ns.active_class %}
     {% endif %}
 
     {% if nav_item.active %}
@@ -19,7 +21,7 @@
 
 {% macro link_or_span( nav_item ) -%}
     {% if nav_item.active %}
-        {% set item_class = "terminal-mkdocs-side-nav-item--active" %}
+        {% set item_class = partial_ns.active_class %}
     {% endif %}
 
     {% if nav_item.active %}
