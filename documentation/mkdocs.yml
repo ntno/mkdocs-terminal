@@ -12,6 +12,7 @@ nav:
 
 markdown_extensions:
   - meta
+  - attr_list
   - toc:
       permalink: "#"
 
