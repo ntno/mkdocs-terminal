@@ -18,7 +18,11 @@ body {
     }
 }
 
-.terminal-mkdocs-side-nav-item--active {
+/* .terminal-mkdocs-side-nav-item--active {
+    font-style: italic;
+} */
+
+span.terminal-mkdocs-side-nav-item--active {
     font-style: italic;
 }
 
