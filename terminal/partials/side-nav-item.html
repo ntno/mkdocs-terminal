@@ -1,10 +1,15 @@
 {% set partial_ns = namespace(active_class="terminal-mkdocs-side-nav-item--active") %}
 
-{% macro section_span_no_index( nav_item ) -%}
+{% macro span_or_link( nav_item ) -%}
     {% if nav_item.active %}
         {% set item_class = partial_ns.active_class %}
     {% endif %}
-    <span {% if item_class %}class="{{ item_class }}"{% endif %}>{{ nav_item.title }}</span>
+
+    {% if nav_item.active %}
+        <span {% if item_class %}class="{{ item_class }}"{% endif %}>{{ nav_item.title }}</span>
+    {% else %}
+        <a  {% if item_class %}class="{{ item_class }}"{% endif %} href="{{ nav_item.url|url }}">{{ nav_item.title }}</a>
+    {% endif %}
 {%- endmacro %}
 
 {% macro section_span_or_index_link( nav_item ) -%}
@@ -19,16 +24,11 @@
     {% endif %}
 {%- endmacro %}
 
-{% macro span_or_link( nav_item ) -%}
+{% macro section_span_no_index( nav_item ) -%}
     {% if nav_item.active %}
         {% set item_class = partial_ns.active_class %}
     {% endif %}
-
-    {% if nav_item.active %}
-        <span {% if item_class %}class="{{ item_class }}"{% endif %}>{{ nav_item.title }}</span>
-    {% else %}
-        <a  {% if item_class %}class="{{ item_class }}"{% endif %} href="{{ nav_item.url|url }}">{{ nav_item.title }}</a>
-    {% endif %}
+    <span {% if item_class %}class="{{ item_class }}"{% endif %}>{{ nav_item.title }}</span>
 {%- endmacro %}
 
 <li class="terminal-mkdocs-side-nav-li">
