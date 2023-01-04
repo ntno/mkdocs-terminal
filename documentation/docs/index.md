@@ -4,7 +4,7 @@ This site demonstrates the basic features of the `mkdocs-terminal` MkDocs theme.
 
 ## Features
 
-```mkdocs.yml
+```yaml
 theme:
   name: terminal
   features:
@@ -38,7 +38,7 @@ markdown_extensions:
 ### top-nav
 This component includes the `site_name` at the top left and the top level pages as defined in the `nav` section of mkdocs.yml at the top right:
 
-```mkdocs.yml
+```yaml
 site_name: MkDocs Terminal Theme Demo
 nav:
     - Home: 'index.md'
@@ -48,7 +48,7 @@ nav:
 ### side-nav
 This component includes the first through second level pages as defined in the `nav` section of mkdocs.ylm in the left sidebar:
 
-```mkdocs.yml
+```yaml
 nav:
     - Home: 'index.md'
     - TOC Example: 'toc.md'
