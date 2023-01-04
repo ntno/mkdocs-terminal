@@ -12,10 +12,10 @@ build:
 remove-orphans: 
 	docker compose down --remove-orphans
 
-serve-demo:
+serve-demo: remove-orphans
 	docker compose run --entrypoint "/bin/bash" --service-ports local_demo_server -c "make serve-mkdocs"
 
-serve-docs:
+serve-docs: remove-orphans
 	docker compose run --entrypoint "/bin/bash" --service-ports local_documentation_server -c "make serve-mkdocs"
 
 
