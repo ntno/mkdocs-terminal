@@ -32,7 +32,7 @@ Source = "https://github.com/ntno/mkdocs-terminal"
 Issues = "https://github.com/ntno/mkdocs-terminal/issues"
 
 [project.entry-points."mkdocs.themes"]
-terminal = "terminal"
+'terminal = terminal'
 
 [build-system]
 # These are the assumed default build requirements from pip:
