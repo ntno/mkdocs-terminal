@@ -1,12 +1,22 @@
 
-1. set up your mkdocs project according to MkDocs [Getting Started](https://www.mkdocs.org/getting-started/) instructions
-2. install `mkdocs-terminal` theme
-   1. `pip install mkdocs-terminal`
-   2. or add it to your `requirements.txt` file
+# Setup MkDocs project
+See [Getting Started](https://www.mkdocs.org/getting-started/) for details.
 
-    ```requirements.txt
-    mkdocs
-    mkdocs-terminal
-    ```
+## Install Theme
+Install package with pip.  Add the `mkdocs-terminal` package to your requirements file.
 
-    then run: `pip install -r ./requirements.txt`
+```requirements.txt
+mkdocs
+mkdocs-terminal
+```
+Then run:  `pip install -r ./requirements.txt`
+
+## Update MkDocs Configuration
+Add `theme` configuration in `mkdocs.yml`
+   
+```mkdocs.yml
+theme:
+   name: terminal
+   features:
+      - navigation.top.terminal_prompt
+```
