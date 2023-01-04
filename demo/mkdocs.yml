@@ -24,7 +24,7 @@ markdown_extensions:
 
 theme:
   name: null
-  custom_dir: '../src/'
+  custom_dir: '../terminal/'
   features:
     # - toc.hide
     # - navigation.side.hide
@@ -33,4 +33,4 @@ theme:
     - navigation.top.terminal_prompt
 
 watch:
-    - '../src/'
+    - '../terminal/'
