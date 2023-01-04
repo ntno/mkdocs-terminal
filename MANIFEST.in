@@ -9,4 +9,5 @@ recursive-exclude tests *
 recursive-exclude documentation *
 recursive-exclude demo *
 exclude MANIFEST.in
+exclude NOTES.md
 exclude package-lock.json

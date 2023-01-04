@@ -1,7 +1,7 @@
 <div class="container">
     <div class="terminal-nav">
         <header class="terminal-logo">
-            <div class="logo {% if 'navigation.top.terminal_prompt' in features %}terminal-prompt{% endif %}"><a href="/" class="no-style">{{ config.site_name }}</a></div>
+            <div class="logo {% if 'navigation.top.terminal_prompt' in features %}terminal-prompt{% endif %}"><a href="{% if config.site_url %}{{ config.site_url }}{% else %}/{% endif %}" class="no-style">{{ config.site_name }}</a></div>
         </header>
         <nav class="terminal-menu">
             {% if nav|length>1 %}
