@@ -1,37 +1,26 @@
-<!--
-  This Basic theme serves as an example for how to create other
-  themes by demonstrating the features with minimal HTML and CSS.
-  Comments like this will be through the code to explain briefly
-  what each feature is and point you to the MkDocs documentation
-  to find out more.
--->
 <!DOCTYPE html>
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <meta name="robots" content="noindex"> -->
+     
+    
+    <meta name="author" content="ntno"> 
+    
+    <link rel="canonical" href="https://ntno.github.io/mkdocs-terminal/"> 
+    <link rel="icon" type="image/png" sizes="192x192" href="img/android-chrome-192x192.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="img/android-chrome-512x512.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
+<link rel="shortcut icon" type="image/png" sizes="48x48" href="img/favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png" />
+    <title>Home - MkDocs Terminal Theme Documentation</title>
+    <link href="css/terminal.css" rel="stylesheet">
+    <link href="css/theme.css" rel="stylesheet">
 
-    <!--
-    The page_title contains the title for a page as shown in the navigation.
-    Site name contains the name as defined in the mkdocs.yml
-  -->
-    <title>MkDocs Basic Theme - MkDocs Terminal Theme Demo</title>
-
-    <!--
-    Just add a favicon.ico image to the docs.
-  -->
-    <link rel="shortcut icon" href=" img/favicon.ico ">
-
-
-    <!--
-    You can include external assets of course, but be aware that it means the
-    documentation may not work well offline.
-  -->
-    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
-
-    <link rel="stylesheet" href=" css/terminal.css ">
-    <link rel="stylesheet" href=" css/theme.css ">
     <!--
     extra_ess contains paths to CSS files in the users
     documentation directory or a list of CSS files defined in
@@ -39,16 +28,8 @@
 
     http://www.mkdocs.org/user-guide/configuration/#extra_css
   -->
+     
     
-
-    <!--
-    To include static assets from our theme, just add
-    . beforehand which will be the relative path to
-    the root of the documentation.
-  -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
-    <script src=" js/theme.js "></script>
-
      
 
     <!--
@@ -68,20 +49,245 @@
     http://www.mkdocs.org/user-guide/configuration/#google_analytics
   -->
     
-
 </head>
 
 <body class="terminal">
+     
+      
+         
+          <div class="container">
+    <div class="terminal-nav">
+        <header class="terminal-logo">
+            <div class="logo terminal-prompt"><a href="/" class="no-style">MkDocs Terminal Theme Documentation</a></div>
+        </header>
+        <nav class="terminal-menu">
+            
+            <ul vocab="https://schema.org/" typeof="BreadcrumbList">
+                
+                
+                <li property="itemListElement" typeof="ListItem">
+                    <a href="." class="menu-item active" property="item" typeof="WebPage">
+                        <span property="name">Home</span>
+                    </a>
+                    <meta property="position" content="0">
+                </li>
+                
+                
+                
+                <li property="itemListElement" typeof="ListItem">
+                    <a href="install/" class="menu-item " property="item" typeof="WebPage">
+                        <span property="name">Install</span>
+                    </a>
+                    <meta property="position" content="1">
+                </li>
+                
+                
+                
+                
+            </ul>
+            
+        </nav>
+    </div>
+</div> 
+        
+      
+
     <div class="container">
-        <div class="main-grid">
+        <div class="terminal-mkdocs-main-grid">
+          <aside id="menu">
+    
+        
+        <nav>
+  
+    <ul class="terminal-mkdocs-side-nav-items">
+        
+          
+          
+          
+
+
+
+
+
+
+
+
+
+
+  <li class="terminal-mkdocs-side-nav-item-level-1">
+    
+    <!-- link for a top level page -->
+    
+        <span><i>Home</i></span>
+    
+    
+  </li>
+
+  
+
+
+      
+        
+          
+          
+          
+
+
+
+
+
+
+
+
+
+
+  <li class="terminal-mkdocs-side-nav-item-level-1">
+    
+    <!-- link for a top level page -->
+    
+        <a href="install/">Install</a>
+    
+    
+  </li>
+
+  
+
+
+      
+        
+          
+          
+          
+
+
+
+
+
+
+
+
+
+
+  <li class="terminal-mkdocs-side-nav-item-level-1">
+    
+    
+      
+          <!-- navigation.side.indexes feature is ON -->
+          <!-- determine if section has an index -->
+          
+          
+
+          <!-- section has an index -->
+          
+          
+        <span>Navigation</span>
+    
+          
+      
+      
+      <!-- section items -->
+      
+      <ul>
+          <li>
+        <a href="navigation/toc/">Table of Contents</a>
+    </li>
+      </ul>
+      
+    
+  </li>
+
+  
+
+
+      
+        
+    </ul>
+  
+</nav>
+        
+    
+
+    
+        
+        
+
+<hr>
+<nav>
+    <ul>
+        
+        <li><a href="#mkdocs-terminal-theme">MkDocs Terminal Theme</a></li>
+            
+            <li><a href="#features">Features</a></li>
+            
+            <li><a href="#hideable-components">Hideable Components</a></li>
+            
+        
+    </ul>
+</nav>
+
+
+        
+    
+</aside>
+
             <main> <section>
-    <h1 id="mkdocs-basic-theme">MkDocs Basic Theme</h1>
-<p>This is a very basic theme for MkDocs with the goal of demonstrating all of
-the features with minimal HTML and CSS.</p>
-<h2 id="adapting-this-theme">Adapting this theme</h2>
-<p>If you want to use this theme as a base to create your own, it is best to
-download or fork the theme and start to modify it</p>
-<p>Make sure you read the MkDocs documentation regarding writing custom themes.</p>
+    <h1 id="mkdocs-terminal-theme">MkDocs Terminal Theme<a class="headerlink" href="#mkdocs-terminal-theme" title="Permanent link">#</a></h1>
+<p>This site demonstrates the basic features of the <code>mkdocs-terminal</code> MkDocs theme.</p>
+<h2 id="features">Features<a class="headerlink" href="#features" title="Permanent link">#</a></h2>
+<pre><code class="language-mkdocs.yml">theme:
+  name: terminal
+  features:
+    - toc.hide
+    - navigation.side.hide
+    - navigation.side.indexes
+    - navigation.top.hide
+    - navigation.top.terminal_prompt
+</code></pre>
+<p><strong>toc.hide</strong><br />
+hides table of contents on all site pages</p>
+<p><strong>navigation.side.hide</strong><br />
+hides side navigation on all site pages</p>
+<p><strong>navigation.side.indexes</strong><br />
+enables section links in side nav.  ignored if <code>navigation.side.hide</code> is set.</p>
+<p><strong>navigation.top.hide</strong><br />
+hides top navigation on all site pages</p>
+<p><strong>navigation.top.terminal_prompt</strong><br />
+enables terminal prompt site name styling in top nav.  ignored if <code>navigation.top.hide</code> is set.</p>
+<h2 id="hideable-components">Hideable Components<a class="headerlink" href="#hideable-components" title="Permanent link">#</a></h2>
+<p>In order to hide components on a per-page basis, you need the meta markdown extension</p>
+<pre><code class="language-mkdocs.yml">markdown_extensions:
+  - meta
+</code></pre>
+<h3 id="top-nav">top-nav<a class="headerlink" href="#top-nav" title="Permanent link">#</a></h3>
+<p>This component includes the <code>site_name</code> at the top left and the top level pages as defined in the <code>nav</code> section of mkdocs.yml at the top right:</p>
+<pre><code class="language-mkdocs.yml">site_name: MkDocs Terminal Theme Demo
+nav:
+    - Home: 'index.md'
+    - TOC Example: 'toc.md'
+</code></pre>
+<h3 id="side-nav">side-nav<a class="headerlink" href="#side-nav" title="Permanent link">#</a></h3>
+<p>This component includes the first through second level pages as defined in the <code>nav</code> section of mkdocs.ylm in the left sidebar:</p>
+<pre><code class="language-mkdocs.yml">nav:
+    - Home: 'index.md'
+    - TOC Example: 'toc.md'
+    - About: 
+      - Contributing: 'about/contributing.md'
+    - 'User Guide':
+      - Configuration: 'user-guide/configuration.md'
+      - 'Custom Themes': 'user-guide/custom-themes.md'
+      - Deployment: 'user-guide/deploying-your-docs.md'
+</code></pre>
+<h3 id="toc">toc<a class="headerlink" href="#toc" title="Permanent link">#</a></h3>
+<p>The table of contents component is located directly underneath the side-nav component.  It includes links to the <code>h1</code> and <code>h2</code> level sections in the current page's markdown.  See <a href="toc">TOC Example</a> for detailed example.</p>
+    
+
+    
+    
+<br>
+<p>
+    
+</p>
+    
 </section>
             </main>
         </div>
