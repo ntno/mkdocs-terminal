@@ -52,4 +52,4 @@ include = ["/terminal"]
 
 [tool.hatch.build.targets.sdist]
 include = ["/terminal", "/package.json", "/requirements.txt"]
-exclude = ["/terminal/.overrides"]
+exclude = ["/terminal/.overrides", "package-lock.json"]
