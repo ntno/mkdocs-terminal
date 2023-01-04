@@ -29,12 +29,15 @@ install-build-requirements:
 	pip install --upgrade build
 
 build-pip-dist:
-	python -m build
+	python -m build --outdir ./dist
 
 build-theme: clean install-build-requirements build-pip-dist
 
+check-dist:
+	tar tf dist/*.tar.gz
+	unzip -l dist/*.whl
+
 clean-dist:
-	rm -rf mkdocs_terminal.egg-info/
 	rm -rf dist/
 
 clean: clean-demo clean-dist

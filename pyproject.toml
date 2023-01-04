@@ -3,7 +3,7 @@ name = "mkdocs-terminal"
 
 description = "Terminal.css theme for MkDocs"
 
-version = "0.2.2"
+version = "0.2.3"
 
 authors = [
     { name = "Natan Organick" }
@@ -46,5 +46,10 @@ requires = ["setuptools>=43.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 
-[tool.setuptools]
-package-dir = {"" = "terminal/src"}
+# [tool.setuptools]
+# package-dir = {"" = "terminal/src"}
+
+[tool.setuptools.packages.find]
+where = ["terminal"]
+include = ["src*"]
+namespaces = false
