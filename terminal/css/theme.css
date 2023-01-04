@@ -20,7 +20,7 @@ body {
 
 .terminal-mkdocs-side-nav-item--active {
     font-style: italic;
-} 
+}
 
 .terminal-mkdocs-side-nav-section-no-index {
     color: var(--secondary-color);
