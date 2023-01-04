@@ -1,32 +1,39 @@
-{% macro section_span_no_index(nav_item) -%}
+{% set partial_ns = namespace(no_section_index_available_class="terminal-mkdocs-side-nav-item-section-no-index", active_class="terminal-mkdocs-side-nav-item--active") %}
+
+{% macro span_or_link( nav_item ) -%}
     {% if nav_item.active %}
-        <span><i>{{ nav_item.title }}</i></span>
-    {% else %}
-        <span>{{ nav_item.title }}</span>
+        {% set item_class = partial_ns.active_class %}
     {% endif %}
-{%- endmacro %}
 
-{% macro section_span_or_index_link(nav_item) -%}
-  {% if nav_item.active %}
-        <span><i>{{ nav_item.parent.title }}</i></span>
-    {% else %}
-        <a href="{{ nav_item.url|url }}">{{ nav_item.parent.title }}</a>
-    {% endif %}
-{%- endmacro %}
-
-{% macro link_or_span(nav_item) -%}
     {% if nav_item.active %}
-        <span><i>{{ nav_item.title }}</i></span>
+        <span {% if item_class %}class="{{ item_class }}"{% endif %}>{{ nav_item.title }}</span>
     {% else %}
-        <a href="{{ nav_item.url|url }}">{{ nav_item.title }}</a>
+        <a  {% if item_class %}class="{{ item_class }}"{% endif %} href="{{ nav_item.url|url }}">{{ nav_item.title }}</a>
     {% endif %}
 {%- endmacro %}
 
+{% macro section_span_or_index_link( nav_item ) -%}
+    {% if nav_item.active %}
+        {% set item_class = partial_ns.active_class %}
+    {% endif %}
 
+    {% if nav_item.active %}
+        <span {% if item_class %}class="{{ item_class }}"{% endif %}>{{ nav_item.parent.title }}</span>
+    {% else %}
+        <a  {% if item_class %}class="{{ item_class }}"{% endif %} href="{{ nav_item.url|url }}">{{ nav_item.parent.title }}</a>
+    {% endif %}
+{%- endmacro %}
 
-{% macro render(nav_item, path, level) %}
+{% macro section_span_no_index( nav_item ) -%}
+    {% set item_class = partial_ns.no_section_index_available_class %}
+    {% if nav_item.active %}
+        {% set item_class = item_class ~ " " %}
+        {% set item_class = item_class ~ partial_ns.active_class %}
+    {% endif %}
+    <span {% if item_class %}class="{{ item_class }}"{% endif %}>{{ nav_item.title }}</span>
+{%- endmacro %}
 
-  <li class="terminal-mkdocs-side-nav-item-level-{{ level }}">
+<li class="terminal-mkdocs-side-nav-li">
     {% if nav_item.children %}
     
       {% if "navigation.side.indexes" in features %}
@@ -52,18 +59,12 @@
       
       <!-- section items -->
       {% for second_level in nav_item.children %}
-      <ul>
-          <li>{{ link_or_span(second_level) }}</li>
+      <ul class="terminal-mkdocs-side-nav-li-ul">
+          <li class="terminal-mkdocs-side-nav-li-ul-li">{{ span_or_link(second_level) }}</li>
       </ul>
       {% endfor %}
     {% else %}
     <!-- link for a top level page -->
-    {{ link_or_span(nav_item) }}
+    {{ span_or_link( nav_item ) }}
     {% endif %}
   </li>
-
-  
-
-{% endmacro %}
-{{ render(nav_item, path, level) }}
-      
