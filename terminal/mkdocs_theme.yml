@@ -5,6 +5,4 @@ features: []
 
 static_templates:
   - 404.html
-
-extra:
-   mkdocs_terminal_version: 0.4.0
+  - theme_version.html
