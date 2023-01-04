@@ -5,3 +5,6 @@
 include_search_page: false
 
 features: []
+
+static_templates:
+  - 404.html
