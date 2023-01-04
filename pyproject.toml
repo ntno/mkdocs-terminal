@@ -21,7 +21,6 @@ classifiers = [
   "Topic :: Documentation",
   "Topic :: Software Development :: Documentation",
   "Topic :: Text Processing :: Markup :: HTML",
-  "Framework :: MkDocs :: Theme",
   "Intended Audience :: Developers"
 ]
 
