@@ -34,7 +34,6 @@
         {% endfor %}
     {% endif %}
 
-
     {% if nav_item.active %}
         <span {% if section_ns.item_class %}class="{{ section_ns.item_class }}"{% endif %}>{{ nav_item.parent.title }}</span>
     {% else %}
@@ -44,6 +43,7 @@
 
 {% macro section_span_no_index( nav_item ) -%}
     {% set item_class = partial_ns.section_class %}
+    {% set item_class = item_class ~ " terminal-mkdocs-side-nav-section-no-index" %}
     {% if nav_item.active %}
         {% set item_class = item_class ~ " " %}
         {% set item_class = item_class ~ partial_ns.active_class %}

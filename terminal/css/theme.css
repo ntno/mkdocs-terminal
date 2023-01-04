@@ -22,7 +22,7 @@ body {
     font-style: italic;
 } 
 
-.terminal-mkdocs-side-nav-item-section-no-index {
+.terminal-mkdocs-side-nav-section-no-index {
     color: var(--secondary-color);
 }
 
