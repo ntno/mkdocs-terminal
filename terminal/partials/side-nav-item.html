@@ -25,10 +25,20 @@
         {% set section_ns.item_class = section_ns.item_class ~ partial_ns.inactive_class %}
     {% endif %}
 
+    {% if nav_item.parent.children %}
+        {% for sibling in nav_item.parent.children %}
+            {% if sibling.active %}
+                {% set section_ns.item_class = section_ns.item_class ~ " " %}
+                {% set section_ns.item_class = section_ns.item_class ~ partial_ns.active_class %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+
     {% if nav_item.active %}
-        <span {% if item_class %}class="{{ section_ns.item_class }}"{% endif %}>{{ nav_item.parent.title }}</span>
+        <span {% if section_ns.item_class %}class="{{ section_ns.item_class }}"{% endif %}>{{ nav_item.parent.title }}</span>
     {% else %}
-        <a {% if item_class %}class="{{ section_ns.item_class }}"{% endif %} href="{{ nav_item.url|url }}">{{ nav_item.parent.title }}</a>
+        <a {% if section_ns.item_class %}class="{{ section_ns.item_class }}"{% endif %} href="{{ nav_item.url|url }}">{{ nav_item.parent.title }}</a>
     {% endif %}
 {%- endmacro %}
 
