@@ -1,5 +1,5 @@
 # Simple workflow for deploying mkdocs site 
-name: Deploy Demo to GitHub Pages
+name: Deploy Documentation to GitHub Pages
 
 env:
   gh-pages-url: https://ntno.github.io/mkdocs-terminal
@@ -51,12 +51,13 @@ jobs:
           ref: ${{ inputs.tag }}
       - name: Build MkDocs
         run: |
-          make build-mkdocs-demo
+          cd documentation
+          make build-mkdocs
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./demo/site
+          publish_dir: ./documentation/site
       - name: Report Result
         run: |
           export BUILD_MESSAGE="${{ inputs.tag }} built with ${{ needs.call-metadata-workflow.outputs.build-tag }}"
