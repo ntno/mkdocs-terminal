@@ -9,14 +9,14 @@ ubuntu:
 build: 
 	docker compose run --entrypoint "/bin/bash" ubuntu -c "make build-theme"
 
-serve-demo:
-	docker compose run --entrypoint "/bin/bash" --service-ports local_development_server -c "make serve-mkdocs-demo"
+remove-orphans: 
+	docker compose down --remove-orphans
 
-open-local-demo:
-	open http://0.0.0.0:5000/
+serve-demo: remove-orphans
+	docker compose run --entrypoint "/bin/bash" --service-ports local_demo_server -c "make serve-mkdocs"
 
-open-demo:
-	open https://ntno.github.io/mkdocs-terminal-theme
+serve-docs: remove-orphans
+	docker compose run --entrypoint "/bin/bash" --service-ports local_documentation_server -c "make serve-mkdocs"
 
 
 

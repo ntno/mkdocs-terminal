@@ -1,7 +1,0 @@
-site_name: MkDocs Terminal Theme Documentation
-repo_url: https://github.com/ntno/mkdocs-terminal-theme
-copyright: Copyright 2023 Natan Organick, All rights reserved
-site_author: ntno
-
-theme:
-    name: terminal
