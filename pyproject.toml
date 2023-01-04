@@ -28,7 +28,7 @@ Source = "https://github.com/ntno/mkdocs-terminal"
 Issues = "https://github.com/ntno/mkdocs-terminal/issues"
 
 [project.entry-points."mkdocs.themes"]
-material = "terminal"
+terminal = "terminal"
 
 [build-system]
 requires = [
@@ -48,8 +48,8 @@ fields = ["license", "description", "authors", "keywords", "urls"]
 filename = "requirements.txt"
 
 [tool.hatch.build.targets.wheel]
-include = ["/material"]
+include = ["/terminal"]
 
 [tool.hatch.build.targets.sdist]
-include = ["/material", "/package.json", "/requirements.txt"]
-exclude = ["/material/.overrides"]
+include = ["/terminal", "/package.json", "/requirements.txt"]
+exclude = ["/terminal/.overrides"]
