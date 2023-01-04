@@ -14,13 +14,15 @@ readme = "README.md"
 requires-python = ">=3.7"
 
 classifiers = [
-  "Development Status :: 1 - Planning",
+  "Development Status :: 2 - Pre-Alpha",
   "Environment :: Web Environment",
   "License :: OSI Approved :: MIT License",
   "Programming Language :: Python",
   "Topic :: Documentation",
   "Topic :: Software Development :: Documentation",
   "Topic :: Text Processing :: Markup :: HTML",
+  "Framework :: MkDocs :: Theme",
+  "Intended Audience :: Developers"
 ]
 
 [project.urls]
