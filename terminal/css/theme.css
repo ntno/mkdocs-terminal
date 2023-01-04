@@ -24,3 +24,7 @@ code::before {
     content: "" !important;
     display: inline;
 }
+
+.terminal-mkdocs-side-nav-item--active {
+    font-style: italic;
+}
