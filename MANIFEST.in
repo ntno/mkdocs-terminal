@@ -8,3 +8,4 @@ recursive-exclude * *.py[co]
 recursive-exclude tests *
 recursive-exclude documentation *
 recursive-exclude demo *
+exclude hatch_build.py
