@@ -1,4 +1,4 @@
-{% set partial_ns = namespace(active_class="terminal-mkdocs-side-nav-item--active") %}
+{% set partial_ns = namespace(no_section_index_available_class="terminal-mkdocs-side-nav-item-section-no-index", active_class="terminal-mkdocs-side-nav-item--active") %}
 
 {% macro span_or_link( nav_item ) -%}
     {% if nav_item.active %}
@@ -25,8 +25,10 @@
 {%- endmacro %}
 
 {% macro section_span_no_index( nav_item ) -%}
+    {% set item_class = partial_ns.no_section_index_available_class %}
     {% if nav_item.active %}
-        {% set item_class = partial_ns.active_class %}
+        {% set item_class = item_class ~ " " %}
+        {% set item_class = item_class ~ partial_ns.active_class %}
     {% endif %}
     <span {% if item_class %}class="{{ item_class }}"{% endif %}>{{ nav_item.title }}</span>
 {%- endmacro %}
