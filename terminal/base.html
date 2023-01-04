@@ -13,11 +13,11 @@
     <meta name="author" content="{{ config.site_author }}">{% endif %} 
     {% if page.canonical_url %}
     <link rel="canonical" href="{{ page.canonical_url }}">{% endif %} 
-    {% include "partials/favicon.html" %} 
+    {% include "partials/favicon.html" %}
     {%- endblock %} 
     
     {%- block htmltitle %}
-    <title>{% if page and page.title %}{{ page.title }} - {% endif %}{{ config.site_name }}</title>
+    {% include "partials/html-title.html" %}
     {%- endblock %} 
     
     {%- block styles %}

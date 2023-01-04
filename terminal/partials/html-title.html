@@ -1,0 +1,7 @@
+
+
+{% if "navigation.side.indexes" in features and page and page.title and page.title == "section-index" and page.parent and page.parent.title %}     
+<title>{{ page.parent.title }} - {{ config.site_name }}</title>
+{% else %}
+<title>{% if page and page.title %}{{ page.title }} - {% endif %}{{ config.site_name }}</title>
+{% endif %}

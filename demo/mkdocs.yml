@@ -9,7 +9,7 @@ site_author: ntno
 nav:
     - Home: 'index.md'
     - About: 
-      # - section-index: 'about/index.md'
+      - section-index: 'about/index.md'
       - Contributing: 'about/contributing.md'
     - 'User Guide':
       - Configuration: 'user-guide/configuration.md'
