@@ -19,7 +19,7 @@
     {% endif %}
 {%- endmacro %}
 
-{% macro link_or_span( nav_item ) -%}
+{% macro span_or_link( nav_item ) -%}
     {% if nav_item.active %}
         {% set item_class = partial_ns.active_class %}
     {% endif %}
@@ -58,11 +58,11 @@
       <!-- section items -->
       {% for second_level in nav_item.children %}
       <ul class="terminal-mkdocs-side-nav-li-ul">
-          <li class="terminal-mkdocs-side-nav-li-ul-li">{{ link_or_span(second_level) }}</li>
+          <li class="terminal-mkdocs-side-nav-li-ul-li">{{ span_or_link(second_level) }}</li>
       </ul>
       {% endfor %}
     {% else %}
     <!-- link for a top level page -->
-    {{ link_or_span( nav_item ) }}
+    {{ span_or_link( nav_item ) }}
     {% endif %}
   </li>
