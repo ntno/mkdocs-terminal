@@ -58,7 +58,7 @@
           <div class="container">
     <div class="terminal-nav">
         <header class="terminal-logo">
-            <div class="logo terminal-prompt"><a href="/" class="no-style">MkDocs Terminal Theme Documentation</a></div>
+            <div class="logo terminal-prompt"><a href="https://ntno.github.io/mkdocs-terminal/" class="no-style">MkDocs Terminal Theme Documentation</a></div>
         </header>
         <nav class="terminal-menu">
             
@@ -215,11 +215,13 @@
 <nav>
     <ul>
         
-        <li><a href="#setup-mkdocs-project">Setup MkDocs project</a></li>
+        <li><a href="#1-setup-mkdocs-project">1. Setup MkDocs project</a></li>
             
-            <li><a href="#install-theme">Install Theme</a></li>
+        
+        <li><a href="#2-install-theme">2. Install Theme</a></li>
             
-            <li><a href="#update-mkdocs-configuration">Update MkDocs Configuration</a></li>
+        
+        <li><a href="#3-update-mkdocs-configuration">3. Update MkDocs Configuration</a></li>
             
         
     </ul>
@@ -231,20 +233,20 @@
 </aside>
 
             <main> <section>
-    <h1 id="setup-mkdocs-project">Setup MkDocs project<a class="headerlink" href="#setup-mkdocs-project" title="Permanent link">#</a></h1>
-<p>See <a href="https://www.mkdocs.org/getting-started/">Getting Started</a> for details.</p>
-<h2 id="install-theme">Install Theme<a class="headerlink" href="#install-theme" title="Permanent link">#</a></h2>
-<p>Install package with pip.  Add the <code>mkdocs-terminal</code> package to your requirements file.</p>
-<pre><code class="language-requirements.txt">mkdocs
+    <h2 id="1-setup-mkdocs-project">1. Setup MkDocs project<a class="headerlink" href="#1-setup-mkdocs-project" title="Permanent link">#</a></h2>
+<p>See <a href="https://www.mkdocs.org/getting-started/" target="_blank">Getting Started</a> for details.</p>
+<h2 id="2-install-theme">2. Install Theme<a class="headerlink" href="#2-install-theme" title="Permanent link">#</a></h2>
+<p>Install the <a href="https://pypi.org/project/mkdocs-terminal/" target="_blank">mkdocs-terminal pip package</a>.  Add the package to your <code>requirements.txt</code> file:</p>
+<pre><code class="language-text">mkdocs
 mkdocs-terminal
 </code></pre>
 <p>Then run:  <code>pip install -r ./requirements.txt</code></p>
-<h2 id="update-mkdocs-configuration">Update MkDocs Configuration<a class="headerlink" href="#update-mkdocs-configuration" title="Permanent link">#</a></h2>
-<p>Add <code>theme</code> configuration in <code>mkdocs.yml</code></p>
-<pre><code class="language-mkdocs.yml">theme:
-   name: terminal
-   features:
-      - navigation.top.terminal_prompt
+<h2 id="3-update-mkdocs-configuration">3. Update MkDocs Configuration<a class="headerlink" href="#3-update-mkdocs-configuration" title="Permanent link">#</a></h2>
+<p>Add <code>theme</code> configuration in <code>mkdocs.yml</code>:</p>
+<pre><code class="language-yaml">theme:
+  name: terminal
+  features:
+    - navigation.top.terminal_prompt
 </code></pre>
     
 
