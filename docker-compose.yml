@@ -1,7 +1,7 @@
 version: '3'
 services:
   ubuntu:
-    image: ntno/ubuntu-base:0.0.1
+    image: ntno/ubuntu-build-base:1.0.0
     restart: "no"    
     volumes:
       - $PWD:/usr/src
