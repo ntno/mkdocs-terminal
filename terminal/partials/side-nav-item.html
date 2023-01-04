@@ -1,58 +1,50 @@
-{% set partial_ns = namespace(no_section_index_available_class="terminal-mkdocs-side-nav-item-section-no-index", section_with_index_available_class="terminal-mkdocs-side-nav-item-section-index", active_class="terminal-mkdocs-side-nav-item--active") %}
+{% set partial_ns = namespace(section_class="terminal-mkdocs-side-nav-section", active_class="terminal-mkdocs-side-nav-item--active", inactive_class="terminal-mkdocs-side-nav-item") %}
 
 {% macro span_or_link( nav_item ) -%}
     {% if nav_item.active %}
         {% set item_class = partial_ns.active_class %}
+    {% else %}
+        {% set item_class = partial_ns.inactive_class %}
     {% endif %}
 
     {% if nav_item.active %}
         <span {% if item_class %}class="{{ item_class }}"{% endif %}>{{ nav_item.title }}</span>
     {% else %}
-        <a href="{{ nav_item.url|url }}"><span {% if item_class %}class="{{ item_class }}"{% endif %}>{{ nav_item.title }}</span></a>
+        <a {% if item_class %}class="{{ item_class }}"{% endif %} href="{{ nav_item.url|url }}">{{ nav_item.title }}</a>
     {% endif %}
 {%- endmacro %}
 
 {% macro section_span_or_index_link( nav_item ) -%}
     {% set section_ns = namespace(item_class="") %}
-    {% set section_ns.item_class = partial_ns.section_with_index_available_class %}
+    {% set section_ns.item_class = partial_ns.section_class %}
     {% if nav_item.active %}
         {% set section_ns.item_class = section_ns.item_class ~ " " %}
         {% set section_ns.item_class = section_ns.item_class ~ partial_ns.active_class %}
-    {% endif %}
-
-    {% if nav_item.parent.children %}
-        <span>sibs</span>
-        {% for sibling in nav_item.parent.children %}
-            {% if sibling.active %}
-                <span>{{ sibling.title }}-active</span>
-                {% set section_ns.item_class = section_ns.item_class ~ " " %}
-                {% set section_ns.item_class = section_ns.item_class ~ partial_ns.active_class %}
-            {% endif %}
-        {% endfor %}
+    {% else %}
+        {% set section_ns.item_class = section_ns.item_class ~ " " %}
+        {% set section_ns.item_class = section_ns.item_class ~ partial_ns.inactive_class %}
     {% endif %}
 
     {% if nav_item.active %}
-        <span {% if item_class %}class="{{ item_class }}"{% endif %}>{{ nav_item.parent.title }}</span>
+        <span {% if item_class %}class="{{ section_ns.item_class }}"{% endif %}>{{ nav_item.parent.title }}</span>
     {% else %}
-        <a href="{{ nav_item.url|url }}"><span {% if item_class %}class="{{ item_class }}"{% endif %}>{{ nav_item.parent.title }}</span></a>
+        <a {% if item_class %}class="{{ section_ns.item_class }}"{% endif %} href="{{ nav_item.url|url }}">{{ nav_item.parent.title }}</a>
     {% endif %}
 {%- endmacro %}
 
 {% macro section_span_no_index( nav_item ) -%}
-    {% set item_class = partial_ns.no_section_index_available_class %}
+    {% set item_class = partial_ns.section_class %}
     {% if nav_item.active %}
         {% set item_class = item_class ~ " " %}
         {% set item_class = item_class ~ partial_ns.active_class %}
+    {% else %}
+        {% set item_class = item_class ~ " " %}
+        {% set item_class = item_class ~ partial_ns.inactive_class %}
     {% endif %}
     <span {% if item_class %}class="{{ item_class }}"{% endif %}>{{ nav_item.title }}</span>
 {%- endmacro %}
-   <!-- navigation.side.indexes feature is ON -->
-          <!-- determine if section has an index -->
-          
-          <!-- check if the first item in the list is the section-index
-          then forloop through children starting with the second item
-          for photo in photos[1:]  -->
-           <!-- TODO -  if "navigation.side.indexes" in features, skip first item in list -->
+   
+
 <li class="terminal-mkdocs-side-nav-li">
     {% if nav_item.children %}
     
