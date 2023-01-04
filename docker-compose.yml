@@ -1,12 +1,12 @@
 version: '3'
 services:
   ubuntu:
-    image: ntno/ubuntu-base:0.0.0
+    image: ntno/ubuntu-build-base:1.0.0
     restart: "no"    
     volumes:
       - $PWD:/usr/src
   local_demo_server:
-    image: ntno/ubuntu-base:0.0.0
+    image: ntno/ubuntu-base:0.0.1
     restart: "no"
     ports:
       - "5000:5000"
@@ -16,7 +16,7 @@ services:
       - './:/usr/src/'
     working_dir: '/usr/src/demo'
   local_documentation_server:
-    image: ntno/ubuntu-base:0.0.0
+    image: ntno/ubuntu-base:0.0.1
     restart: "no"
     ports:
       - "8080:8080"

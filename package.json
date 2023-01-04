@@ -1,0 +1,26 @@
+{
+    "name": "mkdocs-terminal",
+    "version": "0.2.5",
+    "description": "Terminal.css theme for MkDocs",
+    "keywords": [
+        "mkdocs",
+        "documentation",
+        "theme"
+    ],
+    "license": "MIT",
+    "private": true,
+    "author": {
+        "name": "Natan Organick"
+    },
+    "contributors": [],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ntno/mkdocs-terminal.git"
+    },
+    "scripts": {},
+    "dependencies": {},
+    "devDependencies": {},
+    "engines": {
+        "node": ">= 16"
+    }
+}
