@@ -1,7 +1,6 @@
-
-
-{% if "navigation.side.indexes" in features and page and page.title and page.title == "section-index" and page.parent and page.parent.title %}     
-<title>{{ page.parent.title }} - {{ config.site_name }}</title>
+{% if "navigation.side.indexes" in features and page and page.title and page.title == "section-index" and page.parent and page.parent.title %}
+    {% set tab_title = page.parent.title %}
 {% else %}
-<title>{% if page and page.title %}{{ page.title }} - {% endif %}{{ config.site_name }}</title>
-{% endif %}
+    {% set tab_title = page.title %}
+{% endif %} 
+<title>{{ tab_title }} - {{ config.site_name }}</title>
