@@ -119,6 +119,7 @@ venv.bak/
 
 # mkdocs documentation
 **/site
+tests/examples/complicated_config/output/
 
 # mypy
 .mypy_cache/
