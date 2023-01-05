@@ -1,0 +1,8 @@
+strict: false
+
+theme:
+  name: null
+  custom_dir: '../../../terminal/'
+
+watch:
+    - '../../../terminal/'

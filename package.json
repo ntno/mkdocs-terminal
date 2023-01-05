@@ -1,6 +1,6 @@
 {
     "name": "mkdocs-terminal",
-    "version": "0.3.2",
+    "version": "0.3.3",
     "description": "Terminal.css theme for MkDocs",
     "keywords": [
         "mkdocs",
