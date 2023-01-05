@@ -13,3 +13,6 @@
 - [jinja namespace() added in 2.10](https://jinja.palletsprojects.com/en/3.0.x/changes/#version-2-10)
 - [accessible menu bar nav example](https://www.w3.org/WAI/ARIA/apg/example-index/menubar/menubar-navigation)
 - [pyproject.toml config](https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html)
+- lorem ipsum generators
+  - https://generator.lorem-ipsum.info/
+  - https://www.lipsum.com/
