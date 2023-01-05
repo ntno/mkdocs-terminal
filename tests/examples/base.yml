@@ -3,6 +3,8 @@ strict: false
 theme:
   name: null
   custom_dir: '../../../terminal/'
+  features:
+    - navigation.side.indexes
 
 watch:
     - '../../../terminal/'
