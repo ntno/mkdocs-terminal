@@ -1,7 +1,7 @@
 ---
 title: Contributing
 ---
-# Testing Page
+# How to Contribute
 
-See the [Home Page](/). All the other pages are for demonstration purposes
-with the navigation only.
+
+Tation cotidieque intellegebat ea mei, pri cu purto scripta nusquam, an his mundi commune vivendum. Nibh decore suavitate ex has, case bonorum ne vel. Ex legere facilis nominati pri, et tota illum persecuti mea, vim elit solum ad. Per eu nihil invidunt. Duo in nusquam fierent efficiendi.

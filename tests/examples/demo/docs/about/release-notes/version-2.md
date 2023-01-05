@@ -1,6 +1,11 @@
 ---
 title: Version 2 Release Notes
 ---
-# v2 Release
+# Version 2
 
 information about Version 2 release here
+
+## Updates
+
+- Curabitur ac arcu ut erat porttitor elementum.
+- Nulla vitae odio bibendum, rutrum felis vitae, maximus dolor.
