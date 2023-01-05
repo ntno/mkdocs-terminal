@@ -18,6 +18,8 @@
     {{ ns.class }}
 {%- endmacro -%}
 
+
+
 {% macro get_class( nav_item ) -%}
     {% set ns = namespace(class="") %}
     {% set ns.class = get_base_class( nav_item ) -%}
@@ -27,7 +29,6 @@
     {% elif "navigation.side.indexes" in features and nav_item.title == "section-index" and nav_item.parent.children|rejectattr("title", "eq", "section-index")|list|length > 0 %}
         {% set ns.class = ns.class ~ " terminal-mkdocs-side-nav-section" -%}
     {% endif %}
-
 
     {% if nav_item.children %}
         {% if "navigation.side.indexes" not in features %}
