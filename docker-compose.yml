@@ -5,7 +5,7 @@ services:
     restart: "no"    
     volumes:
       - $PWD:/usr/src
-  local_example_server:
+  local_examples_server:
     image: ntno/ubuntu-base:0.0.1
     restart: "no"
     ports:
