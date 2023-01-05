@@ -1,3 +1,4 @@
+INHERIT: ../base.yml
 site_name: My Docs
 
 nav:
@@ -16,7 +17,7 @@ docs_dir: documentation
 site_dir: output
 
 theme:
-    name: mkdocs
+    name: terminal
     custom_dir: theme_tweaks
     analytics: {gtag: 'G-ABC123'}
 
@@ -38,9 +39,12 @@ markdown_extensions:
         permalink: 
     - admonition:
 
-strict: true
+strict: false
 
 remote_branch: none
 remote_name: upstream
 extra:
     some value: 1
+
+watch:
+    - theme_tweaks
