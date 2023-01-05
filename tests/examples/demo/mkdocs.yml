@@ -1,3 +1,4 @@
+INHERIT: ../base.yml
 site_name: MkDocs Terminal Theme Demo
 site_url: https://ntno.github.io/mkdocs-terminal
 repo_url: https://github.com/ntno/mkdocs-terminal
@@ -23,14 +24,9 @@ markdown_extensions:
 
 
 theme:
-  name: null
-  custom_dir: '../../../terminal/'
   features:
-    # - toc.hide
+    - toc.hide
     # - navigation.side.hide
     - navigation.side.indexes
     # - navigation.top.hide
     # - navigation.top.cursor_animation.hide
-
-watch:
-    - '../../../terminal/'
