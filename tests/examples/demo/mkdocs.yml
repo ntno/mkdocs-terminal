@@ -20,11 +20,11 @@ markdown_extensions:
   - meta
   - toc:
       permalink: "#"
-#   - attr_list
+
 
 theme:
   name: null
-  custom_dir: '../terminal/'
+  custom_dir: '../../../terminal/'
   features:
     # - toc.hide
     # - navigation.side.hide
@@ -33,4 +33,4 @@ theme:
     # - navigation.top.cursor_animation.hide
 
 watch:
-    - '../terminal/'
+    - '../../../terminal/'
