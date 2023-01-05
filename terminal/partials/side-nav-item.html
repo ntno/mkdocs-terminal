@@ -1,34 +1,16 @@
-{% import 'macros/side-nav-item-class.j2' as side_nav_macro with context %}
+{% import 'macros/side-nav-item-class.j2' as class_helper with context %}
+{% import 'macros/side-nav-item.j2' as item_helper with context %}
 
-{% macro index_item( nav_item, class ) -%}
-    {% if nav_item.active %}
-        <span {% if class %}class="{{ class }}"{% endif %}>{{ nav_item.parent.title }}</span>
-    {% else %}
-        <a {% if class %}class="{{ class }}"{% endif %} href="{{ nav_item.url|url }}">{{ nav_item.parent.title }}</a>
-    {% endif %}
-{%- endmacro -%}
-
-{% macro non_index_item( nav_item, class ) -%}
-    {% if nav_item.active %}
-        <span {% if class %}class="{{ class }}"{% endif %}>{{ nav_item.title }}</span>
-    {% else %}
-        {% if nav_item.is_section %}
-            <span {% if class %}class="{{ class }}"{% endif %}>{{ nav_item.title }}</span>
-        {% else %}
-            <a {% if class %}class="{{ class }}"{% endif %} href="{{ nav_item.url|url }}">{{ nav_item.title }}</a>
-        {% endif %}
-    {% endif %}
-{%- endmacro -%}
 
 
 {% macro side_nav_item( nav_item ) -%}
     {% set macro_ns = namespace(class="") %}
-    {% set macro_ns.class = side_nav_macro.get_class( nav_item ) -%}
+    {% set macro_ns.class = class_helper.get_class( nav_item ) -%}
 
     {% if "navigation.side.indexes" in features and nav_item.title == "section-index" %}
-        {{ index_item( nav_item, macro_ns.class ) }}
+        {{ item_helper.index_item( nav_item, macro_ns.class ) }}
     {% else %}
-        {{ non_index_item( nav_item, macro_ns.class ) }}
+        {{ item_helper.non_index_item( nav_item, macro_ns.class ) }}
     {% endif %}
 {%- endmacro -%}
 
