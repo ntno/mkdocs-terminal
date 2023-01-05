@@ -1,22 +1,36 @@
 {% macro get_base_class( nav_item ) -%}
-    {% set ns = namespace(index_has_active_sibling=false) %}
-    {% if "navigation.side.indexes" in features and nav_item.title == "section-index" and nav_item.parent.children %}
-        {% for sibling in nav_item.parent.children %}
+    {% set ns = namespace(is_index=false, has_active_sibling=false) %}
+    {% if "navigation.side.indexes" in features and nav_item.title == "section-index" %}
+        {% set ns.is_index = true %}
+    {% endif %}
+
+    {% if ns.is_index and nav_item.parent.children %}
+        {% for sibling in nav_item.parent.children|rejectattr("title", "eq", "section-index")|list %}
             {% if sibling.active %}
-                {% set ns.index_has_active_sibling = true %}
+                {% set ns.has_active_sibling = true %}
             {% endif %}
         {% endfor %}
     {% endif%}
 
     {% if nav_item.active %}
         {% set class = "terminal-mkdocs-side-nav-item--active" -%}
-    {% elif ns.index_has_active_sibling %}
+    {% elif ns.has_active_sibling %}
         {% set class = "terminal-mkdocs-side-nav-item--active" -%}
     {% else %}
         {% set class = "terminal-mkdocs-side-nav-item" -%}
     {% endif %}
-    
-    {{ class|trim }}
+
+    {% if ns.is_index %}
+        {{ nav_item.parent.children|rejectattr("title", "eq", "section-index")|list|length ~ "-sibs" }}
+    {% else %}
+        {{ "not-an-index" }}
+    {% endif %}
+
+    {# {% if nav_item.children %}
+        {{ nav_item.children|length }} ~ {{class|trim}}
+    {% else %}
+        {{ "no-children-" ~ class|trim }}
+    {% endif %} #}
 {%- endmacro -%}
 
 {% macro get_class( nav_item ) -%}
