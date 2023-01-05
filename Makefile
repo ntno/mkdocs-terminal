@@ -12,8 +12,8 @@ build:
 remove-orphans: 
 	docker compose down --remove-orphans
 
-serve-demo: remove-orphans
-	docker compose run --entrypoint "/bin/bash" --service-ports local_demo_server -c "make serve-mkdocs"
+serve: remove-orphans check-site
+	docker compose run --entrypoint "/bin/bash" --service-ports local_examples_server -c "make serve site=$(site)"
 
 serve-docs: remove-orphans
 	docker compose run --entrypoint "/bin/bash" --service-ports local_documentation_server -c "make serve-mkdocs"
@@ -40,24 +40,18 @@ check-dist:
 clean-dist:
 	rm -rf dist/
 
-clean: clean-demo clean-dist
+clean: clean-dist
 
-install-mkdocs-demo-requirements:
-	cd demo && \
-	pip install -r ./requirements.txt
+install-tox-requirements:
+	python -m pip install -U tox
 
-build-mkdocs-demo: clean install-mkdocs-demo-requirements
-	cd demo && \
-	mkdocs build
+tox: install-tox-requirements
+	python -m tox -e py
 
-serve-mkdocs-demo: clean install-mkdocs-demo-requirements
-	cd demo && \
-	mkdocs serve -v --dev-addr=0.0.0.0:5000
 
-clean-demo:
-	cd demo && \
-	rm -rf site/
 
-update-demo-tag:
-	git tag -d demo && git push origin :refs/tags/demo
-	git tag demo && git push origin demo
+
+check-site:
+ifndef site
+	$(error site is not set)
+endif
