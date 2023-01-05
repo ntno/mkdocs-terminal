@@ -1,8 +1,6 @@
 {% import 'macros/side-nav-item-class.j2' as class_helper with context %}
 {% import 'macros/side-nav-item.j2' as item_helper with context %}
 
-
-
 {% macro side_nav_item( nav_item ) -%}
     {% set macro_ns = namespace(class="") %}
     {% set macro_ns.class = class_helper.get_class( nav_item ) -%}
@@ -12,6 +10,26 @@
     {% else %}
         {{ item_helper.non_index_item( nav_item, macro_ns.class ) }}
     {% endif %}
+{%- endmacro -%}
+
+{% macro second_level_folder( nav_items ) -%}
+    <ul class="terminal-mkdocs-side-nav-li-ul">
+        {% for nav_item in nav_items %}
+            {% set found_index = false %}
+            {% if "navigation.side.indexes" in features %}
+                {% set index_matches = nav_item.children|selectattr("title", "eq", "section-index")|list %}
+                {% if index_matches|length > 0 %}
+                    {% set found_index = true %}
+                {% endif %}
+            {% endif %}
+
+            {% if found_index %}
+                <li class="terminal-mkdocs-side-nav-li-ul-li">{{ side_nav_item( nav_item.children|selectattr("title", "eq", "section-index")|list|first ) }}</li>
+            {% else %} 
+                <li class="terminal-mkdocs-side-nav-li-ul-li">{{ side_nav_item( nav_item ) }}</li>
+            {% endif %}
+        {% endfor %}    
+    </ul>
 {%- endmacro -%}
 
 <li class="terminal-mkdocs-side-nav-li">
@@ -32,17 +50,9 @@
         {% endif %}
       
         {% if "navigation.side.indexes" in features and ns.found_index %}
-            {% for second_level in nav_item.children|rejectattr("title", "eq", "section-index")|list %}
-            <ul class="terminal-mkdocs-side-nav-li-ul">
-                <li class="terminal-mkdocs-side-nav-li-ul-li">{{ side_nav_item(second_level) }}</li>
-            </ul>
-            {% endfor %}
+            {{ second_level_folder( nav_item.children|rejectattr("title", "eq", "section-index")|list ) }}
         {% else %}
-            {% for second_level in nav_item.children %}
-            <ul class="terminal-mkdocs-side-nav-li-ul">
-                <li class="terminal-mkdocs-side-nav-li-ul-li">{{ side_nav_item(second_level) }}</li>
-            </ul>
-            {% endfor %}
+            {{ second_level_folder( nav_item.children ) }}
         {% endif %}
     {% else %}
     {{ side_nav_item( nav_item ) }}
