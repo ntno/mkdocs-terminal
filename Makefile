@@ -42,6 +42,15 @@ clean-dist:
 
 clean: clean-dist
 
+install-tox-requirements:
+	python -m pip install -U tox
+
+tox: install-tox-requirements
+	python -m tox -e py
+
+
+
+
 check-site:
 ifndef site
 	$(error site is not set)
