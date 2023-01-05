@@ -12,10 +12,10 @@
     {% if nav_item.active %}
         <span {% if class %}class="{{ class }}"{% endif %}>{{ nav_item.title }}</span>
     {% else %}
-        {% if nav_item.url %}
-            <a {% if class %}class="{{ class }}"{% endif %} href="{{ nav_item.url|url }}">{{ nav_item.title }}</a>
-        {% else %}
+        {% if nav_item.is_section %}
             <span {% if class %}class="{{ class }}"{% endif %}>{{ nav_item.title }}</span>
+        {% else %}
+            <a {% if class %}class="{{ class }}"{% endif %} href="{{ nav_item.url|url }}">{{ nav_item.title }}</a>
         {% endif %}
     {% endif %}
 {%- endmacro -%}
