@@ -1,4 +1,4 @@
-{% import 'macros/side-nav-item-class.j2' as side_nav_macro %}
+{% import 'macros/side-nav-item-class.j2' as side_nav_macro with context %}
 
 {% macro index_item( nav_item, class ) -%}
     {% if nav_item.active %}
