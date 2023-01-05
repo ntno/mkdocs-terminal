@@ -1,61 +1,47 @@
 {% set partial_ns = namespace(section_class="terminal-mkdocs-side-nav-section", no_index_class="terminal-mkdocs-side-nav-section-no-index", active_class="terminal-mkdocs-side-nav-item--active", inactive_class="terminal-mkdocs-side-nav-item") %}
 
-{% macro span_or_link( nav_item ) -%}
-    {% if nav_item.active %}
-        {% set item_class = partial_ns.active_class %}
-    {% else %}
-        {% set item_class = partial_ns.inactive_class %}
-    {% endif %}
-
-    {% if nav_item.active %}
-        <span {% if item_class %}class="{{ item_class }}"{% endif %}>{{ nav_item.title }}</span>
-    {% else %}
-        <a {% if item_class %}class="{{ item_class }}"{% endif %} href="{{ nav_item.url|url }}">{{ nav_item.title }}</a>
-    {% endif %}
-{%- endmacro %}
-
-{% macro section_span_or_index_link( nav_item ) -%}
-    {% set section_ns = namespace(item_class="") %}
-    {% set section_ns.item_class = partial_ns.section_class %}
-    {% if nav_item.active %}
-        {% set section_ns.item_class = section_ns.item_class ~ " " %}
-        {% set section_ns.item_class = section_ns.item_class ~ partial_ns.active_class %}
-    {% else %}
-        {% set section_ns.item_class = section_ns.item_class ~ " " %}
-        {% set section_ns.item_class = section_ns.item_class ~ partial_ns.inactive_class %}
-    {% endif %}
-
-    {% if nav_item.parent.children %}
+{% macro get_class( nav_item ) -%}
+    {% set macro_ns = namespace(class="", index_has_active_sibling=false) %}
+    {% if "navigation.side.indexes" in features and nav_item.title == "section-index" and nav_item.parent.children %}
         {% for sibling in nav_item.parent.children %}
             {% if sibling.active %}
-                {% set section_ns.item_class = section_ns.item_class ~ " " %}
-                {% set section_ns.item_class = section_ns.item_class ~ partial_ns.active_class %}
+                {% set macro_ns.index_has_active_sibling = true %}
             {% endif %}
         {% endfor %}
-    {% endif %}
+    {% endif%}
 
     {% if nav_item.active %}
-        <span {% if section_ns.item_class %}class="{{ section_ns.item_class }}"{% endif %}>{{ nav_item.parent.title }}</span>
+        {% set macro_ns.class = partial_ns.active_class %}
+    {% elif macro_ns.index_has_active_sibling %}
+        {% set macro_ns.class = partial_ns.active_class %}
     {% else %}
-        <a {% if section_ns.item_class %}class="{{ section_ns.item_class }}"{% endif %} href="{{ nav_item.url|url }}">{{ nav_item.parent.title }}</a>
+        {% set macro_ns.class = partial_ns.inactive_class %}
     {% endif %}
+
+    {{ macro_ns.class }}
 {%- endmacro %}
 
-{% macro section_span_no_index( nav_item ) -%}
-    {% set item_class = partial_ns.section_class %}
-    {% set item_class = item_class ~ " " %}
-    {% set item_class = item_class ~ partial_ns.no_index_class %}
-    
-    {% if nav_item.active %}
-        {% set item_class = item_class ~ " " %}
-        {% set item_class = item_class ~ partial_ns.active_class %}
+
+
+
+{% macro side_nav_item( nav_item ) -%}
+    {% set macro_ns = namespace(class="") %}
+    {% set macro_ns.class = get_class( nav_item ) %}
+
+    {% if "navigation.side.indexes" in features and nav_item.title == "section-index" %}
+        {% if nav_item.active %}
+            <span {% if macro_ns.class %}class="{{ macro_ns.class }}"{% endif %}>{{ nav_item.parent.title }}</span>
+        {% else %}
+            <a {% if macro_ns.class %}class="{{ macro_ns.class }}"{% endif %} href="{{ nav_item.url|url }}">{{ nav_item.parent.title }}</a>
+        {% endif %}
     {% else %}
-        {% set item_class = item_class ~ " " %}
-        {% set item_class = item_class ~ partial_ns.inactive_class %}
+        {% if nav_item.active %}
+            <span {% if macro_ns.class %}class="{{ macro_ns.class }}"{% endif %}>{{ nav_item.title }}</span>
+        {% else %}
+            <a {% if macro_ns.class %}class="{{ macro_ns.class }}"{% endif %} href="{{ nav_item.url|url }}">{{ nav_item.title }}</a>
+        {% endif %}
     {% endif %}
-    <span {% if item_class %}class="{{ item_class }}"{% endif %}>{{ nav_item.title }}</span>
 {%- endmacro %}
-   
 
 <li class="terminal-mkdocs-side-nav-li">
     {% if nav_item.children %}
@@ -69,25 +55,25 @@
         {% endif %}
 
         {% if "navigation.side.indexes" in features and ns.found_index %}     
-            {{ section_span_or_index_link(ns.index_matches[0]) }}
+            {{ side_nav_item(ns.index_matches[0]) }}
         {% else %}
-            {{ section_span_no_index( nav_item ) }}
+            {{ side_nav_item( nav_item ) }}
         {% endif %}
       
         {% if "navigation.side.indexes" in features and ns.found_index %}
             {% for second_level in nav_item.children|rejectattr("title", "eq", "section-index")|list %}
             <ul class="terminal-mkdocs-side-nav-li-ul">
-                <li class="terminal-mkdocs-side-nav-li-ul-li">{{ span_or_link(second_level) }}</li>
+                <li class="terminal-mkdocs-side-nav-li-ul-li">{{ side_nav_item(second_level) }}</li>
             </ul>
             {% endfor %}
         {% else %}
             {% for second_level in nav_item.children %}
             <ul class="terminal-mkdocs-side-nav-li-ul">
-                <li class="terminal-mkdocs-side-nav-li-ul-li">{{ span_or_link(second_level) }}</li>
+                <li class="terminal-mkdocs-side-nav-li-ul-li">{{ side_nav_item(second_level) }}</li>
             </ul>
             {% endfor %}
         {% endif %}
     {% else %}
-    {{ span_or_link( nav_item ) }}
+    {{ side_nav_item( nav_item ) }}
     {% endif %}
   </li>
