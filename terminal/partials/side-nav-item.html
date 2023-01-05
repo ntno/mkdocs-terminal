@@ -1,32 +1,8 @@
-{% set partial_ns = namespace(section_class="terminal-mkdocs-side-nav-section", no_index_class="terminal-mkdocs-side-nav-section-no-index", active_class="terminal-mkdocs-side-nav-item--active", inactive_class="terminal-mkdocs-side-nav-item") %}
-
-{% macro get_class( nav_item ) -%}
-    {% set macro_ns = namespace(class="", index_has_active_sibling=false) %}
-    {% if "navigation.side.indexes" in features and nav_item.title == "section-index" and nav_item.parent.children %}
-        {% for sibling in nav_item.parent.children %}
-            {% if sibling.active %}
-                {% set macro_ns.index_has_active_sibling = true %}
-            {% endif %}
-        {% endfor %}
-    {% endif%}
-
-    {% if nav_item.active %}
-        {% set macro_ns.class = partial_ns.active_class %}
-    {% elif macro_ns.index_has_active_sibling %}
-        {% set macro_ns.class = partial_ns.active_class %}
-    {% else %}
-        {% set macro_ns.class = partial_ns.inactive_class %}
-    {% endif %}
-
-    {{ macro_ns.class }}
-{%- endmacro %}
-
-
-
+{% import 'macros/side-nav-item-class.j2' as side_nav_macro %}
 
 {% macro side_nav_item( nav_item ) -%}
     {% set macro_ns = namespace(class="") %}
-    {% set macro_ns.class = get_class( nav_item ) %}
+    {% set macro_ns.class = side_nav_macro.get_class( nav_item ) -%}
 
     {% if "navigation.side.indexes" in features and nav_item.title == "section-index" %}
         {% if nav_item.active %}
@@ -41,7 +17,7 @@
             <a {% if macro_ns.class %}class="{{ macro_ns.class }}"{% endif %} href="{{ nav_item.url|url }}">{{ nav_item.title }}</a>
         {% endif %}
     {% endif %}
-{%- endmacro %}
+{%- endmacro -%}
 
 <li class="terminal-mkdocs-side-nav-li">
     {% if nav_item.children %}

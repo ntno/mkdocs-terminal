@@ -1,0 +1,37 @@
+{% macro get_base_class( nav_item ) -%}
+    {% set ns = namespace(index_has_active_sibling=false) %}
+    {% if "navigation.side.indexes" in features and nav_item.title == "section-index" and nav_item.parent.children %}
+        {% for sibling in nav_item.parent.children %}
+            {% if sibling.active %}
+                {% set ns.index_has_active_sibling = true %}
+            {% endif %}
+        {% endfor %}
+    {% endif%}
+
+    {% if nav_item.active %}
+        {% set class = "terminal-mkdocs-side-nav-item--active" -%}
+    {% elif ns.index_has_active_sibling %}
+        {% set class = "terminal-mkdocs-side-nav-item--active" -%}
+    {% else %}
+        {% set class = "terminal-mkdocs-side-nav-item" -%}
+    {% endif %}
+    
+    {{ class|trim }}
+{%- endmacro -%}
+
+{% macro get_class( nav_item ) -%}
+    {% set ns = namespace(class="") %}
+    {% set ns.class = get_base_class( nav_item ) -%}
+
+    {% if nav_item.children %} 
+        {% if "navigation.side.indexes" not in features %}
+            {% set ns.class = ns.class ~ " terminal-mkdocs-side-nav-section-no-index" -%}
+        {% else %}
+            {% if nav_item.children|selectattr("title", "eq", "section-index")|list|length == 0 %}
+                {% set ns.class = ns.class ~ " terminal-mkdocs-side-nav-section-no-index" -%}           
+            {% endif %}
+        {% endif %}
+    {% endif %}
+
+    {{ ns.class|trim }}
+{%- endmacro -%}
