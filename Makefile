@@ -40,7 +40,7 @@ check-dist:
 clean-dist:
 	rm -rf dist/
 
-clean: clean-demo clean-dist
+clean: clean-dist
 
 check-site:
 ifndef site
