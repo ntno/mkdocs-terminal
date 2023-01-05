@@ -5,6 +5,7 @@
     {% endif %}
 
     {% if "navigation.side.indexes" in features and nav_item.title == "section-index" %}
+        {# if nav_item is a 'section-index' page, check to see if any of its' siblings are active) #}
         {% for index_sibling in nav_item.parent.children %}
             {% if index_sibling.active %}
                 {% set ns.is_active_index = true %}
@@ -19,7 +20,7 @@
 {%- endmacro -%}
 
 
-
+{# 'terminal-mkdocs-side-nav-section-no-index' css class used to indicate a non-clickable folder #}
 {% macro get_class( nav_item ) -%}
     {% set ns = namespace(class="") %}
     {%- set ns.class = get_base_class( nav_item ) -%}
