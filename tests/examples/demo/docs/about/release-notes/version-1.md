@@ -1,7 +1,3 @@
----
-title: Version 1 Release Notes
----
-# Testing Page
+# v1 Release
 
-See the [Home Page](/). All the other pages are for demonstration purposes
-with the navigation only.
+information about Version 1 release here

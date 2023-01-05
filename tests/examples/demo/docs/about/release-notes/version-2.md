@@ -1,7 +1,6 @@
 ---
 title: Version 2 Release Notes
 ---
-# Testing Page
+# v2 Release
 
-See the [Home Page](/). All the other pages are for demonstration purposes
-with the navigation only.
+information about Version 2 release here
