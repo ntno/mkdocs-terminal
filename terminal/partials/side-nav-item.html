@@ -75,7 +75,7 @@
         {% endif %}
       
         {% if "navigation.side.indexes" in features and ns.found_index %}
-            {% for second_level in nav_item.children[1:] %}
+            {% for second_level in nav_item.children|rejectattr("title", "eq", "section-index")|list %}
             <ul class="terminal-mkdocs-side-nav-li-ul">
                 <li class="terminal-mkdocs-side-nav-li-ul-li">{{ span_or_link(second_level) }}</li>
             </ul>
