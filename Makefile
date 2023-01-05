@@ -13,7 +13,7 @@ remove-orphans:
 	docker compose down --remove-orphans
 
 serve-demo: remove-orphans
-	docker compose run --entrypoint "/bin/bash" --service-ports local_demo_server -c "make serve-mkdocs"
+	docker compose run --entrypoint "/bin/bash" --service-ports local_example_server -c "make serve site=demo"
 
 serve-docs: remove-orphans
 	docker compose run --entrypoint "/bin/bash" --service-ports local_documentation_server -c "make serve-mkdocs"
@@ -41,23 +41,3 @@ clean-dist:
 	rm -rf dist/
 
 clean: clean-demo clean-dist
-
-install-mkdocs-demo-requirements:
-	cd demo && \
-	pip install -r ./requirements.txt
-
-build-mkdocs-demo: clean install-mkdocs-demo-requirements
-	cd demo && \
-	mkdocs build
-
-serve-mkdocs-demo: clean install-mkdocs-demo-requirements
-	cd demo && \
-	mkdocs serve -v --dev-addr=0.0.0.0:5000
-
-clean-demo:
-	cd demo && \
-	rm -rf site/
-
-update-demo-tag:
-	git tag -d demo && git push origin :refs/tags/demo
-	git tag demo && git push origin demo
