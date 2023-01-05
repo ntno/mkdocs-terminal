@@ -12,8 +12,8 @@ build:
 remove-orphans: 
 	docker compose down --remove-orphans
 
-serve-demo: remove-orphans
-	docker compose run --entrypoint "/bin/bash" --service-ports local_example_server -c "make serve site=demo"
+serve: remove-orphans check-site
+	docker compose run --entrypoint "/bin/bash" --service-ports local_example_server -c "make serve site=$(site)"
 
 serve-docs: remove-orphans
 	docker compose run --entrypoint "/bin/bash" --service-ports local_documentation_server -c "make serve-mkdocs"
@@ -41,3 +41,8 @@ clean-dist:
 	rm -rf dist/
 
 clean: clean-demo clean-dist
+
+check-site:
+ifndef site
+	$(error site is not set)
+endif
