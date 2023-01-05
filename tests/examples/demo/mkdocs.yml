@@ -9,13 +9,22 @@ site_author: ntno
 
 nav:
     - Home: 'index.md'
+    - Section Index Notes: 'section-index-notes.md'
     - About: 
-      - section-index: 'about/index.md'
       - Contributing: 'about/contributing.md'
+      - License: 'about/license.md'
+      - section-index: 'about/index.md'
+      - Release Notes: 
+        - v1: about/release-notes/version-1.md
+        - v2: about/release-notes/version-2.md
+        
     - 'User Guide':
       - Configuration: 'user-guide/configuration.md'
       - 'Custom Themes': 'user-guide/custom-themes.md'
       - Deployment: 'user-guide/deploying-your-docs.md'
+      - user-guide/styling-your-docs.md
+      - user-guide/writing-your-docs.md
+
 
 markdown_extensions:
   - meta
