@@ -1,11 +1,13 @@
+{% import 'macros/section-index-page-title.j2' as index_helper with context %}
+
 {% macro get_base_class( nav_item ) -%}
     {% set ns = namespace(class="terminal-mkdocs-side-nav-item", is_active_index=false) %}
     {% if nav_item.active %}
         {%- set ns.class = ns.class ~ "--active" -%}
     {% endif %}
 
-    {% if "navigation.side.indexes" in features and nav_item.title == "section-index" %}
-        {# if nav_item is a 'section-index' page, check to see if any of its' siblings are active) #}
+    {% if "navigation.side.indexes" in features and nav_item.title == index_helper.get_section_index_page_title() %}
+        {# if nav_item is a index page, check to see if any of its' siblings are active) #}
         {% for index_sibling in nav_item.parent.children %}
             {% if index_sibling.active %}
                 {% set ns.is_active_index = true %}
@@ -29,7 +31,7 @@
         {% if "navigation.side.indexes" not in features %}
             {%- set ns.class = ns.class ~ " terminal-mkdocs-side-nav-section-no-index" -%}
         {% else %}
-            {% if nav_item.children|selectattr("title", "eq", "section-index")|list|length == 0 %}
+            {% if nav_item.children|selectattr("title", "eq", index_helper.get_section_index_page_title() )|list|length == 0 %}
                 {%- set ns.class = ns.class ~ " terminal-mkdocs-side-nav-section-no-index" -%}           
             {% endif %}
         {% endif %}

@@ -7,24 +7,24 @@ site_author: ntno
 
 
 
-nav:
-    - Home: 'index.md'
-    - Section Index Notes: 'section-index-notes.md'
-    - About: 
-      - Contributing: 'about/contributing.md'
-      - License: 'about/license.md'
-      - section-index: 'about/index.md'
-      - Release Notes:
-        - section-index: about/release-notes/index.md 
-        - v1 Release Notes: about/release-notes/version-1.md
-        - v1 Release Notes: about/release-notes/version-2.md
+# nav:
+#     - Home: 'index.md'
+#     - Section Index Notes: 'section-index-notes.md'
+#     - About: 
+#       - Contributing: 'about/contributing.md'
+#       - License: 'about/license.md'
+#       - section-index: 'about/index.md'
+#       - Release Notes:
         
-    - 'User Guide':
-      - Configuration: 'user-guide/configuration.md'
-      - 'Custom Themes': 'user-guide/custom-themes.md'
-      - Deployment: 'user-guide/deploying-your-docs.md'
-      - user-guide/styling-your-docs.md
-      - user-guide/writing-your-docs.md
+#         - v1 Release Notes: about/release-notes/version-1.md
+#         - v2 Release Notes: about/release-notes/version-2.md
+#         - section-index: about/release-notes/index.md 
+#     - 'User Guide':
+#       - Configuration: 'user-guide/configuration.md'
+#       - 'Custom Themes': 'user-guide/custom-themes.md'
+#       - Deployment: 'user-guide/deploying-your-docs.md'
+#       - user-guide/styling-your-docs.md
+#       - user-guide/writing-your-docs.md
 
 
 markdown_extensions:

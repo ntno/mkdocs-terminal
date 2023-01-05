@@ -13,7 +13,7 @@
         <span {% if class %}class="{{ class }}"{% endif %}>{{ nav_item.title }}</span>
     {% else %}
         {% if nav_item.is_section %}
-            {# nav_item.is_section covers MkDocs Section objects (not hacked 'section-index' page) #}
+            {# nav_item.is_section covers MkDocs Section objects #}
             {# MkDocs Section objects do not have a URL to use as a link #}
             <span {% if class %}class="{{ class }}"{% endif %}>{{ nav_item.title }}</span>
         {% else %}

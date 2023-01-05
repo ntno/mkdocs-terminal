@@ -1,4 +1,6 @@
-{% if "navigation.side.indexes" in features and page and page.title and page.title == "section-index" and page.parent and page.parent.title %}
+{% import 'macros/section-index-page-title.j2' as index_helper with context %}
+
+{% if "navigation.side.indexes" in features and page and page.title and page.title == index_helper.get_section_index_page_title() and page.parent and page.parent.title %}
     {% set tab_title = page.parent.title %}
 {% else %}
     {% set tab_title = page.title %}
