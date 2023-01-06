@@ -1,3 +1,15 @@
+## future feature documentation
+## (##) Caninae
+### (###) Canina (wolf-like)
+### (###) Vulpini (fox-like)
+#### (####) Canis (wolves, dogs, coyotes)
+## Hideable Components
+In order to hide components on a per-page basis, you need the meta markdown extension
+```mkdocs.yml
+markdown_extensions:
+  - meta
+```
+
 ### references
 - [Gioni06/terminal.css](https://github.com/Gioni06/terminal.css)  
 - [build](https://pypa-build.readthedocs.io/en/latest/) for building distribution package  
