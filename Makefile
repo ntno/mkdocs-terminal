@@ -51,8 +51,11 @@ tox: install-tox-requirements
 	python -m tox -e py
 
 check-version-match:
-	cat terminal/theme_version.html | grep  "$(version)"
-
+ifeq ($(shell cat terminal/theme_version.html | grep  $(version) -o), $(version)) 
+	@echo "package.json version and terminal/theme_version.html version match"
+else
+	@echo "ERROR: package.json version and terminal/theme_version.html versions do not match"
+endif 
 
 check-site:
 ifndef site
