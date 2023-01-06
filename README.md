@@ -20,11 +20,11 @@ theme:
 ## Documentation
 [mkdocs-terminal docs](https://ntno.github.io/mkdocs-terminal/)
 
-# Developer Info
+## Developer Info
 [Terminal for MkDocs on GitHub](https://github.com/ntno/mkdocs-terminal)  
 [Terminal for MkDocs on PyPI](https://pypi.org/project/mkdocs-terminal/)  
 
-## License
+### License
 
 **MIT License**
 
