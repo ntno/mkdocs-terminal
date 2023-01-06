@@ -2,6 +2,8 @@
 
 <head>
     {% set features = config.theme.features or [] %}
+    {% set palette_name = config.theme.palette or "default" %}
+    {% set palette = "css/palettes/" ~ palette_name ~ ".css" %}
     {%- block site_meta %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,8 +24,12 @@
     {%- endblock %} 
     
     {%- block styles %}
+    <link href="{{ 'css/normalize.css' | url }}" rel="stylesheet">
     <link href="{{ 'css/terminal.css' | url }}" rel="stylesheet">
     <link href="{{ 'css/theme.css' | url }}" rel="stylesheet"> 
+    <!-- {{ palette_name }} color palette-->
+    <link href="{{ palette | url }}" rel="stylesheet">
+    
     {% if 'navigation.top.cursor_animation.hide' in features %}
     <style>
       .terminal-prompt::after {

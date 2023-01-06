@@ -6,10 +6,20 @@ site_author: ntno
 
 nav:
     - Home: 'index.md'
-    - Configuration: 'config.md'
+    - Configuration:
+      - Index: 'configuration/index.md'
+      - Color Palettes: 
+        - Index: 'configuration/palettes/index.md'
+        - Default: 'configuration/palettes/default.md'
+        - Gruvbox Dark: 'configuration/palettes/gruvbox_dark.md'
+        - Dark: 'configuration/palettes/dark.md'
+        - Pink: 'configuration/palettes/pink.md'
+        - Sans: 'configuration/palettes/sans.md'
+        - Sans Dark: 'configuration/palettes/sans_dark.md'
+      - Features: 'configuration/features.md'
     - Navigation:
-        - Table of Contents: 'navigation/toc.md'
         - Section Indexes: 'navigation/section-indexes.md'
+        - Table of Contents: 'navigation/toc.md'
     - Install: 'install.md'
 
 markdown_extensions:

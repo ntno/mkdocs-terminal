@@ -2,7 +2,7 @@ locale: en
 include_search_page: false
 search_index_only: false
 features: []
-
+palette: default
 static_templates:
   - 404.html
   - theme_version.html

@@ -33,6 +33,7 @@ markdown_extensions:
 
 
 theme:
+  palette: gruvbox_dark
   features:
     # - toc.hide
     # - navigation.side.hide
