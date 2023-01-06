@@ -6,10 +6,13 @@ site_author: ntno
 
 nav:
     - Home: 'index.md'
-    - Configuration: 'config.md'
+    - Configuration:
+      - Index: 'configuration/index.md'
+      - Features: 'configuration/features.md'
+      - Palettes: 'configuration/palettes.md'
     - Navigation:
-        - Table of Contents: 'navigation/toc.md'
         - Section Indexes: 'navigation/section-indexes.md'
+        - Table of Contents: 'navigation/toc.md'
     - Install: 'install.md'
 
 markdown_extensions:
