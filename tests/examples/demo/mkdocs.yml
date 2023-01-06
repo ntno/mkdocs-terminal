@@ -1,23 +1,23 @@
 INHERIT: ../base.yml
-site_name: MkDocs Terminal Theme Demo
+
 site_url: https://ntno.github.io/mkdocs-terminal
 repo_url: https://github.com/ntno/mkdocs-terminal
 copyright: Copyright 2023 Natan Organick, All rights reserved
 site_author: ntno
 
 
-
+site_name: Terminal Theme Demo
 nav:
     - Home: 'index.md'
-    - Section Index Notes: 'section-index-notes.md'
+    - Troubleshooting: 'help.md'
     - About: 
       - Contributing: 'about/contributing.md'
       - License: 'about/license.md'
-      - 'about/index.md'
       - Release Notes:
         - v1 Release Notes: about/release-notes/version-1.md
         - v2 Release Notes: about/release-notes/version-2.md
         - Index: about/release-notes/index.md 
+      - Index: 'about/index.md'
     - 'User Guide':
       - Configuration: 'user-guide/configuration.md'
       - 'Custom Themes': 'user-guide/custom-themes.md'
