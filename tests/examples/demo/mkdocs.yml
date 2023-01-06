@@ -11,19 +11,19 @@ nav:
     - Home: 'index.md'
     - Troubleshooting: 'help.md'
     - About: 
+      - Index: 'about/index.md'
       - Contributing: 'about/contributing.md'
       - License: 'about/license.md'
       - Release Notes:
-        - v1 Release Notes: about/release-notes/version-1.md
-        - v2 Release Notes: about/release-notes/version-2.md
-        - Index: about/release-notes/index.md 
-      - Index: 'about/index.md'
-    - 'User Guide':
+        - Index: 'about/release-notes/index.md'
+        - v1: 'about/release-notes/version-1.md'
+        - v2: 'about/release-notes/version-2.md'
+    - User Guide:
       - Configuration: 'user-guide/configuration.md'
-      - 'Custom Themes': 'user-guide/custom-themes.md'
+      - Custom Themes: 'user-guide/custom-themes.md'
       - Deployment: 'user-guide/deploying-your-docs.md'
-      - user-guide/styling-your-docs.md
-      - user-guide/writing-your-docs.md
+      - Styling: 'user-guide/styling-your-docs.md'
+      - Writing: 'user-guide/writing-your-docs.md'
 
 
 markdown_extensions:
