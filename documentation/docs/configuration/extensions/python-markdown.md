@@ -8,64 +8,9 @@ Material for MkDocs supports a large number of [Python Markdown]{target="_blank"
 
 ## Supported extensions
 
-### Abbreviations
-
-[:octicons-tag-24: 1.0.0][Abbreviations support] ·
-[:octicons-workflow-24: Extension][Abbreviations]
-
-The [Abbreviations] extension adds the ability to add a small tooltip to an
-element, by wrapping it with an `abbr` tag. Only plain text (no markup) is
-supported. Enable it via `mkdocs.yml`:
-
-``` yaml
-markdown_extensions:
-  - abbr
-```
-
-No configuration options are available. See reference for usage:
-
-- [Adding abbreviations]
-- [Adding a glossary]
-
-  [Abbreviations]: https://python-markdown.github.io/extensions/abbreviations/
-  [Abbreviations support]: https://github.com/squidfunk/mkdocs-material/releases/tag/1.0.0
-  [Adding abbreviations]: ../../reference/tooltips.md#adding-abbreviations
-  [Adding a glossary]: ../../reference/tooltips.md#adding-a-glossary
-
-### Admonition
-
-[:octicons-tag-24: 0.1.0][Admonition support] ·
-[:octicons-workflow-24: Extension][Admonition]
-
-The [Admonition] extension adds support for admonitions, more commonly known as 
-_call-outs_, which can be defined in Markdown by using a simple syntax. Enable
-it via `mkdocs.yml`:
-
-``` yaml
-markdown_extensions:
-  - admonition
-```
-
-No configuration options are available. See reference for usage:
-
-- [Adding admonitions]
-- [Changing the title]
-- [Removing the title]
-- [Supported types]
-
-  [Admonition]: https://python-markdown.github.io/extensions/admonition/
-  [Admonition support]: https://github.com/squidfunk/mkdocs-material/releases/tag/0.1.0
-  [Adding admonitions]: ../../reference/admonitions.md#usage
-  [Changing the title]: ../../reference/admonitions.md#changing-the-title
-  [Removing the title]: ../../reference/admonitions.md#removing-the-title
-  [Supported types]: ../../reference/admonitions.md#supported-types
-
 ### Attribute Lists
 
-[:octicons-tag-24: 0.1.0][Attribute Lists support] ·
-[:octicons-workflow-24: Extension][Attribute Lists]
-
-The [Attribute Lists] extension allows to add HTML attributes and CSS classes
+The [Attribute Lists] extension helps to add HTML attributes and CSS classes
 to [almost every][Attribute Lists limitations] Markdown inline- and block-level
 element with a special syntax. Enable it via `mkdocs.yml`:
 
@@ -74,27 +19,19 @@ markdown_extensions:
   - attr_list
 ```
 
+
+
 No configuration options are available. See reference for usage:
 
-- [Using annotations]
-- [Using grids]
 - [Adding buttons]
 - [Adding tooltips]
-- [Using icons with colors]
-- [Using icons with animations]
-- [Image alignment]
-- [Image lazy-loading]
+- [Adding link target]
 
   [Attribute Lists]: https://python-markdown.github.io/extensions/attr_list/
-  [Attribute Lists support]: https://github.com/squidfunk/mkdocs-material/releases/tag/0.1.0
   [Attribute Lists limitations]: https://python-markdown.github.io/extensions/attr_list/#limitations
-  [Using grids]: ../../reference/grids.md#using-grids
-  [Adding buttons]: ../../reference/buttons.md#adding-buttons
-  [Adding tooltips]: ../../reference/tooltips.md#adding-tooltips
-  [Using icons with colors]: ../../reference/icons-emojis.md#with-colors
-  [Using icons with animations]: ../../reference/icons-emojis.md#with-animations
-  [Image alignment]: ../../reference/images.md#image-alignment
-  [Image lazy-loading]: ../../reference/images.md#image-lazy-loading
+  [Adding buttons]: ../../elements/buttons.md#default
+  [Adding tooltips]: ../../elements/tooltips.md#example
+  [Adding link target]: ../../elements/tooltips.md#example
 
 ### Definition Lists
 
