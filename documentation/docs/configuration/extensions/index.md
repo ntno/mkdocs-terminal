@@ -1,9 +1,9 @@
-[Python Markdown](python-markdown.md){class='btn btn-primary btn-ghost'}  [Python Markdown Extensions](python-markdown-extensions.md){class='btn btn-primary btn-ghost'}
+[Python Markdown](python-markdown.md){class='btn btn-primary btn-ghost'}  [PyMdown Extensions](py-mdown-extensions.md){class='btn btn-primary btn-ghost'}
 
 **Extensions**
 
 Markdown is a very small language with a kind-of reference implementation called
-[John Gruber's Markdown](https://daringfireball.net/projects/markdown/){target="_blank"}. [Python Markdown](python-markdown.md) and [Python Markdown Extensions](python-markdown-extensions.md)
+[John Gruber's Markdown](https://daringfireball.net/projects/markdown/){target="_blank"}. [Python Markdown](python-markdown.md) and [Python Markdown Extensions](py-mdown-extensions.md)
 are two packages that enhance the Markdown writing experience, adding useful
 syntax extensions for technical writing.
 

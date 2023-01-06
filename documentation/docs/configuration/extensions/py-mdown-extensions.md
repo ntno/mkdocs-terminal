@@ -1,18 +1,17 @@
 [Back to Overview](index.md){class='btn btn-default'}  [to Python Markdown](python-markdown.md){class='btn btn-primary'}
 
-**Python Markdown Extensions**
+**PyMdown Extensions**
 
-The [Python Markdown Extensions] package is an excellent collection of
+The [PyMdown Extensions]{target="_blank"} package is an excellent collection of
 additional extensions perfectly suited for advanced technical writing. Material
 for MkDocs lists this package as an explicit dependency, so it's automatically
 installed with a supported version.
 
-  [Python Markdown Extensions]: https://facelessuser.github.io/pymdown-extensions/
+  [PyMdown Extensions]: https://facelessuser.github.io/pymdown-extensions/
 
 ## Supported extensions
 
-In general, all extensions that are part of [Python Markdown Extensions] should
-work with Material for MkDocs. The following list includes all extensions that
+In general, all extensions that are part of [PyMdown Extensions]{target="_blank"} should work with Material for MkDocs. The following list includes all extensions that
 are natively supported, meaning they work without any further adjustments.
 
 ### Arithmatex
@@ -233,7 +232,7 @@ markdown_extensions:
       emoji_generator: !!python/name:materialx.emoji.to_svg
 ```
 
-1.  [Python Markdown Extensions] uses the `pymdownx` namespace, but in order to
+1.  [PyMdown Extensions]{target="_blank"} uses the `pymdownx` namespace, but in order to
     support the inlining of icons, the `materialx` namespace must be used, as it
     extends the functionality of `pymdownx`.
 
@@ -663,7 +662,7 @@ The following configuration options are supported:
 :   :octicons-milestone-24: Default: `headerid.slugify` – This option allows for
     customization of the slug function. For some languages, the default may not
     produce good and readable identifiers – consider using another slug function
-    like for example those from [Python Markdown Extensions][Slugs]:
+    like for example those from [PyMdown Extensions]{target="_blank"}[Slugs]:
 
     === "Unicode"
 
@@ -759,6 +758,6 @@ See reference for usage:
   [Using task lists]: ../../reference/lists.md#using-task-lists
 
 # Credit
-This documentation is based on squidfunk's Material for MkDocs [Python Markdown Extensions](https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown-extensions/) documentation.
+This documentation is based on squidfunk's Material for MkDocs [PyMdown Extensions](https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown-extensions/) documentation.
 
 
