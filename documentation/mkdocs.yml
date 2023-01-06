@@ -25,39 +25,41 @@ nav:
         - Table of Contents: 'navigation/toc.md'
     - Elements:
       - Buttons: 'elements/buttons.md'
+      - Links: 'elements/links.md'
+      - Tooltips: 'elements/tooltips.md'
     - Install: 'install.md'
 
 markdown_extensions:
-  # Python Markdown  
-  - abbr
-  - admonition
+  # # Python Markdown  
+  # - abbr
+  # - admonition
   - attr_list
-  - def_list
-  - footnotes
+  # - def_list
+  # - footnotes
   - md_in_html
-  - meta
-  - toc:
-      permalink: "#"
+  # - meta
+  # - toc:
+  #     permalink: "#"
 
 
-  # PyMdown Extensions
-  - pymdownx.arithmatex:
-      generic: true
-  - pymdownx.betterem:
-      smart_enable: all
-  - pymdownx.caret
-  - pymdownx.details
-  - pymdownx.highlight
-  - pymdownx.inlinehilite
-  - pymdownx.keys
-  - pymdownx.mark
-  - pymdownx.smartsymbols
-  - pymdownx.superfences
-  - pymdownx.tabbed:
-      alternate_style: true
-  - pymdownx.tasklist:
-      custom_checkbox: true
-  - pymdownx.tilde
+  # # PyMdown Extensions
+  # - pymdownx.arithmatex:
+  #     generic: true
+  # - pymdownx.betterem:
+  #     smart_enable: all
+  # - pymdownx.caret
+  # - pymdownx.details
+  # - pymdownx.highlight
+  # - pymdownx.inlinehilite
+  # - pymdownx.keys
+  # - pymdownx.mark
+  # - pymdownx.smartsymbols
+  # - pymdownx.superfences
+  # - pymdownx.tabbed:
+  #     alternate_style: true
+  # - pymdownx.tasklist:
+  #     custom_checkbox: true
+  # - pymdownx.tilde
 
 
 theme:
