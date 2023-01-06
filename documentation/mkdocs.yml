@@ -8,7 +8,6 @@ nav:
     - Home: 'index.md'
     - Configuration: 'config.md'
     - Navigation:
-        - Index: 'navigation/index.md'
         - Table of Contents: 'navigation/toc.md'
         - Section Indexes: 'navigation/section-indexes'
     - Install: 'install.md'

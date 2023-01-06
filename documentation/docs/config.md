@@ -66,4 +66,3 @@ hides top navigation on all site pages
 ### navigation.top.cursor_animation.hide  
 hides the blinking cursor animation in the top nav.  ignored if `navigation.top.hide` is set.
 
-#### wow another one
