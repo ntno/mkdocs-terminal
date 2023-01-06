@@ -6,17 +6,57 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ntno.github.io/mkdocs-terminal/config/</loc>
-         <lastmod>2023-01-06</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://ntno.github.io/mkdocs-terminal/install/</loc>
          <lastmod>2023-01-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ntno.github.io/mkdocs-terminal/about/license/</loc>
+         <lastmod>2023-01-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://ntno.github.io/mkdocs-terminal/configuration/</loc>
+         <lastmod>2023-01-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://ntno.github.io/mkdocs-terminal/configuration/features/</loc>
+         <lastmod>2023-01-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://ntno.github.io/mkdocs-terminal/configuration/palettes/</loc>
+         <lastmod>2023-01-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://ntno.github.io/mkdocs-terminal/configuration/palettes/dark/</loc>
+         <lastmod>2023-01-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://ntno.github.io/mkdocs-terminal/configuration/palettes/default/</loc>
+         <lastmod>2023-01-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://ntno.github.io/mkdocs-terminal/configuration/palettes/gruvbox_dark/</loc>
+         <lastmod>2023-01-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://ntno.github.io/mkdocs-terminal/configuration/palettes/pink/</loc>
+         <lastmod>2023-01-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://ntno.github.io/mkdocs-terminal/configuration/palettes/sans/</loc>
+         <lastmod>2023-01-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://ntno.github.io/mkdocs-terminal/configuration/palettes/sans_dark/</loc>
          <lastmod>2023-01-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
