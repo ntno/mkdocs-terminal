@@ -17,16 +17,50 @@ nav:
         - Sans: 'configuration/palettes/sans.md'
         - Sans Dark: 'configuration/palettes/sans_dark.md'
       - Features: 'configuration/features.md'
+      - Extensions: 
+        - Index: 'configuration/extensions/index.md'
+        - Python Markdown: 'configuration/extensions/python-markdown.md'
+        - Python Markdown Extensions: 'configuration/extensions/python-markdown-extensions.md'
     - Navigation:
         - Section Indexes: 'navigation/section-indexes.md'
         - Table of Contents: 'navigation/toc.md'
     - Install: 'install.md'
 
 markdown_extensions:
-  - meta
+  # Python Markdown  
+  - abbr
+  - admonition
   - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - meta
   - toc:
       permalink: "#"
+
+
+  # Python Markdown Extensions
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  # - pymdownx.emoji:
+  #     emoji_index: !!python/name:materialx.emoji.twemoji
+  #     emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
 
 theme:
   name: terminal

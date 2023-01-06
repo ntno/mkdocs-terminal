@@ -1,2 +1,11 @@
 mkdocs
 mkdocs-terminal
+
+# Python Markdown Extensions
+pygments>=2.14
+pymdown-extensions>=9.9
+
+# Requirements for plugins
+colorama>=0.4
+regex>=2022.4.24
+requests>=2.26
