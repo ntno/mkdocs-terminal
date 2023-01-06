@@ -1,7 +1,7 @@
 # Theme Color Palettes
 Terminal for MkDocs supports the following color palettes by default:
 
-  - default
+  - [default](default.md)
   - dark
   - pink
   - sans
