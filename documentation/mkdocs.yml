@@ -24,6 +24,8 @@ nav:
     - Navigation:
         - Section Indexes: 'navigation/section-indexes.md'
         - Table of Contents: 'navigation/toc.md'
+    - Elements:
+      - Buttons: 'elements/buttons.md'
     - Install: 'install.md'
 
 markdown_extensions:
