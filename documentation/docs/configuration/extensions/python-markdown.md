@@ -1,6 +1,6 @@
 [Back to Overview](index.md){class='btn btn-default'}  [to Python Markdown Extensions](python-markdown-extensions.md){class='btn btn-primary'}
 
-# Python Markdown
+**Python Markdown**
 
 Material for MkDocs supports a large number of [Python Markdown] extensions,
 which is part of what makes it so attractive for technical writing. Following

@@ -1,12 +1,6 @@
 [Python Markdown](python-markdown.md){class='btn btn-primary btn-ghost'}  [Python Markdown Extensions](python-markdown-extensions.md){class='btn btn-primary btn-ghost'}
 
-
-<!-- [Extensions Overview](index.md){class='btn btn-default'}   -->
-
-
-<!-- [Python Markdown](python-markdown.md){class='btn btn-primary'}[Python Markdown Extensions](python-markdown-extensions.md){class='btn btn-error'}  -->
-
-# Extensions
+**Extensions**
 
 Markdown is a very small language with a kind-of reference implementation called
 [John Gruber's Markdown](https://daringfireball.net/projects/markdown/){target="_blank"}. [Python Markdown](python-markdown.md) and [Python Markdown Extensions](python-markdown-extensions.md)

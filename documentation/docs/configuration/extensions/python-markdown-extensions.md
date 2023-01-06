@@ -1,6 +1,6 @@
 [Back to Overview](index.md){class='btn btn-default'}  [to Python Markdown](python-markdown.md){class='btn btn-primary'}
 
-# Python Markdown Extensions
+**Python Markdown Extensions**
 
 The [Python Markdown Extensions] package is an excellent collection of
 additional extensions perfectly suited for advanced technical writing. Material
