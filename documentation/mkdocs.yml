@@ -11,6 +11,7 @@ nav:
       - Color Palettes: 
         - Index: 'configuration/palettes/index.md'
         - Default: 'configuration/palettes/default.md'
+        - Gruvbox Dark: 'configuration/palettes/gruvbox_dark.md'
         - Dark: 'configuration/palettes/dark.md'
         - Pink: 'configuration/palettes/pink.md'
         - Sans: 'configuration/palettes/sans.md'

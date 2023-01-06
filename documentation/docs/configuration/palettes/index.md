@@ -2,6 +2,7 @@
 Terminal for MkDocs supports the following color palettes by default:
 
   - [default](default.md)
+  - [gruvbox_dark](gruvbox_dark.md)
   - [dark](dark.md)
   - [pink](pink.md)
   - [sans](sans.md)
