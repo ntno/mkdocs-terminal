@@ -12,7 +12,7 @@ mkdocs-terminal
 Then run:  `pip install -r ./requirements.txt`
 
 ## 3. Update MkDocs Configuration
-Add `theme` configuration in `mkdocs.yml`:
+Add the following `theme` configuration in `mkdocs.yml`:
    
 ```yaml
 theme:

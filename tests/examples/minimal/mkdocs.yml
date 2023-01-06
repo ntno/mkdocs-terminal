@@ -1,3 +1,4 @@
+INHERIT: ../base.yml
 site_name: MyTest
 
 nav:

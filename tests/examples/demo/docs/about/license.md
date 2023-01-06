@@ -1,7 +1,5 @@
----
-title: License
----
-# Testing Page
+# License
 
-See the [Home Page](/). All the other pages are for demonstration purposes
-with the navigation only.
+Proin quis velit eget enim bibendum viverra.
+Nunc sed urna vel ligula gravida blandit.
+Phasellus a elit interdum, mollis lorem nec, elementum nisi.

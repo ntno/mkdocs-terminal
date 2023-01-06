@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% include "theme_version.html" %}
     <!-- <meta name="robots" content="noindex"> -->
     {% if config.site_description %}
     <meta name="description" content="{{ config.site_description }}">{% endif %} 
@@ -13,11 +14,11 @@
     <meta name="author" content="{{ config.site_author }}">{% endif %} 
     {% if page.canonical_url %}
     <link rel="canonical" href="{{ page.canonical_url }}">{% endif %} 
-    {% include "partials/favicon.html" %} 
+    {% include "partials/favicon.html" %}
     {%- endblock %} 
     
     {%- block htmltitle %}
-    <title>{% if page and page.title %}{{ page.title }} - {% endif %}{{ config.site_name }}</title>
+    {% include "partials/html-title.html" %}
     {%- endblock %} 
     
     {%- block styles %}

@@ -1,7 +1,11 @@
 ---
 title: Version 2 Release Notes
 ---
-# Testing Page
+# Version 2
 
-See the [Home Page](/). All the other pages are for demonstration purposes
-with the navigation only.
+information about Version 2 release here
+
+## Updates
+
+- Curabitur ac arcu ut erat porttitor elementum.
+- Nulla vitae odio bibendum, rutrum felis vitae, maximus dolor.

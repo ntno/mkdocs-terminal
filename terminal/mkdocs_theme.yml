@@ -5,3 +5,4 @@ features: []
 
 static_templates:
   - 404.html
+  - theme_version.html

@@ -6,9 +6,11 @@ site_author: ntno
 
 nav:
     - Home: 'index.md'
-    - Install: 'install.md'
+    - Configuration: 'config.md'
     - Navigation:
         - Table of Contents: 'navigation/toc.md'
+        - Section Indexes: 'navigation/section-indexes.md'
+    - Install: 'install.md'
 
 markdown_extensions:
   - meta
@@ -19,8 +21,4 @@ markdown_extensions:
 theme:
   name: terminal
   features:
-    # - toc.hide
-    # - navigation.side.hide
     - navigation.side.indexes
-    # - navigation.top.hide
-    # - navigation.top.cursor_animation.hide

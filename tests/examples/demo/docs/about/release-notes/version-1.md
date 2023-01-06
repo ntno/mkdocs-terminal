@@ -1,7 +1,11 @@
 ---
 title: Version 1 Release Notes
 ---
-# Testing Page
+# Version 1
 
-See the [Home Page](/). All the other pages are for demonstration purposes
-with the navigation only.
+information about Version 1 release here
+
+## Updates
+
+- Aliquam rhoncus nibh nec nisi elementum tincidunt at eget arcu.
+- Vestibulum sit amet leo sed magna dictum semper.
