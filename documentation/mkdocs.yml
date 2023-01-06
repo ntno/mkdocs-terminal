@@ -17,10 +17,9 @@ nav:
         - Sans: 'configuration/palettes/sans.md'
         - Sans Dark: 'configuration/palettes/sans_dark.md'
       - Features: 'configuration/features.md'
-      - Extensions: 
-        - Index: 'configuration/extensions/index.md'
-        - Python Markdown: 'configuration/extensions/python-markdown.md'
-        - Python Markdown Extensions: 'configuration/extensions/python-markdown-extensions.md'
+      - Extensions: 'configuration/extensions/index.md'
+      - Python Markdown: 'configuration/extensions/python-markdown.md'
+      - PyMdown Extensions: 'configuration/extensions/py-mdown-extensions.md'
     - Navigation:
         - Section Indexes: 'navigation/section-indexes.md'
         - Table of Contents: 'navigation/toc.md'
