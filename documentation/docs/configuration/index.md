@@ -2,7 +2,7 @@
 
 The MkDocs Terminal theme layout consists of three major components.  The top navigation bar, the side navigation bar, and the page table of contents.  Each of these components can be hidden site-wide (see [Theme Features](./features.md)), however they are enabled by default.
 
-![Major UI Components](../img/annotated/hideable_components.png){title="Major UI Components", "screenshot with hideable MkDocs Terminal components annotated"}
+![Major UI Components](../img/annotated/hideable_components.png){title="Major UI Components"; alt="screenshot with hideable MkDocs Terminal components annotated"}
 
 
 ### Top Navigation Menu
