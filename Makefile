@@ -17,10 +17,10 @@ build:
 remove-orphans: 
 	docker compose down --remove-orphans
 
-serve: remove-orphans check-site
+serve: check-site
 	docker compose run --entrypoint "/bin/bash" --service-ports local_examples_server -c "make serve site=$(site)"
 
-serve-docs: remove-orphans
+serve-docs: 
 	docker compose run --entrypoint "/bin/bash" --service-ports local_documentation_server -c "make serve-mkdocs"
 
 
