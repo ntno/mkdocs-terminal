@@ -46,8 +46,8 @@
     --font-color:              var(--gb-dm-fg1);
     --invert-font-color:       var(--gb-dm-bg0-hard);
     --primary-color:           var(--gb-dm-light-yellow);
-    --secondary-color:         var(--gb-dm-light-green);
-    --tertiary-color:          var(--gb-dm-light-green);
+    --secondary-color:         var(--gb-dm-fg3);
+    --tertiary-color:          var(--gb-dm-light-gray);
     --error-color:             var(--gb-dm-light-red);
     --progress-bar-background: var(--gb-dm-bg2);
     --progress-bar-fill:       var(--gb-dm-fg2);
