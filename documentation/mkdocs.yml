@@ -8,8 +8,8 @@ nav:
     - Home: 'index.md'
     - Configuration:
       - Index: 'configuration/index.md'
+      - Color Palettes: 'configuration/palettes.md'
       - Features: 'configuration/features.md'
-      - Palettes: 'configuration/palettes.md'
     - Navigation:
         - Section Indexes: 'navigation/section-indexes.md'
         - Table of Contents: 'navigation/toc.md'
