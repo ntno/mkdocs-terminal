@@ -10,6 +10,11 @@ nav:
       - Index: 'configuration/index.md'
       - Color Palettes: 
         - Index: 'configuration/palettes/index.md'
+        - Default: 'configuration/palettes/default.md'
+        - Dark: 'configuration/palettes/dark.md'
+        - Pink: 'configuration/palettes/pink.md'
+        - Sans: 'configuration/palettes/sans.md'
+        - Sans Dark: 'configuration/palettes/sans_dark.md'
       - Features: 'configuration/features.md'
     - Navigation:
         - Section Indexes: 'navigation/section-indexes.md'
