@@ -1,5 +1,8 @@
 version=$(shell cat package.json | jq .version -r)
 
+
+.PHONY: check-version-match clean
+
 ################################################
 ## run from machine with docker installed
 ## requires GNU Make
@@ -51,11 +54,7 @@ tox: install-tox-requirements
 	python -m tox -e py
 
 check-version-match:
-ifeq ($(shell cat terminal/theme_version.html | grep  $(version) -o), $(version)) 
-	$(info package.json version and terminal/theme_version.html version match)
-else
-	$(error ERROR: package.json version and terminal/theme_version.html versions do not match)
-endif 
+	cat terminal/theme_version.html | grep -s --silent $(version)\"\>\$$ -o 
 
 check-site:
 ifndef site
