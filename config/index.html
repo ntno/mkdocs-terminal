@@ -11,7 +11,7 @@
     
     <meta name="author" content="ntno"> 
     
-    <link rel="canonical" href="https://ntno.github.io/mkdocs-terminal/install/"> 
+    <link rel="canonical" href="https://ntno.github.io/mkdocs-terminal/config/"> 
     <link rel="icon" type="image/png" sizes="192x192" href="../img/android-chrome-192x192.png" />
 <link rel="icon" type="image/png" sizes="512x512" href="../img/android-chrome-512x512.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="../img/apple-touch-icon.png" />
@@ -23,7 +23,7 @@
 
     
  
-<title>Install - MkDocs Terminal Theme Documentation</title>
+<title>Configuration - MkDocs Terminal Theme Documentation</title>
     <link href="../css/terminal.css" rel="stylesheet">
     <link href="../css/theme.css" rel="stylesheet"> 
     
@@ -82,7 +82,7 @@
                 
                 
                 <li property="itemListElement" typeof="ListItem">
-                    <a href="../config/" class="menu-item " property="item" typeof="WebPage">
+                    <a href="./" class="menu-item active" property="item" typeof="WebPage">
                         <span property="name">Configuration</span>
                     </a>
                     <meta property="position" content="1">
@@ -93,7 +93,7 @@
                 
                 
                 <li property="itemListElement" typeof="ListItem">
-                    <a href="./" class="menu-item active" property="item" typeof="WebPage">
+                    <a href="../install/" class="menu-item " property="item" typeof="WebPage">
                         <span property="name">Install</span>
                     </a>
                     <meta property="position" content="3">
@@ -147,11 +147,9 @@
     
     
         
-        
-            <a class="
+        <span class="
 
-    terminal-mkdocs-side-nav-item" href="../config/">Configuration</a>
-        
+    terminal-mkdocs-side-nav-item--active">Configuration</span>
     
     
     
@@ -244,9 +242,11 @@
     
     
         
-        <span class="
+        
+            <a class="
 
-    terminal-mkdocs-side-nav-item--active">Install</span>
+    terminal-mkdocs-side-nav-item" href="../install/">Install</a>
+        
     
     
     
@@ -268,13 +268,26 @@
 <nav>
     <ul>
         
-        <li><a href="#1-setup-mkdocs-project">1. Setup MkDocs project</a></li>
+        <li><a href="#theme-components">Theme Components</a></li>
+            
+            <li><a href="#top-navigation-menu">Top Navigation Menu</a></li>
+            
+            <li><a href="#side-navigation-menu">Side Navigation Menu</a></li>
+            
+            <li><a href="#page-table-of-contents">Page Table of Contents</a></li>
             
         
-        <li><a href="#2-install-theme">2. Install Theme</a></li>
+        <li><a href="#theme-features">Theme Features</a></li>
             
-        
-        <li><a href="#3-update-mkdocs-configuration">3. Update MkDocs Configuration</a></li>
+            <li><a href="#tochide">toc.hide</a></li>
+            
+            <li><a href="#navigationsidehide">navigation.side.hide</a></li>
+            
+            <li><a href="#navigationsideindexes">navigation.side.indexes</a></li>
+            
+            <li><a href="#navigationtophide">navigation.top.hide</a></li>
+            
+            <li><a href="#navigationtopcursor_animationhide">navigation.top.cursor_animation.hide</a></li>
             
         
     </ul>
@@ -286,19 +299,50 @@
 </aside>
 
             <main> <section>
-    <h2 id="1-setup-mkdocs-project">1. Setup MkDocs project<a class="headerlink" href="#1-setup-mkdocs-project" title="Permanent link">#</a></h2>
-<p>See <a href="https://www.mkdocs.org/getting-started/" target="_blank">Getting Started</a> for details.</p>
-<h2 id="2-install-theme">2. Install Theme<a class="headerlink" href="#2-install-theme" title="Permanent link">#</a></h2>
-<p>Install the <a href="https://pypi.org/project/mkdocs-terminal/" target="_blank">mkdocs-terminal pip package</a>.  Add the package to your <code>requirements.txt</code> file:</p>
-<pre><code class="language-text">mkdocs
-mkdocs-terminal
+    <h2 id="theme-components">Theme Components<a class="headerlink" href="#theme-components" title="Permanent link">#</a></h2>
+<p>The MkDocs Terminal theme layout consists of three major components.  The top navigation bar, the side navigation bar, and the page table of contents.  Each of these components can be hidden site-wide, however they are enabled by default.</p>
+<p><img MkDocs="MkDocs" Terminal="Terminal" _="," _screenshot="&quot;screenshot" alt="Major UI Components" annotated_="annotated&quot;" components="components" hideable="hideable" src="../img/annotated/hideable_components.png" title="Major UI Components" with="with" /></p>
+<h3 id="top-navigation-menu">Top Navigation Menu<a class="headerlink" href="#top-navigation-menu" title="Permanent link">#</a></h3>
+<p>This component includes the <code>site_name</code> at the top left and the top level pages as defined in the <code>nav</code> section of <code>mkdocs.yml</code> at the top right:</p>
+<pre><code class="language-yaml">site_name: Terminal Theme Demo
+nav:
+    - Home: 'index.md'
+    - Troubleshooting: 'help.md'
 </code></pre>
-<p>Then run:  <code>pip install -r ./requirements.txt</code></p>
-<h2 id="3-update-mkdocs-configuration">3. Update MkDocs Configuration<a class="headerlink" href="#3-update-mkdocs-configuration" title="Permanent link">#</a></h2>
-<p>Add the following <code>theme</code> configuration in <code>mkdocs.yml</code>:</p>
+<h3 id="side-navigation-menu">Side Navigation Menu<a class="headerlink" href="#side-navigation-menu" title="Permanent link">#</a></h3>
+<p>This component includes the first through second level pages as defined in the <code>nav</code> section of <code>mkdocs.yml</code> in the left sidebar:</p>
+<pre><code class="language-yaml">nav:
+    - Home: 'index.md'
+    - Troubleshooting: 'help.md'
+    - About: 
+      - Contributing: 'about/contributing.md'
+      - License: 'about/license.md'
+      - Release Notes:
+        - v1: 'about/release-notes/version-1.md'
+        - v2: 'about/release-notes/version-2.md'
+</code></pre>
+<h3 id="page-table-of-contents">Page Table of Contents<a class="headerlink" href="#page-table-of-contents" title="Permanent link">#</a></h3>
+<p>The table of contents component is located directly underneath the side-nav component.  It includes links to the the top two sections in the current page's markdown.  See <a href="../navigation/toc/">TOC Example</a> for details.</p>
+<h1 id="theme-features">Theme Features<a class="headerlink" href="#theme-features" title="Permanent link">#</a></h1>
 <pre><code class="language-yaml">theme:
   name: terminal
+  features:
+    - toc.hide
+    - navigation.side.hide
+    - navigation.side.indexes
+    - navigation.top.hide
+    - navigation.top.cursor_animation.hide
 </code></pre>
+<h3 id="tochide">toc.hide<a class="headerlink" href="#tochide" title="Permanent link">#</a></h3>
+<p>hides table of contents on all site pages</p>
+<h3 id="navigationsidehide">navigation.side.hide<a class="headerlink" href="#navigationsidehide" title="Permanent link">#</a></h3>
+<p>hides side navigation on all site pages</p>
+<h3 id="navigationsideindexes">navigation.side.indexes<a class="headerlink" href="#navigationsideindexes" title="Permanent link">#</a></h3>
+<p>enables section links in side nav.  ignored if <code>navigation.side.hide</code> is set.</p>
+<h3 id="navigationtophide">navigation.top.hide<a class="headerlink" href="#navigationtophide" title="Permanent link">#</a></h3>
+<p>hides top navigation on all site pages</p>
+<h3 id="navigationtopcursor_animationhide">navigation.top.cursor_animation.hide<a class="headerlink" href="#navigationtopcursor_animationhide" title="Permanent link">#</a></h3>
+<p>hides the blinking cursor animation in the top nav.  ignored if <code>navigation.top.hide</code> is set.</p>
     
 
     

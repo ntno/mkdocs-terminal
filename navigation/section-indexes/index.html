@@ -10,21 +10,22 @@
      
     
     <meta name="author" content="ntno"> 
-     
-    <link rel="icon" type="image/png" sizes="192x192" href="/mkdocs-terminal/img/android-chrome-192x192.png" />
-<link rel="icon" type="image/png" sizes="512x512" href="/mkdocs-terminal/img/android-chrome-512x512.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="/mkdocs-terminal/img/apple-touch-icon.png" />
-<link rel="shortcut icon" type="image/png" sizes="48x48" href="/mkdocs-terminal/img/favicon.ico" />
-<link rel="icon" type="image/png" sizes="16x16" href="/mkdocs-terminal/img/favicon-16x16.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="/mkdocs-terminal/img/favicon-32x32.png" />
+    
+    <link rel="canonical" href="https://ntno.github.io/mkdocs-terminal/navigation/section-indexes/"> 
+    <link rel="icon" type="image/png" sizes="192x192" href="../../img/android-chrome-192x192.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="../../img/android-chrome-512x512.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="../../img/apple-touch-icon.png" />
+<link rel="shortcut icon" type="image/png" sizes="48x48" href="../../img/favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="../../img/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png" />
     
 
 
     
  
-<title> - MkDocs Terminal Theme Documentation</title>
-    <link href="/mkdocs-terminal/css/terminal.css" rel="stylesheet">
-    <link href="/mkdocs-terminal/css/theme.css" rel="stylesheet"> 
+<title>Section Indexes - MkDocs Terminal Theme Documentation</title>
+    <link href="../../css/terminal.css" rel="stylesheet">
+    <link href="../../css/theme.css" rel="stylesheet"> 
     
 
     <!--
@@ -46,7 +47,7 @@
     http://www.mkdocs.org/user-guide/configuration/#extra_javascript
   -->
     
-    <script src="/mkdocs-terminal/search/main.js"></script>
+    <script src="../../search/main.js"></script>
     
 
     <!--
@@ -72,7 +73,7 @@
                 
                 
                 <li property="itemListElement" typeof="ListItem">
-                    <a href="/mkdocs-terminal/." class="menu-item " property="item" typeof="WebPage">
+                    <a href="../.." class="menu-item " property="item" typeof="WebPage">
                         <span property="name">Home</span>
                     </a>
                     <meta property="position" content="0">
@@ -81,7 +82,7 @@
                 
                 
                 <li property="itemListElement" typeof="ListItem">
-                    <a href="/mkdocs-terminal/config/" class="menu-item " property="item" typeof="WebPage">
+                    <a href="../../config/" class="menu-item " property="item" typeof="WebPage">
                         <span property="name">Configuration</span>
                     </a>
                     <meta property="position" content="1">
@@ -92,7 +93,7 @@
                 
                 
                 <li property="itemListElement" typeof="ListItem">
-                    <a href="/mkdocs-terminal/install/" class="menu-item " property="item" typeof="WebPage">
+                    <a href="../../install/" class="menu-item " property="item" typeof="WebPage">
                         <span property="name">Install</span>
                     </a>
                     <meta property="position" content="3">
@@ -130,7 +131,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="/mkdocs-terminal/.">Home</a>
+    terminal-mkdocs-side-nav-item" href="../..">Home</a>
         
     
     
@@ -149,7 +150,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="/mkdocs-terminal/config/">Configuration</a>
+    terminal-mkdocs-side-nav-item" href="../../config/">Configuration</a>
         
     
     
@@ -173,17 +174,13 @@
             
     
         
-        
-            
-            
-            <span class="
+        <span class="
         
             
         
     
 
-    terminal-mkdocs-side-nav-item terminal-mkdocs-side-nav-section-no-index">Navigation</span>
-        
+    terminal-mkdocs-side-nav-item--active terminal-mkdocs-side-nav-section-no-index">Navigation</span>
     
     
         
@@ -204,7 +201,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="/mkdocs-terminal/navigation/toc/">Table of Contents</a>
+    terminal-mkdocs-side-nav-item" href="../toc/">Table of Contents</a>
         
     
     </li>
@@ -220,11 +217,9 @@
                 <li class="terminal-mkdocs-side-nav-li-ul-li">
     
         
-        
-            <a class="
+        <span class="
 
-    terminal-mkdocs-side-nav-item" href="/mkdocs-terminal/navigation/section-indexes/">Section Indexes</a>
-        
+    terminal-mkdocs-side-nav-item--active">Section Indexes</span>
     
     </li>
             
@@ -246,7 +241,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="/mkdocs-terminal/install/">Install</a>
+    terminal-mkdocs-side-nav-item" href="../../install/">Install</a>
         
     
     
@@ -264,13 +259,66 @@
     
         
         
+
+<hr>
+<nav>
+    <ul>
+        
+        <li><a href="#with-section-indexes">With Section Indexes</a></li>
+            
+        
+        <li><a href="#without-section-indexes">Without Section Indexes</a></li>
+            
+        
+    </ul>
+</nav>
+
+
         
     
 </aside>
 
-            <main>
-  <h1>404 - Not found</h1>
+            <main> <section>
+    <p>When section index pages are enabled, documents can be directly attached to sections.  This is particularly useful for providing overview pages. Add the <code>navigation.side.indexes</code> feature to the theme configuration in <code>mkdocs.yml</code>:</p>
+<pre><code class="language-yaml">theme:
+  name: terminal
+  features:
+    - navigation.side.indexes
+</code></pre>
+<p>Then add a page with the title 'Index' as a subpage in the <code>nav</code> config in <code>mkdocs.yml</code>:</p>
+<pre><code class="language-yaml">nav:
+    - Home: 'index.md'
+    - Troubleshooting: 'help.md'
+    - About: 
+      - Index: 'about/index.md'
+      - Contributing: 'about/contributing.md'
+      - License: 'about/license.md'
+      - Release Notes:
+        - Index: 'about/release-notes/index.md'
+        - v1: 'about/release-notes/version-1.md'
+        - v2: 'about/release-notes/version-2.md'
+</code></pre>
+<p><br></p>
+<hr>
 
+<h2 id="with-section-indexes">With Section Indexes<a class="headerlink" href="#with-section-indexes" title="Permanent link">#</a></h2>
+<p><em>About</em> and <em>Release Notes</em> are clickable in the side navigation.  The index page for the <em>About</em> section does not appear as a sub page of the <em>About</em> category:</p>
+<p><img _="," alt="'Release Notes' is rendered as a clickable link in the side navigation" src="../../img/about_page_with_section_indexes.png" title="'About' and 'Release Notes' are clickable in the side navigation" /></p>
+<hr>
+
+<h2 id="without-section-indexes">Without Section Indexes<a class="headerlink" href="#without-section-indexes" title="Permanent link">#</a></h2>
+<p><em>About</em> and <em>Release Notes</em> are not clickable in the side navigation.  Instead, they are rendered as greyed out text.  The index page for the <em>About</em> section appears as a sub page of the <em>About</em> category:</p>
+<p><img _="," alt="'Release Notes' is rendered as greyed out text in the side navigation" src="../../img/about_page_without_section_indexes.png" title="'About' and 'Release Notes' are not clickable in the side navigation" /></p>
+    
+
+    
+    
+<br>
+<p>
+    
+</p>
+    
+</section>
             </main>
         </div>
         <hr> <div class="container">
