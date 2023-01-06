@@ -52,9 +52,9 @@ tox: install-tox-requirements
 
 check-version-match:
 ifeq ($(shell cat terminal/theme_version.html | grep  $(version) -o), $(version)) 
-	@echo "package.json version and terminal/theme_version.html version match"
+	$(info package.json version and terminal/theme_version.html version match)
 else
-	@echo "ERROR: package.json version and terminal/theme_version.html versions do not match"
+	$(error ERROR: package.json version and terminal/theme_version.html versions do not match)
 endif 
 
 check-site:
