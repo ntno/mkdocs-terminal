@@ -1,3 +1,5 @@
+[Back to Overview](index.md){class='btn btn-default'}  [to Python Markdown](python-markdown.md){class='btn btn-primary'}
+
 # Python Markdown Extensions
 
 The [Python Markdown Extensions] package is an excellent collection of
@@ -759,5 +761,4 @@ See reference for usage:
 # Credit
 This documentation is based on squidfunk's Material for MkDocs [Python Markdown Extensions](https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown-extensions/) documentation.
 
-https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown/
 
