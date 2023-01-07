@@ -51,3 +51,10 @@ code::before {
     content: "" !important;
     display: inline;
 }
+
+/*! terminal.css | MIT License |  https://github.com/Gioni06/terminal.css/pull/36 */
+blockquote > *:last-child {
+    margin-bottom: 0;
+}
+  
+  
