@@ -1,3 +1,7 @@
+--8<--
+configuration/palettes/links.md
+--8<--
+
 # Gruvbox Dark Palette
 
 To use the gruvbox_dark color palette, add the `palette` attribute to your theme configuration in `mkdocs.yml`:
