@@ -13,7 +13,7 @@
     
     <meta name="author" content="ntno"> 
     
-    <link rel="canonical" href="https://ntno.github.io/mkdocs-terminal/about/license/"> 
+    <link rel="canonical" href="https://ntno.github.io/mkdocs-terminal/elements/definitions/"> 
     <link rel="icon" type="image/png" sizes="192x192" href="../../img/android-chrome-192x192.png" />
 <link rel="icon" type="image/png" sizes="512x512" href="../../img/android-chrome-512x512.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="../../img/apple-touch-icon.png" />
@@ -25,7 +25,7 @@
 
     
  
-<title>MIT License - MkDocs Terminal</title>
+<title>Definitions - MkDocs Terminal</title>
     <link href="../../css/normalize.css" rel="stylesheet">
     <link href="../../css/terminal.css" rel="stylesheet">
     <link href="../../css/theme.css" rel="stylesheet"> 
@@ -363,17 +363,13 @@
             
     
         
-        
-            
-            
-            <span class="
+        <span class="
         
             
         
     
 
-    terminal-mkdocs-side-nav-item terminal-mkdocs-side-nav-section-no-index">Elements</span>
-        
+    terminal-mkdocs-side-nav-item--active terminal-mkdocs-side-nav-section-no-index">Elements</span>
     
     
         
@@ -394,7 +390,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../elements/blockquotes/">Blockquotes</a>
+    terminal-mkdocs-side-nav-item" href="../blockquotes/">Blockquotes</a>
         
     
     </li>
@@ -413,7 +409,43 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../elements/buttons/">Buttons</a>
+    terminal-mkdocs-side-nav-item" href="../buttons/">Buttons</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        <span class="
+
+    terminal-mkdocs-side-nav-item--active">Definitions</span>
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../figure/">Figures</a>
         
     
     </li>
@@ -432,7 +464,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../elements/definitions/">Definitions</a>
+    terminal-mkdocs-side-nav-item" href="../footnotes/">Footnotes</a>
         
     
     </li>
@@ -451,7 +483,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../elements/figure/">Figures</a>
+    terminal-mkdocs-side-nav-item" href="../links/">Links</a>
         
     
     </li>
@@ -470,7 +502,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../elements/footnotes/">Footnotes</a>
+    terminal-mkdocs-side-nav-item" href="../table/">Tables</a>
         
     
     </li>
@@ -489,7 +521,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../elements/links/">Links</a>
+    terminal-mkdocs-side-nav-item" href="../tooltips/">Tooltips</a>
         
     
     </li>
@@ -508,45 +540,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../elements/table/">Tables</a>
-        
-    
-    </li>
-            
-        
-            
-            
-                
-                
-            
-
-             
-                <li class="terminal-mkdocs-side-nav-li-ul-li">
-    
-        
-        
-            <a class="
-
-    terminal-mkdocs-side-nav-item" href="../../elements/tooltips/">Tooltips</a>
-        
-    
-    </li>
-            
-        
-            
-            
-                
-                
-            
-
-             
-                <li class="terminal-mkdocs-side-nav-li-ul-li">
-    
-        
-        
-            <a class="
-
-    terminal-mkdocs-side-nav-item" href="../../elements/typography/">Typography</a>
+    terminal-mkdocs-side-nav-item" href="../typography/">Typography</a>
         
     
     </li>
@@ -592,7 +586,14 @@
 <nav>
     <ul>
         
-        <li><a href="#mit-license">MIT License</a></li>
+        <li><a href="#definition-lists">Definition Lists</a></li>
+            
+            <li><a href="#setup">Setup</a></li>
+            
+        
+        <li><a href="#example">Example</a></li>
+            
+            <li><a href="#markdown">Markdown</a></li>
             
         
     </ul>
@@ -604,23 +605,47 @@
 </aside>
 
             <main> <section>
-    <h1 id="mit-license">MIT License<a class="headerlink" href="#mit-license" title="Anchor link to this section for reference">#</a></h1>
-<p>Copyright (c) 2023 ntno</p>
-<p>Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:</p>
-<p>The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.</p>
-<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.</p>
+    <h1 id="definition-lists">Definition Lists<a class="headerlink" href="#definition-lists" title="Anchor link to this section for reference">#</a></h1>
+<h2 id="setup">Setup<a class="headerlink" href="#setup" title="Anchor link to this section for reference">#</a></h2>
+<p>Enabling definition list styling requires the <code>def_list</code> markdown extension.  Add it to the <code>markdown_extensions</code> configuration in <code>mkdocs.yml</code>:</p>
+<pre><code class="language-yaml">markdown_extensions:
+  - def_list
+</code></pre>
+<h1 id="example">Example<a class="headerlink" href="#example" title="Anchor link to this section for reference">#</a></h1>
+<dl>
+<dt><code>Lorem ipsum dolor sit amet</code></dt>
+<dd>
+<p>Sed sagittis eleifend rutrum. Donec vitae suscipit est. 
+Nullam tempus tellus non sem sollicitudin, 
+quis rutrum leo facilisis.</p>
+</dd>
+<dt><code>Cras arcu libero</code></dt>
+<dd>
+<p>Aliquam metus eros, pretium sed nulla venenatis, 
+faucibus auctor ex. Proin ut eros sed sapien ullamcorper 
+consequat. Nunc ligula ante.</p>
+<p>Duis mollis est eget nibh volutpat, fermentum aliquet dui 
+mollis.  Nam vulputate tincidunt fringilla.  Nullam 
+dignissim ultrices urna non auctor.</p>
+</dd>
+</dl>
+<h2 id="markdown">Markdown<a class="headerlink" href="#markdown" title="Anchor link to this section for reference">#</a></h2>
+<pre><code class="language-markdown">`Lorem ipsum dolor sit amet`
+
+:   Sed sagittis eleifend rutrum. Donec vitae suscipit est. 
+    Nullam tempus tellus non sem sollicitudin, 
+    quis rutrum leo facilisis.
+
+`Cras arcu libero`
+
+:   Aliquam metus eros, pretium sed nulla venenatis, 
+    faucibus auctor ex. Proin ut eros sed sapien ullamcorper 
+    consequat. Nunc ligula ante.
+
+    Duis mollis est eget nibh volutpat, fermentum aliquet dui 
+    mollis.  Nam vulputate tincidunt fringilla.  Nullam 
+    dignissim ultrices urna non auctor.
+</code></pre>
     
 
     

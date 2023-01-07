@@ -13,7 +13,7 @@
     
     <meta name="author" content="ntno"> 
     
-    <link rel="canonical" href="https://ntno.github.io/mkdocs-terminal/about/license/"> 
+    <link rel="canonical" href="https://ntno.github.io/mkdocs-terminal/configuration/extensions/"> 
     <link rel="icon" type="image/png" sizes="192x192" href="../../img/android-chrome-192x192.png" />
 <link rel="icon" type="image/png" sizes="512x512" href="../../img/android-chrome-512x512.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="../../img/apple-touch-icon.png" />
@@ -25,7 +25,7 @@
 
     
  
-<title>MIT License - MkDocs Terminal</title>
+<title>Extensions - MkDocs Terminal</title>
     <link href="../../css/normalize.css" rel="stylesheet">
     <link href="../../css/terminal.css" rel="stylesheet">
     <link href="../../css/theme.css" rel="stylesheet"> 
@@ -160,7 +160,7 @@
         
         <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../configuration/">Configuration</a>
+    terminal-mkdocs-side-nav-item--active" href="../">Configuration</a>
     
     
         
@@ -182,7 +182,7 @@
         
         <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../configuration/palettes/">Color Palettes</a>
+    terminal-mkdocs-side-nav-item" href="../palettes/">Color Palettes</a>
     
     </li>
             
@@ -200,7 +200,43 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../configuration/features/">Features</a>
+    terminal-mkdocs-side-nav-item" href="../features/">Features</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        <span class="
+
+    terminal-mkdocs-side-nav-item--active">Extensions</span>
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="python-markdown/">Python Markdown</a>
         
     
     </li>
@@ -219,45 +255,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../configuration/extensions/">Extensions</a>
-        
-    
-    </li>
-            
-        
-            
-            
-                
-                
-            
-
-             
-                <li class="terminal-mkdocs-side-nav-li-ul-li">
-    
-        
-        
-            <a class="
-
-    terminal-mkdocs-side-nav-item" href="../../configuration/extensions/python-markdown/">Python Markdown</a>
-        
-    
-    </li>
-            
-        
-            
-            
-                
-                
-            
-
-             
-                <li class="terminal-mkdocs-side-nav-li-ul-li">
-    
-        
-        
-            <a class="
-
-    terminal-mkdocs-side-nav-item" href="../../configuration/extensions/py-mdown-extensions/">PyMdown Extensions</a>
+    terminal-mkdocs-side-nav-item" href="py-mdown-extensions/">PyMdown Extensions</a>
         
     
     </li>
@@ -592,7 +590,14 @@
 <nav>
     <ul>
         
-        <li><a href="#mit-license">MIT License</a></li>
+        <li><a href="#supported-extensions">Supported Extensions</a></li>
+            
+            <li><a href="#minimal-config">Minimal Config</a></li>
+            
+            <li><a href="#recommended-config">Recommended Config</a></li>
+            
+        
+        <li><a href="#credit">Credit</a></li>
             
         
     </ul>
@@ -604,23 +609,78 @@
 </aside>
 
             <main> <section>
-    <h1 id="mit-license">MIT License<a class="headerlink" href="#mit-license" title="Anchor link to this section for reference">#</a></h1>
-<p>Copyright (c) 2023 ntno</p>
-<p>Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:</p>
-<p>The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.</p>
-<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.</p>
+    <p><a class="btn btn-primary" href="python-markdown/">to Python Markdown</a>  <a class="btn btn-primary" href="py-mdown-extensions/">to PyMdown Extensions</a></p>
+<p><strong>Extensions</strong></p>
+<p>Markdown is a very small language with a kind-of reference implementation called
+<a href="https://daringfireball.net/projects/markdown/" target="_blank">John Gruber's Markdown</a>. <a href="https://python-markdown.github.io/extensions/" target="_blank">Python Markdown</a> and <a href="https://facelessuser.github.io/pymdown-extensions/" target="_blank">PyMdown Extensions</a> are two packages that enhance the Markdown writing experience, adding useful syntax extensions for technical writing.</p>
+<h2 id="supported-extensions">Supported Extensions<a class="headerlink" href="#supported-extensions" title="Anchor link to this section for reference">#</a></h2>
+<p>The following extensions are all supported by Terminal for MkDocs and therefore 
+strongly recommended. Click on each extension to learn about its purpose and
+configuration:</p>
+<!-- - [Abbreviations]
+- [Admonition]
+- [Arithmatex] -->
+<!-- - [BetterEm]
+- [Caret, Mark & Tilde]
+- [Critic] -->
+<!-- - [Details]
+- [Emoji] -->
+<!-- - [Highlight]
+- [Keys] -->
+<!-- - [SmartSymbols]
+- [Snippets]
+- [SuperFences]
+- [Tabbed] -->
+<!-- - [Tasklist] -->
+
+<div>
+<ul>
+<li><a href="python-markdown/#attribute-lists">Attribute Lists</a></li>
+<li><a href="py-mdown-extensions/#caret-mark-tilde">Caret, Mark, &amp; Tilde</a></li>
+<li><a href="python-markdown/#definition-lists">Definition Lists</a></li>
+<li><a href="python-markdown/#footnotes">Footnotes</a></li>
+<li><a href="python-markdown/#markdown-in-html">Markdown in HTML</a></li>
+<li><a href="python-markdown/#table-of-contents">Table of Contents</a></li>
+<li><a href="python-markdown/#tables">Tables</a></li>
+</ul>
+</div>
+<p><strong>Configuration</strong></p>
+<p>Extensions are configured as part of <code>mkdocs.yml</code> – the MkDocs configuration
+file. The following sections contain two example configurations to bootstrap
+your documentation project.</p>
+<h3 id="minimal-config">Minimal Config<a class="headerlink" href="#minimal-config" title="Anchor link to this section for reference">#</a></h3>
+<p>This configuration is a good starting point for when you're using Terminal for 
+MkDocs for the first time. The best idea is to explore the <a href="#supported-extensions">supported extensions</a> and gradually add what you want to use:</p>
+<pre><code class="language-yaml">markdown_extensions:
+  # Python Markdown  
+  - attr_list
+  - md_in_html
+  - meta
+  - toc:
+      permalink: &quot;#&quot;
+</code></pre>
+<h3 id="recommended-config">Recommended Config<a class="headerlink" href="#recommended-config" title="Anchor link to this section for reference">#</a></h3>
+<p>This configuration enables all Markdown-related features of Terminal for MkDocs
+and is great for experienced users bootstrapping a new documentation project:</p>
+<pre><code class="language-yaml">markdown_extensions:
+  # Python Markdown  
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - meta
+  - tables
+  - toc:
+      permalink: &quot;#&quot;
+      permalink_title: Anchor link to this section for reference
+
+  # PyMdown Extensions
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+</code></pre>
+<h1 id="credit">Credit<a class="headerlink" href="#credit" title="Anchor link to this section for reference">#</a></h1>
+<p>This documentation is based on squidfunk's Material for MkDocs <a href="https://squidfunk.github.io/mkdocs-material/setup/extensions/">Extensions</a> documentation.</p>
     
 
     
