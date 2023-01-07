@@ -1,7 +1,5 @@
 [Back to Overview](index.md){class='btn btn-default'}  [to PyMdown Extensions](py-mdown-extensions.md){class='btn btn-primary'}
 
-Lorem ipsum[^1] dolor sit amet, consectetur adipiscing elit.[^2]
-
 **Python Markdown**
 
 Terminal for MkDocs supports a few of the [Python Markdown]{target="_blank"} extensions. The following is a list of all supported extensions, linking to the relevant sections which explain how they can be used.
@@ -52,9 +50,6 @@ No configuration options are available. See reference for usage:
 
 ### Footnotes
 
-[^1]: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
-
 The [Footnotes]{target="_blank"} extension enables inline footnotes which are then
 rendered below all Markdown content of a document. Enable it via `mkdocs.yml`:
 
@@ -88,23 +83,17 @@ From the [Markdown in HTML]{target="_blank"} extension's docs:
 
 No configuration options are available. See reference for usage:
 
-- [Group Button]
-- [Figures]
+- [Adding Grouped Buttons]
+- [Adding Figures]
 
   [Markdown in HTML]: https://python-markdown.github.io/extensions/md_in_html/
-
-  [Group Button]: ../../elements/buttons.md#group
-  [Figures]: ../../elements/figure.md#example
+  [Adding Grouped Buttons]: ../../elements/buttons.md#group
+  [Adding Figures]: ../../elements/figure.md#example
 
 
 ### Table of Contents
 
-[:octicons-tag-24: 0.1.0][Table of Contents support] ·
-[:octicons-workflow-24: Extension][Table of Contents]
-
-The [Table of Contents] extension automatically generates a table of contents
-from a document, which Material for MkDocs will render as part of the resulting 
-page. Enable it via `mkdocs.yml`:
+The [Table of Contents]{target="_blank"} extension automatically generates a table of contents from a document, which Terminal for MkDocs will render as part of the resulting page. Enable it via `mkdocs.yml`:
 
 ``` yaml
 markdown_extensions:
@@ -113,20 +102,6 @@ markdown_extensions:
 ```
 
 The following configuration options are supported:
-
-[`title`](#+toc.title){ #+toc.title }
-
-:   [:octicons-tag-24: 7.3.5][title support] ·
-    :octicons-milestone-24: Default: _automatically set_ – This option sets the
-    title of the table of contents in the right navigation sidebar, which is
-    normally automatically sourced from the translations for the [site language]
-    as set in `mkdocs.yml`:
-
-    ``` yaml
-    markdown_extensions:
-      - toc:
-          title: On this page
-    ```
 
 [`permalink`](#+toc.permalink){ #+toc.permalink }
 
