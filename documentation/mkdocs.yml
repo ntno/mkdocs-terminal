@@ -54,6 +54,7 @@ markdown_extensions:
   - pymdownx.tilde
 
 
+## deploy settings
 theme:
   name: terminal
   features:
