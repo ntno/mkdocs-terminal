@@ -1,7 +1,7 @@
 # Footnotes
 
 Footnotes are a great way to add supplemental or additional information to a
-specific word, phrase, or sentence without interrupting the flow of a document.
+specific word, phrase, or sentence without interrupting the flow of a document[^credit].
 Terminal for MkDocs provides the ability to define, reference and render
 footnotes.
 
@@ -69,6 +69,6 @@ To define a multi-line footnote, create a paragraph on the next line after the m
 ```
 
 
-# Credit
-This documentation is based on squidfunk's Material for MkDocs [Footnotes](https://squidfunk.github.io/mkdocs-material/reference/footnotes/) documentation.
+[^credit]:
+    This documentation page is based on squidfunk's Material for MkDocs [Footnotes](https://squidfunk.github.io/mkdocs-material/reference/footnotes/) documentation.
 
