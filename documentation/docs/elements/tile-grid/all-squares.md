@@ -5,12 +5,12 @@ tiles:
     img_src: https://picsum.photos/seed/123/200
     img_title: Square Image Tooltip
     img_alt: 'a random square image'
-    url: https://example.com      
+    url: https://picsum.photos/      
 - caption: Square Image
     img_src: https://picsum.photos/seed/456/200
     img_title: Square Image Tooltip
     img_alt: 'a random square image'
-    url: https://example.com            
+    url: https://picsum.photos/            
 ---
 
 --8<--

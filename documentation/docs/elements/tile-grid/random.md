@@ -32,3 +32,12 @@ tiles:
     img_alt: 'a random square image'
     url: https://example.com                
 ---
+
+
+sky
+silver
+moon
+ember
+water
+dust
+catnap
