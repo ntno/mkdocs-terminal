@@ -15,19 +15,55 @@ The following extensions are all supported by Terminal for MkDocs and therefore
 strongly recommended. Click on each extension to learn about its purpose and
 configuration:
 
+<!-- - [Abbreviations]
+- [Admonition]
+- [Arithmatex] -->
+<!-- - [BetterEm]
+- [Caret, Mark & Tilde]
+- [Critic] -->
+<!-- - [Details]
+- [Emoji] -->
+<!-- - [Highlight]
+- [Keys] -->
+<!-- - [SmartSymbols]
+- [Snippets]
+- [SuperFences]
+- [Tabbed] -->
+<!-- - [Tasklist] -->
+
+
 <div markdown>
+
 - [Attribute Lists]
 - [Definition Lists]
+- [Footnotes]
 - [Markdown in HTML]
 - [Table of Contents]
 - [Tables]
+  
 </div>
 
+  [Abbreviations]: python-markdown.md#abbreviations
+  [Admonition]: python-markdown.md#admonition
+  [Arithmatex]: python-markdown-extensions.md#arithmatex
   [Attribute Lists]: python-markdown.md#attribute-lists
+  [BetterEm]: python-markdown-extensions.md#betterem
+  [Caret, Mark & Tilde]: python-markdown-extensions.md#caret-mark-tilde
+  [Critic]: python-markdown-extensions.md#critic
   [Definition Lists]: python-markdown.md#definition-lists
+  [Details]: python-markdown-extensions.md#details
+  [Emoji]: python-markdown-extensions.md#emoji
+  [Footnotes]: python-markdown.md#footnotes
+  [Highlight]: python-markdown-extensions.md#highlight
+  [Keys]: python-markdown-extensions.md#keys
   [Markdown in HTML]: python-markdown.md#markdown-in-html
+  [SmartSymbols]: python-markdown-extensions.md#smartsymbols
+  [Snippets]: python-markdown-extensions.md#snippets
+  [SuperFences]: python-markdown-extensions.md#superfences
+  [Tabbed]: python-markdown-extensions.md#tabbed
   [Table of Contents]: python-markdown.md#table-of-contents
   [Tables]: python-markdown.md#tables
+  [Tasklist]: python-markdown-extensions.md#tasklist
 
 
 **Configuration**

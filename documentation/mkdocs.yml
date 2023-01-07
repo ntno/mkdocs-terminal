@@ -25,21 +25,23 @@ nav:
         - Table of Contents: 'navigation/toc.md'
     - Elements:
       - Buttons: 'elements/buttons.md'
+      - Definitions: 'elements/definitions.md'
+      - Footnotes: 'elements/footnotes.md'
       - Links: 'elements/links.md'
       - Tooltips: 'elements/tooltips.md'
     - Install: 'install.md'
 
 markdown_extensions:
   # # Python Markdown  
-  # - abbr
+  - abbr
   # - admonition
   - attr_list
-  # - def_list
-  # - footnotes
+  - def_list
+  - footnotes
   - md_in_html
   # - meta
-  # - toc:
-  #     permalink: "#"
+  - toc:
+      permalink: "#"
 
 
   # # PyMdown Extensions

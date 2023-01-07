@@ -1,5 +1,7 @@
 [Back to Overview](index.md){class='btn btn-default'}  [to PyMdown Extensions](py-mdown-extensions.md){class='btn btn-primary'}
 
+Lorem ipsum[^1] dolor sit amet, consectetur adipiscing elit.[^2]
+
 **Python Markdown**
 
 Terminal for MkDocs supports a few of the [Python Markdown]{target="_blank"} extensions. The following is a list of all supported extensions, linking to the relevant sections which explain how they can be used.
@@ -50,10 +52,10 @@ No configuration options are available. See reference for usage:
 
 ### Footnotes
 
-[:octicons-tag-24: 1.0.0][Footnotes support] ·
-[:octicons-workflow-24: Extension][Footnotes]
+[^1]: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
-The [Footnotes] extension allows to define inline footnotes, which are then
+
+The [Footnotes]{target="_blank"} extension enables inline footnotes which are then
 rendered below all Markdown content of a document. Enable it via `mkdocs.yml`:
 
 ``` yaml
@@ -63,13 +65,12 @@ markdown_extensions:
 
 No configuration options are supported. See reference for usage:
 
-- [Adding footnote references]
+- [Adding footnote markers]
 - [Adding footnote content]
 
   [Footnotes]: https://python-markdown.github.io/extensions/footnotes/
-  [Footnotes support]: https://github.com/squidfunk/mkdocs-material/releases/tag/1.0.0
-  [Adding footnote references]: ../../reference/footnotes.md#adding-footnote-references
-  [Adding footnote content]: ../../reference/footnotes.md#adding-footnote-content
+  [Adding footnote markers]: ../../elements/footnotes.md#example-footnote-marker
+  [Adding footnote content]: ../../elements/footnotes.md#example-footnote-content
 
 ### Markdown in HTML
 
