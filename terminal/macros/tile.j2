@@ -1,6 +1,6 @@
 {% macro make_linked_figure( tile ) -%}
-<div class="terminal-mkdocs-tile" markdown>
-    <figure markdown>
+<div class="terminal-mkdocs-tile {{ tile.class }}">
+    <figure>
         <a href="{{ tile.url }}">
             <img src="{{ tile.img_src }}" 
                 alt="{{ tile.img_alt }}" 
