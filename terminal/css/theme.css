@@ -30,6 +30,12 @@ body {
     border: none !important;
 }
 
+.terminal-mkdocs-thin-border {
+    border: solid !important;
+    border-color: var(--secondary-color) !important;
+    border-width: thin !important;
+}
+
 .terminal-mkdocs-tile-grid {
     display: grid;
     grid-template-rows: auto;
