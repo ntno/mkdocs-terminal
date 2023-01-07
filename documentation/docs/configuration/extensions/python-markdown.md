@@ -74,11 +74,7 @@ No configuration options are supported. See reference for usage:
 
 ### Markdown in HTML
 
-[:octicons-tag-24: 0.1.0][Markdown in HTML support] ·
-[:octicons-workflow-24: Extension][Markdown in HTML]
-
-The [Markdown in HTML] extension allows for writing Markdown inside of HTML,
-which is useful for wrapping Markdown content with custom elements. Enable it
+The [Markdown in HTML]{target="_blank"} extension allows for writing Markdown inside of HTML, which is useful for wrapping Markdown content with custom elements. Enable it
 via `mkdocs.yml`:
 
 ``` yaml
@@ -86,23 +82,20 @@ markdown_extensions:
   - md_in_html
 ```
 
-> By default, Markdown ignores any content within a raw HTML block-level
-> element. With the `md_in_html` extension enabled, the content of a raw HTML
-> block-level element can be parsed as Markdown by including a `markdown`
-> attribute on the opening tag. The `markdown` attribute will be stripped from
-> the output, while all other attributes will be preserved.
+From the [Markdown in HTML]{target="_blank"} extension's docs:
+> By default, Markdown ignores any content within a raw HTML block-level element. With the `md_in_html` extension enabled, the content of a raw HTML block-level element can be parsed as Markdown by including a `markdown` attribute on the opening tag. The `markdown` attribute will be stripped from the output, while all other attributes will be preserved.
+
 
 No configuration options are available. See reference for usage:
 
-- [Using annotations]
-- [Using grids]
-- [Image captions]
+- [Group Button]
+- [Figures]
 
   [Markdown in HTML]: https://python-markdown.github.io/extensions/md_in_html/
-  [Markdown in HTML support]: https://github.com/squidfunk/mkdocs-material/releases/tag/0.1.0
-  [Using annotations]: ../../reference/annotations.md#usage
-  [Using grids]: ../../reference/grids.md#usage
-  [Image captions]: ../../reference/images.md#image-captions
+
+  [Group Button]: ../../elements/buttons.md#group
+  [Figures]: ../../elements/figure.md#example
+
 
 ### Table of Contents
 
