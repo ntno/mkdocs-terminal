@@ -29,18 +29,18 @@ nav:
       - Figures: 'elements/figure.md'
       - Footnotes: 'elements/footnotes.md'
       - Links: 'elements/links.md'
+      - Tables: 'elements/table.md'
       - Tooltips: 'elements/tooltips.md'
     - Install: 'install.md'
 
 markdown_extensions:
   # # Python Markdown  
-  - abbr
-  # - admonition
   - attr_list
   - def_list
   - footnotes
   - md_in_html
-  # - meta
+  - meta
+  - table
   - toc:
       permalink: "#"
       permalink_title: Anchor link to this section for reference

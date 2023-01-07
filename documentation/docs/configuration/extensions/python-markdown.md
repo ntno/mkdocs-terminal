@@ -173,32 +173,6 @@ The following [Python Markdown] extensions are not (or might not be) supported
 anymore, and are therefore not recommended for use. Instead, the alternatives
 should be considered.
 
-### Fenced Code Blocks
-
-[:octicons-tag-24: 0.1.0][Fenced Code Blocks support] ·
-[:octicons-workflow-24: Extension][Fenced Code Blocks]
-
-Superseded by [SuperFences]. This extension might still work, but the
-[SuperFences] extension is superior in many ways, as it allows for arbitrary 
-nesting, and is therefore recommended.
-
-  [Fenced Code Blocks]: https://python-markdown.github.io/extensions/fenced_code_blocks/
-  [Fenced Code Blocks support]: https://github.com/squidfunk/mkdocs-material/releases/tag/0.1.0
-  [SuperFences]: https://facelessuser.github.io/pymdown-extensions/extensions/superfences/
-
-### CodeHilite
-
-[:octicons-tag-24: 0.1.0 ... 5.5.14][CodeHilite support] ·
-[:octicons-workflow-24: Extension][CodeHilite]
-
-Superseded by [Highlight]. Support for CodeHilite was dropped in
-:octicons-tag-24: 6.0.0, as [Highlight] has a better integration with other 
-essential extensions like [SuperFences] and [InlineHilite].
-
-  [CodeHilite]: https://python-markdown.github.io/extensions/code_hilite/
-  [CodeHilite support]: https://github.com/squidfunk/mkdocs-material/releases/tag/0.1.0
-  [Highlight]: https://facelessuser.github.io/pymdown-extensions/extensions/highlight/
-  [InlineHilite]: https://facelessuser.github.io/pymdown-extensions/extensions/inlinehilite/
 
 # Credit
 This documentation is based on squidfunk's Material for MkDocs [Python Markdown](https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown/) documentation.
