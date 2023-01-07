@@ -55,19 +55,3 @@ theme:
   palette: pink
 ```
 
-  
-  <!-- ...
-hide: 
-  - idek
-tiles:
-  - caption: Default Color Palette
-    img_src: /img/embroidery/liberty_letters.jpeg
-    img_title: Default Color Palette
-    img_alt: 'screenshot of demo site with the default color palette.  the site uses a white background with light blue hyperlinks.'
-    index_url: [default](default.md)
-  - caption: Gruvbox Dark Color Palette
-    img_src: /img/umbrella/front.jpeg
-    img_title: Gruvbox Dark Color Palette
-    img_alt: 'screenshot of demo site with the gruvbox_dark color palette.  the site uses a dark grey background with orange hyperlinks and light yellow text.'
-    index_url: [gruvbox_dark](gruvbox_dark.md)
-... -->
