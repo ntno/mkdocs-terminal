@@ -26,6 +26,10 @@ body {
     color: var(--secondary-color);
 }
 
+.terminal-mkdocs-tile {
+    border: none !important;
+}
+
 /* ***************************************************************** */
 /* Terminal.css Overrides */
 /* ***************************************************************** */
