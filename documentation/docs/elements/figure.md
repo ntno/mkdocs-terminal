@@ -11,7 +11,6 @@ markdown_extensions:
 
 ## Example
 
-
 <section markdown>
 <figure markdown>
 ![Image Title](https://picsum.photos/1000/600?random&imageWithCaption){ width="300" ; alt="Random image with a caption" }

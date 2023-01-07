@@ -26,6 +26,7 @@ nav:
     - Elements:
       - Buttons: 'elements/buttons.md'
       - Definitions: 'elements/definitions.md'
+      - Figures: 'elements/figure.md'
       - Footnotes: 'elements/footnotes.md'
       - Links: 'elements/links.md'
       - Tooltips: 'elements/tooltips.md'
