@@ -108,7 +108,7 @@ The following configuration options are supported:
 :   
     **Default**: `false`
 
-    This option adds an anchor link containing the paragraph symbol (if `true`) or another custom symbol at the end of each headline, exactly like on the page you're currently viewing:
+    This option adds an anchor link containing the paragraph symbol (if `true`) or another custom symbol at the end of each headline, exactly like on the page you're currently viewing.
 
 
 [`permalink_title`](#+toc.permalink_title){ #+toc.permalink_title }
@@ -118,71 +118,39 @@ The following configuration options are supported:
     This option sets the title of the anchor link which is shown on hover and read by screen readers.  For accessibility reasons, it might be beneficial to change it to a more discernable name, stating that the anchor links to the section itself.  Ex: `Anchor link to this section for reference`
 
 
-[`slugify`](#+toc.slugify){ #+toc.slugify }
-
-:   :octicons-milestone-24: Default: `headerid.slugify` – This option allows for
-    customization of the slug function. For some languages, the default may not
-    produce good and readable identifiers – consider using another slug function
-    like for example those from [Python Markdown Extensions][Slugs]:
-
-    === "Unicode"
-
-        ``` yaml
-        markdown_extensions:
-          - toc:
-              slugify: !!python/object/apply:pymdownx.slugs.slugify
-                kwds:
-                  case: lower
-        ```
-
-    === "Unicode, case-sensitive"
-
-        ``` yaml
-        markdown_extensions:
-          - toc:
-              slugify: !!python/object/apply:pymdownx.slugs.slugify
-        ```
-
 [`toc_depth`](#+toc.toc_depth){ #+toc.toc_depth }
 
-:   :octicons-milestone-24: Default: `6` – Define the range of levels to be
-    included in the table of contents. This may be useful for project
-    documentation with deeply structured headings to decrease the length of the
-    table of contents, or to remove the table of contents altogether:
+:   **Default**: `6` 
 
-    === "Hide levels 4-6"
+    Defines the range of levels to be included in the table of contents. This may be useful for project documentation with deeply structured headings to decrease the length of the table of contents, or to remove the table of contents altogether.  See [Table of Contents Example] for further discussion.
 
-        ``` yaml
-        markdown_extensions:
-          - toc:
-              toc_depth: 3
-        ```
+[`baselevel`](#+toc.baselevel){ #+toc.baselevel }
 
-    === "Hide table of contents"
+:   **Default**: `1` 
 
-        ``` yaml
-        markdown_extensions:
-          - toc:
-              toc_depth: 0
-        ```
+    Base level for headers.  See [Table of Contents Example] for further discussion.
+
+[`anchorlink`](#+toc.anchorlink){ #+toc.anchorlink }
+
+:   **Default**: `false`
+  
+    Set to `true` to render all headers as links to themselves.
 
 The other configuration options of this extension are not officially supported
-by Material for MkDocs, which is why they may yield unexpected results. Use
+by Terminal for MkDocs, which is why they may yield unexpected results. Use
 them at your own risk.
 
+See reference for usage:
+
+- [Table of Contents Exampl]
+
   [Table of Contents]: https://python-markdown.github.io/extensions/toc/
-  [Table of Contents support]: https://github.com/squidfunk/mkdocs-material/releases/tag/0.1.0
-  [title support]: https://github.com/squidfunk/mkdocs-material/releases/tag/7.3.5
-  [site language]: ../changing-the-language.md#site-language
-  [Slugs]: https://facelessuser.github.io/pymdown-extensions/extras/slugs/
+  [Table of Contents Example]: ../../navigation/toc.md
+
 
 ### Tables
 
-[:octicons-tag-24: 0.1.0][Tables support] ·
-[:octicons-workflow-24: Extension][Tables]
-
-The [Tables] extension adds the ability to create tables in Markdown by using a 
-simple syntax. Enable it via `mkdocs.yml` (albeit it should be enabled by
+The [Tables]{target="_blank"} extension adds the ability to create tables in Markdown by using a simple syntax. Enable it via `mkdocs.yml` (albeit it should be enabled by
 default):
 
 ``` yaml
@@ -192,13 +160,12 @@ markdown_extensions:
 
 No configuration options are available. See reference for usage:
 
-- [Using data tables]
-- [Column alignment]
+- [Adding tables]
+
 
   [Tables]: https://python-markdown.github.io/extensions/tables/
-  [Tables support]: https://github.com/squidfunk/mkdocs-material/releases/tag/0.1.0
-  [Using data tables]: ../../reference/data-tables.md#usage
-  [Column alignment]: ../../reference/data-tables.md#column-alignment
+  [Adding tables]: ../../elements/table.md#example
+
 
 ## Superseded extensions
 

@@ -82,10 +82,11 @@ markdown_extensions:
   # Python Markdown  
   - attr_list
   - def_list
+  - footnotes
   - md_in_html
-  - meta
   - toc:
       permalink: "#"
+      permalink_title: Anchor link to this section for reference
 ```
 
 ### Recommended Config
@@ -98,10 +99,11 @@ markdown_extensions:
   # Python Markdown  
   - attr_list
   - def_list
+  - footnotes
   - md_in_html
-  - meta
   - toc:
       permalink: "#"
+      permalink_title: Anchor link to this section for reference
 
   # # PyMdown Extensions
   # - pymdownx.arithmatex:
