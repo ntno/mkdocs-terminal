@@ -7,3 +7,7 @@ theme:
   name: terminal
   palette: default
 ```
+
+--8<--
+examples/index.md
+--8<--

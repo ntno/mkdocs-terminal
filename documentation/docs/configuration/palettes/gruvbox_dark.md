@@ -9,3 +9,7 @@ theme:
 ```
 
 <link href="../../../css/palettes/gruvbox_dark.css" rel="stylesheet">
+
+--8<--
+examples/index.md
+--8<--

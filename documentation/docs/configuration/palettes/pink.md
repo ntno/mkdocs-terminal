@@ -9,3 +9,7 @@ theme:
 ```
 
 <link href="../../../css/palettes/pink.css" rel="stylesheet">
+
+--8<--
+examples/index.md
+--8<--
