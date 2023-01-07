@@ -93,51 +93,30 @@ No configuration options are available. See reference for usage:
 
 ### Table of Contents
 
-The [Table of Contents]{target="_blank"} extension automatically generates a table of contents from a document, which Terminal for MkDocs will render as part of the resulting page. Enable it via `mkdocs.yml`:
+The [Table of Contents]{target="_blank"} extension automatically generates a table of contents from a document which Terminal for MkDocs will render as part of the resulting page. It can be configured via `mkdocs.yml`:
 
 ``` yaml
 markdown_extensions:
   - toc:
-      permalink: true
+      permalink: "#"
 ```
 
 The following configuration options are supported:
 
 [`permalink`](#+toc.permalink){ #+toc.permalink }
 
-:   :octicons-milestone-24: Default: `false` – This option adds an anchor link
-    containing the paragraph symbol `¶` or another custom symbol at the end of
-    each headline, exactly like on the page you're currently viewing, which
-    Material for MkDocs will make appear on hover:
+:   
+    **Default**: `false`
 
-    === "¶"
+    This option adds an anchor link containing the paragraph symbol (if `true`) or another custom symbol at the end of each headline, exactly like on the page you're currently viewing:
 
-        ``` yaml
-        markdown_extensions:
-          - toc:
-              permalink: true
-        ```
-
-    === "⚓︎"
-
-        ``` yaml
-        markdown_extensions:
-          - toc:
-              permalink: ⚓︎
-        ```
 
 [`permalink_title`](#+toc.permalink_title){ #+toc.permalink_title }
 
-:   :octicons-milestone-24: Default: `Permanent link` – This option sets the
-    title of the anchor link which is shown on hover and read by screen readers.
-    For accessibility reasons, it might be beneficial to change it to a more 
-    discernable name, stating that the anchor links to the section itself:
+:   **Default**: `Permanent link`
 
-    ``` yaml
-    markdown_extensions:
-      - toc:
-          permalink_title: Anchor link to this section for reference
-    ```
+    This option sets the title of the anchor link which is shown on hover and read by screen readers.  For accessibility reasons, it might be beneficial to change it to a more discernable name, stating that the anchor links to the section itself.  Ex: `Anchor link to this section for reference`
+
 
 [`slugify`](#+toc.slugify){ #+toc.slugify }
 
