@@ -1,3 +1,7 @@
+--8<--
+configuration/palettes/links.md
+--8<--
+
 # Sans Palette
 
 To use the sans color palette, add the `palette` attribute to your theme configuration in `mkdocs.yml`:
