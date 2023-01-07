@@ -41,8 +41,6 @@ markdown_extensions:
   - def_list
   - footnotes
   - md_in_html
-  - meta
-  - tables
   - toc:
       permalink: "#"
       permalink_title: Anchor link to this section for reference
