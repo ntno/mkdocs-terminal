@@ -1,8 +1,8 @@
 <div class="btn-group" markdown>
-[Dark](dark.md){ .btn }
-[Gruvbox Dark](gruvbox_dark.md){ .btn }
-[Pink](pink.md){ .btn }
-[Sans Dark](sans_dark.md){ .btn }
-[Sans](sans.png){ .btn }
-[Default](default.md){ .btn }
+[Default](default.md) |
+[Gruvbox Dark](gruvbox_dark.md) |
+[Dark](dark.md) |
+[Pink](pink.md) |
+[Sans](sans.md) |
+[Sans Dark](sans_dark.md)
 </div>
