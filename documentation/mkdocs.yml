@@ -37,6 +37,8 @@ nav:
         - Misc Sizes: 'elements/tile-grid/misc.md'
         - Before Page Content: 'elements/tile-grid/grid-before-content.md'
         - After Page Content: 'elements/tile-grid/grid-after-content.md'
+        - Only Links: 'elements/tile-grid/links-only.md'
+        - Without Links: 'elements/tile-grid/without-links.md'
       - Tooltips: 'elements/tooltips.md'
       - Typography: 'elements/typography.md'
     - Install: 'install.md'

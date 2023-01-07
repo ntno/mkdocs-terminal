@@ -13,5 +13,9 @@ tiles:
     url: https://example.com            
 ---
 
+--8<--
+elements/tile-grid/links.md
+--8<--
+
 ## Photos of Miscellaneous Sizes
 idek?

@@ -33,6 +33,9 @@ tiles:
     url: https://example.com                
 ---
 <br>
+--8<--
+elements/tile-grid/links.md
+--8<--
 
 # Tile Grid
 Terminal for MkDocs enables you to quickly create a grid of linked tiles.  Each tile can contain an image (with optional caption, title, and alt text) and 
