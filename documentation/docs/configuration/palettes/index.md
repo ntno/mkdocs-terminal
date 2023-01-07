@@ -1,7 +1,4 @@
 ---
-hide:
-  - git_revision_date
-  - toc
 show_tiles_first: true
 tiles:
   - caption: Default
