@@ -142,7 +142,7 @@ them at your own risk.
 
 See reference for usage:
 
-- [Table of Contents Exampl]
+- [Table of Contents Example]
 
   [Table of Contents]: https://python-markdown.github.io/extensions/toc/
   [Table of Contents Example]: ../../navigation/toc.md

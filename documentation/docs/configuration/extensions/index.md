@@ -85,7 +85,7 @@ markdown_extensions:
   - footnotes
   - md_in_html
   - meta
-  - table
+  - tables
   - toc:
       permalink: "#"
       permalink_title: Anchor link to this section for reference
@@ -104,7 +104,7 @@ markdown_extensions:
   - footnotes
   - md_in_html
   - meta
-  - table
+  - tables
   - toc:
       permalink: "#"
       permalink_title: Anchor link to this section for reference
