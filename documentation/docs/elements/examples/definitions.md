@@ -1,6 +1,6 @@
 <br>
 
-## Definition Lists  
+## Definition List Example  
 
 `Lorem ipsum dolor sit amet`
 
