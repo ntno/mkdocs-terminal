@@ -31,6 +31,12 @@ nav:
       - Footnotes: 'elements/footnotes.md'
       - Links: 'elements/links.md'
       - Tables: 'elements/table.md'
+      - Tile Grid:
+        - Index: 'elements/tile-grid/index.md'
+        - All Squares: 'elements/tile-grid/all-squares.md'
+        - Misc Sizes: 'elements/tile-grid/misc.md'
+        - Before Page Content: 'elements/tile-grid/grid-before-content.md'
+        - After Page Content: 'elements/tile-grid/grid-after-content.md'
       - Tooltips: 'elements/tooltips.md'
       - Typography: 'elements/typography.md'
     - Install: 'install.md'

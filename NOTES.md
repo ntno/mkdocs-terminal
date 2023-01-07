@@ -28,3 +28,4 @@ markdown_extensions:
 - lorem ipsum generators
   - https://generator.lorem-ipsum.info/
   - https://www.lipsum.com/
+- [picture lore ipsum](https://picsum.photos/)
