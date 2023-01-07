@@ -26,10 +26,6 @@ body {
     color: var(--secondary-color);
 }
 
-.terminal-mkdocs-tile {
-    border: none !important;
-}
-
 .terminal-mkdocs-thin-border {
     border: solid !important;
     border-color: var(--secondary-color) !important;
@@ -38,13 +34,16 @@ body {
 
 .terminal-mkdocs-tile-grid {
     display: grid;
-    grid-template-rows: auto;
     grid-gap: 1em;
     grid-template-rows: auto;
     grid-template-columns: repeat(
         auto-fit,
         minmax(calc(var(--page-width) / 6), 1fr)
     );
+}
+
+.terminal-mkdocs-tile {
+    border: none !important;
 }
 
 /* ***************************************************************** */
