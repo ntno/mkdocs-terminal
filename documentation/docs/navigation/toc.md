@@ -12,12 +12,12 @@ markdown_extensions:
       toc_depth: "3"
 ```
 
-You can also style the section headings by turning on the `anchorlink` flag and/or setting the `permalink` symbol:
+You can also style the section headings by setting the `permalink` symbol and its tooltip hover `permalink_title`:
 ```yaml
 markdown_extensions:
   - toc:
       permalink: "#"
-      anchorlink: true
+      permalink_title: Anchor link to this section for reference
 ```
 <br>
 
