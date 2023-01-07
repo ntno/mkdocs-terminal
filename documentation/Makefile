@@ -12,7 +12,7 @@ build-mkdocs: clean install-mkdocs-requirements
 	mkdocs build -v
 
 serve-mkdocs: build-mkdocs
-	mkdocs serve -v --dev-addr=0.0.0.0:8080
+	mkdocs serve -v --dev-addr=0.0.0.0:8080 -f local.yml
 
 clean:
 	rm -rf site/
