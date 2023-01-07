@@ -6,6 +6,7 @@ Adding tooltips to links requires the `attr_list` markdown extension.  Add it to
 markdown_extensions:
   - attr_list
 ```
+
 ## Example
 
 [Hover me][example]

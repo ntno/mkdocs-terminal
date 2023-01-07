@@ -1,4 +1,6 @@
-# Simple Links
+# Links
+
+## Simple Example
 
 [Documentation Home Page](https://ntno.github.io/mkdocs-terminal/)
 
@@ -6,7 +8,8 @@
 [Documentation Home Page](https://ntno.github.io/mkdocs-terminal/)
 ```
 
-# Enhanced Links Setup
+# Enhanced Links
+## Setup
 
 Adding attributes to links requires the `attr_list` markdown extension.  Add it to the `markdown_extensions` configuration in `mkdocs.yml`:
 
@@ -15,7 +18,7 @@ markdown_extensions:
   - attr_list
 ```
 
-## Example
+## Enhanced Example
 Note that adding the `target="_blank"` attribute causes the link to open in a new tab.
 
 

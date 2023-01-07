@@ -17,12 +17,14 @@ configuration:
 
 <div markdown>
 - [Attribute Lists]
+- [Definition Lists]
 - [Markdown in HTML]
 - [Table of Contents]
 - [Tables]
 </div>
 
   [Attribute Lists]: python-markdown.md#attribute-lists
+  [Definition Lists]: python-markdown.md#definition-lists
   [Markdown in HTML]: python-markdown.md#markdown-in-html
   [Table of Contents]: python-markdown.md#table-of-contents
   [Tables]: python-markdown.md#tables
@@ -43,6 +45,7 @@ MkDocs for the first time. The best idea is to explore the [supported extensions
 markdown_extensions:
   # Python Markdown  
   - attr_list
+  - def_list
   - md_in_html
   - meta
   - toc:
@@ -58,6 +61,7 @@ and is great for experienced users bootstrapping a new documentation project:
 markdown_extensions:
   # Python Markdown  
   - attr_list
+  - def_list
   - md_in_html
   - meta
   - toc:

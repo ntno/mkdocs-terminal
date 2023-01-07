@@ -2,7 +2,7 @@
 
 **Python Markdown**
 
-Material for MkDocs supports a large number of [Python Markdown]{target="_blank"} extensions, which is part of what makes it so attractive for technical writing. Following is a list of all supported extensions, linking to the relevant sections of the reference for which features they need to be enabled.
+Terminal for MkDocs supports a few of the [Python Markdown]{target="_blank"} extensions. The following is a list of all supported extensions, linking to the relevant sections which explain how they can be used.
 
   [Python Markdown]: https://python-markdown.github.io/extensions/
 
@@ -10,16 +10,12 @@ Material for MkDocs supports a large number of [Python Markdown]{target="_blank"
 
 ### Attribute Lists
 
-The [Attribute Lists] extension helps to add HTML attributes and CSS classes
-to [almost every][Attribute Lists limitations] Markdown inline- and block-level
-element with a special syntax. Enable it via `mkdocs.yml`:
+The [Attribute Lists]{target="_blank"} extension helps to add HTML attributes and CSS classes to [almost every][Attribute Lists limitations]{target="_blank"} Markdown inline- and block-level element with a special syntax. Enable it via `mkdocs.yml`:
 
 ``` yaml
 markdown_extensions:
   - attr_list
 ```
-
-
 
 No configuration options are available. See reference for usage:
 
@@ -31,15 +27,12 @@ No configuration options are available. See reference for usage:
   [Attribute Lists limitations]: https://python-markdown.github.io/extensions/attr_list/#limitations
   [Adding buttons]: ../../elements/buttons.md#default
   [Adding tooltips]: ../../elements/tooltips.md#example
-  [Adding link target]: ../../elements/tooltips.md#example
+  [Adding link target]: ../../elements/links.md#enhanced-example
 
 ### Definition Lists
 
-[:octicons-tag-24: 1.1.0][Definition Lists support] ·
-[:octicons-workflow-24: Extension][Definition Lists]
-
-The [Definition Lists] extension adds the ability to add definition lists (more
-commonly known as [description lists] – `dl` in HTML) via Markdown to a
+The [Definition Lists]{target="_blank"} extension adds the ability to add definition lists (more
+commonly known as [description lists]{target="_blank"} – `dl` in HTML) via Markdown to a
 document. Enable it via `mkdocs.yml`:
 
 ``` yaml
@@ -52,9 +45,8 @@ No configuration options are available. See reference for usage:
 - [Using definition lists]
 
   [Definition Lists]: https://python-markdown.github.io/extensions/definition_lists/
-  [Definition Lists support]: https://github.com/squidfunk/mkdocs-material/releases/tag/1.1.0
   [description lists]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dl
-  [Using definition lists]: ../../reference/lists.md#using-definition-lists
+  [Using definition lists]: ../../elements/definitions.md#example
 
 ### Footnotes
 
