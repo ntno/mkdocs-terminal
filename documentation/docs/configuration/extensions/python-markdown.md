@@ -167,13 +167,7 @@ No configuration options are available. See reference for usage:
   [Adding tables]: ../../elements/table.md#example
 
 
-## Superseded extensions
-
-The following [Python Markdown] extensions are not (or might not be) supported 
-anymore, and are therefore not recommended for use. Instead, the alternatives
-should be considered.
-
-
 # Credit
+
 This documentation is based on squidfunk's Material for MkDocs [Python Markdown](https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown/) documentation.
 
