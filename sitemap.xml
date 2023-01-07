@@ -81,6 +81,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://ntno.github.io/mkdocs-terminal/configuration/palettes/wip/</loc>
+         <lastmod>2023-01-07</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://ntno.github.io/mkdocs-terminal/elements/blockquotes/</loc>
          <lastmod>2023-01-07</lastmod>
          <changefreq>daily</changefreq>
@@ -122,6 +127,56 @@
     </url>
     <url>
          <loc>https://ntno.github.io/mkdocs-terminal/elements/typography/</loc>
+         <lastmod>2023-01-07</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://ntno.github.io/mkdocs-terminal/elements/examples/</loc>
+         <lastmod>2023-01-07</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://ntno.github.io/mkdocs-terminal/elements/examples/blockquotes/</loc>
+         <lastmod>2023-01-07</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://ntno.github.io/mkdocs-terminal/elements/examples/buttons/</loc>
+         <lastmod>2023-01-07</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://ntno.github.io/mkdocs-terminal/elements/examples/definitions/</loc>
+         <lastmod>2023-01-07</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://ntno.github.io/mkdocs-terminal/elements/examples/figure/</loc>
+         <lastmod>2023-01-07</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://ntno.github.io/mkdocs-terminal/elements/examples/footnotes/</loc>
+         <lastmod>2023-01-07</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://ntno.github.io/mkdocs-terminal/elements/examples/links/</loc>
+         <lastmod>2023-01-07</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://ntno.github.io/mkdocs-terminal/elements/examples/table/</loc>
+         <lastmod>2023-01-07</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://ntno.github.io/mkdocs-terminal/elements/examples/tooltips/</loc>
+         <lastmod>2023-01-07</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://ntno.github.io/mkdocs-terminal/elements/examples/typography/</loc>
          <lastmod>2023-01-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
