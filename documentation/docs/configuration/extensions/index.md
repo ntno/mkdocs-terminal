@@ -35,6 +35,7 @@ configuration:
 <div markdown>
 
 - [Attribute Lists]
+- [Caret, Mark & Tilde]
 - [Definition Lists]
 - [Footnotes]
 - [Markdown in HTML]
@@ -45,25 +46,25 @@ configuration:
 
   [Abbreviations]: python-markdown.md#abbreviations
   [Admonition]: python-markdown.md#admonition
-  [Arithmatex]: python-markdown-extensions.md#arithmatex
+  [Arithmatex]: py-mdown-extensions.md#arithmatex
   [Attribute Lists]: python-markdown.md#attribute-lists
-  [BetterEm]: python-markdown-extensions.md#betterem
-  [Caret, Mark & Tilde]: python-markdown-extensions.md#caret-mark-tilde
-  [Critic]: python-markdown-extensions.md#critic
+  [BetterEm]: py-mdown-extensions.md#betterem
+  [Caret, Mark & Tilde]: py-mdown-extensions.md#caret-mark-tilde
+  [Critic]: py-mdown-extensions.md#critic
   [Definition Lists]: python-markdown.md#definition-lists
-  [Details]: python-markdown-extensions.md#details
-  [Emoji]: python-markdown-extensions.md#emoji
+  [Details]: py-mdown-extensions.md#details
+  [Emoji]: py-mdown-extensions.md#emoji
   [Footnotes]: python-markdown.md#footnotes
-  [Highlight]: python-markdown-extensions.md#highlight
-  [Keys]: python-markdown-extensions.md#keys
+  [Highlight]: py-mdown-extensions.md#highlight
+  [Keys]: py-mdown-extensions.md#keys
   [Markdown in HTML]: python-markdown.md#markdown-in-html
-  [SmartSymbols]: python-markdown-extensions.md#smartsymbols
-  [Snippets]: python-markdown-extensions.md#snippets
-  [SuperFences]: python-markdown-extensions.md#superfences
-  [Tabbed]: python-markdown-extensions.md#tabbed
+  [SmartSymbols]: py-mdown-extensions.md#smartsymbols
+  [Snippets]: py-mdown-extensions.md#snippets
+  [SuperFences]: py-mdown-extensions.md#superfences
+  [Tabbed]: py-mdown-extensions.md#tabbed
   [Table of Contents]: python-markdown.md#table-of-contents
   [Tables]: python-markdown.md#tables
-  [Tasklist]: python-markdown-extensions.md#tasklist
+  [Tasklist]: py-mdown-extensions.md#tasklist
 
 
 **Configuration**
@@ -81,14 +82,10 @@ MkDocs for the first time. The best idea is to explore the [supported extensions
 markdown_extensions:
   # Python Markdown  
   - attr_list
-  - def_list
-  - footnotes
   - md_in_html
   - meta
-  - tables
   - toc:
       permalink: "#"
-      permalink_title: Anchor link to this section for reference
 ```
 
 ### Recommended Config
@@ -109,24 +106,10 @@ markdown_extensions:
       permalink: "#"
       permalink_title: Anchor link to this section for reference
 
-  # # PyMdown Extensions
-  # - pymdownx.arithmatex:
-  #     generic: true
-  # - pymdownx.betterem:
-  #     smart_enable: all
-  # - pymdownx.caret
-  # - pymdownx.details
-  # - pymdownx.highlight
-  # - pymdownx.inlinehilite
-  # - pymdownx.keys
-  # - pymdownx.mark
-  # - pymdownx.smartsymbols
-  # - pymdownx.superfences
-  # - pymdownx.tabbed:
-  #     alternate_style: true
-  # - pymdownx.tasklist:
-  #     custom_checkbox: true
-  # - pymdownx.tilde
+  # PyMdown Extensions
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
 ```
 
 # Credit
