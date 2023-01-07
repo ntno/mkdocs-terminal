@@ -1,15 +1,26 @@
-{% import 'macros/tile.j2' as tile_helper %} {% if page and page.meta %} {% set show_tiles = "true" if page.meta.tiles %} {% endif %} {% if show_tiles %}
+{% import 'macros/tile.j2' as tile_helper %}
+
+{% if page and page.meta %}
+{% set show_tiles = "true" if page.meta.tiles %}
+{% endif %}
+
+{% if show_tiles %}
 <style>
     .terminal-mkdocs-tile-grid {
-        display: grid;
-        grid-template-rows: auto;
-        display: grid;
-        grid-gap: 1em;
-        grid-template-rows: auto;
-        grid-template-columns: repeat( auto-fit, minmax(calc(var(--page-width) / 6), 1fr));
+      display: grid;
+      grid-template-rows: auto;
+      display: grid;
+      grid-gap: 1em;
+      grid-template-rows: auto;
+      grid-template-columns: repeat(
+        auto-fit,
+        minmax(calc(var(--page-width) / 6), 1fr)
+      );
     }
 </style>
 <div class="terminal-mkdocs-tile-grid">
-    {%- for tile in page.meta.tiles %} {{ tile_helper.make_linked_figure( tile ) }} {%- endfor %}
+    {%- for tile in page.meta.tiles %}
+    {{ tile_helper.make_linked_figure( tile ) }}
+    {%- endfor %}
 </div>
 {% endif%}
