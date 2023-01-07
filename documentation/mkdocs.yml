@@ -54,8 +54,7 @@ markdown_extensions:
   - pymdownx.tilde
   - pymdownx.snippets:
       base_path: 
-        - docs/elements
-
+        - docs
 
 ## deploy settings
 theme:

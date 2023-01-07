@@ -11,5 +11,5 @@ theme:
 <link href="../../../css/palettes/sans_dark.css" rel="stylesheet">
 
 --8<--
-examples/index.md
+elements/examples/index.md
 --8<--

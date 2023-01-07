@@ -9,5 +9,5 @@ theme:
 ```
 
 --8<--
-examples/index.md
+elements/examples/index.md
 --8<--
