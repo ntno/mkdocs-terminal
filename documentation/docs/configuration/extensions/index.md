@@ -35,7 +35,7 @@ configuration:
 <div markdown>
 
 - [Attribute Lists]
-- [Caret, Mark & Tilde]
+- [Caret, Mark, & Tilde]
 - [Definition Lists]
 - [Footnotes]
 - [Markdown in HTML]
@@ -44,27 +44,14 @@ configuration:
   
 </div>
 
-  [Abbreviations]: python-markdown.md#abbreviations
-  [Admonition]: python-markdown.md#admonition
-  [Arithmatex]: py-mdown-extensions.md#arithmatex
+
   [Attribute Lists]: python-markdown.md#attribute-lists
-  [BetterEm]: py-mdown-extensions.md#betterem
-  [Caret, Mark & Tilde]: py-mdown-extensions.md#caret-mark-tilde
-  [Critic]: py-mdown-extensions.md#critic
+  [Caret, Mark, & Tilde]: py-mdown-extensions.md#caret-mark-tilde
   [Definition Lists]: python-markdown.md#definition-lists
-  [Details]: py-mdown-extensions.md#details
-  [Emoji]: py-mdown-extensions.md#emoji
   [Footnotes]: python-markdown.md#footnotes
-  [Highlight]: py-mdown-extensions.md#highlight
-  [Keys]: py-mdown-extensions.md#keys
   [Markdown in HTML]: python-markdown.md#markdown-in-html
-  [SmartSymbols]: py-mdown-extensions.md#smartsymbols
-  [Snippets]: py-mdown-extensions.md#snippets
-  [SuperFences]: py-mdown-extensions.md#superfences
-  [Tabbed]: py-mdown-extensions.md#tabbed
   [Table of Contents]: python-markdown.md#table-of-contents
   [Tables]: python-markdown.md#tables
-  [Tasklist]: py-mdown-extensions.md#tasklist
 
 
 **Configuration**

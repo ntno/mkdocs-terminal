@@ -13,7 +13,7 @@ installed with a supported version.
 
 ### Caret, Mark & Tilde
 
-The [Caret], [Mark] and [Tilde] extensions add the ability to highlight text
+The [Caret]{target="_blank"}, [Mark]{target="_blank"} and [Tilde]{target="_blank"} extensions add the ability to highlight text
 and define subscript and superscript using a simple syntax. Enable them together
 via `mkdocs.yml`:
 
@@ -38,3 +38,6 @@ See reference for usage:
   [Adding Superscript Styling]: ../../../elements/typography/#superscript
   [Adding Subscript Styling]: ../../../elements/typography/#subscript
   [Adding Strikethrough Styling]: ../../../elements/typography/#strikethrough
+  [Caret]: https://facelessuser.github.io/pymdown-extensions/extensions/caret/
+  [Mark]: https://facelessuser.github.io/pymdown-extensions/extensions/mark/
+  [Tilde]: https://facelessuser.github.io/pymdown-extensions/extensions/tilde/
