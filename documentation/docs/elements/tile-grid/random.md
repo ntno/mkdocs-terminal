@@ -32,6 +32,7 @@ tiles:
     img_alt: 'a random square image'
     link_href: https://example.com                
 ---
+<hr>
 
 
 sky

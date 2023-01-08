@@ -33,12 +33,11 @@ nav:
       - Tables: 'elements/table.md'
       - Tile Grid:
         - Index: 'elements/tile-grid/index.md'
-        - All Squares: 'elements/tile-grid/all-squares.md'
         - Misc Sizes: 'elements/tile-grid/misc.md'
         - Before Page Content: 'elements/tile-grid/grid-before-content.md'
         - After Page Content: 'elements/tile-grid/grid-after-content.md'
         - Only Links: 'elements/tile-grid/links-only.md'
-        - Without Links: 'elements/tile-grid/without-links.md'
+        - Only Images: 'elements/tile-grid/images-only.md'
         - Example Page: 'elements/tile-grid/example-page.md'
       - Tooltips: 'elements/tooltips.md'
       - Typography: 'elements/typography.md'

@@ -32,6 +32,7 @@ tiles:
     img_alt: 'a random square image'
     link_href: https://picsum.photos/                
 ---
+<hr>
 --8<--
 elements/tile-grid/links.md
 --8<--

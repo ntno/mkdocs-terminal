@@ -28,7 +28,7 @@ tiles:
     link_text: Overview Example
     link_href: ../example-page
 ---
-
+<hr>
 --8<--
 elements/tile-grid/links.md
 --8<--
@@ -39,9 +39,8 @@ elements/tile-grid/links.md
   } 
 </style>
 
-
 # Link Only Tiles 
-The tiles on this page do not have the `img_alt`, `img_url`, or `img_title` attributes.  They are rendered as a captioned link instead of a linked image.
+The tiles on this page do not have `img_*` attributes.  They are rendered as captioned links instead of linked images.
 
 To demonstrate how tiles can be styled individually, the following `<style>` HTML is included in this page's markdown:
 

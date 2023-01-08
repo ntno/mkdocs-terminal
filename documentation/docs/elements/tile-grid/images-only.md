@@ -1,5 +1,5 @@
 ---
-show_tiles_first: false
+show_tiles_first: true
 tiles:
   - caption: '@petradr'
     img_src: https://picsum.photos/id/167/200/200
@@ -8,16 +8,20 @@ tiles:
   - caption: 'Steve Richey'
     img_src: https://picsum.photos/id/143/200/200
 ---
+<hr>
 --8<--
 elements/tile-grid/links.md
 --8<--
 
-# Tiles Without Page Links
-The tiles on this page do not have the `url` attribute set.  They are rendered as a regular image instead of a linked image.
+# Image Only Tiles 
+The tiles on this page do not have `link_*` attributes.  They are rendered as a captioned images instead of linked images.
+
+
+## Tile Markdown
 
 ```markdown
 ---
-show_tiles_first: false
+show_tiles_first: true
 tiles:
   - caption: '@petradr'
     img_src: https://picsum.photos/id/167/200/200
@@ -27,5 +31,3 @@ tiles:
     img_src: https://picsum.photos/id/143/200/200
 ---
 ```
-
-
