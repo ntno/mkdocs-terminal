@@ -2,11 +2,11 @@
 show_tiles_first: true
 tiles:
   - caption: '@petradr'
-    img_src: https://picsum.photos/id/167/200/200
+    img_src: ../../../img/picsum/167_200x200.jpeg
   - caption: 'Marcin Czerwinski'
-    img_src: https://picsum.photos/id/127/200/200
+    img_src: ../../../img/picsum/127_200x200.jpeg
   - caption: 'Steve Richey'
-    img_src: https://picsum.photos/id/143/200/200
+    img_src: ../../../img/picsum/143_200x200.jpeg
 ---
 
 <br>
@@ -28,10 +28,10 @@ The tiles on this page are placed before the main page content.  This is because
 show_tiles_first: true
 tiles:
   - caption: '@petradr'
-    img_src: https://picsum.photos/id/167/200/200
+    img_src: ../../../img/picsum/167_200x200.jpeg
   - caption: 'Marcin Czerwinski'
-    img_src: https://picsum.photos/id/127/200/200
+    img_src: ../../../img/picsum/127_200x200.jpeg
   - caption: 'Steve Richey'
-    img_src: https://picsum.photos/id/143/200/200
+    img_src: ../../../img/picsum/143_200x200.jpeg
 ---
 ```
