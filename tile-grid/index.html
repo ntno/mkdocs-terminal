@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+
+<head>
+    
+    
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-1.2.0">
+    <!-- <meta name="robots" content="noindex"> -->
+     
+    
+    <meta name="author" content="ntno"> 
+    
+    <link rel="canonical" href="https://ntno.github.io/mkdocs-terminal/tile-grid/"> 
+    <link rel="icon" type="image/png" sizes="192x192" href="../img/android-chrome-192x192.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="../img/android-chrome-512x512.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="../img/apple-touch-icon.png" />
+<link rel="shortcut icon" type="image/png" sizes="48x48" href="../img/favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png" />
+    
+
+
+    
+ 
+<title>Tile Grid - MkDocs Terminal</title>
+    <link href="../css/normalize.css" rel="stylesheet">
+    <link href="../css/terminal.css" rel="stylesheet">
+    <link href="../css/theme.css" rel="stylesheet"> 
+    <!-- default color palette-->
+    <link href="../css/palettes/default.css" rel="stylesheet">
+    
+    
+
+    <!--
+    extra_ess contains paths to CSS files in the users
+    documentation directory or a list of CSS files defined in
+    their mkdocs.yml.
+
+    http://www.mkdocs.org/user-guide/configuration/#extra_css
+  -->
+     
+    
+     
+
+    <!--
+    extra_javascript contains paths to JavaScript files in the
+    users documentation directory or a list of JavaScript files
+    defined in their mkdocs.yml.
+
+    http://www.mkdocs.org/user-guide/configuration/#extra_javascript
+  -->
+    
+    <script src="../search/main.js"></script>
+    
+
+    <!--
+    Include Google Analytics tracking code.
+
+    http://www.mkdocs.org/user-guide/configuration/#google_analytics
+  -->
+    
+</head>
+
+<body class="terminal">
+     
+      
+         
+          <div class="container">
+    <div class="terminal-nav">
+        <header class="terminal-logo">
+            <div class="logo terminal-prompt"><a href="https://ntno.github.io/mkdocs-terminal/" class="no-style">MkDocs Terminal</a></div>
+        </header>
+        <nav class="terminal-menu">
+            
+            <ul vocab="https://schema.org/" typeof="BreadcrumbList">
+                
+                
+                <li property="itemListElement" typeof="ListItem">
+                    <a href=".." class="menu-item " property="item" typeof="WebPage">
+                        <span property="name">Home</span>
+                    </a>
+                    <meta property="position" content="0">
+                </li>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <li property="itemListElement" typeof="ListItem">
+                    <a href="../install/" class="menu-item " property="item" typeof="WebPage">
+                        <span property="name">Install</span>
+                    </a>
+                    <meta property="position" content="5">
+                </li>
+                
+                
+            </ul>
+            
+        </nav>
+    </div>
+</div> 
+        
+      
+
+    <div class="container">
+        <div class="terminal-mkdocs-main-grid">
+          <aside id="menu">
+    
+        
+        <div class="container">
+  <div class="terminal-nav">
+    <nav>
+      
+        <ul class="terminal-mkdocs-side-nav-items">
+            
+              
+
+
+
+<li class="terminal-mkdocs-side-nav-li">
+    
+    
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="..">Home</a>
+        
+    
+    
+    
+  </li>
+            
+              
+
+
+
+<li class="terminal-mkdocs-side-nav-li">
+    
+    
+        
+        
+            
+            
+                
+                
+        
+
+             
+            
+    
+        
+        <a class="
+
+    terminal-mkdocs-side-nav-item" href="../configuration/">Configuration</a>
+    
+    
+        
+      
+        
+            <ul class="terminal-mkdocs-side-nav-li-ul">
+        
+            
+            
+                
+                
+                    
+                
+            
+
+            
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        <a class="
+
+    terminal-mkdocs-side-nav-item" href="../configuration/palettes/">Color Palettes</a>
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../configuration/features/">Features</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../configuration/extensions/">Extensions</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../configuration/extensions/python-markdown/">Python Markdown</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../configuration/extensions/py-mdown-extensions/">PyMdown Extensions</a>
+        
+    
+    </li>
+            
+            
+    </ul>
+        
+    
+  </li>
+            
+              
+
+
+
+<li class="terminal-mkdocs-side-nav-li">
+    
+    
+        
+        
+            
+                
+        
+
+        
+            
+    
+        
+        
+            
+            
+            <span class="
+        
+            
+        
+    
+
+    terminal-mkdocs-side-nav-item terminal-mkdocs-side-nav-section-no-index">Navigation</span>
+        
+    
+    
+        
+      
+        
+            <ul class="terminal-mkdocs-side-nav-li-ul">
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../navigation/section-indexes/">Section Indexes</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../navigation/toc/">Table of Contents</a>
+        
+    
+    </li>
+            
+            
+    </ul>
+        
+    
+  </li>
+            
+              
+
+
+
+<li class="terminal-mkdocs-side-nav-li">
+    
+    
+        
+        
+            
+            
+                
+                
+        
+
+             
+            
+    
+        
+        <span class="
+
+    terminal-mkdocs-side-nav-item--active--active">Tile Grid</span>
+    
+    
+        
+      
+        
+            <ul class="terminal-mkdocs-side-nav-li-ul">
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="tile/">Tile Reference</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="grid/">Grid Reference</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="examples/example-page/">Example</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="examples/images-only/">Image Only</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="examples/links-only/">Link Only</a>
+        
+    
+    </li>
+            
+            
+    </ul>
+        
+    
+  </li>
+            
+              
+
+
+
+<li class="terminal-mkdocs-side-nav-li">
+    
+    
+        
+        
+            
+                
+        
+
+        
+            
+    
+        
+        
+            
+            
+            <span class="
+        
+            
+        
+    
+
+    terminal-mkdocs-side-nav-item terminal-mkdocs-side-nav-section-no-index">Elements</span>
+        
+    
+    
+        
+      
+        
+            <ul class="terminal-mkdocs-side-nav-li-ul">
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../elements/blockquotes/">Blockquotes</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../elements/buttons/">Buttons</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../elements/definitions/">Definitions</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../elements/figure/">Figures</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../elements/footnotes/">Footnotes</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../elements/links/">Links</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../elements/table/">Tables</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../elements/tooltips/">Tooltips</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../elements/typography/">Typography</a>
+        
+    
+    </li>
+            
+            
+    </ul>
+        
+    
+  </li>
+            
+              
+
+
+
+<li class="terminal-mkdocs-side-nav-li">
+    
+    
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../install/">Install</a>
+        
+    
+    
+    
+  </li>
+            
+        </ul>
+      
+    </nav>
+  </div>
+</div>
+        
+    
+
+    
+        
+        
+
+<hr>
+<nav>
+    <ul>
+        
+        <li><a href="#1-add-tiles-to-page-metadata">1. Add tiles to Page Metadata</a></li>
+            
+        
+        <li><a href="#2-add-page-to-nav">2. Add Page to Nav</a></li>
+            
+        
+        <li><a href="#3-configure-tile-grid">3. Configure Tile Grid</a></li>
+            
+        
+        <li><a href="#complete-example">Complete Example</a></li>
+            
+            <li><a href="#mkdocsyml">mkdocs.yml</a></li>
+            
+            <li><a href="#example-pagemd">example-page.md</a></li>
+            
+        
+    </ul>
+</nav>
+
+
+        
+    
+</aside>
+
+            <main> <section>
+    
+
+     
+    <p><strong>Terminal for MkDocs Tile Grid</strong>  </p>
+<p>Terminal for MkDocs enables you to quickly create a grid of linked tiles.  Each tile can contain an image, link, and caption.</p>
+<section>
+<figure>
+<p><a href="examples/example-page">
+<img _=";" alt="screenshot of web page with three square images in a row" class="terminal-mkdocs-thin-border" src="../img/tile-grid/overview-example.png" title="to tile grid example page" />
+</a></p>
+<figcaption>Tile Grid Example</figcaption>
+</figure>
+</section>
+<p><br></p>
+<p>To use this feature, complete the following steps:</p>
+<h2 id="1-add-tiles-to-page-metadata">1. Add <code>tiles</code> to Page Metadata<a class="headerlink" href="#1-add-tiles-to-page-metadata" title="Anchor link to this section for reference">#</a></h2>
+<p>Add a <a href="https://www.mkdocs.org/user-guide/writing-your-docs/#yaml-style-meta-data" target="_blank">YAML Style Meta-Data</a> section to the very top of your Markdown page.  The metadata should contain the attribute <code>tiles</code> which is a list of YAML objects.  </p>
+<p>Pay special attention to the indentation.  There should be two spaces before the <code>-</code> marking the start of an object.  There should be four spaces before any additional object attribute:  </p>
+<pre><code class="language-markdown">---
+tiles:
+  - caption: '@petradr'
+    img_src: https://picsum.photos/id/167/200/200
+  - caption: 'Marcin Czerwinski'
+    img_src: https://picsum.photos/id/127/200/200
+  - caption: 'Steve Richey'
+    img_src: https://picsum.photos/id/143/200/200
+---
+
+# My Page Content
+</code></pre>
+<p>Each tile object may have any of the attributes described in the <a href="tile/">Tile Reference</a>.</p>
+<p><br></p>
+<h2 id="2-add-page-to-nav">2. Add Page to Nav<a class="headerlink" href="#2-add-page-to-nav" title="Anchor link to this section for reference">#</a></h2>
+<p>Add the markdown file which includes the <code>tiles</code> metadata to the site's navigation in <code>mkdocs.yml</code>.  If the page is not included in the <code>mkdocs.yml</code> <em>nav</em>, the markdown will not be loaded as a MkDocs Page Object<sup id="fnref:mkdocs-page-object"><a class="footnote-ref" href="#fn:mkdocs-page-object">1</a></sup> and will not include your metadata.</p>
+<p><em>Note</em>: the page does not need to be visible in the final <a href="../configuration/">side navigation theme component</a>.  Deeply nested pages can also use the tile grid feature.  </p>
+<pre><code>nav:
+    - Home: 'index.md'
+    - Example Page: 'tile-grid/examples/example-page.md'
+    - Tile Grid:
+      - Examples:
+        - Also Works: 'tile-grid/examples/example-page.md'
+</code></pre>
+<p><br></p>
+<h2 id="3-configure-tile-grid">3. Configure Tile Grid<a class="headerlink" href="#3-configure-tile-grid" title="Anchor link to this section for reference">#</a></h2>
+<p>The Tile Grid can be further configured using the attributes described in the <a href="grid/">Grid Reference</a>.  For example, the grid can be configured to display before the main page content:</p>
+<pre><code class="language-markdown">---
+show_tiles_first: true
+tiles:
+  - caption: '@petradr'
+    ...
+</code></pre>
+<p><br></p>
+<h1 id="complete-example">Complete Example<a class="headerlink" href="#complete-example" title="Anchor link to this section for reference">#</a></h1>
+<h2 id="mkdocsyml">mkdocs.yml<a class="headerlink" href="#mkdocsyml" title="Anchor link to this section for reference">#</a></h2>
+<p>file location: <code>.</code><br />
+filename: <code>mkdocs.yml</code>  </p>
+<pre><code>site_name: tile grid demo
+
+nav:
+    - Home: 'index.md'
+    - Example Page: 'tile-grid/examples/example-page.md'
+
+theme:
+  name: terminal
+</code></pre>
+<h2 id="example-pagemd">example-page.md<a class="headerlink" href="#example-pagemd" title="Anchor link to this section for reference">#</a></h2>
+<p>file location: <code>./docs/tile-grid/examples/example-page.md</code><br />
+filename: <code>example-page.md</code>  </p>
+<pre><code class="language-markdown">---
+tiles:
+  - caption: '@petradr'
+    img_src: ../../../img/picsum/167_200x200.jpeg
+    img_title: 'to Picsum homepage'
+    img_alt: 'close up image of fallen leaves'
+    link_href: https://picsum.photos/ 
+  - caption: 'Marcin Czerwinski'
+    img_src: ../../../img/picsum/127_200x200.jpeg
+    img_title: 'to Picsum homepage'
+    img_alt: 'close up image of green moss on a log'
+    link_href: https://picsum.photos/ 
+  - caption: 'Steve Richey'
+    img_src: ../../../img/picsum/143_200x200.jpeg
+    img_title: 'to Picsum homepage'
+    img_alt: 'overhead image of fallen leaves'
+    link_href: https://picsum.photos/ 
+---
+
+# My Page Content
+Aliquam eu augue hendrerit, bibendum felis sit amet, commodo lorem.
+
+Maecenas facilisis id tortor volutpat fermentum. Integer volutpat arcu leo, sed semper sapien facilisis ut. Nam ac tincidunt sem, eu gravida augue. Suspendisse varius facilisis rhoncus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam elementum vitae lacus a sodales. 
+
+&lt;br&gt;
+</code></pre>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:mkdocs-page-object">
+<p><a href="https://www.mkdocs.org/dev-guide/themes/#navigation-objects" target="_blank">MkDocs Page Object</a>&#160;<a class="footnote-backref" href="#fnref:mkdocs-page-object" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:mkdocs-page-meta">
+<p><a href="https://www.mkdocs.org/dev-guide/themes/#mkdocs.structure.pages.Page.meta" target="_blank">MkDocs Page Metadata</a>&#160;<a class="footnote-backref" href="#fnref:mkdocs-page-meta" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+    
+
+
+
+
+     
+
+    
+    
+<br>
+<p>
+    
+</p>
+    
+</section>
+            </main>
+        </div>
+        <hr> <div class="container">
+    <footer>
+        
+        <p class="text-center text-muted">Copyright 2023 Natan Organick, All rights reserved</p>
+         Site built with <a target="_blank" rel="noopener" href="http://www.mkdocs.org">MkDocs</a> and <a target="_blank" rel="noopener" href="https://github.com/ntno/mkdocs-terminal">Terminal for MkDocs</a>.
+    </footer>
+</div>
+    </div>
+</body>
+
+</html>
