@@ -8,6 +8,11 @@ tiles:
   - caption: 'Steve Richey'
     img_src: https://picsum.photos/id/143/200/200
 ---
+--8<--
+tile-grid/examples/links.md
+--8<--
+<hr>
+
 <br>
 
 # Image Only Tiles 
