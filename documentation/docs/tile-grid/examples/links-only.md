@@ -13,20 +13,23 @@ tiles:
   - caption: "#tile_123"
     id: "tile_123"
     link_target: "_self"
-    link_title: go to tile grid overview in this window
+    link_title: go to overview in this window
     link_text: Tile Grid Overview
     link_href: ../..
+  - caption: "#tile_456"
+    id: "tile_456"
+    link_target: "_self"
+    link_title: go to tile reference in this window
+    link_text: Tile Reference
+    link_href: ../../tile    
   - caption: ".example_highlight"
     class: "example_highlight"
-    link_target: "_blank"
-    link_title: go to overview example in a new tab
-    link_text: Overview Example
-    link_href: ../example-page
+    link_target: "_self"
+    link_title: go to grid reference in this window
+    link_text: Grid Reference
+    link_href: ../../grid    
 ---
 <hr>
---8<--
-tile-grid/examples/links.md
---8<--
 
 <style>
   .example_highlight {
@@ -51,33 +54,5 @@ To demonstrate how tiles can be styled individually, the following `<style>` HTM
 ## Tile Markdown
 
 ```markdown
----
-show_tiles_first: true
-tiles:
-  - caption: a minimal link tile
-    link_href: ./example-page
-  - caption: a link tile with text
-    link_text: Tile Grid Example
-    link_href: ./example-page
-  - caption: a link tile with hover title
-    link_title: go to the tile grid example page
-    link_text: Tile Grid Example
-    link_href: ./example-page
-  - caption: new tab link tile
-    link_target: "_blank"
-    link_title: go to the misc sizes example in a new tab
-    link_text: Misc. Sizes
-    link_href: ../misc
-  - caption: "#tile_123"
-    id: "tile_123"
-    link_target: "_self"
-    link_title: go to tile overview in this window
-    link_text: Tile Overview
-    link_href: ..
-  - caption: ".example_highlight"
-    class: "example_highlight"
-    link_target: "_blank"
-    link_title: go to overview example in a new tab
-    link_text: Overview Example
-    link_href: ../example-page
+
 ```

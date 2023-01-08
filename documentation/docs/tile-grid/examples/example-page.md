@@ -17,10 +17,6 @@ tiles:
     link_href: https://picsum.photos/ 
 ---
 
---8<--
-tile-grid/examples/links.md
---8<--
-
 # My Page Content
 Aliquam eu augue hendrerit, bibendum felis sit amet, commodo lorem.
 

@@ -27,14 +27,9 @@ nav:
       - Index: 'tile-grid/index.md'
       - Tile Reference: 'tile-grid/tile.md'
       - Grid Reference: 'tile-grid/grid.md'
-      - Examples:
-        - Index: 'tile-grid/examples/index.md'
-        # - Misc Sizes: 'tile-grid/examples/misc.md'
-
-        # - After Page Content: 'tile-grid/examples/grid-after-content.md'
-        # - Only Links: 'tile-grid/examples/links-only.md'
-        - Only Images: 'tile-grid/examples/images-only.md'
-        - Example Page: 'tile-grid/examples/example-page.md'
+      - Example: 'tile-grid/examples/example-page.md'
+      - Image Only: 'tile-grid/examples/images-only.md'
+      - Link Only: 'tile-grid/examples/links-only.md'
     - Elements:
       - Blockquotes: 'elements/blockquotes.md'
       - Buttons: 'elements/buttons.md'
