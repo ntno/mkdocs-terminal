@@ -8,14 +8,15 @@ tiles:
   - caption: 'Steve Richey'
     img_src: https://picsum.photos/id/143/200/200
 ---
-<hr>
---8<--
-tile-grid/examples/links.md
---8<--
+<br>
 
 # Image Only Tiles 
 The tiles on this page do not have `link_*` attributes.  They are rendered as a captioned images instead of linked images.
 
+# Tiles First
+The tiles on this page are placed before the main page content.  This is because the [grid option](../grid.md) `show_tiles_first` is set to `true`.
+
+<br>
 
 ## Tile Markdown
 

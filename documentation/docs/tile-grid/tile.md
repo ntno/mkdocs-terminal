@@ -1,4 +1,3 @@
-
 # Tile Reference
 A tile can represent an image, a link, or a linked image.  
 

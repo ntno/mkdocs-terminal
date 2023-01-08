@@ -1,5 +1,4 @@
 ---
-show_tiles_first: false
 tiles:
   - caption: '@petradr'
     img_src: https://picsum.photos/id/167/200/200

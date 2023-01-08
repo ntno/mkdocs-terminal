@@ -26,6 +26,7 @@ nav:
     - Tile Grid:
       - Index: 'tile-grid/index.md'
       - Tile Reference: 'tile-grid/tile.md'
+      - Grid Reference: 'tile-grid/grid.md'
       - Examples:
         - Index: 'tile-grid/examples/index.md'
         - Misc Sizes: 'tile-grid/examples/misc.md'
