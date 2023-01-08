@@ -1,3 +1,7 @@
+--8<--
+configuration/palettes/links.md
+--8<--
+
 # Sans Dark Palette
 
 To use the sans_dark color palette, add the `palette` attribute to your theme configuration in `mkdocs.yml`:
@@ -11,5 +15,5 @@ theme:
 <link href="../../../css/palettes/sans_dark.css" rel="stylesheet">
 
 --8<--
-examples/index.md
+elements/examples/index.md
 --8<--

@@ -10,6 +10,8 @@ markdown_extensions:
   - meta
 ```
 
+Terminal for MkDocs' Tile Grid relies on the *meta*[^mkdocs-page-meta] attribute of a MkDocs *Page Object*[^mkdocs-page-object].  This means that in order for the tile grid to work properly, 
+
 ### references
 - [Gioni06/terminal.css](https://github.com/Gioni06/terminal.css)  
 - [build](https://pypa-build.readthedocs.io/en/latest/) for building distribution package  
@@ -28,3 +30,6 @@ markdown_extensions:
 - lorem ipsum generators
   - https://generator.lorem-ipsum.info/
   - https://www.lipsum.com/
+- [picture lore ipsum](https://picsum.photos/)
+  - details: https://picsum.photos/id/{id}/info
+  - img: https://picsum.photos/id/{id}/200/200

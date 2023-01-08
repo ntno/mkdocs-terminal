@@ -5,7 +5,7 @@ This theme is currently under development.
 ## Developer Info
 [Terminal for MkDocs on GitHub](https://github.com/ntno/mkdocs-terminal){target="_blank"}  
 [Terminal for MkDocs on PyPI](https://pypi.org/project/mkdocs-terminal/){target="_blank"}  
-[Documentation](https://ntno.github.io/mkdocs-terminal/){target="_blank"}
+[Terminal for MkDocs Documentation](https://ntno.github.io/mkdocs-terminal/){target="_blank"}  
 
 ### License
 [MIT License](about/license.md)

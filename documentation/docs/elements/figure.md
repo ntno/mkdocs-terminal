@@ -13,19 +13,20 @@ markdown_extensions:
 
 <section markdown>
 <figure markdown>
-![some image](https://picsum.photos/1000/600?random&imageWithCaption){ title="a random image" ; alt="Random image with a caption" }
-<figcaption>Image caption</figcaption>
+![some image](../img/picsum/120_small.jpg){ title="a starry night" ; alt="a dark sky filled with stars" }
+<figcaption>@Guillaume via Picsum</figcaption>
 </figure>
 </section>
 
+<br>
 
 ## Markdown
 
 ```markdown
 <section markdown>
 <figure markdown>
-![some image](https://picsum.photos/1000/600?random&imageWithCaption){ title="a random image" ; alt="Random image with a caption" }
-<figcaption>Image caption</figcaption>
+![some image](../img/picsum/120_small.jpg){ title="a starry night" ; alt="a dark sky filled with stars" }
+<figcaption>@Guillaume via Picsum</figcaption>
 </figure>
 </section>
 ```

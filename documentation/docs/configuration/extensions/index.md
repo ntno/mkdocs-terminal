@@ -70,7 +70,6 @@ markdown_extensions:
   # Python Markdown  
   - attr_list
   - md_in_html
-  - meta
   - toc:
       permalink: "#"
 ```
@@ -87,8 +86,6 @@ markdown_extensions:
   - def_list
   - footnotes
   - md_in_html
-  - meta
-  - tables
   - toc:
       permalink: "#"
       permalink_title: Anchor link to this section for reference

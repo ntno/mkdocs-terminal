@@ -23,6 +23,13 @@ nav:
     - Navigation:
         - Section Indexes: 'navigation/section-indexes.md'
         - Table of Contents: 'navigation/toc.md'
+    - Tile Grid:
+      - Index: 'tile-grid/index.md'
+      - Tile Reference: 'tile-grid/tile.md'
+      - Grid Reference: 'tile-grid/grid.md'
+      - Example: 'tile-grid/examples/example-page.md'
+      - Image Only: 'tile-grid/examples/images-only.md'
+      - Link Only: 'tile-grid/examples/links-only.md'
     - Elements:
       - Blockquotes: 'elements/blockquotes.md'
       - Buttons: 'elements/buttons.md'
@@ -41,8 +48,6 @@ markdown_extensions:
   - def_list
   - footnotes
   - md_in_html
-  - meta
-  - tables
   - toc:
       permalink: "#"
       permalink_title: Anchor link to this section for reference
@@ -54,8 +59,7 @@ markdown_extensions:
   - pymdownx.tilde
   - pymdownx.snippets:
       base_path: 
-        - docs/elements
-
+        - docs
 
 ## deploy settings
 theme:
