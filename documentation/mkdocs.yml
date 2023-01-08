@@ -33,6 +33,7 @@ nav:
     - Elements:
       - Blockquotes: 'elements/blockquotes.md'
       - Buttons: 'elements/buttons.md'
+      - Code: 'elements/code.md'
       - Definitions: 'elements/definitions.md'
       - Figures: 'elements/figure.md'
       - Footnotes: 'elements/footnotes.md'
@@ -57,6 +58,16 @@ markdown_extensions:
   - pymdownx.caret
   - pymdownx.mark
   - pymdownx.tilde
+  - pymdownx.highlight:
+      use_pygments: true
+      linenums: true
+      linenums_style: pymdownx-inline
+      anchor_linenums: true
+      noclasses: true
+      # code_attr_on_pre: true
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
   - pymdownx.snippets:
       base_path: 
         - docs
@@ -66,3 +77,5 @@ theme:
   name: terminal
   features:
     - navigation.side.indexes
+
+    # "highlight" needs to get added to pre tag
