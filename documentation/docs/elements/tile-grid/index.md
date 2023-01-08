@@ -92,3 +92,11 @@ Each tile may have the following attributes:
 `url`
 
 :   *Optional*.  Link target.  Can be an external web page or an internal MkDocs page like `./default/`.
+
+
+
+
+target 	_blank
+_parent
+_self
+_top

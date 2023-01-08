@@ -5,17 +5,17 @@ tiles:
     img_src: https://picsum.photos/id/167/200/200
     img_title: 'to Picsum details'
     img_alt: 'close up image of fallen leaves'
-    url: https://picsum.photos/id/167/info
+    link_href: https://picsum.photos/id/167/info
   - caption: 'Marcin Czerwinski'
     img_src: https://picsum.photos/id/127/200/200
     img_title: 'to Picsum details'
     img_alt: 'close up image of green moss on a log'
-    url: https://picsum.photos/id/127/info
+    link_href: https://picsum.photos/id/127/info
   - caption: 'Steve Richey'
     img_src: https://picsum.photos/id/143/200/200
     img_title: 'to Picsum details'
     img_alt: 'overhead image of fallen leaves'
-    url: https://picsum.photos/id/143/info
+    link_href: https://picsum.photos/id/143/info
 ---
 
 --8<--

@@ -1,27 +1,32 @@
-{% macro make_linked_figure( tile ) -%}
+{% macro make_tile( tile ) -%}
 <div class="terminal-mkdocs-tile {{ tile.class }}">
     <figure>
-        <a href="{{ tile.url }}">
-            <img src="{{ tile.img_src }}" 
-                alt="{{ tile.img_alt }}" 
-                title="{{ tile.img_title }}"
-                width="auto" 
-                height="auto">
-        </a>
-        <figcaption>{{ tile.caption }}</figcaption>
+        {% if tile.link_href %}{{ make_link_start(
+            tile.link_href,
+            tile.link_title,
+            tile.link_alt,
+            tile.link_target,
+            tile.link_class
+        ) }}{% endif %}
+        {% if tile.img_src %} {{ make_image(
+            tile.img_src,
+            tile.img_title,
+            tile.img_alt,
+            tile.img_width,
+            tile.img_height,
+            tile.img_class,
+            tile.img_id
+        ) }}{% endif %}
+        {% if tile.link_href %}</a>{% endif %}
+        {% if tile.caption %}<figcaption>{{ tile.caption }}</figcaption>{% endif %}
     </figure>
 </div>
 {%- endmacro -%}
 
-{# {% macro make_figure( img_src, img_alt, img_title, caption, class ) -%}
-<div class="terminal-mkdocs-tile {{ class }}">
-    <figure>
-        <img src="{{ img_src }}" 
-            alt="{{ img_alt }}" 
-            title="{{ img_title }}"
-            width="auto" 
-            height="auto">
-        <figcaption>{{ caption }}</figcaption>
-    </figure>
-</div>
-{%- endmacro -%} #}
+{% macro make_image( src, title, alt, width, height, class, id ) -%}
+<img src="{{ src }}" title="{{ title }}" alt="{{ alt }}" width="{{ width | default('auto', true ) }}" height="{{ height | default('auto', true ) }}" class="{{ class }}" id="{{ id }}">
+{%- endmacro -%}
+
+{% macro make_link_start( href, title, alt, target, class, id ) -%}
+<a href="{{ href }}" title="{{ title }}" alt="{{ alt }}" target="{{ target }}" class="{{ class }}" id="{{ id }}">
+{%- endmacro -%}
