@@ -1,14 +1,14 @@
 --8<--
-elements/tile-grid/links.md
+tile-grid/links.md
 --8<--
 
 # Terminal for MkDocs Tile Grid
-Terminal for MkDocs enables you to quickly create a grid of linked tiles.  Each tile can contain an image (with optional caption, title, and alt text), link, and caption.
+Terminal for MkDocs enables you to quickly create a grid of linked tiles.  Each tile can contain an image, link, and caption.
 
 <section markdown>
 <figure markdown>
  <a href="example-page">
-![Tile Grid Example](../../img/elements/tile-grid/overview-example.png){title="to tile grid example page"; alt="screenshot of web page with three square images in a row" .terminal-mkdocs-thin-border }
+![Tile Grid Example](../img/tile-grid/overview-example.png){title="to tile grid example page"; alt="screenshot of web page with three square images in a row" .terminal-mkdocs-thin-border }
 </a>
 <figcaption>Tile Grid Example</figcaption>
 </figure>
@@ -18,8 +18,10 @@ Terminal for MkDocs enables you to quickly create a grid of linked tiles.  Each 
 # Setup
 To use this feature, complete the following steps:
 
-## 1. Add `tiles` Metadata
-Add a [YAML Style Meta-Data]{target="_blank"} section to the very top of your Markdown page.  The metadata should contain the attribute `tiles` which is a list of YAML objects.  Pay special attention to the indentation.  There should be two spaces before the `-` marking the start of an object.  There should be four spaces before an object's attribute.  
+## 1. Add `tiles` to Page Metadata
+Add a [YAML Style Meta-Data]{target="_blank"} section to the very top of your Markdown page.  The metadata should contain the attribute `tiles` which is a list of YAML objects.  
+
+Pay special attention to the indentation.  There should be two spaces before the `-` marking the start of an object.  There should be four spaces before any additional object attribute:  
 
 ```markdown
 ---
@@ -32,25 +34,21 @@ tiles:
     img_src: https://picsum.photos/id/143/200/200
 ---
 
-# Page Content as usual...
+# My Page Content
 ```
 
 Each tile object may have any of the attributes [described below](#terminal-for-mkdocs-tile-attributes).
 
+<br>
+
 ## 2. Add Page to Nav
-Since Terminal for MkDocs' Tile Grid relies on MkDocs Page Metadata[^mkdocs-page-meta], MkDocs must load the markdown file as a MkDocs Page Object[^mkdocs-page-object].  This means that the markdown which includes the `tiles` metadata, `example-page.md`, **must** be added to the site's navigation in `mkdoc.yml`:
+Terminal for MkDocs' Tile Grid relies on the Page Metadata[^mkdocs-page-meta] attribute of a MkDocs Page Object[^mkdocs-page-object].  This means that in order for the tile grid to work properly, the markdown file which includes the `tiles` metadata **must** be added to the site's navigation in `mkdoc.yml` so that a Page Object can be created.
 
 ```
 nav:
     - Home: 'index.md'
-      ...
-    - Elements:
-      - Blockquotes: 'elements/blockquotes.md'
-        ...
-      - Tile Grid:
-        - Example Page: 'elements/tile-grid/example-page.md'
-      - Tooltips: 'elements/tooltips.md'
-      - Typography: 'elements/typography.md'
+    - Tile Grid:
+      - Example Page: 'tile-grid/example-page.md'
     - Install: 'install.md'
 ```
 [^mkdocs-page-meta]: [MkDocs Page Metadata]{target="_blank"}
@@ -65,7 +63,7 @@ nav:
 
 ```markdown
 --8<--
-elements/tile-grid/example-page.md
+tile-grid/example-page.md
 --8<--
 ```
 
@@ -79,7 +77,7 @@ Each tile may have the following attributes:
 
 `img_src`
 
-:   *Optional*.  The image source.  Can be an external image like `https://picsum.photos/id/167/200/200` or an internal MkDocs image like `../../img/palettes/default.png`.
+:   *Optional*.  The image source.  Can be an external image like `https://picsum.photos/id/167/200/200` or an internal MkDocs image like `../img/palettes/default.png`.
 
 `img_title`
 

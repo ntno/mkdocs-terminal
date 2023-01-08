@@ -10,7 +10,7 @@ tiles:
 ---
 <hr>
 --8<--
-elements/tile-grid/links.md
+tile-grid/links.md
 --8<--
 
 # Image Only Tiles 
