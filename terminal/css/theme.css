@@ -46,6 +46,12 @@ body {
     border: none !important;
 }
 
+.terminal-mkdocs-tile > figure > a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /* ***************************************************************** */
 /* Terminal.css Overrides */
 /* ***************************************************************** */
