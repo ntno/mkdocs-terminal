@@ -1,27 +1,91 @@
 ---
-show_tiles_first: false
+show_tiles_first: true
 tiles:
-  - caption: Example of tile without image
-    link_title: 'open Picsum API for id 167'
-    link_alt: 'link to Picsum API for id 167'
-    link_href: https://picsum.photos/id/167/info
+  - caption: a minimal link tile
+    link_href: ../all-squares
+  - caption: a link tile with text
+    link_text: All Squares Example
+    link_href: ../all-squares
+  - caption: a link tile with hover title
+    link_title: go to the all squares example
+    link_text: All Squares Example
+    link_href: ../all-squares
+  - caption: new tab link tile
+    link_target: "_blank"
+    link_title: go to the misc sizes example in a new tab
+    link_text: Misc. Sizes
+    link_href: ../misc
+  - caption: "#tile_123"
+    id: "tile_123"
+    link_target: "_self"
+    link_title: go to tile overview in this window
+    link_text: Tile Overview
+    link_href: ..
+  - caption: "#tile_456 .example_highlight"
+    id: "tile_456"
+    class: "example_highlight"
+    link_target: "_blank"
+    link_title: go to overview example in a new tab
+    link_text: Overview Example
+    link_href: ../example-page
 ---
+
 --8<--
 elements/tile-grid/links.md
 --8<--
 
+<style>
+  .example_highlight {
+    background-color: #FFFF00;
+  } 
+</style>
+
+
 # Link Only Tiles 
-The tiles on this page only have the `caption`, `link_href`, `link_alt`, and `link_title` attributes set.  They do not have the `img_alt`, `img_url`, or `img_title` attributes.  They are rendered as a captioned link instead of a linked image.
+The tiles on this page do not have the `img_alt`, `img_url`, or `img_title` attributes.  They are rendered as a captioned link instead of a linked image.
+
+To demonstrate how tiles can be styled individually, the following `<style>` HTML is included in this page's markdown:
+
+## Extra CSS
+```html
+<style>
+  .example_highlight {
+    background-color: #FFFF00;
+  } 
+</style>
+```
+
+## Tile Markdown
 
 ```markdown
 ---
-show_tiles_first: false
+show_tiles_first: true
 tiles:
-  - caption: Example of tile without image
-    link_title: 'open Picsum API for id 167'
-    link_alt: 'link to Picsum API for id 167'
-    link_href: https://picsum.photos/id/167/info
----
+  - caption: a minimal link tile
+    link_href: ../all-squares
+  - caption: a link tile with text
+    link_text: All Squares Example
+    link_href: ../all-squares
+  - caption: a link tile with hover title
+    link_title: go to the all squares example
+    link_text: All Squares Example
+    link_href: ../all-squares
+  - caption: new tab link tile
+    link_target: "_blank"
+    link_title: go to the misc sizes example in a new tab
+    link_text: Misc. Sizes
+    link_href: ../misc
+  - caption: "#tile_123"
+    id: "tile_123"
+    link_target: "_self"
+    link_title: go to tile overview in this window
+    link_text: Tile Overview
+    link_href: ..
+  - caption: "#tile_456 .example_highlight"
+    id: "tile_456"
+    class: "example_highlight"
+    link_target: "_blank"
+    link_title: go to overview example in a new tab
+    link_text: Overview Example
+    link_href: ../example-page
 ```
-
-
