@@ -3,8 +3,7 @@
     <figure>
         {{ make_link_start(
             tile.link_href,
-            tile.link_title, 
-            tile.link_alt,
+            tile.link_title,
             tile.link_target
         ) }}
 
@@ -23,11 +22,10 @@
 <img src="{{ src|trim }}" title="{{ title|trim }}" alt="{{ alt|trim }}" width="{{ width|trim|default('auto', true ) }}" height="{{ height|trim|default('auto', true ) }}" >
 {%- endmacro -%}
 
-{% macro make_link_start( href, title, alt, target) -%}
+{% macro make_link_start( href, title, target) -%}
 {% if href is defined and href|length %}
 <a  href="{{ href }}" 
     {% if title is defined and title|length %}title="{{ title }}"{% endif %} 
-    {% if alt is defined and alt|length %}alt="{{ alt }}"{% endif %} 
     {% if target is defined and target|length %}target="{{ target }}"{% endif %} 
 >
 {% endif %}
