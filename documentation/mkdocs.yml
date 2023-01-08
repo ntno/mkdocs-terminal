@@ -25,6 +25,7 @@ nav:
         - Table of Contents: 'navigation/toc.md'
     - Tile Grid:
       - Index: 'tile-grid/index.md'
+      - Tile Reference: 'tile-grid/tile.md'
       - Examples:
         - Index: 'tile-grid/examples/index.md'
         - Misc Sizes: 'tile-grid/examples/misc.md'

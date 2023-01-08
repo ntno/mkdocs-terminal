@@ -33,12 +33,12 @@ tiles:
 # My Page Content
 ```
 
-Each tile object may have any of the attributes [described below](#terminal-for-mkdocs-tile-attributes).
+Each tile object may have any of the attributes described in the [Tile Reference](tile.md).
 
 <br>
 
 ## 2. Add Page to Nav
-Terminal for MkDocs' Tile Grid relies on the *meta*[^mkdocs-page-meta] attribute of a MkDocs *Page Object*[^mkdocs-page-object].  This means that in order for the tile grid to work properly, the markdown file which includes the `tiles` metadata **must** be added to the site's navigation in `mkdoc.yml`.  If the page is not included in the `mkdocs.yml` *nav*, the markdown will not be loaded as a MkDocs Page Object and will not include your metadata.
+Add the markdown file which includes the `tiles` metadata to the site's navigation in `mkdoc.yml`.  If the page is not included in the `mkdocs.yml` *nav*, the markdown will not be loaded as a MkDocs Page Object[^mkdocs-page-object] and will not include your metadata.
 
 Note: the page does not need to be visible in the final side navigation theme component.  
 
@@ -50,6 +50,7 @@ nav:
       - Examples:
         - Also Works: 'tile-grid/examples/example-page.md'
 ```
+
 [^mkdocs-page-meta]: [MkDocs Page Metadata]{target="_blank"}
 [^mkdocs-page-object]: [MkDocs Page Object]{target="_blank"}
 
@@ -85,35 +86,3 @@ filename: `example-page.md`
 tile-grid/examples/example-page.md
 --8<--
 ```
-
-
-# Tile Attributes
-Each tile may have the following attributes:
-
-`caption`
-
-:   *Optional*.  The figure caption.
-
-`img_src`
-
-:   *Optional*.  The image source.  Can be an external image like `https://picsum.photos/id/167/200/200` or an internal MkDocs image like `../img/palettes/default.png`.
-
-`img_title`
-
-:   *Optional*.  Text to display on hover.
-
-`img_alt`
-
-:   *Optional*.  Alternate text for the image if the image cannot be displayed.
-
-`url`
-
-:   *Optional*.  Link target.  Can be an external web page or an internal MkDocs page like `./default/`.
-
-
-
-
-target 	_blank
-_parent
-_self
-_top
