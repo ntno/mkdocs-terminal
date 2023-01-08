@@ -21,8 +21,7 @@ tiles:
     link_title: go to tile overview in this window
     link_text: Tile Overview
     link_href: ..
-  - caption: "#tile_456 .example_highlight"
-    id: "tile_456"
+  - caption: ".example_highlight"
     class: "example_highlight"
     link_target: "_blank"
     link_title: go to overview example in a new tab
@@ -81,8 +80,7 @@ tiles:
     link_title: go to tile overview in this window
     link_text: Tile Overview
     link_href: ..
-  - caption: "#tile_456 .example_highlight"
-    id: "tile_456"
+  - caption: ".example_highlight"
     class: "example_highlight"
     link_target: "_blank"
     link_title: go to overview example in a new tab
