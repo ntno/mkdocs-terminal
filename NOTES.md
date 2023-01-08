@@ -31,3 +31,5 @@ Terminal for MkDocs' Tile Grid relies on the *meta*[^mkdocs-page-meta] attribute
   - https://generator.lorem-ipsum.info/
   - https://www.lipsum.com/
 - [picture lore ipsum](https://picsum.photos/)
+  - details: https://picsum.photos/id/{id}/info
+  - img: https://picsum.photos/id/{id}/200/200

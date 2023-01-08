@@ -13,7 +13,7 @@ markdown_extensions:
 
 <section markdown>
 <figure markdown>
-![some image](https://picsum.photos/1000/600?random&imageWithCaption){ title="a random image" ; alt="Random image with a caption" }
+![some image](../img/picsum/120_small.jpg){ title="a random image" ; alt="Random image with a caption" }
 <figcaption>Image caption</figcaption>
 </figure>
 </section>
@@ -24,7 +24,7 @@ markdown_extensions:
 ```markdown
 <section markdown>
 <figure markdown>
-![some image](https://picsum.photos/1000/600?random&imageWithCaption){ title="a random image" ; alt="Random image with a caption" }
+![some image](../img/picsum/120_small.jpg){ title="a random image" ; alt="Random image with a caption" }
 <figcaption>Image caption</figcaption>
 </figure>
 </section>
