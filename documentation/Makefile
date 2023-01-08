@@ -11,8 +11,11 @@ install-mkdocs-requirements: upgrade-pip
 build-mkdocs: clean install-mkdocs-requirements
 	mkdocs build -v
 
-serve-mkdocs: build-mkdocs
+serve-local: build-mkdocs
 	mkdocs serve -v --dev-addr=0.0.0.0:8080 -f local.yml
+
+serve-mkdocs: build-mkdocs
+	mkdocs serve -v --dev-addr=0.0.0.0:8080
 
 clean:
 	rm -rf site/
