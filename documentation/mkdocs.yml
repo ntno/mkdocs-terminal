@@ -39,6 +39,7 @@ nav:
         - After Page Content: 'elements/tile-grid/grid-after-content.md'
         - Only Links: 'elements/tile-grid/links-only.md'
         - Without Links: 'elements/tile-grid/without-links.md'
+        - Example Page: 'elements/tile-grid/example-page.md'
       - Tooltips: 'elements/tooltips.md'
       - Typography: 'elements/typography.md'
     - Install: 'install.md'
