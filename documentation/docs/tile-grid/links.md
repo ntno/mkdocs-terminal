@@ -1,9 +1,9 @@
 <div class="btn-group" markdown>
-[Overview](index.md) |
-[Overview Example](example-page.md) |
-[Misc Sizes](misc.md) |
-[Before Page Content](grid-before-content.md) |
-[After Page Content](grid-after-content.md) |
-[Links Only](links-only.md) |
-[Images Only](images-only.md) 
+[Overview](./index.md) |
+[Overview Example](./examples/example-page.md) |
+[Misc Sizes](./examples/misc.md) |
+[Before Page Content](./examples/grid-before-content.md) |
+[After Page Content](./examples/grid-after-content.md) |
+[Links Only](./examples/links-only.md) |
+[Images Only](./examples/images-only.md) 
 </div>

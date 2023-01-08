@@ -3,23 +3,23 @@ show_tiles_first: false
 tiles:
   - caption: '@petradr'
     img_src: https://picsum.photos/id/167/200/200
-    img_title: 'to Picsum details'
+    img_title: 'to Picsum homepage'
     img_alt: 'close up image of fallen leaves'
-    link_href: https://picsum.photos/id/167/info
+    link_href: https://picsum.photos/ 
   - caption: 'Marcin Czerwinski'
     img_src: https://picsum.photos/id/127/200/200
-    img_title: 'to Picsum details'
+    img_title: 'to Picsum homepage'
     img_alt: 'close up image of green moss on a log'
-    link_href: https://picsum.photos/id/127/info
+    link_href: https://picsum.photos/ 
   - caption: 'Steve Richey'
     img_src: https://picsum.photos/id/143/200/200
-    img_title: 'to Picsum details'
+    img_title: 'to Picsum homepage'
     img_alt: 'overhead image of fallen leaves'
-    link_href: https://picsum.photos/id/143/info
+    link_href: https://picsum.photos/ 
 ---
 
 --8<--
-tile-grid/links.md
+tile-grid/examples/links.md
 --8<--
 
 # My Page Content

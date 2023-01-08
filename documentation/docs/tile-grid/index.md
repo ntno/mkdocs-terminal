@@ -1,13 +1,9 @@
---8<--
-tile-grid/links.md
---8<--
-
 # Terminal for MkDocs Tile Grid
 Terminal for MkDocs enables you to quickly create a grid of linked tiles.  Each tile can contain an image, link, and caption.
 
 <section markdown>
 <figure markdown>
- <a href="example-page">
+ <a href="examples/example-page">
 ![Tile Grid Example](../img/tile-grid/overview-example.png){title="to tile grid example page"; alt="screenshot of web page with three square images in a row" .terminal-mkdocs-thin-border }
 </a>
 <figcaption>Tile Grid Example</figcaption>
@@ -42,14 +38,17 @@ Each tile object may have any of the attributes [described below](#terminal-for-
 <br>
 
 ## 2. Add Page to Nav
-Terminal for MkDocs' Tile Grid relies on the Page Metadata[^mkdocs-page-meta] attribute of a MkDocs Page Object[^mkdocs-page-object].  This means that in order for the tile grid to work properly, the markdown file which includes the `tiles` metadata **must** be added to the site's navigation in `mkdoc.yml` so that a Page Object can be created.
+Terminal for MkDocs' Tile Grid relies on the *meta*[^mkdocs-page-meta] attribute of a MkDocs *Page Object*[^mkdocs-page-object].  This means that in order for the tile grid to work properly, the markdown file which includes the `tiles` metadata **must** be added to the site's navigation in `mkdoc.yml`.  If the page is not included in the `mkdocs.yml` *nav*, the markdown will not be loaded as a MkDocs Page Object and will not include your metadata.
+
+Note: the page does not need to be visible in the final side navigation theme component.  
 
 ```
 nav:
     - Home: 'index.md'
+    - Example Page: 'tile-grid/examples/example-page.md'
     - Tile Grid:
-      - Example Page: 'tile-grid/example-page.md'
-    - Install: 'install.md'
+      - Examples:
+        - Also Works: 'tile-grid/examples/example-page.md'
 ```
 [^mkdocs-page-meta]: [MkDocs Page Metadata]{target="_blank"}
 [^mkdocs-page-object]: [MkDocs Page Object]{target="_blank"}
@@ -59,11 +58,31 @@ nav:
 [MkDocs Page Metadata]: https://www.mkdocs.org/dev-guide/themes/#mkdocs.structure.pages.Page.meta
 [Markdown Metadata]: https://www.mkdocs.org/user-guide/writing-your-docs/#meta-data
 
-## Complete Example
+<br>
+
+# Complete Example
+
+## mkdocs.yml
+file location: `.`  
+filename: `mkdocs.yml`  
+
+```
+site_name: tile grid demo
+
+nav:
+    - Home: 'index.md'
+    - Example Page: 'tile-grid/examples/example-page.md'
+
+theme:
+  name: terminal
+```
+## example-page.md
+file location: `./docs/tile-grid/examples/example-page.md`  
+filename: `example-page.md`  
 
 ```markdown
 --8<--
-tile-grid/example-page.md
+tile-grid/examples/example-page.md
 --8<--
 ```
 

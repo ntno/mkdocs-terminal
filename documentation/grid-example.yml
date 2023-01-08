@@ -1,0 +1,12 @@
+site_name: tile grid demo
+
+nav:
+    - Home: 'index.md'
+    - Example Page: 'tile-grid/examples/example-page.md'
+
+# theme:
+#   name: terminal
+
+theme:
+  name: null
+  custom_dir: '../terminal'
