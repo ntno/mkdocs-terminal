@@ -1,6 +1,6 @@
 {
     "name": "mkdocs-terminal",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "Terminal.css theme for MkDocs",
     "keywords": [
         "mkdocs",
@@ -18,7 +18,9 @@
         "url": "https://github.com/ntno/mkdocs-terminal.git"
     },
     "scripts": {},
-    "dependencies": {},
+    "dependencies": {
+        "terminal.css": "^0.7.2"
+    },
     "devDependencies": {},
     "engines": {
         "node": ">= 16"
