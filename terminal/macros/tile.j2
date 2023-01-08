@@ -1,37 +1,47 @@
+{% import 'macros/tile-image.j2' as image_helper %}
+{% import 'macros/tile-link.j2' as link_helper %}
+
 {% macro make_tile( tile ) -%}
+
+{% set ns = namespace(is_valid=false, has_link=false, has_image=false, has_caption=false) %}
+{% if tile.img_src is defined and tile.img_src|length %}
+    {%- set ns.has_image = true -%}
+{% endif %}
+{% if tile.link_href is defined and tile.href|length %}
+    {%- set ns.has_link = true -%}
+{% endif %}
+{% if tile.caption is defined and tile.caption|length %}
+    {%- set ns.has_caption = true -%}
+{% endif %}
+{% if ns.has_link or ns.has_image %}
+    {%- set ns.is_valid = true -%}
+{% endif %}
+
+
+{% if ns.is_valid %}
 <div id="{{ tile.id }}" class="terminal-mkdocs-tile {{ tile.class }}">
     <figure>
-        {{ make_link_start(
-            tile.link_href,
-            tile.link_title,
-            tile.link_target
-        ) }}
-
-
-        {% if tile.link_href is defined and tile.link_href|length %}
-        {{ make_link_end(
-            tile.link_text|default(tile.link_href, true)
-        ) }}
+        {% if ns.has_link %} 
+             {{ link_helper.make_link_start(tile) }}
         {% endif %}
-        {% if tile.caption %}<figcaption>{{ tile.caption|trim}}</figcaption>{% endif %}
+
+        {% if ns.has_image %} 
+            {{ image_helper.make_image(tile) }}
+        {% endif %}
+
+        {% if ns.has_link %}
+            {% if ns.has_image %} 
+                </a>
+            {% else %}
+            {{ tile.link_text|default(tile.link_href, true) }}</a>
+            {% endif %}
+        {% endif %}
+        
+        {% if ns.has_caption %}
+            <figcaption>{{ tile.caption|trim}}</figcaption>
+        {% endif %}
     </figure>
 </div>
-{%- endmacro -%}
-
-{% macro make_image( src, title, alt, width, height) -%}
-<img src="{{ src|trim }}" title="{{ title|trim }}" alt="{{ alt|trim }}" width="{{ width|trim|default('auto', true ) }}" height="{{ height|trim|default('auto', true ) }}" >
-{%- endmacro -%}
-
-{% macro make_link_start( href, title, target) -%}
-{% if href is defined and href|length %}
-<a  href="{{ href }}" 
-    {% if title is defined and title|length %}title="{{ title }}"{% endif %} 
-    {% if target is defined and target|length %}target="{{ target }}"{% endif %} 
->
 {% endif %}
-{%- endmacro -%}
-
-{% macro make_link_end( text ) -%}
-{{ text }}</a>
 {%- endmacro -%}
 

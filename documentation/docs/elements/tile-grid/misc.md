@@ -43,7 +43,6 @@ See [Tile Grid](tile-grid/index.md) for details on configuration options and com
 
 ### Markdown
 ```markdown
----
 show_tiles_first: true
 tiles:
   - caption: Wide Image
