@@ -5,7 +5,6 @@ Use this readme to add a feature to this theme or to update the theme documentat
 
 - [Terminal for MkDocs Theme Development](#terminal-for-mkdocs-theme-development)
   - [Quicklinks](#quicklinks)
-- [\<\<\<\<\<\<\< Updated upstream](#-updated-upstream)
   - [Developer Setup](#developer-setup)
     - [Prerequisites](#prerequisites)
     - [Fork and Clone Repository](#fork-and-clone-repository)
@@ -16,7 +15,6 @@ Use this readme to add a feature to this theme or to update the theme documentat
     - [Start Local Documentation Server](#start-local-documentation-server)
     - [Make Documentation Updates](#make-documentation-updates)
     - [Push Changes and Create PR](#push-changes-and-create-pr)
->>>>>>> Stashed changes
 
 
 ## Developer Setup
@@ -42,8 +40,9 @@ You should be able to visit [http://0.0.0.0:8080/mkdocs-terminal/](http://0.0.0.
 If you get a `docker.sock: connect: permission denied` error, you probably need to start the Docker engine on your machine.  
 Open the Docker Desktop application and wait until the application indicates that the Docker engine is in a "running" state.  Then retry starting your docker container.  
 
-![engine-starting](documentation/docs/img/developer-setup/engine-starting.png)  
-![engine-running](documentation/docs/img/developer-setup/engine-running.png)  
+<img src="documentation/docs/img/developer-setup/engine-starting.png" width="400" title="Docker Engine Starting" alt="orange starting indicator at bottom left of Docker Desktop">
+
+<img src="documentation/docs/img/developer-setup/engine-running.png" width="400" title="Docker Engine Starting" alt="green running indicator at bottom left of Docker Desktop">
 
 ## Documentation Updates
 
