@@ -15,12 +15,9 @@ Reading and following these guidelines will help us make the contribution proces
 - [Contribution](#contribution)
   - [Documentation](#documentation)
   - [Environment setup](#environment-setup)
-  - [Testing](#testing)
-    - [Adding tests](#adding-tests)
-    - [Running tests](#running-tests)
-  - [Code quality tools](#code-quality-tools)
+  - [Making Theme Updates](#making-theme-updates)
+    - [Adding Tests](#adding-tests)
   - [CI Information](#ci-information)
-  - [Repo-specific PR guidelines](#repo-specific-pr-guidelines)
 
 ## Code of Conduct
 
@@ -72,34 +69,16 @@ In general, we follow the ["fork-and-pull" Git workflow](https://github.com/susa
 
 ## Environment setup
 
-See instructions in [Developer Setup](README.md#developer-setup)
+See 'Developer Setup' instructions in [Developer Setup](DEVELOPER_README.md#developer-setup)
 
-## Testing
+## Making Theme Updates
 
+See 'Theme Updates' in [Developer Setup](DEVELOPER_README.md#theme-updates)
 
-### Adding tests
+### Adding Tests
 
-General information about the test suite and how to format and structure tests.
-
-### Running tests
-
-Any additional information needed to run the test suite. Include `bash`-formatted commands like:
-
-```bash
-composer test
-bundle exec rake test
-```
-
-Also include any information about essential manual tests.
-
-## Code quality tools
-
-Information about scripts to run before committing.
+See 'Add Tests' in [Developer Setup](DEVELOPER_README.md#add-tests)
 
 ## CI Information
 
-What CI checks for and how to pass.
-
-## Repo-specific PR guidelines
-
-Anything not covered in the general guidelines linked above.
+Currently pull requests are tested using a [GitHub Action workflow](https://github.com/ntno/mkdocs-terminal/actions/workflows/test.yml).

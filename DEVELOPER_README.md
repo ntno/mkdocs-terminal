@@ -21,6 +21,7 @@ Use this readme to add a feature to this theme or to update the theme documentat
     - [Bump Theme Version](#bump-theme-version)
     - [Start Documentation Server with Local Theme](#start-documentation-server-with-local-theme)
     - [Make Updates to Theme](#make-updates-to-theme)
+    - [Test Theme Build Locally](#test-theme-build-locally)
     - [Add Tests](#add-tests)
     - [Push Changes and Create PR](#push-changes-and-create-pr-1)
 
@@ -115,6 +116,14 @@ Update files in [terminal/](terminal/).  You should see changes loaded in [http:
   - confirm images load
   - confirm links are not broken
   - confirm existing components/features still work
+
+### Test Theme Build Locally
+Launch the project's ubuntu container and run tox build tests:
+
+```
+make ubuntu
+make tox
+```
 
 ### Add Tests
 Test suite setup is not complete yet.  See progress on this issue [here](https://github.com/ntno/mkdocs-terminal/issues/13).  If you have experience creating automated tests for Jinja2 please consider making a contribution!  
