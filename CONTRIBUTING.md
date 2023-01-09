@@ -63,8 +63,6 @@ In general, we follow the ["fork-and-pull" Git workflow](https://github.com/susa
 
 # Contribution
 
-Please read [Auth0's contribution guidelines](https://github.com/auth0/open-source-template/blob/master/GENERAL-CONTRIBUTING.md).
-
 ## Documentation
 
 - PR for docs site update, if needed
