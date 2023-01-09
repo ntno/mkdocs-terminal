@@ -14,7 +14,6 @@ Reading and following these guidelines will help us make the contribution proces
     - [Pull Requests](#pull-requests)
 - [Contribution](#contribution)
   - [Documentation](#documentation)
-  - [Assets compilation](#assets-compilation)
   - [Environment setup](#environment-setup)
   - [Testing](#testing)
     - [Adding tests](#adding-tests)
@@ -47,7 +46,7 @@ PRs to this theme are always welcome and can be a quick way to get your fix or i
 - Only fix/add the functionality in question **OR** address wide-spread whitespace/style issues, not both.
 - Add unit or integration tests for fixed or changed functionality (if a test suite already exists).
 - Address a single concern in the least number of changed lines as possible.
-- Include documentation in the [mkdocs-terminal/documentation](https://github.com/ntno/mkdocs-terminal/tree/main/documentation/docs) docs.
+- Include documentation in the [mkdocs-terminal/documentation](https://github.com/ntno/mkdocs-terminal/tree/main/documentation/docs).
 - Be accompanied by a complete Pull Request template (loaded automatically when a PR is created).
 
 For changes that address core functionality or would require breaking changes (e.g. a major release), it's best to open an Issue to discuss your proposal first.
@@ -62,14 +61,6 @@ In general, we follow the ["fork-and-pull" Git workflow](https://github.com/susa
 6. Push changes to your fork
 7. Open a PR in our repository and follow the PR template so that we can efficiently review the changes.
 
-
-
-
-
-
-
-
-----
 # Contribution
 
 Please read [Auth0's contribution guidelines](https://github.com/auth0/open-source-template/blob/master/GENERAL-CONTRIBUTING.md).
@@ -80,10 +71,6 @@ Please read [Auth0's contribution guidelines](https://github.com/auth0/open-sour
 - Code-level documentation expectations
 	- 100% documentation coverage for PRs
 	- Include links to relevant Auth0 doc pages
-
-## Assets compilation
-
-Information about compiling CSS, JS, SVG, etc.
 
 ## Environment setup
 
