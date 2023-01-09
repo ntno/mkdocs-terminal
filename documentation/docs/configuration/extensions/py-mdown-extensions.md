@@ -41,3 +41,30 @@ See reference for usage:
   [Caret]: https://facelessuser.github.io/pymdown-extensions/extensions/caret/
   [Mark]: https://facelessuser.github.io/pymdown-extensions/extensions/mark/
   [Tilde]: https://facelessuser.github.io/pymdown-extensions/extensions/tilde/
+
+
+### Snippets
+
+The [Snippets]{target="_blank"} extension adds the ability to embed content from arbitrary files into a document, including other documents or source files, by using a simple syntax. Enable it via `mkdocs.yml`:
+
+``` yaml
+markdown_extensions:
+  - pymdownx.snippets
+```
+
+The configuration options of this extension are not specific to Terminal for
+MkDocs, as they only impact the Markdown parsing stage. See the [Snippets 
+documentation][Snippets]{target="_blank"} for more information.
+
+  [Snippets]: https://facelessuser.github.io/pymdown-extensions/extensions/snippets/
+  
+See reference for usage:
+
+- [Adding Snippets]
+
+  [Adding Snippets]: ./snippets.md
+
+
+# Credit
+
+This documentation is based on squidfunk's Material for MkDocs [Pymdown Extension](https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown-extensions/){target="_blank"} documentation.

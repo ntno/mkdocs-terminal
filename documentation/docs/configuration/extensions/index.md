@@ -26,7 +26,6 @@ configuration:
 <!-- - [Highlight]
 - [Keys] -->
 <!-- - [SmartSymbols]
-- [Snippets]
 - [SuperFences]
 - [Tabbed] -->
 <!-- - [Tasklist] -->
@@ -39,6 +38,7 @@ configuration:
 - [Definition Lists]
 - [Footnotes]
 - [Markdown in HTML]
+- [Snippets]
 - [Table of Contents]
 - [Tables]
   
@@ -50,6 +50,7 @@ configuration:
   [Definition Lists]: python-markdown.md#definition-lists
   [Footnotes]: python-markdown.md#footnotes
   [Markdown in HTML]: python-markdown.md#markdown-in-html
+  [Snippets]: py-mdown-extensions.md#snippets
   [Table of Contents]: python-markdown.md#table-of-contents
   [Tables]: python-markdown.md#tables
 
@@ -94,7 +95,10 @@ markdown_extensions:
   - pymdownx.caret
   - pymdownx.mark
   - pymdownx.tilde
+  - pymdownx.snippets:
+      base_path: 
+        - docs
 ```
 
 # Credit
-This documentation is based on squidfunk's Material for MkDocs [Extensions](https://squidfunk.github.io/mkdocs-material/setup/extensions/) documentation.
+This documentation is based on squidfunk's Material for MkDocs [Extensions](https://squidfunk.github.io/mkdocs-material/setup/extensions/){target="_blank"} documentation.
