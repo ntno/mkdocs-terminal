@@ -111,6 +111,11 @@ make serve-local-theme
 ### Make Updates to Theme
 Update files in [terminal/](terminal/).  You should see changes loaded in [http://0.0.0.0:8080/mkdocs-terminal/](http://0.0.0.0:8080/mkdocs-terminal/).
 
+- View changes in local server and confirm everything works as expected 
+  - confirm images load
+  - confirm links are not broken
+  - confirm existing components/features still work
+
 ### Add Tests
 Test suite setup is not complete yet.  See progress on this issue [here](https://github.com/ntno/mkdocs-terminal/issues/13).  If you have experience creating automated tests for Jinja2 please consider making a contribution!  
 
