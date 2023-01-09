@@ -1,5 +1,5 @@
 # Terminal for MkDocs Theme Development
-Use this readme to add a feature to this theme or to test documentation site updates.
+Use this readme to add a feature to this theme or to update the theme documentation.
 
 ## Quicklinks
 
