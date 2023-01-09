@@ -1,4 +1,4 @@
-# Code of Conduct
+# Terminal for MkDocs Code of Conduct
 
 ## Our Pledge
 
@@ -37,7 +37,7 @@ Community leaders have the right and responsibility to remove, edit, or reject c
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
 reported to the community leaders responsible for enforcement at
-[INSERT CONTACT METHOD].
+<mkdocs.terminal@gmail.com>.
 All complaints will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the
