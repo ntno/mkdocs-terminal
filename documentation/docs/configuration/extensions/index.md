@@ -26,7 +26,6 @@ configuration:
 <!-- - [Highlight]
 - [Keys] -->
 <!-- - [SmartSymbols]
-- [Snippets]
 - [SuperFences]
 - [Tabbed] -->
 <!-- - [Tasklist] -->

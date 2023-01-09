@@ -20,7 +20,7 @@ nav:
       - Extensions: 'configuration/extensions/index.md'
       - Python Markdown: 'configuration/extensions/python-markdown.md'
       - PyMdown Extensions: 'configuration/extensions/py-mdown-extensions.md'
-      - Snippets: 'configuration/extensions/snippets.md'
+      - '___Snippets': 'configuration/extensions/snippets.md'
     - Navigation:
         - Section Indexes: 'navigation/section-indexes.md'
         - Table of Contents: 'navigation/toc.md'
