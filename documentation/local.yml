@@ -8,3 +8,4 @@ theme:
 
 watch:
   - '../terminal'
+  - './mkdocs.yml'
