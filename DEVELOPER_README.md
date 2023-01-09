@@ -24,6 +24,7 @@ Use this readme to add a feature to this theme or to update the theme documentat
     - [Test Theme Build Locally](#test-theme-build-locally)
     - [Add Tests](#add-tests)
     - [Push Changes and Create PR](#push-changes-and-create-pr-1)
+    - [Review PR Build](#review-pr-build)
 
 
 ## Developer Setup
@@ -130,3 +131,7 @@ Test suite setup is not complete yet.  See progress on this issue [here](https:/
 
 ### Push Changes and Create PR
 See [Work On Pull Request](https://github.com/susam/gitpr#work-on-pull-request) for help on adding/pushing changes to your feature branch.  
+
+### Review PR Build
+
+Pull Requests are tested using a [GitHub Action workflow](https://github.com/ntno/mkdocs-terminal/actions/workflows/test.yml).  Check the status of your PR build and resolve any reported issues.

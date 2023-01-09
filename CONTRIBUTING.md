@@ -78,4 +78,4 @@ See 'Add Tests' in [Developer Setup](DEVELOPER_README.md#add-tests)
 
 ## CI Information
 
-Currently pull requests are tested using a [GitHub Action workflow](https://github.com/ntno/mkdocs-terminal/actions/workflows/test.yml).
+Pull Requests are tested using a [GitHub Action workflow](https://github.com/ntno/mkdocs-terminal/actions/workflows/test.yml).
