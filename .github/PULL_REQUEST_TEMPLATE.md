@@ -1,4 +1,5 @@
-**Thank you in advance for helping us to improve this MkDocs theme** Please read through the template below and answer all relevant questions. Your additional work here is greatly appreciated and will help us respond as quickly as possible. To avoid duplicates, please search existing [Issues](https://github.com/ntno/mkdocs-terminal/issues) before submitting one here.
+**Thank you in advance for helping us to improve Terminal for MkDocs**  
+Please read through the template below and answer all relevant questions. Your additional work here is greatly appreciated and will help us respond as quickly as possible. To avoid duplicates, please search existing [Issues](https://github.com/ntno/mkdocs-terminal/issues) before submitting one here.
 
 By submitting a PR to this repository, you agree to the terms within the [Terminal for MkDocs Code of Conduct](https://github.com/ntno/mkdocs-terminal/blob/main/CODE_OF_CONDUCT.md).  Please see the [contributing guidelines](https://github.com/ntno/mkdocs-terminal/blob/main/CONTRIBUTING.md) for how to create and submit a high-quality PR for this repo.
 
@@ -35,4 +36,4 @@ By submitting a PR to this repository, you agree to the terms within the [Termin
 
 - [ ] I have added documentation for new/changed functionality in this PR or in [mkdocs-terminal/documentation](https://github.com/ntno/mkdocs-terminal/tree/main/documentation/docs)
 - [ ] All active GitHub checks for tests, formatting, and security are passing
-- [ ] The correct base branch is being used, if not `main`
+
