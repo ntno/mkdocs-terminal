@@ -54,7 +54,7 @@ em {
 }
 
 blockquote,
-code,
+/* code, */
 em,
 strong {
     line-height: var(--global-line-height)
@@ -62,7 +62,7 @@ strong {
 
 .logo,
 blockquote,
-code,
+/* code, */
 footer,
 h1,
 h2,
@@ -141,7 +141,7 @@ blockquote::after {
     line-height: var(--global-line-height);
     color: #9ca2ab
 }
-
+/* 
 code {
     font-weight: inherit;
     background-color: var(--code-bg-color);
@@ -180,7 +180,7 @@ pre code {
     display: inline-block;
     min-width: 100%;
     font-family: var(--mono-font-stack)
-}
+} */
 
 .terminal .logo,
 .terminal blockquote,
@@ -912,7 +912,7 @@ figure>figcaption {
     text-align: center
 }
 
-.hljs {
+/* .hljs {
     display: block;
     overflow-x: auto;
     padding: .5em;
@@ -980,4 +980,4 @@ figure>figcaption {
 
 .hljs-strong {
     font-weight: 700
-}
+} */
