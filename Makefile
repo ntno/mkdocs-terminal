@@ -47,7 +47,10 @@ check-dist:
 clean-dist:
 	rm -rf dist/
 
-clean: clean-dist
+clean-node:
+	rm -rf node_modules/
+
+clean: clean-dist clean-node
 
 install-tox-requirements:
 	python -m pip install -U tox
