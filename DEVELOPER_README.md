@@ -5,6 +5,7 @@ Use this readme to add a feature to this theme or to update the theme documentat
 
 - [Terminal for MkDocs Theme Development](#terminal-for-mkdocs-theme-development)
   - [Quicklinks](#quicklinks)
+- [\<\<\<\<\<\<\< Updated upstream](#-updated-upstream)
   - [Developer Setup](#developer-setup)
     - [Prerequisites](#prerequisites)
     - [Fork and Clone Repository](#fork-and-clone-repository)
@@ -12,6 +13,10 @@ Use this readme to add a feature to this theme or to update the theme documentat
   - [Documentation Updates](#documentation-updates)
     - [Create a Feature Branch](#create-a-feature-branch)
     - [Push Local Branch to Remote Repository](#push-local-branch-to-remote-repository)
+    - [Start Local Documentation Server](#start-local-documentation-server)
+    - [Make Documentation Updates](#make-documentation-updates)
+    - [Push Changes and Create PR](#push-changes-and-create-pr)
+>>>>>>> Stashed changes
 
 
 ## Developer Setup
@@ -50,3 +55,20 @@ git checkout -b docs-add-css-override-instructions
 ```
 
 ### Push Local Branch to Remote Repository
+```bash
+git push --set-upstream origin docs-add-css-override-instructions
+```
+
+### Start Local Documentation Server
+```bash
+make serve-docs
+```
+
+### Make Documentation Updates
+- Update existing [documentation pages](documentation/docs)  
+- Add any new pages to the documentation site nav in [documentation/mkdocs.yml](documentation/mkdocs.yml)  
+- View changes in local server and confirm everything works as expected / images load / links are not broken
+
+### Push Changes and Create PR
+See [Pull Requests](CONTRIBUTING.md#pull-requests)
+
