@@ -36,4 +36,4 @@ By submitting a PR to this repository, you agree to the terms within the [Termin
 
 - [ ] I have added documentation for new/changed functionality in this PR or in [mkdocs-terminal/documentation](https://github.com/ntno/mkdocs-terminal/tree/main/documentation/docs)
 - [ ] All active GitHub checks for tests, formatting, and security are passing
-- [ ] The correct base branch is being used, if not `main`
+
