@@ -40,9 +40,9 @@ You should be able to visit [http://0.0.0.0:8080/mkdocs-terminal/](http://0.0.0.
 If you get a `docker.sock: connect: permission denied` error, you probably need to start the Docker engine on your machine.  
 Open the Docker Desktop application and wait until the application indicates that the Docker engine is in a "running" state.  Then retry starting your docker container.  
 
-<img src="documentation/docs/img/developer-setup/engine-starting.png" width="400" title="Docker Engine Starting" alt="orange starting indicator at bottom left of Docker Desktop">
+<img src="documentation/docs/img/developer-setup/engine-starting.png" width="600" title="Docker Engine Starting" alt="orange starting indicator at bottom left of Docker Desktop">
 
-<img src="documentation/docs/img/developer-setup/engine-running.png" width="400" title="Docker Engine Starting" alt="green running indicator at bottom left of Docker Desktop">
+<img src="documentation/docs/img/developer-setup/engine-running.png" width="600" title="Docker Engine Starting" alt="green running indicator at bottom left of Docker Desktop">
 
 ## Documentation Updates
 
