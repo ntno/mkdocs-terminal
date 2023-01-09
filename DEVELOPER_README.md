@@ -101,8 +101,8 @@ git push --set-upstream origin add-timeline-component
 
 ### Bump Theme Version
 update version in:
-- `package.json`
-- `terminal/theme_version.html`
+- [`package.json`](package.json#L3)
+- [`terminal/theme_version.html`](terminal/theme_version.html)
 
 ### Start Documentation Server with Local Theme
 ```bash
