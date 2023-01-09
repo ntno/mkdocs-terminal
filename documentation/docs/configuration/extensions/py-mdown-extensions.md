@@ -63,3 +63,8 @@ See reference for usage:
 - [Adding Snippets]
 
   [Adding Snippets]: ./snippets.md
+
+
+# Credit
+
+This documentation is based on squidfunk's Material for MkDocs [Pymdown Extension](https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown-extensions/){target="_blank"} documentation.

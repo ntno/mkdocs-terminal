@@ -102,4 +102,4 @@ markdown_extensions:
 ```
 
 # Credit
-This documentation is based on squidfunk's Material for MkDocs [Extensions](https://squidfunk.github.io/mkdocs-material/setup/extensions/) documentation.
+This documentation is based on squidfunk's Material for MkDocs [Extensions](https://squidfunk.github.io/mkdocs-material/setup/extensions/){target="_blank"} documentation.
