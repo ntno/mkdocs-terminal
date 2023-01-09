@@ -11,4 +11,5 @@ exclude MANIFEST.in
 exclude NOTES.md
 exclude CONTRIBUTING.md
 exclude CODE_OF_CONDUCT.md
+exclude DEVELOPER_README.md
 exclude package-lock.json
