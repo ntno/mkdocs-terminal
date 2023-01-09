@@ -41,3 +41,59 @@ See reference for usage:
   [Caret]: https://facelessuser.github.io/pymdown-extensions/extensions/caret/
   [Mark]: https://facelessuser.github.io/pymdown-extensions/extensions/mark/
   [Tilde]: https://facelessuser.github.io/pymdown-extensions/extensions/tilde/
+
+
+### Snippets
+
+The [Snippets]{target="_blank"} extension adds the ability to embed content from arbitrary files into a document, including other documents or source files, by using a simple syntax. Enable it via `mkdocs.yml`:
+
+``` yaml
+markdown_extensions:
+  - pymdownx.snippets:
+      base_path: 
+        - docs
+```
+
+The configuration options of this extension are not specific to Terminal for
+MkDocs, as they only impact the Markdown parsing stage. See the [Snippets 
+documentation][Snippets]{target="_blank"} for more information.
+
+  [Snippets]: https://facelessuser.github.io/pymdown-extensions/extensions/snippets/
+  
+#### Usage
+
+Let's say you have a header that you want to add to several documentation pages: 
+
+file: `links.md`  
+file location: `./configuration/palettes/links.md`  
+```markdown
+--8<--
+configuration/palettes/links.md
+--8<--
+```
+
+You can add the following snippet marker to the page where you want to include this header:  
+
+file: `gruvbox_dark.md`  
+file location: `./configuration/palettes/gruvbox_dark.md`  
+```markdown
+;--8<--
+configuration/palettes/links.md
+;--8<--
+
+# Gruvbox Dark Palette
+
+To use the gruvbox_dark color palette, add the `palette` attribute to your theme configuration in `mkdocs.yml`:
+...
+```
+
+This will result in a final markdown for `gruvbox_dark.md` which includes the content in `links.md`: 
+
+```markdown
+--8<--
+configuration/palettes/gruvbox_dark.md::7
+--8<--
+...
+```
+
+
