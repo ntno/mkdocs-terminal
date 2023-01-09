@@ -23,7 +23,7 @@ serve: check-site
 serve-docs: 
 	docker compose run --entrypoint "/bin/bash" --service-ports local_documentation_server -c "make serve-mkdocs"
 
-serve-local-docs: 
+serve-local-theme: 
 	docker compose run --entrypoint "/bin/bash" --service-ports local_documentation_server -c "make serve-local"
 
 

@@ -23,6 +23,8 @@ theme:
 ## Developer Info
 [Terminal for MkDocs on GitHub](https://github.com/ntno/mkdocs-terminal)  
 [Terminal for MkDocs on PyPI](https://pypi.org/project/mkdocs-terminal)  
+[Theme Development README](DEVELOPER_README.md)  
+
 
 ### License
 
