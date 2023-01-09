@@ -21,7 +21,7 @@ Reading and following these guidelines will help us make the contribution proces
 
 ## Code of Conduct
 
-By participating and contributing to this project, you agree to uphold the [Terminal for MkDocs Code of Conduct](https://github.com/ntno/mkdocs-terminal/blob/main/CODE_OF_CONDUCT.md).
+By participating and contributing to this project, you agree to uphold the [Terminal for MkDocs Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## Getting Started
 
