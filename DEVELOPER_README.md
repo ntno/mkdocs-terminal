@@ -20,7 +20,7 @@ Use this readme to add a feature to this theme or to update the theme documentat
     - [Push Local Branch to Remote Repository](#push-local-branch-to-remote-repository-1)
     - [Bump Theme Version](#bump-theme-version)
     - [Start Documentation Server with Local Theme](#start-documentation-server-with-local-theme)
-    - [Make Updates to Theme](#make-updates-to-theme)
+    - [Make Updates](#make-updates)
     - [Test Theme Build Locally](#test-theme-build-locally)
     - [Add Tests](#add-tests)
     - [Push Changes and Create PR](#push-changes-and-create-pr-1)
@@ -109,7 +109,7 @@ update version in:
 make serve-local-theme
 ```
 
-### Make Updates to Theme
+### Make Updates
 Update files in [terminal/](terminal/).  You should see changes loaded in [http://0.0.0.0:8080/mkdocs-terminal/](http://0.0.0.0:8080/mkdocs-terminal/).
 
 - View changes in local server and confirm everything works as expected 
