@@ -12,9 +12,9 @@ Reading and following these guidelines will help us make the contribution proces
   - [Getting Started](#getting-started)
     - [Issues](#issues)
     - [Pull Requests](#pull-requests)
-- [Contribution](#contribution)
-  - [Documentation](#documentation)
+- [Contribute](#contribute)
   - [Environment setup](#environment-setup)
+  - [Making Documentation Updates](#making-documentation-updates)
   - [Making Theme Updates](#making-theme-updates)
     - [Adding Tests](#adding-tests)
   - [CI Information](#ci-information)
@@ -58,18 +58,15 @@ In general, we follow the ["fork-and-pull" Git workflow](https://github.com/susa
 6. Push changes to your fork
 7. Open a PR in our repository and follow the PR template so that we can efficiently review the changes.
 
-# Contribution
-
-## Documentation
-
-- PR for docs site update, if needed
-- Code-level documentation expectations
-	- 100% documentation coverage for PRs
-	- Include links to relevant Auth0 doc pages
+# Contribute
 
 ## Environment setup
 
 See 'Developer Setup' instructions in [Developer Setup](DEVELOPER_README.md#developer-setup)
+
+## Making Documentation Updates
+
+See 'Documentation Updates' in [Developer Setup](DEVELOPER_README.md#documentation-updates)
 
 ## Making Theme Updates
 
