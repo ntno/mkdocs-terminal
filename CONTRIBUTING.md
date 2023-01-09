@@ -72,7 +72,7 @@ In general, we follow the ["fork-and-pull" Git workflow](https://github.com/susa
 
 ## Environment setup
 
-Link to [README installation](README.md#installation) steps and include anything additional needed to contribute to the project.
+See instructions in [Developer Setup](README.md#developer-setup)
 
 ## Testing
 
