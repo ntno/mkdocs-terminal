@@ -9,6 +9,10 @@ Use this readme to add a feature to this theme or to update the theme documentat
     - [Prerequisites](#prerequisites)
     - [Fork and Clone Repository](#fork-and-clone-repository)
     - [Confirm Setup](#confirm-setup)
+  - [Documentation Updates](#documentation-updates)
+    - [Create a Feature Branch](#create-a-feature-branch)
+    - [Push Local Branch to Remote Repository](#push-local-branch-to-remote-repository)
+
 
 ## Developer Setup
 
@@ -35,3 +39,14 @@ Open the Docker Desktop application and wait until the application indicates tha
 
 ![engine-starting](documentation/docs/img/developer-setup/engine-starting.png)  
 ![engine-running](documentation/docs/img/developer-setup/engine-running.png)  
+
+## Documentation Updates
+
+### Create a Feature Branch
+Create a local branch to track your updates.  Include the topic of the feature in your branch name.  Example:  
+
+```bash
+git checkout -b docs-add-css-override-instructions
+```
+
+### Push Local Branch to Remote Repository
