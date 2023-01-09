@@ -66,8 +66,12 @@ make serve-docs
 ### Make Documentation Updates
 - Update existing [documentation pages](documentation/docs)  
 - Add any new pages to the documentation site nav in [documentation/mkdocs.yml](documentation/mkdocs.yml)  
-- View changes in local server and confirm everything works as expected / images load / links are not broken
+- View changes in local server and confirm everything works as expected 
+  - confirm images load
+  - confirm links are not broken
 
 ### Push Changes and Create PR
-See [Pull Requests](CONTRIBUTING.md#pull-requests)
+See [Work On Pull Request](https://github.com/susam/gitpr#work-on-pull-request) for help on adding/pushing changes to your feature branch.  
+
+See [Pull Requests](CONTRIBUTING.md#pull-requests) for instructions on creating a pull request to this repository.
 
