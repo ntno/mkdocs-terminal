@@ -52,6 +52,10 @@ clean-node:
 
 clean: clean-dist clean-node
 
+install-test-requirements:
+	apt-get update && apt install -y tidy
+	pip install -r dev.requirements.txt
+
 install-tox-requirements:
 	python -m pip install -U tox
 
