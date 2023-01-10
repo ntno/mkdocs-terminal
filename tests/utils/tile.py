@@ -8,12 +8,14 @@ log = logging.getLogger(__name__)
 
 class Tile:
     def __init__(
-        self, caption="", img_src="", img_title="", img_alt="", link_href="", link_target="", link_text="", link_title="", html_id="", css_class=""
+        self, caption="", img_src="", img_title="", img_alt="", img_width="", img_height="", link_href="", link_target="", link_text="", link_title="", html_id="", css_class=""
     ) -> None:
         self.caption = caption
         self.img_src = img_src
         self.img_title = img_title
         self.img_alt = img_alt
+        self.img_width = img_width
+        self.img_height = img_height
         self.link_href = link_href
         self.link_target = link_target
         self.link_text = link_text
@@ -41,6 +43,12 @@ class Tile:
 
     img_alt: Optional[str]
     """Alternate text for the image if the image cannot be displayed."""
+
+    img_width: Optional[str]
+    """Width to set on the image element."""
+
+    img_height: Optional[str]
+    """Height to set on the image element."""
 
     link_href: Optional[str]
     """Web page URL.  Can be an external web page or an internal MkDocs page like `./default/`."""
