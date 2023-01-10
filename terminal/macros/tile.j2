@@ -19,7 +19,11 @@
 
 
 {% if ns.is_valid %}
-<div id="{{ tile.id }}" class="terminal-mkdocs-tile {{ tile.class }}">
+<div 
+{% if tile.id is defined and tile.id|length %} 
+id="{{ tile.id }}" 
+{% endif %}
+class="terminal-mkdocs-tile {{ tile.class }}">
     <figure>
         {% if ns.has_link %} 
              {{ link_helper.make_link_start(tile) }}
