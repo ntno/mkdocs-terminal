@@ -1,4 +1,3 @@
-import pytest
 from jinja2 import TemplateNotFound
 
 class TestTestSetup():
@@ -9,5 +8,3 @@ class TestTestSetup():
             assert found_template != None
         except TemplateNotFound:
             self.fail("base.html should be found")
-
-            

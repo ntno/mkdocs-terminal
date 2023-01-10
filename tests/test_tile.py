@@ -1,4 +1,3 @@
-import pytest
 from tests.utils.tile import Tile
 from tests.utils.html import check_html
 
@@ -21,7 +20,7 @@ class TestTile():
         assert "<a " in rendered_tile
         assert "</a>" in rendered_tile
         assert "<img " not in rendered_tile
-        #TODO assert contains <div/figure/a
+        # TODO assert contains <div/figure/a
         assert check_html(rendered_tile)["errors"].length == 0
 
     def test_minimal_image_tile(self, env_with_terminal_loader, minimal_image_tile):
@@ -32,7 +31,7 @@ class TestTile():
         assert "<a " not in rendered_tile
         assert "</a>" not in rendered_tile
         assert "<img " in rendered_tile
-        #TODO assert contains <div/figure/img>
+        # TODO assert contains <div/figure/img>
         assert check_html(rendered_tile)["errors"].length == 0
 
     def test_minimal_linked_img_tile(self, env_with_terminal_loader, minimal_linked_image_tile):
@@ -43,5 +42,5 @@ class TestTile():
         assert "<a " in rendered_tile
         assert "</a>" in rendered_tile
         assert "<img " in rendered_tile
-        #TODO assert contains <div/figure/a/img>
+        # TODO assert contains <div/figure/a/img>
         assert check_html(rendered_tile)["errors"].length == 0

@@ -1,4 +1,3 @@
-import pytest
 from tests.utils.tile import Tile
 
 

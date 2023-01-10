@@ -23,11 +23,13 @@ def filesystem_terminal_loader():
     project_folder = parent.parent.resolve()
     return loaders.FileSystemLoader(project_folder / "terminal")
 
+
 @pytest.fixture
 def env_with_terminal_loader(env, filesystem_terminal_loader):
     """returns environment with loader set to terminal file system loader"""
     env.loader = filesystem_terminal_loader
     return env
+
 
 @pytest.fixture
 def empty_tile():
