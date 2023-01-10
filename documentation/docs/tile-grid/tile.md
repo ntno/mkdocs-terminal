@@ -33,6 +33,14 @@ A tile can represent an image, a link, or a linked image.
 
 :   Alternate text for the image if the image cannot be displayed.
 
+`img_width`
+
+:   Width to set on the image element.
+
+`img_height`
+
+:   Height to set on the image element.
+
 `link_href`
 
 :   Web page URL.  Can be an external web page or an internal MkDocs page like `./default/`.
