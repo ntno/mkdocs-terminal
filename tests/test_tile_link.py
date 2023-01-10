@@ -2,7 +2,7 @@ import pytest
 from tests.tile import Tile
 
 
-class TestTileLinkHelper:
+class TestTileLinkHelper():
 
     def test_helper_with_minimal_link_only_tile(self, env, filesystem_terminal_loader):
         env.loader = filesystem_terminal_loader
