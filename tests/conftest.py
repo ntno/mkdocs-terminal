@@ -3,8 +3,9 @@ from jinja2 import loaders
 from jinja2.environment import Environment
 import mkdocs.utils.filters
 import pytest
-from tests.tile import Tile
+from tests.utils.tile import Tile
 from tests import defaults 
+
 
 @pytest.fixture
 def env():

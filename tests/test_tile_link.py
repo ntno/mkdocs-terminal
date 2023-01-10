@@ -1,5 +1,5 @@
 import pytest
-from tests.tile import Tile
+from tests.utils.tile import Tile
 
 
 class TestTileLinkHelper():

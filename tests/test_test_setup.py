@@ -1,5 +1,4 @@
 import pytest
-from tests.tile import Tile
 from jinja2 import TemplateNotFound
 
 class TestTestSetup():
