@@ -54,12 +54,12 @@ clean: clean-dist clean-node
 
 install-test-requirements:
 	apt-get update && apt install -y tidy
-	pip install -r dev.requirements.txt
+	pip install -r requirements.dev.txt
 
 install-tox-requirements:
 	python -m pip install -U tox
 
-tox: install-tox-requirements
+tox: install-tox-requirements install-test-requirements
 	python -m tox -e py
 
 check-version-match:
