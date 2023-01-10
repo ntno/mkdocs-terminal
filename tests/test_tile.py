@@ -1,6 +1,7 @@
 from tests.utils.tile import Tile
 from tests.utils.html import check_html
 
+
 class TestTile():
 
     def test_empty_tile(self, env_with_terminal_loader, empty_tile):
