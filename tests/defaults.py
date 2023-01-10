@@ -1,2 +1,2 @@
-github_link_href = "https://github.com"
-github_img_src = "https://github.githubassets.com/favicons/favicon.svg"
+GITHUB_LINK_HREF = "https://github.com"
+GITHUB_IMG_SRC = "https://github.githubassets.com/favicons/favicon.svg"

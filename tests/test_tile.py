@@ -5,7 +5,7 @@ class TestTile():
 
     def test_empty_tile(self, env_with_terminal_loader, empty_tile):
         assert isinstance(empty_tile, Tile)
-        
+
         tile_macro = env_with_terminal_loader.get_template("macros/tile.j2")
         rendered_tile = tile_macro.module.make_tile(empty_tile)
         assert rendered_tile.strip() == ""
@@ -13,7 +13,7 @@ class TestTile():
 
     def test_minimal_link_tile(self, env_with_terminal_loader, minimal_link_tile):
         assert isinstance(minimal_link_tile, Tile)
-        
+
         tile_macro = env_with_terminal_loader.get_template("macros/tile.j2")
         rendered_tile = tile_macro.module.make_tile(minimal_link_tile)
         assert rendered_tile.strip() != ""

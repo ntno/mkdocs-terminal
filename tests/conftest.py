@@ -4,7 +4,7 @@ from jinja2.environment import Environment
 import mkdocs.utils.filters
 import pytest
 from tests.utils.tile import Tile
-from tests import defaults 
+from tests import defaults
 
 
 @pytest.fixture
@@ -40,17 +40,17 @@ def empty_tile():
 @pytest.fixture
 def minimal_link_tile():
     """returns a minimal link only title"""
-    return Tile(link_href=defaults.github_link_href)
+    return Tile(link_href=defaults.GITHUB_LINK_HREF)
 
 
 @pytest.fixture
 def minimal_image_tile():
-    return Tile(img_src=defaults.github_img_src)
+    return Tile(img_src=defaults.GITHUB_IMG_SRC)
 
 
 @pytest.fixture
 def minimal_linked_image_tile():
-    return Tile(link_href=defaults.github_link_href, img_src=defaults.github_img_src)
+    return Tile(link_href=defaults.GITHUB_LINK_HREF, img_src=defaults.GITHUB_IMG_SRC)
 
 
 # @pytest.fixture
