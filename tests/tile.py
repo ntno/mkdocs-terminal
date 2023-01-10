@@ -59,27 +59,3 @@ class Tile:
 
     css_class: Optional[str]
     """CSS class to add to the tile's HTML for advanced styling."""
-
-    # @property
-    # def is_link_only(self) -> bool:
-    #     if self.link_href is not None and self.link_href != "":
-    #         if self.img_src is None or self.img_src == "":
-    #             return True
-    #     return False
-
-    # @property
-    # def is_img_only(self) -> bool:
-    #     if self.img_src is not None and self.img_src != "":
-    #         if self.link_href is None or self.link_href == "":
-    #             return True
-    #     return False
-
-    # @property
-    # def is_linked_img(self) -> bool:
-    #     if self.link_href is not None and self.link_href != "" and self.img_src is not None and self.img_src != "":
-    #         return True
-    #     return False
-
-    # @property
-    # def is_valid(self) -> bool:
-    #     return self.is_link_only or self.is_img_only or self.is_linked_img
