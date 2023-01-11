@@ -11,7 +11,7 @@ jobs:
         # python: ['3.7']
         # platform: ['ubuntu-latest']
         python: ['3.7', '3.8', '3.9', '3.10']
-        platform: [ubuntu-latest, windows-latest] #, macos-latest,]
+        platform: [ubuntu-latest, , macos-latest windows-latest]
         include:
           - os: windows-latest
             scoop-install: true
@@ -28,16 +28,20 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - if: ${{ matrix.scoop-install }}
+        name: Install scoop (Windows)
+        uses: MinoruSekine/setup-scoop@v1
+      - if: ${{ matrix.scoop-install }}
         name: Install test requirements (windows)
         run: |
-          # iwr -useb get.scoop.sh | iex
-          # scoop install tidy
-          irm get.scoop.sh -outfile 'install.ps1'
-          iex "& {$(irm get.scoop.sh)} -RunAsAdmin install tidy"
+          scoop install tidy
       - if: ${{ matrix.apt-install}}
         name: Install test requirements (ubuntu)
         run: |
           make USE_SUDO=1 install-dev-requirements
+      - if: ${{ matrix.brew-install }}
+        name: Install test requirements (mac)
+        run: |
+          brew install tidy
       - name: Install tox
         run: make install-tox
       - name: Test
