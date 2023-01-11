@@ -14,4 +14,4 @@ exclude CODE_OF_CONDUCT.md
 exclude DEVELOPER_README.md
 exclude SECURITY.md
 exclude package-lock.json
-exclude requirements.dev.txt
+exclude requirements.test.txt
