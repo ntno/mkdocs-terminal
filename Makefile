@@ -58,7 +58,7 @@ clean: clean-dist clean-node
 install-dev-requirements:
 	$(SUDO_FLAG) apt-get update && $(SUDO_FLAG) apt install -y tidy
 
-install-dev-pip-requirements:	
+install-dev-pytest-requirements:	
 	pip install -r requirements.dev.txt
 
 install-tox:
