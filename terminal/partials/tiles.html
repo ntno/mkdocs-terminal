@@ -1,7 +1,7 @@
 {% import 'macros/tile.j2' as tile_helper %}
 
 {% if page and page.meta %}
-{% set show_tiles = "true" if page.meta.tiles %}
+{% set show_tiles = "true" if page.meta.tiles and page.meta.tiles is iterable %}
 {% set custom_grid_id = page.meta.grid_id if page.meta.grid_id|string|length %}
 {% set custom_grid_css = page.meta.grid_css if page.meta.grid_css|string|length %}
 {% endif %}
