@@ -47,8 +47,12 @@ jobs:
       - if: ${{ matrix.scoop }}
         name: Install test requirements
         run: |
-          iwr -useb get.scoop.sh | iex
-          scoop install tidy
+          # iwr -useb get.scoop.sh | iex
+          # scoop install tidy
+          irm get.scoop.sh -outfile 'install.ps1'
+          .\install.ps1 -RunAsAdmin [-OtherParameters ...]
+          # I don't care about other parameters and want a one-line command
+          iex "& {$(irm get.scoop.sh)} -RunAsAdmin" install tidy
       - name: Install tox
         run: make install-tox
       - name: Test
