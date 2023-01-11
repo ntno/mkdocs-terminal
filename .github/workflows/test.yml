@@ -18,34 +18,24 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: ${{ matrix.python }}
-      # - if: ${{ matrix.platform == 'windows-latest' }}
-      #   name: (windows) Install scoop
-      #   uses: MinoruSekine/setup-scoop@main
-      #   with: 
-      #     scoop_update: false      
-      # - if: ${{ matrix.platform == 'windows-latest' }}
-      #   name: (windows) Install test requirements
-      #   run: |
-      #     scoop install tidy
-      #     tidy -v
       - if: ${{ matrix.platform == 'ubuntu-latest' }} 
-        name: (ubuntu) Install test requirements
+        name: (ubuntu) Install Testing Prereqs
         run: |
           make USE_SUDO=1 install-dev-requirements
       - if: ${{ matrix.platform == 'macos-latest' }} 
-        name: (macos) Install test requirements
+        name: (macos) Install Testing Prereqs
         run: |
           brew install tidy-html5
-      - name: Install tox
+      - name: Install Tox
         run: make install-tox
-      - name: Run tox on build/package
+      - name: Test Build/Package with Tox
         run: python -m tox -e py
       - if: ${{ matrix.platform == 'ubuntu-latest' }} 
-        name: (ubuntu) Run pytests
+        name: (ubuntu) Run Tox pytests
         run: |
           python -m tox -e pytest-linux
       - if: ${{ matrix.platform == 'macos-latest' }} 
-        name: (macos) Run pytests
+        name: (macos) Run Tox pytests
         run: |
           python -m tox -e pytest-darwin
 
