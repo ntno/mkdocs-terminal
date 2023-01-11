@@ -53,6 +53,11 @@ def minimal_linked_image_tile():
     return Tile(link_href=defaults.GITHUB_LINK_HREF, img_src=defaults.GITHUB_IMG_SRC)
 
 
+@pytest.fixture
+def all_integer_tile():
+    return Tile(caption=0, html_id=1, css_class=2, link_text=3, link_href=4, link_title=5, link_target=6, img_src=7, img_alt=8, img_title=9, img_width=10, img_height=11)
+
+
 # @pytest.fixture
 # def dict_loader():
 #     """returns DictLoader"""
