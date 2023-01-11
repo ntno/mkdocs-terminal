@@ -11,7 +11,14 @@ jobs:
         # python: ['3.7']
         # platform: ['ubuntu-latest']
         python: ['3.7', '3.8', '3.9', '3.10']
-        platform: [ubuntu-latest] #, macos-latest, windows-latest]
+        platform: [ubuntu-latest, windows-latest] #, macos-latest,]
+        include:
+          - os: windows-latest
+            scoop-install: true
+          - os: ubuntu-latest
+            apt-install: true
+          - os: mac-latest
+            brew-install: true
     runs-on: ${{ matrix.platform }}
     steps:
       - name: Checkout
@@ -20,7 +27,15 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: ${{ matrix.python }}
-      - name: Install test requirements
+      - if: ${{ matrix.scoop-install }}
+        name: Install test requirements (windows)
+        run: |
+          # iwr -useb get.scoop.sh | iex
+          # scoop install tidy
+          irm get.scoop.sh -outfile 'install.ps1'
+          iex "& {$(irm get.scoop.sh)} -RunAsAdmin install tidy"
+      - if: ${{ matrix.apt-install}}
+        name: Install test requirements (ubuntu)
         run: |
           make USE_SUDO=1 install-dev-requirements
       - name: Install tox
@@ -50,7 +65,7 @@ jobs:
           # iwr -useb get.scoop.sh | iex
           # scoop install tidy
           irm get.scoop.sh -outfile 'install.ps1'
-          iex "& {$(irm get.scoop.sh)} -RunAsAdmin" install tidy
+          iex "& {$(irm get.scoop.sh)} -RunAsAdmin install tidy"
       - name: Install tox
         run: make install-tox
       - name: Test
