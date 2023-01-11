@@ -1,7 +1,6 @@
 from pathlib import Path
 from jinja2 import loaders
 from jinja2.environment import Environment
-from tests.utils.html import check_html
 from tests.utils.tile import Tile
 from tests import defaults
 import mkdocs.utils.filters
@@ -53,9 +52,6 @@ def minimal_image_tile():
 def minimal_linked_image_tile():
     return Tile(link_href=defaults.GITHUB_LINK_HREF, img_src=defaults.GITHUB_IMG_SRC)
 
-
-def assert_valid_html(html):
-    assert len(check_html(html)["errors"]) == 0
 
 # @pytest.fixture
 # def dict_loader():

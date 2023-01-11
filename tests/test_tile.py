@@ -1,27 +1,7 @@
 from tests.utils.tile import Tile
-from tests.conftest import assert_valid_html
+from tests.utils.html import assert_valid_html, assert_tile_has_anchor, assert_tile_has_img
 from tests import defaults
 import pytest
-
-
-def assert_tile_has_terminal_marker(html):
-    assert "class=\"terminal-mkdocs-tile " in html
-
-
-def tile_has_anchor(html):
-    return "<a " in html and "</a>" in html
-
-
-def tile_has_img(html):
-    return "<img " in html
-
-
-def assert_tile_has_anchor(html):
-    assert tile_has_anchor(html)
-
-
-def assert_tile_has_img(html):
-    assert tile_has_img(html)
 
 
 class TestTile():
