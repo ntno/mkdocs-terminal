@@ -1,6 +1,7 @@
 from tests.utils.tile import Tile
 from tests.utils.html import assert_valid_html, tile_has_anchor, tile_has_img
 from tests import defaults
+import pytest
 
 
 class TestTile():
@@ -39,4 +40,11 @@ class TestTile():
         rendered_tile = tile_macro.module.make_tile(tile)
         assert "id=\"myId\"" in rendered_tile
         assert "class=\"terminal-mkdocs-tile myClass\"" in rendered_tile
-        assert_valid_html(rendered_tile)
+        assert len(check_html(rendered_tile)["errors"]) == 0
+
+    def test_that_tile_renders_with_integer_inputs(self, env_with_terminal_loader, all_integer_tile):
+        tile_macro = env_with_terminal_loader.get_template("macros/tile.j2")
+        try:
+            tile_macro.module.make_tile(all_integer_tile)
+        except Exception as ex:
+            pytest.fail(f"Got exception during render: {ex})")

@@ -4,13 +4,13 @@
 {% macro make_tile( tile ) -%}
 
 {% set ns = namespace(is_valid=false, has_link=false, has_image=false, has_caption=false) %}
-{% if tile.img_src is defined and tile.img_src|length %}
+{% if tile.img_src is defined and tile.img_src|string|length %}
     {%- set ns.has_image = true -%}
 {% endif %}
-{% if tile.link_href is defined and tile.link_href|length %}
+{% if tile.link_href is defined and tile.link_href|string|length %}
     {%- set ns.has_link = true -%}
 {% endif %}
-{% if tile.caption is defined and tile.caption|length %}
+{% if tile.caption is defined and tile.caption|string|length %}
     {%- set ns.has_caption = true -%}
 {% endif %}
 {% if ns.has_link or ns.has_image %}
@@ -42,7 +42,7 @@ class="terminal-mkdocs-tile {{ tile.div_css }}">
         {% endif %}
         
         {% if ns.has_caption %}
-            <figcaption>{{ tile.caption|trim}}</figcaption>
+            <figcaption>{{ tile.caption|string|trim }}</figcaption>
         {% endif %}
     </figure>
 </div>
