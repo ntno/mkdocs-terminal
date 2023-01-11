@@ -36,7 +36,7 @@ jobs:
         name: (windows) Install tidy
         run: |
           git clone https://github.com/htacg/tidy-html5.git
-          cd tidy-html5.git
+          cd tidy-html5
           cd build/cmake
           cmake ../.. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="C:/Program Files (x86)/tidy"
 
