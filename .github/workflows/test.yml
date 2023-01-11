@@ -18,15 +18,17 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: ${{ matrix.python }}
-      - if: ${{ matrix.platform == 'windows-latest' }}
-        name: (windows) Install scoop
-        uses: MinoruSekine/setup-scoop@main
-        with: 
-          scoop_update: false
+      # - if: ${{ matrix.platform == 'windows-latest' }}
+      #   name: (windows) Install scoop
+      #   uses: MinoruSekine/setup-scoop@main
+      #   with: 
+      #     scoop_update: false
       - if: ${{ matrix.platform == 'windows-latest' }}
         name: (windows) Install test requirements
         run: |
-          scoop install tidy
+          # scoop install tidy
+          Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+          choco install html-tidy
       - if: ${{ matrix.platform == 'ubuntu-latest' }} 
         name: (ubuntu) Install test requirements
         run: |
