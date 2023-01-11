@@ -62,8 +62,8 @@ class Tile:
     link_title: Optional[Any]
     """Text to display on hover.  Should not be used if `img_title` is already specified."""
 
-    div_id: Optional[str]
+    div_id: Optional[Any]
     """ID to add to the tile's HTML for advanced styling."""
 
-    div_css: Optional[str]
+    div_css: Optional[Any]
     """CSS class to add to the tile's HTML for advanced styling."""
