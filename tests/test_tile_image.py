@@ -38,3 +38,9 @@ class TestTileImage():
         image_macro = env_with_terminal_loader.get_template("macros/tile-image.j2")
         rendered_image = image_macro.module.make_image(tile)
         assert len(check_html(rendered_image)["errors"]) == 0
+
+    def test_that_img_tile_renders_with_integer_inputs(self, env_with_terminal_loader):
+        tile = Tile(img_src=1, img_alt=2, img_title=3, img_width=100, img_height=200)
+        image_macro = env_with_terminal_loader.get_template("macros/tile-image.j2")
+        rendered_image = image_macro.module.make_image(tile)
+        assert len(check_html(rendered_image)["errors"]) == 0
