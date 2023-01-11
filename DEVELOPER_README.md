@@ -127,7 +127,7 @@ make tox
 ```
 
 ### Add Tests
-Test suite setup is not complete yet.  See progress on this issue [here](https://github.com/ntno/mkdocs-terminal/issues/13).  If you have experience creating automated tests for Jinja2 please consider making a contribution!  
+Test suite setup is in progress.  See [GitHub issue](https://github.com/ntno/mkdocs-terminal/issues/13) for details.  If you have experience creating automated tests for Jinja2 please consider making a contribution!  
 
 ### Push Changes and Create PR
 See [Work On Pull Request](https://github.com/susam/gitpr#work-on-pull-request) for help on adding/pushing changes to your feature branch.  
