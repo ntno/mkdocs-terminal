@@ -3,6 +3,7 @@ from tests.utils.html import check_html
 from tests import defaults
 import pytest
 
+
 class TestTile():
 
     def test_empty_tile(self, env_with_terminal_loader, empty_tile):
