@@ -23,12 +23,24 @@ jobs:
       #   uses: MinoruSekine/setup-scoop@main
       #   with: 
       #     scoop_update: false
-      - if: ${{ matrix.platform == 'windows-latest' }}
-        name: (windows) Install test requirements
+      # - if: ${{ matrix.platform == 'windows-latest' }}
+      #   uses: crazy-max/ghaction-chocolatey@v2
+      #   with:
+      #     args: install html-tidy
+        # name: (windows) Install test requirements
+        # run: |
+        #   # scoop install tidy
+        #   Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+        #   choco install html-tidy
+      - if ${{ matrix.platform == 'windows-latest' }}
+        name: (windows) Install tidy
         run: |
-          # scoop install tidy
-          Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-          choco install html-tidy
+          git clone https://github.com/htacg/tidy-html5.git
+          cd tidy-html5.git
+          cd build/cmake
+          cmake ../.. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/Program Files (x86)/tidy
+          
+
       - if: ${{ matrix.platform == 'ubuntu-latest' }} 
         name: (ubuntu) Install test requirements
         run: |
