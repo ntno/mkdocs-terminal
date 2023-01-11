@@ -21,7 +21,9 @@ jobs:
       with:
         python-version: ${{ matrix.python }}
     - name: Install test requirements
-      run: make USE_SUDO=1 install-dev-requirements
+      run: |
+        sudo apt install default-jre
+        make USE_SUDO=1 install-dev-requirements
     - name: Install tox
       run: make install-tox
     - name: Test
