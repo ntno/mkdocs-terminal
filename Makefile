@@ -52,14 +52,16 @@ clean-node:
 
 clean: clean-dist clean-node
 
-install-test-requirements:
+install-dev-requirements:
 	apt install -y tidy
+
+install-dev-pip-requirements:	
 	pip install -r requirements.dev.txt
 
-install-tox-requirements:
+install-tox:
 	python -m pip install -U tox
 
-tox: install-tox-requirements install-test-requirements
+tox: install-tox install-dev-requirements
 	python -m tox -e py
 
 check-version-match:
