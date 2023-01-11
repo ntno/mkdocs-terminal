@@ -27,3 +27,16 @@ jobs:
       run: make install-tox
     - name: Test
       run: python -m tox -e py
+
+  test-windows:
+    strategy:
+      matrix:
+        python: ['3.8']
+        platform: [windows-latest]
+      runs-on: ${{ matrix.platform }}
+      steps:
+      - name: Install test requirements
+        run: |
+          iwr -useb get.scoop.sh | iex
+          scoop install tidy
+      
