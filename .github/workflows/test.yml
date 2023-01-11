@@ -30,6 +30,12 @@ jobs:
         run: make install-tox
       - name: Test Build/Package with Tox
         run: python -m tox -e py
-      - name: Run Tox pytests
+      - if: ${{ matrix.platform == 'ubuntu-latest' }} 
+        name: (ubuntu) Run Tox pytests
         run: |
-          python -m tox -e pytest
+          python -m tox -e pytest-linux
+      - if: ${{ matrix.platform == 'macos-latest' }} 
+        name: (macos) Run Tox pytests
+        run: |
+          python -m tox -e pytest-darwin
+          
