@@ -1,5 +1,8 @@
 version=$(shell cat package.json | jq .version -r)
 
+ifeq ($(USE_SUDO),1)
+   SUDO_FLAG = sudo
+endif
 
 .PHONY: check-version-match clean
 
@@ -52,14 +55,26 @@ clean-node:
 
 clean: clean-dist clean-node
 
-install-tox-requirements:
+install-test-prereqs:
+	$(SUDO_FLAG) apt-get update && $(SUDO_FLAG) apt install -y tidy
+
+install-test-requirements:	
+	pip install -r requirements.test.txt
+
+install-tox:
 	python -m pip install -U tox
 
-tox: install-tox-requirements
-	python -m tox -e py
+tox: install-tox install-test-prereqs
+	python -m tox -e py 
+	python -m tox -e pytest-linux
 
 check-version-match:
 	cat terminal/theme_version.html | grep -s --silent $(version)\"\>\$$ -o 
+
+#for developer use, assumes you have already installed prereqs
+quick-tests:
+	flake8 --ignore E501
+	pytest --color=yes --capture=no tests 
 
 check-site:
 ifndef site

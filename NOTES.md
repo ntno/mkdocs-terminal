@@ -35,3 +35,4 @@ Terminal for MkDocs' Tile Grid relies on the *meta*[^mkdocs-page-meta] attribute
   - img: https://picsum.photos/id/{id}/200/200  
 - to read: [Make for devops](https://alexharv074.github.io/2019/12/26/gnu-make-for-devops-engineers.html)  
 - to read: [testing bash scripts](https://alexharv074.github.io/2017/07/07/unit-testing-a-bash-script-with-shunit2.html)  
+- [pytidylib](https://pythonhosted.org/pytidylib/)
