@@ -39,8 +39,7 @@ jobs:
           cd tidy-html5
           cd build/cmake
           cmake ../.. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="C:/Program Files (x86)/tidy"
-
-
+          tidy -v
       - if: ${{ matrix.platform == 'ubuntu-latest' }} 
         name: (ubuntu) Install test requirements
         run: |
