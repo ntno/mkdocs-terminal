@@ -2,8 +2,8 @@
 
 {% if page and page.meta %}
 {% set show_tiles = "true" if page.meta.tiles %}
-{% set custom_grid_id = page.meta.grid_id if page.meta.grid_id|length %}
-{% set custom_grid_css = page.meta.grid_css if page.meta.grid_css|length %}
+{% set custom_grid_id = page.meta.grid_id if page.meta.grid_id|string|length %}
+{% set custom_grid_css = page.meta.grid_css if page.meta.grid_css|string|length %}
 {% endif %}
 
 {% if show_tiles %}

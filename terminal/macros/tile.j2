@@ -20,7 +20,7 @@
 
 {% if ns.is_valid %}
 <div 
-{% if tile.div_id is defined and tile.div_id|length %} 
+{% if tile.div_id is defined and tile.div_id|string|length %} 
 id="{{ tile.div_id }}" 
 {% endif %}
 class="terminal-mkdocs-tile {{ tile.div_css }}">
