@@ -61,7 +61,7 @@ A tile can represent an image, a link, or a linked image.
 
 :   ID to add to the tile's HTML for advanced styling. See [Extra CSS] for example.  
 
-`div_class`
+`div_css`
 
 :   CSS class to add to the tile's HTML for advanced styling. See [Extra CSS] for example.  
 

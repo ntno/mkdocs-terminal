@@ -34,7 +34,7 @@ class TestTile():
         assert_valid_html(rendered_tile)
 
     def test_id_and_class_added_to_tile(self, env_with_terminal_loader):
-        tile = Tile(div_id="myId", div_class="myClass", link_href=defaults.GITHUB_LINK_HREF)
+        tile = Tile(div_id="myId", div_css="myClass", link_href=defaults.GITHUB_LINK_HREF)
         tile_macro = env_with_terminal_loader.get_template("macros/tile.j2")
         rendered_tile = tile_macro.module.make_tile(tile)
         assert "id=\"myId\"" in rendered_tile

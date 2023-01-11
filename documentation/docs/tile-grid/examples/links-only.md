@@ -23,7 +23,7 @@ tiles:
     link_text: Tile Reference
     link_href: ../../tile
   - caption: ".example_highlight"
-    div_class: "example_highlight"
+    div_css: "example_highlight"
     link_target: "_self"
     link_title: go to grid reference in this window
     link_text: Grid Reference
@@ -79,7 +79,7 @@ tiles:
     link_text: Tile Reference
     link_href: ../../tile
   - caption: ".example_highlight"
-    div_class: "example_highlight"
+    div_css: "example_highlight"
     link_target: "_self"
     link_title: go to grid reference in this window
     link_text: Grid Reference

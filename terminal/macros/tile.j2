@@ -23,7 +23,7 @@
 {% if tile.div_id is defined and tile.div_id|length %} 
 id="{{ tile.div_id }}" 
 {% endif %}
-class="terminal-mkdocs-tile {{ tile.div_class }}">
+class="terminal-mkdocs-tile {{ tile.div_css }}">
     <figure>
         {% if ns.has_link %} 
              {{ link_helper.make_link_start(tile) }}

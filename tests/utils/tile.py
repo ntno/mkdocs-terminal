@@ -8,7 +8,7 @@ log = logging.getLogger(__name__)
 
 class Tile:
     def __init__(
-        self, caption="", img_src="", img_title="", img_alt="", img_width="", img_height="", link_href="", link_target="", link_text="", link_title="", div_id="", div_class=""
+        self, caption="", img_src="", img_title="", img_alt="", img_width="", img_height="", link_href="", link_target="", link_text="", link_title="", div_id="", div_css=""
     ) -> None:
         self.caption = caption
         self.img_src = img_src
@@ -21,7 +21,7 @@ class Tile:
         self.link_text = link_text
         self.link_title = link_title
         self.div_id = div_id
-        self.div_class = div_class
+        self.div_css = div_css
 
     def __repr__(self):
         link_href = f"'{self.link_href}'" if (
@@ -65,5 +65,5 @@ class Tile:
     div_id: Optional[str]
     """ID to add to the tile's HTML for advanced styling."""
 
-    div_class: Optional[str]
+    div_css: Optional[str]
     """CSS class to add to the tile's HTML for advanced styling."""
