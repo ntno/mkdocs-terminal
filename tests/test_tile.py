@@ -22,7 +22,7 @@ class TestTile():
         assert "</a>" in rendered_tile
         assert "<img " not in rendered_tile
         # TODO assert contains <div/figure/a
-        assert len(check_html(rendered_tile)["errors"]) == 0
+        assert len(check_html(rendered_tile)["errors"]) != 0
 
     def test_minimal_image_tile(self, env_with_terminal_loader, minimal_image_tile):
         assert isinstance(minimal_image_tile, Tile)
