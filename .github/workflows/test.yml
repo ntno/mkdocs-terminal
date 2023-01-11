@@ -19,20 +19,20 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - if: ${{ matrix.platform == 'windows-latest' }}
-        name: Install scoop (Windows)
+        name: (windows) Install scoop
         uses: MinoruSekine/setup-scoop@main
         with: 
           scoop_update: false
       - if: ${{ matrix.platform == 'windows-latest' }}
-        name: Install test requirements (windows)
+        name: (windows) Install test requirements
         run: |
           scoop install tidy
       - if: ${{ matrix.platform == 'ubuntu-latest' }} 
-        name: Install test requirements (ubuntu)
+        name: (ubuntu) Install test requirements
         run: |
           make USE_SUDO=1 install-dev-requirements
       - if: ${{ matrix.platform == 'macos-latest' }} 
-        name: Install test requirements (mac)
+        name: (macos) Install test requirements
         run: |
           brew install tidy-html5
       - name: Install tox
