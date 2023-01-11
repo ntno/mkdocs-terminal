@@ -20,10 +20,10 @@
 
 {% if ns.is_valid %}
 <div 
-{% if tile.id is defined and tile.id|length %} 
-id="{{ tile.id }}" 
+{% if tile.div_id is defined and tile.div_id|length %} 
+id="{{ tile.div_id }}" 
 {% endif %}
-class="terminal-mkdocs-tile {{ tile.class }}">
+class="terminal-mkdocs-tile {{ tile.div_class }}">
     <figure>
         {% if ns.has_link %} 
              {{ link_helper.make_link_start(tile) }}
