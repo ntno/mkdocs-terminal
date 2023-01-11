@@ -56,7 +56,7 @@ clean-node:
 clean: clean-dist clean-node
 
 install-dev-requirements:
-	$(SUDO_FLAG) apt install -y tidy
+	$(SUDO_FLAG) apt-get update && $(SUDO_FLAG) apt install -y tidy
 
 install-dev-pip-requirements:	
 	pip install -r requirements.dev.txt
