@@ -32,14 +32,27 @@ tiles:
         padding: 30px;
     }
 </style>
-<hr>
 
 # Tile Grid Style Overrides
 
-To demonstrate how the tile grid's style can be overriden, the following `<style>` HTML is included in this page's markdown:
+Tile Grid can be further customized by setting the `grid_id` and `grid_css` attributes in the markdown page's metadata (see [Overview] for details).  
+
+`grid_id` sets the HTML ID on the div containing the tile grid.  
+
+`grid_css` is added to the div's CSS classes.  
+
+
+[Overview]: ../..#1-add-tiles-to-page-metadata
 
 ## Extra CSS
-```
+To demonstrate how the tile grid's style can be overriden, the following `<style>` HTML is included in this page's markdown:
+
+- `example_solid_border`: sets the border to a solid line  
+- `example_dashed_border`: sets the border to a dashed line  
+- `#grid_123`: sets the gile grid's column widths explicitly  
+
+
+```css
 <style> 
     .example_solid_border {
       border: solid !important;
@@ -60,6 +73,8 @@ To demonstrate how the tile grid's style can be overriden, the following `<style
 ```
 
 ## Grid Markdown
+Note that the metadata on this page includes `grid_id: "grid_123"` and `grid_css: "example_solid_border"`.  These settings override the tile grid's original styling to the custom styling defined on this page (see [above](#extra-css)).
+
 ```markdown
 ---
 show_tiles_first: true
