@@ -53,7 +53,7 @@ clean-node:
 clean: clean-dist clean-node
 
 install-test-requirements:
-	apt-get update && apt install -y tidy
+	apt install -y tidy
 	pip install -r requirements.dev.txt
 
 install-tox-requirements:
