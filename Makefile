@@ -65,7 +65,8 @@ install-tox:
 	python -m pip install -U tox
 
 tox: install-tox install-dev-requirements
-	python -m tox -e py
+	python -m tox -e py 
+	python -m tox -e pytest-linux
 
 check-version-match:
 	cat terminal/theme_version.html | grep -s --silent $(version)\"\>\$$ -o 
