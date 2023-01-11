@@ -8,14 +8,20 @@ def assert_tile_has_terminal_marker(html):
     assert "class=\"terminal-mkdocs-tile " in html
 
 
+def tile_has_anchor(html):
+    return "<a " in html and "</a>" in html
+
+
+def tile_has_img(html):
+    return "<img " in html
+
+
 def assert_tile_has_anchor(html):
-    assert "<a " in html
-    assert "</a>" in html
+    assert tile_has_anchor(html)
 
 
 def assert_tile_has_img(html):
-    assert "<a " in html
-    assert "<img " in html
+    assert tile_has_img(html)
 
 
 class TestTile():
