@@ -55,7 +55,7 @@ clean-node:
 
 clean: clean-dist clean-node
 
-install-dev-requirements:
+install-dev-prereqs:
 	$(SUDO_FLAG) apt-get update && $(SUDO_FLAG) apt install -y tidy
 
 install-dev-pytest-requirements:	
@@ -64,7 +64,7 @@ install-dev-pytest-requirements:
 install-tox:
 	python -m pip install -U tox
 
-tox: install-tox install-dev-requirements
+tox: install-tox install-dev-prereqs
 	python -m tox -e py 
 	python -m tox -e pytest-linux
 

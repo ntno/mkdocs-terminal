@@ -21,7 +21,7 @@ jobs:
       - if: ${{ matrix.platform == 'ubuntu-latest' }} 
         name: (ubuntu) Install Testing Prereqs
         run: |
-          make USE_SUDO=1 install-dev-requirements
+          make USE_SUDO=1 install-dev-prereqs
       - if: ${{ matrix.platform == 'macos-latest' }} 
         name: (macos) Install Testing Prereqs
         run: |
