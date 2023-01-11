@@ -30,18 +30,6 @@ jobs:
         run: make install-tox
       - name: Test Build/Package with Tox
         run: python -m tox -e py
-      - if: ${{ matrix.platform == 'ubuntu-latest' }} 
-        name: (ubuntu) Run Tox pytests
+      - name: Run Tox pytests
         run: |
-          python -m tox -e pytest-linux
-      - if: ${{ matrix.platform == 'macos-latest' }} 
-        name: (macos) Run Tox pytests
-        run: |
-          python -m tox -e pytest-darwin
-
-# uses: crazy-max/ghaction-chocolatey@v2
-#         with:
-#           args: install html-tidy
-
-#           Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-#           choco install html-tidy
+          python -m tox -e pytest
