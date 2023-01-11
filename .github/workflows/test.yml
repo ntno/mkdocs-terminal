@@ -22,7 +22,7 @@ jobs:
         python-version: ${{ matrix.python }}
     - name: Install test requirements
       run: |
-        make install-dev-requirements
+        make USE_SUDO=1 install-dev-requirements
     - name: Install tox
       run: make install-tox
     - name: Test
