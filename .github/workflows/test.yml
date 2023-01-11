@@ -38,9 +38,10 @@ jobs:
           brew install tidy-html5
       - name: Install tox
         run: make install-tox
-      - name: Test
+      - name: Run tox on build/package
         run: python -m tox -e py
-
+      - name: Run tox on pytests
+        run: python -m tox -e pytest
 
 
 # uses: crazy-max/ghaction-chocolatey@v2
