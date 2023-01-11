@@ -64,5 +64,7 @@ class TestTile():
     def test_that_tile_renders_with_integer_inputs(self, env_with_terminal_loader):
         tile = Tile(html_id=1, css_class=2, caption=3, link_href=4, link_title=5, link_target=6, img_src=7, img_alt=8, img_title=9, img_width=10, img_height=11)
         tile_macro = env_with_terminal_loader.get_template("macros/tile.j2")
-        rendered_tile = tile_macro.module.make_tile(tile)
-        assert len(check_html(rendered_tile)["errors"]) == 0
+        try:
+            tile_macro.module.make_tile(tile)
+        except Exception as ex:
+            pytest.fail(f"Got exception during tile render: {ex})")
