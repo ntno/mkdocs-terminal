@@ -1,7 +1,11 @@
 from tests.utils.tile import Tile
-from tests.utils.html import check_html
+from tests.conftest import assert_valid_html
 from tests import defaults
 import pytest
+
+
+def assert_tile_has_terminal_marker(html):
+    assert "class=\"terminal-mkdocs-tile " in html
 
 
 class TestTile():
@@ -12,7 +16,7 @@ class TestTile():
         tile_macro = env_with_terminal_loader.get_template("macros/tile.j2")
         rendered_tile = tile_macro.module.make_tile(empty_tile)
         assert rendered_tile.strip() == ""
-        assert len(check_html(rendered_tile)["errors"]) == 0
+        assert_valid_html(rendered_tile)
 
     def test_minimal_link_tile(self, env_with_terminal_loader, minimal_link_tile):
         assert isinstance(minimal_link_tile, Tile)
@@ -25,7 +29,7 @@ class TestTile():
         assert "<img " not in rendered_tile
         assert "id=" not in rendered_tile
         # TODO assert contains <div/figure/a
-        assert len(check_html(rendered_tile)["errors"]) == 0
+        assert_valid_html(rendered_tile)
 
     def test_minimal_image_tile(self, env_with_terminal_loader, minimal_image_tile):
         assert isinstance(minimal_image_tile, Tile)
@@ -37,7 +41,7 @@ class TestTile():
         assert "<img " in rendered_tile
         assert "id=" not in rendered_tile
         # TODO assert contains <div/figure/img>
-        assert len(check_html(rendered_tile)["errors"]) == 0
+        assert_valid_html(rendered_tile)
 
     def test_minimal_linked_img_tile(self, env_with_terminal_loader, minimal_linked_image_tile):
         assert isinstance(minimal_linked_image_tile, Tile)
@@ -49,7 +53,7 @@ class TestTile():
         assert "<img " in rendered_tile
         assert "id=" not in rendered_tile
         # TODO assert contains <div/figure/a/img>
-        assert len(check_html(rendered_tile)["errors"]) == 0
+        assert_valid_html(rendered_tile)
 
     @pytest.mark.skip(reason="breaking change needs to be fixed in major release")
     def test_id_and_class_added_to_tile(self, env_with_terminal_loader):
@@ -59,4 +63,4 @@ class TestTile():
         assert rendered_tile.strip() != ""
         assert "id=\"myID\"" in rendered_tile
         assert "class=\"terminal-mkdocs-tile myClass\"" in rendered_tile
-        assert len(check_html(rendered_tile)["errors"]) == 0
+        assert_valid_html(rendered_tile)
