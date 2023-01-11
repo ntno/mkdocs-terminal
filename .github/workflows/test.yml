@@ -30,6 +30,8 @@ jobs:
       - if: ${{ matrix.scoop-install }}
         name: Install scoop (Windows)
         uses: MinoruSekine/setup-scoop@v1
+        with: 
+          scoop_update: 'false'
       - if: ${{ matrix.scoop-install }}
         name: Install test requirements (windows)
         run: |
