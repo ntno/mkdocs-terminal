@@ -54,7 +54,7 @@ class TestGrid():
         except Exception as ex:
             pytest.fail(f"Got exception during render: {ex})")
 
-    def test_grid_renders_with_integer_input(self, env_with_terminal_loader, all_integer_tile):
+    def test_grid_renders_with_integer_tile_input(self, env_with_terminal_loader, all_integer_tile):
         grid_partial = env_with_terminal_loader.get_template("partials/tiles.html")
         context_data = {
             "page": {
