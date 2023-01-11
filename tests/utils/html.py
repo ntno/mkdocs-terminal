@@ -9,6 +9,10 @@ def check_html(fragment):
     return result
 
 
+def print_trimmed_html(fragment):
+    print(' '.join(fragment.split()))
+
+
 def assert_valid_html(html):
     assert len(check_html(html)["errors"]) == 0
 
