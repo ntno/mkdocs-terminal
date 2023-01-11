@@ -40,10 +40,9 @@ class TestTileImage():
         rendered_image = image_macro.module.make_image(tile)
         assert len(check_html(rendered_image)["errors"]) == 0
 
-    def test_that_img_tile_renders_with_integer_inputs(self, env_with_terminal_loader):
-        tile = Tile(img_src=1, img_alt=2, img_title=3, img_width=100, img_height=200)
+    def test_that_img_tile_renders_with_integer_inputs(self, env_with_terminal_loader, all_integer_tile):
         image_macro = env_with_terminal_loader.get_template("macros/tile-image.j2")
         try:
-            image_macro.module.make_image(tile)
+            image_macro.module.make_image(all_integer_tile)
         except Exception as ex:
-            pytest.fail(f"Got exception during tile render: {ex})")
+            pytest.fail(f"Got exception during render: {ex})")
