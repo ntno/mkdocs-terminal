@@ -36,3 +36,15 @@ Terminal for MkDocs' Tile Grid relies on the *meta*[^mkdocs-page-meta] attribute
 - to read: [Make for devops](https://alexharv074.github.io/2019/12/26/gnu-make-for-devops-engineers.html)  
 - to read: [testing bash scripts](https://alexharv074.github.io/2017/07/07/unit-testing-a-bash-script-with-shunit2.html)  
 - [pytidylib](https://pythonhosted.org/pytidylib/)
+- [regex101](https://regex101.com/)
+
+
+## regex
+### linked image
+`<div .*? <figure(.)[^>]*? <a(.)*<img`
+
+### linked tile
+`<div .*? <figure(.)[^>]*? <a(.)*`
+
+### img tile
+`<div .*? <figure(.)[^>]*? <img(.)*`
