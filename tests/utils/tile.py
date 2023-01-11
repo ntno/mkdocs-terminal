@@ -8,7 +8,7 @@ log = logging.getLogger(__name__)
 
 class Tile:
     def __init__(
-        self, caption="", img_src="", img_title="", img_alt="", img_width="", img_height="", link_href="", link_target="", link_text="", link_title="", html_id="", css_class=""
+        self, caption="", img_src="", img_title="", img_alt="", img_width="", img_height="", link_href="", link_target="", link_text="", link_title="", div_id="", div_class=""
     ) -> None:
         self.caption = caption
         self.img_src = img_src
@@ -20,8 +20,8 @@ class Tile:
         self.link_target = link_target
         self.link_text = link_text
         self.link_title = link_title
-        self.html_id = html_id
-        self.css_class = css_class
+        self.div_id = div_id
+        self.div_class = div_class
 
     def __repr__(self):
         link_href = f"'{self.link_href}'" if (
@@ -62,8 +62,8 @@ class Tile:
     link_title: Optional[str]
     """Text to display on hover.  Should not be used if `img_title` is already specified."""
 
-    html_id: Optional[str]
+    div_id: Optional[str]
     """ID to add to the tile's HTML for advanced styling."""
 
-    css_class: Optional[str]
+    div_class: Optional[str]
     """CSS class to add to the tile's HTML for advanced styling."""
