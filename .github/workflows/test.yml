@@ -29,9 +29,9 @@ jobs:
           python-version: ${{ matrix.python }}
       - if: ${{ matrix.scoop-install }}
         name: Install scoop (Windows)
-        uses: MinoruSekine/setup-scoop@v1
+        uses: MinoruSekine/setup-scoop@main
         with: 
-          scoop_update: 'false'
+          scoop_update: false
       - if: ${{ matrix.scoop-install }}
         name: Install test requirements (windows)
         run: |
