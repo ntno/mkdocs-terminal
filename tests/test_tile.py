@@ -40,7 +40,7 @@ class TestTile():
         rendered_tile = tile_macro.module.make_tile(tile)
         assert "id=\"myId\"" in rendered_tile
         assert "class=\"terminal-mkdocs-tile myClass\"" in rendered_tile
-        assert len(check_html(rendered_tile)["errors"]) == 0
+        assert_valid_html(rendered_tile)
 
     def test_that_tile_renders_with_integer_inputs(self, env_with_terminal_loader, all_integer_tile):
         tile_macro = env_with_terminal_loader.get_template("macros/tile.j2")
