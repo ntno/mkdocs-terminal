@@ -49,7 +49,7 @@ To demonstrate how the tile grid's style can be overriden, the following `<style
 
 - `example_solid_border`: sets the border to a solid line  
 - `example_dashed_border`: sets the border to a dashed line  
-- `#grid_123`: sets the gile grid's column widths explicitly  
+- `#grid_123`: sets the tile grid's column widths explicitly  
 
 
 ```css
