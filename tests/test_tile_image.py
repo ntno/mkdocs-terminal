@@ -32,3 +32,9 @@ class TestTileImage():
         assert "width=\"" + defaults.GITHUB_IMG_WIDTH + "\"" in rendered_image
         assert "height=\"" + defaults.GITHUB_IMG_HEIGHT + "\"" in rendered_image
         assert len(check_html(rendered_image)["errors"]) == 0
+
+    def test_that_img_tile_renders_for_integer_width_and_height(self, env_with_terminal_loader):
+        tile = Tile(img_width=100, img_height=200, img_src=defaults.GITHUB_IMG_SRC)
+        image_macro = env_with_terminal_loader.get_template("macros/tile-image.j2")
+        rendered_image = image_macro.module.make_image(tile)
+        assert len(check_html(rendered_image)["errors"]) == 0
