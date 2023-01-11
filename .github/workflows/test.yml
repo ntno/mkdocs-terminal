@@ -14,19 +14,19 @@ jobs:
         platform: [ubuntu-latest] #, macos-latest, windows-latest]
     runs-on: ${{ matrix.platform }}
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-    - name: Set up Python ${{ matrix.python }}
-      uses: actions/setup-python@v3
-      with:
-        python-version: ${{ matrix.python }}
-    - name: Install test requirements
-      run: |
-        make USE_SUDO=1 install-dev-requirements
-    - name: Install tox
-      run: make install-tox
-    - name: Test
-      run: python -m tox -e py
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python }}
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install test requirements
+        run: |
+          make USE_SUDO=1 install-dev-requirements
+      - name: Install tox
+        run: make install-tox
+      - name: Test
+        run: python -m tox -e py
 
   test-windows:
     strategy:
@@ -35,8 +35,10 @@ jobs:
         platform: [windows-latest]
       runs-on: ${{ matrix.platform }}
       steps:
-      - name: Install test requirements
-        run: |
-          iwr -useb get.scoop.sh | iex
-          scoop install tidy
-      
+        - name: Checkout
+        uses: actions/checkout@v3
+        - name: Install test requirements
+          run: |
+            iwr -useb get.scoop.sh | iex
+            scoop install tidy
+        
