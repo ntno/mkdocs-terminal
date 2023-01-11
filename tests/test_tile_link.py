@@ -9,4 +9,4 @@ class TestTileLinkHelper():
 
         t = Tile(link_href="https://example.com")
         rendered_link_start = tile_link_macro.module.make_link_start(t)
-        assert t.link_href in rendered_link_start
+        assert "href=\"" + t.link_href + "\"" in rendered_link_start

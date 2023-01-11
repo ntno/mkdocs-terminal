@@ -7,13 +7,11 @@ from tests import defaults
 class TestTileImage():
 
     def test_empty_image_is_invalid(self, env_with_terminal_loader, empty_tile):
-        assert isinstance(empty_tile, Tile)
         image_macro = env_with_terminal_loader.get_template("macros/tile-image.j2")
         rendered_image = image_macro.module.make_image(empty_tile)
         assert len(check_html(rendered_image)["errors"]) > 0
 
     def test_minimal_image_only_includes_required(self, env_with_terminal_loader, minimal_image_tile):
-        assert isinstance(minimal_image_tile, Tile)
         image_macro = env_with_terminal_loader.get_template("macros/tile-image.j2")
         rendered_image = image_macro.module.make_image(minimal_image_tile)
         assert_valid_html(rendered_image)

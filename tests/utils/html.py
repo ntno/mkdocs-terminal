@@ -23,11 +23,3 @@ def tile_has_anchor(html):
 
 def tile_has_img(html):
     return "<img " in html
-
-
-def assert_tile_has_anchor(html):
-    assert tile_has_anchor(html)
-
-
-def assert_tile_has_img(html):
-    assert tile_has_img(html)
