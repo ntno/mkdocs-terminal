@@ -71,6 +71,10 @@ tox: install-tox install-dev-prereqs
 check-version-match:
 	cat terminal/theme_version.html | grep -s --silent $(version)\"\>\$$ -o 
 
+#for developer use, assumes you have already installed prereqs
+quick-tests:
+	pytest --color=yes --capture=no tests 
+
 check-site:
 ifndef site
 	$(error site is not set)
