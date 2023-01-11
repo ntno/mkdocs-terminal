@@ -27,6 +27,7 @@ jobs:
         name: (windows) Install test requirements
         run: |
           scoop install tidy
+          tidy -v
       - if: ${{ matrix.platform == 'ubuntu-latest' }} 
         name: (ubuntu) Install test requirements
         run: |
@@ -42,7 +43,7 @@ jobs:
 
 
 
-uses: crazy-max/ghaction-chocolatey@v2
+# uses: crazy-max/ghaction-chocolatey@v2
 #         with:
 #           args: install html-tidy
 
