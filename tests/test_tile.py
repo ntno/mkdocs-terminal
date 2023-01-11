@@ -8,6 +8,16 @@ def assert_tile_has_terminal_marker(html):
     assert "class=\"terminal-mkdocs-tile " in html
 
 
+def assert_tile_has_anchor(html):
+    assert "<a " in html
+    assert "</a>" in html
+
+
+def assert_tile_has_img(html):
+    assert "<a " in html
+    assert "<img " in html
+
+
 class TestTile():
 
     def test_empty_tile(self, env_with_terminal_loader, empty_tile):
@@ -24,8 +34,7 @@ class TestTile():
         tile_macro = env_with_terminal_loader.get_template("macros/tile.j2")
         rendered_tile = tile_macro.module.make_tile(minimal_link_tile)
         assert rendered_tile.strip() != ""
-        assert "<a " in rendered_tile
-        assert "</a>" in rendered_tile
+        assert_tile_has_anchor(rendered_tile)
         assert "<img " not in rendered_tile
         assert "id=" not in rendered_tile
         # TODO assert contains <div/figure/a
@@ -48,9 +57,8 @@ class TestTile():
         tile_macro = env_with_terminal_loader.get_template("macros/tile.j2")
         rendered_tile = tile_macro.module.make_tile(minimal_linked_image_tile)
         assert rendered_tile.strip() != ""
-        assert "<a " in rendered_tile
-        assert "</a>" in rendered_tile
-        assert "<img " in rendered_tile
+        assert_tile_has_anchor(rendered_tile)
+        assert_tile_has_img(rendered_tile)
         assert "id=" not in rendered_tile
         # TODO assert contains <div/figure/a/img>
         assert_valid_html(rendered_tile)
