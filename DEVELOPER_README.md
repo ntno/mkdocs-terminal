@@ -50,6 +50,14 @@ You should be able to visit [http://0.0.0.0:8080/mkdocs-terminal/](http://0.0.0.
 If you get a `docker.sock: connect: permission denied` error, you probably need to start the Docker engine on your machine.  
 Open the Docker Desktop application and wait until the application indicates that the Docker engine is in a "running" state.  Then retry starting your docker container.  
 
+**Example Error**:
+```
+Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get "http://%2Fvar%2Frun%2Fdocker.sock/v1.24/containers/json?all=1&filters=%7B%22label%22%3A%7B%22com.docker.compose.project%3Dmkdocs-terminal%22%3Atrue%7D%7D&limit=0": dial unix /var/run/docker.sock: connect: permission denied
+make: *** [ubuntu] Error 1
+```
+
+**Solution**:
+
 <img src="documentation/docs/img/developer-setup/engine-starting.png" width="600" title="Docker Engine Starting" alt="orange starting indicator at bottom left of Docker Desktop">
 
 <img src="documentation/docs/img/developer-setup/engine-running.png" width="600" title="Docker Engine Starting" alt="green running indicator at bottom left of Docker Desktop">
