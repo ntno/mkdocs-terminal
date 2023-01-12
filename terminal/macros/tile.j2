@@ -1,10 +1,9 @@
+
 {% import 'macros/tile-image.j2' as image_helper %}
 {% import 'macros/tile-link.j2' as link_helper %}
-
 {% macro make_tile( tile ) -%}
-
-{% set ns = namespace(is_valid=false, has_link=false, has_image=false, has_caption=false) %}
-{%- if tile.img_src is defined and tile.img_src|string|length -%}
+{%- set ns = namespace(is_valid=false, has_link=false, has_image=false, has_caption=false) -%}
+{% if tile.img_src is defined and tile.img_src|string|length -%}
     {%- set ns.has_image = true -%}
 {%- endif -%}
 {%- if tile.link_href is defined and tile.link_href|string|length -%}
@@ -16,32 +15,28 @@
 {%- if ns.has_link or ns.has_image -%}
     {%- set ns.is_valid = true -%}
 {%- endif -%}
-
-
 {%- if ns.is_valid -%}
-<div {%- if tile.id is defined and tile.id|string|length -%}id="{{ tile.id }}"{%- endif %} class="terminal-mkdocs-tile {{ tile.class }}">
+<div {% if tile.id is defined and tile.id|string|length %} id="{{ tile.id }}"{%- endif -%} class="terminal-mkdocs-tile {{ tile.class }}">
     <figure>
         {% if ns.has_link -%} 
-                {{ link_helper.make_link_start(tile) }}
+             {{ link_helper.make_link_start(tile) }}
+        {%- endif %}
+        {% if ns.has_image -%} 
+              {{ image_helper.make_image(tile) }}
         {%- endif -%}
 
-            {%- if ns.has_image -%} 
-                    {{ image_helper.make_image(tile) }}
-            {%- endif -%}
-
         {%- if ns.has_link -%}
-            {%- if ns.has_image %} 
+            {% if ns.has_image %} 
         </a>
-            {%- else -%}{{ tile.link_text|default(tile.link_href, true) }}
-        </a>
+            {%- else -%}
+            {{ tile.link_text|default(tile.link_href, true) }}</a>
             {%- endif -%}
         {%- endif -%}
         
-        {% if ns.has_caption %}
-            <figcaption>{{ tile.caption|string|trim }}</figcaption>
-        {% endif -%}
+        {%- if ns.has_caption %}
+      <figcaption>{{ tile.caption|string|trim }}</figcaption>
+        {%- endif %}
     </figure>
 </div>
-{%- endif -%}
+{% endif %}
 {%- endmacro -%}
-
