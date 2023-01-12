@@ -23,6 +23,30 @@ class TestGrid():
         assert "class=\"terminal-mkdocs-tile-grid \">" in rendered_grid
         assert_valid_html(rendered_grid)
 
+    def test_that_grid_includes_all_valid_tiles(self, env_with_terminal_loader, minimal_linked_image_tile, minimal_link_tile, minimal_image_tile, empty_tile):
+        grid_partial = env_with_terminal_loader.get_template("partials/tiles.html")
+        minimal_linked_image_tile.div_id = "myLinkedImageTile"
+        minimal_link_tile.div_id = "myLinkOnlyTile"
+        empty_tile.div_id = "myInvalidTile"
+        minimal_image_tile.div_id = "myImageOnlyTile"
+
+        context_data = {
+            "page": {
+                "meta": {
+                    "tiles": [minimal_linked_image_tile, minimal_link_tile, empty_tile, minimal_image_tile]
+                }
+            }
+        }
+        grid_partial.new_context(context_data)
+        rendered_grid = grid_partial.render(context_data)
+        assert "class=\"terminal-mkdocs-tile-grid \">" in rendered_grid
+        assert "id=\"myLinkedImageTile\"" in rendered_grid
+        assert "id=\"myLinkOnlyTile\"" in rendered_grid
+        assert "id=\"myImageOnlyTile\"" in rendered_grid
+        assert "id=\"myInvalidTile\"" not in rendered_grid
+        print(rendered_grid)
+        assert_valid_html(rendered_grid)
+
     def test_grid_id_and_css_set(self, env_with_terminal_loader, minimal_linked_image_tile):
         grid_partial = env_with_terminal_loader.get_template("partials/tiles.html")
         context_data = {
