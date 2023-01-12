@@ -44,7 +44,6 @@ class TestGrid():
         assert "id=\"myLinkOnlyTile\"" in rendered_grid
         assert "id=\"myImageOnlyTile\"" in rendered_grid
         assert "id=\"myInvalidTile\"" not in rendered_grid
-        print(rendered_grid)
         assert_valid_html(rendered_grid)
 
     def test_grid_id_and_css_set(self, env_with_terminal_loader, minimal_linked_image_tile):

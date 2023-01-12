@@ -19,8 +19,11 @@ def print_trimmed_html(fragment):
 
 def assert_valid_html(fragment):
     stripped_html = strip_html(fragment)
-    # if (check_html(stripped_html)["errors"]):
-    #     print(check_html(stripped_html)["errors"])
+    print("\n---")
+    print("fragment: ")
+    print(fragment.strip())
+    print("errors: " + check_html(stripped_html)["errors"])
+    print("\n---")
     assert check_html(stripped_html)["errors"] == ""
 
 

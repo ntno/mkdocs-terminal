@@ -35,11 +35,32 @@ class TestTile():
         assert_valid_html(rendered_tile)
 
     def test_id_and_class_added_to_tile(self, env_with_terminal_loader):
-        tile = Tile(div_id="myId", div_css="myClass", link_href=defaults.GITHUB_LINK_HREF)
+        tile = Tile(div_id="myTileId", div_css="myTileClass", link_href=defaults.GITHUB_LINK_HREF)
         tile_macro = env_with_terminal_loader.get_template("macros/tile.j2")
         rendered_tile = tile_macro.module.make_tile(tile)
-        assert "id=\"myId\"" in rendered_tile
-        assert "class=\"terminal-mkdocs-tile myClass\"" in rendered_tile
+        assert "id=\"myTileId\"" in rendered_tile
+        assert "class=\"terminal-mkdocs-tile myTileClass\"" in rendered_tile
+        assert_valid_html(rendered_tile)
+
+    def test_backup_text_added_to_link_only_tile(self, env_with_terminal_loader):
+        tile = Tile(link_text="link_display_text", link_href=defaults.GITHUB_LINK_HREF)
+        tile_macro = env_with_terminal_loader.get_template("macros/tile.j2")
+        rendered_tile = tile_macro.module.make_tile(tile)
+        assert ">link_display_text</a>" in rendered_tile
+        assert_valid_html(rendered_tile)
+
+    def test_link_backup_text_ignored_when_image_included(self, env_with_terminal_loader, valid_linked_image_tile):
+        valid_linked_image_tile.link_text = "an unusual backup text"
+        tile_macro = env_with_terminal_loader.get_template("macros/tile.j2")
+        rendered_tile = tile_macro.module.make_tile(valid_linked_image_tile)
+        assert "an unusual backup text" not in rendered_tile
+        assert_valid_html(rendered_tile)
+
+    def test_href_used_as_display_when_no_backup_text(self, env_with_terminal_loader):
+        tile = Tile(link_href=defaults.GITHUB_LINK_HREF)
+        tile_macro = env_with_terminal_loader.get_template("macros/tile.j2")
+        rendered_tile = tile_macro.module.make_tile(tile)
+        assert ">" + defaults.GITHUB_LINK_HREF + "</a>" in rendered_tile
         assert_valid_html(rendered_tile)
 
     def test_that_tile_renders_with_integer_inputs(self, env_with_terminal_loader, all_integer_tile):
