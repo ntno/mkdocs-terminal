@@ -22,7 +22,6 @@ class TestGrid():
         try:
             grid_partial.new_context(context_data)
             rendered_grid = grid_partial.render(context_data)
-            print("\n", rendered_grid)
             assert "class=\"terminal-mkdocs-tile-grid\">" in rendered_grid
             assert len(check_html(rendered_grid)["errors"]) == 0
         except Exception as ex:

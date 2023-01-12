@@ -43,6 +43,6 @@ class TestTileImage():
     def test_that_img_tile_renders_with_integer_inputs(self, env_with_terminal_loader, all_integer_tile):
         image_macro = env_with_terminal_loader.get_template("macros/tile-image.j2")
         try:
-            print("\n", image_macro.module.make_image(all_integer_tile))
+            image_macro.module.make_image(all_integer_tile)
         except Exception as ex:
             pytest.fail(f"Got exception during render: {ex})")

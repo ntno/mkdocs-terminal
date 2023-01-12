@@ -12,6 +12,6 @@ class TestTileLinkHelper():
     def test_that_link_start_fragment_renders_with_integer_inputs(self, env_with_terminal_loader, all_integer_tile):
         link_macro = env_with_terminal_loader.get_template("macros/tile-link.j2")
         try:
-            print("\n", link_macro.module.make_link_start(all_integer_tile))
+            link_macro.module.make_link_start(all_integer_tile)
         except Exception as ex:
             pytest.fail(f"Got exception during render: {ex})")
