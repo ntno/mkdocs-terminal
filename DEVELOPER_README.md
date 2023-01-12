@@ -134,20 +134,29 @@ Update files in [terminal/](terminal/).  You should see changes loaded in [http:
 ### Test Theme Build/Packaging Locally
 Launch the project's ubuntu container and run tox build tests:
 
-```
+```bash
 make ubuntu
 make tox
 ```
 
 ### Add Functional Tests
-Test suite setup is in progress.  See [GitHub issue](https://github.com/ntno/mkdocs-terminal/issues/13) for details.  If you have experience creating automated tests for Jinja2 please consider making a contribution!  
+If you are adding/changing theme functionality, please add a test to the relevant test class in [tests/](tests/).  You can run the test suite locally by using the commands described in this section.  
 
-```
+After you have installed the required testing software you can rerun `make quick-tests` whenever you want to re-execute.
+
+```bash
 make ubuntu
 make install-test-prereqs
 make install-test-requirements
 make quick-tests
 ```
+
+Remember to work in the project's [Docker container](#developer-setup) to avoid Python dependency conflicts.  Once you have run `make ubuntu`, your terminal prompt should include `root@CONTAINER_ID`:
+
+![Docker Container](documentation/docs/img/developer-setup/developer-container.png)
+
+
+Test suites can always be improved!  See [GitHub issue](https://github.com/ntno/mkdocs-terminal/issues/13) for current progress/discussion.  If you have experience creating automated tests for Jinja2 please consider making a contribution.  
 
 ### Push Changes and Create PR
 See [Work On Pull Request](https://github.com/susam/gitpr#work-on-pull-request) for help on adding/pushing changes to your feature branch.  
