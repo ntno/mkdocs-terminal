@@ -1,13 +1,13 @@
 {% import 'macros/tile.j2' as tile_helper %}
 
-{% if page and page.meta %}
+{%- if page and page.meta -%}
 {% set show_tiles = "true" if page.meta.tiles %}
-{% endif %}
+{%- endif -%}
 
-{% if show_tiles %}
+{%- if show_tiles -%}
 <div class="terminal-mkdocs-tile-grid">
-    {%- for tile in page.meta.tiles -%}
+    {%- for tile in page.meta.tiles %}
     {{ tile_helper.make_tile( tile ) }}
-    {%- endfor %}
+    {%- endfor -%}
 </div>
-{% endif%}
+{%- endif -%}
