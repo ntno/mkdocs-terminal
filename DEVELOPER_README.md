@@ -21,13 +21,18 @@ Use this readme to add a feature to this theme or to update the theme documentat
     - [Bump Theme Version](#bump-theme-version)
     - [Start Documentation Server with Local Theme](#start-documentation-server-with-local-theme)
     - [Make Updates](#make-updates)
-    - [Test Theme Build Locally](#test-theme-build-locally)
-    - [Add Tests](#add-tests)
+    - [Test Theme Build/Packaging Locally](#test-theme-buildpackaging-locally)
+    - [Add Functional Tests](#add-functional-tests)
     - [Push Changes and Create PR](#push-changes-and-create-pr-1)
     - [Review PR Build](#review-pr-build)
 
 
 ## Developer Setup
+Development for this project is done within [Docker containers].  Using Docker containers makes setup easy because all developer workspaces will have the same installed software / OS.  If there's a tool that is not available that you think would be helpful to add to the default container image, please feel free to [open an Issue](https://github.com/ntno/mkdocs-terminal/issues/new/choose) and start a discussion.  
+
+*Note*: All software besides the two prerequisites will be installed in the Docker container and not your machine.
+
+[Docker containers]: https://www.docker.com/resources/what-container/
 
 ### Prerequisites
 - install [docker](https://docs.docker.com/get-docker/)
@@ -48,6 +53,14 @@ make serve-docs
 You should be able to visit [http://0.0.0.0:8080/mkdocs-terminal/](http://0.0.0.0:8080/mkdocs-terminal/) in your browser and view the mkdocs-terminal documentation site.  
 
 If you get a `docker.sock: connect: permission denied` error, you probably need to start the Docker engine on your machine.  
+
+**Example Error**:
+```
+Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get "http://%2Fvar%2Frun%2Fdocker.sock/v1.24/containers/json?all=1&filters=%7B%22label%22%3A%7B%22com.docker.compose.project%3Dmkdocs-terminal%22%3Atrue%7D%7D&limit=0": dial unix /var/run/docker.sock: connect: permission denied
+make: *** [ubuntu] Error 1
+```
+
+**Solution**:
 Open the Docker Desktop application and wait until the application indicates that the Docker engine is in a "running" state.  Then retry starting your docker container.  
 
 <img src="documentation/docs/img/developer-setup/engine-starting.png" width="600" title="Docker Engine Starting" alt="orange starting indicator at bottom left of Docker Desktop">
@@ -118,16 +131,32 @@ Update files in [terminal/](terminal/).  You should see changes loaded in [http:
   - confirm links are not broken
   - confirm existing components/features still work
 
-### Test Theme Build Locally
+### Test Theme Build/Packaging Locally
 Launch the project's ubuntu container and run tox build tests:
 
-```
+```bash
 make ubuntu
 make tox
 ```
 
-### Add Tests
-Test suite setup is in progress.  See [GitHub issue](https://github.com/ntno/mkdocs-terminal/issues/13) for details.  If you have experience creating automated tests for Jinja2 please consider making a contribution!  
+### Add Functional Tests
+If you are adding/changing theme functionality, please add a test to the relevant test class in [tests/](tests/).  You can run the test suite locally by using the commands described in this section.  
+
+After you have installed the required testing software you can rerun `make quick-tests` whenever you want to re-execute.
+
+```bash
+make ubuntu
+make install-test-prereqs
+make install-test-requirements
+make quick-tests
+```
+
+Remember to work in the project's [Docker container](#developer-setup) to avoid Python dependency conflicts.  Once you have run `make ubuntu`, your terminal prompt should include `root@CONTAINER_ID`:
+
+![Docker Container](documentation/docs/img/developer-setup/developer-container.png)
+
+
+Test suites can always be improved!  See [GitHub issue](https://github.com/ntno/mkdocs-terminal/issues/13) for current progress/discussion.  If you have experience creating automated tests for Jinja2 please consider making a contribution.  
 
 ### Push Changes and Create PR
 See [Work On Pull Request](https://github.com/susam/gitpr#work-on-pull-request) for help on adding/pushing changes to your feature branch.  
