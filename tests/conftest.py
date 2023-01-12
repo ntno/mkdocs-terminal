@@ -1,10 +1,10 @@
 from pathlib import Path
 from jinja2 import loaders
 from jinja2.environment import Environment
-import mkdocs.utils.filters
-import pytest
 from tests.utils.tile import Tile
 from tests import defaults
+import mkdocs.utils.filters
+import pytest
 
 
 @pytest.fixture
