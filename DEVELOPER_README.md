@@ -21,13 +21,18 @@ Use this readme to add a feature to this theme or to update the theme documentat
     - [Bump Theme Version](#bump-theme-version)
     - [Start Documentation Server with Local Theme](#start-documentation-server-with-local-theme)
     - [Make Updates](#make-updates)
-    - [Test Theme Build Locally](#test-theme-build-locally)
-    - [Add Tests](#add-tests)
+    - [Test Theme Build/Packaging Locally](#test-theme-buildpackaging-locally)
+    - [Add Functional Tests](#add-functional-tests)
     - [Push Changes and Create PR](#push-changes-and-create-pr-1)
     - [Review PR Build](#review-pr-build)
 
 
 ## Developer Setup
+Development for this project is done within [Docker containers].  Using Docker containers makes setup easy because all developer workspaces will have the same installed software / OS.  If there's a tool that is not available that you think would be helpful to add to the default container image, please feel free to [open an Issue](https://github.com/ntno/mkdocs-terminal/issues/new/choose) and start a discussion.  
+
+*Note*: All software besides the two prerequisites will be installed in the Docker container and not your machine.
+
+[Docker containers]: https://www.docker.com/resources/what-container/
 
 ### Prerequisites
 - install [docker](https://docs.docker.com/get-docker/)
@@ -126,7 +131,7 @@ Update files in [terminal/](terminal/).  You should see changes loaded in [http:
   - confirm links are not broken
   - confirm existing components/features still work
 
-### Test Theme Build Locally
+### Test Theme Build/Packaging Locally
 Launch the project's ubuntu container and run tox build tests:
 
 ```
@@ -134,8 +139,15 @@ make ubuntu
 make tox
 ```
 
-### Add Tests
+### Add Functional Tests
 Test suite setup is in progress.  See [GitHub issue](https://github.com/ntno/mkdocs-terminal/issues/13) for details.  If you have experience creating automated tests for Jinja2 please consider making a contribution!  
+
+```
+make ubuntu
+make install-test-prereqs
+make install-test-requirements
+make quick-tests
+```
 
 ### Push Changes and Create PR
 See [Work On Pull Request](https://github.com/susam/gitpr#work-on-pull-request) for help on adding/pushing changes to your feature branch.  
