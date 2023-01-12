@@ -1,4 +1,5 @@
 from tidylib import tidy_fragment
+DEBUG = False
 
 
 def check_html(fragment):
@@ -19,11 +20,12 @@ def print_trimmed_html(fragment):
 
 def assert_valid_html(fragment):
     stripped_html = strip_html(fragment)
-    print("\n---")
-    print("fragment: ")
-    print(fragment.strip())
-    print("errors: " + check_html(stripped_html)["errors"])
-    print("\n---")
+    if (DEBUG):
+        print("\n---")
+        print("fragment: ")
+        print(fragment.strip())
+        print("errors: " + check_html(stripped_html)["errors"])
+        print("\n---")
     assert check_html(stripped_html)["errors"] == ""
 
 
