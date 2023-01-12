@@ -1,3 +1,4 @@
+from tests.utils.html import check_html
 import pytest
 
 
@@ -23,5 +24,6 @@ class TestGrid():
             rendered_grid = grid_partial.render(context_data)
             print(rendered_grid)
             assert "class=\"terminal-mkdocs-tile-grid\">" in rendered_grid
+            assert len(check_html(rendered_grid)["errors"]) == 0
         except Exception as ex:
             pytest.fail(f"Got exception during render: {ex})")
