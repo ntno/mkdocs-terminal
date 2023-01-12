@@ -64,6 +64,6 @@ class TestTile():
     def test_that_tile_renders_with_integer_inputs(self, env_with_terminal_loader, all_integer_tile):
         tile_macro = env_with_terminal_loader.get_template("macros/tile.j2")
         try:
-            print(tile_macro.module.make_tile(all_integer_tile))
+            print("\n", tile_macro.module.make_tile(all_integer_tile))
         except Exception as ex:
             pytest.fail(f"Got exception during render: {ex})")
