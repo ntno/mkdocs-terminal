@@ -9,12 +9,12 @@ class TestGrid():
         rendered_grid = grid_partial.render()
         assert rendered_grid.strip() == ""
 
-    def test_grid_with_one_tile(self, env_with_terminal_loader, minimal_linked_image_tile):
+    def test_grid_with_tiles(self, env_with_terminal_loader, minimal_linked_image_tile, minimal_image_tile, minimal_link_tile):
         grid_partial = env_with_terminal_loader.get_template("partials/tiles.html")
         context_data = {
             "page": {
                 "meta": {
-                    "tiles": [minimal_linked_image_tile]
+                    "tiles": [minimal_image_tile, minimal_link_tile, minimal_linked_image_tile]
                 }
             }
         }
