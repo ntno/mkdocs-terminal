@@ -32,11 +32,10 @@
         {%- if ns.has_link -%}
             {%- if ns.has_image %} 
         </a>
-            {%- else -%}
-            {{ tile.link_text|default(tile.link_href, true) }}
+            {%- else -%}{{ tile.link_text|default(tile.link_href, true) }}
         </a>
-            {% endif %}
-        {% endif %}
+            {%- endif -%}
+        {%- endif -%}
         
         {% if ns.has_caption %}
             <figcaption>{{ tile.caption|string|trim }}</figcaption>
