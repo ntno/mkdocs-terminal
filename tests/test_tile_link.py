@@ -4,7 +4,7 @@ import pytest
 
 class TestTileLinkHelper():
 
-    def test_helper_with_minimal_link_only_tile(self, env_with_terminal_loader, minimal_link_tile):
+    def test_that_link_start_contains_href_with_minimal_link_only_tile(self, env_with_terminal_loader, minimal_link_tile):
         tile_link_macro = env_with_terminal_loader.get_template("macros/tile-link.j2")
         rendered_link_start = tile_link_macro.module.make_link_start(minimal_link_tile)
         assert defaults.GITHUB_LINK_HREF in rendered_link_start
