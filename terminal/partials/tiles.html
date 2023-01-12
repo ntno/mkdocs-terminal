@@ -5,8 +5,8 @@
 {%- endif -%}
 {%- if show_tiles -%}
 <div class="terminal-mkdocs-tile-grid">
-{% for tile in page.meta.tiles %}
-{{ tile_helper.make_tile( tile ) }}
-{% endfor %}
+    {% for tile in page.meta.tiles -%}
+    {{ tile_helper.make_tile( tile ) }}
+    {% endfor %}
 </div>
 {%- endif -%}
