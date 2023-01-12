@@ -21,6 +21,17 @@ tiles:
 
 :   Defaults to `false`.  If `true`, tiles will be added to the final page above the main page content.  If `false` (or unspecified), tiles will be added to the final page below the main content.
 
+`grid_id`
+
+:   ID to add to the grid's HTML for advanced styling. See [Override Styling] for example.
+
+`grid_css`
+
+:   CSS class to add to the grid's HTML for advanced styling. See [Override Styling] for example.
+
+
+[Override Styling]: examples/override-styling.md
+
 <br>
 
 ## Default Tile Placement

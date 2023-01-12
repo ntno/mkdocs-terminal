@@ -31,6 +31,7 @@ nav:
       - Example: 'tile-grid/examples/example-page.md'
       - Image Only: 'tile-grid/examples/images-only.md'
       - Link Only: 'tile-grid/examples/links-only.md'
+      - Override Styling: 'tile-grid/examples/override-styling.md'
     - Elements:
       - Blockquotes: 'elements/blockquotes.md'
       - Buttons: 'elements/buttons.md'

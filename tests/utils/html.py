@@ -1,4 +1,5 @@
 from tidylib import tidy_fragment
+DEBUG = False
 
 
 def check_html(fragment):
@@ -9,19 +10,28 @@ def check_html(fragment):
     return result
 
 
-def strip_html(fragment):
+def strip_internal_whitespace(fragment):
     return ' '.join(fragment.split())
 
 
-def print_trimmed_html(fragment):
-    print(strip_html(fragment))
+def strip_leading_whitespace(fragment):
+    return fragment.strip()
+
+
+def strip_whitespace(fragment):
+    return strip_leading_whitespace(strip_internal_whitespace(fragment))
 
 
 def assert_valid_html(fragment):
-    stripped_html = strip_html(fragment)
-    # if (check_html(stripped_html)["errors"]):
-    #     print(check_html(stripped_html)["errors"])
-    assert check_html(stripped_html)["errors"] == ""
+    results = check_html(fragment)
+    if (DEBUG):
+        stripped_html = strip_leading_whitespace(fragment)
+        print("\n---")
+        print("fragment: ")
+        print(stripped_html)
+        print("errors: " + results["errors"])
+        print("\n---")
+    assert results["errors"] == ""
 
 
 def assert_tile_has_terminal_marker(html):
