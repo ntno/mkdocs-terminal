@@ -57,11 +57,11 @@ A tile can represent an image, a link, or a linked image.
 
 :   Text to display on hover.  Should not be used if `img_title` is already specified.
 
-`div_id`
+`tile_id`
 
 :   ID to add to the tile's HTML for advanced styling. See [Extra CSS] for example.  
 
-`div_css`
+`tile_css`
 
 :   CSS class to add to the tile's HTML for advanced styling. See [Extra CSS] for example.  
 

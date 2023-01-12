@@ -16,7 +16,7 @@
     {%- set ns.is_valid = true -%}
 {%- endif -%}
 {%- if ns.is_valid -%}
-    <div {% if tile.div_id is defined and tile.div_id|string|length %} id="{{ tile.div_id }}" {% endif %}class="terminal-mkdocs-tile {{ tile.div_css }}">
+    <div {% if tile.tile_id is defined and tile.tile_id|string|length %} id="{{ tile.tile_id }}" {% endif %}class="terminal-mkdocs-tile {{ tile.tile_css }}">
         <figure>
             {% if ns.has_link -%}{{ link_helper.make_link_start(tile) }}{% endif %}
             {%- if ns.has_image %} 

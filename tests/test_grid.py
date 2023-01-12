@@ -25,10 +25,10 @@ class TestGrid():
 
     def test_that_grid_includes_all_valid_tiles(self, env_with_terminal_loader, minimal_linked_image_tile, minimal_link_tile, minimal_image_tile, empty_tile):
         grid_partial = env_with_terminal_loader.get_template("partials/tiles.html")
-        minimal_linked_image_tile.div_id = "myLinkedImageTile"
-        minimal_link_tile.div_id = "myLinkOnlyTile"
-        empty_tile.div_id = "myInvalidTile"
-        minimal_image_tile.div_id = "myImageOnlyTile"
+        minimal_linked_image_tile.tile_id = "myLinkedImageTile"
+        minimal_link_tile.tile_id = "myLinkOnlyTile"
+        empty_tile.tile_id = "myInvalidTile"
+        minimal_image_tile.tile_id = "myImageOnlyTile"
 
         context_data = {
             "page": {

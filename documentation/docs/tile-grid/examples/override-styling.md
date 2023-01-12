@@ -5,14 +5,14 @@ grid_css: "example_solid_border"
 tiles:
   - caption: '@petradr'
     img_src: ../../../img/picsum/167_200x200.jpeg
-    div_css: "example_dashed_border"
+    tile_css: "example_dashed_border"
   - caption: 'Marcin Czerwinski'
     img_src: ../../../img/picsum/127_200x200.jpeg
-    div_css: "example_dashed_border"
+    tile_css: "example_dashed_border"
   - caption: '@Guillaume'
     img_src: ../../../img/picsum/120_small.jpg
     img_width: "250"
-    div_css: "example_dashed_border"
+    tile_css: "example_dashed_border"
 ---
 
 <style> 
@@ -83,13 +83,13 @@ grid_css: "example_solid_border"
 tiles:
   - caption: '@petradr'
     img_src: ../../../img/picsum/167_200x200.jpeg
-    div_css: "example_dashed_border"
+    tile_css: "example_dashed_border"
   - caption: 'Marcin Czerwinski'
     img_src: ../../../img/picsum/127_200x200.jpeg
-    div_css: "example_dashed_border"
+    tile_css: "example_dashed_border"
   - caption: '@Guillaume'
     img_src: ../../../img/picsum/120_small.jpg
     img_width: "250"
-    div_css: "example_dashed_border"
+    tile_css: "example_dashed_border"
 ---
 ```
