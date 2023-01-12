@@ -9,12 +9,19 @@ def check_html(fragment):
     return result
 
 
+def strip_html(fragment):
+    return ' '.join(fragment.split())
+
+
 def print_trimmed_html(fragment):
-    print(' '.join(fragment.split()))
+    print(strip_html(fragment))
 
 
-def assert_valid_html(html):
-    assert len(check_html(html)["errors"]) == 0
+def assert_valid_html(fragment):
+    stripped_html = strip_html(fragment)
+    # if (check_html(stripped_html)["errors"]):
+    #     print(check_html(stripped_html)["errors"])
+    assert check_html(stripped_html)["errors"] == ""
 
 
 def assert_tile_has_terminal_marker(html):

@@ -1,3 +1,4 @@
+from tests.utils.html import assert_valid_html
 import pytest
 
 
@@ -20,6 +21,7 @@ class TestGrid():
         grid_partial.new_context(context_data)
         rendered_grid = grid_partial.render(context_data)
         assert "class=\"terminal-mkdocs-tile-grid \">" in rendered_grid
+        assert_valid_html(rendered_grid)
 
     def test_grid_id_and_css_set(self, env_with_terminal_loader, minimal_linked_image_tile):
         grid_partial = env_with_terminal_loader.get_template("partials/tiles.html")
@@ -36,6 +38,7 @@ class TestGrid():
         rendered_grid = grid_partial.render(context_data)
         assert "id=\"myGridId\"" in rendered_grid
         assert "class=\"terminal-mkdocs-tile-grid myGridCss\">" in rendered_grid
+        assert_valid_html(rendered_grid)
 
     def test_grid_renders_with_integer_input(self, env_with_terminal_loader):
         grid_partial = env_with_terminal_loader.get_template("partials/tiles.html")

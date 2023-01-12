@@ -74,7 +74,7 @@ See 'Theme Updates' in [Developer Setup](DEVELOPER_README.md#theme-updates)
 
 ### Adding Tests
 
-See 'Add Tests' in [Developer Setup](DEVELOPER_README.md#add-tests)
+See 'Add Tests' in [Developer Setup](DEVELOPER_README.md#add-functional-tests)
 
 ## CI Information
 

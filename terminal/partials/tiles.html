@@ -12,8 +12,8 @@
 id="{{ custom_grid_id }}"
 {% endif %}
 class="terminal-mkdocs-tile-grid {{ custom_grid_css }}">
-    {%- for tile in page.meta.tiles -%}
+    {% for tile in page.meta.tiles -%}
     {{ tile_helper.make_tile( tile ) }}
-    {%- endfor %}
+    {% endfor %}
 </div>
-{% endif%}
+{%- endif -%}
