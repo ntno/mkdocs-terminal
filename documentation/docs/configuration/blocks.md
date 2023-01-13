@@ -50,8 +50,8 @@ You can add a custom banner above each page's content by adding the following th
 ```jinja2
 {% extends "partials/page-base.html" %}
 {%- block before_markdown_content %}
-    {% include "partials/banner.html" %}
-    {{ super() }}
+{% include "partials/banner.html" %}
+{{ super() }}
 {%- endblock %}
 ```
 
