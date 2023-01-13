@@ -5,10 +5,7 @@ In some situations you may want to include your own Jinja2 page templates.  Term
 This is an advanced MkDocs feature.  For an extended discussion, see the [official MkDocs guide]{target="_blank"}.
 
 
-
-
 [official MkDocs guide]: https://www.mkdocs.org/user-guide/customizing-your-theme/#using-the-theme-custom_dir
-
 
 ## Example Scenario
 Let's say you want to add a banner above each page's markdown content.  You still want to be able to show a [Tile Grid] at the top of the page, but you want the banner to appear above the grid if one is defined.
