@@ -64,8 +64,12 @@ markdown_extensions:
       base_path: 
         - docs
 
+plugins:
+  - git-revision-date
+
 ## deploy settings
 theme:
   name: terminal
+  commit_uri: commits/main/documentation/docs
   features:
     - navigation.side.indexes
