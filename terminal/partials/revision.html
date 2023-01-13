@@ -1,5 +1,6 @@
-
+{% if not hide_git_revision_date %}
 <br>
+<aside>
 <p>
     {% if page.meta.revision_date %}
     <small>
@@ -11,3 +12,5 @@
     </small>
     {% endif %}
 </p>
+</aside>
+{% endif %}
