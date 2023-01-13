@@ -14,7 +14,7 @@
 </section>
 <section>
 {%- block markdown_content %}
-{% if page and page.content %}{{ page.content }}{% endif %}
+{% include "partials/page-content.html" %}
 {%- endblock %}
 </section>
 <section>
