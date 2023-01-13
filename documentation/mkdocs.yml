@@ -64,9 +64,6 @@ markdown_extensions:
       base_path: 
         - docs
 
-plugins:
-  - git-revision-date
-
 ## deploy settings
 theme:
   name: terminal
