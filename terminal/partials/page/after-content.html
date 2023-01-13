@@ -1,0 +1,5 @@
+{%- block after_markdown_content %}
+{% if not show_tiles_first %}
+{% include "partials/tiles.html" %}
+{% endif %}
+{%- endblock %}
