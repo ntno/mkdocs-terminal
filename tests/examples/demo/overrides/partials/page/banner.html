@@ -2,12 +2,16 @@
 
 <!-- Previous page -->
 {% if page.previous_page %}
-<link rel="prev" href="{{ page.previous_page.url | url }}" />
+<a href="{{ page.previous_page.url | url }}" >Previous</a>
+{% endif %}
+
+{% if page.next_page and page.previous_page %}
+ || 
 {% endif %}
 
 <!-- Next page -->
 {% if page.next_page %}
-<link rel="next" href="{{ page.next_page.url | url }}" />
+<a href="{{ page.next_page.url | url }}" >Next</a>
 {% endif %}
 
 {% endif %}

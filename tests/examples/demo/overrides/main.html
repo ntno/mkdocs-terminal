@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 
-{%- block before_markdown_content %}
-{% include "partials/page/banner.html" %}
-{{ super() }}
+{%- block analytics %}
+<script>
+    console.log("hello world");
+</script>
 {%- endblock %}
 
 {%- block footer %}
-text to show before mkdocs-terminal footer
+---text to show before mkdocs-terminal footer---
 {{ super() }}
 {%- endblock %}

@@ -41,8 +41,5 @@ theme:
     # - navigation.top.hide
     # - navigation.top.cursor_animation.hide
 
-# theme:
-#   name: null
-#   
-#   features:
-#     - navigation.side.indexes
+watch:
+    - 'overrides'
