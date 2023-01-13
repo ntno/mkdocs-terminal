@@ -7,25 +7,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-1.2.4">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-2.0.2">
     <!-- <meta name="robots" content="noindex"> -->
      
     
     <meta name="author" content="ntno"> 
     
-    <link rel="canonical" href="https://ntno.github.io/mkdocs-terminal/tile-grid/grid/"> 
-    <link rel="icon" type="image/png" sizes="192x192" href="../../img/android-chrome-192x192.png" />
+    <link rel="canonical" href="https://ntno.github.io/mkdocs-terminal/tile-grid/grid/"><link rel="icon" type="image/png" sizes="192x192" href="../../img/android-chrome-192x192.png" />
 <link rel="icon" type="image/png" sizes="512x512" href="../../img/android-chrome-512x512.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="../../img/apple-touch-icon.png" />
 <link rel="shortcut icon" type="image/png" sizes="48x48" href="../../img/favicon.ico" />
 <link rel="icon" type="image/png" sizes="16x16" href="../../img/favicon-16x16.png" />
 <link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png" />
-    
 
 
     
  
-<title>Grid Reference - MkDocs Terminal</title>
+<title>Grid Reference - Terminal for MkDocs</title>
     <link href="../../css/normalize.css" rel="stylesheet">
     <link href="../../css/terminal.css" rel="stylesheet">
     <link href="../../css/theme.css" rel="stylesheet"> 
@@ -34,44 +32,27 @@
     
     
 
-    <!--
-    extra_ess contains paths to CSS files in the users
-    documentation directory or a list of CSS files defined in
-    their mkdocs.yml.
 
-    http://www.mkdocs.org/user-guide/configuration/#extra_css
-  -->
      
     
-     
+    
 
-    <!--
-    extra_javascript contains paths to JavaScript files in the
-    users documentation directory or a list of JavaScript files
-    defined in their mkdocs.yml.
-
-    http://www.mkdocs.org/user-guide/configuration/#extra_javascript
-  -->
     
     <script src="../../search/main.js"></script>
     
 
-    <!--
-    Include Google Analytics tracking code.
-
-    http://www.mkdocs.org/user-guide/configuration/#google_analytics
-  -->
     
 </head>
 
 <body class="terminal">
      
+    
+     
       
-         
-          <div class="container">
+        <div class="container">
     <div class="terminal-nav">
         <header class="terminal-logo">
-            <div class="logo terminal-prompt"><a href="https://ntno.github.io/mkdocs-terminal/" class="no-style">MkDocs Terminal</a></div>
+            <div class="logo terminal-prompt"><a href="https://ntno.github.io/mkdocs-terminal/" class="no-style">Terminal for MkDocs</a></div>
         </header>
         <nav class="terminal-menu">
             
@@ -107,15 +88,14 @@
             
         </nav>
     </div>
-</div> 
+</div>
         
       
+    
 
     <div class="container">
-        <div class="terminal-mkdocs-main-grid">
-          <aside id="menu">
+        <div class="terminal-mkdocs-main-grid"><aside id="menu">
     
-        
         <div class="container">
   <div class="terminal-nav">
     <nav>
@@ -203,6 +183,25 @@
             <a class="
 
     terminal-mkdocs-side-nav-item" href="../../configuration/features/">Features</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../configuration/blocks/">Blocks</a>
         
     
     </li>
@@ -488,6 +487,25 @@
     
     </li>
             
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../examples/override-styling/">Override Styling</a>
+        
+    
+    </li>
+            
             
     </ul>
         
@@ -734,7 +752,6 @@
 
     
         
-        
 
 <hr>
 <nav>
@@ -757,10 +774,8 @@
     
 </aside>
 
-            <main> <section>
-    
-
-     
+            <main>
+<section>
     <h1 id="grid-reference">Grid Reference<a class="headerlink" href="#grid-reference" title="Anchor link to this section for reference">#</a></h1>
 <p>Terminal for MkDocs <a href="../" title="to Tile Grid overview">Tile Grid</a> can be further customized using the following configuration options.  These options should be specified in the markdown page's metadata in the same way that <code>tiles</code> are specified:</p>
 <pre><code>---
@@ -778,6 +793,14 @@ tiles:
 <dt><code>show_tiles_first</code></dt>
 <dd>
 <p>Defaults to <code>false</code>.  If <code>true</code>, tiles will be added to the final page above the main page content.  If <code>false</code> (or unspecified), tiles will be added to the final page below the main content.</p>
+</dd>
+<dt><code>grid_id</code></dt>
+<dd>
+<p>ID to add to the grid's HTML for advanced styling. See <a href="../examples/override-styling/">Override Styling</a> for example.</p>
+</dd>
+<dt><code>grid_css</code></dt>
+<dd>
+<p>CSS class to add to the grid's HTML for advanced styling. See <a href="../examples/override-styling/">Override Styling</a> for example.</p>
 </dd>
 </dl>
 <p><br></p>
@@ -852,30 +875,23 @@ tiles:
 ---
 </code></pre>
 <!-- no closing ``` because the snippet page ends in markdown -->
-    
-
-
-
-
-     
-
-    
-    
-<br>
-<p>
-    
-</p>
-    
 </section>
+
+
+
+
+
+
+
             </main>
         </div>
-        <hr> <div class="container">
-    <footer>
+        <hr><footer>
+    <div class="container">
         
         <p class="text-center text-muted">Copyright 2023 Natan Organick, All rights reserved</p>
-         Site built with <a target="_blank" rel="noopener" href="http://www.mkdocs.org">MkDocs</a> and <a target="_blank" rel="noopener" href="https://github.com/ntno/mkdocs-terminal">Terminal for MkDocs</a>.
-    </footer>
-</div>
+         Site built with <a target="_blank" href="http://www.mkdocs.org">MkDocs</a> and <a target="_blank" href="https://github.com/ntno/mkdocs-terminal">Terminal for MkDocs</a>.
+    </div>
+</footer>
     </div>
 </body>
 
