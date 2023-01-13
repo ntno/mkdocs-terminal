@@ -5,11 +5,11 @@
     {% endif %}
 {% endif %}
 <section>
-{% include "partials/page/before-content.html" %}
+{%- block before_markdown_content %}{% include "partials/page/before-content.html" %}{%- endblock %}
 </section>
 <section>
 {% include "partials/page/content.html" %}
 </section>
 <section>
-{% include "partials/page/after-content.html" %}
+{%- block after_markdown_content %}{% include "partials/page/after-content.html" %}{%- endblock %}
 </section>
