@@ -1,1 +1,2 @@
 mkdocs
+mkdocs-terminal==2.0.1

@@ -1,0 +1,8 @@
+{% block before_markdown_content %}
+!!!!!
+{% endblock %}
+{% block markdown_content %}
+{% if page and page.content %}{{ page.content }}{% endif %}
+{% endblock %}
+
+
