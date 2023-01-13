@@ -43,6 +43,8 @@
     
     {% block extrahead %}{% endblock %}
 
+    <script>var base_url = '{{ base_url }}';</script>
+
     {% for path in config.extra_javascript %}
     <script src="{{ path|url }}"></script>
     {% endfor %}
