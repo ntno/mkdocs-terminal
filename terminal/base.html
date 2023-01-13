@@ -16,12 +16,10 @@
     <meta name="author" content="{{ config.site_author }}">{% endif %} 
     {% if page.canonical_url %}
     <link rel="canonical" href="{{ page.canonical_url }}">{% endif %} 
-    {% include "partials/favicon.html" %}
+    {%- block favicon %}{% include "partials/favicon.html" %}{%- endblock %}
     {%- endblock %} 
     
-    {%- block htmltitle %}
-    {% include "partials/html-title.html" %}
-    {%- endblock %} 
+    {%- block htmltitle %}{% include "partials/html-title.html" %}{%- endblock %} 
     
     {%- block styles %}
     <link href="{{ 'css/normalize.css' | url }}" rel="stylesheet">
@@ -43,13 +41,13 @@
     {% for path in config.extra_css %}
     <link href="{{ path|url }}" rel="stylesheet"> {% endfor %} 
     
-    {% block extrahead %} {% endblock %}
+    {% block extrahead %}{% endblock %}
 
     {% for path in config.extra_javascript %}
     <script src="{{ path|url }}"></script>
     {% endfor %}
 
-    {% block analytics %} {% endblock %}
+    {% block analytics %}{% endblock %}
 </head>
 
 <body class="terminal">
@@ -59,23 +57,23 @@
       {% set hide_side_nav = "true" if "side-nav" in page.meta.hide %} 
     {% endif %} 
     
-    {%- block top_nav %} 
+     
       {% if "navigation.top.hide" in features %}
       {% else %}
         {% if not hide_top_nav %} 
-          {% include "partials/top-nav.html" %} 
+        {%- block top_nav %}{% include "partials/top-nav.html" %}{%- endblock %}
         {% endif %}
       {% endif %}
-    {%- endblock %}
+    
 
     <div class="container">
         <div class="terminal-mkdocs-main-grid">
           {%- block side_panel %}{% include "partials/side-panel.html" %}{%- endblock %}
             <main>
-                {%- block content_container %} {% include "partials/page-container.html" %} {%- endblock %}
+                {%- block content_container %}{% include "partials/page-container.html" %}{%- endblock %}
             </main>
         </div>
-        <hr> {%- block footer %} {% include "partials/footer.html" %} {%- endblock %}
+        <hr> {%- block footer %}{% include "partials/footer.html" %}{%- endblock %}
     </div>
 </body>
 
