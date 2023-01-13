@@ -1,4 +1,5 @@
-{% extends "partials/page.html" %}
+{% extends "partials/page-container.html" %}
 {%- block before_markdown_content %}
     {% include "partials/page/banner.html" %}
+    {{ super() }}
 {%- endblock %}
