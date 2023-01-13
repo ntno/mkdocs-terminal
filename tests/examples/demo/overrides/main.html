@@ -1,8 +1,11 @@
 {% extends "base.html" %}
 
-
+{%- block before_markdown_content %}
+{% include "partials/page/banner.html" %}
+{{ super() }}
+{%- endblock %}
 
 {%- block footer %}
-what a cool site, i've got to say
-
+text to show before mkdocs-terminal footer
+{{ super() }}
 {%- endblock %}
