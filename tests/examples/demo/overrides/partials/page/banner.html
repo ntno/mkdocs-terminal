@@ -1,0 +1,13 @@
+{% if page %}
+
+<!-- Previous page -->
+{% if page.previous_page %}
+<link rel="prev" href="{{ page.previous_page.url | url }}" />
+{% endif %}
+
+<!-- Next page -->
+{% if page.next_page %}
+<link rel="next" href="{{ page.next_page.url | url }}" />
+{% endif %}
+
+{% endif %}
