@@ -1,6 +1,8 @@
 mkdocs
-mkdocs-terminal>=1.2.0
+mkdocs-terminal>=2.0.2
 
 # Python Markdown Extensions
 pygments>=2.14
 pymdown-extensions>=9.9
+
+# MkDocs Plugins

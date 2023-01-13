@@ -1,0 +1,9 @@
+{% if page and page.meta %}       
+    {% set show_tiles_first = "true" if page.meta.show_tiles_first %}
+    {% if page.meta.hide %}
+        {% set hide_git_revision_date = "true" if "git_revision_date" in page.meta.hide %}
+    {% endif %}
+{% endif %}
+{%- block before_markdown_content %}{% include "partials/before-content.html" %}{%- endblock %}
+{%- block markdown_content %}{% include "partials/content.html" %}{%- endblock %}
+{%- block after_markdown_content %}{% include "partials/after-content.html" %}{%- endblock %}

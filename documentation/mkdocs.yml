@@ -1,4 +1,4 @@
-site_name: MkDocs Terminal
+site_name: Terminal for MkDocs
 site_url: https://ntno.github.io/mkdocs-terminal
 repo_url: https://github.com/ntno/mkdocs-terminal
 copyright: Copyright 2023 Natan Organick, All rights reserved
@@ -17,6 +17,7 @@ nav:
         - Sans: 'configuration/palettes/sans.md'
         - Sans Dark: 'configuration/palettes/sans_dark.md'
       - Features: 'configuration/features.md'
+      - Blocks: 'configuration/blocks.md'
       - Extensions: 'configuration/extensions/index.md'
       - Python Markdown: 'configuration/extensions/python-markdown.md'
       - PyMdown Extensions: 'configuration/extensions/py-mdown-extensions.md'

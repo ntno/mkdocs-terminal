@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{%- block analytics %}
+<script>
+    console.log("hello world");
+</script>
+{%- endblock %}
+
+{%- block footer %}
+---text to show before mkdocs-terminal footer---
+{{ super() }}
+{%- endblock %}

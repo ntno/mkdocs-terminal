@@ -1,5 +1,3 @@
-INHERIT: ../base.yml
-
 site_url: https://ntno.github.io/mkdocs-terminal
 repo_url: https://github.com/ntno/mkdocs-terminal
 copyright: Copyright 2023 Natan Organick, All rights reserved
@@ -33,6 +31,8 @@ markdown_extensions:
 
 
 theme:
+  name: terminal
+  custom_dir: 'overrides'
   palette: gruvbox_dark
   features:
     # - toc.hide
@@ -40,3 +40,6 @@ theme:
     - navigation.side.indexes
     # - navigation.top.hide
     # - navigation.top.cursor_animation.hide
+
+watch:
+    - 'overrides'
