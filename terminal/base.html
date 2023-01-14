@@ -43,7 +43,11 @@
     
     {% block extrahead %}{% endblock %}
 
-    <script>var base_url = '{{ base_url }}';</script>
+    {% block search %}
+    {% if 'search' in config['plugins'] %}
+    {%- include "partials/search/search.html" %}
+    {% endif %}
+    {% endblock %}
     
     {% for path in config.extra_javascript %}
     <script src="{{ path|url }}"></script>
@@ -78,6 +82,12 @@
         </div>
         <hr> {%- block footer %}{% include "partials/footer.html" %}{%- endblock %}
     </div>
+
+    {% block search_support %}
+    {% if 'search' in config['plugins'] %}
+    {%- include "partials/search/mkdocs/search-modal.html" %}
+    {% endif %}
+    {% endblock %}
 </body>
 
 </html>
