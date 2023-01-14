@@ -1,5 +1,11 @@
 # Git Revision Date Plugin
-This plugin automatically adds the last revision date to each markdown page's metadata.  This revision date can then be used by a template (in this case Terminal for MkDocs) to display the page's last revision date.
+This plugin automatically adds the last revision date to each markdown page's metadata.  The new `revision_date` attribute can then be used to display the page's last revision date.  See the "Page last updated" text at the bottom of this page as an example.
+
+When the `git-revision-date` plugin is installed and enabled, Terminal for MkDocs will automatically display the page's last revision date at the bottom of each page.  This component can be hidden on a per-page basis if necessary.  See [Page Features] for more information on hiding the revision date for individual pages.
+
+[See Plugin on GitHub](https://github.com/zhaoterryy/mkdocs-git-revision-date-plugin){target="_blank"}
+
+[Page Features]: ../features.md#page-features
 
 ## Setup
 
@@ -15,6 +21,8 @@ Then run:  `pip install -r ./requirements.txt`
 
 
 ## 2. Add Plugin to MkDocs Config
+
+Enable the Git Revision Date Plugin by adding `git-revision-date` to the `plugins` configuration in `mkdocs.yml`:
 
 mkdocs.yml
 ```yaml
