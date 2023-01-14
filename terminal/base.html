@@ -9,7 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {% include "theme_version.html" %}
-    <!-- <meta name="robots" content="noindex"> -->
     {% if config.site_description %}
     <meta name="description" content="{{ config.site_description }}">{% endif %} 
     {% if config.site_author %}
@@ -24,10 +23,10 @@
     {%- block styles %}
     {% if 'search' in config['plugins'] %}
     <!-- search css support -->
-    <link href="{{ 'css/search/bootstrap-modal.css'|url }}" rel="stylesheet">
+    <link href="{{ 'css/search/bootstrap-modal.css' | url }}" rel="stylesheet">
     {% endif %}
-    <link href="{{ 'css/fontawesome/css/fontawesome.min.css'|url }}" rel="stylesheet">
-    <link href="{{ 'css/fontawesome/css/solid.min.css'|url }}" rel="stylesheet">
+    <link href="{{ 'css/fontawesome/css/fontawesome.min.css' | url }}" rel="stylesheet">
+    <link href="{{ 'css/fontawesome/css/solid.min.css' | url }}" rel="stylesheet">
     <link href="{{ 'css/normalize.css' | url }}" rel="stylesheet">
     <link href="{{ 'css/terminal.css' | url }}" rel="stylesheet">
     <link href="{{ 'css/theme.css' | url }}" rel="stylesheet"> 
