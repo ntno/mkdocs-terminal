@@ -1,6 +1,7 @@
 site_name: Terminal for MkDocs
 site_url: https://ntno.github.io/mkdocs-terminal
 repo_url: https://github.com/ntno/mkdocs-terminal
+edit_uri_template: https://github.com/ntno/mkdocs-terminal/edit/main/documentation/docs/{path}
 copyright: Copyright 2023 Natan Organick, All rights reserved
 site_author: ntno
 

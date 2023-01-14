@@ -1,0 +1,23 @@
+{%- macro debug_page( ) -%}
+<!-- || mkdocs-terminal.debug || -->
+{{ debug_config_attr("site_name") }}
+{{ debug_config_attr("site_url") }}
+{{ debug_config_attr("repo_url") }}
+{{ debug_config_attr("repo_name") }}
+{{ debug_config_attr("edit_uri") }}
+{{ debug_config_attr("edit_uri_template") }}
+{{ debug_config_attr("site_description") }}
+{{ debug_config_attr("site_author") }}
+{{ debug_config_attr("copyright") }}
+{{ debug_page_attr("title") }}
+{{ debug_page_attr("canonical_url") }}
+{{ debug_page_attr("edit_url") }}
+{%- endmacro -%}
+
+{%- macro debug_config_attr( x ) -%}
+<!-- config.{{x}}: {% if config and config[x] %}{{ config[x] }}{% else %}[blank]{% endif %} -->
+{%- endmacro -%}
+
+{%- macro debug_page_attr( x ) -%}
+<!-- page.{{x}}: {% if page and page[x] %}{{ page[x] }}{% else %}[blank]{% endif %} -->
+{%- endmacro -%}
