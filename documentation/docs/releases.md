@@ -1,7 +1,14 @@
 # Releases
 
+It is a good idea to pin your dependency on `mkdocs-terminal` to the latest supported major version.  This will prevent you from accidently installing an incompatible theme update.
 
+example: `mkdocs-terminal~=2.0`
 
+See [Version Identification and Dependency Specification]{target="_blank"} for additional examples.
+
+[Version Identification and Dependency Specification]: https://peps.python.org/pep-0440/#examples
+
+<br>
 
 |         Release          | Theme Status | Supported? |
 | :----------------------: | :----------: | :--------: |
