@@ -17,7 +17,7 @@
                 </li>
                 {% endif %}
                 {% endfor %}
-                {% include "partials/search/button.html" %}
+                {%- block search_button %}{% include "partials/search/button.html" %}{%- endblock %}
             </ul>
             {% endif %}
         </nav>
