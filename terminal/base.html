@@ -84,7 +84,7 @@
         <hr> {%- block footer %}{% include "partials/footer.html" %}{%- endblock %}
     </div>
 
-    {% block search_support %}
+    {% block search_modal %}
     {% if 'search' in config['plugins'] %}
     {%- include "partials/search/mkdocs/search-modal.html" %}
     {% endif %}
