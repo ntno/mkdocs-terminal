@@ -19,7 +19,6 @@ configuration:
 - [Admonition]
 - [Arithmatex] -->
 <!-- - [BetterEm]
-- [Caret, Mark & Tilde]
 - [Critic] -->
 <!-- - [Details]
 - [Emoji] -->
