@@ -45,7 +45,6 @@ nav:
       - Tooltips: 'elements/tooltips.md'
       - Typography: 'elements/typography.md'
     - Install: 'install.md'
-    # - Search: 'search.md'
 
 markdown_extensions:
   # Python Markdown  
