@@ -133,17 +133,13 @@
     align-items: flex-start;
     justify-content: space-between;
     padding: 1rem 1rem;
-    border-bottom: 1px solid var(--secondary-color);
-    /* border-top-left-radius: 0.3rem;
-    border-top-right-radius: 0.3rem; */
+    border-bottom: 1px solid var(--secondary-color); 
 }
 
 .modal-header .close {
     padding: 1rem 1.5rem; 
     margin: -.7rem -.7rem -.7rem auto;
 } 
-
-/* */
 
 .modal-title {
     margin-bottom: 0;
@@ -162,8 +158,6 @@
     justify-content: flex-end;
     padding: 1rem;
     border-top: 1px solid var(--secondary-color);
-    /* border-bottom-right-radius: 0.3rem;
-    border-bottom-left-radius: 0.3rem; */
 }
 
 .modal-footer> :not(:first-child) {
