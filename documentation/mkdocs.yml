@@ -45,6 +45,7 @@ nav:
       - Tooltips: 'elements/tooltips.md'
       - Typography: 'elements/typography.md'
     - Install: 'install.md'
+    - Search: 'search.md'
 
 markdown_extensions:
   # Python Markdown  
@@ -66,7 +67,12 @@ markdown_extensions:
         - docs
 
 plugins:
-  - search
+  - search:
+      include_search_page: true
+      search_index_only: false
+  - exclude-search:
+      exclude_unreferenced: true
+
 
 ## deploy settings
 theme:
