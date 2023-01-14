@@ -65,13 +65,13 @@ markdown_extensions:
       base_path: 
         - docs
 
-plugins:
-  - search:
-      indexing: full
-      include_search_page: false  # false means theme needs to provide
-      search_index_only: false    # false means plugin adds full search files
-  - exclude-search:
-      exclude_unreferenced: true  
+plugins: []
+  # - search:
+  #     indexing: full
+  #     include_search_page: false  # false means theme needs to provide
+  #     search_index_only: false    # false means plugin adds full search files
+  # - exclude-search:
+  #     exclude_unreferenced: true  
       
       # elements/examples/
       # configuration/extensions/untested-py-mdown
