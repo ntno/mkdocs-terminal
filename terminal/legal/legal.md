@@ -6,3 +6,4 @@
 [gruvbox](https://github.com/morhetz/gruvbox/blob/master/README.md) by [@morhetz](https://github.com/morhetz)  
 [open-source-template](https://github.com/auth0/open-source-template/blob/master/LICENSE) by [@auth0](https://github.com/auth0)  
 [mkdocs-git-revision-date-plugin](https://github.com/zhaoterryy/mkdocs-git-revision-date-plugin/blob/master/LICENSE) by [@zhaoterryy](https://github.com/zhaoterryy)  
+[semver](https://semver.org/#license) by [Tom Preston-Werner](https://tom.preston-werner.com/)  

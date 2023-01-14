@@ -1,7 +1,11 @@
 site_name: Terminal for MkDocs
 site_url: https://ntno.github.io/mkdocs-terminal
-repo_url: https://github.com/ntno/mkdocs-terminal
-edit_uri_template: https://github.com/ntno/mkdocs-terminal/edit/main/documentation/docs/{path}
+# Bitbucket
+# GitHub
+repo_url: https://bitbucket.org/norganick/demo
+edit_uri_template: 'src/main/docs/{path}?mode=edit'
+# repo_url: https://github.com/ntno/mkdocs-terminal
+# edit_uri_template: https://github.com/ntno/mkdocs-terminal/edit/main/documentation/docs/{path}
 copyright: Copyright 2023 Natan Organick, All rights reserved
 site_author: ntno
 
@@ -46,7 +50,7 @@ nav:
       - Tooltips: 'elements/tooltips.md'
       - Typography: 'elements/typography.md'
     - Install: 'install.md'
-
+    - Releases: 'releases.md'
 markdown_extensions:
   # Python Markdown  
   - attr_list
@@ -72,6 +76,5 @@ plugins:
 ## deploy settings
 theme:
   name: terminal
-  commit_uri: commits/main/documentation/docs
   features:
     - navigation.side.indexes
