@@ -39,72 +39,46 @@ class TestRevision():
         assert "Page last updated 2023/01/01" in rendered_revision
         assert_valid_html(rendered_revision)
 
-    # def test_grid_with_one_tile(self, env_with_terminal_loader, minimal_linked_image_tile):
-    #     grid_partial = env_with_terminal_loader.get_template("partials/tiles.html")
-    #     context_data = {
-    #         "page": {
-    #             "meta": {
-    #                 "tiles": [minimal_linked_image_tile]
-    #             }
-    #         }
-    #     }
-    #     grid_partial.new_context(context_data)
-    #     rendered_grid = grid_partial.render(context_data)
-    #     assert "class=\"terminal-mkdocs-tile-grid \">" in rendered_grid
-    #     assert_valid_html(rendered_grid)
+    def test_that_github_history_link_added_when_site_has_page_edit_url_and_repo_name_set(self, env_with_terminal_loader):
+        revision_partial = env_with_terminal_loader.get_template("partials/revision.html")
+        mkdocs_generated_page_url = "https://github.com/myUsername/myRepository/edit/main/docs/index.md"
+        expected_page_history_url = "https://github.com/myUsername/myRepository/commits/main/docs/index.md"
+        mkdocs_generated_repo_name = "GitHub"
+        context_data = {
+            "page": {
+                "edit_url": mkdocs_generated_page_url,
+                "meta": {
+                    "revision_date": "2023/01/02"
+                }
+            },
+            "config": {
+                "repo_name": mkdocs_generated_repo_name
+            }
+        }
+        rendered_revision = revision_partial.render(context_data)
+        assert "Page last updated 2023/01/02" in rendered_revision
+        assert "See revision history on" in rendered_revision
+        assert "<a target=\"_blank\" href=\"" + expected_page_history_url + "\">GitHub</a>" in rendered_revision
+        assert_valid_html(rendered_revision)
 
-    # def test_that_grid_includes_all_valid_tiles(self, env_with_terminal_loader, minimal_linked_image_tile, minimal_link_tile, minimal_image_tile, empty_tile):
-    #     grid_partial = env_with_terminal_loader.get_template("partials/tiles.html")
-    #     minimal_linked_image_tile.tile_id = "myLinkedImageTile"
-    #     minimal_link_tile.tile_id = "myLinkOnlyTile"
-    #     empty_tile.tile_id = "myInvalidTile"
-    #     minimal_image_tile.tile_id = "myImageOnlyTile"
-
-    #     context_data = {
-    #         "page": {
-    #             "meta": {
-    #                 "tiles": [minimal_linked_image_tile, minimal_link_tile, empty_tile, minimal_image_tile]
-    #             }
-    #         }
-    #     }
-    #     grid_partial.new_context(context_data)
-    #     rendered_grid = grid_partial.render(context_data)
-    #     assert "class=\"terminal-mkdocs-tile-grid \">" in rendered_grid
-    #     assert "id=\"myLinkedImageTile\"" in rendered_grid
-    #     assert "id=\"myLinkOnlyTile\"" in rendered_grid
-    #     assert "id=\"myImageOnlyTile\"" in rendered_grid
-    #     assert "id=\"myInvalidTile\"" not in rendered_grid
-    #     assert_valid_html(rendered_grid)
-
-    # def test_grid_id_and_css_set(self, env_with_terminal_loader, minimal_linked_image_tile):
-    #     grid_partial = env_with_terminal_loader.get_template("partials/tiles.html")
-    #     context_data = {
-    #         "page": {
-    #             "meta": {
-    #                 "grid_id": "myGridId",
-    #                 "grid_css": "myGridCss",
-    #                 "tiles": [minimal_linked_image_tile]
-    #             }
-    #         }
-    #     }
-    #     grid_partial.new_context(context_data)
-    #     rendered_grid = grid_partial.render(context_data)
-    #     assert "id=\"myGridId\"" in rendered_grid
-    #     assert "class=\"terminal-mkdocs-tile-grid myGridCss\">" in rendered_grid
-    #     assert_valid_html(rendered_grid)
-    # def test_grid_renders_with_integer_tile_input(self, env_with_terminal_loader, all_integer_tile):
-    #     grid_partial = env_with_terminal_loader.get_template("partials/tiles.html")
-    #     context_data = {
-    #         "page": {
-    #             "meta": {
-    #                 "grid_id": 0,
-    #                 "grid_css": 1,
-    #                 "tiles": [all_integer_tile]
-    #             }
-    #         }
-    #     }
-    #     grid_partial.new_context(context_data)
-    #     try:
-    #         grid_partial.render(context_data)
-    #     except Exception as ex:
-    #         pytest.fail(f"Got exception during render: {ex})")
+    def test_that_bitbucket_source_link_added_when_site_has_page_edit_url_and_repo_name_set(self, env_with_terminal_loader):
+        revision_partial = env_with_terminal_loader.get_template("partials/revision.html")
+        mkdocs_generated_page_url = "https://bitbucket.org/myUsername/myRepository/src/main/docs/index.md?mode=edit"
+        expected_page_source_url = "https://bitbucket.org/myUsername/myRepository/src/main/docs/index.md?mode=read"
+        mkdocs_generated_repo_name = "Bitbucket"
+        context_data = {
+            "page": {
+                "edit_url": mkdocs_generated_page_url,
+                "meta": {
+                    "revision_date": "2023/03/04"
+                }
+            },
+            "config": {
+                "repo_name": mkdocs_generated_repo_name
+            }
+        }
+        rendered_revision = revision_partial.render(context_data)
+        assert "Page last updated 2023/03/04" in rendered_revision
+        assert "See revision history on" in rendered_revision
+        assert "<a target=\"_blank\" href=\"" + expected_page_source_url + "\">Bitbucket</a>" in rendered_revision
+        assert_valid_html(rendered_revision)
