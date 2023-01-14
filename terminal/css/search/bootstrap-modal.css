@@ -53,7 +53,6 @@
 }
 
 .modal-dialog-scrollable {
-    /* display: -ms-flexbox; */
     display: flex;
     max-height: calc(100% - 1rem);
 }
@@ -74,9 +73,7 @@
 }
 
 .modal-dialog-centered {
-    /* display: -ms-flexbox; */
     display: flex;
-    /* -ms-flex-align: center; */
     align-items: center;
     min-height: calc(100% - 1rem);
 }
@@ -105,9 +102,7 @@
 
 .modal-content {
     position: relative;
-    /* display: -ms-flexbox; */
     display: flex;
-    /* -ms-flex-direction: column; */
     flex-direction: column;
     width: 100%;
     pointer-events: auto;
@@ -137,11 +132,8 @@
 }
 
 .modal-header {
-    /* display: -ms-flexbox; */
     display: flex;
-    /* -ms-flex-align: start; */
     align-items: flex-start;
-    /* -ms-flex-pack: justify; */
     justify-content: space-between;
     padding: 1rem 1rem;
     border-bottom: 1px solid var(--secondary-color);
