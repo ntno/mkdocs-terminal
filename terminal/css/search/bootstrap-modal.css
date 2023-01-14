@@ -105,8 +105,7 @@
     pointer-events: auto;
     background-color: var(--code-bg-color);
     background-clip: padding-box;
-    border: 1px solid rgba(var(--font-color), 0.2);
-    /* border-radius: 0.3rem; */
+    border: 1px solid var(--font-color);
     outline: 0;
 }
 
