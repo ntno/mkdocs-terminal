@@ -2,10 +2,10 @@ site_name: Terminal for MkDocs
 site_url: https://ntno.github.io/mkdocs-terminal
 # Bitbucket
 # GitHub
-repo_url: https://bitbucket.org/norganick/demo
-edit_uri_template: 'src/main/docs/{path}?mode=edit'
-# repo_url: https://github.com/ntno/mkdocs-terminal
-# edit_uri_template: https://github.com/ntno/mkdocs-terminal/edit/main/documentation/docs/{path}
+# repo_url: https://bitbucket.org/norganick/demo
+# edit_uri_template: 'src/main/docs/{path}?mode=edit'
+repo_url: https://github.com/ntno/mkdocs-terminal
+edit_uri_template: https://github.com/ntno/mkdocs-terminal/edit/main/documentation/docs/{path}
 copyright: Copyright 2023 Natan Organick, All rights reserved
 site_author: ntno
 
@@ -23,6 +23,7 @@ nav:
         - Sans Dark: 'configuration/palettes/sans_dark.md'
       - Features: 'configuration/features.md'
       - Plugins: 'configuration/plugins/index.md'
+      - '___Git Rev.': 'configuration/plugins/git-revision.md'
       - Extensions: 'configuration/extensions/index.md'
       - Python Markdown: 'configuration/extensions/python-markdown.md'
       - PyMdown Extensions: 'configuration/extensions/py-mdown-extensions.md'
@@ -57,6 +58,7 @@ markdown_extensions:
   - def_list
   - footnotes
   - md_in_html
+  - meta
   - toc:
       permalink: "#"
       permalink_title: Anchor link to this section for reference
