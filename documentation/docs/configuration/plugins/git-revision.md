@@ -1,3 +1,7 @@
+<script>
+    console.log(mkdocs_terminal_page_meta);
+</script>
+
 # Git Revision Date Plugin
 This plugin automatically adds the last revision date to each markdown page's metadata.  The new `revision_date` attribute can then be used to display the page's last revision date.  See the "Page last updated" text at the bottom of this page as an example.
 
@@ -30,7 +34,7 @@ plugins:
   - git-revision-date
 ```
 
-## 3. Configure Repository URL 
+## 3. Verify  
 
 
 
