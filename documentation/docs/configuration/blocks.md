@@ -110,3 +110,4 @@ Calling `super()` will include any Terminal for MkDocs features which are insert
 | before_markdown_content | page.html                      | partials/page-base.html       |
 | markdown_content        | page.html                      | partials/page-base.html       |
 | after_markdown_content  | page.html                      | partials/page-base.html       |
+| revision                | page.html                      | partials/page-base.html       |
