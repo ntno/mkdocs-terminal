@@ -64,7 +64,6 @@
 
 .modal-dialog-scrollable .modal-header,
 .modal-dialog-scrollable .modal-footer {
-    -ms-flex-negative: 0;
     flex-shrink: 0;
 }
 
@@ -85,9 +84,7 @@
 }
 
 .modal-dialog-centered.modal-dialog-scrollable {
-    -ms-flex-direction: column;
     flex-direction: column;
-    -ms-flex-pack: center;
     justify-content: center;
     height: 100%;
 }
@@ -153,17 +150,13 @@
 
 .modal-body {
     position: relative;
-    -ms-flex: 1 1 auto;
     flex: 1 1 auto;
     padding: 1rem;
 }
 
 .modal-footer {
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-align: center;
     align-items: center;
-    -ms-flex-pack: end;
     justify-content: flex-end;
     padding: 1rem;
     border-top: 1px solid var(--secondary-color);
