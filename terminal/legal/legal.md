@@ -5,3 +5,4 @@
 [mkdocs-material](https://github.com/squidfunk/mkdocs-material/blob/master/LICENSE) by [@squidfunk](https://github.com/squidfunk)  
 [gruvbox](https://github.com/morhetz/gruvbox/blob/master/README.md) by [@morhetz](https://github.com/morhetz)  
 [open-source-template](https://github.com/auth0/open-source-template/blob/master/LICENSE) by [@auth0](https://github.com/auth0)  
+[mkdocs/mkdocs theme](https://github.com/mkdocs/mkdocs/blob/master/LICENSE)
