@@ -1,0 +1,9 @@
+{%- block search_button %}
+{%- if 'search' in config['plugins'] %}
+<li class="nav-item">
+    <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+        <i class="fa fa-search"></i> {% trans %}Search{% endtrans %}
+    </a>
+</li>
+{%- endif %}
+{%- endblock %}
