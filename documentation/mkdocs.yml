@@ -65,6 +65,9 @@ markdown_extensions:
       base_path: 
         - docs
 
+plugins:
+  - search
+
 ## deploy settings
 theme:
   name: terminal
