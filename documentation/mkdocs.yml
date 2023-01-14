@@ -23,7 +23,7 @@ nav:
         - Sans Dark: 'configuration/palettes/sans_dark.md'
       - Features: 'configuration/features.md'
       - Plugins: 'configuration/plugins/index.md'
-      - '___Git Rev.': 'configuration/plugins/git-revision.md'
+      - '___Git Revision': 'configuration/plugins/git-revision.md'
       - Extensions: 'configuration/extensions/index.md'
       - Python Markdown: 'configuration/extensions/python-markdown.md'
       - PyMdown Extensions: 'configuration/extensions/py-mdown-extensions.md'
