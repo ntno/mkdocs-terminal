@@ -1,5 +1,5 @@
 from tidylib import tidy_fragment
-DEBUG = False
+DEBUG = True
 
 
 def check_html(fragment):
