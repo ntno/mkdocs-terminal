@@ -21,10 +21,6 @@
     {%- block htmltitle %}{% include "partials/html-title.html" %}{%- endblock %} 
     
     {%- block styles %}
-    {% if 'search' in config['plugins'] %}
-    <!-- search css support -->
-    <link href="{{ 'css/search/bootstrap-modal.css' | url }}" rel="stylesheet">
-    {% endif %}
     <link href="{{ 'css/fontawesome/css/fontawesome.min.css' | url }}" rel="stylesheet">
     <link href="{{ 'css/fontawesome/css/solid.min.css' | url }}" rel="stylesheet">
     <link href="{{ 'css/normalize.css' | url }}" rel="stylesheet">
