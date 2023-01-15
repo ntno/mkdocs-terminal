@@ -101,6 +101,16 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://ntno.github.io/mkdocs-terminal/configuration/plugins/</loc>
+         <lastmod>2023-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://ntno.github.io/mkdocs-terminal/configuration/plugins/git-revision/</loc>
+         <lastmod>2023-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://ntno.github.io/mkdocs-terminal/configuration/plugins/search/</loc>
          <lastmod>2023-01-15</lastmod>
          <changefreq>daily</changefreq>

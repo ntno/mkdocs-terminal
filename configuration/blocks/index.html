@@ -249,6 +249,44 @@
         
             <a class="
 
+    terminal-mkdocs-side-nav-item" href="../plugins/">Plugins</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../plugins/git-revision/">___Git Revision</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
     terminal-mkdocs-side-nav-item" href="../extensions/">Extensions</a>
         
     
@@ -832,7 +870,10 @@
     
 </aside>
 
-            <main>
+            <main>       
+    
+    
+
 <section>
     <h1 id="template-blocks">Template Blocks<a class="headerlink" href="#template-blocks" title="Anchor link to this section for reference">#</a></h1>
 <p>In some situations you may want to include your own Jinja2 page templates.  Terminal for MkDocs supports overriding or extending the blocks listed in <a href="./#overridable-blocks">Reference</a>.  </p>
@@ -913,6 +954,10 @@
 <dd>
 <p>Section after main markdown content (contains <a href="../../tile-grid/">Tile Grid</a> by default if <code>tiles</code> is set)</p>
 </dd>
+<dt><code>revision</code></dt>
+<dd>
+<p>Section after the <code>after_markdown_content</code> block containing information about when the markdown page was last updated.  See the <a href="../plugins/git-revision">Git Revision Plugin</a> for details.</p>
+</dd>
 </dl>
 <p><br></p>
 <h1 id="override-locations">Override Locations<a class="headerlink" href="#override-locations" title="Anchor link to this section for reference">#</a></h1>
@@ -975,9 +1020,18 @@
 <td>page.html</td>
 <td>partials/page-base.html</td>
 </tr>
+<tr>
+<td>revision</td>
+<td>page.html</td>
+<td>partials/page-base.html</td>
+</tr>
 </tbody>
 </table>
 </section>
+
+
+
+
 
 
 
