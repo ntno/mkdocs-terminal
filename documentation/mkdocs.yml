@@ -68,7 +68,6 @@ markdown_extensions:
 plugins:
   - search:
       indexing: full
-      include_search_page: false  # false means theme needs to provide
       search_index_only: false    # false means plugin adds full search files
   - exclude-search:      
       exclude:
