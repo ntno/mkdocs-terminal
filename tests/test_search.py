@@ -1,3 +1,4 @@
+from tests.utils.html import assert_valid_html, ALLOW_EMPTY_ELEMENTS
 from tests.utils import theme_plugins, theme_features
 import pytest
 
@@ -36,16 +37,17 @@ class TestSearchButton():
     def test_no_search_button_when_search_plugin_disabled(self, search_button_partial, enabled_context, plugins_list):
         enabled_context["config"]["plugins"] = plugins_list
         context_data = enabled_context
-        rendered_nav = search_button_partial.render(context_data)
-        assert rendered_nav == ""
+        rendered_nav_search_button = search_button_partial.render(context_data)
+        assert rendered_nav_search_button == ""
 
     def test_search_button_included_when_search_plugin_enabled(self, search_button_partial, enabled_context):
         context_data = enabled_context
-        rendered_nav = search_button_partial.render(context_data)
-        assert "#mkdocs_search_modal" in rendered_nav
+        rendered_nav_search_button = search_button_partial.render(context_data)
+        assert "#mkdocs_search_modal" in rendered_nav_search_button
+        assert_valid_html("<ul>" + rendered_nav_search_button + "</ul>", ALLOW_EMPTY_ELEMENTS)
 
     def test_search_button_not_included_when_feature_disabled(self, search_button_partial, enabled_context):
         enabled_context["config"]["theme"]["features"] = [theme_features.HIDE_SEARCH_BUTTON]
         context_data = enabled_context
-        rendered_nav = search_button_partial.render(context_data)
-        assert rendered_nav == ""
+        rendered_nav_search_button = search_button_partial.render(context_data)
+        assert rendered_nav_search_button == ""
