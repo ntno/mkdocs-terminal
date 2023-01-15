@@ -18,7 +18,6 @@ class TestGrid():
                 }
             }
         }
-        grid_partial.new_context(context_data)
         rendered_grid = grid_partial.render(context_data)
         assert "class=\"terminal-mkdocs-tile-grid \">" in rendered_grid
         assert_valid_html(rendered_grid)
@@ -37,7 +36,6 @@ class TestGrid():
                 }
             }
         }
-        grid_partial.new_context(context_data)
         rendered_grid = grid_partial.render(context_data)
         assert "class=\"terminal-mkdocs-tile-grid \">" in rendered_grid
         assert "id=\"myLinkedImageTile\"" in rendered_grid
@@ -57,7 +55,6 @@ class TestGrid():
                 }
             }
         }
-        grid_partial.new_context(context_data)
         rendered_grid = grid_partial.render(context_data)
         assert "id=\"myGridId\"" in rendered_grid
         assert "class=\"terminal-mkdocs-tile-grid myGridCss\">" in rendered_grid
@@ -74,7 +71,6 @@ class TestGrid():
                 }
             }
         }
-        grid_partial.new_context(context_data)
         try:
             grid_partial.render(context_data)
         except Exception as ex:
@@ -91,7 +87,6 @@ class TestGrid():
                 }
             }
         }
-        grid_partial.new_context(context_data)
         try:
             grid_partial.render(context_data)
         except Exception as ex:
