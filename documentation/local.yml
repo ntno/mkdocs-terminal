@@ -5,7 +5,8 @@ theme:
   custom_dir: '../terminal'
   features:
     - navigation.side.indexes
-    # - debug
+    - revision.date
+    - revision.history
 
 watch:
   - '../terminal'

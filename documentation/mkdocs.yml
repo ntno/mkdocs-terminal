@@ -1,9 +1,5 @@
 site_name: Terminal for MkDocs
 site_url: https://ntno.github.io/mkdocs-terminal
-# Bitbucket
-# GitHub
-# repo_url: https://bitbucket.org/norganick/demo
-# edit_uri_template: 'src/main/docs/{path}?mode=edit'
 repo_url: https://github.com/ntno/mkdocs-terminal
 edit_uri_template: https://github.com/ntno/mkdocs-terminal/edit/main/documentation/docs/{path}
 copyright: Copyright 2023 Natan Organick, All rights reserved
@@ -96,3 +92,5 @@ theme:
   name: terminal
   features:
     - navigation.side.indexes
+    - revision.date
+    - revision.history
