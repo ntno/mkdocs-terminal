@@ -7,8 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-2.0.2">
-    <!-- <meta name="robots" content="noindex"> -->
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-2.2.0">
      
     
     <meta name="author" content="ntno"> 
@@ -24,6 +23,8 @@
     
  
 <title>PyMdown Extensions - Terminal for MkDocs</title>
+    <link href="../../../css/fontawesome/css/fontawesome.min.css" rel="stylesheet">
+    <link href="../../../css/fontawesome/css/solid.min.css" rel="stylesheet">
     <link href="../../../css/normalize.css" rel="stylesheet">
     <link href="../../../css/terminal.css" rel="stylesheet">
     <link href="../../../css/theme.css" rel="stylesheet"> 
@@ -38,9 +39,24 @@
     
 
     
+    <!-- search css support -->
+<link href="../../../css/search/bootstrap-modal.css" rel="stylesheet">
+<!-- search scripts -->
+<script>
+    var base_url = "../../..",
+    shortcuts = "{}";
+</script>
+<script src="../../../js/jquery/jquery-1.10.1.min.js" defer></script>
+<script src="../../../js/bootstrap/bootstrap.min.js" defer></script>
+<script src="../../../js/mkdocs/base.js" defer></script>
+    
+    
+    
+    
     <script src="../../../search/main.js"></script>
     
 
+    
     
 </head>
 
@@ -49,7 +65,9 @@
     
      
       
-        <div class="container">
+        
+
+<div class="container">
     <div class="terminal-nav">
         <header class="terminal-logo">
             <div class="logo terminal-prompt"><a href="https://ntno.github.io/mkdocs-terminal/" class="no-style">Terminal for MkDocs</a></div>
@@ -75,15 +93,20 @@
                 
                 
                 
-                
                 <li property="itemListElement" typeof="ListItem">
                     <a href="../../../install/" class="menu-item " property="item" typeof="WebPage">
                         <span property="name">Install</span>
                     </a>
-                    <meta property="position" content="5">
+                    <meta property="position" content="1">
                 </li>
                 
-                
+
+<li property="itemListElement" typeof="ListItem">
+    <a href="#" class="menu-item" data-toggle="modal" data-target="#mkdocs_search_modal" property="item" typeof="SearchAction">
+        <i class="fa fa-search"></i> <span property="name">Search</span>
+    </a>
+    <meta property="position" content="2">
+</li>
             </ul>
             
         </nav>
@@ -834,6 +857,31 @@ documentation</a> for more information.</p>
     </div>
 </footer>
     </div>
+
+    
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close btn btn-default btn-ghost" data-dismiss="modal"><span aria-hidden="true">x</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>Type to start searching</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="" id="mkdocs-search-query" title="Please enter search terms here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No document matches found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
 </body>
 
 </html>
