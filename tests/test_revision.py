@@ -103,25 +103,32 @@ class TestRevision():
         except Exception as ex:
             pytest.fail(f"Got exception during render: {ex})")
 
-    def test_that_last_updated_text_when_page_has_revision_date(self, revision_partial, enabled_context):
+    def test_last_updated_text_when_page_has_revision_date(self, revision_partial, enabled_context):
         enabled_context["page"]["meta"]["revision_date"] = "2023/01/01"
         context_data = enabled_context
         rendered_revision = revision_partial.render(context_data)
         assert "Page last updated 2023/01/01. " in rendered_revision
         assert_valid_html(rendered_revision)
 
-    def test_that_github_history_link(self,revision_partial, enabled_context):
+    def test_no_last_updated_text_when_missing_revision_date(self, revision_partial, enabled_context):
+        enabled_context["page"]["meta"]["revision_date"] = ""
+        context_data = enabled_context
+        rendered_revision = revision_partial.render(context_data)
+        assert "Page last updated" not in rendered_revision
+        assert_valid_html(rendered_revision)
+
+    def test_github_history_link(self,revision_partial, enabled_context):
         expected_page_history_url = "https://github.com/myUsername/myRepository/commits/main/docs/index.md"
-        enabled_context["page"]["meta"]["revision_date"] = "2023/01/02"
+        enabled_context["page"]["meta"]["revision_date"] = "2022/05/06"
         enabled_context["page"]["edit_url"] = "https://github.com/myUsername/myRepository/edit/main/docs/index.md"
         enabled_context["config"]["repo_name"] = "GitHub"
         context_data = enabled_context
         rendered_revision = revision_partial.render(context_data)
-        assert "Page last updated 2023/01/02. See revision history on" in rendered_revision
+        assert "Page last updated 2022/05/06. See revision history on" in rendered_revision
         assert "<a target=\"_blank\" href=\"" + expected_page_history_url + "\">GitHub</a>" in rendered_revision
         assert_valid_html(rendered_revision)
 
-    def test_that_bitbucket_history_link(self, revision_partial, enabled_context):
+    def test_bitbucket_history_link(self, revision_partial, enabled_context):
         expected_page_source_url = "https://bitbucket.org/myUsername/myRepository/src/main/docs/index.md?mode=read"
         enabled_context["page"]["meta"]["revision_date"] = "2023/03/04"
         enabled_context["page"]["edit_url"] = "https://bitbucket.org/myUsername/myRepository/src/main/docs/index.md?mode=edit"
