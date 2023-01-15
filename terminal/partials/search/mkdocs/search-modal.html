@@ -1,0 +1,21 @@
+<div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">{{ search_modal_ns.header }}</h4>
+                <button type="button" class="close btn btn-default btn-ghost" data-dismiss="modal"><span aria-hidden="true">{{ search_modal_ns.close_text }}</span><span class="sr-only">{{ search_modal_ns.screen_reader_close_text }}</span></button>
+            </div>
+            <div class="modal-body">
+                <p>{{ search_modal_ns.instructions }}</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="{{ search_modal_ns.prompt }}" id="mkdocs-search-query" title="{{ search_modal_ns.tooltip }}">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="{{ search_modal_ns.no_results }}"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>

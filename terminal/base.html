@@ -9,7 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {% include "theme_version.html" %}
-    <!-- <meta name="robots" content="noindex"> -->
     {% if config.site_description %}
     <meta name="description" content="{{ config.site_description }}">{% endif %} 
     {% if config.site_author %}
@@ -22,6 +21,8 @@
     {%- block htmltitle %}{% include "partials/html-title.html" %}{%- endblock %} 
     
     {%- block styles %}
+    <link href="{{ 'css/fontawesome/css/fontawesome.min.css' | url }}" rel="stylesheet">
+    <link href="{{ 'css/fontawesome/css/solid.min.css' | url }}" rel="stylesheet">
     <link href="{{ 'css/normalize.css' | url }}" rel="stylesheet">
     <link href="{{ 'css/terminal.css' | url }}" rel="stylesheet">
     <link href="{{ 'css/theme.css' | url }}" rel="stylesheet"> 
@@ -43,6 +44,12 @@
     
     {% block extrahead %}{% endblock %}
 
+    {% block search %}
+    {% if 'search' in config['plugins'] %}
+    {%- include "partials/search/scripts.html" %}
+    {% endif %}
+    {% endblock %}
+    
     {% for path in config.extra_javascript %}
     <script src="{{ path|url }}"></script>
     {% endfor %}
@@ -76,6 +83,12 @@
         </div>
         <hr> {%- block footer %}{% include "partials/footer.html" %}{%- endblock %}
     </div>
+
+    {% block search_modal %}
+    {% if 'search' in config['plugins'] %}
+    {%- include "partials/search/modal.html" %}
+    {% endif %}
+    {% endblock %}
 </body>
 
 </html>

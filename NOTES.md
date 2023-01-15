@@ -38,7 +38,8 @@ Terminal for MkDocs' Tile Grid relies on the *meta*[^mkdocs-page-meta] attribute
 - [pytidylib](https://pythonhosted.org/pytidylib/)
 - [jinja2 web render](https://j2live.ttl255.com/)  
 - [regex101](https://regex101.com/)
-  
+- [schema.org - searchaction](https://schema.org/SearchAction)
+
 ## regex
 ### linked image
 `<div .*? <figure(.)[^>]*? <a(.)*<img`

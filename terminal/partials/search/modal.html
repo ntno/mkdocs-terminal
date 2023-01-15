@@ -1,0 +1,9 @@
+{% set search_modal_ns = namespace() %}
+{%- set search_modal_ns.header = "Search" -%}
+{%- set search_modal_ns.instructions = "Type to start searching" -%}
+{%- set search_modal_ns.no_results = "No document matches found" -%}
+{%- set search_modal_ns.prompt = "" -%}
+{%- set search_modal_ns.tooltip = "Please enter search terms here" -%}
+{%- set search_modal_ns.screen_reader_close_text = "Close" -%}
+{%- set search_modal_ns.close_text = "x" -%}
+{%- include "partials/search/mkdocs/search-modal.html" %}

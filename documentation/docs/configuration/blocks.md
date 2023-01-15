@@ -77,6 +77,21 @@ Calling `super()` will include any Terminal for MkDocs features which are insert
 :   Wraps the `<title>` tag
 
 
+`search`
+
+:   Wraps the built in Search Plugin CSS/JS support
+
+
+`search_button`
+
+:   Wraps the built in Search button in the top navigation menu
+
+
+`search_modal`
+
+:   Wraps the built in Search modal
+
+
 `before_markdown_content`
 
 :   Section before main markdown content
@@ -101,6 +116,9 @@ Calling `super()` will include any Terminal for MkDocs features which are insert
 | extrahead               | main.html                      | partials/base.html            |
 | footer                  | main.html                      | partials/base.html            |
 | htmltitle               | main.html                      | partials/base.html            |
+| search                  | main.html                      | partials/base.html            |
+| search_button           | TODO                           | TODO                          |
+| search_modal            | main.html                      | partials/base.html            |
 | before_markdown_content | page.html                      | partials/page-base.html       |
 | markdown_content        | page.html                      | partials/page-base.html       |
 | after_markdown_content  | page.html                      | partials/page-base.html       |
