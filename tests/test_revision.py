@@ -1,8 +1,48 @@
 from tests.utils.html import assert_valid_html
+from tests.utils import theme_features, theme_plugins
 import pytest
 
 
 class TestRevision():
+    @pytest.mark.parametrize("plugins_list", [
+        pytest.param(
+            None, id="null_plugins_list"
+        ),
+        pytest.param(
+            [], id="empty_plugins_list"
+        ),
+        pytest.param(
+            [theme_plugins.SEARCH], id="missing_plugin"
+        )
+    ])
+    def test_no_content_when_plugin_disabled(self, env_with_terminal_loader, plugins_list):
+        revision_partial = env_with_terminal_loader.get_template("partials/revision.html")
+        context_data = {
+            "page": {
+                "meta": {
+                    "revision_date": "2023/04/01"
+                }
+            },
+            "config": {
+                "plugins": plugins_list
+            },
+            "features": [theme_features.SHOW_REVISION_DATE, theme_features.SHOW_REVISION_HISTORY]
+        }
+        rendered_revision = revision_partial.render(context_data)
+        assert rendered_revision.strip() == ""
+
+    def test_revision_renders_when_plugin_enabled(self, env_with_terminal_loader):
+        revision_partial = env_with_terminal_loader.get_template("partials/revision.html")
+        context_data = {
+            "config": {
+                "plugins": [theme_plugins.REVISION]
+            }
+        }
+        try:
+            revision_partial.render(context_data)
+        except Exception as ex:
+            pytest.fail(f"Got exception during render: {ex})")
+
     def test_that_revision_renders_when_no_page_meta(self, env_with_terminal_loader):
         revision_partial = env_with_terminal_loader.get_template("partials/revision.html")
         context_data = {
