@@ -106,6 +106,12 @@ Calling `super()` will include any Terminal for MkDocs features which are insert
 
 :   Section after main markdown content (contains [Tile Grid] by default if `tiles` is set)
 
+
+`revision`
+
+:   Section after the `after_markdown_content` block containing information about when the markdown page was last updated.  See the [Git Revision Plugin] for details.
+
+[Git Revision Plugin]: ../plugins/git-revision
 <br>
 
 # Override Locations
@@ -122,3 +128,4 @@ Calling `super()` will include any Terminal for MkDocs features which are insert
 | before_markdown_content | page.html                      | partials/page-base.html       |
 | markdown_content        | page.html                      | partials/page-base.html       |
 | after_markdown_content  | page.html                      | partials/page-base.html       |
+| revision                | page.html                      | partials/page-base.html       |

@@ -1,0 +1,39 @@
+{%- set features = config.theme.features or [] -%}
+{%- set plugins = config.plugins or [] -%}
+{%- if page and page.meta and page.meta.hide -%}{% set page_specific_hide_list = page.meta.hide -%}{% else %}{% set page_specific_hide_list = [] -%}{%- endif -%}
+{%- if "git-revision-date" in plugins -%}
+{%- if "revision.date" in features -%}
+    {%- if "revision_date" not in page_specific_hide_list -%}
+        {%- if page and page.meta and page.meta.revision_date -%}
+            {%- set show_date = true -%}
+        {%- endif -%}
+    {%- endif -%}
+{%- endif -%}
+{%- if "revision.history" in features -%}
+    {%- if "revision_history" not in page_specific_hide_list -%}
+        {%- if page and page.edit_url and config.repo_name -%}
+            {%- set show_history = true -%}
+        {%- endif -%}
+    {%- endif -%}
+{%- endif -%}
+{%- if show_date or show_history -%}
+<br>
+<aside>
+    <p>
+        <small>
+            <i>
+            {%- if show_date -%}Page last updated {{ page.meta.revision_date }}. {% endif %}
+            {%- if show_history -%}
+            {%- if config.repo_name == "GitHub" -%}
+            See revision history on <a target="_blank" href="{{ page.edit_url | replace('/edit/','/commits/') }}">{{ config.repo_name }}</a>.
+            {%- endif -%}
+            {%- if config.repo_name == "Bitbucket" -%}
+            See revision history on <a target="_blank" href="{{ page.edit_url | replace('mode=edit','mode=read') }}">{{ config.repo_name }}</a>.
+            {%- endif -%}
+            {%- endif -%}
+            </i>
+        </small>
+    </p>
+</aside>
+{%- endif -%}
+{%- endif -%}

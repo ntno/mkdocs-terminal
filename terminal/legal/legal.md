@@ -13,6 +13,10 @@
 
 [open-source-template](https://github.com/auth0/open-source-template/blob/master/LICENSE) by [@auth0](https://github.com/auth0)  
 
+[mkdocs-git-revision-date-plugin](https://github.com/zhaoterryy/mkdocs-git-revision-date-plugin/blob/master/LICENSE) by [@zhaoterryy](https://github.com/zhaoterryy)  
+
+[open-source-template](https://github.com/auth0/open-source-template/blob/master/LICENSE) by [@auth0](https://github.com/auth0)  
+
 [mkdocs/mkdocs](https://github.com/mkdocs/mkdocs/blob/master/LICENSE)  
 ```
 Copyright © 2014-present, Tom Christie. All rights reserved.

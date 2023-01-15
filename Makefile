@@ -73,8 +73,8 @@ check-version-match:
 
 #for developer use, assumes you have already installed prereqs
 quick-tests:
-	flake8 --ignore E501
-	pytest --color=yes --capture=no tests 
+	flake8 --ignore E501 && \
+	pytest --color=yes --capture=no tests
 
 check-site:
 ifndef site

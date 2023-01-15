@@ -20,7 +20,8 @@ nav:
       - Features: 'configuration/features.md'
       - Blocks: 'configuration/blocks.md'
       - Plugins: 'configuration/plugins/index.md'
-      - '___Search': 'configuration/plugins/search.md'
+      - '___Git Revision': 'configuration/plugins/git-revision.md'
+      - '___Search': 'configuration/plugins/search.md'      
       - Extensions: 'configuration/extensions/index.md'
       - Python Markdown: 'configuration/extensions/python-markdown.md'
       - PyMdown Extensions: 'configuration/extensions/py-mdown-extensions.md'
@@ -55,10 +56,10 @@ markdown_extensions:
   - def_list
   - footnotes
   - md_in_html
+  - meta
   - toc:
       permalink: "#"
       permalink_title: Anchor link to this section for reference
-
 
   # PyMdown Extensions
   - pymdownx.caret
@@ -69,6 +70,7 @@ markdown_extensions:
         - docs
 
 plugins:
+  - git-revision-date
   - search
   - exclude-search:      
       exclude:
@@ -91,3 +93,5 @@ theme:
   name: terminal
   features:
     - navigation.side.indexes
+    - revision.date
+    - revision.history
