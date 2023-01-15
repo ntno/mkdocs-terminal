@@ -75,7 +75,6 @@ class TestRevision():
         rendered_revision = revision_partial.render(context_data)
         assert rendered_revision.strip() == ""
 
-
     @pytest.mark.parametrize("mkdocs_context", [
         pytest.param(
             {
@@ -88,7 +87,7 @@ class TestRevision():
         pytest.param(
             {
                 "page": {
-                    "meta": {}    
+                    "meta": {}
                 },
                 "config": {
                     "theme": {}
@@ -117,7 +116,7 @@ class TestRevision():
         assert "Page last updated" not in rendered_revision
         assert_valid_html(rendered_revision)
 
-    def test_github_history_link(self,revision_partial, enabled_context):
+    def test_github_history_link(self, revision_partial, enabled_context):
         expected_page_history_url = "https://github.com/myUsername/myRepository/commits/main/docs/index.md"
         enabled_context["page"]["meta"]["revision_date"] = "2022/05/06"
         enabled_context["page"]["edit_url"] = "https://github.com/myUsername/myRepository/edit/main/docs/index.md"
