@@ -125,4 +125,4 @@ theme:
 ### Adding Repository Hosts
 If your repository host is not supported, you can override the `revision` block and include your own implementation for `revision.history`.  See [Blocks] for more information on overriding theme blocks.
 
-[Blocks]: ../blocks 
+[Blocks]: ../../blocks 
