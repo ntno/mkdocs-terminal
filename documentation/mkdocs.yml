@@ -53,7 +53,6 @@ nav:
     - Install: 'install.md'
     - Releases: 'releases.md'
 
-
 markdown_extensions:
   # Python Markdown  
   - attr_list
@@ -75,6 +74,22 @@ markdown_extensions:
 
 plugins:
   - git-revision-date
+  - search
+  - exclude-search:      
+      exclude:
+        - configuration/palettes/*
+        - elements/examples/*
+        - configuration/extensions/untested-py-mdown
+      ignore:
+        - configuration/palettes/index.md#theme-color-palettes
+        - configuration/palettes/dark.md#dark-palette
+        - configuration/palettes/default.md#default-palette
+        - configuration/palettes/gruvbox_dark.md#gruvbox-dark-palette
+        - configuration/palettes/pink.md#pink-palette
+        - configuration/palettes/sans_dark.md#sans-dark-palette
+        - configuration/palettes/sans.md#sans-palette
+ 
+
 
 ## deploy settings
 theme:

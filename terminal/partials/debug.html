@@ -1,0 +1,4 @@
+{% if "debug" in features %}
+{% import 'macros/debug.j2' as debug_helper with context %}
+{{ debug_helper.debug_page( ) }}
+{% endif %}
