@@ -1,4 +1,4 @@
-{% import 'macros/top/search-button.j2' as search_helper with context %}
+{% set top_nav_ns = namespace(item_count=0) %}
 <nav class="terminal-menu">
     {% if nav|length>1 %}
     <ul vocab="https://schema.org/" typeof="BreadcrumbList">
@@ -13,7 +13,11 @@
         {%- set top_nav_ns.item_count = top_nav_ns.item_count + 1 -%}
         {% endif %}
         {% endfor %}
-        {%- block search_button %}{{ search_helper.make_search_button() }}{%- endblock %}
+        {%- block search_button %}
+            {% with button_idx=top_nav_ns.item_count %}
+            {% include "partials/top/search-button.html" %}
+            {% endwith %}
+        {%- endblock %}
     </ul>
     {% endif %}
 </nav>

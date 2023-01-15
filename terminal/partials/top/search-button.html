@@ -1,0 +1,5 @@
+{% import 'macros/top/search-button.j2' as search_helper %}
+{%- set plugins = config.plugins or [] -%}
+{%- if 'search' in plugins %}
+{{ search_helper.make_search_button( button_idx ) }}
+{%- endif -%}
