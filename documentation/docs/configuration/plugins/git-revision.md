@@ -124,6 +124,9 @@ theme:
 
 
 ### Adding Repository Hosts
-If your repository host is not supported, you can override the `revision` block and include your own implementation for `revision.history`.  See [Blocks] for more information on overriding theme blocks.
+If your repository is not stored on GitHub or Bitbucket and you would like to use this feature please [submit a feature request]{target="_blank"} on GitHub.  
 
+You can further customize what revision information is included on the page by implementing your own `revision` template block.  See [Blocks] for more information.
+
+[submit a feature request]: https://github.com/ntno/mkdocs-terminal/issues/new/choose
 [Blocks]: ../../blocks 
