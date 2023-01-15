@@ -63,18 +63,18 @@ The second revision theme feature is `revision.history`.  Enabling this feature 
 <section markdown>
 <figure markdown>
 ![Advanced Configuration](../../img/annotated/revision-features.png){title="'Page last updated' text and 'See revision history' text are controlled by separate theme features"; alt="screenshot with revision.date component and revision.history component marked" .terminal-mkdocs-thin-border }
-<figcaption>revision.date vs revision.history features</figcaption>
+<figcaption>'revision.date' vs 'revision.history' Theme Features</figcaption>
 </figure>
 </section>
 <br>
 
-Currently two repository hosts are supported by Terminal for MkDocs.  See [supported repositories](git-revision.md#supported-repositories) for example configurations.
+Currently two repository hosts are supported by Terminal for MkDocs.  See [supported repositories](git-revision.md#supported-repositories) for example configurations.  
 
 ### Supported Repositories
 
 #### GitHub
 
-**mkdocs.yml sample for project in root directory**
+#### MkDocs project in root directory
 ```yaml
 repo_url: https://github.com/ntno/ntno.net  
 edit_uri: edit/main/docs/
@@ -89,7 +89,7 @@ theme:
     - revision.history  
 ```
 
-**mkdocs.yml sample for project in child directory**
+#### MkDocs project in child 'documentation' directory
 ```yaml
 repo_url: https://github.com/ntno/mkdocs-terminal  
 edit_uri_template: https://github.com/ntno/mkdocs-terminal/edit/main/documentation/docs/{path}  
@@ -105,10 +105,24 @@ theme:
 ```
 
 #### Bitbucket
+#### MkDocs project in root directory
+```yaml
 repo_url: https://bitbucket.org/norganick/demo
 edit_uri_template: src/main/docs/{path}?mode=edit
-revision.html: https://bitbucket.org/norganick/demo/src/main/docs/index.md?mode=read&at=main
+
+plugins:
+  - git-revision-date
+
+theme:
+  name: terminal
+  features:
+    - revision.date
+    - revision.history  
+```
+
+
 
 ### Adding Repository Hosts
-If you host your repository on a different service, you can override the `revision` template block to include a link to your revision history.  
+If your repository host is not supported, you can override the `revision` block and include your own implementation for `revision.history`.  See [Blocks] for more information on overriding theme blocks.
 
+[Blocks]: ../blocks 
