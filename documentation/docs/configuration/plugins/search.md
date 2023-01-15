@@ -7,6 +7,7 @@ related plugins
 
 
 ## implementation
-- fix styling for built in palettes
-- improve modal styling
 - allow for custom text in the search modal
+
+## review
+https://github.com/bartdegoede/blog/blob/master/assets/js/search/search.js
