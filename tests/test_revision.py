@@ -15,9 +15,11 @@ def revsion_fully_enabled_context():
         "config": {
             "repo_name": "repo_name_placeholder",
             "repo_url": "repo_url_placeholder",
-            "plugins": [theme_plugins.REVISION]
-        },
-        "features": [theme_features.SHOW_REVISION_DATE, theme_features.SHOW_REVISION_HISTORY]
+            "plugins": [theme_plugins.REVISION],
+            "theme": {
+                "features": [theme_features.SHOW_REVISION_DATE, theme_features.SHOW_REVISION_HISTORY]
+            }
+        }
     }
     return context
 
@@ -43,9 +45,11 @@ class TestRevision():
                 }
             },
             "config": {
-                "plugins": plugins_list
-            },
-            "features": [theme_features.SHOW_REVISION_DATE, theme_features.SHOW_REVISION_HISTORY]
+                "plugins": plugins_list,
+                "theme": {
+                    "features": [theme_features.SHOW_REVISION_DATE, theme_features.SHOW_REVISION_HISTORY]
+                }
+            }
         }
         rendered_revision = revision_partial.render(context_data)
         assert rendered_revision.strip() == ""
@@ -54,7 +58,8 @@ class TestRevision():
         revision_partial = env_with_terminal_loader.get_template("partials/revision.html")
         context_data = {
             "config": {
-                "plugins": [theme_plugins.REVISION]
+                "plugins": [theme_plugins.REVISION],
+                "theme": {}
             }
         }
         try:
@@ -71,9 +76,11 @@ class TestRevision():
                 }
             },
             "config": {
-                "plugins": [theme_plugins.REVISION]
-            },
-            "features": []
+                "plugins": [theme_plugins.REVISION],
+                "theme": {
+                    "features": []
+                }
+            }
         }
         rendered_revision = revision_partial.render(context_data)
         assert rendered_revision.strip() == ""
@@ -82,7 +89,9 @@ class TestRevision():
         revision_partial = env_with_terminal_loader.get_template("partials/revision.html")
         context_data = {
             "page": {},
-            "config": {}
+            "config": {
+                "theme": {}
+            }
         }
         try:
             revision_partial.render(context_data)
@@ -95,7 +104,9 @@ class TestRevision():
             "page": {
                 "meta": {}
             },
-            "config": {}
+            "config": {
+                "theme": {}
+            }
         }
         rendered_revision = revision_partial.render(context_data)
         assert rendered_revision.strip() == ""
