@@ -78,3 +78,8 @@ POSSIBILITY OF SUCH DAMAGE.
  * Copyright 2022 Fonticons, Inc.
  */
 ```
+
+[semver](https://semver.org/#license) by [Tom Preston-Werner](https://tom.preston-werner.com/)
+```text
+Creative Commons ― CC BY 3.0
+```
