@@ -32,37 +32,77 @@ mkdocs-git-revision-date-plugin
 Then run:  `pip install -r ./requirements.txt`
 
 
-## 2. Add Plugin to MkDocs Config
+## 2. Enable Plugin
 
 Enable the Git Revision Date Plugin by adding `git-revision-date` to the `plugins` configuration in `mkdocs.yml`:
-
-mkdocs.yml
 ```yaml
 plugins:
   - git-revision-date
 ```
 
-## 3. Configure Theme Display  
-mkdocs.yml
+## 3. Enable Theme Feature  
+Turn on the "Page last updated" theme component by adding `revision.date` to the theme's `features` list in `mkdocs.yml`:
 ```yaml
 theme:
   name: terminal
   features:
     - revision.date
 ```
-
+<br>
 
 ## Advanced Configuration
+There are two components that can be individually enabled.  The example above only discusses `revision.date` as it is easier to configure without error.  
 
+The second revision theme feature is `revision.history`.  Enabling this feature will add a "See revision history..." note to the bottom of the page.  This feature relies on MkDocs' [repo_url]{target="_blank"}, [repo_name]{target="_blank"}, and [edit_uri]{target="_blank"}/[edit_uri_template]{target="_blank"} settings.  
 
+[repo_url]: https://www.mkdocs.org/user-guide/configuration/#repo_url
+[repo_name]: https://www.mkdocs.org/user-guide/configuration/#repo_name
+[edit_uri]: https://www.mkdocs.org/user-guide/configuration/#edit_uri
+[edit_uri_template]: https://www.mkdocs.org/user-guide/configuration/#edit_uri_template
 
+<section markdown>
+<figure markdown>
+![Advanced Configuration](../../img/annotated/revision-features.png){title="'Page last updated' text and 'See revision history' text are controlled by separate theme features"; alt="screenshot with revision.date component and revision.history component marked" .terminal-mkdocs-thin-border }
+<figcaption>revision.date vs revision.history features</figcaption>
+</figure>
+</section>
+<br>
 
-### Supported Repository Hosts
+Currently two repository hosts are supported by Terminal for MkDocs.  See [supported repositories](git-revision.md#supported-repositories) for example configurations.
+
+### Supported Repositories
 
 #### GitHub
+
+**mkdocs.yml sample for project in root directory**
+```yaml
+repo_url: https://github.com/ntno/ntno.net  
+edit_uri: edit/main/docs/
+
+plugins:
+  - git-revision-date
+
+theme:
+  name: terminal
+  features:
+    - revision.date
+    - revision.history  
+```
+
+**mkdocs.yml sample for project in child directory**
+```yaml
 repo_url: https://github.com/ntno/mkdocs-terminal  
 edit_uri_template: https://github.com/ntno/mkdocs-terminal/edit/main/documentation/docs/{path}  
-revision.html: https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/index.md
+
+plugins:
+  - git-revision-date
+
+theme:
+  name: terminal
+  features:
+    - revision.date
+    - revision.history  
+```
 
 #### Bitbucket
 repo_url: https://bitbucket.org/norganick/demo
