@@ -92,8 +92,8 @@ theme:
 
 #### MkDocs project in child 'documentation' directory
 ```yaml
-repo_url: https://github.com/ntno/mkdocs-terminal  
-edit_uri_template: https://github.com/ntno/mkdocs-terminal/edit/main/documentation/docs/{path}  
+repo_url: https://github.com/ntno/mkdocs-terminal
+edit_uri_template: https://github.com/ntno/mkdocs-terminal/edit/main/documentation/docs/{path}
 
 plugins:
   - git-revision-date
