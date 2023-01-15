@@ -16,7 +16,8 @@
 <aside>
     <p>
         <small>
-            {% if show_date %}<i>Page last updated {{ page.meta.revision_date }}. {% endif %}
+            <i>
+            {%- if show_date -%}Page last updated {{ page.meta.revision_date }}. {% endif %}
             {%- if show_history -%}
             {%- if config.repo_name == "GitHub" -%}
             See revision history on <a target="_blank" href="{{ page.edit_url | replace('/edit/','/commits/') }}">{{ config.repo_name }}</a>.
