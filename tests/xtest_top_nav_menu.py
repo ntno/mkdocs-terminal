@@ -28,7 +28,6 @@ class TestTopNavMenu():
 
         assert output == expected
 
-
     @pytest.mark.parametrize("plugins_list", [
         pytest.param(
             None, id="null_plugins_list"
@@ -42,22 +41,3 @@ class TestTopNavMenu():
         context_data = enabled_context
         rendered_nav = top_menu_partial.render(context_data)
         assert "#mkdocs_search_modal" not in rendered_nav
-
-    # def test_search_button_included_when_search_plugin_enabled(self, top_menu_partial, enabled_context):
-    #     context_data = enabled_context
-    #     rendered_menu = top_menu_partial.render(context_data)
-    #     print(rendered_menu)
-    #     print(dir(top_menu_partial))
-        # context_data
-        
-    # def test_revision_renders_when_plugin_enabled(self, top_menu_partial):
-    #     context_data = {
-    #         "config": {
-    #             "plugins": [theme_plugins.REVISION],
-    #             "theme": {}
-    #         }
-    #     }
-    #     try:
-    #         top_menu_partial.render(context_data)
-    #     except Exception as ex:
-    #         pytest.fail(f"Got exception during render: {ex})")

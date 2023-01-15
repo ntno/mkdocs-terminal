@@ -39,7 +39,6 @@ class TestSearchButton():
         rendered_nav = search_button_partial.render(context_data)
         assert rendered_nav == ""
 
-
     def test_search_button_included_when_search_plugin_enabled(self, search_button_partial, enabled_context):
         context_data = enabled_context
         rendered_nav = search_button_partial.render(context_data)
