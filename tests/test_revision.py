@@ -116,7 +116,7 @@ class TestRevision():
         revsion_fully_enabled_context["page"]["meta"]["revision_date"] = "2023/01/01"
         context_data = revsion_fully_enabled_context
         rendered_revision = revision_partial.render(context_data)
-        assert "Page last updated 2023/01/01" in rendered_revision
+        assert "Page last updated 2023/01/01. " in rendered_revision
         assert_valid_html(rendered_revision)
 
     def test_that_github_history_link_added_when_site_has_page_edit_url_and_repo_name_set(self, env_with_terminal_loader, revsion_fully_enabled_context):
@@ -129,8 +129,7 @@ class TestRevision():
         revsion_fully_enabled_context["config"]["repo_name"] = mkdocs_generated_repo_name
         context_data = revsion_fully_enabled_context
         rendered_revision = revision_partial.render(context_data)
-        assert "Page last updated 2023/01/02" in rendered_revision
-        assert "See revision history on" in rendered_revision
+        assert "Page last updated 2023/01/02. See revision history on" in rendered_revision
         assert "<a target=\"_blank\" href=\"" + expected_page_history_url + "\">GitHub</a>" in rendered_revision
         assert_valid_html(rendered_revision)
 
@@ -144,7 +143,6 @@ class TestRevision():
         revsion_fully_enabled_context["config"]["repo_name"] = mkdocs_generated_repo_name
         context_data = revsion_fully_enabled_context
         rendered_revision = revision_partial.render(context_data)
-        assert "Page last updated 2023/03/04" in rendered_revision
-        assert "See revision history on" in rendered_revision
+        assert "Page last updated 2023/03/04. See revision history on" in rendered_revision
         assert "<a target=\"_blank\" href=\"" + expected_page_source_url + "\">Bitbucket</a>" in rendered_revision
         assert_valid_html(rendered_revision)
