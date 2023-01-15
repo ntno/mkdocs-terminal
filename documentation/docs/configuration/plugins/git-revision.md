@@ -16,10 +16,10 @@ When the `git-revision-date` plugin is installed and enabled and the `revision.d
 </section>
 <br>
 
-[page-specific hiding]: git-revision.md#configuration
+[page-specific hiding]: git-revision.md#advanced-configuration
 
 
-## Setup
+## Quick Setup
 
 ## 1. Install Plugin
 Add the package to your `requirements.txt` file:
@@ -49,11 +49,10 @@ theme:
   name: terminal
   features:
     - revision.date
-    - revision.commit_history
 ```
 
 
-
+## Advanced Configuration
 
 
 
@@ -73,4 +72,3 @@ revision.html: https://bitbucket.org/norganick/demo/src/main/docs/index.md?mode=
 ### Adding Repository Hosts
 If you host your repository on a different service, you can override the `revision` template block to include a link to your revision history.  
 
-### Configuration
