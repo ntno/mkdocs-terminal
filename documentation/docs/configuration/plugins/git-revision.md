@@ -51,9 +51,9 @@ theme:
 <br>
 
 ## Advanced Configuration
-There are two components that can be individually enabled.  The example above only discusses `revision.date` as it is easier to configure without error.  
+There are two revision-related Theme Features that can be individually enabled.  The example above only discusses `revision.date` as it is easier to configure without error.  
 
-The second revision theme feature is `revision.history`.  Enabling this feature will add a "See revision history..." note to the bottom of the page.  This feature relies on MkDocs' [repo_url]{target="_blank"}, [repo_name]{target="_blank"}, and [edit_uri]{target="_blank"}/[edit_uri_template]{target="_blank"} settings.  
+The second revision Theme Feature is `revision.history`.  Enabling this feature will add a "See revision history..." note to the bottom of the page.  This feature relies on MkDocs' [repo_url]{target="_blank"}, [repo_name]{target="_blank"}, and [edit_uri]{target="_blank"}/[edit_uri_template]{target="_blank"} settings.  
 
 [repo_url]: https://www.mkdocs.org/user-guide/configuration/#repo_url
 [repo_name]: https://www.mkdocs.org/user-guide/configuration/#repo_name
@@ -63,14 +63,15 @@ The second revision theme feature is `revision.history`.  Enabling this feature 
 <section markdown>
 <figure markdown>
 ![Advanced Configuration](../../img/annotated/revision-features.png){title="'Page last updated' text and 'See revision history' text are controlled by separate theme features"; alt="screenshot with revision.date component and revision.history component marked" .terminal-mkdocs-thin-border }
-<figcaption>'revision.date' vs 'revision.history' Theme Features</figcaption>
+<figcaption>'revision.date' and 'revision.history' Theme Features</figcaption>
 </figure>
 </section>
 <br>
 
-Currently two repository hosts are supported by Terminal for MkDocs.  See [supported repositories](git-revision.md#supported-repositories) for example configurations.  
+Currently the `revision.history` Terminal for MkDocs Theme Feature supports two repository hosts, [GitHub] and [Bitbucket].  See below for example configurations.  
 
-### Supported Repositories
+[GitHub]: git-revision.md#github
+[Bitbucket]: git-revision.md#bitbucket
 
 #### GitHub
 
