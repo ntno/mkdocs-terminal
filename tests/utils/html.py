@@ -1,4 +1,5 @@
 from tidylib import tidy_fragment
+import pytest
 DEBUG = False
 
 
@@ -31,7 +32,8 @@ def assert_valid_html(fragment):
         print(stripped_html)
         print("errors: " + results["errors"])
         print("\n---")
-    assert results["errors"] == ""
+    if (results["errors"] != ""):
+        pytest.fail("Invalid HTML: \n" + results["errors"])
 
 
 def assert_tile_has_terminal_marker(html):
