@@ -1,3 +1,4 @@
+{% macro make_search_button( ) %}
 {%- if 'search' in config['plugins'] %}
 {% set search_button_ns = namespace(text="Search") %}
 <li property="itemListElement" typeof="ListItem">
@@ -7,3 +8,4 @@
     <meta property="position" content="{{ top_nav_ns.item_count }}">
 </li>
 {%- endif %}
+{%- endmacro -%}
