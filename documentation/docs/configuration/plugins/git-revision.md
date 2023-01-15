@@ -1,15 +1,23 @@
-<script>
-    console.log(mkdocs_terminal_page_meta);
-</script>
-
 # Git Revision Date Plugin
-This plugin automatically adds the last revision date to each markdown page's metadata.  The new `revision_date` attribute can then be used to display the page's last revision date.  See the "Page last updated" text at the bottom of this page as an example.
+The third-party [git-revision-date]{target="_blank"} plugin automatically adds the last revision date of a markdown page to its MkDocs Page Metadata[^mkdocs-page-meta].  
 
-When the `git-revision-date` plugin is installed and enabled, Terminal for MkDocs will automatically display the page's last revision date at the bottom of each page.  This component can be hidden on a per-page basis if necessary.  See [Page Features] for more information on hiding the revision date for individual pages.
+[git-revision-date]: https://github.com/zhaoterryy/mkdocs-git-revision-date-plugin
+[MkDocs Page Metadata]: https://www.mkdocs.org/dev-guide/themes/#mkdocs.structure.pages.Page.meta
+[^mkdocs-page-meta]: see [MkDocs Page Metadata]{target="_blank"} for more information
 
-[See Plugin on GitHub](https://github.com/zhaoterryy/mkdocs-git-revision-date-plugin){target="_blank"}
+# Built In Support
+When the `git-revision-date` plugin is installed and enabled and the `revision.date` theme feature is enabled, Terminal for MkDocs will display the date of the most recent change to a page's source file on the rendered site page.  This component is added at the bottom of each page unless [page-specific hiding] is enabled.
 
-[Page Features]: ../features.md#page-features
+<section markdown>
+<figure markdown>
+![Built In Git Revision Date Plugin Support](../../img/annotated/git-revision-date.png){title="Terminal for MkDocs adds 'Page last updated' text when plugin is enabled"; alt="screenshot with revision date Terminal component annotated" .terminal-mkdocs-thin-border }
+<figcaption>Built In Git Revision Date Plugin Support</figcaption>
+</figure>
+</section>
+<br>
+
+[page-specific hiding]: git-revision.md#configuration
+
 
 ## Setup
 
@@ -34,7 +42,19 @@ plugins:
   - git-revision-date
 ```
 
-## 3. Verify  
+## 3. Configure Theme Display  
+mkdocs.yml
+```yaml
+theme:
+  name: terminal
+  features:
+    - revision.date
+    - revision.commit_history
+```
+
+
+
+
 
 
 
@@ -52,3 +72,5 @@ revision.html: https://bitbucket.org/norganick/demo/src/main/docs/index.md?mode=
 
 ### Adding Repository Hosts
 If you host your repository on a different service, you can override the `revision` template block to include a link to your revision history.  
+
+### Configuration
