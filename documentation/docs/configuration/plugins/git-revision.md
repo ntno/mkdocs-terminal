@@ -2,7 +2,7 @@
 The third-party [git-revision-date]{target="_blank"} plugin automatically adds the last revision date of a markdown page to its MkDocs Page Metadata[^mkdocs-page-meta].  
 
 [git-revision-date]: https://github.com/zhaoterryy/mkdocs-git-revision-date-plugin
-[MkDocs Page Metadata]: https://www.mkdocs.org/dev-guide/themes/#mkdocs.structure.pages.Page.meta
+[MkDocs Page Metadata]: https://www.mkdocs.org/user-guide/writing-your-docs/#yaml-style-meta-data
 [^mkdocs-page-meta]: see [MkDocs Page Metadata]{target="_blank"} for more information
 
 # Built In Support
