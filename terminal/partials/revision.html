@@ -1,7 +1,6 @@
 {% set features = config.theme.features or [] %}
 {% set plugins = config.plugins or [] %}
 {% if "git-revision-date" in plugins %}
-{% if "revision.date" in features or "revision.history" in features %}
 {% if "revision.date" in features %}
     {% if page and page.meta and page.meta.revision_date %}
         {% set show_date = true %}
@@ -12,6 +11,7 @@
         {% set show_history = true %}
     {% endif %}
 {% endif %}
+{% if show_date or show_history %}
 <br>
 <aside>
     <p>
