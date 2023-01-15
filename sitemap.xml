@@ -11,6 +11,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://ntno.github.io/mkdocs-terminal/releases/</loc>
+         <lastmod>2023-01-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://ntno.github.io/mkdocs-terminal/about/license/</loc>
          <lastmod>2023-01-15</lastmod>
          <changefreq>daily</changefreq>
