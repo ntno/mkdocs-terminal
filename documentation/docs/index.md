@@ -1,3 +1,9 @@
+---
+hide:
+    - revision_date
+    - revision_history
+---
+
 # mkdocs-terminal
 mkdocs-terminal is a MkDocs port of the [Terminal.css](https://github.com/Gioni06/terminal.css){target="_blank"} theme.  
 This theme is currently under development.
