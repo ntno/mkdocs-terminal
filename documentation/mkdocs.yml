@@ -66,9 +66,7 @@ markdown_extensions:
         - docs
 
 plugins:
-  - search:
-      indexing: full
-      search_index_only: false    # false means plugin adds full search files
+  - search
   - exclude-search:      
       exclude:
         - configuration/palettes/*

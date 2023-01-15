@@ -17,3 +17,5 @@ https://www.mkdocs.org/user-guide/configuration/
 https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-search/
 
 https://www.mkdocs.org/dev-guide/themes/#search_index_only
+
+https://www.mkdocs.org/user-guide/configuration/#options
