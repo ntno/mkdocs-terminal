@@ -7,8 +7,8 @@ import pytest
 def revsion_fully_enabled_context():
     context = {
         "page": {
+            "edit_url": "edit_url_placeholder",
             "meta": {
-                "edit_url": "edit_url_placeholder",
                 "revision_date": "revision_date_placeholder"
             }
         },
@@ -125,7 +125,7 @@ class TestRevision():
         expected_page_history_url = "https://github.com/myUsername/myRepository/commits/main/docs/index.md"
         mkdocs_generated_repo_name = "GitHub"
         revsion_fully_enabled_context["page"]["meta"]["revision_date"] = "2023/01/02"
-        revsion_fully_enabled_context["page"]["meta"]["edit_url"] = mkdocs_generated_page_url
+        revsion_fully_enabled_context["page"]["edit_url"] = mkdocs_generated_page_url
         revsion_fully_enabled_context["config"]["repo_name"] = mkdocs_generated_repo_name
         context_data = revsion_fully_enabled_context
         rendered_revision = revision_partial.render(context_data)
@@ -140,7 +140,7 @@ class TestRevision():
         expected_page_source_url = "https://bitbucket.org/myUsername/myRepository/src/main/docs/index.md?mode=read"
         mkdocs_generated_repo_name = "Bitbucket"
         revsion_fully_enabled_context["page"]["meta"]["revision_date"] = "2023/03/04"
-        revsion_fully_enabled_context["page"]["meta"]["edit_url"] = mkdocs_generated_page_url
+        revsion_fully_enabled_context["page"]["edit_url"] = mkdocs_generated_page_url
         revsion_fully_enabled_context["config"]["repo_name"] = mkdocs_generated_repo_name
         context_data = revsion_fully_enabled_context
         rendered_revision = revision_partial.render(context_data)
