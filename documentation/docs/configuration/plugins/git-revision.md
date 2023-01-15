@@ -68,7 +68,7 @@ The second revision Theme Feature is `revision.history`.  Enabling this feature 
 </section>
 <br>
 
-Currently the `revision.history` Terminal for MkDocs Theme Feature supports two repository hosts, [GitHub] and [Bitbucket].  See below for example configurations.  
+Currently the `revision.history` Theme Feature supports two repository hosts, [GitHub] and [Bitbucket].  See below for example configurations.  
 
 [GitHub]: git-revision.md#github
 [Bitbucket]: git-revision.md#bitbucket
