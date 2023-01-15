@@ -6,6 +6,14 @@ import pytest
 def top_nav_partial(env_with_terminal_loader):
     return env_with_terminal_loader.get_template("partials/top-nav.html")
 
+@pytest.fixture
+def search_button_partial(env_with_terminal_loader):
+    return env_with_terminal_loader.get_template("partials/search/nav-button.html")
+
+@pytest.fixture
+def top_nav_jinja_env(top_nav_partial, search_button_partial):
+    pass
+
 
 @pytest.fixture
 def enabled_context():
