@@ -1,3 +1,4 @@
+{% if  config['plugins'] is iterable and 'git-revision-date' in config['plugins'] %}
 {% if page and page.meta and page.meta.revision_date and not hide_git_revision_date %}
 <br>
 <aside>
@@ -14,4 +15,5 @@
         </small>
     </p>
 </aside>
+{% endif %}
 {% endif %}

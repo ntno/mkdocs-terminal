@@ -73,7 +73,9 @@ class TestRevision():
                     "revision_date": "2023/01/01"
                 }
             },
-            "config": {}
+            "config": {
+                "plugins": [theme_plugins.REVISION]
+            }
         }
         rendered_revision = revision_partial.render(context_data)
         assert "Page last updated 2023/01/01" in rendered_revision
@@ -92,6 +94,7 @@ class TestRevision():
                 }
             },
             "config": {
+                "plugins": [theme_plugins.REVISION],
                 "repo_name": mkdocs_generated_repo_name
             }
         }
@@ -114,6 +117,7 @@ class TestRevision():
                 }
             },
             "config": {
+                "plugins": [theme_plugins.REVISION],
                 "repo_name": mkdocs_generated_repo_name
             }
         }
