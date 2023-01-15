@@ -10,7 +10,7 @@ def revision_partial(env_with_terminal_loader):
 
 @pytest.fixture
 def fully_enabled_context():
-    context = {
+    return {
         "page": {
             "edit_url": "edit_url_placeholder",
             "meta": {
@@ -26,7 +26,6 @@ def fully_enabled_context():
             }
         }
     }
-    return context
 
 
 class TestRevision():
