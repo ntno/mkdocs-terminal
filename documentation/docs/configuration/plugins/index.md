@@ -8,6 +8,7 @@ Plugins can be used to add functionality to MkDocs.  To use a plugin, first inst
 <div markdown>
 
 - [Git Revision]
+- [Search]
 
 </div>
 
