@@ -1,5 +1,5 @@
 # Theme Features
-mkdocs.yml:
+
 ```yaml
 theme:
   name: terminal
