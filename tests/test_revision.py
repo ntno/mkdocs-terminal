@@ -118,26 +118,22 @@ class TestRevision():
         assert "Page last updated 2023/01/01. " in rendered_revision
         assert_valid_html(rendered_revision)
 
-    def test_that_github_history_link_added_when_site_has_page_edit_url_and_repo_name_set(self,revision_partial, fully_enabled_context):
-        mkdocs_generated_page_url = "https://github.com/myUsername/myRepository/edit/main/docs/index.md"
+    def test_that_github_history_link(self,revision_partial, fully_enabled_context):
         expected_page_history_url = "https://github.com/myUsername/myRepository/commits/main/docs/index.md"
-        mkdocs_generated_repo_name = "GitHub"
         fully_enabled_context["page"]["meta"]["revision_date"] = "2023/01/02"
-        fully_enabled_context["page"]["edit_url"] = mkdocs_generated_page_url
-        fully_enabled_context["config"]["repo_name"] = mkdocs_generated_repo_name
+        fully_enabled_context["page"]["edit_url"] = "https://github.com/myUsername/myRepository/edit/main/docs/index.md"
+        fully_enabled_context["config"]["repo_name"] = "GitHub"
         context_data = fully_enabled_context
         rendered_revision = revision_partial.render(context_data)
         assert "Page last updated 2023/01/02. See revision history on" in rendered_revision
         assert "<a target=\"_blank\" href=\"" + expected_page_history_url + "\">GitHub</a>" in rendered_revision
         assert_valid_html(rendered_revision)
 
-    def test_that_bitbucket_source_link_added_when_site_has_page_edit_url_and_repo_name_set(self, revision_partial, fully_enabled_context):
-        mkdocs_generated_page_url = "https://bitbucket.org/myUsername/myRepository/src/main/docs/index.md?mode=edit"
+    def test_that_bitbucket_history_link(self, revision_partial, fully_enabled_context):
         expected_page_source_url = "https://bitbucket.org/myUsername/myRepository/src/main/docs/index.md?mode=read"
-        mkdocs_generated_repo_name = "Bitbucket"
         fully_enabled_context["page"]["meta"]["revision_date"] = "2023/03/04"
-        fully_enabled_context["page"]["edit_url"] = mkdocs_generated_page_url
-        fully_enabled_context["config"]["repo_name"] = mkdocs_generated_repo_name
+        fully_enabled_context["page"]["edit_url"] = "https://bitbucket.org/myUsername/myRepository/src/main/docs/index.md?mode=edit"
+        fully_enabled_context["config"]["repo_name"] = "Bitbucket"
         context_data = fully_enabled_context
         rendered_revision = revision_partial.render(context_data)
         assert "Page last updated 2023/03/04. See revision history on" in rendered_revision
