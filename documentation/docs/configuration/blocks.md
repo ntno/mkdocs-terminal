@@ -109,9 +109,9 @@ Calling `super()` will include any Terminal for MkDocs features which are insert
 
 `revision`
 
-:   Section after the `after_markdown_content` block containing information about when the markdown page was last updated.  See the [Git Revision plugin] for details.
+:   Section after the `after_markdown_content` block containing information about when the markdown page was last updated.  See the [Git Revision Plugin] for details.
 
-[Git Revision plugin]: ../plugins/git-revision
+[Git Revision Plugin]: ../plugins/git-revision
 <br>
 
 # Override Locations
