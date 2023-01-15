@@ -18,7 +18,7 @@ def enabled_context():
             }
         },
         "config": {
-            "repo_name": "repo_name_placeholder",
+            "repo_name": "GitHub",
             "repo_url": "repo_url_placeholder",
             "plugins": [theme_plugins.REVISION],
             "theme": {

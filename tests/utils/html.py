@@ -1,6 +1,7 @@
 from tidylib import tidy_fragment
 import pytest
 DEBUG = False
+VERBOSE = False
 
 
 def check_html(fragment):
@@ -29,7 +30,10 @@ def assert_valid_html(fragment):
         stripped_html = strip_leading_whitespace(fragment)
         print("\n---")
         print("fragment: ")
-        print(stripped_html)
+        if (VERBOSE):
+            print(fragment)
+        else:
+            print(stripped_html)
         print("errors: " + results["errors"])
         print("\n---")
     if (results["errors"] != ""):
