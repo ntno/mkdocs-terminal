@@ -1,5 +1,5 @@
-from tests.interface import theme_features, page_features
-from tests.utils.html import assert_valid_html
+from tests.interface import theme_features
+from tests.utils.html import assert_valid_html, ALLOW_EMPTY_ELEMENTS
 import pytest
 
 
@@ -33,7 +33,6 @@ def enabled_context():
             }
         }
     }
-# {%- if "navigation.side.hide" in features -%}{%- else -%}<hr>{%- endif -%}
 
 @pytest.fixture
 def side_panel_partial(env_with_terminal_loader):
@@ -48,6 +47,9 @@ class TestSidePanel():
         assert rendered_side_panel == ""
 
     def test_that_visual_break_between_side_nav_and_side_toc(self, side_panel_partial, enabled_context):
-        pass
+        context_data = enabled_context
+        rendered_side_panel = side_panel_partial.render(context_data)
+        assert "<hr>" in rendered_side_panel
+        assert_valid_html(rendered_side_panel, ALLOW_EMPTY_ELEMENTS)
 
     
