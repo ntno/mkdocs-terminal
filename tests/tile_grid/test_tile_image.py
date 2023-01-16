@@ -1,4 +1,4 @@
-from tests.utils.tile import Tile
+from tests.interface.tile import Tile
 from tests.utils.html import check_html
 from tests.utils.html import assert_valid_html
 from tests import defaults

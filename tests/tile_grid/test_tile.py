@@ -1,4 +1,4 @@
-from tests.utils.tile import Tile
+from tests.interface.tile import Tile
 from tests.utils.html import assert_valid_html, tile_has_anchor, tile_has_img
 from tests import defaults
 import pytest

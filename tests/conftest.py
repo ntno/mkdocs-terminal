@@ -1,7 +1,7 @@
 from pathlib import Path
 from jinja2 import loaders
 from jinja2.environment import Environment
-from tests.utils.tile import Tile
+from tests.interface.tile import Tile
 from tests import defaults
 import mkdocs.utils.filters
 import pytest
