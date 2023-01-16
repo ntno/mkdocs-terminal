@@ -29,8 +29,8 @@ configuration/palettes/links.md
 
 You can add the `--8<--` snippet marker to the page where you want to include this header:  
 
-file: `gruvbox_dark.md`  
-file location: `./configuration/palettes/gruvbox_dark.md`  
+file: `gruvbox-dark.md`  
+file location: `./configuration/palettes/gruvbox-dark.md`  
 ```markdown
 ;--8<--
 configuration/palettes/links.md
@@ -42,11 +42,11 @@ To use the gruvbox_dark color palette, add the `palette` attribute to your theme
 ...
 ```
 
-This will result in a final markdown for `gruvbox_dark.md` which includes the content in `links.md`: 
+This will result in a final markdown for `gruvbox-dark.md` which includes the content in `links.md`: 
 
 ```markdown
 --8<--
-configuration/palettes/gruvbox_dark.md::7
+configuration/palettes/gruvbox-dark.md::7
 --8<--
 ...
 ```
