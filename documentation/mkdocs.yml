@@ -18,7 +18,7 @@ nav:
         - Sans: 'configuration/palettes/sans.md'
         - Sans Dark: 'configuration/palettes/sans-dark.md'
       - Features: 'configuration/features.md'
-      - Blocks: 'configuration/blocks.md'
+      # - Blocks: 'configuration/blocks.md'
       - Plugins: 'configuration/plugins/index.md'
       - '___Git Revision': 'configuration/plugins/git-revision.md'
       - '___Search': 'configuration/plugins/search.md'      
