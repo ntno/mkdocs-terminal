@@ -64,13 +64,9 @@
       {% set hide_top_nav = "true" if "top-nav" in page.meta.hide %} 
       {% set hide_side_nav = "true" if "side-nav" in page.meta.hide %} 
     {% endif %} 
-    
-     
 
     {%- block top_nav %}{% include "partials/top-nav/top.html" %}{%- endblock %}
         
-    
-
     <div class="container">
         <div class="terminal-mkdocs-main-grid">
           {%- block side_panel %}{% include "partials/side-panel/side-panel.html" %}{%- endblock %}
