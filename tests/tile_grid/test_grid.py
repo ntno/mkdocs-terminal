@@ -2,15 +2,18 @@ from tests.utils.html import assert_valid_html
 import pytest
 
 
+@pytest.fixture
+def grid_partial(env_with_terminal_loader):
+    return env_with_terminal_loader.get_template("partials/tile-grid/tiles.html")
+
+
 class TestGrid():
 
-    def test_grid_with_no_tiles_is_empty_string(self, env_with_terminal_loader):
-        grid_partial = env_with_terminal_loader.get_template("partials/tile-grid/tiles.html")
+    def test_grid_with_no_tiles_is_empty_string(self, grid_partial):
         rendered_grid = grid_partial.render()
         assert rendered_grid.strip() == ""
 
-    def test_grid_with_one_tile(self, env_with_terminal_loader, minimal_linked_image_tile):
-        grid_partial = env_with_terminal_loader.get_template("partials/tile-grid/tiles.html")
+    def test_grid_with_one_tile(self, minimal_linked_image_tile, grid_partial):
         context_data = {
             "page": {
                 "meta": {
@@ -22,8 +25,7 @@ class TestGrid():
         assert "class=\"terminal-mkdocs-tile-grid \">" in rendered_grid
         assert_valid_html(rendered_grid)
 
-    def test_that_grid_includes_all_valid_tiles(self, env_with_terminal_loader, minimal_linked_image_tile, minimal_link_tile, minimal_image_tile, empty_tile):
-        grid_partial = env_with_terminal_loader.get_template("partials/tile-grid/tiles.html")
+    def test_that_grid_includes_all_valid_tiles(self, minimal_linked_image_tile, minimal_link_tile, minimal_image_tile, empty_tile, grid_partial):
         minimal_linked_image_tile.tile_id = "myLinkedImageTile"
         minimal_link_tile.tile_id = "myLinkOnlyTile"
         empty_tile.tile_id = "myInvalidTile"
@@ -44,8 +46,7 @@ class TestGrid():
         assert "id=\"myInvalidTile\"" not in rendered_grid
         assert_valid_html(rendered_grid)
 
-    def test_grid_id_and_css_set(self, env_with_terminal_loader, minimal_linked_image_tile):
-        grid_partial = env_with_terminal_loader.get_template("partials/tile-grid/tiles.html")
+    def test_grid_id_and_css_set(self, minimal_linked_image_tile, grid_partial):
         context_data = {
             "page": {
                 "meta": {
@@ -60,8 +61,7 @@ class TestGrid():
         assert "class=\"terminal-mkdocs-tile-grid myGridCss\">" in rendered_grid
         assert_valid_html(rendered_grid)
 
-    def test_grid_renders_with_integer_input(self, env_with_terminal_loader):
-        grid_partial = env_with_terminal_loader.get_template("partials/tile-grid/tiles.html")
+    def test_grid_renders_with_integer_input(self, grid_partial):
         context_data = {
             "page": {
                 "meta": {
@@ -76,8 +76,7 @@ class TestGrid():
         except Exception as ex:
             pytest.fail(f"Got exception during render: {ex})")
 
-    def test_grid_renders_with_integer_tile_input(self, env_with_terminal_loader, all_integer_tile):
-        grid_partial = env_with_terminal_loader.get_template("partials/tile-grid/tiles.html")
+    def test_grid_renders_with_integer_tile_input(self, all_integer_tile, grid_partial):
         context_data = {
             "page": {
                 "meta": {
