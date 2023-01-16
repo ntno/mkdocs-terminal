@@ -8,6 +8,7 @@ theme:
     - navigation.side.indexes
     - navigation.side.toc.hide
     - navigation.top.hide
+    - navigation.top.cursor_animation.hide
     - navigation.top.search_button.hide
     - revision.date
     - revision.history
@@ -29,6 +30,10 @@ see [Page Table of Contents](../configuration/index.md#page-table-of-contents) f
 ### navigation.top.hide  
 hides top navigation on all site pages.  
 see [Top Navigation Menu](../configuration/index.md#top-navigation-menu) for more info.  
+
+### navigation.top.cursor_animation.hide  
+hides the blinking cursor animation in the top nav.  
+ignored if `navigation.top.hide` is set.  
 
 ### navigation.top.search_button.hide
 hides the search button in the top nav.  
