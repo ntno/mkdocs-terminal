@@ -1,6 +1,5 @@
 {% if page %}
 {% if page.toc|length > 0 %}
-{% if "navigation.side.hide" in features %}{% else %}<hr>{% endif %}
 <nav>
     <ul>
         {% for toc_item in page.toc %}

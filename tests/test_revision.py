@@ -5,7 +5,7 @@ import pytest
 
 @pytest.fixture
 def revision_partial(env_with_terminal_loader):
-    return env_with_terminal_loader.get_template("partials/revision.html")
+    return env_with_terminal_loader.get_template("partials/page-content/revision.html")
 
 
 @pytest.fixture

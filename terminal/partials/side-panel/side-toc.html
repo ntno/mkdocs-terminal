@@ -1,0 +1,6 @@
+{% if page %}
+{% if page.toc|length > 0 %}
+{% if "navigation.side.hide" in features %}{% else %}<hr>{% endif %}
+{% include "partials/toc.html" %}
+{% endif %}
+{% endif %}
