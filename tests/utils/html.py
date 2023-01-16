@@ -33,7 +33,7 @@ def assert_valid_html(fragment, tidy_options={"numeric-entities": 1}):
         print("\n---")
         print("fragment: ")
         if (VERBOSE):
-            print(fragment)
+            print("[" + fragment + "]")
         else:
             print(stripped_html)
         print("errors: " + results["errors"])
