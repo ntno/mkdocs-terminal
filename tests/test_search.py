@@ -22,7 +22,7 @@ def enabled_context():
 
 @pytest.fixture
 def search_button_partial(env_with_terminal_loader):
-    return env_with_terminal_loader.get_template("partials/top/search-button.html")
+    return env_with_terminal_loader.get_template("partials/top-nav/search-button.html")
 
 
 class TestSearchButton():

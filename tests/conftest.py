@@ -33,7 +33,7 @@ def env_with_terminal_loader(env, filesystem_terminal_loader):
 
 @pytest.fixture
 def top_menu_partial(env_with_terminal_loader):
-    return env_with_terminal_loader.get_template("partials/top/menu.html")
+    return env_with_terminal_loader.get_template("partials/top-nav/menu.html")
 
 
 @pytest.fixture
