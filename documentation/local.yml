@@ -8,10 +8,10 @@ theme:
     - navigation.side.indexes
     # - navigation.side.toc.hide
     # - navigation.top.hide
-    - navigation.top.cursor_animation.hide
+    # - navigation.top.cursor_animation.hide
     # - navigation.top.search_button.hide
-    # - revision.date
-    # - revision.history
+    - revision.date
+    - revision.history
 
 watch:
   - '../terminal'
