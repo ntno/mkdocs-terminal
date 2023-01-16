@@ -3,15 +3,15 @@ from jinja2 import loaders
 from jinja2.environment import Environment
 from tests.interface.tile import Tile
 from tests import defaults
-from tests.utils.filters import url_filter, mock_url_filter
+from tests.utils.filters import mock_url_filter
 import pytest
 
 
 @pytest.fixture
 def env():
-    """returns a new environment with mkdocs url filter."""
+    """returns a new environment with mock mkdocs url filter."""
     env = Environment()
-    env.filters['url'] = url_filter
+    env.filters['url'] = mock_url_filter
     return env
 
 
@@ -28,14 +28,6 @@ def filesystem_terminal_loader():
 def env_with_terminal_loader(env, filesystem_terminal_loader):
     """returns environment with loader set to terminal file system loader"""
     env.loader = filesystem_terminal_loader
-    return env
-
-
-@pytest.fixture
-def env_with_terminal_loader_and_mocked_url_filter(env, filesystem_terminal_loader):
-    """returns environment with loader set to terminal file system loader"""
-    env.loader = filesystem_terminal_loader
-    env.filters['url'] = mock_url_filter
     return env
 
 

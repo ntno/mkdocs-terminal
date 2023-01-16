@@ -5,8 +5,8 @@ import pytest
 
 
 @pytest.fixture
-def styles_partial(env_with_terminal_loader_and_mocked_url_filter):
-    return env_with_terminal_loader_and_mocked_url_filter.get_template("partials/styles.html")
+def styles_partial(env_with_terminal_loader):
+    return env_with_terminal_loader.get_template("partials/styles.html")
 
 
 @pytest.fixture

@@ -1,6 +1,6 @@
 from tidylib import tidy_fragment
 import pytest
-DEBUG = True
+DEBUG = False
 VERBOSE = False
 DEFAULT_TIDY_OPTIONS = {"numeric-entities": 1}
 ALLOW_EMPTY_ELEMENTS = {"numeric-entities": 1, "drop-empty-elements": "no"}
