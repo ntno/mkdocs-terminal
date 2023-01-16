@@ -6,6 +6,7 @@ theme:
   features:
     - navigation.side.hide
     - navigation.side.indexes
+    - navigation.side.toc.hide
     - navigation.top.hide
     - navigation.top.search_button.hide
     - revision.date
@@ -19,6 +20,11 @@ hides side panel on all site pages.  the side panel includes the [Side Navigatio
 enables section links in the side navigation menu.  
 ignored if `navigation.side.hide` is set.  
 see [Section Indexes](../navigation/section-indexes.md) for details.  
+
+### navigation.side.toc.hide  
+hides table of contents in side panel on all site pages.  
+ignored if `navigation.side.hide` is set.  
+see [Page Table of Contents](../configuration/index.md#page-table-of-contents) for more info. 
 
 ### navigation.top.hide  
 hides top navigation on all site pages.  
