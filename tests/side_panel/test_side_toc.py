@@ -9,6 +9,13 @@ def enabled_context():
          {
             "title": "first_header_placeholder",
             "level": 0,
+            "children": [
+                {
+                    "title": "child_header_placeholder",
+                    "level": 1,
+                    "url": "anchor_to_child_placeholder"
+                }
+            ],
             "url": "anchor_to_first_header_placeholder"
         }
     ]
