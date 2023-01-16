@@ -22,6 +22,7 @@ def menu_partial(env_with_terminal_loader):
     return env_with_terminal_loader.get_template("partials/top-nav/menu.html")
 
 
+@pytest.mark.skip(reason="implementation TODO")
 class TestTopNav():
     def test_no_page_links_when_nav_empty(self, menu_partial, enabled_context):
         pass

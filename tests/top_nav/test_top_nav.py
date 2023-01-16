@@ -22,6 +22,7 @@ def top_nav_partial(env_with_terminal_loader):
     return env_with_terminal_loader.get_template("partials/top-nav/top.html")
 
 
+@pytest.mark.skip(reason="implementation TODO")
 class TestTopNav():
     def test_no_content_when_theme_feature_enabled(self, top_nav_partial, enabled_context):
         pass
