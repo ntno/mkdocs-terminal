@@ -4,6 +4,7 @@
 theme:
   name: terminal
   features:
+    - navigation.side.hide
     - navigation.side.indexes
     - navigation.top.hide
     - navigation.top.search_button.hide
@@ -11,8 +12,11 @@ theme:
     - revision.history
 ```
 
+### navigation.side.hide  
+hides side panel on all site pages.  the side panel includes the [Side Navigation Menu](../configuration/index.md#side-navigation-menu) and the [Side Page Table of Contents](../configuration/index.md#page-table-of-contents).
+
 ### navigation.side.indexes  
-enables section links in side nav.  
+enables section links in the side navigation menu.  
 ignored if `navigation.side.hide` is set.  
 see [Section Indexes](../navigation/section-indexes.md) for details.  
 
@@ -45,6 +49,7 @@ Pay special attention to the indentation. There should be two spaces before the 
 hide:
     - revision_date
     - revision_history
+    - side_toc
     - top_nav
 ---
 ```
@@ -57,6 +62,9 @@ hides the "Page last updated" text at the bottom of the page.  ignored if `revis
 
 ### hide: revision_history
 hides the "See revision history..." text at the bottom of the page.  ignored if `revision.history` Theme Feature is not enabled.  ignored if `git-revision-date` plugin is not enabled.  
+
+### hide: side_toc
+hides the table of contents in the side panel on the page.
 
 ### hide: top_nav
 hides top navigation on the page.  

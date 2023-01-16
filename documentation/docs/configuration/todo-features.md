@@ -4,12 +4,12 @@
 theme:
   name: terminal
   features:
-    - toc.hide
+    - navigation.side.toc.hide
     - navigation.side.hide
     - navigation.top.cursor_animation.hide
 ```
 
-### toc.hide  
+### navigation.side.toc.hide  
 hides table of contents on all site pages.  
 see [Page Table of Contents](../configuration/index.md#page-table-of-contents) for more info.  
 
