@@ -59,5 +59,5 @@ class TestStyles():
         enabled_context["config"]["theme"]["features"] = [theme_features.HIDE_TOP_CURSOR_ANIMATION]
         context_data = enabled_context
         rendered_styles = styles_partial.render(context_data)
-        assert "terminal-prompt::after" in rendered_styles
+        assert "#mkdocs-terminal-site-name.terminal-prompt::after" in rendered_styles
         assert_valid_html(rendered_styles)
