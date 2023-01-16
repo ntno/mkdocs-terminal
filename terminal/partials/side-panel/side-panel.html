@@ -6,11 +6,6 @@
         {% endif %}
     {% endif %}
 
-    {% if "toc.hide" in features %}
-    {% else %}
-        {% if not hide_toc %}
-        {%- block side_toc %}{% include "partials/side-panel/side-toc.html" %}{%- endblock %}
-        {% endif %}
-    {% endif %}
+    {%- block side_toc %}{% include "partials/side-panel/side-toc.html" %}{%- endblock %}
 </aside>
 

@@ -1,8 +1,7 @@
-{% if page %}
-{% if page.toc|length > 0 %}
+{% macro make_toc( toc ) -%}
 <nav>
     <ul>
-        {% for toc_item in page.toc %}
+        {% for toc_item in toc %}
         <li><a href="{{ toc_item.url }}">{{ toc_item.title}}</a></li>
             {% for toc_item in toc_item.children %}
             <li><a href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>
@@ -10,5 +9,4 @@
         {% endfor %}
     </ul>
 </nav>
-{% endif %}
-{% endif %}
+{%- endmacro -%}
