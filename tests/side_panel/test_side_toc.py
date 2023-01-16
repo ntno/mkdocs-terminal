@@ -14,10 +14,8 @@ def enabled_context():
     ]
     return {
         "page": {
-            "page": {
-                "toc": toc_list,
-                "content": "page_conent_placeholder"
-            },
+            "toc": toc_list,
+            "content": "page_conent_placeholder",
             "meta": {
                 "hide": []
             }
@@ -49,11 +47,13 @@ class TestSideToc():
         assert rendered_side_toc == ""
 
     def test_no_entries_when_page_has_no_headers(self, side_toc_partial, enabled_context):
-        pass
+        enabled_context["page"]["toc"] = []
+        context_data = enabled_context
+        rendered_side_toc = side_toc_partial.render(context_data)
+        assert rendered_side_toc == ""
 
     def test_has_entries_when_page_has_headers(self, side_toc_partial, enabled_context):
         context_data = enabled_context
         rendered_side_toc = side_toc_partial.render(context_data)
-        assert "<hr>" in rendered_side_toc
-        assert "first_title_placeholder" in rendered_side_toc
+        assert "<a href=\"anchor_to_first_header_placeholder\">first_header_placeholder</a>" in rendered_side_toc
         assert_valid_html(rendered_side_toc)

@@ -1,4 +1,5 @@
 {% macro make_toc( toc ) -%}
+{%- if toc and toc is iterable and toc|length > 0 -%}
 <nav>
     <ul>
         {% for toc_item in toc %}
@@ -9,4 +10,5 @@
         {% endfor %}
     </ul>
 </nav>
+{%- endif -%}
 {%- endmacro -%}
