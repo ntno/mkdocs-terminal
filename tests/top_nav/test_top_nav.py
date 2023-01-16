@@ -38,9 +38,16 @@ class TestTopNav():
         pass
 
     def test_site_title_present_when_provided(self, top_nav_partial, enabled_context):
-        enabled_context["config"]["theme"]["features"] = []
         enabled_context["config"]["site_name"] = "My Documentation"
         context_data = enabled_context
         rendered_top_nav = top_nav_partial.render(context_data)
         assert "My Documentation" in rendered_top_nav
+        assert_valid_html(rendered_top_nav)
+
+    def test_site_url_present_when_provided(self, top_nav_partial, enabled_context):
+        enabled_context["config"]["site_url"] = "https://mydocs.com"
+        enabled_context["config"]["site_name"] = "My Documentation"
+        context_data = enabled_context
+        rendered_top_nav = top_nav_partial.render(context_data)
+        assert "<a href=\"https://mydocs.com\" class=\"no-style\">My Documentation</a>" in rendered_top_nav
         assert_valid_html(rendered_top_nav)
