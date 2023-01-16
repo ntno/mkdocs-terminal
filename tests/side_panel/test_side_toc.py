@@ -13,7 +13,7 @@ def enabled_context():
                 {
                     "title": "child_header_placeholder",
                     "level": 1,
-                    "url": "anchor_to_child_placeholder"
+                    "url": "anchor_to_child_header_placeholder"
                 }
             ],
             "url": "anchor_to_first_header_placeholder"
@@ -63,4 +63,5 @@ class TestSideToc():
         context_data = enabled_context
         rendered_side_toc = side_toc_partial.render(context_data)
         assert "<a href=\"anchor_to_first_header_placeholder\">first_header_placeholder</a>" in rendered_side_toc
+        assert "<a href=\"anchor_to_child_header_placeholder\">child_header_placeholder</a>" in rendered_side_toc
         assert_valid_html(rendered_side_toc)
