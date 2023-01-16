@@ -4,11 +4,14 @@
 theme:
   name: terminal
   features:
+    - navigation.top.search_button.hide
     - revision.date
     - revision.history
 ```
 
-
+### navigation.top.search_button.hide
+hides the search button in the top nav.  
+ignored if `navigation.top.hide` is set. 
 
 ### revision.date
 enables the "Page last updated..." text at the bottom of the page.  requires [git-revision-date plugin setup].
