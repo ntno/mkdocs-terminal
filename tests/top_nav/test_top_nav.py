@@ -1,4 +1,4 @@
-from tests.interface import theme_features
+from tests.interface import theme_features, page_features
 from tests.utils.html import assert_valid_html
 import pytest
 
@@ -8,6 +8,11 @@ def enabled_context():
     nav_list = []
     return {
         "nav": nav_list,
+        "page": {
+            "meta": {
+                "hide": []
+            }
+        },
         "config": {
             "site_name": "site_name_placeholder",
             "site_url": "site_url_placeholder",
@@ -32,10 +37,17 @@ class TestTopNav():
         assert rendered_top_nav == ""
 
     def test_no_content_when_page_feature_enabled(self, top_nav_partial, enabled_context):
-        pass
+        enabled_context["page"]["meta"]["hide"] = [page_features.HIDE_TOP_NAV_ON_PAGE]
+        context_data = enabled_context
+        rendered_top_nav = top_nav_partial.render(context_data)
+        assert rendered_top_nav == ""
 
-    def test_no_site_title_when_missing(self, top_nav_partial, enabled_context):
-        pass
+    def test_home_link_is_forward_slash_when_no_site_url(self, top_nav_partial, enabled_context):
+        enabled_context["config"]["site_url"] = None
+        context_data = enabled_context
+        rendered_top_nav = top_nav_partial.render(context_data)
+        assert "<a href=\"/\" class=\"no-style\">site_name_placeholder</a>" in rendered_top_nav
+        assert_valid_html(rendered_top_nav)
 
     def test_site_title_present_when_provided(self, top_nav_partial, enabled_context):
         enabled_context["config"]["site_name"] = "My Documentation"
