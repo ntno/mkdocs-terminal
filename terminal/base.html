@@ -2,8 +2,6 @@
 
 <head>
     {% set features = config.theme.features or [] %}
-    {% set palette_name = config.theme.palette or "default" %}
-    {% set palette = "css/palettes/" ~ palette_name ~ ".css" %}
     {%- block site_meta %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,25 +17,7 @@
     {%- endblock %} 
     
     {%- block htmltitle %}{% include "partials/html-title.html" %}{%- endblock %} 
-    
-    {%- block styles %}
-    <link href="{{ 'css/fontawesome/css/fontawesome.min.css' | url }}" rel="stylesheet">
-    <link href="{{ 'css/fontawesome/css/solid.min.css' | url }}" rel="stylesheet">
-    <link href="{{ 'css/normalize.css' | url }}" rel="stylesheet">
-    <link href="{{ 'css/terminal.css' | url }}" rel="stylesheet">
-    <link href="{{ 'css/theme.css' | url }}" rel="stylesheet"> 
-    <!-- {{ palette_name }} color palette-->
-    <link href="{{ palette | url }}" rel="stylesheet">
-    
-    {% if 'navigation.top.cursor_animation.hide' in features %}
-    <style>
-      .terminal-prompt::after {
-          display: none;
-      }
-    </style> 
-    {% endif %}
-    {%- endblock %}
-
+    {%- block styles %}{% include "partials/styles.html" %}{%- endblock %}
 
     {% for path in config.extra_css %}
     <link href="{{ path|url }}" rel="stylesheet"> {% endfor %} 
