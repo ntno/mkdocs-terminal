@@ -1,3 +1,5 @@
+from tests.interface import theme_features
+from tests.utils.html import assert_valid_html
 import pytest
 
 
@@ -22,10 +24,12 @@ def top_nav_partial(env_with_terminal_loader):
     return env_with_terminal_loader.get_template("partials/top-nav/top.html")
 
 
-@pytest.mark.skip(reason="implementation TODO")
 class TestTopNav():
     def test_no_content_when_theme_feature_enabled(self, top_nav_partial, enabled_context):
-        pass
+        enabled_context["config"]["theme"]["features"] = [theme_features.HIDE_TOP_NAV]
+        context_data = enabled_context
+        rendered_top_nav = top_nav_partial.render(context_data)
+        assert rendered_top_nav == ""
 
     def test_no_content_when_page_feature_enabled(self, top_nav_partial, enabled_context):
         pass
@@ -34,4 +38,9 @@ class TestTopNav():
         pass
 
     def test_site_title_present_when_provided(self, top_nav_partial, enabled_context):
-        pass
+        enabled_context["config"]["theme"]["features"] = []
+        enabled_context["config"]["site_name"] = "My Documentation"
+        context_data = enabled_context
+        rendered_top_nav = top_nav_partial.render(context_data)
+        assert "My Documentation" in rendered_top_nav
+        assert_valid_html(rendered_top_nav)

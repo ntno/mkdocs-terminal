@@ -1,3 +1,7 @@
+{%- set features = config.theme.features or [] -%}
+{%- if "navigation.top.hide" in features -%}
+{%- else -%}
+{%- if not hide_top_nav -%} 
 <div class="container">
     <div class="terminal-nav">
         <header class="terminal-logo">
@@ -6,3 +10,5 @@
         {% include "partials/top-nav/menu.html" %}
     </div>
 </div>
+{%- endif -%}
+{%- endif -%}
