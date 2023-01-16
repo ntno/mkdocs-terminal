@@ -4,10 +4,16 @@
 theme:
   name: terminal
   features:
+    - navigation.side.indexes
     - navigation.top.search_button.hide
     - revision.date
     - revision.history
 ```
+
+### navigation.side.indexes  
+enables section links in side nav.  
+ignored if `navigation.side.hide` is set.  
+see [Section Indexes](../navigation/section-indexes.md) for details.  
 
 ### navigation.top.search_button.hide
 hides the search button in the top nav.  
