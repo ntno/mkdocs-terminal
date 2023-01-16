@@ -1,0 +1,9 @@
+{% import 'macros/toc.j2' as toc_helper %}
+{%- set features = config.theme.features or [] -%}
+{%- if page and page.meta and page.meta.hide -%}{% set page_specific_hide_list = page.meta.hide -%}{% else %}{% set page_specific_hide_list = [] -%}{%- endif -%}
+{%- if "navigation.side.toc.hide" not in features and "side_toc" not in page_specific_hide_list -%}
+{%- if page.toc and page.toc is iterable and page.toc|length > 0 -%}
+<hr>
+{{ toc_helper.make_toc( page.toc )}}
+{%- endif -%}
+{%- endif -%}

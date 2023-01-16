@@ -1,0 +1,18 @@
+{% set features = config.theme.features or [] %}
+{% set palette_name = config.theme.palette or "default" %}
+{% set palette = "css/palettes/" ~ palette_name ~ ".css" %}
+<link href="{{ 'css/fontawesome/css/fontawesome.min.css' | url }}" rel="stylesheet">
+<link href="{{ 'css/fontawesome/css/solid.min.css' | url }}" rel="stylesheet">
+<link href="{{ 'css/normalize.css' | url }}" rel="stylesheet">
+<link href="{{ 'css/terminal.css' | url }}" rel="stylesheet">
+<link href="{{ 'css/theme.css' | url }}" rel="stylesheet"> 
+<!-- {{ palette_name }} color palette-->
+<link href="{{ palette | url }}" rel="stylesheet">
+{% if 'navigation.top.cursor_animation.hide' in features -%}
+<!-- cursor_animation override -->
+<style>
+  #mkdocs-terminal-site-name.terminal-prompt::after {
+      display: none;
+  }
+</style> 
+{%- endif -%}

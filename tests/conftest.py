@@ -1,17 +1,17 @@
 from pathlib import Path
 from jinja2 import loaders
 from jinja2.environment import Environment
-from tests.utils.tile import Tile
+from tests.interface.tile import Tile
 from tests import defaults
-import mkdocs.utils.filters
+from tests.utils.filters import mock_url_filter
 import pytest
 
 
 @pytest.fixture
 def env():
-    """returns a new environment with mkdocs url filter."""
+    """returns a new environment with mock mkdocs url filter."""
     env = Environment()
-    env.filters['url'] = mkdocs.utils.filters.url_filter
+    env.filters['url'] = mock_url_filter
     return env
 
 
@@ -29,6 +29,11 @@ def env_with_terminal_loader(env, filesystem_terminal_loader):
     """returns environment with loader set to terminal file system loader"""
     env.loader = filesystem_terminal_loader
     return env
+
+
+@pytest.fixture
+def top_menu_partial(env_with_terminal_loader):
+    return env_with_terminal_loader.get_template("partials/top-nav/menu.html")
 
 
 @pytest.fixture

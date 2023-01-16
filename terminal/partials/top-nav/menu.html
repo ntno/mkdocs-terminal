@@ -1,10 +1,4 @@
 {% set top_nav_ns = namespace(item_count=0) %}
-
-<div class="container">
-    <div class="terminal-nav">
-        <header class="terminal-logo">
-            <div class="logo terminal-prompt"><a href="{% if config.site_url %}{{ config.site_url }}{% else %}/{% endif %}" class="no-style">{{ config.site_name }}</a></div>
-        </header>
         <nav class="terminal-menu">
             {% if nav|length>1 %}
             <ul vocab="https://schema.org/" typeof="BreadcrumbList">
@@ -19,9 +13,11 @@
                 {%- set top_nav_ns.item_count = top_nav_ns.item_count + 1 -%}
                 {% endif %}
                 {% endfor %}
-                {%- block search_button %}{% include "partials/search/nav-button.html" %}{%- endblock %}
+                {%- block search_button %}
+                    {% with button_idx=top_nav_ns.item_count %}
+                    {% include "partials/top-nav/search-button.html" %}
+                    {% endwith %}
+                {%- endblock %}
             </ul>
             {% endif %}
         </nav>
-    </div>
-</div>

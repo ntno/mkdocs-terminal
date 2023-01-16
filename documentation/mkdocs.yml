@@ -12,15 +12,16 @@ nav:
       - Color Palettes: 
         - Index: 'configuration/palettes/index.md'
         - Default: 'configuration/palettes/default.md'
-        - Gruvbox Dark: 'configuration/palettes/gruvbox_dark.md'
+        - Gruvbox Dark: 'configuration/palettes/gruvbox-dark.md'
         - Dark: 'configuration/palettes/dark.md'
         - Pink: 'configuration/palettes/pink.md'
         - Sans: 'configuration/palettes/sans.md'
-        - Sans Dark: 'configuration/palettes/sans_dark.md'
+        - Sans Dark: 'configuration/palettes/sans-dark.md'
       - Features: 'configuration/features.md'
-      - Blocks: 'configuration/blocks.md'
+      # - Blocks: 'configuration/blocks.md'
       - Plugins: 'configuration/plugins/index.md'
       - '___Git Revision': 'configuration/plugins/git-revision.md'
+      - '___Search': 'configuration/plugins/search.md'      
       - Extensions: 'configuration/extensions/index.md'
       - Python Markdown: 'configuration/extensions/python-markdown.md'
       - PyMdown Extensions: 'configuration/extensions/py-mdown-extensions.md'
@@ -80,9 +81,9 @@ plugins:
         - configuration/palettes/index.md#theme-color-palettes
         - configuration/palettes/dark.md#dark-palette
         - configuration/palettes/default.md#default-palette
-        - configuration/palettes/gruvbox_dark.md#gruvbox-dark-palette
+        - configuration/palettes/gruvbox-dark.md#gruvbox-dark-palette
         - configuration/palettes/pink.md#pink-palette
-        - configuration/palettes/sans_dark.md#sans-dark-palette
+        - configuration/palettes/sans-dark.md#sans-dark-palette
         - configuration/palettes/sans.md#sans-palette
  
 

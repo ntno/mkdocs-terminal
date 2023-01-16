@@ -4,27 +4,28 @@
 theme:
   name: terminal
   features:
-    - toc.hide
     - navigation.side.hide
     - navigation.side.indexes
+    - navigation.side.toc.hide
     - navigation.top.hide
     - navigation.top.cursor_animation.hide
+    - navigation.top.search_button.hide
     - revision.date
     - revision.history
 ```
 
-### toc.hide  
-hides table of contents on all site pages.  
-see [Page Table of Contents](../configuration/index.md#page-table-of-contents) for more info.  
-
 ### navigation.side.hide  
-hides side navigation on all site pages.  
-see [Side Navigation Menu](../configuration/index.md#side-navigation-menu) for more info.  
+hides side panel on all site pages.  the side panel includes the [Side Navigation Menu](../configuration/index.md#side-navigation-menu) and the [Side Page Table of Contents](../configuration/index.md#page-table-of-contents).
 
 ### navigation.side.indexes  
-enables section links in side nav.  
+enables section links in the side navigation menu.  
 ignored if `navigation.side.hide` is set.  
 see [Section Indexes](../navigation/section-indexes.md) for details.  
+
+### navigation.side.toc.hide  
+hides table of contents in side panel on all site pages.  
+ignored if `navigation.side.hide` is set.  
+see [Page Table of Contents](../configuration/index.md#page-table-of-contents) for more info. 
 
 ### navigation.top.hide  
 hides top navigation on all site pages.  
@@ -33,6 +34,10 @@ see [Top Navigation Menu](../configuration/index.md#top-navigation-menu) for mor
 ### navigation.top.cursor_animation.hide  
 hides the blinking cursor animation in the top nav.  
 ignored if `navigation.top.hide` is set.  
+
+### navigation.top.search_button.hide
+hides the search button in the top nav.  
+ignored if `navigation.top.hide` is set. 
 
 ### revision.date
 enables the "Page last updated..." text at the bottom of the page.  requires [git-revision-date plugin setup].
@@ -55,6 +60,8 @@ Pay special attention to the indentation. There should be two spaces before the 
 hide:
     - revision_date
     - revision_history
+    - side_toc
+    - top_nav
 ---
 ```
 
@@ -66,3 +73,9 @@ hides the "Page last updated" text at the bottom of the page.  ignored if `revis
 
 ### hide: revision_history
 hides the "See revision history..." text at the bottom of the page.  ignored if `revision.history` Theme Feature is not enabled.  ignored if `git-revision-date` plugin is not enabled.  
+
+### hide: side_toc
+hides the table of contents in the side panel on the page.
+
+### hide: top_nav
+hides top navigation on the page.  

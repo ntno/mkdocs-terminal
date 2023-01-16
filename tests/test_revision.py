@@ -1,11 +1,11 @@
 from tests.utils.html import assert_valid_html
-from tests.utils import theme_features, theme_plugins
+from tests.interface import page_features, theme_features, theme_plugins
 import pytest
 
 
 @pytest.fixture
 def revision_partial(env_with_terminal_loader):
-    return env_with_terminal_loader.get_template("partials/revision.html")
+    return env_with_terminal_loader.get_template("partials/page-content/revision.html")
 
 
 @pytest.fixture
@@ -139,19 +139,19 @@ class TestRevision():
         assert_valid_html(rendered_revision)
 
     def test_last_updated_text_hidden_when_date_disabled_on_page(self, revision_partial, enabled_context):
-        enabled_context["page"]["meta"]["hide"] = [theme_features.HIDE_REVISION_DATE_ON_PAGE]
+        enabled_context["page"]["meta"]["hide"] = [page_features.HIDE_REVISION_DATE_ON_PAGE]
         context_data = enabled_context
         rendered_revision = revision_partial.render(context_data)
         assert "Page last updated" not in rendered_revision
 
     def test_see_revision_history_text_hidden_when_history_disabled_on_page(self, revision_partial, enabled_context):
-        enabled_context["page"]["meta"]["hide"] = [theme_features.HIDE_REVISION_HISTORY_ON_PAGE]
+        enabled_context["page"]["meta"]["hide"] = [page_features.HIDE_REVISION_HISTORY_ON_PAGE]
         context_data = enabled_context
         rendered_revision = revision_partial.render(context_data)
         assert "See revision history on" not in rendered_revision
 
     def test_no_content_when_date_and_history_disabled_on_page(self, revision_partial, enabled_context):
-        enabled_context["page"]["meta"]["hide"] = [theme_features.HIDE_REVISION_DATE_ON_PAGE, theme_features.HIDE_REVISION_HISTORY_ON_PAGE]
+        enabled_context["page"]["meta"]["hide"] = [page_features.HIDE_REVISION_DATE_ON_PAGE, page_features.HIDE_REVISION_HISTORY_ON_PAGE]
         context_data = enabled_context
         rendered_revision = revision_partial.render(context_data)
         assert rendered_revision.strip() == ""

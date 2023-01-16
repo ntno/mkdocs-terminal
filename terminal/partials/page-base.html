@@ -4,7 +4,7 @@
         {% set hide_git_revision_date = "true" if "git_revision_date" in page.meta.hide %}
     {% endif %}
 {% endif %}
-{%- block before_markdown_content %}{% include "partials/before-content.html" %}{%- endblock %}
-{%- block markdown_content %}{% include "partials/content.html" %}{%- endblock %}
-{%- block after_markdown_content %}{% include "partials/after-content.html" %}{%- endblock %}
-{%- block revision %}{% include "partials/revision.html" %}{%- endblock %}
+{%- block before_markdown_content %}{% include "partials/page-content/before-content.html" %}{%- endblock %}
+{%- block markdown_content %}{% include "partials/page-content/content.html" %}{%- endblock %}
+{%- block after_markdown_content %}{% include "partials/page-content/after-content.html" %}{%- endblock %}
+{%- block revision %}{% include "partials/page-content/revision.html" %}{%- endblock %}

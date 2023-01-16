@@ -2,11 +2,13 @@ from tidylib import tidy_fragment
 import pytest
 DEBUG = False
 VERBOSE = False
+DEFAULT_TIDY_OPTIONS = {"numeric-entities": 1}
+ALLOW_EMPTY_ELEMENTS = {"numeric-entities": 1, "drop-empty-elements": "no"}
 
 
-def check_html(fragment):
+def check_html(fragment, tidy_options=DEFAULT_TIDY_OPTIONS):
     result = {}
-    document, errors = tidy_fragment(fragment, options={'numeric-entities': 1})
+    document, errors = tidy_fragment(fragment, options=tidy_options)
     result['errors'] = errors
     result['document'] = document
     return result
@@ -24,14 +26,14 @@ def strip_whitespace(fragment):
     return strip_leading_whitespace(strip_internal_whitespace(fragment))
 
 
-def assert_valid_html(fragment):
-    results = check_html(fragment)
+def assert_valid_html(fragment, tidy_options={"numeric-entities": 1}):
+    results = check_html(fragment, tidy_options)
     if (DEBUG):
         stripped_html = strip_leading_whitespace(fragment)
         print("\n---")
         print("fragment: ")
         if (VERBOSE):
-            print(fragment)
+            print("[" + fragment + "]")
         else:
             print(stripped_html)
         print("errors: " + results["errors"])

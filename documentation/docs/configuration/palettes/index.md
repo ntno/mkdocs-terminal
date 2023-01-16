@@ -10,7 +10,7 @@ tiles:
     img_src: ../../img/palettes/gruvbox_dark.png
     img_title: Gruvbox Dark
     img_alt: 'screenshot of demo site with the gruvbox_dark color palette.  the site uses a dark grey background with orange hyperlinks and light yellow text.'
-    link_href: ./gruvbox_dark/
+    link_href: ./gruvbox-dark/
   - caption: Dark
     img_src: ../../img/palettes/dark.png
     img_title: Dark
@@ -30,7 +30,7 @@ tiles:
     img_src: ../../img/palettes/sans_dark.png
     img_title: Sans Dark
     img_alt: 'screenshot of demo site with the sans_dark color palette.  the site uses a black background with light blue hyperlinks and white text in sans font.'
-    link_href: ./sans_dark/            
+    link_href: ./sans-dark/            
 ---
 
 
@@ -38,11 +38,11 @@ tiles:
 Terminal for MkDocs supports the following color palettes by default:
 
   - [default](default.md)
-  - [gruvbox_dark](gruvbox_dark.md)
+  - [gruvbox_dark](gruvbox-dark.md)
   - [dark](dark.md)
   - [pink](pink.md)
   - [sans](sans.md)
-  - [sans_dark](sans_dark.md)
+  - [sans_dark](sans-dark.md)
 
 To change the color palette to one of the built in color palettes, add the `palette` attribute to your theme configuration in `mkdocs.yml`:
 

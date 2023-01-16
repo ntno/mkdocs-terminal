@@ -1,0 +1,14 @@
+{%- set features = config.theme.features or [] -%}
+{%- if page and page.meta and page.meta.hide -%} 
+{%- set hide_top_nav = "true" if "top_nav" in page.meta.hide -%} 
+{%- endif -%}
+{%- if "navigation.top.hide" not in features and not hide_top_nav -%}
+<div class="container">
+    <div class="terminal-nav">
+        <header class="terminal-logo">
+            <div id="mkdocs-terminal-site-name" class="logo terminal-prompt"><a href="{% if config.site_url %}{{ config.site_url }}{% else %}/{% endif %}" class="no-style">{{ config.site_name }}</a></div>
+        </header>
+        {% include "partials/top-nav/menu.html" %}
+    </div>
+</div>
+{%- endif -%}
