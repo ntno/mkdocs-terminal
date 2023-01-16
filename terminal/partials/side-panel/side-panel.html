@@ -1,11 +1,8 @@
+{%- set features = config.theme.features or [] -%}
+{%- if "navigation.side.hide" not in features -%}
 <aside id="menu">
-    {% if "navigation.side.hide" in features %}
-    {% else %}
-        {% if not hide_side_nav %}
-        {%- block side_nav %}{% include "partials/side-nav/side-nav.html" %}{%- endblock %}
-        {% endif %}
-    {% endif %}
-
+    {%- block side_nav %}{% include "partials/side-nav/side-nav.html" %}{%- endblock %}
     {%- block side_toc %}{% include "partials/side-panel/side-toc.html" %}{%- endblock %}
 </aside>
+{%- endif -%}
 
