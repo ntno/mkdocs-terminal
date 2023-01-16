@@ -2,14 +2,14 @@
     {% if "navigation.side.hide" in features %}
     {% else %}
         {% if not hide_side_nav %}
-        {%- block side_nav %}{% include "partials/side-nav.html" %}{%- endblock %}
+        {%- block side_nav %}{% include "partials/side-nav/side-nav.html" %}{%- endblock %}
         {% endif %}
     {% endif %}
 
     {% if "toc.hide" in features %}
     {% else %}
         {% if not hide_toc %}
-        {%- block side_toc %}{% include "partials/side-toc.html" %}{%- endblock %}
+        {%- block side_toc %}{% include "partials/toc.html" %}{%- endblock %}
         {% endif %}
     {% endif %}
 </aside>
