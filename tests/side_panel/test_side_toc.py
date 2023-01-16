@@ -5,20 +5,18 @@ import pytest
 
 @pytest.fixture
 def enabled_context():
-    toc_list = [
-         {
-            "title": "first_header_placeholder",
-            "level": 0,
-            "children": [
-                {
-                    "title": "child_header_placeholder",
-                    "level": 1,
-                    "url": "anchor_to_child_header_placeholder"
-                }
-            ],
-            "url": "anchor_to_first_header_placeholder"
-        }
-    ]
+    toc_list = [{
+        "title": "first_header_placeholder",
+        "level": 0,
+        "children": [
+            {
+                "title": "child_header_placeholder",
+                "level": 1,
+                "url": "anchor_to_child_header_placeholder"
+            }
+        ],
+        "url": "anchor_to_first_header_placeholder"
+    }]
     return {
         "page": {
             "toc": toc_list,
