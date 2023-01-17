@@ -118,13 +118,13 @@ Calling `super()` will include any Terminal for MkDocs features which are insert
 
 | Block Name              | Add to `./overrides/partials/` | Extend From `mkdocs-terminal` |
 | ----------------------- | ------------------------------ | ----------------------------- |
-| analytics               | main.html                      | partials/base.html            |
-| extrahead               | main.html                      | partials/base.html            |
-| footer                  | main.html                      | partials/base.html            |
-| htmltitle               | main.html                      | partials/base.html            |
-| search                  | main.html                      | partials/base.html            |
+| analytics               | main.html                      | base.html            |
+| extrahead               | main.html                      | base.html            |
+| footer                  | main.html                      | base.html            |
+| htmltitle               | main.html                      | base.html            |
+| search                  | main.html                      | base.html            |
 | search_button           | TODO                           | TODO                          |
-| search_modal            | main.html                      | partials/base.html            |
+| search_modal            | main.html                      | base.html            |
 | before_markdown_content | page.html                      | partials/page-base.html       |
 | markdown_content        | page.html                      | partials/page-base.html       |
 | after_markdown_content  | page.html                      | partials/page-base.html       |
