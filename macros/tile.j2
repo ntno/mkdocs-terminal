@@ -1,6 +1,6 @@
 
-{% import 'macros/tile-grid/tile-image.j2' as image_helper %}
-{% import 'macros/tile-grid/tile-link.j2' as link_helper %}
+{% import 'macros/tile-image.j2' as image_helper %}
+{% import 'macros/tile-link.j2' as link_helper %}
 {% macro make_tile( tile ) %}
 {%- set ns = namespace(is_valid=false, has_link=false, has_image=false, has_caption=false) -%}
 {%- if tile.img_src is defined and tile.img_src|string|length -%}
