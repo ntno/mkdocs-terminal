@@ -5,6 +5,8 @@ theme:
   custom_dir: '../../../terminal/'
   features:
     - navigation.side.indexes
+  static_templates:
+    - 404.html
 
 watch:
     - '../../../terminal/'

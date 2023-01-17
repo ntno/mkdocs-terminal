@@ -1,5 +1,9 @@
 {% extends "main.html" %}
-
-{% block content %}
-  <h1>404 - Not found</h1>
+{% block htmltitle %}
+<title>404 - {{ config.site_name }}</title>
+{% endblock %}
+{% block content_container %}
+<br>
+<div class="terminal-alert terminal-alert-error">The page you requested could not be found.</div>
+<a href="/"><button class="btn btn-default">Return Home</button></a>
 {% endblock %}

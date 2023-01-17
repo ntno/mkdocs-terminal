@@ -95,3 +95,5 @@ theme:
     - navigation.side.indexes
     - revision.date
     - revision.history
+  static_templates:
+    - 404.html

@@ -12,6 +12,8 @@ theme:
     # - navigation.top.search_button.hide
     - revision.date
     - revision.history
+  static_templates:
+    - 404.html
 
 watch:
   - '../terminal'
