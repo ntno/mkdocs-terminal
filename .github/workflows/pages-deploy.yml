@@ -17,7 +17,7 @@ on:
         required: true
         type: string
       mkdocs-terminal-version:
-        description: 'mkdocs-terminal version to explicitly install'
+        description: 'with mkdocs-terminal version'
         required: false
         type: string
 permissions:
