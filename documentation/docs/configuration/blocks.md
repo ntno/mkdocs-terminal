@@ -22,8 +22,8 @@ Create the following directory structure and add your banner snippet to `banner.
 ├─ overrides/
 │  ├─ partials/ 
 │  │  ├─ banner.html   # your new snippet
-│  │  ├─ main.html     # partial for overriding main theme
 │  │  └─ page.html     # partial for extending page content
+│  └─ main.html        # partial for overriding main theme
 ├─ requirements.txt    # requirements file
 └─ mkdocs.yml          # MkDocs config
 ```
@@ -49,7 +49,18 @@ You can add a custom banner above each page's content by adding the following th
 {%- block before_markdown_content %}
 {% include "partials/banner.html" %}
 {{ super() }}
-{%- endblock %}
+{%- endblock before_markdown_content %}
+```
+
+If you wanted to override higher level blocks[^block-levels] you would add them in `main.html`: 
+
+[^block-levels]: See [Override Locations](blocks.md#override-locations) for details on where each block can be overriden from.
+
+**file name**: main.html  
+**file location**: ./overrides/main.html  
+
+```jinja2
+{% extends "base.html" %}
 ```
 
 Calling `super()` will include any Terminal for MkDocs features which are inserted before the main content (like the [Tile Grid] when `show_tiles_first` is set to `true`).
@@ -79,17 +90,12 @@ Calling `super()` will include any Terminal for MkDocs features which are insert
 
 `search`
 
-:   Wraps the built in Search Plugin CSS/JS support
-
-
-`search_button`
-
-:   Wraps the built in Search button in the top navigation menu
+:   Wraps the built-in Search Plugin CSS/JS support
 
 
 `search_modal`
 
-:   Wraps the built in Search modal
+:   Wraps the built-in Search modal
 
 
 `before_markdown_content`
@@ -116,16 +122,15 @@ Calling `super()` will include any Terminal for MkDocs features which are insert
 
 # Override Locations
 
-| Block Name              | Add to `./overrides/partials/` | Extend From `mkdocs-terminal` |
-| ----------------------- | ------------------------------ | ----------------------------- |
-| analytics               | main.html                      | partials/base.html            |
-| extrahead               | main.html                      | partials/base.html            |
-| footer                  | main.html                      | partials/base.html            |
-| htmltitle               | main.html                      | partials/base.html            |
-| search                  | main.html                      | partials/base.html            |
-| search_button           | TODO                           | TODO                          |
-| search_modal            | main.html                      | partials/base.html            |
-| before_markdown_content | page.html                      | partials/page-base.html       |
-| markdown_content        | page.html                      | partials/page-base.html       |
-| after_markdown_content  | page.html                      | partials/page-base.html       |
-| revision                | page.html                      | partials/page-base.html       |
+| Block Name              | Add to `./overrides/` | Extend From `mkdocs-terminal` |
+| ----------------------- | --------------------- | ----------------------------- |
+| analytics               | main.html             | base.html                     |
+| extrahead               | main.html             | base.html                     |
+| footer                  | main.html             | base.html                     |
+| htmltitle               | main.html             | base.html                     |
+| search                  | main.html             | base.html                     |
+| search_modal            | main.html             | base.html                     |
+| before_markdown_content | partials/page.html    | partials/page-base.html       |
+| markdown_content        | partials/page.html    | partials/page-base.html       |
+| after_markdown_content  | partials/page.html    | partials/page-base.html       |
+| revision                | partials/page.html    | partials/page-base.html       |

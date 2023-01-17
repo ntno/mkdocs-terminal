@@ -13,7 +13,7 @@ Terminal for MkDocs uses [semantic versioning]{target="_blank"}.  Each version n
 
 We recommend that you pin your dependency on `mkdocs-terminal` to the latest supported major version.  This will prevent you from accidently installing a version of the Terminal for MkDocs theme which is incompatible with your site configuration.
 
-example: `mkdocs-terminal~=2.0`
+example: `mkdocs-terminal~=3.0`
 
 See [Version Identification and Dependency Specification]{target="_blank"} for additional constraint examples.
 
@@ -24,6 +24,7 @@ See [Version Identification and Dependency Specification]{target="_blank"} for a
 
 |         Release          | Theme Status | Supported? |
 | :----------------------: | :----------: | :--------: |
+| [3.0.0]{target="_blank"} |    Alpha     |     no     |
 | [2.2.0]{target="_blank"} |    Alpha     |     no     |
 | [2.0.2]{target="_blank"} |    Alpha     |     no     |
 | [1.2.4]{target="_blank"} |    Alpha     |     no     |
@@ -41,4 +42,5 @@ See [Version Identification and Dependency Specification]{target="_blank"} for a
   [1.2.4]: https://github.com/ntno/mkdocs-terminal/releases/tag/1.2.4
   [2.0.2]: https://github.com/ntno/mkdocs-terminal/releases/tag/2.0.2
   [2.2.0]: https://github.com/ntno/mkdocs-terminal/releases/tag/2.2.0
+  [3.0.0]: https://github.com/ntno/mkdocs-terminal/releases/tag/3.0.0
 
