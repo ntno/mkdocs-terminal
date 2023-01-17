@@ -13,49 +13,49 @@
     <meta name="author" content="{{ config.site_author }}">{% endif %} 
     {% if page.canonical_url %}
     <link rel="canonical" href="{{ page.canonical_url }}">{% endif %} 
-    {%- block favicon %}{% include "partials/favicon.html" %}{%- endblock %}
-    {%- endblock %} 
+    {%- block favicon %}{% include "partials/favicon.html" %}{%- endblock favicon %}
+    {%- endblock site_meta %} 
     
-    {%- block htmltitle %}{% include "partials/html-title.html" %}{%- endblock %} 
-    {%- block styles %}{% include "partials/styles.html" %}{%- endblock %}
+    {%- block htmltitle %}{% include "partials/html-title.html" %}{%- endblock htmltitle %} 
+    {%- block styles %}{% include "partials/styles.html" %}{%- endblock styles %}
 
     {% for path in config.extra_css %}
     <link href="{{ path|url }}" rel="stylesheet"> {% endfor %} 
     
-    {% block extrahead %}{% endblock %}
+    {% block extrahead %}{% endblock extrahead %}
 
     {% block search %}
     {% if 'search' in config['plugins'] %}
     {%- include "partials/search/scripts.html" %}
     {% endif %}
-    {% endblock %}
+    {% endblock search %}
     
     {% for path in config.extra_javascript %}
     <script src="{{ path|url }}"></script>
     {% endfor %}
 
-    {% block analytics %}{% endblock %}
-    {% block debug %}{% include "partials/debug.html" %}{% endblock %}
+    {% block analytics %}{% endblock analytics %}
+    {% block debug %}{% include "partials/debug.html" %}{% endblock debug %}
 </head>
 
 <body class="terminal">
-    {%- block top_nav %}{% include "partials/top-nav/top.html" %}{%- endblock %}
+    {%- block top_nav %}{% include "partials/top-nav/top.html" %}{%- endblock top_nav %}
         
     <div class="container">
         <div class="terminal-mkdocs-main-grid">
-          {%- block side_panel %}{% include "partials/side-panel/side-panel.html" %}{%- endblock %}
+          {%- block side_panel %}{% include "partials/side-panel/side-panel.html" %}{%- endblock side_panel %}
             <main>
-                {%- block content_container %}{% include "partials/page.html" %}{%- endblock %}
+                {%- block content_container %}{% include "partials/page.html" %}{%- endblock content_container %}
             </main>
         </div>
-        <hr> {%- block footer %}{% include "partials/footer.html" %}{%- endblock %}
+        <hr> {%- block footer %}{% include "partials/footer.html" %}{%- endblock footer%}
     </div>
 
     {% block search_modal %}
     {% if 'search' in config['plugins'] %}
     {%- include "partials/search/modal.html" %}
     {% endif %}
-    {% endblock %}
+    {% endblock search_modal %}
 </body>
 
 </html>
