@@ -49,7 +49,7 @@ You can add a custom banner above each page's content by adding the following th
 {%- block before_markdown_content %}
 {% include "partials/banner.html" %}
 {{ super() }}
-{%- endblock %}
+{%- endblock before_markdown_content %}
 ```
 
 Calling `super()` will include any Terminal for MkDocs features which are inserted before the main content (like the [Tile Grid] when `show_tiles_first` is set to `true`).
@@ -79,17 +79,17 @@ Calling `super()` will include any Terminal for MkDocs features which are insert
 
 `search`
 
-:   Wraps the built in Search Plugin CSS/JS support
+:   Wraps the built-in Search Plugin CSS/JS support
 
 
 `search_button`
 
-:   Wraps the built in Search button in the top navigation menu
+:   Wraps the built-in Search button in the top navigation menu
 
 
 `search_modal`
 
-:   Wraps the built in Search modal
+:   Wraps the built-in Search modal
 
 
 `before_markdown_content`
@@ -118,13 +118,13 @@ Calling `super()` will include any Terminal for MkDocs features which are insert
 
 | Block Name              | Add to `./overrides/partials/` | Extend From `mkdocs-terminal` |
 | ----------------------- | ------------------------------ | ----------------------------- |
-| analytics               | main.html                      | base.html            |
-| extrahead               | main.html                      | base.html            |
-| footer                  | main.html                      | base.html            |
-| htmltitle               | main.html                      | base.html            |
-| search                  | main.html                      | base.html            |
-| search_button           | TODO                           | TODO                          |
-| search_modal            | main.html                      | base.html            |
+| analytics               | main.html                      | base.html                     |
+| extrahead               | main.html                      | base.html                     |
+| footer                  | main.html                      | base.html                     |
+| htmltitle               | main.html                      | base.html                     |
+| search                  | main.html                      | base.html                     |
+| search_button           | main.html                      | base.html                     |
+| search_modal            | main.html                      | base.html                     |
 | before_markdown_content | page.html                      | partials/page-base.html       |
 | markdown_content        | page.html                      | partials/page-base.html       |
 | after_markdown_content  | page.html                      | partials/page-base.html       |
