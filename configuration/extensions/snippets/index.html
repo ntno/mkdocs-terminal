@@ -2,12 +2,10 @@
 
 <head>
     
-    
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-2.2.1">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.0.0">
      
     
     <meta name="author" content="ntno"> 
@@ -23,15 +21,15 @@
     
  
 <title>___Snippets - Terminal for MkDocs</title>
-    <link href="../../../css/fontawesome/css/fontawesome.min.css" rel="stylesheet">
-    <link href="../../../css/fontawesome/css/solid.min.css" rel="stylesheet">
-    <link href="../../../css/normalize.css" rel="stylesheet">
-    <link href="../../../css/terminal.css" rel="stylesheet">
-    <link href="../../../css/theme.css" rel="stylesheet"> 
-    <!-- default color palette-->
-    <link href="../../../css/palettes/default.css" rel="stylesheet">
-    
-    
+
+
+<link href="../../../css/fontawesome/css/fontawesome.min.css" rel="stylesheet">
+<link href="../../../css/fontawesome/css/solid.min.css" rel="stylesheet">
+<link href="../../../css/normalize.css" rel="stylesheet">
+<link href="../../../css/terminal.css" rel="stylesheet">
+<link href="../../../css/theme.css" rel="stylesheet"> 
+<!-- default color palette-->
+<link href="../../../css/palettes/default.css" rel="stylesheet">
 
 
      
@@ -60,18 +58,12 @@
     
 </head>
 
-<body class="terminal">
-     
-    
-     
-      
-        
-
-<div class="container">
+<body class="terminal"><div class="container">
     <div class="terminal-nav">
         <header class="terminal-logo">
-            <div class="logo terminal-prompt"><a href="https://ntno.github.io/mkdocs-terminal/" class="no-style">Terminal for MkDocs</a></div>
+            <div id="mkdocs-terminal-site-name" class="logo terminal-prompt"><a href="https://ntno.github.io/mkdocs-terminal/" class="no-style">Terminal for MkDocs</a></div>
         </header>
+        
         <nav class="terminal-menu">
             
             <ul vocab="https://schema.org/" typeof="BreadcrumbList">
@@ -108,6 +100,9 @@
                     <meta property="position" content="2">
                 </li>
                 
+                    
+                    
+
 
 <li property="itemListElement" typeof="ListItem">
     <a href="#" class="menu-item" data-toggle="modal" data-target="#mkdocs_search_modal" property="item" typeof="SearchAction">
@@ -115,19 +110,15 @@
     </a>
     <meta property="position" content="3">
 </li>
+                    
             </ul>
             
         </nav>
     </div>
 </div>
         
-      
-    
-
     <div class="container">
-        <div class="terminal-mkdocs-main-grid"><aside id="menu">
-    
-        <div class="container">
+        <div class="terminal-mkdocs-main-grid"><aside id="menu"><div class="container">
   <div class="terminal-nav">
     <nav>
       
@@ -271,6 +262,25 @@
             <a class="
 
     terminal-mkdocs-side-nav-item" href="../../plugins/git-revision/">___Git Revision</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../plugins/search/">___Search</a>
         
     
     </li>
@@ -834,33 +844,14 @@
       
     </nav>
   </div>
-</div>
-        
-    
-
-    
-        
-
-<hr>
+</div><hr>
 <nav>
     <ul>
-        
         <li><a href="#snippets-pymdownx-extension">Snippets Pymdownx Extension</a></li>
-            
-            <li><a href="#setup">Setup</a></li>
-            
-        
-        <li><a href="#usage">Usage</a></li>
-            
+        <li><a href="#setup">Setup</a></li><li><a href="#usage">Usage</a></li>
         
     </ul>
-</nav>
-
-
-        
-    
-</aside>
-
+</nav></aside>
             <main>       
     
     
@@ -881,16 +872,16 @@
 file location: <code>./configuration/palettes/links.md</code>  </p>
 <pre><code class="language-markdown">&lt;div class=&quot;btn-group&quot; markdown&gt;
 [Default](default.md) |
-[Gruvbox Dark](gruvbox_dark.md) |
+[Gruvbox Dark](gruvbox-dark.md) |
 [Dark](dark.md) |
 [Pink](pink.md) |
 [Sans](sans.md) |
-[Sans Dark](sans_dark.md)
+[Sans Dark](sans-dark.md)
 &lt;/div&gt;
 </code></pre>
 <p>You can add the <code>--8&lt;--</code> snippet marker to the page where you want to include this header:  </p>
-<p>file: <code>gruvbox_dark.md</code><br />
-file location: <code>./configuration/palettes/gruvbox_dark.md</code>  </p>
+<p>file: <code>gruvbox-dark.md</code><br />
+file location: <code>./configuration/palettes/gruvbox-dark.md</code>  </p>
 <pre><code class="language-markdown">--8&lt;--
 configuration/palettes/links.md
 --8&lt;--
@@ -900,14 +891,14 @@ configuration/palettes/links.md
 To use the gruvbox_dark color palette, add the `palette` attribute to your theme configuration in `mkdocs.yml`:
 ...
 </code></pre>
-<p>This will result in a final markdown for <code>gruvbox_dark.md</code> which includes the content in <code>links.md</code>: </p>
+<p>This will result in a final markdown for <code>gruvbox-dark.md</code> which includes the content in <code>links.md</code>: </p>
 <pre><code class="language-markdown">&lt;div class=&quot;btn-group&quot; markdown&gt;
 [Default](default.md) |
-[Gruvbox Dark](gruvbox_dark.md) |
+[Gruvbox Dark](gruvbox-dark.md) |
 [Dark](dark.md) |
 [Pink](pink.md) |
 [Sans](sans.md) |
-[Sans Dark](sans_dark.md)
+[Sans Dark](sans-dark.md)
 &lt;/div&gt;
 
 # Gruvbox Dark Palette
@@ -926,7 +917,14 @@ To use the gruvbox_dark color palette, add the `palette` attribute to your theme
 
 
 
-
+<br>
+<aside>
+    <p>
+        <small>
+            <i>Page last updated 2023-01-16. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/configuration/extensions/snippets.md">GitHub</a>.</i>
+        </small>
+    </p>
+</aside>
             </main>
         </div>
         <hr><footer>

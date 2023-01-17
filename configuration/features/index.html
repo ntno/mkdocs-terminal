@@ -2,12 +2,10 @@
 
 <head>
     
-    
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-2.2.1">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.0.0">
      
     
     <meta name="author" content="ntno"> 
@@ -23,15 +21,15 @@
     
  
 <title>Features - Terminal for MkDocs</title>
-    <link href="../../css/fontawesome/css/fontawesome.min.css" rel="stylesheet">
-    <link href="../../css/fontawesome/css/solid.min.css" rel="stylesheet">
-    <link href="../../css/normalize.css" rel="stylesheet">
-    <link href="../../css/terminal.css" rel="stylesheet">
-    <link href="../../css/theme.css" rel="stylesheet"> 
-    <!-- default color palette-->
-    <link href="../../css/palettes/default.css" rel="stylesheet">
-    
-    
+
+
+<link href="../../css/fontawesome/css/fontawesome.min.css" rel="stylesheet">
+<link href="../../css/fontawesome/css/solid.min.css" rel="stylesheet">
+<link href="../../css/normalize.css" rel="stylesheet">
+<link href="../../css/terminal.css" rel="stylesheet">
+<link href="../../css/theme.css" rel="stylesheet"> 
+<!-- default color palette-->
+<link href="../../css/palettes/default.css" rel="stylesheet">
 
 
      
@@ -60,18 +58,12 @@
     
 </head>
 
-<body class="terminal">
-     
-    
-     
-      
-        
-
-<div class="container">
+<body class="terminal"><div class="container">
     <div class="terminal-nav">
         <header class="terminal-logo">
-            <div class="logo terminal-prompt"><a href="https://ntno.github.io/mkdocs-terminal/" class="no-style">Terminal for MkDocs</a></div>
+            <div id="mkdocs-terminal-site-name" class="logo terminal-prompt"><a href="https://ntno.github.io/mkdocs-terminal/" class="no-style">Terminal for MkDocs</a></div>
         </header>
+        
         <nav class="terminal-menu">
             
             <ul vocab="https://schema.org/" typeof="BreadcrumbList">
@@ -108,6 +100,9 @@
                     <meta property="position" content="2">
                 </li>
                 
+                    
+                    
+
 
 <li property="itemListElement" typeof="ListItem">
     <a href="#" class="menu-item" data-toggle="modal" data-target="#mkdocs_search_modal" property="item" typeof="SearchAction">
@@ -115,19 +110,15 @@
     </a>
     <meta property="position" content="3">
 </li>
+                    
             </ul>
             
         </nav>
     </div>
 </div>
         
-      
-    
-
     <div class="container">
-        <div class="terminal-mkdocs-main-grid"><aside id="menu">
-    
-        <div class="container">
+        <div class="terminal-mkdocs-main-grid"><aside id="menu"><div class="container">
   <div class="terminal-nav">
     <nav>
       
@@ -269,6 +260,25 @@
             <a class="
 
     terminal-mkdocs-side-nav-item" href="../plugins/git-revision/">___Git Revision</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../plugins/search/">___Search</a>
         
     
     </li>
@@ -834,49 +844,14 @@
       
     </nav>
   </div>
-</div>
-        
-    
-
-    
-        
-
-<hr>
+</div><hr>
 <nav>
     <ul>
-        
         <li><a href="#theme-features">Theme Features</a></li>
-            
-            <li><a href="#tochide">toc.hide</a></li>
-            
-            <li><a href="#navigationsidehide">navigation.side.hide</a></li>
-            
-            <li><a href="#navigationsideindexes">navigation.side.indexes</a></li>
-            
-            <li><a href="#navigationtophide">navigation.top.hide</a></li>
-            
-            <li><a href="#navigationtopcursor_animationhide">navigation.top.cursor_animation.hide</a></li>
-            
-            <li><a href="#revisiondate">revision.date</a></li>
-            
-            <li><a href="#revisionhistory">revision.history</a></li>
-            
-        
-        <li><a href="#page-features">Page Features</a></li>
-            
-            <li><a href="#hide-revision_date">hide: revision_date</a></li>
-            
-            <li><a href="#hide-revision_history">hide: revision_history</a></li>
-            
-        
+        <li><a href="#navigationsidehide">navigation.side.hide</a></li><li><a href="#navigationsideindexes">navigation.side.indexes</a></li><li><a href="#navigationsidetochide">navigation.side.toc.hide</a></li><li><a href="#navigationtophide">navigation.top.hide</a></li><li><a href="#navigationtopcursor_animationhide">navigation.top.cursor_animation.hide</a></li><li><a href="#navigationtopsearch_buttonhide">navigation.top.search_button.hide</a></li><li><a href="#revisiondate">revision.date</a></li><li><a href="#revisionhistory">revision.history</a></li><li><a href="#page-features">Page Features</a></li>
+        <li><a href="#hide-revision_date">hide: revision_date</a></li><li><a href="#hide-revision_history">hide: revision_history</a></li><li><a href="#hide-side_toc">hide: side_toc</a></li><li><a href="#hide-top_nav">hide: top_nav</a></li>
     </ul>
-</nav>
-
-
-        
-    
-</aside>
-
+</nav></aside>
             <main>       
     
     
@@ -886,30 +861,34 @@
 <pre><code class="language-yaml">theme:
   name: terminal
   features:
-    - toc.hide
     - navigation.side.hide
     - navigation.side.indexes
+    - navigation.side.toc.hide
     - navigation.top.hide
     - navigation.top.cursor_animation.hide
+    - navigation.top.search_button.hide
     - revision.date
     - revision.history
 </code></pre>
-<h3 id="tochide">toc.hide<a class="headerlink" href="#tochide" title="Anchor link to this section for reference">#</a></h3>
-<p>hides table of contents on all site pages.<br />
-see <a href="../#page-table-of-contents">Page Table of Contents</a> for more info.  </p>
 <h3 id="navigationsidehide">navigation.side.hide<a class="headerlink" href="#navigationsidehide" title="Anchor link to this section for reference">#</a></h3>
-<p>hides side navigation on all site pages.<br />
-see <a href="../#side-navigation-menu">Side Navigation Menu</a> for more info.  </p>
+<p>hides side panel on all site pages.  the side panel includes the <a href="../#side-navigation-menu">Side Navigation Menu</a> and the <a href="../#page-table-of-contents">Side Page Table of Contents</a>.</p>
 <h3 id="navigationsideindexes">navigation.side.indexes<a class="headerlink" href="#navigationsideindexes" title="Anchor link to this section for reference">#</a></h3>
-<p>enables section links in side nav.<br />
+<p>enables section links in the side navigation menu.<br />
 ignored if <code>navigation.side.hide</code> is set.<br />
 see <a href="../../navigation/section-indexes/">Section Indexes</a> for details.  </p>
+<h3 id="navigationsidetochide">navigation.side.toc.hide<a class="headerlink" href="#navigationsidetochide" title="Anchor link to this section for reference">#</a></h3>
+<p>hides table of contents in side panel on all site pages.<br />
+ignored if <code>navigation.side.hide</code> is set.<br />
+see <a href="../#page-table-of-contents">Page Table of Contents</a> for more info. </p>
 <h3 id="navigationtophide">navigation.top.hide<a class="headerlink" href="#navigationtophide" title="Anchor link to this section for reference">#</a></h3>
 <p>hides top navigation on all site pages.<br />
 see <a href="../#top-navigation-menu">Top Navigation Menu</a> for more info.  </p>
 <h3 id="navigationtopcursor_animationhide">navigation.top.cursor_animation.hide<a class="headerlink" href="#navigationtopcursor_animationhide" title="Anchor link to this section for reference">#</a></h3>
 <p>hides the blinking cursor animation in the top nav.<br />
 ignored if <code>navigation.top.hide</code> is set.  </p>
+<h3 id="navigationtopsearch_buttonhide">navigation.top.search_button.hide<a class="headerlink" href="#navigationtopsearch_buttonhide" title="Anchor link to this section for reference">#</a></h3>
+<p>hides the search button in the top nav.<br />
+ignored if <code>navigation.top.hide</code> is set. </p>
 <h3 id="revisiondate">revision.date<a class="headerlink" href="#revisiondate" title="Anchor link to this section for reference">#</a></h3>
 <p>enables the "Page last updated..." text at the bottom of the page.  requires <a href="../plugins/git-revision/">git-revision-date plugin setup</a>.</p>
 <h3 id="revisionhistory">revision.history<a class="headerlink" href="#revisionhistory" title="Anchor link to this section for reference">#</a></h3>
@@ -921,12 +900,18 @@ ignored if <code>navigation.top.hide</code> is set.  </p>
 hide:
     - revision_date
     - revision_history
+    - side_toc
+    - top_nav
 ---
 </code></pre>
 <h3 id="hide-revision_date">hide: revision_date<a class="headerlink" href="#hide-revision_date" title="Anchor link to this section for reference">#</a></h3>
 <p>hides the "Page last updated" text at the bottom of the page.  ignored if <code>revision.date</code> Theme Feature is not enabled.  ignored if <code>git-revision-date</code> plugin is not enabled.  </p>
 <h3 id="hide-revision_history">hide: revision_history<a class="headerlink" href="#hide-revision_history" title="Anchor link to this section for reference">#</a></h3>
 <p>hides the "See revision history..." text at the bottom of the page.  ignored if <code>revision.history</code> Theme Feature is not enabled.  ignored if <code>git-revision-date</code> plugin is not enabled.  </p>
+<h3 id="hide-side_toc">hide: side_toc<a class="headerlink" href="#hide-side_toc" title="Anchor link to this section for reference">#</a></h3>
+<p>hides the table of contents in the side panel on the page.</p>
+<h3 id="hide-top_nav">hide: top_nav<a class="headerlink" href="#hide-top_nav" title="Anchor link to this section for reference">#</a></h3>
+<p>hides top navigation on the page.  </p>
 </section>
 
 
@@ -938,7 +923,14 @@ hide:
 
 
 
-
+<br>
+<aside>
+    <p>
+        <small>
+            <i>Page last updated 2023-01-16. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/configuration/features.md">GitHub</a>.</i>
+        </small>
+    </p>
+</aside>
             </main>
         </div>
         <hr><footer>

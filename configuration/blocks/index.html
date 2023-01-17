@@ -2,12 +2,10 @@
 
 <head>
     
-    
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-2.2.1">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.0.0">
      
     
     <meta name="author" content="ntno"> 
@@ -23,15 +21,15 @@
     
  
 <title>Blocks - Terminal for MkDocs</title>
-    <link href="../../css/fontawesome/css/fontawesome.min.css" rel="stylesheet">
-    <link href="../../css/fontawesome/css/solid.min.css" rel="stylesheet">
-    <link href="../../css/normalize.css" rel="stylesheet">
-    <link href="../../css/terminal.css" rel="stylesheet">
-    <link href="../../css/theme.css" rel="stylesheet"> 
-    <!-- default color palette-->
-    <link href="../../css/palettes/default.css" rel="stylesheet">
-    
-    
+
+
+<link href="../../css/fontawesome/css/fontawesome.min.css" rel="stylesheet">
+<link href="../../css/fontawesome/css/solid.min.css" rel="stylesheet">
+<link href="../../css/normalize.css" rel="stylesheet">
+<link href="../../css/terminal.css" rel="stylesheet">
+<link href="../../css/theme.css" rel="stylesheet"> 
+<!-- default color palette-->
+<link href="../../css/palettes/default.css" rel="stylesheet">
 
 
      
@@ -60,18 +58,12 @@
     
 </head>
 
-<body class="terminal">
-     
-    
-     
-      
-        
-
-<div class="container">
+<body class="terminal"><div class="container">
     <div class="terminal-nav">
         <header class="terminal-logo">
-            <div class="logo terminal-prompt"><a href="https://ntno.github.io/mkdocs-terminal/" class="no-style">Terminal for MkDocs</a></div>
+            <div id="mkdocs-terminal-site-name" class="logo terminal-prompt"><a href="https://ntno.github.io/mkdocs-terminal/" class="no-style">Terminal for MkDocs</a></div>
         </header>
+        
         <nav class="terminal-menu">
             
             <ul vocab="https://schema.org/" typeof="BreadcrumbList">
@@ -108,6 +100,9 @@
                     <meta property="position" content="2">
                 </li>
                 
+                    
+                    
+
 
 <li property="itemListElement" typeof="ListItem">
     <a href="#" class="menu-item" data-toggle="modal" data-target="#mkdocs_search_modal" property="item" typeof="SearchAction">
@@ -115,19 +110,15 @@
     </a>
     <meta property="position" content="3">
 </li>
+                    
             </ul>
             
         </nav>
     </div>
 </div>
         
-      
-    
-
     <div class="container">
-        <div class="terminal-mkdocs-main-grid"><aside id="menu">
-    
-        <div class="container">
+        <div class="terminal-mkdocs-main-grid"><aside id="menu"><div class="container">
   <div class="terminal-nav">
     <nav>
       
@@ -269,6 +260,25 @@
             <a class="
 
     terminal-mkdocs-side-nav-item" href="../plugins/git-revision/">___Git Revision</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../plugins/search/">___Search</a>
         
     
     </li>
@@ -834,42 +844,15 @@
       
     </nav>
   </div>
-</div>
-        
-    
-
-    
-        
-
-<hr>
+</div><hr>
 <nav>
     <ul>
-        
         <li><a href="#template-blocks">Template Blocks</a></li>
-            
-            <li><a href="#example-scenario">Example Scenario</a></li>
-            
-            <li><a href="#1-add-overrides-folder">1. Add Overrides Folder</a></li>
-            
-            <li><a href="#2-add-theme-custom-directory">2. Add Theme Custom Directory</a></li>
-            
-            <li><a href="#3-add-extended-partial">3. Add Extended Partial</a></li>
-            
-        
-        <li><a href="#overridable-blocks">Overridable Blocks</a></li>
-            
-        
+        <li><a href="#example-scenario">Example Scenario</a></li><li><a href="#1-add-overrides-folder">1. Add Overrides Folder</a></li><li><a href="#2-add-theme-custom-directory">2. Add Theme Custom Directory</a></li><li><a href="#3-add-extended-partial">3. Add Extended Partial</a></li><li><a href="#overridable-blocks">Overridable Blocks</a></li>
         <li><a href="#override-locations">Override Locations</a></li>
-            
         
     </ul>
-</nav>
-
-
-        
-    
-</aside>
-
+</nav></aside>
             <main>       
     
     
@@ -888,8 +871,8 @@
 ├─ overrides/
 │  ├─ partials/ 
 │  │  ├─ banner.html   # your new snippet
-│  │  ├─ main.html     # partial for overriding main theme
 │  │  └─ page.html     # partial for extending page content
+│  └─ main.html        # partial for overriding main theme
 ├─ requirements.txt    # requirements file
 └─ mkdocs.yml          # MkDocs config
 </code></pre>
@@ -907,7 +890,12 @@
 {%- block before_markdown_content %}
 {% include &quot;partials/banner.html&quot; %}
 {{ super() }}
-{%- endblock %}
+{%- endblock before_markdown_content %}
+</code></pre>
+<p>If you wanted to override higher level blocks<sup id="fnref:block-levels"><a class="footnote-ref" href="#fn:block-levels">1</a></sup> you would add them in <code>main.html</code>: </p>
+<p><strong>file name</strong>: main.html<br />
+<strong>file location</strong>: ./overrides/main.html  </p>
+<pre><code class="language-jinja2">{% extends &quot;base.html&quot; %}
 </code></pre>
 <p>Calling <code>super()</code> will include any Terminal for MkDocs features which are inserted before the main content (like the <a href="../../tile-grid/">Tile Grid</a> when <code>show_tiles_first</code> is set to <code>true</code>).</p>
 <hr>
@@ -932,15 +920,11 @@
 </dd>
 <dt><code>search</code></dt>
 <dd>
-<p>Wraps the built in Search Plugin CSS/JS support</p>
-</dd>
-<dt><code>search_button</code></dt>
-<dd>
-<p>Wraps the built in Search button in the top navigation menu</p>
+<p>Wraps the built-in Search Plugin CSS/JS support</p>
 </dd>
 <dt><code>search_modal</code></dt>
 <dd>
-<p>Wraps the built in Search modal</p>
+<p>Wraps the built-in Search modal</p>
 </dd>
 <dt><code>before_markdown_content</code></dt>
 <dd>
@@ -965,7 +949,7 @@
 <thead>
 <tr>
 <th>Block Name</th>
-<th>Add to <code>./overrides/partials/</code></th>
+<th>Add to <code>./overrides/</code></th>
 <th>Extend From <code>mkdocs-terminal</code></th>
 </tr>
 </thead>
@@ -973,60 +957,63 @@
 <tr>
 <td>analytics</td>
 <td>main.html</td>
-<td>partials/base.html</td>
+<td>base.html</td>
 </tr>
 <tr>
 <td>extrahead</td>
 <td>main.html</td>
-<td>partials/base.html</td>
+<td>base.html</td>
 </tr>
 <tr>
 <td>footer</td>
 <td>main.html</td>
-<td>partials/base.html</td>
+<td>base.html</td>
 </tr>
 <tr>
 <td>htmltitle</td>
 <td>main.html</td>
-<td>partials/base.html</td>
+<td>base.html</td>
 </tr>
 <tr>
 <td>search</td>
 <td>main.html</td>
-<td>partials/base.html</td>
-</tr>
-<tr>
-<td>search_button</td>
-<td>TODO</td>
-<td>TODO</td>
+<td>base.html</td>
 </tr>
 <tr>
 <td>search_modal</td>
 <td>main.html</td>
-<td>partials/base.html</td>
+<td>base.html</td>
 </tr>
 <tr>
 <td>before_markdown_content</td>
-<td>page.html</td>
+<td>partials/page.html</td>
 <td>partials/page-base.html</td>
 </tr>
 <tr>
 <td>markdown_content</td>
-<td>page.html</td>
+<td>partials/page.html</td>
 <td>partials/page-base.html</td>
 </tr>
 <tr>
 <td>after_markdown_content</td>
-<td>page.html</td>
+<td>partials/page.html</td>
 <td>partials/page-base.html</td>
 </tr>
 <tr>
 <td>revision</td>
-<td>page.html</td>
+<td>partials/page.html</td>
 <td>partials/page-base.html</td>
 </tr>
 </tbody>
 </table>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:block-levels">
+<p>See <a href="./#override-locations">Override Locations</a> for details on where each block can be overriden from.&#160;<a class="footnote-backref" href="#fnref:block-levels" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
 </section>
 
 
@@ -1038,7 +1025,14 @@
 
 
 
-
+<br>
+<aside>
+    <p>
+        <small>
+            <i>Page last updated 2023-01-16. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/configuration/blocks.md">GitHub</a>.</i>
+        </small>
+    </p>
+</aside>
             </main>
         </div>
         <hr><footer>

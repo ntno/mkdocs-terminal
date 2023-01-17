@@ -2,12 +2,10 @@
 
 <head>
     
-    
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-2.2.1">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.0.0">
      
     
     <meta name="author" content="ntno"> 
@@ -22,16 +20,16 @@
 
     
  
-<title>TODO - Terminal for MkDocs</title>
-    <link href="../../../css/fontawesome/css/fontawesome.min.css" rel="stylesheet">
-    <link href="../../../css/fontawesome/css/solid.min.css" rel="stylesheet">
-    <link href="../../../css/normalize.css" rel="stylesheet">
-    <link href="../../../css/terminal.css" rel="stylesheet">
-    <link href="../../../css/theme.css" rel="stylesheet"> 
-    <!-- default color palette-->
-    <link href="../../../css/palettes/default.css" rel="stylesheet">
-    
-    
+<title>___Search - Terminal for MkDocs</title>
+
+
+<link href="../../../css/fontawesome/css/fontawesome.min.css" rel="stylesheet">
+<link href="../../../css/fontawesome/css/solid.min.css" rel="stylesheet">
+<link href="../../../css/normalize.css" rel="stylesheet">
+<link href="../../../css/terminal.css" rel="stylesheet">
+<link href="../../../css/theme.css" rel="stylesheet"> 
+<!-- default color palette-->
+<link href="../../../css/palettes/default.css" rel="stylesheet">
 
 
      
@@ -60,18 +58,12 @@
     
 </head>
 
-<body class="terminal">
-     
-    
-     
-      
-        
-
-<div class="container">
+<body class="terminal"><div class="container">
     <div class="terminal-nav">
         <header class="terminal-logo">
-            <div class="logo terminal-prompt"><a href="https://ntno.github.io/mkdocs-terminal/" class="no-style">Terminal for MkDocs</a></div>
+            <div id="mkdocs-terminal-site-name" class="logo terminal-prompt"><a href="https://ntno.github.io/mkdocs-terminal/" class="no-style">Terminal for MkDocs</a></div>
         </header>
+        
         <nav class="terminal-menu">
             
             <ul vocab="https://schema.org/" typeof="BreadcrumbList">
@@ -108,6 +100,9 @@
                     <meta property="position" content="2">
                 </li>
                 
+                    
+                    
+
 
 <li property="itemListElement" typeof="ListItem">
     <a href="#" class="menu-item" data-toggle="modal" data-target="#mkdocs_search_modal" property="item" typeof="SearchAction">
@@ -115,19 +110,15 @@
     </a>
     <meta property="position" content="3">
 </li>
+                    
             </ul>
             
         </nav>
     </div>
 </div>
         
-      
-    
-
     <div class="container">
-        <div class="terminal-mkdocs-main-grid"><aside id="menu">
-    
-        <div class="container">
+        <div class="terminal-mkdocs-main-grid"><aside id="menu"><div class="container">
   <div class="terminal-nav">
     <nav>
       
@@ -173,7 +164,7 @@
         
         <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../">Configuration</a>
+    terminal-mkdocs-side-nav-item--active" href="../../">Configuration</a>
     
     
         
@@ -272,6 +263,23 @@
 
     terminal-mkdocs-side-nav-item" href="../git-revision/">___Git Revision</a>
         
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        <span class="
+
+    terminal-mkdocs-side-nav-item--active">___Search</span>
     
     </li>
             
@@ -836,53 +844,37 @@
       
     </nav>
   </div>
-</div>
-        
-    
-
-    
-        
-
-<hr>
+</div><hr>
 <nav>
     <ul>
-        
-        <li><a href="#todo">TODO</a></li>
-            
-            <li><a href="#implementation">implementation</a></li>
-            
-            <li><a href="#review">review</a></li>
-            
-        
+        <li><a href="#search-plugin">Search Plugin</a></li>
+        <li><a href="#built-in-support">Built-in Support</a></li>
+        <li><a href="#configuration">Configuration</a></li>
     </ul>
-</nav>
-
-
-        
-    
-</aside>
-
+</nav></aside>
             <main>       
     
     
 
 <section>
-    <h1 id="todo">TODO<a class="headerlink" href="#todo" title="Anchor link to this section for reference">#</a></h1>
-<ul>
-<li>how to disable</li>
-<li>how to enable</li>
-</ul>
-<p>related plugins</p>
-<h2 id="implementation">implementation<a class="headerlink" href="#implementation" title="Anchor link to this section for reference">#</a></h2>
-<ul>
-<li>allow override text in the search modal</li>
-</ul>
-<h2 id="review">review<a class="headerlink" href="#review" title="Anchor link to this section for reference">#</a></h2>
-<p>https://github.com/bartdegoede/blog/blob/master/assets/js/search/search.js</p>
-<p>https://www.mkdocs.org/user-guide/configuration/</p>
-<p>https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-search/</p>
-<p>https://www.mkdocs.org/dev-guide/themes/#search_index_only</p>
-<p>https://www.mkdocs.org/user-guide/configuration/#options</p>
+    <h1 id="search-plugin">Search Plugin<a class="headerlink" href="#search-plugin" title="Anchor link to this section for reference">#</a></h1>
+<p>MkDocs comes with a built-in and automatically enabled <a href="https://www.mkdocs.org/user-guide/configuration/#search" target="_blank">search plugin</a>.  </p>
+<h1 id="built-in-support">Built-in Support<a class="headerlink" href="#built-in-support" title="Anchor link to this section for reference">#</a></h1>
+<p>Terminal for MkDocs supports the built-in search plugin by providing a search button in the top navigation bar and a search modal to display search results:</p>
+<section>
+<figure>
+<p><img _=";" alt="screenshot with search modal displaying search results" class="terminal-mkdocs-thin-border" src="../../../img/search/edit_uri_results.png" title="Terminal for MkDocs adds search modal when plugin is enabled" /></p>
+<figcaption>Built-in Search Plugin Support</figcaption>
+</figure>
+</section>
+<p><br></p>
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Anchor link to this section for reference">#</a></h2>
+<p>The search button in the top navigation bar can be hidden by adding <code>navigation.top.search_button.hide</code> to your theme feature configuration in <code>mkdocs.yml</code>:</p>
+<pre><code class="language-yaml">theme:
+  name: terminal
+  features:
+    - navigation.top.search_button.hide
+</code></pre>
 </section>
 
 
@@ -894,7 +886,14 @@
 
 
 
-
+<br>
+<aside>
+    <p>
+        <small>
+            <i>Page last updated 2023-01-16. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/configuration/plugins/search.md">GitHub</a>.</i>
+        </small>
+    </p>
+</aside>
             </main>
         </div>
         <hr><footer>
