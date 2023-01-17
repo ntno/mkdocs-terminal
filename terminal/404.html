@@ -5,5 +5,5 @@
 {% block content_container %}
 <br>
 <div class="terminal-alert terminal-alert-error">The page you requested could not be found.</div>
-<a href="/"><button class="btn btn-default">Return Home</button></a>
+<a href="{% if config.site_url %}{{ config.site_url }}{% else %}/{% endif %}"><button class="btn btn-default">Return Home</button></a>
 {% endblock %}
