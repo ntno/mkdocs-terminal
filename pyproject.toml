@@ -32,7 +32,7 @@ Issues = "https://github.com/ntno/mkdocs-terminal/issues"
 terminal = "terminal"
 
 [project.entry-points."mkdocs.plugins"]
-md-to-html = "terminal.plugins.md_to_html.plugin:MarkdownToHtmlFilterPlugin"
+"terminal/md-to-html" = "terminal.plugins.md_to_html.plugin:MarkdownToHtmlFilterPlugin"
 
 [build-system]
 requires = [

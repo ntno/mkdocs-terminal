@@ -18,7 +18,6 @@ theme:
 plugins:
   - git-revision-date
   - search
-  - md-to-html 
 
 watch:
   - '../terminal'
