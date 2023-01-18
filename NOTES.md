@@ -50,3 +50,7 @@ Terminal for MkDocs' Tile Grid relies on the *meta*[^mkdocs-page-meta] attribute
 ### img tile
 `<div .*? <figure(.)[^>]*? <img(.)*`
 
+
+
+[project.entry-points."mkdocs.plugins"]
+# markdown-filter = "mkdocs_markdown_filter.plugin:MarkdownFilterPlugin"

@@ -18,7 +18,7 @@
 [open-source-template](https://github.com/auth0/open-source-template/blob/master/LICENSE) by [@auth0](https://github.com/auth0)  
 
 [mkdocs/mkdocs](https://github.com/mkdocs/mkdocs/blob/master/LICENSE)  
-```
+```text
 Copyright © 2014-present, Tom Christie. All rights reserved.
 
 Redistribution and use in source and binary forms, with or
@@ -86,4 +86,25 @@ POSSIBILITY OF SUCH DAMAGE.
 [semver](https://semver.org/#license) by [Tom Preston-Werner](https://tom.preston-werner.com/)
 ```text
 Creative Commons ― CC BY 3.0
+```
+
+[mkdocs-markdown-filter](https://github.com/byrnereese/mkdocs-markdown-filter/blob/master/LICENSE)  by [Byrne Reese](https://github.com/byrnereese)
+```text
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 ```
