@@ -72,7 +72,7 @@ check-version-match:
 	cat terminal/theme_version.html | grep -s --silent $(version)\"\>\$$ -o 
 
 install-from-dist: build-theme
-	pip uninstall mkdocs-terminal
+	pip uninstall -Y mkdocs-terminal
 	pip install dist/*.tar.gz
 
 #for developer use, assumes you have already installed prereqs
