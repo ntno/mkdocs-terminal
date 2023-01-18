@@ -15,6 +15,10 @@ theme:
   static_templates:
     - 404.html
 
+plugins:
+  - git-revision-date
+  - search
+
 watch:
   - '../terminal'
   - './mkdocs.yml'

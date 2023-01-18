@@ -49,6 +49,8 @@ nav:
       - Typography: 'elements/typography.md'
     - Install: 'install.md'
     - Releases: 'releases.md'
+    # - About: 
+    #   - Debug: 'about/debug.md'
 
 markdown_extensions:
   # Python Markdown  
