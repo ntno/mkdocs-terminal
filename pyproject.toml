@@ -29,7 +29,7 @@ Source = "https://github.com/ntno/mkdocs-terminal"
 Issues = "https://github.com/ntno/mkdocs-terminal/issues"
 
 [project.entry-points."mkdocs.themes"]
-terminal = "terminal"
+"terminal" = "terminal"
 
 [project.entry-points."mkdocs.plugins"]
 "terminal/md-to-html" = "terminal.plugins.md_to_html.plugin:MarkdownToHtmlFilterPlugin"
