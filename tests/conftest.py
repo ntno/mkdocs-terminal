@@ -3,8 +3,7 @@ from jinja2 import loaders
 from jinja2.environment import Environment
 from tests.interface.tile import Tile
 from tests import defaults
-from tests.utils.filters import mock_url_filter
-from terminal.plugins.md_to_html.plugin import md_filter
+from tests.utils.filters import mock_url_filter, mock_markdown_filter
 import pytest
 
 
@@ -13,7 +12,7 @@ def env():
     """returns a new environment with mock mkdocs url filter."""
     env = Environment()
     env.filters['url'] = mock_url_filter
-    env.filters['markdown'] = md_filter
+    env.filters['markdown'] = mock_markdown_filter
     return env
 
 
