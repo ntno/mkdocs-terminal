@@ -1,6 +1,5 @@
 from mkdocs.plugins import BasePlugin
 from mkdocs.commands.build import DuplicateFilter
-from mkdocs.config import config_options
 from jinja2.utils import markupsafe
 import markdown
 import logging
