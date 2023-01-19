@@ -7,8 +7,8 @@ recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
 recursive-exclude tests *
 recursive-exclude documentation *
+recursive-exclude notes *
 exclude MANIFEST.in
-exclude NOTES.md
 exclude CONTRIBUTING.md
 exclude CODE_OF_CONDUCT.md
 exclude DEVELOPER_README.md
