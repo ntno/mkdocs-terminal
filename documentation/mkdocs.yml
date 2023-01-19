@@ -72,6 +72,7 @@ markdown_extensions:
         - docs
 
 plugins:
+  - md-to-html
   - git-revision-date
   - search
   - exclude-search:      
