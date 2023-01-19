@@ -17,7 +17,7 @@ class MarkdownToHtmlFilterPlugin(BasePlugin):
             extension_configs=config.mdx_configs or {}
         )
 
-    def on_pre_build(self, config):
+    def on_pre_build(self, config, **kwargs):
         logger.info("MarkdownToHtmlFilterPlugin::on_pre_build::markdown_extensions: %s", config.markdown_extensions)
         logger.info("MarkdownToHtmlFilterPlugin::on_pre_build::mdx_configs': %s", config.mdx_configs)
         self.setup_markdown(config)
