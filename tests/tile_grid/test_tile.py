@@ -1,5 +1,6 @@
 from tests.interface.tile import Tile
 from tests.utils.html import assert_valid_html, tile_has_anchor, tile_has_img
+from tests.utils.filters import mock_markup_filter
 from tests import defaults
 import pytest
 
@@ -65,3 +66,12 @@ class TestTile():
             tile_macro.module.make_tile(all_integer_tile)
         except Exception as ex:
             pytest.fail(f"Got exception during render: {ex})")
+
+    @pytest.mark.skip(reason="add after refactor to tile-grid plugin and documentation updates (MAJOR)")
+    def test_caption_is_run_through_markup_filter(self, tile_macro, valid_linked_image_tile):
+        valid_linked_image_tile.caption = "myCaption"
+        rendered_tile = tile_macro.module.make_tile(valid_linked_image_tile)
+        expected_figcaption = mock_markup_filter(context={}, value="myCaption")
+        expected_html = "<figcaption>" + expected_figcaption + "</figcaption>"
+        assert expected_html in rendered_tile
+        assert_valid_html(rendered_tile)

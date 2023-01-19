@@ -27,6 +27,7 @@ classifiers = [
 [project.urls]
 Source = "https://github.com/ntno/mkdocs-terminal"
 Issues = "https://github.com/ntno/mkdocs-terminal/issues"
+Documentation = "https://ntno.github.io/mkdocs-terminal"
 
 [project.entry-points."mkdocs.plugins"]
 "terminal/md-to-html" = "terminal.plugins.md_to_html.plugin:MarkdownToHtmlFilterPlugin"
