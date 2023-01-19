@@ -16,6 +16,7 @@ theme:
     - 404.html
 
 plugins:
+  - terminal/md-to-html
   - git-revision-date
   - search
 
