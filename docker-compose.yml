@@ -2,7 +2,7 @@ version: '3'
 services:
   ubuntu:
     image: ntno/ubuntu-build-base:1.0.0
-    restart: "no"    
+    restart: "no"
     volumes:
       - $PWD:/usr/src
   local_examples_server:
@@ -11,7 +11,7 @@ services:
     ports:
       - "5000:5000"
     environment:
-      LOG_LEVEL: info 
+      LOG_LEVEL: info
     volumes:
       - './:/usr/src/'
     working_dir: '/usr/src/tests/examples/'
@@ -21,7 +21,16 @@ services:
     ports:
       - "8080:8080"
     environment:
-      LOG_LEVEL: debug 
+      LOG_LEVEL: debug
     volumes:
-      - './:/usr/src/'      
+      - './:/usr/src/'
     working_dir: '/usr/src/documentation'
+  local_theme_server:
+    image: ntno/ubuntu-build-base:1.0.0
+    restart: "no"
+    ports:
+      - "8080:8080"
+    environment:
+      LOG_LEVEL: debug
+    volumes:
+      - './:/usr/src/'    
