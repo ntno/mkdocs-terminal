@@ -30,6 +30,7 @@ Issues = "https://github.com/ntno/mkdocs-terminal/issues"
 
 [project.entry-points."mkdocs.plugins"]
 "terminal/md-to-html" = "terminal.plugins.md_to_html.plugin:MarkdownToHtmlFilterPlugin"
+"terminal/tile-grid" = "terminal.plugins.tile_grid.plugin:TileGridPlugin"
 
 [project.entry-points."mkdocs.themes"]
 terminal = "terminal"

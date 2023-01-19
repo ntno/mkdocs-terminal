@@ -16,7 +16,7 @@ theme:
     - 404.html
 
 plugins:
-  - terminal/md-to-html
+  - terminal/tile-grid
   - git-revision-date
   - search
 

@@ -68,6 +68,17 @@ class MarkdownToHtmlFilterPlugin(BasePlugin):
         logger.warning("on_env")
         self.config = config
         env.filters['markdown'] = self.markdown_jinja2_filter
+        grid_partial = env.get_template("partials/tile-grid/tiles.html")
+        yolo = grid_partial.render("")
+        # context_data = {
+        #         "page": {
+        #             "meta": {
+        #                 "tiles": page.meta["tiles"]
+        #             }
+        #         }
+        #     }
+
+        # logger.warning("loaders: ", env.loaders)
         return env
 
     # def on_serve(self, server, **kwargs):
