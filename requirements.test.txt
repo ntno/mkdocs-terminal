@@ -1,5 +1,4 @@
 flake8
-mkdocs
 pytest > 7
 pytidylib >= 0.3.2
 mkdocs-terminal
