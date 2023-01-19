@@ -7,7 +7,7 @@ from mkdocs.commands.build import DuplicateFilter
 from .tile_grid import TileGrid
 # mkdocs.exceptions.PluginError
 
-DEFAULT_TILE_MARKER = "{{tiles}}"
+DEFAULT_TILE_MARKER = "boop"
 DEFAULT_MARKUP_FILTER_NAME = "markup"
 DEFAULT_GRID_PARTIAL_PATH = "partials/tile-grid/tiles.html"
 
@@ -20,17 +20,19 @@ class TileGridPlugin(BasePlugin):
     def __init__(self):
         self.md = None
         self.grid_partial = None
+        self.env = None
 
     def setup_markdown(self, config):
-        logger.debug("TileGridPlugin::setting markdown_extensions: %s", config.markdown_extensions)
-        logger.debug("TileGridPlugin::setting mdx_configs': %s", config.mdx_configs)
         self.md = markdown.Markdown(
             extensions=config.markdown_extensions or [],
             extension_configs=config.mdx_configs or {}
         )
-
+        
     def on_pre_build(self, config):
+        logger.info("TileGridPlugin::on_pre_build::markdown_extensions: %s", config.markdown_extensions)
+        logger.info("TileGridPlugin::on_pre_build::mdx_configs': %s", config.mdx_configs)
         self.setup_markdown(config)
+        logger.info("TileGridPlugin::on_pre_build::md: %s", self.md)
         return
 
     def markupsafe_jinja2_filter(self, text, **kwargs):
@@ -38,29 +40,41 @@ class TileGridPlugin(BasePlugin):
 
     def on_env(self, env, config, files, **kwargs):
         env.filters[DEFAULT_MARKUP_FILTER_NAME] = self.markupsafe_jinja2_filter
+        logger.warning("TileGridPlugin::on_env::%s: %s", DEFAULT_MARKUP_FILTER_NAME, self.markupsafe_jinja2_filter)
         self.grid_partial = env.get_template(DEFAULT_GRID_PARTIAL_PATH)
+        logger.warning("TileGridPlugin::on_env::grid_partial: %s", self.grid_partial)
+        self.env = env
         return env
 
+
+
+
+
     def on_page_markdown(self, markdown, page, config, files, **kwargs):
-        if self.grid_partial is not None:
-            if "tiles" in page.meta and len(page.meta["tiles"]) > 0:
-                context_data = {
-                    "page": {
-                        "meta": {
-                            "tiles": page.meta["tiles"]
-                        }
-                    }
-                }
-                rendered_grid = self.grid_partial.render(context_data)
-                markdown = markdown.replace(DEFAULT_TILE_MARKER, rendered_grid)
-                # markdown = re.sub(r"\{\{(\s)*dolly(\s)*\}\}",
-                #                   random_lyrics(),
-                #                   markdown,
-                #                   flags=re.IGNORECASE)
-                return markdown
+        if DEFAULT_TILE_MARKER in markdown:
+            return "its in there "
         else:
-            logger.warning("grid_partial is None, skipping for now")
-        return markdown
+            return "couldnt find that marker"
+        # if DEFAULT_TILE_MARKER in markdown and self.grid_partial and "tiles" in page.meta and len(page.meta["tiles"]) > 0:
+        #     logger.warning("TileGridPlugin::on_page_markdown::tiles:%s", len(page.meta["tiles"]))
+        #     context_data = {
+        #         "page": {
+        #             "meta": {
+        #                 "tiles": page.meta["tiles"]
+        #             }
+        #         }
+        #     }
+        #     logger.warning("TileGridPlugin::on_env::context_data: %s", context_data)
+        #     rendered_grid = self.grid_partial.render(context_data)
+        #     logger.warning("TileGridPlugin::on_env::rendered_grid: %s", rendered_grid)
+        #     markdown = markdown.replace(DEFAULT_TILE_MARKER, rendered_grid)
+        #     # markdown = re.sub(r"\{\{(\s)*dolly(\s)*\}\}",
+        #     #                   random_lyrics(),
+        #     #                   markdown,
+        #     #                   flags=re.IGNORECASE)
+        #     return markdown
+        
+        # return markdown
 
     # def on_page_content(self, html, page, config, files, **kwargs):
     #     logger.warning("on_page_content")

@@ -79,7 +79,7 @@ install-editable:
 	pip uninstall mkdocs-terminal
 	python -m pip install -e .
 
-build-theme-and-serve: install-editable
+build-theme-and-serve: install-from-dist
 	cd documentation && make serve-local
 
 #for developer use, assumes you have already installed prereqs
