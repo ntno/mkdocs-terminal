@@ -27,7 +27,7 @@ serve-docs:
 	docker compose run --entrypoint "/bin/bash" --service-ports local_documentation_server -c "make serve-mkdocs"
 
 serve-local-theme: 
-	docker compose run --entrypoint "/bin/bash" --service-ports local_documentation_server -c "make serve-local"
+	docker compose run --entrypoint "/bin/bash" --service-ports local_theme_testing_server -c "make build-theme-and-serve"
 
 
 #########################################################
@@ -74,6 +74,13 @@ check-version-match:
 install-from-dist: build-theme
 	pip uninstall mkdocs-terminal
 	pip install dist/*.tar.gz
+
+install-editable: 
+	pip uninstall mkdocs-terminal
+	python -m pip install -e .
+
+build-theme-and-serve: install-editable
+	cd documentation && make serve-local
 
 #for developer use, assumes you have already installed prereqs
 quick-tests:

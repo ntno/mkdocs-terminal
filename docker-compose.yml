@@ -25,3 +25,12 @@ services:
     volumes:
       - './:/usr/src/'      
     working_dir: '/usr/src/documentation'
+  local_theme_testing_server:
+    image: ntno/ubuntu-build-base:1.0.0
+    restart: "no"
+    ports:
+      - "8080:8080"
+    environment:
+      LOG_LEVEL: debug 
+    volumes:
+      - './:/usr/src/'
