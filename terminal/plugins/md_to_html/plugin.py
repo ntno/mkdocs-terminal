@@ -29,7 +29,7 @@ class MarkdownToHtmlFilterPlugin(BasePlugin):
 
     def on_env(self, env, config, files, **kwargs):
         env.filters[DEFAULT_MARKUP_FILTER_NAME] = self.markupsafe_jinja2_filter
-        logger.warning("TileGridPlugin::on_env::%s: %s", DEFAULT_MARKUP_FILTER_NAME, self.markupsafe_jinja2_filter)
+        logger.info("MarkdownToHtmlFilterPlugin::on_env::%s: %s", DEFAULT_MARKUP_FILTER_NAME, self.markupsafe_jinja2_filter)
         self.env = env
         return env
 
