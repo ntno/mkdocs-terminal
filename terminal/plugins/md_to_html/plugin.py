@@ -22,29 +22,110 @@
 # from datetime import datetime, timedelta
 # from mkdocs import utils as mkdocs_utils
 # from mkdocs.config import config_options, Config
-from mkdocs.plugins import BasePlugin
+# from mkdocs.plugins import BasePlugin
 import jinja2
 # from jinja2.ext import Extension
+from jinja2.utils import markupsafe
+import logging
 import markdown
-
+# from timeit import default_timer as timer
+# from datetime import datetime, timedelta
+# from mkdocs import utils as mkdocs_utils
+from mkdocs.config import config_options
+# from mkdocs.config import Config
+from mkdocs.plugins import BasePlugin
+from mkdocs.commands.build import DuplicateFilter
 
 class MarkdownToHtmlFilterPlugin(BasePlugin):
 
     config_scheme = (
+        ('param', config_options.Type(str, default='')),
     )
 
     def __init__(self):
         self.enabled = True
-        self.dirs = []
+        self.total_time = 0
+        self.md = None
 
-    def md_filter(self, text, **kwargs):
-        md = markdown.Markdown(
-            extensions=self.config['markdown_extensions'],
-            extension_configs=self.config['mdx_configs'] or {}
+    def setup_markdown(self, config):
+        logger.warning("setting markdown_extensions: %s", config.markdown_extensions)
+        logger.warning("setting mdx_configs': %s", config.mdx_configs)
+        self.md = markdown.Markdown(
+            extensions=config.markdown_extensions or [],
+            extension_configs=config.mdx_configs or {}
         )
-        return jinja2.Markup(md.convert(text))
 
-    def on_env(self, env, config, files):
+    def on_pre_build(self, config):
+        logger.warning("on_pre_build")
+        self.setup_markdown(config)
+        return
+
+    def markdown_jinja2_filter(self, text, **kwargs):
+        logger.warning("markdown_jinja2_filter")
+        return markupsafe.Markup(self.md.convert(text))
+
+    def on_env(self, env, config, files, **kwargs):
+        logger.warning("on_env")
         self.config = config
-        env.filters['markdown'] = self.md_filter
+        env.filters['markdown'] = self.markdown_jinja2_filter
         return env
+
+    # def on_serve(self, server, **kwargs):
+    #     logger.warning("on_serve")
+    #     return server
+
+    # def on_files(self, files, config, **kwargs):
+    #     logger.warning("on_files")
+    #     return files
+
+    # def on_nav(self, nav, config, files, **kwargs):
+    #     logger.warning("on_nav")
+    #     return nav
+
+    # def on_config(self, config, **kwargs):
+    #     logger.warning("on_config")
+    #     return config
+
+    # def on_post_build(self, config, **kwargs):
+    #     logger.warning("on_post_build")
+    #     return
+
+    # def on_pre_page(self, page, config, files, **kwargs):
+    #     logger.warning("on_pre_page")
+    #     return page
+
+    # def on_page_read_source(self, page, config, **kwargs):
+    #     logger.warning("on_page_read_source")
+    #     return ""
+
+    def on_page_markdown(self, markdown, page, config, files, **kwargs):
+        logger.warning("on_page_markdown")
+        logger.warning("page.meta %s", page.meta)
+        if "tiles" in page.meta:
+            for tile in page.meta["tiles"]:
+                if "caption" in tile:
+                    logger.warning("tile.caption: %s", tile["caption"])
+                    tile["caption"] = markupsafe.Markup(self.md.convert(tile["caption"]))
+                    logger.warning("(now) tile.caption: %s", tile["caption"])
+        return markdown
+
+    # def on_page_content(self, html, page, config, files, **kwargs):
+    #     logger.warning("on_page_content")
+    #     return html
+
+    # def on_page_context(self, context, page, config, nav, **kwargs):
+    #     logger.warning("on_page_context")
+    #     return context
+
+    # def on_post_page(self, output_content, page, config, **kwargs):
+    #     logger.warning("on_post_page")
+    #     return output_content
+
+
+# -----------------------------------------------------------------------------
+# Data
+# -----------------------------------------------------------------------------
+
+# Set up logging
+logger = logging.getLogger("mkdocs")
+logger.addFilter(DuplicateFilter())

@@ -1,4 +1,4 @@
-mkdocs
+mkdocs>=1.4.1
 mkdocs-terminal~=3.0
 
 # Python Markdown Extensions
