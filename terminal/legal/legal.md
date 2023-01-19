@@ -90,6 +90,8 @@ Creative Commons ― CC BY 3.0
 
 [mkdocs-markdown-filter](https://github.com/byrnereese/mkdocs-markdown-filter/blob/master/LICENSE)  by [Byrne Reese](https://github.com/byrnereese)
 ```text
+Copyright (c) 2018 Byrne Reese
+
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
