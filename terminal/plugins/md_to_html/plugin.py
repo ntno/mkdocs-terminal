@@ -9,10 +9,6 @@ DEFAULT_MARKUP_FILTER_NAME = "markup"
 
 class MarkdownToHtmlFilterPlugin(BasePlugin):
 
-    config_scheme = (
-        ('filter-name', config_options.Type(str, default=DEFAULT_MARKUP_FILTER_NAME)),
-    )
-
     def __init__(self):
         self.md = None
 
@@ -33,8 +29,8 @@ class MarkdownToHtmlFilterPlugin(BasePlugin):
         return markupsafe.Markup(self.md.convert(text))
 
     def on_env(self, env, config, files, **kwargs):
-        env.filters[config["filter-name"]] = self.markupsafe_jinja2_filter
-        logger.warning("TileGridPlugin::on_env::%s: %s", config["filter-name"], self.markupsafe_jinja2_filter)
+        env.filters[DEFAULT_MARKUP_FILTER_NAME] = self.markupsafe_jinja2_filter
+        logger.warning("TileGridPlugin::on_env::%s: %s", DEFAULT_MARKUP_FILTER_NAME, self.markupsafe_jinja2_filter)
         self.env = env
         return env
 
