@@ -1,50 +1,44 @@
-# Copyright (c) 2018 Byrne Reese
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-# The above copyright notice and this permission notice shall be included in all
-# copies or substantial portions of the Software.
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
-
-# import os
-# import sys
-# import re
-# from timeit import default_timer as timer
-# from datetime import datetime, timedelta
-# from mkdocs import utils as mkdocs_utils
-# from mkdocs.config import config_options, Config
 from mkdocs.plugins import BasePlugin
-import jinja2
-# from jinja2.ext import Extension
+from mkdocs.commands.build import DuplicateFilter
+from mkdocs.config import config_options
+from jinja2.utils import markupsafe
 import markdown
+import logging
+DEFAULT_MARKUP_FILTER_NAME = "markup"
 
 
 class MarkdownToHtmlFilterPlugin(BasePlugin):
 
     config_scheme = (
+        ('filter-name', config_options.Type(str, default=DEFAULT_MARKUP_FILTER_NAME)),
     )
 
     def __init__(self):
-        self.enabled = True
-        self.dirs = []
+        self.md = None
 
-    def md_filter(self, text, **kwargs):
-        md = markdown.Markdown(
-            extensions=self.config['markdown_extensions'],
-            extension_configs=self.config['mdx_configs'] or {}
+    def setup_markdown(self, config):
+        self.md = markdown.Markdown(
+            extensions=config.markdown_extensions or [],
+            extension_configs=config.mdx_configs or {}
         )
-        return jinja2.Markup(md.convert(text))
 
-    def on_env(self, env, config, files):
-        self.config = config
-        env.filters['markdown'] = self.md_filter
+    def on_pre_build(self, config):
+        logger.info("MarkdownToHtmlFilterPlugin::on_pre_build::markdown_extensions: %s", config.markdown_extensions)
+        logger.info("MarkdownToHtmlFilterPlugin::on_pre_build::mdx_configs': %s", config.mdx_configs)
+        self.setup_markdown(config)
+        logger.info("MarkdownToHtmlFilterPlugin::on_pre_build::md: %s", self.md)
+        return
+
+    def markupsafe_jinja2_filter(self, text, **kwargs):
+        return markupsafe.Markup(self.md.convert(text))
+
+    def on_env(self, env, config, files, **kwargs):
+        env.filters[config["filter-name"]] = self.markupsafe_jinja2_filter
+        logger.warning("TileGridPlugin::on_env::%s: %s", config["filter-name"], self.markupsafe_jinja2_filter)
+        self.env = env
         return env
+
+
+# Set up logging
+logger = logging.getLogger("mkdocs")
+logger.addFilter(DuplicateFilter())
