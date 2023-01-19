@@ -27,7 +27,7 @@
             </a>{% else %}{{ tile.link_text|default(tile.link_href, true) }}</a>{%- endif -%}
             {%- endif -%}
             {%- if ns.has_caption %}
-        <figcaption>{{ tile.caption|string|trim|markup }}</figcaption>
+        <figcaption>{{ tile.caption|string|trim }}</figcaption>
             {%- endif %}
         </figure>
     </div>
