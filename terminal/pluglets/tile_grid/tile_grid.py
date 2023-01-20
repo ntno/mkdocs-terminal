@@ -13,13 +13,13 @@ class TileGrid:
         
 
     def __repr__(self):
-        grid_id = f"'{self.grid_id}'" if (
-            self.grid_id is not None) else '[blank]'
-        grid_css = f"'{self.grid_css}'" if (
-            self.grid_css is not None) else '[blank]'
-        tiles = f"'{len(self.tiles)}'" if (
-            self.tiles is not None) else '[empty]'
-        return f"TileGrid(tiles={tiles}, grid_id={grid_id}, grid_css='{grid_css}')"
+        grid_id = f"{self.grid_id}" if (
+            self.grid_id is not "") else '[blank]'
+        grid_css = f"{self.grid_css}" if (
+            self.grid_css is not "") else '[blank]'
+        tiles = f"{len(self.tiles)}" if (
+            self.tiles is not None) else '[null]'
+        return f"TileGrid(tiles='{tiles}', grid_id='{grid_id}', grid_css='{grid_css}')"
 
 
     tiles: List[Tile]
