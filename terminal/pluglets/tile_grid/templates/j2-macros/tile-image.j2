@@ -1,0 +1,6 @@
+{% macro make_image( tile ) -%}
+<img src="{{ tile.img_src }}" alt="{{ tile.img_alt|default('', true ) }}"
+    {%- if tile.img_title is defined and tile.img_title|string|length %} title="{{ tile.img_title }}"{% endif %} 
+    {%- if tile.img_width is defined and tile.img_width|string|length %} width="{{ tile.img_width }}"{% endif %} 
+    {%- if tile.img_height is defined and tile.img_height|string|length %} height="{{ tile.img_height }}"{% endif %} >
+{%- endmacro -%}

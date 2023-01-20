@@ -5,7 +5,7 @@ from terminal.pluglets.tile_grid.tile import Tile
 
 class TileGrid:
     def __init__(
-        self, tiles: List[Tile], grid_id: Optional[Any], grid_css: Optional[Any]
+        self, tiles: List[Tile], grid_id: Optional[Any]="", grid_css: Optional[Any]=""
     ) -> None:
         self.tiles = tiles
         self.grid_id = grid_id

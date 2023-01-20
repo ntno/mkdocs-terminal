@@ -1,0 +1,5 @@
+{% macro make_link_start( tile ) -%}
+<a  href="{{ tile.link_href }}" 
+    {%- if tile.link_title is defined and tile.link_title|string|length %} title="{{ tile.link_title }}"{% endif %} 
+    {%- if tile.link_target is defined and tile.link_target|string|length %} target="{{ tile.link_target }}"{% endif %} >
+{%- endmacro -%}
