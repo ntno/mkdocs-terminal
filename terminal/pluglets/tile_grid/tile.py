@@ -33,8 +33,9 @@ class Tile:
         return f"Tile(caption={caption}, link_href={link_href}, img_src='{img_src}')"
 
     def validate(self):
-        print("this is a test", self)
-        pass
+        if self.link_href is "" and self.img_src is "":
+            return False
+        return True
 
     caption: Optional[Any]=""
     """The figure caption."""
