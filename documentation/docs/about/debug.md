@@ -18,3 +18,5 @@ tiles:
 ---
 
 # Debug Markdown Experiments
+
+{{grid(page.meta.tiles)}}
