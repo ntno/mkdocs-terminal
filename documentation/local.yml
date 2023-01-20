@@ -17,8 +17,6 @@ theme:
 
 plugins:
   - terminal/md-to-html
-  - git-revision-date
-  - search
   - macros:
       verbose: true
       modules: [mkdocs-terminal:terminal.pluglets.tile_grid.main]
