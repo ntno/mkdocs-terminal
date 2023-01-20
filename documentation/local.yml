@@ -19,7 +19,12 @@ plugins:
   - terminal/md-to-html
   - git-revision-date
   - search
+  - macros:
+      verbose: true
+      modules: [mkdocs-terminal:terminal.pluglets.tile_grid]
 
 watch:
-  - '../terminal'
+  - '../terminal/partials'
+  - '../terminal/macros'
+  - '../terminal/pluglets'
   - './mkdocs.yml'
