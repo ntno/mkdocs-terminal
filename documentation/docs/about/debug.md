@@ -19,7 +19,7 @@ tiles:
 
 # Debug Markdown Experiments
 
-{{grid(page.meta.tiles)}}
+{% include "pluglets/tile_grid/templates/j2-partials/tiles.html" %}
 
 ---
 {{ macros_info() }}

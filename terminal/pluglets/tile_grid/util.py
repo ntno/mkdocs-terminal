@@ -8,7 +8,8 @@ DEFAULT_GRID_PARTIAL_PATH = "pluglets/tile_grid/templates/j2-partials/tiles.html
 def grid(tiles_from_page_metadata):
     env = get_env()
     env.loader = pluglet_loader()
-    partial_test = env.get_template(DEFAULT_GRID_PARTIAL_PATH)
+    print(env.list_templates())
+    # partial_test = env.get_template(DEFAULT_GRID_PARTIAL_PATH)
     tile_list = []
     result = ""
     if tiles_from_page_metadata is not None:
@@ -21,9 +22,12 @@ def grid(tiles_from_page_metadata):
                 }
             }
         }
-        rendered_grid = partial_test.render(context_data)
-        print(rendered_grid)
-        return rendered_grid
+        # rendered_grid = partial_test.render(context_data)
+        # print(rendered_grid)
+        # direct return didn't work: '{{ {% include "pluglets/tile_grid/templates/j2-partials/tiles.html" %} }}'
+        # direct return also didn't work "{% include \"pluglets/tile_grid/templates/j2-partials/tiles.html\" %}"
+        # return "TODO " + str(len(tile_list))
+        return str(env.list_templates())
     else:
         result="invalid_tiles_from_page_metadata"
     return result
