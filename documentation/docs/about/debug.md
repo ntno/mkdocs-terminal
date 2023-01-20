@@ -19,7 +19,7 @@ tiles:
 
 # Debug Markdown Experiments
 
-{{ grid(page.meta.tiles) }}
+{{ tile_grid(context) }}
 
 ---
 {{ macros_info() }}

@@ -27,6 +27,10 @@ class TileGridMacroEnvironment(object):
         self.chatter = env.start_chatting("terminal.pluglets.tile_grid")
         
     def define_env(self, env):
+        # store runtime info and setup chatter
+        self.setup(env)
+
+
         # register grid function with MkdocsMacroPlugin
         for fn in [tile_grid]:
             env.macro(fn)
@@ -46,8 +50,8 @@ class TileGridMacroEnvironment(object):
         new_jinja2_env = Environment()
         new_jinja2_env.loader = loader
         for filter in filters:                
-            new_jinja2_env.filters[filter.name] = filter.function
-        self.chatter("created new Jinja2 Environment: %s", new_jinja2_env)
+            new_jinja2_env.filters[filter["name"]] = filter["function"]
+        self.chatter("created new Jinja2 Environment: ", new_jinja2_env)
         return new_jinja2_env
 
     def create_theme_file_loader(self):
@@ -57,7 +61,8 @@ class TileGridMacroEnvironment(object):
         pluglets_folder = pluglet_folder.parent
         terminal_folder = pluglets_folder.parent
         new_theme_file_loader = loaders.FileSystemLoader(terminal_folder.resolve())
-        self.chatter("created new theme Jinja2 FileSystemLoader: %s", new_theme_file_loader)
+        self.chatter("created new Jinja2 FileSystemLoader: ", new_theme_file_loader)
+        return new_theme_file_loader
 
     def create_markup_filter(self, mkdocs_config):
         """creates new Jinja2 markup filter via MarkdownToHtmlFilterPlugin 
