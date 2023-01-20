@@ -6,7 +6,7 @@ ATTRIBUTES_TO_MARKUP= ["caption", "link_text"]
 class Tile:
     
     def __init__(
-        self, caption: Optional[Any]="", img_src: Optional[Any]="", img_title: Optional[Any]="", img_alt: Optional[Any]="", img_width: Optional[Any]="", img_height: Optional[Any]="", link_href: Optional[Any]="", link_target: Optional[Any]="", link_text: Optional[Any]="", link_title: Optional[Any]="", tile_id: Optional[Any]="", tile_css: Optional[Any]=""
+        self, blob, caption: Optional[Any]="", img_src: Optional[Any]="", img_title: Optional[Any]="", img_alt: Optional[Any]="", img_width: Optional[Any]="", img_height: Optional[Any]="", link_href: Optional[Any]="", link_target: Optional[Any]="", link_text: Optional[Any]="", link_title: Optional[Any]="", tile_id: Optional[Any]="", tile_css: Optional[Any]=""
     ) -> None:
         self.caption = caption
         self.img_src = img_src
@@ -20,6 +20,8 @@ class Tile:
         self.link_title = link_title
         self.tile_id = tile_id
         self.tile_css = tile_css
+        for key in blob:
+            setattr(self, key, blob[key])
 
     def __repr__(self):
         link_href = f"'{self.link_href}'" if (
