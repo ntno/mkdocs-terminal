@@ -21,7 +21,7 @@ plugins:
   - search
   - macros:
       verbose: true
-      modules: [mkdocs-terminal:terminal.pluglets.tile_grid]
+      modules: [mkdocs-terminal:terminal.pluglets.tile_grid.main]
 
 watch:
   - '../terminal/partials'
