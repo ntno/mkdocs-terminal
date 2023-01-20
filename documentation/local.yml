@@ -24,5 +24,4 @@ plugins:
 watch:
   - '../terminal/partials'
   - '../terminal/macros'
-  - '../terminal/pluglets'
   - './mkdocs.yml'
