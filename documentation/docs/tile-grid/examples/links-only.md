@@ -66,13 +66,13 @@ tiles:
     link_title: go to the tile grid example page
     link_text: Tile Grid Example
     link_href: ../example-page
-  - caption: "#tile_123"
+  - caption: "\\#tile_123"
     tile_id: "tile_123"
     link_target: "_self"
     link_title: go to overview in this window
     link_text: Tile Grid Overview
     link_href: ../..
-  - caption: "#tile_456"
+  - caption: "\\#tile_456"
     tile_id: "tile_456"
     link_target: "_self"
     link_title: go to tile reference in this window
