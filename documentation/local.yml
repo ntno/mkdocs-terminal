@@ -17,7 +17,7 @@ theme:
     - about/coverage-report/index.html
 
 plugins:
-  # - terminal/md-to-html
+  - terminal/md-to-html
   - macros:
       verbose: true
       modules: 
