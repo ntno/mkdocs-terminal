@@ -1,6 +1,6 @@
 from copy import copy
 DEFAULT_GRID_PARTIAL_PATH = "pluglets/tile_grid/templates/j2-partials/tiles.html"
-USAGE_MESSAGE = "USAGE: {{ tile_grid(page.meta) }}"
+USAGE_MESSAGE = "<strong>USAGE:</strong> `{{ tile_grid(page.meta) }}`"
 
 
 def tile_grid(page_meta={}):

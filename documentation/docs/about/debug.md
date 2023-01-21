@@ -19,4 +19,4 @@ tiles:
 
 # Debug Markdown Experiments
 
-{{ tile_grid("thing") }}
+{{ tile_grid(page.meta) }}
