@@ -32,6 +32,7 @@ class TestTileGridPluglet():
     def test_usage_message_when_bad_input(self, pluglet_macro_mock, bad_input):
         pluglet_output = tile_grid(bad_input)
         assert "USAGE" in pluglet_output
+        assert_valid_html(pluglet_output)
         pluglet_macro_mock.jinja2_env.get_template.assert_not_called()
 
     @patch('terminal.pluglets.tile_grid.MACRO')
