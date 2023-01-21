@@ -21,3 +21,4 @@ tiles:
 
 {{ tile_grid("sdf") }}
 {{ tile_grid(page.meta) }}
+{{ macros_info() }}

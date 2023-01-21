@@ -26,7 +26,7 @@ serve: check-site
 serve-docs: 
 	docker compose run --entrypoint "/bin/bash" --service-ports local_documentation_server -c "make serve-mkdocs"
 
-serve-local-theme: remove-orphans
+serve-local-theme: 
 	docker compose run --entrypoint "/bin/bash" --service-ports local_theme_server -c "make build-local-theme-and-serve"
 
 
