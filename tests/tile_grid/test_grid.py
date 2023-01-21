@@ -1,10 +1,18 @@
 from tests.utils.html import assert_valid_html
+from terminal.plugins.md_to_html.plugin import DEFAULT_MARKUP_FILTER_NAME
 import pytest
+GRID_PARTIAL_PATH = "pluglets/tile_grid/templates/j2-partials/tiles.html"
 
 
 @pytest.fixture
 def grid_partial(env_with_terminal_loader):
-    return env_with_terminal_loader.get_template("pluglets/tile_grid/templates/j2-partials/tiles.html")
+    return env_with_terminal_loader.get_template(GRID_PARTIAL_PATH)
+
+
+@pytest.fixture
+def env_without_markup_filter(env_with_terminal_loader):
+    del env_with_terminal_loader.filters[DEFAULT_MARKUP_FILTER_NAME]
+    return env_with_terminal_loader
 
 
 class TestGrid():
@@ -90,3 +98,35 @@ class TestGrid():
             grid_partial.render(context_data)
         except Exception as ex:
             pytest.fail(f"Got exception during render: {ex})")
+
+    def test_no_render_error_if_markup_filter_undefined(self, env_without_markup_filter, valid_linked_image_tile):
+        grid_partial = env_without_markup_filter.get_template(GRID_PARTIAL_PATH)
+        try:
+            context_data = {
+                "page": {
+                    "meta": {
+                        "grid_id": "myGridId",
+                        "grid_css": "myGridCss",
+                        "tiles": [valid_linked_image_tile]
+                    }
+                }
+            }
+            grid_partial.render(context_data)
+        except Exception as ex:
+            pytest.fail(f"Got exception during render: {ex})")
+
+    def test_caption_is_not_run_through_markup_filter_if_md_to_html_plugin_disabled(self, tile_macro, valid_linked_image_tile):
+        valid_linked_image_tile.caption = "myCaption"
+        expected_html = "<figcaption>myCaption</figcaption>"
+        context_data = {
+            "page": {
+                "meta": {
+                    "grid_id": "myGridId",
+                    "grid_css": "myGridCss",
+                    "tiles": [valid_linked_image_tile]
+                }
+            }
+        }
+        rendered_grid = grid_partial.render(context_data)
+        assert expected_html in rendered_grid
+        assert_valid_html(rendered_grid)
