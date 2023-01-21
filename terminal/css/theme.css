@@ -53,6 +53,16 @@ body {
     align-items: center;
 }
 
+.terminal-mkdocs-macro-error-banner {
+    border-style: solid;
+    border-width: 1px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: .65em 2em;
+    border-color: var(--error-color);
+    color: var(--error-color);
+}
 /* ***************************************************************** */
 /* Terminal.css Overrides */
 /* ***************************************************************** */
