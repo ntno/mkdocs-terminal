@@ -23,6 +23,7 @@ plugins:
         - mkdocs-terminal:terminal.pluglets.tile_grid
 
 watch:
+  - '../terminal/css'
   - '../terminal/partials'
   - '../terminal/macros'
   - './mkdocs.yml'
