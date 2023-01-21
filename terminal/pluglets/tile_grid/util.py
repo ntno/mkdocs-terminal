@@ -1,8 +1,8 @@
 from copy import copy
 DEFAULT_GRID_PARTIAL_PATH = "pluglets/tile_grid/templates/j2-partials/tiles.html"
 
-def tile_grid(page_metadata):
-    if page_metadata is not None:
+def tile_grid(page_metadata={}):
+    if page_metadata is not None and page_metadata is dict:
         context_data = {
             "page": {
                 "meta": copy(page_metadata)
