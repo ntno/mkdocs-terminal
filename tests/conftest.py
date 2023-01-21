@@ -5,7 +5,6 @@ from tests.interface.tile import Tile
 from tests import defaults
 from tests.utils.filters import mock_url_filter, mock_markup_filter
 from terminal.plugins.md_to_html.plugin import DEFAULT_MARKUP_FILTER_NAME
-# from terminal.pluglets.tile_grid.macro import TileGridMacroEnvironment
 import pytest
 
 
@@ -69,17 +68,6 @@ def all_integer_tile():
 @pytest.fixture
 def valid_linked_image_tile():
     return Tile(caption=defaults.GITHUB_CAPTION, tile_id="myGitHubLinkTile", tile_css="myGitHubTileClass", link_text=defaults.GITHUB_LINK_TEXT, link_href=defaults.GITHUB_LINK_HREF, link_title=defaults.GITHUB_LINK_TITLE, link_target=defaults.GITHUB_LINK_TARGET, img_src=defaults.GITHUB_IMG_SRC, img_alt=defaults.GITHUB_IMG_ALT, img_title=defaults.GITHUB_IMG_TITLE, img_width=defaults.GITHUB_IMG_WIDTH, img_height=defaults.GITHUB_IMG_HEIGHT)
-
-# @pytest.fixture(autouse=True)
-# def reset_singletons():
-#   TileGridMacroEnvironment._instances = {}
-
-# @pytest.fixture
-# def mocked_key_response(mocker):
-#   mocker.patch.object(credentials.KeyHandler, '_retrieve_parameter', return_value=key_response)
-
-# def test_keys_initialize(mocked_key_response):
-#   key_handler = credentials.KeyHandler('some_key')
 
 
 # @pytest.fixture
