@@ -1,6 +1,6 @@
 from tests.utils.html import assert_valid_html
 from tests.utils.filters import mock_markup_filter
-from tests.interface.theme_plugins import DEFAULT_MARKUP_FILTER_NAME, MD_TO_HTML_EXPLICIT, MD_TO_HTML_IMPLICIT
+from tests.interface import theme_plugins
 import pytest
 GRID_PARTIAL_PATH = "pluglets/tile_grid/templates/j2-partials/tiles.html"
 
@@ -12,7 +12,7 @@ def grid_partial(env_with_terminal_loader):
 
 @pytest.fixture
 def env_without_markup_filter(env_with_terminal_loader):
-    del env_with_terminal_loader.filters[DEFAULT_MARKUP_FILTER_NAME]
+    del env_with_terminal_loader.filters[theme_plugins.DEFAULT_MARKUP_FILTER_NAME]
     return env_with_terminal_loader
 
 
@@ -137,10 +137,10 @@ class TestGrid():
 
     @pytest.mark.parametrize("plugin_name", [
         pytest.param(
-            MD_TO_HTML_IMPLICIT, id="implicit-theme-namespace"
+            theme_plugins.MD_TO_HTML_IMPLICIT, id="implicit-theme-namespace"
         ),
         pytest.param(
-            MD_TO_HTML_EXPLICIT, id="explicit-theme-namespace"
+            theme_plugins.MD_TO_HTML_EXPLICIT, id="explicit-theme-namespace"
         )
     ])
     def test_caption_is_run_through_markup_filter_if_md_to_html_plugin_enabled(self, plugin_name, valid_linked_image_tile, grid_partial):
