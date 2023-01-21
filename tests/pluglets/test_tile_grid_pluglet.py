@@ -1,6 +1,6 @@
 from terminal.pluglets.tile_grid.util import tile_grid
 from tests.utils.html import assert_valid_html
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch
 import pytest
 
 
@@ -32,15 +32,11 @@ class TestTileGridPluglet():
     def test_usage_message_when_bad_input(self, pluglet_macro_mock, bad_input):
         pluglet_output = tile_grid(bad_input)
         assert "USAGE" in pluglet_output
-        pluglet_macro_mock.assert_not_called()
+        pluglet_macro_mock.jinja2_env.get_template.assert_not_called()
 
     @patch('terminal.pluglets.tile_grid.MACRO')
     def test_pluglet_renders_grid_with_one_tile(self, pluglet_macro_mock, minimal_linked_image_tile, grid_partial):
-        mock_jinja2_env = MagicMock()
-        mock_jinja2_env_attr = {'get_template.return_value': grid_partial}
-        mock_jinja2_env.configure_mock(**mock_jinja2_env_attr)
-        pluglet_macro_mock_attr = {'jinja2_env': mock_jinja2_env}
-        pluglet_macro_mock.configure_mock(**pluglet_macro_mock_attr)
+        pluglet_macro_mock.jinja2_env.get_template.return_value = grid_partial
 
         minimal_linked_image_tile.tile_id = "myTileId"
         page_meta = {"tiles": [minimal_linked_image_tile]}
@@ -48,3 +44,5 @@ class TestTileGridPluglet():
         assert "USAGE" not in pluglet_output
         assert "id=\"myTileId\"" in pluglet_output
         assert_valid_html(pluglet_output)
+        pluglet_macro_mock.jinja2_env.get_template.assert_called_once()
+        pluglet_macro_mock.jinja2_env.get_template.assert_called_with("pluglets/tile_grid/templates/j2-partials/tiles.html")
