@@ -1,4 +1,4 @@
-from tests.utils import theme_plugins
+from tests.interface import theme_plugins
 from jinja2 import Template, pass_context
 import pytest
 
