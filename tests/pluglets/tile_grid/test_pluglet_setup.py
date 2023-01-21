@@ -2,7 +2,7 @@
 from mkdocs.config.defaults import MkDocsConfig
 from terminal.pluglets.tile_grid.macro import TileGridMacroEnvironment
 from unittest.mock import patch, MagicMock
-from tests.interface.theme_plugins import MD_TO_HTML_IMPLICIT, MD_TO_HTML_EXPLICIT
+from tests.interface.theme_plugins import MD_TO_HTML_IMPLICIT, MD_TO_HTML_EXPLICIT, DEFAULT_MARKUP_FILTER_NAME
 import pytest
 
 
@@ -47,4 +47,4 @@ class TestTileGridPlugletSetup():
         assert len(filter_list) == 1
         filter = filter_list[0]
         filter_name = filter["name"]
-        assert "markup" == filter_name
+        assert DEFAULT_MARKUP_FILTER_NAME == filter_name
