@@ -86,10 +86,13 @@ class TestTile():
     def test_no_render_error_if_markup_filter_undefined(self, env_without_markup_filter, valid_linked_image_tile):
         tile_macro = env_without_markup_filter.get_template(TILE_MACRO_PATH)
         try:
-            rendered_tile = tile_macro.module.make_tile(valid_linked_image_tile)
-            expected_figcaption = mock_markup_filter(context={}, value="myCaption")
-            expected_html = "<figcaption>" + expected_figcaption + "</figcaption>"
-            assert expected_html in rendered_tile
-            assert_valid_html(rendered_tile)
+            tile_macro.module.make_tile(valid_linked_image_tile)
         except Exception as ex:
             pytest.fail(f"Got exception during render: {ex})")
+
+    def test_caption_is_not_run_through_markup_filter_if_md_to_html_plugin_disabled(self, tile_macro, valid_linked_image_tile):
+        valid_linked_image_tile.caption = "myCaption"
+        rendered_tile = tile_macro.module.make_tile(valid_linked_image_tile)
+        expected_html = "<figcaption>myCaption</figcaption>"
+        assert expected_html in rendered_tile
+        assert_valid_html(rendered_tile)
