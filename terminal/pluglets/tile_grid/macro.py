@@ -14,21 +14,21 @@ class TileGridMacroEnvironment(object):
 
     def __init__(self) -> None:
         self.chatter = None
-        self.conf = None
-        self.config = None
+        self.macro_config = None
         self.jinja2_env = None
 
     def setup(self, env):
-        # store runtime info from MkdocsMacroPlugin
-        self.conf = copy(env.conf)
-        self.config = copy(env.config)
-
-        # setup MkdocsMacroPlugin logger
         self.chatter = env.start_chatting("terminal.pluglets.tile_grid")
+        self.chatter("set MkdocsMacroPlugin chatter: %s" % self.chatter)
+        self.macro_config = copy(env.config)
+        self.chatter("macro config: %s" % self.macro_config)
 
     def define_env(self, env):
-        # store runtime info and setup chatter
+        # store macro config and setup MkdocsMacroPlugin chatter
         self.setup(env)
+
+        # get mkdocs config from MkdocsMacroPlugin
+        mkdocs_config = copy(env.conf)
 
         # register grid function with MkdocsMacroPlugin
         for fn in [tile_grid]:
@@ -36,8 +36,7 @@ class TileGridMacroEnvironment(object):
             self.chatter("added %s macro" % fn.__name__)
 
         # create jinja2 env for later use
-
-        self.jinja2_env = self.create_jinja2_env(self.create_theme_file_loader(), self.create_jinja2_filters(self.conf))
+        self.jinja2_env = self.create_jinja2_env(self.create_theme_file_loader(), self.create_jinja2_filters(mkdocs_config))
 
     def create_jinja2_filters(self, mkdocs_config):
         """returns list of {} with name of filter and Jinja2 filter function"""
