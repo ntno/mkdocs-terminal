@@ -1,6 +1,6 @@
 from terminal.pluglets.tile_grid.util import tile_grid
 from tests.utils.html import assert_valid_html
-from tests.interface.theme_pluglets import TILE_GRID_MACRO_USAGE_MESSAGE
+from tests.interface import theme_pluglets
 from unittest.mock import patch
 import pytest
 
@@ -32,7 +32,7 @@ class TestTileGridPlugletUserInterface():
     # see https://github.com/hackebrot/pytest-tricks/issues/32
     def test_usage_message_when_bad_input(self, pluglet_macro_mock, bad_input):
         pluglet_output = tile_grid(bad_input)
-        assert TILE_GRID_MACRO_USAGE_MESSAGE == pluglet_output
+        assert theme_pluglets.TILE_GRID_MACRO_USAGE_MESSAGE == pluglet_output
         assert_valid_html(pluglet_output)
         pluglet_macro_mock.jinja2_env.get_template.assert_not_called()
 
@@ -43,7 +43,7 @@ class TestTileGridPlugletUserInterface():
         minimal_linked_image_tile.tile_id = "myTileId"
         page_meta = {"tiles": [minimal_linked_image_tile]}
         pluglet_output = tile_grid(page_meta)
-        assert TILE_GRID_MACRO_USAGE_MESSAGE not in pluglet_output
+        assert theme_pluglets.TILE_GRID_MACRO_USAGE_MESSAGE not in pluglet_output
         assert "id=\"myTileId\"" in pluglet_output
         assert_valid_html(pluglet_output)
         pluglet_macro_mock.jinja2_env.get_template.assert_called_once()

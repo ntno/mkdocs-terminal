@@ -2,7 +2,7 @@
 from mkdocs.config.defaults import MkDocsConfig
 from terminal.pluglets.tile_grid.macro import TileGridMacroEnvironment
 from unittest.mock import patch, MagicMock
-from tests.interface.theme_plugins import MD_TO_HTML_IMPLICIT, MD_TO_HTML_EXPLICIT, DEFAULT_MARKUP_FILTER_NAME
+from tests.interface import theme_plugins
 import pytest
 
 
@@ -24,10 +24,10 @@ class TestTileGridPlugletSetup():
     @patch('terminal.pluglets.tile_grid.TileGridMacroEnvironment.get_chatter')
     @pytest.mark.parametrize("plugin_name", [
         pytest.param(
-            MD_TO_HTML_IMPLICIT, id="implicit-theme-namespace"
+            theme_plugins.MD_TO_HTML_IMPLICIT, id="implicit-theme-namespace"
         ),
         pytest.param(
-            MD_TO_HTML_EXPLICIT, id="explicit-theme-namespace"
+            theme_plugins.MD_TO_HTML_EXPLICIT, id="explicit-theme-namespace"
         )
     ])
     # NOTE: the order of the inputs passed to the test is important here
@@ -47,4 +47,4 @@ class TestTileGridPlugletSetup():
         assert len(filter_list) == 1
         filter = filter_list[0]
         filter_name = filter["name"]
-        assert DEFAULT_MARKUP_FILTER_NAME == filter_name
+        assert theme_plugins.DEFAULT_MARKUP_FILTER_NAME == filter_name
