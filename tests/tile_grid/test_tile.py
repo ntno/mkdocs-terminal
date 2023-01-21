@@ -67,7 +67,6 @@ class TestTile():
         except Exception as ex:
             pytest.fail(f"Got exception during render: {ex})")
 
-    @pytest.mark.skip(reason="add after refactor to tile-grid plugin and documentation updates (MAJOR)")
     def test_caption_is_run_through_markup_filter(self, tile_macro, valid_linked_image_tile):
         valid_linked_image_tile.caption = "myCaption"
         rendered_tile = tile_macro.module.make_tile(valid_linked_image_tile)
