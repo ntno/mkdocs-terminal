@@ -43,7 +43,7 @@ class TestTileGridPlugletUserInterface():
         minimal_linked_image_tile.tile_id = "myTileId"
         page_meta = {"tiles": [minimal_linked_image_tile]}
         pluglet_output = tile_grid(page_meta)
-        assert TILE_GRID_MACRO_USAGE_MESSAGE == pluglet_output
+        assert TILE_GRID_MACRO_USAGE_MESSAGE not in pluglet_output
         assert "id=\"myTileId\"" in pluglet_output
         assert_valid_html(pluglet_output)
         pluglet_macro_mock.jinja2_env.get_template.assert_called_once()
