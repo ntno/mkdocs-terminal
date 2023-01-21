@@ -1,4 +1,5 @@
 from tests.utils.html import assert_valid_html
+from tests.utils.filters import mock_markup_filter
 from terminal.plugins.md_to_html.plugin import DEFAULT_MARKUP_FILTER_NAME
 import pytest
 GRID_PARTIAL_PATH = "pluglets/tile_grid/templates/j2-partials/tiles.html"
@@ -119,6 +120,37 @@ class TestGrid():
         valid_linked_image_tile.caption = "myCaption"
         expected_html = "<figcaption>myCaption</figcaption>"
         context_data = {
+            "config": {
+                "plugins": []
+            },
+            "page": {
+                "meta": {
+                    "grid_id": "myGridId",
+                    "grid_css": "myGridCss",
+                    "tiles": [valid_linked_image_tile]
+                }
+            }
+        }
+        rendered_grid = grid_partial.render(context_data)
+        assert expected_html in rendered_grid
+        assert_valid_html(rendered_grid)
+
+    @pytest.mark.parametrize("plugin_name", [
+        pytest.param(
+            "md-to-html", id="implicit-theme-namespace"
+        ),
+        pytest.param(
+            "terminal/md-to-html", id="explicit-theme-namespace"
+        )
+    ])
+    def test_caption_is_run_through_markup_filter_if_md_to_html_plugin_enabled(self, plugin_name, valid_linked_image_tile, grid_partial):
+        valid_linked_image_tile.caption = "myCaption"
+        expected_figcaption = mock_markup_filter(context={}, value="myCaption")
+        expected_html = "<figcaption>" + expected_figcaption + "</figcaption>"
+        context_data = {
+            "config": {
+                "plugins": [plugin_name]
+            },
             "page": {
                 "meta": {
                     "grid_id": "myGridId",
