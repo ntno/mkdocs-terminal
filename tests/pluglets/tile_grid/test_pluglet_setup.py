@@ -6,7 +6,7 @@ from tests.interface import theme_plugins
 import pytest
 
 
-class TestTileGridPlugletSetup():
+class TestPlugletSetup():
 
     @patch('terminal.pluglets.tile_grid.TileGridMacroEnvironment.get_chatter')
     def test_that_markup_filter_not_added_when_plugin_disabled(self, get_chatter):

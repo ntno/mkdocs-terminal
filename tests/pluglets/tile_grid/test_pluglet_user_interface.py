@@ -10,7 +10,7 @@ def grid_partial(env_with_terminal_loader):
     return env_with_terminal_loader.get_template("pluglets/tile_grid/templates/j2-partials/tiles.html")
 
 
-class TestTileGridPlugletUserInterface():
+class TestPlugletUserInterface():
 
     @patch('terminal.pluglets.tile_grid.MACRO')
     @pytest.mark.parametrize("bad_input", [
