@@ -1,6 +1,6 @@
 from copy import copy
 DEFAULT_GRID_PARTIAL_PATH = "pluglets/tile_grid/templates/j2-partials/tiles.html"
-USAGE_MESSAGE = "<span class=\"terminal-mkdocs-macro-error-banner\"><strong>USAGE:</strong> `{{ tile_grid(page.meta) }}`</span>"
+USAGE_MESSAGE = "<p class=\"terminal-mkdocs-macro-error-banner\"><strong>USAGE:</strong>&nbsp;&nbsp;<code>{{ tile_grid(page.meta) }}</code></p>"
 
 
 def tile_grid(page_meta):
