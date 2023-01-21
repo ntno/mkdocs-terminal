@@ -21,7 +21,7 @@ plugins:
   - macros:
       verbose: true
       modules: 
-        - mkdocs-terminal:terminal.pluglets.tile_grid
+        - mkdocs-terminal:terminal.pluglets.tile_grid.main
 
 watch:
   - '../terminal/css'

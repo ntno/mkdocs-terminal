@@ -10,7 +10,7 @@ def tile_grid(page_meta):
                 "meta": copy(page_meta)
             }
         }
-        from terminal.pluglets.tile_grid import MACRO
+        from terminal.pluglets.tile_grid.main import MACRO
         tiles_partial = MACRO.jinja2_env.get_template(DEFAULT_GRID_PARTIAL_PATH)
         rendered_grid = tiles_partial.render(context_data)
         return rendered_grid

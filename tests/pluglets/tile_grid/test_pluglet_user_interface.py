@@ -12,7 +12,7 @@ def grid_partial(env_with_terminal_loader):
 
 class TestPlugletUserInterface():
 
-    @patch('terminal.pluglets.tile_grid.MACRO')
+    @patch('terminal.pluglets.tile_grid.main.MACRO')
     @pytest.mark.parametrize("bad_input", [
         pytest.param(
             None, id="null_input"
@@ -36,7 +36,7 @@ class TestPlugletUserInterface():
         assert_valid_html(pluglet_output)
         pluglet_macro_mock.jinja2_env.get_template.assert_not_called()
 
-    @patch('terminal.pluglets.tile_grid.MACRO')
+    @patch('terminal.pluglets.tile_grid.main.MACRO')
     def test_pluglet_renders_grid_with_one_tile(self, pluglet_macro_mock, minimal_linked_image_tile, grid_partial):
         pluglet_macro_mock.jinja2_env.get_template.return_value = grid_partial
 
