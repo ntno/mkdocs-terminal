@@ -1,0 +1,6 @@
+# .coveragerc to control coverage.py
+[report]
+ignore_errors = True
+
+[html]
+directory = documentation/docs/about/coverage-report

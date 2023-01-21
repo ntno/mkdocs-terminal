@@ -85,6 +85,11 @@ quick-tests:
 	flake8 --ignore E501 tests && \
 	pytest --color=yes --capture=no tests
 
+#for developer use, assumes you have already installed prereqs
+generate-test-coverage:
+	pytest --cov=terminal --cov-branch --cov-report=html tests/
+
+
 check-site:
 ifndef site
 	$(error site is not set)
