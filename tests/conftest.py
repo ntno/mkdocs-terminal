@@ -39,21 +39,6 @@ def reset_singletons():
     TileGridMacroEnvironment._instances = {}
 
 
-# @pytest.fixture
-# def mocked_chatter_
-# @pytest.fixture
-# def mocked_key_response(mocker):
-#   mocker.patch.object(credentials.KeyHandler, '_retrieve_parameter', return_value=key_response)
-
-# def test_keys_initialize(mocked_key_response):
-#   key_handler = credentials.KeyHandler('some_key')
-
-
-@pytest.fixture
-def top_menu_partial(env_with_terminal_loader):
-    return env_with_terminal_loader.get_template("partials/top-nav/menu.html")
-
-
 @pytest.fixture
 def empty_tile():
     """returns an empty tile"""
