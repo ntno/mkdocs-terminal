@@ -55,8 +55,8 @@ nav:
 markdown_extensions:
   # Python Markdown  
   - attr_list
-  - def_list
-  - footnotes
+  # - def_list
+  # - footnotes
   - md_in_html
   - meta
   - toc:
