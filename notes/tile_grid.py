@@ -1,6 +1,6 @@
 from __future__ import annotations
 from typing import Optional, Any, List
-from terminal.pluglets.tile_grid.tile import Tile
+from .tile import Tile
 
 
 class TileGrid:

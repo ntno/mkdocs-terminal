@@ -36,13 +36,17 @@ class TileGridMacroEnvironment(object):
             self.chatter("added %s macro" % fn.__name__)
 
         # create jinja2 env for later use
-        extra_filters = [
-            {
-                "name": DEFAULT_MARKUP_FILTER_NAME,
-                "function": self.create_markup_filter(self.conf)
-            }]
-        terminal_theme_file_loader = self.create_theme_file_loader()
-        self.jinja2_env = self.create_jinja2_env(terminal_theme_file_loader, extra_filters)
+
+        self.jinja2_env = self.create_jinja2_env(self.create_theme_file_loader(), self.create_jinja2_filters(self.conf))
+
+    def create_jinja2_filters(self, mkdocs_config):
+        """returns list of {} with name of filter and Jinja2 filter function"""
+        filters = []
+        filters.append({
+            "name": DEFAULT_MARKUP_FILTER_NAME,
+            "function": self.create_markup_filter(mkdocs_config)
+        })
+        return filters
 
     def create_jinja2_env(self, loader, filters):
         """returns Jinja2 Environment with given loader and filters"""
@@ -64,8 +68,7 @@ class TileGridMacroEnvironment(object):
         return new_theme_file_loader
 
     def create_markup_filter(self, mkdocs_config):
-        """creates new Jinja2 markup filter via MarkdownToHtmlFilterPlugin
-            to ensure same rendering environment as main Terminal theme"""
+        """creates new Jinja2 markup filter via MarkdownToHtmlFilterPlugin"""
         markup_plugin = MarkdownToHtmlFilterPlugin()
         markup_plugin.setup_markdown(mkdocs_config)
         self.chatter("created markup filter with markdown extensions %s" % mkdocs_config["markdown_extensions"])
