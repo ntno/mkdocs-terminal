@@ -4,14 +4,24 @@ import pytest
 
 class TestTileGridPluglet():
 
-    def test_null_input(self):
-        macro_output = tile_grid(None)
+    def test_no_input(self):
+        macro_output = tile_grid()
         assert "USAGE" in macro_output
 
-    @pytest.mark.skip(reason="TODO")
-    def test_empty_input(self):
-        pass
-
-    @pytest.mark.skip(reason="TODO")
-    def test_missing_required_input(self):
-        pass
+    @pytest.mark.parametrize("bad_input", [
+        pytest.param(
+            None, id="null_input"
+        ),
+        pytest.param(
+            {}, id="empty_dict_input"
+        ),
+        pytest.param(
+            [], id="list_input"
+        ),
+        pytest.param(
+            "tiles", id="string_input"
+        )
+    ])
+    def test_bad_input(self, bad_input):
+        macro_output = tile_grid()
+        assert "USAGE" in macro_output
