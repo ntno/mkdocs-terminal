@@ -7,7 +7,7 @@ import pytest
 
 @pytest.fixture
 def tile_macro(env_with_terminal_loader):
-    return env_with_terminal_loader.get_template("macros/tile-grid/tile.j2")
+    return env_with_terminal_loader.get_template("pluglets/tile_grid/templates/j2-macros/tile.j2")
 
 
 class TestTile():

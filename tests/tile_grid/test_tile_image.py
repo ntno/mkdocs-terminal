@@ -7,7 +7,7 @@ import pytest
 
 @pytest.fixture
 def image_macro(env_with_terminal_loader):
-    return env_with_terminal_loader.get_template("macros/tile-grid/tile-image.j2")
+    return env_with_terminal_loader.get_template("pluglets/tile_grid/templates/j2-macros/tile-image.j2")
 
 
 class TestTileImage():

@@ -4,7 +4,7 @@ import pytest
 
 @pytest.fixture
 def tile_link_macro(env_with_terminal_loader):
-    return env_with_terminal_loader.get_template("macros/tile-grid/tile-link.j2")
+    return env_with_terminal_loader.get_template("pluglets/tile_grid/templates/j2-macros/tile-link.j2")
 
 
 class TestTileLinkHelper():

@@ -4,7 +4,7 @@ import pytest
 
 @pytest.fixture
 def grid_partial(env_with_terminal_loader):
-    return env_with_terminal_loader.get_template("partials/tile-grid/tiles.html")
+    return env_with_terminal_loader.get_template("pluglets/tile_grid/templates/j2-partials/tiles.html")
 
 
 class TestGrid():
