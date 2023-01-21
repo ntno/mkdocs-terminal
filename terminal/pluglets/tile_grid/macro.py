@@ -44,8 +44,8 @@ class TileGridMacroEnvironment(object):
     def create_jinja2_filters(self, mkdocs_config):
         """returns list of {} with name of filter and Jinja2 filter function"""
         use_markup_filter = False
-        if mkdocs_config is not None and mkdocs_config["plugins"] is not None:
-            if "terminal/md-to-html" in mkdocs_config["plugins"] or "md-to-html" in mkdocs_config["plugins"]:
+        if mkdocs_config is not None and mkdocs_config.plugins is not None:
+            if "terminal/md-to-html" in mkdocs_config.plugins or "md-to-html" in mkdocs_config.plugins:
                 use_markup_filter = True
         filters = []
         if use_markup_filter:
@@ -78,6 +78,6 @@ class TileGridMacroEnvironment(object):
         """creates new Jinja2 markup filter via MarkdownToHtmlFilterPlugin"""
         markup_plugin = MarkdownToHtmlFilterPlugin()
         markup_plugin.setup_markdown(mkdocs_config)
-        self.get_chatter()("created markup filter with markdown extensions %s" % mkdocs_config["markdown_extensions"])
-        self.get_chatter()("created markup filter with mdx_configs %s" % mkdocs_config["mdx_configs"])
+        self.get_chatter()("created markup filter with markdown extensions %s" % mkdocs_config.markdown_extensions)
+        self.get_chatter()("created markup filter with mdx_configs %s" % mkdocs_config.mdx_configs)
         return markup_plugin.markupsafe_jinja2_filter
