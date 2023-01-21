@@ -50,7 +50,7 @@ class TileGridMacroEnvironment(object):
         new_jinja2_env.loader = loader
         for filter in filters:
             new_jinja2_env.filters[filter["name"]] = filter["function"]
-        self.chatter("created new Jinja2 Environment: ", new_jinja2_env)
+        self.chatter("created new Jinja2 Environment: %s" % new_jinja2_env)
         return new_jinja2_env
 
     def create_theme_file_loader(self):
@@ -60,7 +60,7 @@ class TileGridMacroEnvironment(object):
         pluglets_folder = pluglet_folder.parent
         terminal_folder = pluglets_folder.parent
         new_theme_file_loader = loaders.FileSystemLoader(terminal_folder.resolve())
-        self.chatter("created new Jinja2 FileSystemLoader: ", new_theme_file_loader)
+        self.chatter("created new Jinja2 FileSystemLoader: %s" % new_theme_file_loader)
         return new_theme_file_loader
 
     def create_markup_filter(self, mkdocs_config):
@@ -68,4 +68,6 @@ class TileGridMacroEnvironment(object):
             to ensure same rendering environment as main Terminal theme"""
         markup_plugin = MarkdownToHtmlFilterPlugin()
         markup_plugin.setup_markdown(mkdocs_config)
+        self.chatter("created markup filter with markdown extensions %s" % mkdocs_config["markdown_extensions"])
+        self.chatter("created markup filter with mdx_configs %s" % mkdocs_config["mdx_configs"])
         return markup_plugin.markupsafe_jinja2_filter
