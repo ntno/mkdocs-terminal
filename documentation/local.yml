@@ -16,7 +16,7 @@ theme:
     - 404.html
 
 plugins:
-  - terminal/md-to-html
+  # - terminal/md-to-html
   - macros:
       verbose: true
       modules: 

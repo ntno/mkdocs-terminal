@@ -1,13 +1,21 @@
 from tests.interface.tile import Tile
 from tests.utils.html import assert_valid_html, tile_has_anchor, tile_has_img
 from tests.utils.filters import mock_markup_filter
+from terminal.plugins.md_to_html.plugin import DEFAULT_MARKUP_FILTER_NAME
 from tests import defaults
 import pytest
+TILE_MACRO_PATH = "pluglets/tile_grid/templates/j2-macros/tile.j2"
 
 
 @pytest.fixture
 def tile_macro(env_with_terminal_loader):
-    return env_with_terminal_loader.get_template("pluglets/tile_grid/templates/j2-macros/tile.j2")
+    return env_with_terminal_loader.get_template(TILE_MACRO_PATH)
+
+
+@pytest.fixture
+def env_without_markup_filter(env_with_terminal_loader):
+    del env_with_terminal_loader.filters[DEFAULT_MARKUP_FILTER_NAME]
+    return env_with_terminal_loader
 
 
 class TestTile():
@@ -74,3 +82,14 @@ class TestTile():
         expected_html = "<figcaption>" + expected_figcaption + "</figcaption>"
         assert expected_html in rendered_tile
         assert_valid_html(rendered_tile)
+
+    def test_no_render_error_if_markup_filter_undefined(self, env_without_markup_filter, valid_linked_image_tile):
+        tile_macro = env_without_markup_filter.get_template(TILE_MACRO_PATH)
+        try:
+            rendered_tile = tile_macro.module.make_tile(valid_linked_image_tile)
+            expected_figcaption = mock_markup_filter(context={}, value="myCaption")
+            expected_html = "<figcaption>" + expected_figcaption + "</figcaption>"
+            assert expected_html in rendered_tile
+            assert_valid_html(rendered_tile)
+        except Exception as ex:
+            pytest.fail(f"Got exception during render: {ex})")
