@@ -20,6 +20,3 @@ tiles:
 # Debug Markdown Experiments
 
 {{ tile_grid("thing") }}
-
----
-{{ macros_info() }}
