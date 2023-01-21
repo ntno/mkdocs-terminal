@@ -25,11 +25,10 @@ class TileGridMacroEnvironment(object):
 
         # setup MkdocsMacroPlugin logger
         self.chatter = env.start_chatting("terminal.pluglets.tile_grid")
-        
+
     def define_env(self, env):
         # store runtime info and setup chatter
         self.setup(env)
-
 
         # register grid function with MkdocsMacroPlugin
         for fn in [tile_grid]:
@@ -49,7 +48,7 @@ class TileGridMacroEnvironment(object):
         """returns Jinja2 Environment with given loader and filters"""
         new_jinja2_env = Environment()
         new_jinja2_env.loader = loader
-        for filter in filters:                
+        for filter in filters:
             new_jinja2_env.filters[filter["name"]] = filter["function"]
         self.chatter("created new Jinja2 Environment: ", new_jinja2_env)
         return new_jinja2_env
@@ -65,7 +64,7 @@ class TileGridMacroEnvironment(object):
         return new_theme_file_loader
 
     def create_markup_filter(self, mkdocs_config):
-        """creates new Jinja2 markup filter via MarkdownToHtmlFilterPlugin 
+        """creates new Jinja2 markup filter via MarkdownToHtmlFilterPlugin
             to ensure same rendering environment as main Terminal theme"""
         markup_plugin = MarkdownToHtmlFilterPlugin()
         markup_plugin.setup_markdown(mkdocs_config)
