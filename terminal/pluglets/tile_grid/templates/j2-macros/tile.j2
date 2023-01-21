@@ -28,9 +28,9 @@
                 {%- endif -%}
                 {%- if ns.has_caption %}
                     {%- if use_markup %}
-            <figcaption>{{ tile.caption|string|trim|markup }}</figcaption>
+                <figcaption>{{ tile.caption|string|trim|markup }}</figcaption>
                     {% else %}
-            <figcaption>{{ tile.caption|string|trim }}</figcaption>
+                <figcaption>{{ tile.caption|string|trim }}</figcaption>
                     {%- endif %}
                 {%- endif %}
             </figure>
