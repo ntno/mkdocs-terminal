@@ -70,7 +70,7 @@ class TestTile():
 
     def test_caption_is_run_through_markup_filter(self, tile_macro, valid_linked_image_tile):
         valid_linked_image_tile.caption = "myCaption"
-        rendered_tile = tile_macro.module.make_tile(valid_linked_image_tile)
+        rendered_tile = tile_macro.module.make_tile(valid_linked_image_tile, "true")
         expected_figcaption = mock_markup_filter(context={}, value="myCaption")
         expected_html = "<figcaption>" + expected_figcaption + "</figcaption>"
         assert expected_html in rendered_tile

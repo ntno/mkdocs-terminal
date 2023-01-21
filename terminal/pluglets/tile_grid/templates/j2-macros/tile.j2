@@ -1,7 +1,7 @@
 
 {% import 'pluglets/tile_grid/templates/j2-macros/tile-image.j2' as image_helper %}
 {% import 'pluglets/tile_grid/templates/j2-macros/tile-link.j2' as link_helper %}
-{% macro make_tile( tile ) %}
+{% macro make_tile( tile, use_markup ) %}
 {%- set ns = namespace(is_valid=false, has_link=false, has_image=false, has_caption=false) -%}
 {%- if tile.img_src is defined and tile.img_src|string|length -%}
     {%- set ns.has_image = true -%}
@@ -27,7 +27,11 @@
             </a>{% else %}{{ tile.link_text|default(tile.link_href, true) }}</a>{%- endif -%}
             {%- endif -%}
             {%- if ns.has_caption %}
+                {%- if use_markup %}
         <figcaption>{{ tile.caption|string|trim|markup }}</figcaption>
+                {% else %}
+        <figcaption>{{ tile.caption|string|trim }}</figcaption>
+                {%- endif %}
             {%- endif %}
         </figure>
     </div>

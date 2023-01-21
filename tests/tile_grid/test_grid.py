@@ -115,7 +115,7 @@ class TestGrid():
         except Exception as ex:
             pytest.fail(f"Got exception during render: {ex})")
 
-    def test_caption_is_not_run_through_markup_filter_if_md_to_html_plugin_disabled(self, tile_macro, valid_linked_image_tile):
+    def test_caption_is_not_run_through_markup_filter_if_md_to_html_plugin_disabled(self, valid_linked_image_tile, grid_partial):
         valid_linked_image_tile.caption = "myCaption"
         expected_html = "<figcaption>myCaption</figcaption>"
         context_data = {

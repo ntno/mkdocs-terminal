@@ -1,5 +1,10 @@
 {% import 'pluglets/tile_grid/templates/j2-macros/tile.j2' as tile_helper %}
-
+{% if config %}
+{%- set plugins = config.plugins or [] -%}
+{% if "terminal/md-to-html" in plugins or "md-to-html" in plugins %}
+{% set use_markup = "true" %}
+{% endif %}
+{% endif %}
 {% if page and page.meta %}
 {% set show_tiles = "true" if page.meta.tiles and page.meta.tiles is iterable %}
 {% set custom_grid_id = page.meta.grid_id if page.meta.grid_id|string|length %}
