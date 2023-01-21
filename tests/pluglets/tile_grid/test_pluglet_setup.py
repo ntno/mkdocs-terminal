@@ -33,7 +33,7 @@ def mock_mkdocs_config(mkdocs_config_property_mocks):
 class TestPlugletSetup():
 
     @patch('terminal.pluglets.tile_grid.main.TileGridMacroEnvironment.get_chatter')
-    def xtest_that_markup_filter_not_added_when_plugin_disabled(self, get_chatter, mock_mkdocs_config, mkdocs_config_property_mocks):
+    def test_that_markup_filter_not_added_when_plugin_disabled(self, get_chatter, mock_mkdocs_config, mkdocs_config_property_mocks):
         get_chatter.return_value = MagicMock()
         macro = TileGridMacroEnvironment()
 
@@ -44,7 +44,6 @@ class TestPlugletSetup():
         filter_list = macro.create_jinja2_filters(mock_mkdocs_config)
         assert len(filter_list) == 0
         mkdocs_config_property_mocks["plugins"].assert_called()
-
 
     @patch('terminal.pluglets.tile_grid.main.TileGridMacroEnvironment.get_chatter')
     @pytest.mark.parametrize("plugin_name", [
