@@ -17,11 +17,14 @@ class TileGridMacroEnvironment(object):
         self.macro_config = None
         self.jinja2_env = None
 
+    def get_chatter(self):
+        return self.chatter
+
     def setup(self, env):
         self.chatter = env.start_chatting("terminal.pluglets.tile_grid")
-        self.chatter("set MkdocsMacroPlugin chatter: %s" % self.chatter)
+        self.get_chatter()("set MkdocsMacroPlugin chatter: %s" % self.get_chatter())
         self.macro_config = copy(env.config)
-        self.chatter("macro config: %s" % self.macro_config)
+        self.get_chatter()("macro config: %s" % self.macro_config)
 
     def define_env(self, env):
         # store macro config and setup MkdocsMacroPlugin chatter
@@ -33,7 +36,7 @@ class TileGridMacroEnvironment(object):
         # register grid function with MkdocsMacroPlugin
         for fn in [tile_grid]:
             env.macro(fn)
-            self.chatter("added %s macro" % fn.__name__)
+            self.get_chatter()("added %s macro" % fn.__name__)
 
         # create jinja2 env for later use
         self.jinja2_env = self.create_jinja2_env(self.create_theme_file_loader(), self.create_jinja2_filters(mkdocs_config))
@@ -53,7 +56,7 @@ class TileGridMacroEnvironment(object):
         new_jinja2_env.loader = loader
         for filter in filters:
             new_jinja2_env.filters[filter["name"]] = filter["function"]
-        self.chatter("created new Jinja2 Environment: %s" % new_jinja2_env)
+        self.get_chatter()("created new Jinja2 Environment: %s" % new_jinja2_env)
         return new_jinja2_env
 
     def create_theme_file_loader(self):
@@ -63,13 +66,13 @@ class TileGridMacroEnvironment(object):
         pluglets_folder = pluglet_folder.parent
         terminal_folder = pluglets_folder.parent
         new_theme_file_loader = loaders.FileSystemLoader(terminal_folder.resolve())
-        self.chatter("created new Jinja2 FileSystemLoader: %s" % new_theme_file_loader)
+        self.get_chatter()("created new Jinja2 FileSystemLoader: %s" % new_theme_file_loader)
         return new_theme_file_loader
 
     def create_markup_filter(self, mkdocs_config):
         """creates new Jinja2 markup filter via MarkdownToHtmlFilterPlugin"""
         markup_plugin = MarkdownToHtmlFilterPlugin()
         markup_plugin.setup_markdown(mkdocs_config)
-        self.chatter("created markup filter with markdown extensions %s" % mkdocs_config["markdown_extensions"])
-        self.chatter("created markup filter with mdx_configs %s" % mkdocs_config["mdx_configs"])
+        self.get_chatter()("created markup filter with markdown extensions %s" % mkdocs_config["markdown_extensions"])
+        self.get_chatter()("created markup filter with mdx_configs %s" % mkdocs_config["mdx_configs"])
         return markup_plugin.markupsafe_jinja2_filter
