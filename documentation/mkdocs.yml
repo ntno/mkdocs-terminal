@@ -77,6 +77,7 @@ plugins:
   - search
   - exclude-search:      
       exclude:
+        - about/coverage-report/*
         - configuration/palettes/*
         - elements/examples/*
         - configuration/extensions/untested-py-mdown
@@ -88,8 +89,6 @@ plugins:
         - configuration/palettes/pink.md#pink-palette
         - configuration/palettes/sans-dark.md#sans-dark-palette
         - configuration/palettes/sans.md#sans-palette
- 
-
 
 ## deploy settings
 theme:
@@ -100,3 +99,4 @@ theme:
     - revision.history
   static_templates:
     - 404.html
+    - about/coverage-report/index.html

@@ -14,6 +14,7 @@ theme:
     - revision.history
   static_templates:
     - 404.html
+    - about/coverage-report/index.html
 
 plugins:
   - terminal/md-to-html
