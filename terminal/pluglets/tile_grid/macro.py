@@ -33,10 +33,10 @@ class TileGridMacroEnvironment(object):
         # get mkdocs config from MkdocsMacroPlugin
         mkdocs_config = copy(env.conf)
 
-        # register grid function with MkdocsMacroPlugin
+        # register tile_grid function with MkdocsMacroPlugin
         for fn in [tile_grid]:
             env.macro(fn)
-            self.get_chatter()("added %s macro" % fn.__name__)
+            self.get_chatter()("added \'%s\' macro" % fn.__name__)
 
         # create jinja2 env for later use
         self.jinja2_env = self.create_jinja2_env(self.create_theme_file_loader(), self.create_jinja2_filters(mkdocs_config))
@@ -61,6 +61,8 @@ class TileGridMacroEnvironment(object):
         new_jinja2_env.loader = loader
         for filter in filters:
             new_jinja2_env.filters[filter["name"]] = filter["function"]
+            self.get_chatter()("added \'%s\' filter to Jinja2 Environment" % filter["name"])
+            self.get_chatter()("filter: %s" % filter["function"])
         self.get_chatter()("created new Jinja2 Environment: %s" % new_jinja2_env)
         return new_jinja2_env
 
@@ -78,6 +80,6 @@ class TileGridMacroEnvironment(object):
         """creates new Jinja2 markup filter via MarkdownToHtmlFilterPlugin"""
         markup_plugin = MarkdownToHtmlFilterPlugin()
         markup_plugin.setup_markdown(mkdocs_config)
-        self.get_chatter()("created markup filter with markdown extensions %s" % mkdocs_config.markdown_extensions)
-        self.get_chatter()("created markup filter with mdx_configs %s" % mkdocs_config.mdx_configs)
+        self.get_chatter()("created markup filter with markdown extensions: %s" % mkdocs_config.markdown_extensions)
+        self.get_chatter()("created markup filter with mdx_configs: %s" % mkdocs_config.mdx_configs)
         return markup_plugin.markupsafe_jinja2_filter
