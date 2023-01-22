@@ -1,5 +1,3 @@
-<br>
-
 ## Table Example
 
 | Release | Supported? |

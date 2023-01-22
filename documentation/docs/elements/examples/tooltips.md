@@ -1,5 +1,3 @@
-<br>
-
 ## Tooltip Example
 
 [Hover me][example]

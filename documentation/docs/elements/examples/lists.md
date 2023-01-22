@@ -1,5 +1,3 @@
-<br>
-
 ## List Example
 
 * First item

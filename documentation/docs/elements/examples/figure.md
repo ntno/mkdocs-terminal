@@ -1,5 +1,3 @@
-<br>
-
 ## Figure Example
 
 <section markdown>
