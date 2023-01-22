@@ -1,4 +1,4 @@
-## Versioning
+# Versioning
 
 Terminal for MkDocs uses [semantic versioning]{target="_blank"}.  Each version number is in the format `MAJOR.MINOR.PATCH`.  Given a version number `MAJOR.MINOR.PATCH`:
 
@@ -9,7 +9,7 @@ Terminal for MkDocs uses [semantic versioning]{target="_blank"}.  Each version n
 [semantic versioning]: https://semver.org/#semantic-versioning-200
 
 
-## Releases
+# Releases
 
 We recommend that you pin your dependency on `mkdocs-terminal` to the latest supported major version.  This will prevent you from accidently installing a version of the Terminal for MkDocs theme which is incompatible with your site configuration.
 
@@ -20,7 +20,7 @@ See [Version Identification and Dependency Specification]{target="_blank"} for a
 [Version Identification and Dependency Specification]: https://peps.python.org/pep-0440/#examples
 
 
-## View Releases on GitHub
+# View Releases on GitHub
 
 |         Release          | Theme Status | Supported? |
 | :----------------------: | :----------: | :--------: |
