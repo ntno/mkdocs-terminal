@@ -1,4 +1,4 @@
-# Footnotes
+**Footnotes** 
 
 Footnotes are a great way to add supplemental or additional information to a
 specific word, phrase, or sentence without interrupting the flow of a document[^credit].
