@@ -35,7 +35,7 @@ class TileGridMacroEnvironment(object):
     def define_env(self, env):
         # store macro config and setup MkdocsMacroPlugin chatter
         self.setup(env)
-        
+
         # register tile_grid function with MkdocsMacroPlugin
         for fn in [tile_grid]:
             env.macro(fn)
