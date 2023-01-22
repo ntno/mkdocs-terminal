@@ -1,3 +1,5 @@
+# Section Indexes Theme Feature
+
 When section index pages are enabled, documents can be directly attached to sections.  This is particularly useful for providing overview pages. Add the `navigation.side.indexes` feature to the theme configuration in `mkdocs.yml`:
 
 ``` yaml

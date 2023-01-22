@@ -1,5 +1,3 @@
----
----
 # Table of Contents
 By default, only the top two sections by nesting level will display in the table of contents at the bottom left.  
 
