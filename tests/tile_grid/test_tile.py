@@ -3,11 +3,12 @@ from tests.utils.html import assert_valid_html, tile_has_anchor, tile_has_img
 from tests.utils.filters import mock_markup_filter
 from tests import defaults
 import pytest
+TILE_MACRO_PATH = "pluglets/tile_grid/templates/j2-macros/tile.j2"
 
 
 @pytest.fixture
 def tile_macro(env_with_terminal_loader):
-    return env_with_terminal_loader.get_template("macros/tile-grid/tile.j2")
+    return env_with_terminal_loader.get_template(TILE_MACRO_PATH)
 
 
 class TestTile():
@@ -67,11 +68,17 @@ class TestTile():
         except Exception as ex:
             pytest.fail(f"Got exception during render: {ex})")
 
-    @pytest.mark.skip(reason="add after refactor to tile-grid plugin and documentation updates (MAJOR)")
-    def test_caption_is_run_through_markup_filter(self, tile_macro, valid_linked_image_tile):
+    def test_caption_when_run_through_markup_filter(self, tile_macro, valid_linked_image_tile):
         valid_linked_image_tile.caption = "myCaption"
-        rendered_tile = tile_macro.module.make_tile(valid_linked_image_tile)
+        rendered_tile = tile_macro.module.make_tile(valid_linked_image_tile, True)
         expected_figcaption = mock_markup_filter(context={}, value="myCaption")
         expected_html = "<figcaption>" + expected_figcaption + "</figcaption>"
+        assert expected_html in rendered_tile
+        assert_valid_html(rendered_tile)
+
+    def test_caption_when_markup_filter_not_used(self, tile_macro, valid_linked_image_tile):
+        valid_linked_image_tile.caption = "myCaption"
+        rendered_tile = tile_macro.module.make_tile(valid_linked_image_tile, False)
+        expected_html = "<figcaption>myCaption</figcaption>"
         assert expected_html in rendered_tile
         assert_valid_html(rendered_tile)

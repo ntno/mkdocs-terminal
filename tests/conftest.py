@@ -5,6 +5,7 @@ from tests.interface.tile import Tile
 from tests import defaults
 from tests.utils.filters import mock_url_filter, mock_markup_filter
 from terminal.plugins.md_to_html.plugin import DEFAULT_MARKUP_FILTER_NAME
+from terminal.pluglets.tile_grid.macro import TileGridMacroEnvironment
 from unittest.mock import MagicMock, PropertyMock
 import pytest
 
@@ -32,6 +33,11 @@ def env_with_terminal_loader(env, filesystem_terminal_loader):
     """returns environment with loader set to terminal file system loader"""
     env.loader = filesystem_terminal_loader
     return env
+
+
+@pytest.fixture(autouse=True)
+def reset_singletons():
+    TileGridMacroEnvironment._instances = {}
 
 
 @pytest.fixture

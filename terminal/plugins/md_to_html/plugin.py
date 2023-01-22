@@ -18,10 +18,10 @@ class MarkdownToHtmlFilterPlugin(BasePlugin):
         )
 
     def on_pre_build(self, config, **kwargs):
-        logger.info("MarkdownToHtmlFilterPlugin::on_pre_build::markdown_extensions: %s", config.markdown_extensions)
-        logger.info("MarkdownToHtmlFilterPlugin::on_pre_build::mdx_configs': %s", config.mdx_configs)
+        logger.debug("MarkdownToHtmlFilterPlugin::on_pre_build::markdown_extensions: %s", config.markdown_extensions)
+        logger.debug("MarkdownToHtmlFilterPlugin::on_pre_build::mdx_configs': %s", config.mdx_configs)
         self.setup_markdown(config)
-        logger.info("MarkdownToHtmlFilterPlugin::on_pre_build::md: %s", self.md)
+        logger.debug("MarkdownToHtmlFilterPlugin::on_pre_build::md: %s", self.md)
         return
 
     def markupsafe_jinja2_filter(self, text, **kwargs):
@@ -29,11 +29,11 @@ class MarkdownToHtmlFilterPlugin(BasePlugin):
 
     def on_env(self, env, config, files, **kwargs):
         env.filters[DEFAULT_MARKUP_FILTER_NAME] = self.markupsafe_jinja2_filter
-        logger.info("MarkdownToHtmlFilterPlugin::on_env::%s: %s", DEFAULT_MARKUP_FILTER_NAME, self.markupsafe_jinja2_filter)
+        logger.debug("MarkdownToHtmlFilterPlugin::on_env::%s: %s", DEFAULT_MARKUP_FILTER_NAME, self.markupsafe_jinja2_filter)
         self.env = env
         return env
 
 
 # Set up logging
-logger = logging.getLogger("mkdocs")
+logger = logging.getLogger("mkdocs.terminal.md_to_html")
 logger.addFilter(DuplicateFilter())

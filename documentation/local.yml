@@ -18,14 +18,14 @@ theme:
 
 plugins:
   - terminal/md-to-html
-  - git-revision-date
-  - search
   - macros:
       verbose: true
-      modules: [mkdocs-terminal:terminal.pluglets.tile_grid]
+      modules: 
+        - mkdocs-terminal:terminal.pluglets.tile_grid.main
 
 watch:
+  - '../terminal/css'
   - '../terminal/partials'
   - '../terminal/macros'
-  - '../terminal/pluglets'
+  - '../terminal/pluglets/tile_grid/templates'
   - './mkdocs.yml'

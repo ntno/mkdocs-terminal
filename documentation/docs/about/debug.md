@@ -1,4 +1,5 @@
 ---
+show_tiles_first: true
 tiles:
   - caption: '*@petradr*'
     img_src: ../../img/picsum/167_200x200.jpeg
@@ -14,12 +15,14 @@ tiles:
     img_src: ../../img/picsum/143_200x200.jpeg
     img_title: 'to Picsum homepage'
     img_alt: 'overhead image of fallen leaves'
-    link_href: https://picsum.photos/ 
+    link_href: https://picsum.photos/
+# {{ macros_info() }}    
 ---
 
 # Debug Markdown Experiments
 
-{{grid(page.meta.tiles)}}
+## incorrect usage
+{{ tile_grid("sdf") }}
 
----
-{{ macros_info() }}
+## correct usage
+{{ tile_grid(page.meta) }}
