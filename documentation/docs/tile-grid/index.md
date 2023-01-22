@@ -1,4 +1,4 @@
-**Terminal for MkDocs Tile Grid**  
+# Terminal for MkDocs Tile Grid
 
 Terminal for MkDocs enables you to quickly create a grid of linked tiles.  Each tile can contain an image, link, and caption.
 
