@@ -5,8 +5,6 @@
 ```markdown
 > Measuring programming progress by lines of code is like measuring aircraft building progress by weight.
 ```
-<br>
-
 
 ## Blockquote with Citation
 <section>
