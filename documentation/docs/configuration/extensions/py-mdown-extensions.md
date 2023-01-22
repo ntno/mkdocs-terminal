@@ -9,9 +9,9 @@ installed with a supported version.
 
   [PyMdown Extensions]: https://facelessuser.github.io/pymdown-extensions/
 
-## Suggested PyMdown Extensions
+# Suggested PyMdown Extensions
 
-### Caret, Mark & Tilde
+## Caret, Mark & Tilde
 
 The [Caret]{target="_blank"}, [Mark]{target="_blank"} and [Tilde]{target="_blank"} extensions add the ability to highlight text
 and define subscript and superscript using a simple syntax. Enable them together
@@ -43,7 +43,7 @@ See reference for usage:
   [Tilde]: https://facelessuser.github.io/pymdown-extensions/extensions/tilde/
 
 
-### Snippets
+## Snippets
 
 The [Snippets]{target="_blank"} extension adds the ability to embed content from arbitrary files into a document, including other documents or source files, by using a simple syntax. Enable it via `mkdocs.yml`:
 
