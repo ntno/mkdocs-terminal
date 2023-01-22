@@ -9,7 +9,7 @@ Terminal for MkDocs is a third party theme that brings the [Terminal.css](https:
 
 - a built-in Search modal
 - color palette options
-- documentation revision date display
+- revision date display
 - per-page or site-wide navigation hiding
 - a flexible tile grid for displaying images inline
 - and more
