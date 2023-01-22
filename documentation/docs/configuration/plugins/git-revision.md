@@ -3,7 +3,7 @@ The third-party [git-revision-date]{target="_blank"} plugin automatically adds t
 
 [git-revision-date]: https://github.com/zhaoterryy/mkdocs-git-revision-date-plugin
 [MkDocs Page Metadata]: https://www.mkdocs.org/user-guide/writing-your-docs/#meta-data
-[^mkdocs-page-meta]: see [MkDocs Page Metadata]{target="_blank"} for more information
+[^mkdocs-page-meta]: see [MkDocs Page Metadata]{target="_blank"} for more info
 
 # Built-in Support
 When the `git-revision-date` plugin is installed and enabled and the `revision.date` theme feature is enabled, Terminal for MkDocs will display the date of the most recent change to a page's source file on the rendered site page.  This component is added at the bottom of each page unless [page-specific hiding] is enabled.
