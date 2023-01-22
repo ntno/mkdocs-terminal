@@ -18,7 +18,6 @@ markdown_extensions:
 </figure>
 </section>
 
-<br>
 
 ## Markdown
 

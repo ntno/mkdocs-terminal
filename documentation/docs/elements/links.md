@@ -1,11 +1,10 @@
 # Links
-
 ## Simple Example
 
-[Documentation Home Page](https://ntno.github.io/mkdocs-terminal/)
+[Home Page](https://ntno.github.io/mkdocs-terminal/)
 
 ```markdown
-[Documentation Home Page](https://ntno.github.io/mkdocs-terminal/)
+[Home Page](https://ntno.github.io/mkdocs-terminal/)
 ```
 
 # Enhanced Links
@@ -18,12 +17,12 @@ markdown_extensions:
   - attr_list
 ```
 
-## Enhanced Example
-Note that adding the `target="_blank"` attribute causes the link to open in a new tab.
+## Example
+Note that adding the `target="_blank"` attribute causes the link to open in a new tab.  The `title="go to source code"` adds a on hover title to the link.
 
 
-[GitHub Repository](https://github.com/ntno/mkdocs-terminal){target="_blank"}
+[GitHub Repository](https://github.com/ntno/mkdocs-terminal){target="_blank", title="go to source code"}
 
 ```markdown
-[GitHub Repository](https://github.com/ntno/mkdocs-terminal){target="_blank"}
+[GitHub Repository](https://github.com/ntno/mkdocs-terminal){target="_blank", title="go to source code"}
 ```
