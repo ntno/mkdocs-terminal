@@ -1,0 +1,39 @@
+
+{% import 'pluglets/tile_grid/templates/j2-macros/tile-image.j2' as image_helper %}
+{% import 'pluglets/tile_grid/templates/j2-macros/tile-link.j2' as link_helper %}
+{% macro make_tile( tile, use_markup ) %}
+{%- set ns = namespace(is_valid=false, has_link=false, has_image=false, has_caption=false) -%}
+{%- if tile.img_src is defined and tile.img_src|string|length -%}
+    {%- set ns.has_image = true -%}
+{%- endif -%}
+{%- if tile.link_href is defined and tile.link_href|string|length -%}
+    {%- set ns.has_link = true -%}
+{%- endif -%}
+{%- if tile.caption is defined and tile.caption|string|length -%}
+    {%- set ns.has_caption = true -%}
+{%- endif -%}
+{%- if ns.has_link or ns.has_image -%}
+    {%- set ns.is_valid = true -%}
+{%- endif -%}
+{%- if ns.is_valid -%}
+        <div {% if tile.tile_id is defined and tile.tile_id|string|length %} id="{{ tile.tile_id }}" {% endif %}class="terminal-mkdocs-tile {{ tile.tile_css }}">
+            <figure>
+                {% if ns.has_link -%}{{ link_helper.make_link_start(tile) }}{% endif %}
+                {%- if ns.has_image %} 
+                        {{ image_helper.make_image(tile) }}
+                {%- endif -%}
+                {%- if ns.has_link -%}
+                    {% if ns.has_image %} 
+                </a>{% else %}{{ tile.link_text|default(tile.link_href, true) }}</a>{%- endif -%}
+                {%- endif -%}
+                {%- if ns.has_caption %}
+                    {%- if use_markup %}
+                <figcaption>{{ tile.caption|string|trim|markup }}</figcaption>
+                    {% else %}
+                <figcaption>{{ tile.caption|string|trim }}</figcaption>
+                    {%- endif %}
+                {%- endif %}
+            </figure>
+        </div>
+{%- endif -%}
+{%- endmacro -%}
