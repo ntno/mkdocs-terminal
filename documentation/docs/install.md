@@ -1,3 +1,4 @@
+# Installation
 
 ## 1. Setup MkDocs project
 See [Getting Started](https://www.mkdocs.org/getting-started/){target="_blank"} for details.
