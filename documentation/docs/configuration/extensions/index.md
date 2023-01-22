@@ -53,7 +53,7 @@ configuration:
   [Tables]: python-markdown.md#tables
 
 
-## Configuration
+**Configuration**
 
 Extensions are configured as part of `mkdocs.yml` – the MkDocs configuration
 file. The following sections contain two example configurations to bootstrap
