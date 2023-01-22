@@ -24,3 +24,14 @@ theme:
   features:
     - navigation.top.search_button.hide
 ```
+
+<br>
+
+## Note
+If you wish to use additional plugins besides the default search plugin you will need to re-add `search` to your plugins list in `mkdocs.yml`:
+
+```yaml
+plugins:
+  - search
+  - some_other_plugin
+```
