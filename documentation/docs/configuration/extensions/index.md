@@ -1,6 +1,6 @@
 [to Python Markdown](python-markdown.md){class='btn btn-primary'}  [to PyMdown Extensions](py-mdown-extensions.md){class='btn btn-primary'}
 
-**Extensions**
+# Extensions
 
 Markdown is a very small language with a kind-of reference implementation called
 [John Gruber's Markdown]{target="_blank"}. [Python Markdown]{target="_blank"} and [PyMdown Extensions]{target="_blank"} are two packages that enhance the Markdown writing experience, adding useful syntax extensions for technical writing.
@@ -9,10 +9,9 @@ Markdown is a very small language with a kind-of reference implementation called
   [Python Markdown]: https://python-markdown.github.io/extensions/
   [PyMdown Extensions]: https://facelessuser.github.io/pymdown-extensions/
 
-## Supported Extensions
+## Suggested Extensions
 
-The following extensions are all supported by Terminal for MkDocs and therefore 
-strongly recommended. Click on each extension to learn about its purpose and
+The following extensions have been confirmed to work with Terminal for MkDocs and are strongly recommended. Click on each extension to learn about its purpose and
 configuration:
 
 <!-- - [Abbreviations]
@@ -54,7 +53,7 @@ configuration:
   [Tables]: python-markdown.md#tables
 
 
-**Configuration**
+## Configuration
 
 Extensions are configured as part of `mkdocs.yml` – the MkDocs configuration
 file. The following sections contain two example configurations to bootstrap
