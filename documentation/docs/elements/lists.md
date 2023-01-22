@@ -25,21 +25,21 @@ To create an ordered list, add line items with numbers followed by periods. The 
 ## Unordered List
 To create an unordered list, add dashes (-), asterisks (*), or plus signs (+) in front of line items.
 
-- First item
-- Second item
-- Third item
-    - Indented item
-    - Indented item
-- Fourth item 
+* First item
+* Second item
+* Third item
+    * Indented item
+    * Indented item
+* Fourth item 
 
 ### Markdown
 ```markdown
-- First item
-- Second item
-- Third item
-    - Indented item
-    - Indented item
-- Fourth item 
+* First item
+* Second item
+* Third item
+    * Indented item
+    * Indented item
+* Fourth item 
 ```
 <br>
 
