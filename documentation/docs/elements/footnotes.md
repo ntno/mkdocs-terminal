@@ -37,7 +37,7 @@ It can be inserted at an arbitrary position in the document and is always
 rendered at the bottom of the page. Furthermore, a backlink to the footnote
 reference is automatically added.
 
-#### single line footnote
+#### Single Line footnote
 
 Short footnotes can be defined on a single line:
 
@@ -48,7 +48,7 @@ Short footnotes can be defined on a single line:
 ```
 
 
-#### multiple lined footnote
+#### Multi-line footnote
 
 To define a multi-line footnote, create a paragraph on the next line after the marker identifier.  The multi-line definition must be indented by four spaces:
 

@@ -1,6 +1,6 @@
 # Definition Lists  
 
- 
+
 ## Setup
 
 Enabling definition list styling requires the `def_list` markdown extension.  Add it to the `markdown_extensions` configuration in `mkdocs.yml`:
@@ -10,7 +10,7 @@ markdown_extensions:
   - def_list
 ```
 
-# Example
+## Example
 
 `Lorem ipsum dolor sit amet`
 
