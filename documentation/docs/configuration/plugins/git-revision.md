@@ -19,7 +19,7 @@ When the `git-revision-date` plugin is installed and enabled and the `revision.d
 [page-specific hiding]: git-revision.md#advanced-configuration
 
 
-## Quick Setup
+# Quick Setup
 
 ## 1. Install Plugin
 Add the package to your `requirements.txt` file:
@@ -50,7 +50,7 @@ theme:
 ```
 <br>
 
-## Advanced Configuration
+# Advanced Configuration
 There are two revision-related theme features that can be individually enabled.  The example above only discusses `revision.date` as it is easier to configure without error.  
 
 The second revision-related theme feature is `revision.history`.  Enabling this theme feature will add a "See revision history..." note to the bottom of the page.  The link included in this note relies on MkDocs' [repo_url]{target="_blank"}, [repo_name]{target="_blank"}, and [edit_uri]{target="_blank"}/[edit_uri_template]{target="_blank"} settings.  
@@ -123,7 +123,7 @@ theme:
 
 
 
-### Adding Repository Hosts
+#### Adding Repository Hosts
 If your repository is not stored on GitHub or Bitbucket and you would like to use this feature please [submit a feature request]{target="_blank"} on GitHub.  
 
 You can further customize what revision information is included on the page by implementing your own `revision` template block.  See [Blocks] for more information.
