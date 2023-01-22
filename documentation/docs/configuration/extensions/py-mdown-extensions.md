@@ -1,6 +1,6 @@
 [Back to Overview](index.md){class='btn btn-default'}  [to Python Markdown](python-markdown.md){class='btn btn-primary'}
 
-**PyMdown Extensions**
+# PyMdown Extensions
 
 The [PyMdown Extensions]{target="_blank"} package is an excellent collection of
 additional extensions perfectly suited for advanced technical writing. Terminal
@@ -9,7 +9,7 @@ installed with a supported version.
 
   [PyMdown Extensions]: https://facelessuser.github.io/pymdown-extensions/
 
-## Supported extensions
+## Suggested PyMdown Extensions
 
 ### Caret, Mark & Tilde
 
