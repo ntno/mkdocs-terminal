@@ -73,9 +73,9 @@ Currently the `revision.history` theme feature supports two repository hosts, [G
 [GitHub]: git-revision.md#github
 [Bitbucket]: git-revision.md#bitbucket
 
-#### GitHub
+## GitHub
 
-##### MkDocs project in root directory
+### MkDocs project in root directory
 ```yaml
 repo_url: https://github.com/ntno/ntno.net  
 edit_uri: edit/main/docs/
@@ -90,7 +90,7 @@ theme:
     - revision.history  
 ```
 
-##### MkDocs project in child 'documentation' directory
+### MkDocs project in child 'documentation' directory
 ```yaml
 repo_url: https://github.com/ntno/mkdocs-terminal
 edit_uri_template: https://github.com/ntno/mkdocs-terminal/edit/main/documentation/docs/{path}
@@ -105,8 +105,8 @@ theme:
     - revision.history  
 ```
 
-#### Bitbucket
-##### MkDocs project in root directory
+## Bitbucket
+### MkDocs project in root directory
 ```yaml
 repo_url: https://bitbucket.org/norganick/demo
 edit_uri_template: src/main/docs/{path}?mode=edit
@@ -123,7 +123,7 @@ theme:
 
 
 
-#### Adding Repository Hosts
+## Adding Repository Hosts
 If your repository is not stored on GitHub or Bitbucket and you would like to use this feature please [submit a feature request]{target="_blank"} on GitHub.  
 
 You can further customize what revision information is included on the page by implementing your own `revision` template block.  See [Blocks] for more information.
