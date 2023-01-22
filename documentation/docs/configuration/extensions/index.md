@@ -62,7 +62,7 @@ your documentation project.
 ### Minimal Config
 
 This configuration is a good starting point for when you're using Terminal for 
-MkDocs for the first time. The best idea is to explore the [supported extensions](#supported-extensions) and gradually add what you want to use:
+MkDocs for the first time. The best idea is to explore the [suggested extensions](#suggested-extensions) and gradually add what you want to use:
 
 ``` yaml
 markdown_extensions:
@@ -101,4 +101,4 @@ markdown_extensions:
 ```
 
 # Credit
-This documentation is based on squidfunk's Material for MkDocs [Extensions](https://squidfunk.github.io/mkdocs-material/setup/extensions/){target="_blank"} documentation.
+This documentation page is based on squidfunk's Material for MkDocs [Extensions](https://squidfunk.github.io/mkdocs-material/setup/extensions/){target="_blank"} documentation.
