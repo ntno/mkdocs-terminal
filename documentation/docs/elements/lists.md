@@ -43,7 +43,7 @@ To create an unordered list, add dashes (-), asterisks (*), or plus signs (+) in
 ```
 <br>
 
-## Credit
+# Credit
 Examples and instructional text in this document were adapted from the [basic syntax markdown guide]{target="_blank"} on [markdownguide.org]{target="_blank"}.
 
 [basic syntax markdown guide]: https://www.markdownguide.org/basic-syntax/#lists-1

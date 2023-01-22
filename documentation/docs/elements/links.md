@@ -1,9 +1,10 @@
 # Links
 
-## Simple Example
+# Simple Example
 
 [Documentation Home Page](https://ntno.github.io/mkdocs-terminal/)
 
+## Markdown
 ```markdown
 [Documentation Home Page](https://ntno.github.io/mkdocs-terminal/)
 ```
@@ -24,6 +25,8 @@ Note that adding the `target="_blank"` attribute causes the link to open in a ne
 
 [GitHub Repository](https://github.com/ntno/mkdocs-terminal){target="_blank"}
 
+
+### Markdown
 ```markdown
 [GitHub Repository](https://github.com/ntno/mkdocs-terminal){target="_blank"}
 ```
