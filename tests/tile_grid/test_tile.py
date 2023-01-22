@@ -68,10 +68,17 @@ class TestTile():
         except Exception as ex:
             pytest.fail(f"Got exception during render: {ex})")
 
-    def test_caption_is_run_through_markup_filter(self, tile_macro, valid_linked_image_tile):
+    def test_caption_when_run_through_markup_filter(self, tile_macro, valid_linked_image_tile):
         valid_linked_image_tile.caption = "myCaption"
-        rendered_tile = tile_macro.module.make_tile(valid_linked_image_tile, "true")
+        rendered_tile = tile_macro.module.make_tile(valid_linked_image_tile, True)
         expected_figcaption = mock_markup_filter(context={}, value="myCaption")
         expected_html = "<figcaption>" + expected_figcaption + "</figcaption>"
+        assert expected_html in rendered_tile
+        assert_valid_html(rendered_tile)
+
+    def test_caption_when_markup_filter_not_used(self, tile_macro, valid_linked_image_tile):
+        valid_linked_image_tile.caption = "myCaption"
+        rendered_tile = tile_macro.module.make_tile(valid_linked_image_tile, False)
+        expected_html = "<figcaption>myCaption</figcaption>"
         assert expected_html in rendered_tile
         assert_valid_html(rendered_tile)
