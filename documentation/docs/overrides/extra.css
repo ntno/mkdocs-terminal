@@ -5,9 +5,3 @@ h4::before {
     content: "\A";
     white-space: pre;
   }
-
-/* add extra space before h1 only if it is not the first of its type */
-h1 ::not(:first-of-type)::before {
-  content: "\A";
-  white-space: pre;
-}
