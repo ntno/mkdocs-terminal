@@ -5,12 +5,13 @@ USAGE_MESSAGE = "<p class=\"terminal-mkdocs-macro-error-banner\"><strong>USAGE:<
 
 def tile_grid(page_meta):
     if page_meta is not None and isinstance(page_meta, dict) and len(page_meta.keys()) > 0:
+        from terminal.pluglets.tile_grid.main import MACRO
         context_data = {
+            "config": MACRO.get_mkdocs_config(),
             "page": {
                 "meta": copy(page_meta)
             }
         }
-        from terminal.pluglets.tile_grid.main import MACRO
         tiles_partial = MACRO.jinja2_env.get_template(DEFAULT_GRID_PARTIAL_PATH)
         rendered_grid = tiles_partial.render(context_data)
         return rendered_grid
