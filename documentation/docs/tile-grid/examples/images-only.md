@@ -19,7 +19,6 @@ The tiles on this page are placed before the main page content.  This is because
 
 [^tile-reference]: see [Tile Reference](../tile.md)  
 
-<br>
 
 ## Markdown
 
