@@ -5,8 +5,15 @@ hide:
 ---
 
 # mkdocs-terminal
-mkdocs-terminal is a port of the [Terminal.css](https://github.com/Gioni06/terminal.css){target="_blank"} stylesheet.  
-This MkDocs theme is currently under development.
+Terminal for MkDocs is a third party theme that brings the [Terminal.css](https://github.com/Gioni06/terminal.css){target="_blank"} stylesheet to MkDocs documentation sites.  Terminal for MkDocs also provides additional features, including: 
+
+- a built-in Search modal
+- color palette options
+- documentation revision date display
+- per-page or site-wide navigation hiding
+- a flexible tile grid for displaying images inline
+- and more
+
 
 ## Developer Info
 [Terminal for MkDocs on GitHub](https://github.com/ntno/mkdocs-terminal){target="_blank"}  
