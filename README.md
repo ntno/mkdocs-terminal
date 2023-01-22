@@ -8,6 +8,7 @@ Terminal for MkDocs also provides additional features, including:
 - revision date display
 - per-page or site-wide component hiding
 - a flexible grid for displaying inline images
+- section index pages
 - and more
 
 ## Quick start
