@@ -1,4 +1,6 @@
 # Links
+A link can be specified with markdown by putting the link's **display text** in square brackets followed by the link's **address** in parentheses.  There is no space in between the square brackets and the open parenthesis.
+
 ## Simple Example
 
 [Home Page](https://ntno.github.io/mkdocs-terminal/)
@@ -7,8 +9,7 @@
 [Home Page](https://ntno.github.io/mkdocs-terminal/)
 ```
 
-# Enhanced Links
-## Setup
+## Enhanced Links Setup
 
 Adding attributes to links requires the `attr_list` markdown extension.  Add it to the `markdown_extensions` configuration in `mkdocs.yml`:
 
