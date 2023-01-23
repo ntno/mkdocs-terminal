@@ -5,7 +5,7 @@
 | 1.0.0   | yes        |
 | 0.0.0   | no         |
 
-**Markdown**
+## Markdown
 ```markdown
 | Release | Supported? |
 | ------- | ---------- |
@@ -22,7 +22,7 @@ Colons can be used to align columns.  Note that the "Release" column is centered
 |  1.0.0  | yes        |
 |  0.0.0  | no         |
 
-**Markdown**
+## Markdown
 ```
 | Release | Supported? |
 | :-----: | ---------: |
@@ -41,7 +41,7 @@ Note: this example requires the [attr_list extension] be enabled.
   [1.0.0]: https://github.com/ntno/mkdocs-terminal/releases/tag/1.0.0
   [0.0.0]: https://github.com/ntno/mkdocs-terminal/releases/tag/0.0.0
 
-**Markdown**
+## Markdown
 ```markdown
 | Release | Supported? |
 | :-----: | :---------: |
