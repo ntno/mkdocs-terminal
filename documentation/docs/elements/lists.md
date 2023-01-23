@@ -40,7 +40,6 @@ To create an unordered list, add dashes (-), asterisks (*), or plus signs (+) in
     * Indented item
 * Fourth item 
 ```
-<br>
 
 ## Credit
 Examples and instructional text in this document were adapted from the [basic syntax markdown guide]{target="_blank"} on [markdownguide.org]{target="_blank"}.
