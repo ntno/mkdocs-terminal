@@ -36,7 +36,7 @@ tiles:
 
 See [Example Page]{target="_blank", title="open default grid example in new tab"}
 
-**Markdown**:
+### Markdown
 ```markdown
 --8<--
 tile-grid/examples/example-page.md
@@ -48,7 +48,7 @@ tile-grid/examples/example-page.md
 
 See [Tiles First example]{target="_blank", title="open tiles first example in new tab"}
 
-**Markdown**:
+### Markdown
 ```markdown
 --8<--
 tile-grid/examples/images-only.md

@@ -9,8 +9,6 @@ tiles:
     img_src: ../../../img/picsum/143_200x200.jpeg
 ---
 
-<br>
-
 # Image Only Tiles 
 The tiles on this page do not have `link_*` attributes[^tile-reference].  They are rendered as a captioned images instead of linked images.
 

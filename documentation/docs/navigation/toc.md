@@ -27,7 +27,7 @@ For example, on this page **h1-Felidae** shows up in the table of contents becau
 **h3-Felis-catus**, **h3-Panthera-leo**, and **h3-Panthera tigris** do *NOT* display in the table of contents because they are nested at a third level (not because they use the `<h3>` header).  Note that **h5-Canis-familiaris** displays in the table of contents even though it uses a `<h5>` header.  This is because it is in a subsection directly underneath the top level **h1-Canidae** section.
 
 <hr>
-Detailed TOC Example Below <span>&#11015;</span>
+<strong>Detailed TOC Example Below</strong> <span>&#11015;</span>
 <hr>
 
 # (h1) Felidae 
