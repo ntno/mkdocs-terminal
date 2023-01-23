@@ -38,7 +38,7 @@ nav:
 
 ## Page Table of Contents
 
-The table of contents component is located directly underneath the side-nav component.  It includes links to the the top two sections in the current page's markdown.  See [TOC Example](../navigation/toc.md) for details.
+The table of contents (TOC) component is located directly underneath the side-nav component.  It includes links to the the top two sections in the current page's markdown.  See [TOC Example](../navigation/toc.md) for details.
 
 
 
