@@ -1,7 +1,7 @@
 # mkdocs-terminal
 Terminal for MkDocs is a third party theme that brings the [Terminal.css](https://github.com/Gioni06/terminal.css) stylesheet to MkDocs documentation sites.  
 
-Terminal for MkDocs also provides additional features, including: 
+In addition to simple, monospace styling, Terminal for MkDocs also provides:
 
 - a built-in Search modal
 - color palette options
