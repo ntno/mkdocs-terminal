@@ -19,3 +19,12 @@ markdown_extensions:
 
   [example]: https://example.com "I'm a tooltip!"
 ```
+
+
+## Inline Example
+
+Here is another [Hover me](https://example.com){title="I'm a tooltip!"} example.  
+
+```markdown
+Here is another [Hover me](https://example.com){title="I'm a tooltip!"} example.
+```

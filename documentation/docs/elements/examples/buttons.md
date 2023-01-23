@@ -1,5 +1,3 @@
-<br>
-
 ## Button Examples
 
 [Default](#button-examples){ .btn .btn-default }  

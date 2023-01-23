@@ -1,5 +1,3 @@
-<br>
-
 ## Footnote Example
 
 Aliquam sit amet[^1] mauris ut mi ullamcorper efficitur.[^2]

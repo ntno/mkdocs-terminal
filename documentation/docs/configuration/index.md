@@ -8,7 +8,6 @@ The MkDocs Terminal theme layout consists of three major components.  The top na
 <figcaption>Hideable UI Components</figcaption>
 </figure>
 </section>
-<br>
 
 ## Top Navigation Menu
 

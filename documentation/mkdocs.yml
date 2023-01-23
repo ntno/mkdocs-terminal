@@ -78,10 +78,10 @@ plugins:
   - search
   - exclude-search:      
       exclude:
+        - overrides
         - about/coverage-report/*
         - configuration/palettes/*
         - elements/examples/*
-        - configuration/extensions/untested-py-mdown
       ignore:
         - configuration/palettes/index.md#theme-color-palettes
         - configuration/palettes/dark.md#dark-palette
@@ -101,3 +101,6 @@ theme:
   static_templates:
     - 404.html
     - about/coverage-report/index.html
+
+extra_css:
+  - overrides/extra.css

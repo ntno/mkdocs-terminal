@@ -1,5 +1,3 @@
-<br>
-
 ## Definition List Example  
 
 `Lorem ipsum dolor sit amet`

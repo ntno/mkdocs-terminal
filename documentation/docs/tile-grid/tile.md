@@ -1,8 +1,6 @@
 # Tile Reference
 A tile can represent an image, a link, or a linked image.  
 
-<br>
-
 ## Required Attributes
 
 - `img_src` is required for a [image only] tile.  
@@ -13,7 +11,6 @@ A tile can represent an image, a link, or a linked image.
 [link only]: examples/links-only.md
 [linked image]: examples/example-page.md
 
-<br>
 
 ## Optional Attributes
 
