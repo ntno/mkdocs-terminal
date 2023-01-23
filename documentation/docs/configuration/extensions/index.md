@@ -54,13 +54,13 @@ configuration:
   [Tables]: python-markdown.md#tables
 
 
-## Configuration
+# Configuration
 
 Extensions are configured as part of `mkdocs.yml` – the MkDocs configuration
 file. The following sections contain two example configurations to bootstrap
 your documentation project.
 
-### Minimal Config
+## Minimal Config
 
 This configuration is a good starting point for when you're using Terminal for 
 MkDocs for the first time. The best idea is to explore the [supported extensions](#supported-extensions) and gradually add what you want to use:
@@ -75,7 +75,7 @@ markdown_extensions:
       permalink: "#"
 ```
 
-### Recommended Config
+## Recommended Config
 
 This configuration enables all Markdown-related features of Terminal for MkDocs
 and is great for experienced users bootstrapping a new documentation project:
