@@ -12,7 +12,6 @@ tiles:
 # Page Content as usual
 ```
 
-<br>
 
 ## Configuration Options
 
@@ -32,7 +31,6 @@ tiles:
 
 [Override Styling]: examples/override-styling.md
 
-<br>
 
 ## Default Tile Placement
 
@@ -45,7 +43,6 @@ tile-grid/examples/example-page.md
 --8<--
 ```
 
-<br>
 
 ## Tiles First
 
