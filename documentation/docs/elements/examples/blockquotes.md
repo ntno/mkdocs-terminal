@@ -1,5 +1,3 @@
-<br>
-
 ## Blockquote Example
 
 <section>

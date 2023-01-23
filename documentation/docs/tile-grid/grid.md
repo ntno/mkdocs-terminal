@@ -12,7 +12,6 @@ tiles:
 # Page Content as usual
 ```
 
-<br>
 
 ## Configuration Options
 
@@ -32,26 +31,24 @@ tiles:
 
 [Override Styling]: examples/override-styling.md
 
-<br>
 
 ## Default Tile Placement
 
 See [Example Page]{target="_blank", title="open default grid example in new tab"}
 
-**Markdown**:
+### Markdown
 ```markdown
 --8<--
 tile-grid/examples/example-page.md
 --8<--
 ```
 
-<br>
 
 ## Tiles First
 
 See [Tiles First example]{target="_blank", title="open tiles first example in new tab"}
 
-**Markdown**:
+### Markdown
 ```markdown
 --8<--
 tile-grid/examples/images-only.md

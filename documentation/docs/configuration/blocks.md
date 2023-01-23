@@ -1,3 +1,6 @@
+---
+ignore_macros: true
+---
 # Template Blocks
 
 In some situations you may want to include your own Jinja2 page templates.  Terminal for MkDocs supports overriding or extending the blocks listed in [Reference](blocks.md#overridable-blocks).  
@@ -118,7 +121,7 @@ Calling `super()` will include any Terminal for MkDocs features which are insert
 :   Section after the `after_markdown_content` block containing information about when the markdown page was last updated.  See the [Git Revision Plugin] for details.
 
 [Git Revision Plugin]: ../plugins/git-revision
-<br>
+
 
 # Override Locations
 

@@ -5,7 +5,7 @@ specific word, phrase, or sentence without interrupting the flow of a document[^
 Terminal for MkDocs provides the ability to define, reference and render
 footnotes.
 
-## Setup
+# Setup
 
 This configuration adds the ability to define inline footnotes, which are then
 rendered below all Markdown content of a document. Add the following lines to
@@ -16,9 +16,9 @@ markdown_extensions:
   - footnotes
 ```
 
-## Usage
+# Usage
 
-### Example Footnote Marker
+## Example Footnote Marker
 
 A footnote marker must be enclosed in square brackets and must start with a
 caret `^`, directly followed by an arbitrary identifier, which is similar to
@@ -30,14 +30,14 @@ Aliquam sit amet[^1] mauris ut mi ullamcorper efficitur.[^2]
 Aliquam sit amet[^1] mauris ut mi ullamcorper efficitur.[^2]
 ```
 
-### Example Footnote Content
+## Example Footnote Content
 
 The footnote content must be declared with the same identifier as the marker.
 It can be inserted at an arbitrary position in the document and is always
 rendered at the bottom of the page. Furthermore, a backlink to the footnote
 reference is automatically added.
 
-#### single line footnote
+## Single Line Footnote
 
 Short footnotes can be defined on a single line:
 
@@ -48,7 +48,7 @@ Short footnotes can be defined on a single line:
 ```
 
 
-#### multiple lined footnote
+## Multi-Line Footnote
 
 To define a multi-line footnote, create a paragraph on the next line after the marker identifier.  The multi-line definition must be indented by four spaces:
 

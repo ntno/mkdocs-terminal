@@ -1,5 +1,3 @@
-<br>
-
 ## Link Examples
 
 [Documentation Home Page](/)

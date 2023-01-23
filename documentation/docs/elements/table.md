@@ -13,7 +13,7 @@
 | 0.0.0   | no         |
 ```
 
-# Table with Alignment
+## Table with Alignment
 
 Colons can be used to align columns.  Note that the "Release" column is centered and the "Supported?" column is right aligned:
 
@@ -30,7 +30,7 @@ Colons can be used to align columns.  Note that the "Release" column is centered
 |  0.0.0  | no         |
 ```
 
-# Table with Markdown Values
+## Table with Markdown Values
 Note: this example requires the [attr_list extension] be enabled.
 
 | Release | Supported? |

@@ -1,4 +1,4 @@
-**Terminal for MkDocs Tile Grid**  
+# Terminal for MkDocs Tile Grid
 
 Terminal for MkDocs enables you to quickly create a grid of linked tiles.  Each tile can contain an image, link, and caption.
 
@@ -35,7 +35,6 @@ tiles:
 
 Each tile object may have any of the attributes described in the [Tile Reference](tile.md).
 
-<br>
 
 ## 2. Add Page to Nav
 Add the markdown file which includes the `tiles` metadata to the site's navigation in `mkdocs.yml`.  If the page is not included in the `mkdocs.yml` *nav*, the markdown will not be loaded as a MkDocs Page Object[^mkdocs-page-object] and will not include your metadata.
@@ -58,7 +57,6 @@ nav:
 [MkDocs Page Object]: https://www.mkdocs.org/dev-guide/themes/#navigation-objects
 [MkDocs Page Metadata]: https://www.mkdocs.org/dev-guide/themes/#mkdocs.structure.pages.Page.meta
 [Markdown Metadata]: https://www.mkdocs.org/user-guide/writing-your-docs/#meta-data
-<br>
 
 ## 3. Configure Tile Grid
 The Tile Grid can be further configured using the attributes described in the [Grid Reference](grid.md).  For example, the grid can be configured to display before the main page content:
@@ -70,7 +68,7 @@ tiles:
   - caption: '@petradr'
     ...
 ```
-<br>
+
 
 # Complete Example
 

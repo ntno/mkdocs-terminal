@@ -32,8 +32,6 @@ tiles:
     img_alt: 'screenshot of demo site with the sans_dark color palette.  the site uses a black background with light blue hyperlinks and white text in sans font.'
     link_href: ./sans-dark/            
 ---
-
-
 # Theme Color Palettes
 Terminal for MkDocs supports the following color palettes by default:
 

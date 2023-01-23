@@ -1,0 +1,7 @@
+/* add extra space before h2/h3/h4 */
+h2::before,
+h3::before,
+h4::before {
+    content: "\A";
+    white-space: pre;
+  }
