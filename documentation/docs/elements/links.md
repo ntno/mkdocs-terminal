@@ -18,7 +18,8 @@ markdown_extensions:
 ```
 
 ## Example
-Note that adding the `target="_blank"` attribute causes the link to open in a new tab.  The `title="go to source code"` adds a on hover title to the link.
+Note that adding the `target="_blank"` attribute causes the link to open in a new tab.  
+The `title="go to source code"` adds a on hover title to the link.
 
 
 [GitHub Repository](https://github.com/ntno/mkdocs-terminal){target="_blank", title="go to source code"}
