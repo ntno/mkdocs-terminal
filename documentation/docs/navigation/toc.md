@@ -1,10 +1,9 @@
----
----
 # Table of Contents
 By default, only the top two sections by nesting level will display in the table of contents at the bottom left.  
 
-For fine-grained control of which items display in the table of contents, add `toc` to the `markdown_extensions` list in `mkdocs.yml` and configure according to the `toc` package's [extension options ](https://python-markdown.github.io/extensions/toc/#usage){target="_blank"}.
+For fine-grained control of which items display in the table of contents, add `toc` to `markdown_extensions` and configure according to the `toc` package's [extension options](https://python-markdown.github.io/extensions/toc/#usage){target="_blank"}.
 
+**file**: `mkdocs.yml`  
 ```yaml
 markdown_extensions:
   - toc:
@@ -13,13 +12,14 @@ markdown_extensions:
 ```
 
 You can also style the section headings by setting the `permalink` symbol and its tooltip hover `permalink_title`:
+
+**file**: `mkdocs.yml`    
 ```yaml
 markdown_extensions:
   - toc:
       permalink: "#"
       permalink_title: Anchor link to this section for reference
 ```
-<br>
 
 ### Default Nesting Explanation
 For example, on this page **h1-Felidae** shows up in the table of contents because it is one of the highest level sections.  **h2-Felinae** and **h2-Pantherinae** show up because they are directly underneath a top level section.  
