@@ -1,4 +1,4 @@
-# Snippets Pymdownx Extension 
+# Snippets Pymdown Extension 
 
 The Snippets extension adds the ability to embed content from arbitrary text files in your markdown document.  
 

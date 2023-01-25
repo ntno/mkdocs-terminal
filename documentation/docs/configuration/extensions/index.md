@@ -46,11 +46,11 @@ configuration:
 
 
   [Attribute Lists]: python-markdown.md#attribute-lists
-  [Caret, Mark, & Tilde]: py-mdown-extensions.md#caret-mark-tilde
+  [Caret, Mark, & Tilde]: pymdown-extensions.md#caret-mark-tilde
   [Definition Lists]: python-markdown.md#definition-lists
   [Footnotes]: python-markdown.md#footnotes
   [Markdown in HTML]: python-markdown.md#markdown-in-html
-  [Snippets]: py-mdown-extensions.md#snippets
+  [Snippets]: pymdown-extensions.md#snippets
   [Table of Contents]: python-markdown.md#table-of-contents
   [Tables]: python-markdown.md#tables
 
