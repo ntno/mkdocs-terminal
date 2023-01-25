@@ -1,4 +1,4 @@
-<div class="btn-group" markdown>
+<div class="pad_to_match_side_nav btn-group" markdown>
 [Default](default.md) |
 [Gruvbox Dark](gruvbox-dark.md) |
 [Dark](dark.md) |
