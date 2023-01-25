@@ -16,19 +16,22 @@ Markdown is a very small language with a kind-of reference implementation called
 The following extensions have been confirmed to work with Terminal for MkDocs and are strongly recommended. Click on each extension to learn about its purpose and
 configuration:
 
-<!-- - [Abbreviations]
+<!-- 
+TODO
+- [Abbreviations]
 - [Admonition]
-- [Arithmatex] -->
-<!-- - [BetterEm]
-- [Critic] -->
-<!-- - [Details]
-- [Emoji] -->
-<!-- - [Highlight]
-- [Keys] -->
-<!-- - [SmartSymbols]
+- [Arithmatex]
+- [BetterEm]
+- [Critic]
+- [Details]
+- [Emoji]
+- [Highlight]
+- [Keys]
+- [SmartSymbols]
 - [SuperFences]
-- [Tabbed] -->
-<!-- - [Tasklist] -->
+- [Tabbed]
+- [Tasklist]
+- -->
 
 
 <div markdown>
