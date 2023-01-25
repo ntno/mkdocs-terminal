@@ -1,14 +1,14 @@
 [Back to Overview](index.md){class='btn btn-default'}  [to PyMdown Extensions](py-mdown-extensions.md){class='btn btn-primary'}
 
-**Python Markdown**
+# Python Markdown
 
 Terminal for MkDocs is compatible with some of the [Python Markdown]{target="_blank"} extensions. The following is a list of all extensions which have been tested with this theme, linking to documentation which explain how they can be used.
 
   [Python Markdown]: https://python-markdown.github.io/extensions/
 
-## Suggested Python Markdown Extensions
+# Suggested Python Markdown Extensions
 
-### Attribute Lists
+## Attribute Lists
 
 The [Attribute Lists]{target="_blank"} extension helps to add HTML attributes and CSS classes to [almost every][Attribute Lists limitations]{target="_blank"} Markdown inline- and block-level element with a special syntax. Enable it via `mkdocs.yml`:
 
@@ -29,7 +29,7 @@ No configuration options are available. See reference for usage:
   [Adding tooltips]: ../../elements/tooltips.md#example
   [Adding link target]: ../../elements/links.md#enhanced-example
 
-### Definition Lists
+## Definition Lists
 
 The [Definition Lists]{target="_blank"} extension adds the ability to add definition lists (more
 commonly known as [description lists]{target="_blank"} – `dl` in HTML) via Markdown to a
@@ -48,7 +48,7 @@ No configuration options are available. See reference for usage:
   [description lists]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dl
   [Using definition lists]: ../../elements/definitions.md#example
 
-### Footnotes
+## Footnotes
 
 The [Footnotes]{target="_blank"} extension enables inline footnotes which are then
 rendered below all Markdown content of a document. Enable it via `mkdocs.yml`:
@@ -67,7 +67,7 @@ No configuration options are supported. See reference for usage:
   [Adding footnote markers]: ../../elements/footnotes.md#example-footnote-marker
   [Adding footnote content]: ../../elements/footnotes.md#example-footnote-content
 
-### Markdown in HTML
+## Markdown in HTML
 
 The [Markdown in HTML]{target="_blank"} extension allows for writing Markdown inside of HTML, which is useful for wrapping Markdown content with custom elements. Enable it
 via `mkdocs.yml`:
@@ -91,7 +91,7 @@ No configuration options are available. See reference for usage:
   [Adding Figures]: ../../elements/figure.md#example
 
 
-### Table of Contents
+## Table of Contents
 
 The [Table of Contents]{target="_blank"} extension automatically generates a table of contents from a document which Terminal for MkDocs will render as part of the resulting page. It can be configured via `mkdocs.yml`:
 
@@ -148,7 +148,7 @@ See reference for usage:
   [Table of Contents Example]: ../../navigation/toc.md
 
 
-### Tables
+## Tables
 
 The [Tables]{target="_blank"} extension adds the ability to create tables in Markdown by using a simple syntax. Enable it via `mkdocs.yml` (albeit it should be enabled by
 default):
