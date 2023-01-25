@@ -12,10 +12,8 @@ Terminal for MkDocs supports the built-in search plugin by providing a search bu
 <figcaption>Built-in Search Plugin Support</figcaption>
 </figure>
 </section>
-<br>
 
-
-# Configuration
+## Configuration
 The search button in the top navigation bar can be hidden by adding `navigation.top.search_button.hide` to your theme feature configuration in `mkdocs.yml`:
 
 ```yaml
@@ -24,8 +22,6 @@ theme:
   features:
     - navigation.top.search_button.hide
 ```
-
-<br>
 
 ## Note
 If you wish to use additional plugins besides the default search plugin you will need to re-add `search` to your plugins list in `mkdocs.yml`:
