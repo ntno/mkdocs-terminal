@@ -1,4 +1,7 @@
-# Snippets Pymdownx Extension
+# Snippets Pymdownx Extension 
+
+The Snippets extension adds the ability to embed content from arbitrary text files in your markdown document.  
+
 ## Setup
 
 Enable Snippets by adding `pymdownx.snippets` to the `markdown_extensions` configuration in `mkdocs.yml`:
@@ -10,12 +13,12 @@ markdown_extensions:
         - docs
 ```
 
-See the [Snippets documentation][Snippets]{target="_blank"} for more information on additional configuration options.
+See the [Snippets documentation][Snippets]{target="_blank"} for more information on configuration options.
 
   [Snippets]: https://facelessuser.github.io/pymdown-extensions/extensions/snippets/
   
 
-# Usage
+## Usage
 
 Let's say you have a header that you want to add to several documentation pages: 
 
