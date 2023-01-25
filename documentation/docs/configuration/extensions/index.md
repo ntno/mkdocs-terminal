@@ -1,4 +1,6 @@
-[to Python Markdown](python-markdown.md){class='btn btn-primary'}  [to PyMdown Extensions](py-mdown-extensions.md){class='btn btn-primary'}
+--8<--
+configuration/extensions/links.md
+--8<--
 
 # Extensions
 

@@ -1,4 +1,6 @@
-[Back to Overview](index.md){class='btn btn-default'}  [to Python Markdown](python-markdown.md){class='btn btn-primary'}
+--8<--
+configuration/extensions/links.md
+--8<--
 
 # PyMdown Extensions
 
