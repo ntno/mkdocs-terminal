@@ -41,7 +41,8 @@ Terminal for MkDocs' Tile Grid relies on the *meta*[^mkdocs-page-meta] attribute
 - [schema.org - searchaction](https://schema.org/SearchAction)
 - [magic mock](https://docs.python.org/3/library/unittest.mock.html)  
 - [python debugger](https://www.geeksforgeeks.org/python-debugger-python-pdb/)  
-
+- [broken link chekcer](https://matthewsetter.com/writing-tools/npm-broken-link-checker/)  
+  
 ## regex
 ### linked image
 `<div .*? <figure(.)[^>]*? <a(.)*<img`
