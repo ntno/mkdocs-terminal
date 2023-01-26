@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.0">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.4">
      
     
     <meta name="author" content="ntno"> 
@@ -32,7 +32,8 @@
 <link href="../../css/palettes/default.css" rel="stylesheet">
 
 
-     
+    
+    <link href="../../overrides/extra.css" rel="stylesheet">  
     
     
 
@@ -318,7 +319,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../configuration/extensions/python-markdown/">Python Markdown</a>
+    terminal-mkdocs-side-nav-item" href="../../configuration/extensions/python-markdown/">Markdown Extensions</a>
         
     
     </li>
@@ -337,7 +338,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../configuration/extensions/py-mdown-extensions/">PyMdown Extensions</a>
+    terminal-mkdocs-side-nav-item" href="../../configuration/extensions/pymdown-extensions/">PyMdown Extensions</a>
         
     
     </li>
@@ -863,8 +864,8 @@
 <nav>
     <ul>
         <li><a href="#links">Links</a></li>
-        <li><a href="#simple-example">Simple Example</a></li><li><a href="#enhanced-links">Enhanced Links</a></li>
-        <li><a href="#setup">Setup</a></li><li><a href="#enhanced-example">Enhanced Example</a></li>
+        <li><a href="#simple-example">Simple Example</a></li>
+        <li><a href="#markdown">Markdown</a></li><li><a href="#enhanced-links-setup">Enhanced Links Setup</a></li><li><a href="#example">Example</a></li>
     </ul>
 </nav></aside>
             <main>       
@@ -873,29 +874,32 @@
 
 <section>
     <h1 id="links">Links<a class="headerlink" href="#links" title="Anchor link to this section for reference">#</a></h1>
-<h2 id="simple-example">Simple Example<a class="headerlink" href="#simple-example" title="Anchor link to this section for reference">#</a></h2>
-<p><a href="https://ntno.github.io/mkdocs-terminal/">Documentation Home Page</a></p>
-<pre><code class="language-markdown">[Documentation Home Page](https://ntno.github.io/mkdocs-terminal/)
+<p>A link can be specified with markdown by putting the link's <strong>display text</strong> in square brackets followed by the link's <strong>address</strong> in parentheses.  There is no space in between the square brackets and the open parenthesis.</p>
+<h1 id="simple-example">Simple Example<a class="headerlink" href="#simple-example" title="Anchor link to this section for reference">#</a></h1>
+<p><a href="https://ntno.github.io/mkdocs-terminal/">Home Page</a></p>
+<h2 id="markdown">Markdown<a class="headerlink" href="#markdown" title="Anchor link to this section for reference">#</a></h2>
+<pre><code class="language-markdown">[Home Page](https://ntno.github.io/mkdocs-terminal/)
 </code></pre>
-<h1 id="enhanced-links">Enhanced Links<a class="headerlink" href="#enhanced-links" title="Anchor link to this section for reference">#</a></h1>
-<h2 id="setup">Setup<a class="headerlink" href="#setup" title="Anchor link to this section for reference">#</a></h2>
+<h2 id="enhanced-links-setup">Enhanced Links Setup<a class="headerlink" href="#enhanced-links-setup" title="Anchor link to this section for reference">#</a></h2>
 <p>Adding attributes to links requires the <code>attr_list</code> markdown extension.  Add it to the <code>markdown_extensions</code> configuration in <code>mkdocs.yml</code>:</p>
 <pre><code class="language-yaml">markdown_extensions:
   - attr_list
 </code></pre>
-<h2 id="enhanced-example">Enhanced Example<a class="headerlink" href="#enhanced-example" title="Anchor link to this section for reference">#</a></h2>
-<p>Note that adding the <code>target="_blank"</code> attribute causes the link to open in a new tab.</p>
-<p><a href="https://github.com/ntno/mkdocs-terminal" target="_blank">GitHub Repository</a></p>
-<pre><code class="language-markdown">[GitHub Repository](https://github.com/ntno/mkdocs-terminal){target=&quot;_blank&quot;}
+<h2 id="example">Example<a class="headerlink" href="#example" title="Anchor link to this section for reference">#</a></h2>
+<p>Note that adding the <code>target="_blank"</code> attribute causes the link to open in a new tab.<br />
+The <code>title="go to source code"</code> adds a on hover title to the link.</p>
+<p><a _="," href="https://github.com/ntno/mkdocs-terminal" target="_blank" title="go to source code">GitHub Repository</a></p>
+<h3 id="markdown_1">Markdown<a class="headerlink" href="#markdown_1" title="Anchor link to this section for reference">#</a></h3>
+<pre><code class="language-markdown">[GitHub Repository](https://github.com/ntno/mkdocs-terminal){target=&quot;_blank&quot;, title=&quot;go to source code&quot;}
 </code></pre>
 </section>
 
-
+<section></section>
 <br>
 <aside>
     <p>
         <small>
-            <i>Page last updated 2023-01-21. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/elements/links.md">GitHub</a>.</i>
+            <i>Page last updated 2023-01-26. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/elements/links.md">GitHub</a>.</i>
         </small>
     </p>
 </aside>

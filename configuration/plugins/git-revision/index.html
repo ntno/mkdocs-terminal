@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.0">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.4">
      
     
     <meta name="author" content="ntno"> 
@@ -32,7 +32,8 @@
 <link href="../../../css/palettes/default.css" rel="stylesheet">
 
 
-     
+    
+    <link href="../../../overrides/extra.css" rel="stylesheet">  
     
     
 
@@ -316,7 +317,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../extensions/python-markdown/">Python Markdown</a>
+    terminal-mkdocs-side-nav-item" href="../../extensions/python-markdown/">Markdown Extensions</a>
         
     
     </li>
@@ -335,7 +336,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../extensions/py-mdown-extensions/">PyMdown Extensions</a>
+    terminal-mkdocs-side-nav-item" href="../../extensions/pymdown-extensions/">PyMdown Extensions</a>
         
     
     </li>
@@ -868,7 +869,9 @@
     <ul>
         <li><a href="#git-revision-date-plugin">Git Revision Date Plugin</a></li>
         <li><a href="#built-in-support">Built-in Support</a></li>
-        <li><a href="#quick-setup">Quick Setup</a></li><li><a href="#1-install-plugin">1. Install Plugin</a></li><li><a href="#2-enable-plugin">2. Enable Plugin</a></li><li><a href="#3-enable-theme-feature">3. Enable Theme Feature</a></li><li><a href="#advanced-configuration">Advanced Configuration</a></li>
+        <li><a href="#quick-setup">Quick Setup</a></li>
+        <li><a href="#1-install-plugin">1. Install Plugin</a></li><li><a href="#2-enable-plugin">2. Enable Plugin</a></li><li><a href="#3-enable-theme-feature">3. Enable Theme Feature</a></li><li><a href="#advanced-configuration">Advanced Configuration</a></li>
+        <li><a href="#github">GitHub</a></li><li><a href="#bitbucket">Bitbucket</a></li><li><a href="#adding-repository-hosts">Adding Repository Hosts</a></li>
     </ul>
 </nav></aside>
             <main>       
@@ -887,7 +890,7 @@
 </figure>
 </section>
 <p><br></p>
-<h2 id="quick-setup">Quick Setup<a class="headerlink" href="#quick-setup" title="Anchor link to this section for reference">#</a></h2>
+<h1 id="quick-setup">Quick Setup<a class="headerlink" href="#quick-setup" title="Anchor link to this section for reference">#</a></h1>
 <h2 id="1-install-plugin">1. Install Plugin<a class="headerlink" href="#1-install-plugin" title="Anchor link to this section for reference">#</a></h2>
 <p>Add the package to your <code>requirements.txt</code> file:</p>
 <pre><code class="language-text"># MkDocs Plugins
@@ -907,7 +910,7 @@ mkdocs-git-revision-date-plugin
     - revision.date
 </code></pre>
 <p><br></p>
-<h2 id="advanced-configuration">Advanced Configuration<a class="headerlink" href="#advanced-configuration" title="Anchor link to this section for reference">#</a></h2>
+<h1 id="advanced-configuration">Advanced Configuration<a class="headerlink" href="#advanced-configuration" title="Anchor link to this section for reference">#</a></h1>
 <p>There are two revision-related theme features that can be individually enabled.  The example above only discusses <code>revision.date</code> as it is easier to configure without error.  </p>
 <p>The second revision-related theme feature is <code>revision.history</code>.  Enabling this theme feature will add a "See revision history..." note to the bottom of the page.  The link included in this note relies on MkDocs' <a href="https://www.mkdocs.org/user-guide/configuration/#repo_url" target="_blank">repo_url</a>, <a href="https://www.mkdocs.org/user-guide/configuration/#repo_name" target="_blank">repo_name</a>, and <a href="https://www.mkdocs.org/user-guide/configuration/#edit_uri" target="_blank">edit_uri</a>/<a href="https://www.mkdocs.org/user-guide/configuration/#edit_uri_template" target="_blank">edit_uri_template</a> settings.  </p>
 <section>
@@ -918,8 +921,8 @@ mkdocs-git-revision-date-plugin
 </section>
 <p><br></p>
 <p>Currently the <code>revision.history</code> theme feature supports two repository hosts, <a href="./#github">GitHub</a> and <a href="./#bitbucket">Bitbucket</a>.  See below for example configurations.  </p>
-<h4 id="github">GitHub<a class="headerlink" href="#github" title="Anchor link to this section for reference">#</a></h4>
-<h5 id="mkdocs-project-in-root-directory">MkDocs project in root directory<a class="headerlink" href="#mkdocs-project-in-root-directory" title="Anchor link to this section for reference">#</a></h5>
+<h2 id="github">GitHub<a class="headerlink" href="#github" title="Anchor link to this section for reference">#</a></h2>
+<h3 id="mkdocs-project-in-root-directory">MkDocs project in root directory<a class="headerlink" href="#mkdocs-project-in-root-directory" title="Anchor link to this section for reference">#</a></h3>
 <pre><code class="language-yaml">repo_url: https://github.com/ntno/ntno.net  
 edit_uri: edit/main/docs/
 
@@ -932,7 +935,7 @@ theme:
     - revision.date
     - revision.history  
 </code></pre>
-<h5 id="mkdocs-project-in-child-documentation-directory">MkDocs project in child 'documentation' directory<a class="headerlink" href="#mkdocs-project-in-child-documentation-directory" title="Anchor link to this section for reference">#</a></h5>
+<h3 id="mkdocs-project-in-child-documentation-directory">MkDocs project in child 'documentation' directory<a class="headerlink" href="#mkdocs-project-in-child-documentation-directory" title="Anchor link to this section for reference">#</a></h3>
 <pre><code class="language-yaml">repo_url: https://github.com/ntno/mkdocs-terminal
 edit_uri_template: https://github.com/ntno/mkdocs-terminal/edit/main/documentation/docs/{path}
 
@@ -945,8 +948,8 @@ theme:
     - revision.date
     - revision.history  
 </code></pre>
-<h4 id="bitbucket">Bitbucket<a class="headerlink" href="#bitbucket" title="Anchor link to this section for reference">#</a></h4>
-<h5 id="mkdocs-project-in-root-directory_1">MkDocs project in root directory<a class="headerlink" href="#mkdocs-project-in-root-directory_1" title="Anchor link to this section for reference">#</a></h5>
+<h2 id="bitbucket">Bitbucket<a class="headerlink" href="#bitbucket" title="Anchor link to this section for reference">#</a></h2>
+<h3 id="mkdocs-project-in-root-directory_1">MkDocs project in root directory<a class="headerlink" href="#mkdocs-project-in-root-directory_1" title="Anchor link to this section for reference">#</a></h3>
 <pre><code class="language-yaml">repo_url: https://bitbucket.org/norganick/demo
 edit_uri_template: src/main/docs/{path}?mode=edit
 
@@ -959,25 +962,25 @@ theme:
     - revision.date
     - revision.history  
 </code></pre>
-<h3 id="adding-repository-hosts">Adding Repository Hosts<a class="headerlink" href="#adding-repository-hosts" title="Anchor link to this section for reference">#</a></h3>
+<h2 id="adding-repository-hosts">Adding Repository Hosts<a class="headerlink" href="#adding-repository-hosts" title="Anchor link to this section for reference">#</a></h2>
 <p>If your repository is not stored on GitHub or Bitbucket and you would like to use this feature please <a href="https://github.com/ntno/mkdocs-terminal/issues/new/choose" target="_blank">submit a feature request</a> on GitHub.  </p>
 <p>You can further customize what revision information is included on the page by implementing your own <code>revision</code> template block.  See <a href="../../blocks">Blocks</a> for more information.</p>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:mkdocs-page-meta">
-<p>see <a href="https://www.mkdocs.org/user-guide/writing-your-docs/#meta-data" target="_blank">MkDocs Page Metadata</a> for more information&#160;<a class="footnote-backref" href="#fnref:mkdocs-page-meta" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>see <a href="https://www.mkdocs.org/user-guide/writing-your-docs/#meta-data" target="_blank">MkDocs Page Metadata</a> for more info&#160;<a class="footnote-backref" href="#fnref:mkdocs-page-meta" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
 </section>
 
-
+<section></section>
 <br>
 <aside>
     <p>
         <small>
-            <i>Page last updated 2023-01-21. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/configuration/plugins/git-revision.md">GitHub</a>.</i>
+            <i>Page last updated 2023-01-26. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/configuration/plugins/git-revision.md">GitHub</a>.</i>
         </small>
     </p>
 </aside>

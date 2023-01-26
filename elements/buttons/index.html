@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.0">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.4">
      
     
     <meta name="author" content="ntno"> 
@@ -32,7 +32,8 @@
 <link href="../../css/palettes/default.css" rel="stylesheet">
 
 
-     
+    
+    <link href="../../overrides/extra.css" rel="stylesheet">  
     
     
 
@@ -318,7 +319,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../configuration/extensions/python-markdown/">Python Markdown</a>
+    terminal-mkdocs-side-nav-item" href="../../configuration/extensions/python-markdown/">Markdown Extensions</a>
         
     
     </li>
@@ -337,7 +338,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../configuration/extensions/py-mdown-extensions/">PyMdown Extensions</a>
+    terminal-mkdocs-side-nav-item" href="../../configuration/extensions/pymdown-extensions/">PyMdown Extensions</a>
         
     
     </li>
@@ -862,8 +863,9 @@
 </div><hr>
 <nav>
     <ul>
-        <li><a href="#buttons">Buttons</a></li>
-        <li><a href="#setup">Setup</a></li><li><a href="#examples">Examples</a></li>
+        <li><a href="#buttons-setup">Buttons Setup</a></li>
+        <li><a href="#examples">Examples</a></li>
+        <li><a href="#default">Default</a></li><li><a href="#primary">Primary</a></li><li><a href="#error">Error</a></li><li><a href="#ghost-default">Ghost Default</a></li><li><a href="#ghost-primary">Ghost Primary</a></li><li><a href="#ghost-error">Ghost Error</a></li><li><a href="#block-level">Block Level</a></li><li><a href="#group">Group</a></li>
     </ul>
 </nav></aside>
             <main>       
@@ -871,43 +873,42 @@
     
 
 <section>
-    <h1 id="buttons">Buttons<a class="headerlink" href="#buttons" title="Anchor link to this section for reference">#</a></h1>
-<h2 id="setup">Setup<a class="headerlink" href="#setup" title="Anchor link to this section for reference">#</a></h2>
+    <h1 id="buttons-setup">Buttons Setup<a class="headerlink" href="#buttons-setup" title="Anchor link to this section for reference">#</a></h1>
 <p>Adding button classes to links requires the <code>attr_list</code> and <code>md_in_html</code> markdown extensions.  Add them to the <code>markdown_extensions</code> configuration in <code>mkdocs.yml</code>:</p>
 <pre><code class="language-yaml">markdown_extensions:
   - attr_list
   - md_in_html
 </code></pre>
-<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Anchor link to this section for reference">#</a></h2>
-<h3 id="default">Default<a class="headerlink" href="#default" title="Anchor link to this section for reference">#</a></h3>
+<h1 id="examples">Examples<a class="headerlink" href="#examples" title="Anchor link to this section for reference">#</a></h1>
+<h2 id="default">Default<a class="headerlink" href="#default" title="Anchor link to this section for reference">#</a></h2>
 <p><a class="btn btn-default" href="./#default">Default</a>  </p>
 <pre><code class="language-markdown">[Default](buttons.md#default){ .btn .btn-default }
 </code></pre>
-<h3 id="primary">Primary<a class="headerlink" href="#primary" title="Anchor link to this section for reference">#</a></h3>
+<h2 id="primary">Primary<a class="headerlink" href="#primary" title="Anchor link to this section for reference">#</a></h2>
 <p><a class="btn btn-primary" href="./#primary">Primary Button</a>  </p>
 <pre><code class="language-markdown">[Primary Button](buttons.md#primary){ .btn .btn-primary } 
 </code></pre>
-<h3 id="error">Error<a class="headerlink" href="#error" title="Anchor link to this section for reference">#</a></h3>
+<h2 id="error">Error<a class="headerlink" href="#error" title="Anchor link to this section for reference">#</a></h2>
 <p><a class="btn btn-error" href="./#error">Error Button</a>  </p>
 <pre><code class="language-markdown">[Error Button](buttons.md#error){ .btn .btn-error } 
 </code></pre>
-<h3 id="ghost-default">Ghost Default<a class="headerlink" href="#ghost-default" title="Anchor link to this section for reference">#</a></h3>
+<h2 id="ghost-default">Ghost Default<a class="headerlink" href="#ghost-default" title="Anchor link to this section for reference">#</a></h2>
 <p><a class="btn btn-default btn-ghost" href="./#ghost-default">Ghost Default</a>  </p>
 <pre><code class="language-markdown">[Ghost Default](buttons.md#ghost-default){ .btn .btn-default .btn-ghost }  
 </code></pre>
-<h3 id="ghost-primary">Ghost Primary<a class="headerlink" href="#ghost-primary" title="Anchor link to this section for reference">#</a></h3>
+<h2 id="ghost-primary">Ghost Primary<a class="headerlink" href="#ghost-primary" title="Anchor link to this section for reference">#</a></h2>
 <p><a class="btn btn-primary btn-ghost" href="./#ghost-primary">Ghost Primary Button</a>  </p>
 <pre><code class="language-markdown">[Ghost Primary Button](buttons.md#ghost-primary){ .btn .btn-primary .btn-ghost } 
 </code></pre>
-<h3 id="ghost-error">Ghost Error<a class="headerlink" href="#ghost-error" title="Anchor link to this section for reference">#</a></h3>
+<h2 id="ghost-error">Ghost Error<a class="headerlink" href="#ghost-error" title="Anchor link to this section for reference">#</a></h2>
 <p><a class="btn btn-error btn-ghost" href="./#ghost-error">Ghost Error Button</a>  </p>
 <pre><code class="language-markdown">[Ghost Error Button](buttons.md#ghost-error){ .btn .btn-error .btn-ghost }  
 </code></pre>
-<h3 id="block-level">Block Level<a class="headerlink" href="#block-level" title="Anchor link to this section for reference">#</a></h3>
+<h2 id="block-level">Block Level<a class="headerlink" href="#block-level" title="Anchor link to this section for reference">#</a></h2>
 <p><a class="btn btn-primary btn-block" href="./#block-level">Block Level Button</a> </p>
 <pre><code class="language-markdown">[Block Level Button](buttons.md#block-level){ .btn .btn-primary .btn-block }
 </code></pre>
-<h3 id="group">Group<a class="headerlink" href="#group" title="Anchor link to this section for reference">#</a></h3>
+<h2 id="group">Group<a class="headerlink" href="#group" title="Anchor link to this section for reference">#</a></h2>
 <div class="btn-group">
 <p><a class="btn btn-ghost" href="./">Left</a>
 <a class="btn btn-ghost" href="./">Middle</a>
@@ -921,12 +922,12 @@
 </code></pre>
 </section>
 
-
+<section></section>
 <br>
 <aside>
     <p>
         <small>
-            <i>Page last updated 2023-01-21. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/elements/buttons.md">GitHub</a>.</i>
+            <i>Page last updated 2023-01-26. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/elements/buttons.md">GitHub</a>.</i>
         </small>
     </p>
 </aside>

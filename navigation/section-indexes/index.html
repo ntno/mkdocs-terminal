@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.0">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.4">
      
     
     <meta name="author" content="ntno"> 
@@ -32,7 +32,8 @@
 <link href="../../css/palettes/default.css" rel="stylesheet">
 
 
-     
+    
+    <link href="../../overrides/extra.css" rel="stylesheet">  
     
     
 
@@ -318,7 +319,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../configuration/extensions/python-markdown/">Python Markdown</a>
+    terminal-mkdocs-side-nav-item" href="../../configuration/extensions/python-markdown/">Markdown Extensions</a>
         
     
     </li>
@@ -337,7 +338,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../configuration/extensions/py-mdown-extensions/">PyMdown Extensions</a>
+    terminal-mkdocs-side-nav-item" href="../../configuration/extensions/pymdown-extensions/">PyMdown Extensions</a>
         
     
     </li>
@@ -862,9 +863,8 @@
 </div><hr>
 <nav>
     <ul>
-        <li><a href="#with-section-indexes">With Section Indexes</a></li>
-        <li><a href="#without-section-indexes">Without Section Indexes</a></li>
-        
+        <li><a href="#section-indexes">Section Indexes</a></li>
+        <li><a href="#setup">Setup</a></li><li><a href="#examples">Examples</a></li><li><a href="#with-section-indexes">With Section Indexes</a></li><li><a href="#without-section-indexes">Without Section Indexes</a></li>
     </ul>
 </nav></aside>
             <main>       
@@ -872,14 +872,21 @@
     
 
 <section>
-    <p>When section index pages are enabled, documents can be directly attached to sections.  This is particularly useful for providing overview pages. Add the <code>navigation.side.indexes</code> feature to the theme configuration in <code>mkdocs.yml</code>:</p>
-<pre><code class="language-yaml">theme:
+    <h1 id="section-indexes">Section Indexes<a class="headerlink" href="#section-indexes" title="Anchor link to this section for reference">#</a></h1>
+<p>When the section index theme feature is enabled, documents can be directly attached to sections.  This is particularly useful for providing overview pages. </p>
+<h2 id="setup">Setup<a class="headerlink" href="#setup" title="Anchor link to this section for reference">#</a></h2>
+<ol>
+<li>
+<p>Add the <code>navigation.side.indexes</code> feature to the theme configuration in <code>mkdocs.yml</code>:</p>
+<pre><code>theme:
   name: terminal
   features:
     - navigation.side.indexes
 </code></pre>
-<p>Then add a page with the title 'Index' as a subpage in the <code>nav</code> config in <code>mkdocs.yml</code>:</p>
-<pre><code class="language-yaml">nav:
+</li>
+<li>
+<p>Add a page with the title 'Index' as a subpage in the <code>nav</code> config in <code>mkdocs.yml</code>:</p>
+<pre><code>nav:
     - Home: 'index.md'
     - Troubleshooting: 'help.md'
     - About: 
@@ -891,25 +898,23 @@
         - v1: 'about/release-notes/version-1.md'
         - v2: 'about/release-notes/version-2.md'
 </code></pre>
-<p><br></p>
-<hr>
-
+</li>
+</ol>
+<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Anchor link to this section for reference">#</a></h2>
 <h2 id="with-section-indexes">With Section Indexes<a class="headerlink" href="#with-section-indexes" title="Anchor link to this section for reference">#</a></h2>
-<p><em>About</em> and <em>Release Notes</em> are clickable in the side navigation.  The index page for the <em>About</em> section does not appear as a sub page of the <em>About</em> category:</p>
-<p><img _=";" alt="'Release Notes' is rendered as a clickable link in the side navigation" src="../../img/about_page_with_section_indexes.png" title="'About' and 'Release Notes' are clickable in the side navigation" /></p>
-<hr>
-
+<p><em>About</em> and <em>Release Notes</em> are clickable in the side navigation.  The index page for the <em>About</em> section does not appear as a subpage of the <em>About</em> category:</p>
+<p><img _=";" alt="'Release Notes' is rendered as a clickable link in the side navigation" class="terminal-mkdocs-thin-border" src="../../img/about_page_with_section_indexes.png" title="'About' and 'Release Notes' are clickable in the side navigation" /></p>
 <h2 id="without-section-indexes">Without Section Indexes<a class="headerlink" href="#without-section-indexes" title="Anchor link to this section for reference">#</a></h2>
-<p><em>About</em> and <em>Release Notes</em> are not clickable in the side navigation.  Instead, they are rendered as greyed out text.  The index page for the <em>About</em> section appears as a sub page of the <em>About</em> category:</p>
-<p><img _=";" alt="'Release Notes' is rendered as greyed out text in the side navigation" src="../../img/about_page_without_section_indexes.png" title="'About' and 'Release Notes' are not clickable in the side navigation" /></p>
+<p><em>About</em> and <em>Release Notes</em> are not clickable in the side navigation.  Instead, they are rendered as greyed out text.  The index page for the <em>About</em> section appears as a subpage of the <em>About</em> category:</p>
+<p><img _=";" alt="'Release Notes' is rendered as greyed out text in the side navigation" class="terminal-mkdocs-thin-border" src="../../img/about_page_without_section_indexes.png" title="'About' and 'Release Notes' are not clickable in the side navigation" /></p>
 </section>
 
-
+<section></section>
 <br>
 <aside>
     <p>
         <small>
-            <i>Page last updated 2023-01-21. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/navigation/section-indexes.md">GitHub</a>.</i>
+            <i>Page last updated 2023-01-26. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/navigation/section-indexes.md">GitHub</a>.</i>
         </small>
     </p>
 </aside>

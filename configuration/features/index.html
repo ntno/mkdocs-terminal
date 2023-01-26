@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.0">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.4">
      
     
     <meta name="author" content="ntno"> 
@@ -32,7 +32,8 @@
 <link href="../../css/palettes/default.css" rel="stylesheet">
 
 
-     
+    
+    <link href="../../overrides/extra.css" rel="stylesheet">  
     
     
 
@@ -316,7 +317,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../extensions/python-markdown/">Python Markdown</a>
+    terminal-mkdocs-side-nav-item" href="../extensions/python-markdown/">Markdown Extensions</a>
         
     
     </li>
@@ -335,7 +336,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../extensions/py-mdown-extensions/">PyMdown Extensions</a>
+    terminal-mkdocs-side-nav-item" href="../extensions/pymdown-extensions/">PyMdown Extensions</a>
         
     
     </li>
@@ -889,29 +890,31 @@
     - revision.date
     - revision.history
 </code></pre>
-<h3 id="navigationsidehide">navigation.side.hide<a class="headerlink" href="#navigationsidehide" title="Anchor link to this section for reference">#</a></h3>
+<h2 id="navigationsidehide">navigation.side.hide<a class="headerlink" href="#navigationsidehide" title="Anchor link to this section for reference">#</a></h2>
 <p>hides side panel on all site pages.  the side panel includes the <a href="../#side-navigation-menu">Side Navigation Menu</a> and the <a href="../#page-table-of-contents">Side Page Table of Contents</a>.</p>
-<h3 id="navigationsideindexes">navigation.side.indexes<a class="headerlink" href="#navigationsideindexes" title="Anchor link to this section for reference">#</a></h3>
+<h2 id="navigationsideindexes">navigation.side.indexes<a class="headerlink" href="#navigationsideindexes" title="Anchor link to this section for reference">#</a></h2>
 <p>enables section links in the side navigation menu.<br />
 ignored if <code>navigation.side.hide</code> is set.<br />
 see <a href="../../navigation/section-indexes/">Section Indexes</a> for details.  </p>
-<h3 id="navigationsidetochide">navigation.side.toc.hide<a class="headerlink" href="#navigationsidetochide" title="Anchor link to this section for reference">#</a></h3>
+<h2 id="navigationsidetochide">navigation.side.toc.hide<a class="headerlink" href="#navigationsidetochide" title="Anchor link to this section for reference">#</a></h2>
 <p>hides table of contents in side panel on all site pages.<br />
 ignored if <code>navigation.side.hide</code> is set.<br />
 see <a href="../#page-table-of-contents">Page Table of Contents</a> for more info. </p>
-<h3 id="navigationtophide">navigation.top.hide<a class="headerlink" href="#navigationtophide" title="Anchor link to this section for reference">#</a></h3>
+<h2 id="navigationtophide">navigation.top.hide<a class="headerlink" href="#navigationtophide" title="Anchor link to this section for reference">#</a></h2>
 <p>hides top navigation on all site pages.<br />
 see <a href="../#top-navigation-menu">Top Navigation Menu</a> for more info.  </p>
-<h3 id="navigationtopcursor_animationhide">navigation.top.cursor_animation.hide<a class="headerlink" href="#navigationtopcursor_animationhide" title="Anchor link to this section for reference">#</a></h3>
+<h2 id="navigationtopcursor_animationhide">navigation.top.cursor_animation.hide<a class="headerlink" href="#navigationtopcursor_animationhide" title="Anchor link to this section for reference">#</a></h2>
 <p>hides the blinking cursor animation in the top nav.<br />
 ignored if <code>navigation.top.hide</code> is set.  </p>
-<h3 id="navigationtopsearch_buttonhide">navigation.top.search_button.hide<a class="headerlink" href="#navigationtopsearch_buttonhide" title="Anchor link to this section for reference">#</a></h3>
+<h2 id="navigationtopsearch_buttonhide">navigation.top.search_button.hide<a class="headerlink" href="#navigationtopsearch_buttonhide" title="Anchor link to this section for reference">#</a></h2>
 <p>hides the search button in the top nav.<br />
 ignored if <code>navigation.top.hide</code> is set. </p>
-<h3 id="revisiondate">revision.date<a class="headerlink" href="#revisiondate" title="Anchor link to this section for reference">#</a></h3>
+<h2 id="revisiondate">revision.date<a class="headerlink" href="#revisiondate" title="Anchor link to this section for reference">#</a></h2>
 <p>enables the "Page last updated..." text at the bottom of the page.  requires <a href="../plugins/git-revision/">git-revision-date plugin setup</a>.</p>
-<h3 id="revisionhistory">revision.history<a class="headerlink" href="#revisionhistory" title="Anchor link to this section for reference">#</a></h3>
+<h2 id="revisionhistory">revision.history<a class="headerlink" href="#revisionhistory" title="Anchor link to this section for reference">#</a></h2>
 <p>enables the "See revision history..." text at the bottom of the page.  requires <a href="../plugins/git-revision/">git-revision-date plugin setup</a> and additional <a href="../plugins/git-revision/#advanced-configuration">git-revision-date configuration</a>.</p>
+<hr>
+
 <h1 id="page-features">Page Features<a class="headerlink" href="#page-features" title="Anchor link to this section for reference">#</a></h1>
 <p>To hide certain <a href="../#theme-components">Terminal for MkDocs components</a> on a per-page basis, add a <a href="https://www.mkdocs.org/user-guide/writing-your-docs/#yaml-style-meta-data" target="_blank">YAML Style Meta-Data</a> section to the very top of your Markdown page. Inside this metadata section, add the attribute <code>hide</code> which is a list of page-specific feature names.</p>
 <p>Pay special attention to the indentation. There should be two spaces before the <code>-</code> marking the start of a component name: </p>
@@ -923,22 +926,22 @@ hide:
     - top_nav
 ---
 </code></pre>
-<h3 id="hide-revision_date">hide: revision_date<a class="headerlink" href="#hide-revision_date" title="Anchor link to this section for reference">#</a></h3>
+<h2 id="hide-revision_date">hide: revision_date<a class="headerlink" href="#hide-revision_date" title="Anchor link to this section for reference">#</a></h2>
 <p>hides the "Page last updated" text at the bottom of the page.  ignored if <code>revision.date</code> Theme Feature is not enabled.  ignored if <code>git-revision-date</code> plugin is not enabled.  </p>
-<h3 id="hide-revision_history">hide: revision_history<a class="headerlink" href="#hide-revision_history" title="Anchor link to this section for reference">#</a></h3>
+<h2 id="hide-revision_history">hide: revision_history<a class="headerlink" href="#hide-revision_history" title="Anchor link to this section for reference">#</a></h2>
 <p>hides the "See revision history..." text at the bottom of the page.  ignored if <code>revision.history</code> Theme Feature is not enabled.  ignored if <code>git-revision-date</code> plugin is not enabled.  </p>
-<h3 id="hide-side_toc">hide: side_toc<a class="headerlink" href="#hide-side_toc" title="Anchor link to this section for reference">#</a></h3>
+<h2 id="hide-side_toc">hide: side_toc<a class="headerlink" href="#hide-side_toc" title="Anchor link to this section for reference">#</a></h2>
 <p>hides the table of contents in the side panel on the page.</p>
-<h3 id="hide-top_nav">hide: top_nav<a class="headerlink" href="#hide-top_nav" title="Anchor link to this section for reference">#</a></h3>
+<h2 id="hide-top_nav">hide: top_nav<a class="headerlink" href="#hide-top_nav" title="Anchor link to this section for reference">#</a></h2>
 <p>hides top navigation on the page.  </p>
 </section>
 
-
+<section></section>
 <br>
 <aside>
     <p>
         <small>
-            <i>Page last updated 2023-01-21. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/configuration/features.md">GitHub</a>.</i>
+            <i>Page last updated 2023-01-26. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/configuration/features.md">GitHub</a>.</i>
         </small>
     </p>
 </aside>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.0">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.4">
      
     
     <meta name="author" content="ntno"> 
@@ -32,7 +32,8 @@
 <link href="../../css/palettes/default.css" rel="stylesheet">
 
 
-     
+    
+    <link href="../../overrides/extra.css" rel="stylesheet">  
     
     
 
@@ -318,7 +319,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../configuration/extensions/python-markdown/">Python Markdown</a>
+    terminal-mkdocs-side-nav-item" href="../../configuration/extensions/python-markdown/">Markdown Extensions</a>
         
     
     </li>
@@ -337,7 +338,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../configuration/extensions/py-mdown-extensions/">PyMdown Extensions</a>
+    terminal-mkdocs-side-nav-item" href="../../configuration/extensions/pymdown-extensions/">PyMdown Extensions</a>
         
     
     </li>
@@ -875,24 +876,25 @@
 <section>
     <h1 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Anchor link to this section for reference">#</a></h1>
 <p>By default, only the top two sections by nesting level will display in the table of contents at the bottom left.  </p>
-<p>For fine-grained control of which items display in the table of contents, add <code>toc</code> to the <code>markdown_extensions</code> list in <code>mkdocs.yml</code> and configure according to the <code>toc</code> package's <a href="https://python-markdown.github.io/extensions/toc/#usage" target="_blank">extension options </a>.</p>
+<p>For fine-grained control of which items display in the table of contents, add <code>toc</code> to <code>markdown_extensions</code> and configure according to the <code>toc</code> package's <a href="https://python-markdown.github.io/extensions/toc/#usage" target="_blank">extension options</a>.</p>
+<p><strong>file</strong>: <code>mkdocs.yml</code>  </p>
 <pre><code class="language-yaml">markdown_extensions:
   - toc:
       baselevel: &quot;3&quot;
       toc_depth: &quot;3&quot;
 </code></pre>
 <p>You can also style the section headings by setting the <code>permalink</code> symbol and its tooltip hover <code>permalink_title</code>:</p>
+<p><strong>file</strong>: <code>mkdocs.yml</code>    </p>
 <pre><code class="language-yaml">markdown_extensions:
   - toc:
       permalink: &quot;#&quot;
       permalink_title: Anchor link to this section for reference
 </code></pre>
-<p><br></p>
 <h3 id="default-nesting-explanation">Default Nesting Explanation<a class="headerlink" href="#default-nesting-explanation" title="Anchor link to this section for reference">#</a></h3>
 <p>For example, on this page <strong>h1-Felidae</strong> shows up in the table of contents because it is one of the highest level sections.  <strong>h2-Felinae</strong> and <strong>h2-Pantherinae</strong> show up because they are directly underneath a top level section.  </p>
 <p><strong>h3-Felis-catus</strong>, <strong>h3-Panthera-leo</strong>, and <strong>h3-Panthera tigris</strong> do <em>NOT</em> display in the table of contents because they are nested at a third level (not because they use the <code>&lt;h3&gt;</code> header).  Note that <strong>h5-Canis-familiaris</strong> displays in the table of contents even though it uses a <code>&lt;h5&gt;</code> header.  This is because it is in a subsection directly underneath the top level <strong>h1-Canidae</strong> section.</p>
 <hr>
-<p>Detailed TOC Example Below <span>&#11015;</span></p>
+<p><strong>Detailed TOC Example Below</strong> <span>&#11015;</span></p>
 <hr>
 
 <h1 id="h1-felidae">(h1) Felidae<a class="headerlink" href="#h1-felidae" title="Anchor link to this section for reference">#</a></h1>
@@ -924,12 +926,12 @@
 - <a href="https://en.wikipedia.org/wiki/Greyhound" target="_blank">Greyhound</a>  </p>
 </section>
 
-
+<section></section>
 <br>
 <aside>
     <p>
         <small>
-            <i>Page last updated 2023-01-21. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/navigation/toc.md">GitHub</a>.</i>
+            <i>Page last updated 2023-01-26. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/navigation/toc.md">GitHub</a>.</i>
         </small>
     </p>
 </aside>

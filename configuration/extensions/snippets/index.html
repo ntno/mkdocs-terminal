@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.0">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.4">
      
     
     <meta name="author" content="ntno"> 
@@ -32,7 +32,8 @@
 <link href="../../../css/palettes/default.css" rel="stylesheet">
 
 
-     
+    
+    <link href="../../../overrides/extra.css" rel="stylesheet">  
     
     
 
@@ -318,7 +319,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../python-markdown/">Python Markdown</a>
+    terminal-mkdocs-side-nav-item" href="../python-markdown/">Markdown Extensions</a>
         
     
     </li>
@@ -337,7 +338,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../py-mdown-extensions/">PyMdown Extensions</a>
+    terminal-mkdocs-side-nav-item" href="../pymdown-extensions/">PyMdown Extensions</a>
         
     
     </li>
@@ -866,9 +867,8 @@
 </div><hr>
 <nav>
     <ul>
-        <li><a href="#snippets-pymdownx-extension">Snippets Pymdownx Extension</a></li>
+        <li><a href="#snippets-pymdown-extension">Snippets Pymdown Extension</a></li>
         <li><a href="#setup">Setup</a></li><li><a href="#usage">Usage</a></li>
-        
     </ul>
 </nav></aside>
             <main>       
@@ -876,7 +876,8 @@
     
 
 <section>
-    <h1 id="snippets-pymdownx-extension">Snippets Pymdownx Extension<a class="headerlink" href="#snippets-pymdownx-extension" title="Anchor link to this section for reference">#</a></h1>
+    <h1 id="snippets-pymdown-extension">Snippets Pymdown Extension<a class="headerlink" href="#snippets-pymdown-extension" title="Anchor link to this section for reference">#</a></h1>
+<p>The Snippets extension adds the ability to embed content from arbitrary text files in your markdown document.  </p>
 <h2 id="setup">Setup<a class="headerlink" href="#setup" title="Anchor link to this section for reference">#</a></h2>
 <p>Enable Snippets by adding <code>pymdownx.snippets</code> to the <code>markdown_extensions</code> configuration in <code>mkdocs.yml</code>:</p>
 <pre><code class="language-yaml">markdown_extensions:
@@ -884,12 +885,12 @@
       base_path: 
         - docs
 </code></pre>
-<p>See the <a href="https://facelessuser.github.io/pymdown-extensions/extensions/snippets/" target="_blank">Snippets documentation</a> for more information on additional configuration options.</p>
-<h1 id="usage">Usage<a class="headerlink" href="#usage" title="Anchor link to this section for reference">#</a></h1>
+<p>See the <a href="https://facelessuser.github.io/pymdown-extensions/extensions/snippets/" target="_blank">Snippets documentation</a> for more information on configuration options.</p>
+<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Anchor link to this section for reference">#</a></h2>
 <p>Let's say you have a header that you want to add to several documentation pages: </p>
 <p>file: <code>links.md</code><br />
 file location: <code>./configuration/palettes/links.md</code>  </p>
-<pre><code class="language-markdown">&lt;div class=&quot;btn-group&quot; markdown&gt;
+<pre><code class="language-markdown">&lt;div class=&quot;terminal-mkdocs-pad-to-match-side-nav&quot; markdown&gt;
 [Default](default.md) |
 [Gruvbox Dark](gruvbox-dark.md) |
 [Dark](dark.md) |
@@ -911,7 +912,7 @@ To use the gruvbox_dark color palette, add the `palette` attribute to your theme
 ...
 </code></pre>
 <p>This will result in a final markdown for <code>gruvbox-dark.md</code> which includes the content in <code>links.md</code>: </p>
-<pre><code class="language-markdown">&lt;div class=&quot;btn-group&quot; markdown&gt;
+<pre><code class="language-markdown">&lt;div class=&quot;terminal-mkdocs-pad-to-match-side-nav&quot; markdown&gt;
 [Default](default.md) |
 [Gruvbox Dark](gruvbox-dark.md) |
 [Dark](dark.md) |
@@ -927,12 +928,12 @@ To use the gruvbox_dark color palette, add the `palette` attribute to your theme
 </code></pre>
 </section>
 
-
+<section></section>
 <br>
 <aside>
     <p>
         <small>
-            <i>Page last updated 2023-01-21. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/configuration/extensions/snippets.md">GitHub</a>.</i>
+            <i>Page last updated 2023-01-26. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/configuration/extensions/snippets.md">GitHub</a>.</i>
         </small>
     </p>
 </aside>

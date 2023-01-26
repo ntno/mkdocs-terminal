@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.0">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.4">
      
     
     <meta name="author" content="ntno"> 
@@ -32,7 +32,8 @@
 <link href="../../../css/palettes/default.css" rel="stylesheet">
 
 
-     
+    
+    <link href="../../../overrides/extra.css" rel="stylesheet">  
     
     
 
@@ -316,7 +317,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../extensions/python-markdown/">Python Markdown</a>
+    terminal-mkdocs-side-nav-item" href="../../extensions/python-markdown/">Markdown Extensions</a>
         
     
     </li>
@@ -335,7 +336,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../extensions/py-mdown-extensions/">PyMdown Extensions</a>
+    terminal-mkdocs-side-nav-item" href="../../extensions/pymdown-extensions/">PyMdown Extensions</a>
         
     
     </li>
@@ -868,7 +869,7 @@
     <ul>
         <li><a href="#search-plugin">Search Plugin</a></li>
         <li><a href="#built-in-support">Built-in Support</a></li>
-        <li><a href="#configuration">Configuration</a></li>
+        <li><a href="#configuration">Configuration</a></li><li><a href="#note">Note</a></li>
     </ul>
 </nav></aside>
             <main>       
@@ -886,7 +887,6 @@
 <figcaption>Built-in Search Plugin Support</figcaption>
 </figure>
 </section>
-<p><br></p>
 <h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Anchor link to this section for reference">#</a></h2>
 <p>The search button in the top navigation bar can be hidden by adding <code>navigation.top.search_button.hide</code> to your theme feature configuration in <code>mkdocs.yml</code>:</p>
 <pre><code class="language-yaml">theme:
@@ -894,14 +894,20 @@
   features:
     - navigation.top.search_button.hide
 </code></pre>
+<h2 id="note">Note<a class="headerlink" href="#note" title="Anchor link to this section for reference">#</a></h2>
+<p>If you wish to use additional plugins besides the default search plugin you will need to re-add <code>search</code> to your plugins list in <code>mkdocs.yml</code>:</p>
+<pre><code class="language-yaml">plugins:
+  - search
+  - some_other_plugin
+</code></pre>
 </section>
 
-
+<section></section>
 <br>
 <aside>
     <p>
         <small>
-            <i>Page last updated 2023-01-21. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/configuration/plugins/search.md">GitHub</a>.</i>
+            <i>Page last updated 2023-01-26. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/configuration/plugins/search.md">GitHub</a>.</i>
         </small>
     </p>
 </aside>

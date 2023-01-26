@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.0">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.4">
      
     
     <meta name="author" content="ntno"> 
@@ -32,7 +32,8 @@
 <link href="../../css/palettes/default.css" rel="stylesheet">
 
 
-     
+    
+    <link href="../../overrides/extra.css" rel="stylesheet">  
     
     
 
@@ -318,7 +319,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../configuration/extensions/python-markdown/">Python Markdown</a>
+    terminal-mkdocs-side-nav-item" href="../../configuration/extensions/python-markdown/">Markdown Extensions</a>
         
     
     </li>
@@ -337,7 +338,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../configuration/extensions/py-mdown-extensions/">PyMdown Extensions</a>
+    terminal-mkdocs-side-nav-item" href="../../configuration/extensions/pymdown-extensions/">PyMdown Extensions</a>
         
     
     </li>
@@ -863,7 +864,9 @@
 <nav>
     <ul>
         <li><a href="#footnotes">Footnotes</a></li>
-        <li><a href="#setup">Setup</a></li><li><a href="#usage">Usage</a></li>
+        <li><a href="#setup">Setup</a></li>
+        <li><a href="#usage">Usage</a></li>
+        <li><a href="#example-footnote-marker">Example Footnote Marker</a></li><li><a href="#example-footnote-content">Example Footnote Content</a></li><li><a href="#single-line-footnote">Single Line Footnote</a></li><li><a href="#multi-line-footnote">Multi-Line Footnote</a></li>
     </ul>
 </nav></aside>
             <main>       
@@ -876,31 +879,31 @@
 specific word, phrase, or sentence without interrupting the flow of a document<sup id="fnref:credit"><a class="footnote-ref" href="#fn:credit">3</a></sup>.
 Terminal for MkDocs provides the ability to define, reference and render
 footnotes.</p>
-<h2 id="setup">Setup<a class="headerlink" href="#setup" title="Anchor link to this section for reference">#</a></h2>
+<h1 id="setup">Setup<a class="headerlink" href="#setup" title="Anchor link to this section for reference">#</a></h1>
 <p>This configuration adds the ability to define inline footnotes, which are then
 rendered below all Markdown content of a document. Add the following lines to
 <code>mkdocs.yml</code>:</p>
 <pre><code class="language-yaml">markdown_extensions:
   - footnotes
 </code></pre>
-<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Anchor link to this section for reference">#</a></h2>
-<h3 id="example-footnote-marker">Example Footnote Marker<a class="headerlink" href="#example-footnote-marker" title="Anchor link to this section for reference">#</a></h3>
+<h1 id="usage">Usage<a class="headerlink" href="#usage" title="Anchor link to this section for reference">#</a></h1>
+<h2 id="example-footnote-marker">Example Footnote Marker<a class="headerlink" href="#example-footnote-marker" title="Anchor link to this section for reference">#</a></h2>
 <p>A footnote marker must be enclosed in square brackets and must start with a
 caret <code>^</code>, directly followed by an arbitrary identifier, which is similar to
 the standard Markdown link syntax.</p>
 <p>Aliquam sit amet<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> mauris ut mi ullamcorper efficitur.<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></p>
 <pre><code class="language-markdown">Aliquam sit amet[^1] mauris ut mi ullamcorper efficitur.[^2]
 </code></pre>
-<h3 id="example-footnote-content">Example Footnote Content<a class="headerlink" href="#example-footnote-content" title="Anchor link to this section for reference">#</a></h3>
+<h2 id="example-footnote-content">Example Footnote Content<a class="headerlink" href="#example-footnote-content" title="Anchor link to this section for reference">#</a></h2>
 <p>The footnote content must be declared with the same identifier as the marker.
 It can be inserted at an arbitrary position in the document and is always
 rendered at the bottom of the page. Furthermore, a backlink to the footnote
 reference is automatically added.</p>
-<h4 id="single-line-footnote">single line footnote<a class="headerlink" href="#single-line-footnote" title="Anchor link to this section for reference">#</a></h4>
+<h2 id="single-line-footnote">Single Line Footnote<a class="headerlink" href="#single-line-footnote" title="Anchor link to this section for reference">#</a></h2>
 <p>Short footnotes can be defined on a single line:</p>
 <pre><code class="language-markdown">[^1]: Etiam faucibus nunc vel feugiat maximus.
 </code></pre>
-<h4 id="multiple-lined-footnote">multiple lined footnote<a class="headerlink" href="#multiple-lined-footnote" title="Anchor link to this section for reference">#</a></h4>
+<h2 id="multi-line-footnote">Multi-Line Footnote<a class="headerlink" href="#multi-line-footnote" title="Anchor link to this section for reference">#</a></h2>
 <p>To define a multi-line footnote, create a paragraph on the next line after the marker identifier.  The multi-line definition must be indented by four spaces:</p>
 <pre><code class="language-markdown">[^2]:
     Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque nisl nisl, aliquam sit amet erat sed, molestie scelerisque nunc. 
@@ -927,12 +930,12 @@ reference is automatically added.</p>
 </div>
 </section>
 
-
+<section></section>
 <br>
 <aside>
     <p>
         <small>
-            <i>Page last updated 2023-01-21. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/elements/footnotes.md">GitHub</a>.</i>
+            <i>Page last updated 2023-01-26. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/elements/footnotes.md">GitHub</a>.</i>
         </small>
     </p>
 </aside>

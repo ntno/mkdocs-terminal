@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.0">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.4">
      
     
     <meta name="author" content="ntno"> 
@@ -32,7 +32,8 @@
 <link href="../css/palettes/default.css" rel="stylesheet">
 
 
-     
+    
+    <link href="../overrides/extra.css" rel="stylesheet">  
     
     
 
@@ -318,7 +319,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../configuration/extensions/python-markdown/">Python Markdown</a>
+    terminal-mkdocs-side-nav-item" href="../configuration/extensions/python-markdown/">Markdown Extensions</a>
         
     
     </li>
@@ -337,7 +338,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../configuration/extensions/py-mdown-extensions/">PyMdown Extensions</a>
+    terminal-mkdocs-side-nav-item" href="../configuration/extensions/pymdown-extensions/">PyMdown Extensions</a>
         
     
     </li>
@@ -868,10 +869,8 @@
 </div><hr>
 <nav>
     <ul>
-        <li><a href="#1-add-tiles-to-page-metadata">1. Add tiles to Page Metadata</a></li>
-        <li><a href="#2-add-page-to-nav">2. Add Page to Nav</a></li>
-        <li><a href="#3-configure-tile-grid">3. Configure Tile Grid</a></li>
-        <li><a href="#complete-example">Complete Example</a></li>
+        <li><a href="#terminal-for-mkdocs-tile-grid">Terminal for MkDocs Tile Grid</a></li>
+        <li><a href="#1-add-tiles-to-page-metadata">1. Add tiles to Page Metadata</a></li><li><a href="#2-add-page-to-nav">2. Add Page to Nav</a></li><li><a href="#3-configure-tile-grid">3. Configure Tile Grid</a></li><li><a href="#complete-example">Complete Example</a></li>
         <li><a href="#mkdocsyml">mkdocs.yml</a></li><li><a href="#example-pagemd">example-page.md</a></li>
     </ul>
 </nav></aside>
@@ -880,7 +879,7 @@
     
 
 <section>
-    <p><strong>Terminal for MkDocs Tile Grid</strong>  </p>
+    <h1 id="terminal-for-mkdocs-tile-grid">Terminal for MkDocs Tile Grid<a class="headerlink" href="#terminal-for-mkdocs-tile-grid" title="Anchor link to this section for reference">#</a></h1>
 <p>Terminal for MkDocs enables you to quickly create a grid of linked tiles.  Each tile can contain an image, link, and caption.</p>
 <section>
 <figure>
@@ -908,7 +907,6 @@ tiles:
 # My Page Content
 </code></pre>
 <p>Each tile object may have any of the attributes described in the <a href="tile/">Tile Reference</a>.</p>
-<p><br></p>
 <h2 id="2-add-page-to-nav">2. Add Page to Nav<a class="headerlink" href="#2-add-page-to-nav" title="Anchor link to this section for reference">#</a></h2>
 <p>Add the markdown file which includes the <code>tiles</code> metadata to the site's navigation in <code>mkdocs.yml</code>.  If the page is not included in the <code>mkdocs.yml</code> <em>nav</em>, the markdown will not be loaded as a MkDocs Page Object<sup id="fnref:mkdocs-page-object"><a class="footnote-ref" href="#fn:mkdocs-page-object">1</a></sup> and will not include your metadata.</p>
 <p><em>Note</em>: the page does not need to be visible in the final <a href="../configuration/">side navigation theme component</a>.  Deeply nested pages can also use the tile grid feature.  </p>
@@ -919,7 +917,6 @@ tiles:
       - Examples:
         - Also Works: 'tile-grid/examples/example-page.md'
 </code></pre>
-<p><br></p>
 <h2 id="3-configure-tile-grid">3. Configure Tile Grid<a class="headerlink" href="#3-configure-tile-grid" title="Anchor link to this section for reference">#</a></h2>
 <p>The Tile Grid can be further configured using the attributes described in the <a href="grid/">Grid Reference</a>.  For example, the grid can be configured to display before the main page content:</p>
 <pre><code class="language-markdown">---
@@ -928,7 +925,6 @@ tiles:
   - caption: '@petradr'
     ...
 </code></pre>
-<p><br></p>
 <h1 id="complete-example">Complete Example<a class="headerlink" href="#complete-example" title="Anchor link to this section for reference">#</a></h1>
 <h2 id="mkdocsyml">mkdocs.yml<a class="headerlink" href="#mkdocsyml" title="Anchor link to this section for reference">#</a></h2>
 <p>file location: <code>.</code><br />
@@ -984,12 +980,12 @@ Maecenas facilisis id tortor volutpat fermentum. Integer volutpat arcu leo, sed 
 </div>
 </section>
 
-
+<section></section>
 <br>
 <aside>
     <p>
         <small>
-            <i>Page last updated 2023-01-21. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/tile-grid/index.md">GitHub</a>.</i>
+            <i>Page last updated 2023-01-26. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/tile-grid/index.md">GitHub</a>.</i>
         </small>
     </p>
 </aside>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.0">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.4">
      
     
     <meta name="author" content="ntno"> 
@@ -20,7 +20,7 @@
 
     
  
-<title>PyMdown Extensions - Terminal for MkDocs</title>
+<title>Py mdown extensions - Terminal for MkDocs</title>
 
 
 <link href="../../../css/fontawesome/css/fontawesome.min.css" rel="stylesheet">
@@ -32,7 +32,8 @@
 <link href="../../../css/palettes/default.css" rel="stylesheet">
 
 
-     
+    
+    <link href="../../../overrides/extra.css" rel="stylesheet">  
     
     
 
@@ -164,7 +165,7 @@
         
         <a class="
 
-    terminal-mkdocs-side-nav-item--active" href="../../">Configuration</a>
+    terminal-mkdocs-side-nav-item" href="../../">Configuration</a>
     
     
         
@@ -318,7 +319,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../python-markdown/">Python Markdown</a>
+    terminal-mkdocs-side-nav-item" href="../python-markdown/">Markdown Extensions</a>
         
     
     </li>
@@ -334,9 +335,11 @@
                 <li class="terminal-mkdocs-side-nav-li-ul-li">
     
         
-        <span class="
+        
+            <a class="
 
-    terminal-mkdocs-side-nav-item--active">PyMdown Extensions</span>
+    terminal-mkdocs-side-nav-item" href="../pymdown-extensions/">PyMdown Extensions</a>
+        
     
     </li>
             
@@ -866,7 +869,8 @@
 </div><hr>
 <nav>
     <ul>
-        <li><a href="#supported-extensions">Supported extensions</a></li>
+        <li><a href="#pymdown-extensions">PyMdown Extensions</a></li>
+        <li><a href="#suggested-pymdown-extensions">Suggested PyMdown Extensions</a></li>
         <li><a href="#caret-mark-tilde">Caret, Mark &amp; Tilde</a></li><li><a href="#snippets">Snippets</a></li><li><a href="#credit">Credit</a></li>
         
     </ul>
@@ -876,14 +880,18 @@
     
 
 <section>
-    <p><a class="btn btn-default" href="../">Back to Overview</a>  <a class="btn btn-primary" href="../python-markdown/">to Python Markdown</a></p>
-<p><strong>PyMdown Extensions</strong></p>
+    <div class="terminal-mkdocs-pad-to-match-side-nav btn-group">
+<p><a href="../">Overview</a> |
+<a href="../python-markdown/">Python Markdown Extensions</a> |
+<a href="../pymdown-extensions/">PyMdown Extensions</a> </p>
+</div>
+<h1 id="pymdown-extensions">PyMdown Extensions<a class="headerlink" href="#pymdown-extensions" title="Anchor link to this section for reference">#</a></h1>
 <p>The <a href="https://facelessuser.github.io/pymdown-extensions/" target="_blank">PyMdown Extensions</a> package is an excellent collection of
 additional extensions perfectly suited for advanced technical writing. Terminal
 for MkDocs lists this package as an explicit dependency so it's automatically
 installed with a supported version.</p>
-<h2 id="supported-extensions">Supported extensions<a class="headerlink" href="#supported-extensions" title="Anchor link to this section for reference">#</a></h2>
-<h3 id="caret-mark-tilde">Caret, Mark &amp; Tilde<a class="headerlink" href="#caret-mark-tilde" title="Anchor link to this section for reference">#</a></h3>
+<h1 id="suggested-pymdown-extensions">Suggested PyMdown Extensions<a class="headerlink" href="#suggested-pymdown-extensions" title="Anchor link to this section for reference">#</a></h1>
+<h2 id="caret-mark-tilde">Caret, Mark &amp; Tilde<a class="headerlink" href="#caret-mark-tilde" title="Anchor link to this section for reference">#</a></h2>
 <p>The <a href="https://facelessuser.github.io/pymdown-extensions/extensions/caret/" target="_blank">Caret</a>, <a href="https://facelessuser.github.io/pymdown-extensions/extensions/mark/" target="_blank">Mark</a> and <a href="https://facelessuser.github.io/pymdown-extensions/extensions/tilde/" target="_blank">Tilde</a> extensions add the ability to highlight text
 and define subscript and superscript using a simple syntax. Enable them together
 via <code>mkdocs.yml</code>:</p>
@@ -901,7 +909,7 @@ MkDocs, as they only impact the Markdown parsing stage. </p>
 <li><a href="../../../elements/typography/#strikethrough">Adding Strikethrough Styling</a></li>
 <li><a href="../../../elements/typography/#marks">Adding Marks</a></li>
 </ul>
-<h3 id="snippets">Snippets<a class="headerlink" href="#snippets" title="Anchor link to this section for reference">#</a></h3>
+<h2 id="snippets">Snippets<a class="headerlink" href="#snippets" title="Anchor link to this section for reference">#</a></h2>
 <p>The <a href="https://facelessuser.github.io/pymdown-extensions/extensions/snippets/" target="_blank">Snippets</a> extension adds the ability to embed content from arbitrary files into a document, including other documents or source files, by using a simple syntax. Enable it via <code>mkdocs.yml</code>:</p>
 <pre><code class="language-yaml">markdown_extensions:
   - pymdownx.snippets
@@ -914,15 +922,15 @@ documentation</a> for more information.</p>
 <li><a href="../snippets/">Adding Snippets</a></li>
 </ul>
 <h1 id="credit">Credit<a class="headerlink" href="#credit" title="Anchor link to this section for reference">#</a></h1>
-<p>This documentation is based on squidfunk's Material for MkDocs <a href="https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown-extensions/" target="_blank">Pymdown Extension</a> documentation.</p>
+<p>This documentation page is based on squidfunk's Material for MkDocs <a href="https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown-extensions/" target="_blank">Pymdown Extension</a> documentation.</p>
 </section>
 
-
+<section></section>
 <br>
 <aside>
     <p>
         <small>
-            <i>Page last updated 2023-01-21. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/configuration/extensions/py-mdown-extensions.md">GitHub</a>.</i>
+            <i>Page last updated 2023-01-26. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/configuration/extensions/py-mdown-extensions.md">GitHub</a>.</i>
         </small>
     </p>
 </aside>

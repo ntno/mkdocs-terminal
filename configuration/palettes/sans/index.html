@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.0">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.4">
      
     
     <meta name="author" content="ntno"> 
@@ -32,7 +32,8 @@
 <link href="../../../css/palettes/default.css" rel="stylesheet">
 
 
-     
+    
+    <link href="../../../overrides/extra.css" rel="stylesheet">  
     
     
 
@@ -318,7 +319,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../extensions/python-markdown/">Python Markdown</a>
+    terminal-mkdocs-side-nav-item" href="../../extensions/python-markdown/">Markdown Extensions</a>
         
     
     </li>
@@ -337,7 +338,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../extensions/py-mdown-extensions/">PyMdown Extensions</a>
+    terminal-mkdocs-side-nav-item" href="../../extensions/pymdown-extensions/">PyMdown Extensions</a>
         
     
     </li>
@@ -877,7 +878,7 @@
     
 
 <section>
-    <div class="btn-group">
+    <div class="terminal-mkdocs-pad-to-match-side-nav">
 <p><a href="../default/">Default</a> |
 <a href="../gruvbox-dark/">Gruvbox Dark</a> |
 <a href="../dark/">Dark</a> |
@@ -892,7 +893,6 @@
   palette: sans
 </code></pre>
 <p><link href="../../../css/palettes/sans.css" rel="stylesheet"></p>
-<p><br></p>
 <h2 id="typography-examples">Typography Examples<a class="headerlink" href="#typography-examples" title="Anchor link to this section for reference">#</a></h2>
 <p>Emphasis, aka italics, with <em>asterisks</em> or <em>underscores</em>.<br />
 Strong emphasis, aka bold, with <strong>asterisks</strong> or <strong>underscores</strong>.<br />
@@ -907,8 +907,7 @@ text<sup>a superscript</sup>  </p>
 <li><ins>This was inserted</ins></li>
 <li><del>This was deleted</del></li>
 </ul>
-<p><br>
-<br></p>
+<p><br></p>
 <h2 id="button-examples">Button Examples<a class="headerlink" href="#button-examples" title="Anchor link to this section for reference">#</a></h2>
 <p><a class="btn btn-default" href="#button-examples">Default</a>  </p>
 <p><a class="btn btn-primary" href="#button-examples">Primary Button</a>  </p>
@@ -922,8 +921,7 @@ text<sup>a superscript</sup>  </p>
 <a class="btn btn-ghost" href="#button-examples">Middle</a>
 <a class="btn btn-ghost" href="#button-examples">Right</a>  </p>
 </div>
-<p><br>
-<br></p>
+<p><br></p>
 <h2 id="table-example">Table Example<a class="headerlink" href="#table-example" title="Anchor link to this section for reference">#</a></h2>
 <table>
 <thead>
@@ -943,17 +941,14 @@ text<sup>a superscript</sup>  </p>
 </tr>
 </tbody>
 </table>
-<p><br>
-<br></p>
+<p><br></p>
 <h2 id="footnote-example">Footnote Example<a class="headerlink" href="#footnote-example" title="Anchor link to this section for reference">#</a></h2>
 <p>Aliquam sit amet<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> mauris ut mi ullamcorper efficitur.<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></p>
-<p><br>
-<br></p>
+<p><br></p>
 <h2 id="link-examples">Link Examples<a class="headerlink" href="#link-examples" title="Anchor link to this section for reference">#</a></h2>
 <p><a href="/">Documentation Home Page</a></p>
 <p><a href="https://github.com/ntno/mkdocs-terminal" target="_blank">GitHub Repository</a></p>
-<p><br>
-<br></p>
+<p><br></p>
 <h2 id="list-example">List Example<a class="headerlink" href="#list-example" title="Anchor link to this section for reference">#</a></h2>
 <ul>
 <li>First item</li>
@@ -965,8 +960,7 @@ text<sup>a superscript</sup>  </p>
 </li>
 <li>Fourth item</li>
 </ul>
-<p><br>
-<br></p>
+<p><br></p>
 <h2 id="figure-example">Figure Example<a class="headerlink" href="#figure-example" title="Anchor link to this section for reference">#</a></h2>
 <section>
 <figure>
@@ -974,8 +968,7 @@ text<sup>a superscript</sup>  </p>
 <figcaption>A Random Image</figcaption>
 </figure>
 </section>
-<p><br>
-<br></p>
+<p><br></p>
 <h2 id="definition-list-example">Definition List Example<a class="headerlink" href="#definition-list-example" title="Anchor link to this section for reference">#</a></h2>
 <dl>
 <dt><code>Lorem ipsum dolor sit amet</code></dt>
@@ -994,8 +987,7 @@ mollis.  Nam vulputate tincidunt fringilla.  Nullam
 dignissim ultrices urna non auctor.</p>
 </dd>
 </dl>
-<p><br>
-<br></p>
+<p><br></p>
 <h2 id="blockquote-example">Blockquote Example<a class="headerlink" href="#blockquote-example" title="Anchor link to this section for reference">#</a></h2>
 <section>
   <blockquote>
@@ -1008,8 +1000,7 @@ dignissim ultrices urna non auctor.</p>
   </blockquote>
 </section>
 
-<p><br>
-<br></p>
+<p><br></p>
 <h2 id="tooltip-example">Tooltip Example<a class="headerlink" href="#tooltip-example" title="Anchor link to this section for reference">#</a></h2>
 <p><a href="https://example.com" title="I'm a tooltip!">Hover me</a></p>
 <p><br></p>
@@ -1028,12 +1019,12 @@ dignissim ultrices urna non auctor.</p>
 </div>
 </section>
 
-
+<section></section>
 <br>
 <aside>
     <p>
         <small>
-            <i>Page last updated 2023-01-21. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/configuration/palettes/sans.md">GitHub</a>.</i>
+            <i>Page last updated 2023-01-26. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/configuration/palettes/sans.md">GitHub</a>.</i>
         </small>
     </p>
 </aside>

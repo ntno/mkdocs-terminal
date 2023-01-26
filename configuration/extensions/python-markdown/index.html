@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.0">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.4">
      
     
     <meta name="author" content="ntno"> 
@@ -20,7 +20,7 @@
 
     
  
-<title>Python Markdown - Terminal for MkDocs</title>
+<title>Markdown Extensions - Terminal for MkDocs</title>
 
 
 <link href="../../../css/fontawesome/css/fontawesome.min.css" rel="stylesheet">
@@ -32,7 +32,8 @@
 <link href="../../../css/palettes/default.css" rel="stylesheet">
 
 
-     
+    
+    <link href="../../../overrides/extra.css" rel="stylesheet">  
     
     
 
@@ -317,7 +318,7 @@
         
         <span class="
 
-    terminal-mkdocs-side-nav-item--active">Python Markdown</span>
+    terminal-mkdocs-side-nav-item--active">Markdown Extensions</span>
     
     </li>
             
@@ -335,7 +336,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../py-mdown-extensions/">PyMdown Extensions</a>
+    terminal-mkdocs-side-nav-item" href="../pymdown-extensions/">PyMdown Extensions</a>
         
     
     </li>
@@ -866,7 +867,8 @@
 </div><hr>
 <nav>
     <ul>
-        <li><a href="#supported-extensions">Supported extensions</a></li>
+        <li><a href="#python-markdown">Python Markdown</a></li>
+        <li><a href="#suggested-python-markdown-extensions">Suggested Python Markdown Extensions</a></li>
         <li><a href="#attribute-lists">Attribute Lists</a></li><li><a href="#definition-lists">Definition Lists</a></li><li><a href="#footnotes">Footnotes</a></li><li><a href="#markdown-in-html">Markdown in HTML</a></li><li><a href="#table-of-contents">Table of Contents</a></li><li><a href="#tables">Tables</a></li><li><a href="#credit">Credit</a></li>
         
     </ul>
@@ -876,11 +878,15 @@
     
 
 <section>
-    <p><a class="btn btn-default" href="../">Back to Overview</a>  <a class="btn btn-primary" href="../py-mdown-extensions/">to PyMdown Extensions</a></p>
-<p><strong>Python Markdown</strong></p>
-<p>Terminal for MkDocs supports a few of the <a href="https://python-markdown.github.io/extensions/" target="_blank">Python Markdown</a> extensions. The following is a list of all supported extensions, linking to the relevant sections which explain how they can be used.</p>
-<h2 id="supported-extensions">Supported extensions<a class="headerlink" href="#supported-extensions" title="Anchor link to this section for reference">#</a></h2>
-<h3 id="attribute-lists">Attribute Lists<a class="headerlink" href="#attribute-lists" title="Anchor link to this section for reference">#</a></h3>
+    <div class="terminal-mkdocs-pad-to-match-side-nav btn-group">
+<p><a href="../">Overview</a> |
+<a href="./">Python Markdown Extensions</a> |
+<a href="../pymdown-extensions/">PyMdown Extensions</a> </p>
+</div>
+<h1 id="python-markdown">Python Markdown<a class="headerlink" href="#python-markdown" title="Anchor link to this section for reference">#</a></h1>
+<p>Terminal for MkDocs is compatible with some of the <a href="https://python-markdown.github.io/extensions/" target="_blank">Python Markdown</a> extensions. The following is a list of all extensions which have been tested with this theme, linking to documentation which explain how they can be used.</p>
+<h1 id="suggested-python-markdown-extensions">Suggested Python Markdown Extensions<a class="headerlink" href="#suggested-python-markdown-extensions" title="Anchor link to this section for reference">#</a></h1>
+<h2 id="attribute-lists">Attribute Lists<a class="headerlink" href="#attribute-lists" title="Anchor link to this section for reference">#</a></h2>
 <p>The <a href="https://python-markdown.github.io/extensions/attr_list/" target="_blank">Attribute Lists</a> extension helps to add HTML attributes and CSS classes to <a href="https://python-markdown.github.io/extensions/attr_list/#limitations" target="_blank">almost every</a> Markdown inline- and block-level element with a special syntax. Enable it via <code>mkdocs.yml</code>:</p>
 <pre><code class="language-yaml">markdown_extensions:
   - attr_list
@@ -891,7 +897,7 @@
 <li><a href="../../../elements/tooltips/#example">Adding tooltips</a></li>
 <li><a href="../../../elements/links/#enhanced-example">Adding link target</a></li>
 </ul>
-<h3 id="definition-lists">Definition Lists<a class="headerlink" href="#definition-lists" title="Anchor link to this section for reference">#</a></h3>
+<h2 id="definition-lists">Definition Lists<a class="headerlink" href="#definition-lists" title="Anchor link to this section for reference">#</a></h2>
 <p>The <a href="https://python-markdown.github.io/extensions/definition_lists/" target="_blank">Definition Lists</a> extension adds the ability to add definition lists (more
 commonly known as <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dl" target="_blank">description lists</a> – <code>dl</code> in HTML) via Markdown to a
 document. Enable it via <code>mkdocs.yml</code>:</p>
@@ -902,7 +908,7 @@ document. Enable it via <code>mkdocs.yml</code>:</p>
 <ul>
 <li><a href="../../../elements/definitions/#example">Using definition lists</a></li>
 </ul>
-<h3 id="footnotes">Footnotes<a class="headerlink" href="#footnotes" title="Anchor link to this section for reference">#</a></h3>
+<h2 id="footnotes">Footnotes<a class="headerlink" href="#footnotes" title="Anchor link to this section for reference">#</a></h2>
 <p>The <a href="https://python-markdown.github.io/extensions/footnotes/" target="_blank">Footnotes</a> extension enables inline footnotes which are then
 rendered below all Markdown content of a document. Enable it via <code>mkdocs.yml</code>:</p>
 <pre><code class="language-yaml">markdown_extensions:
@@ -913,7 +919,7 @@ rendered below all Markdown content of a document. Enable it via <code>mkdocs.ym
 <li><a href="../../../elements/footnotes/#example-footnote-marker">Adding footnote markers</a></li>
 <li><a href="../../../elements/footnotes/#example-footnote-content">Adding footnote content</a></li>
 </ul>
-<h3 id="markdown-in-html">Markdown in HTML<a class="headerlink" href="#markdown-in-html" title="Anchor link to this section for reference">#</a></h3>
+<h2 id="markdown-in-html">Markdown in HTML<a class="headerlink" href="#markdown-in-html" title="Anchor link to this section for reference">#</a></h2>
 <p>The <a href="https://python-markdown.github.io/extensions/md_in_html/" target="_blank">Markdown in HTML</a> extension allows for writing Markdown inside of HTML, which is useful for wrapping Markdown content with custom elements. Enable it
 via <code>mkdocs.yml</code>:</p>
 <pre><code class="language-yaml">markdown_extensions:
@@ -928,7 +934,7 @@ via <code>mkdocs.yml</code>:</p>
 <li><a href="../../../elements/buttons/#group">Adding Grouped Buttons</a></li>
 <li><a href="../../../elements/figure/#example">Adding Figures</a></li>
 </ul>
-<h3 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Anchor link to this section for reference">#</a></h3>
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Anchor link to this section for reference">#</a></h2>
 <p>The <a href="https://python-markdown.github.io/extensions/toc/" target="_blank">Table of Contents</a> extension automatically generates a table of contents from a document which Terminal for MkDocs will render as part of the resulting page. It can be configured via <code>mkdocs.yml</code>:</p>
 <pre><code class="language-yaml">markdown_extensions:
   - toc:
@@ -969,7 +975,7 @@ them at your own risk.</p>
 <ul>
 <li><a href="../../../navigation/toc/">Table of Contents Example</a></li>
 </ul>
-<h3 id="tables">Tables<a class="headerlink" href="#tables" title="Anchor link to this section for reference">#</a></h3>
+<h2 id="tables">Tables<a class="headerlink" href="#tables" title="Anchor link to this section for reference">#</a></h2>
 <p>The <a href="https://python-markdown.github.io/extensions/tables/" target="_blank">Tables</a> extension adds the ability to create tables in Markdown by using a simple syntax. Enable it via <code>mkdocs.yml</code> (albeit it should be enabled by
 default):</p>
 <pre><code class="language-yaml">markdown_extensions:
@@ -980,15 +986,15 @@ default):</p>
 <li><a href="../../../elements/table/#example">Adding tables</a></li>
 </ul>
 <h1 id="credit">Credit<a class="headerlink" href="#credit" title="Anchor link to this section for reference">#</a></h1>
-<p>This documentation is based on squidfunk's Material for MkDocs <a href="https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown/" target="_blank">Python Markdown</a> documentation.</p>
+<p>This documentation page is based on squidfunk's Material for MkDocs <a href="https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown/" target="_blank">Python Markdown</a> documentation.</p>
 </section>
 
-
+<section></section>
 <br>
 <aside>
     <p>
         <small>
-            <i>Page last updated 2023-01-21. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/configuration/extensions/python-markdown.md">GitHub</a>.</i>
+            <i>Page last updated 2023-01-26. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/configuration/extensions/python-markdown.md">GitHub</a>.</i>
         </small>
     </p>
 </aside>

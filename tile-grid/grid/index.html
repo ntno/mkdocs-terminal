@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.0">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.4">
      
     
     <meta name="author" content="ntno"> 
@@ -32,7 +32,8 @@
 <link href="../../css/palettes/default.css" rel="stylesheet">
 
 
-     
+    
+    <link href="../../overrides/extra.css" rel="stylesheet">  
     
     
 
@@ -318,7 +319,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../configuration/extensions/python-markdown/">Python Markdown</a>
+    terminal-mkdocs-side-nav-item" href="../../configuration/extensions/python-markdown/">Markdown Extensions</a>
         
     
     </li>
@@ -337,7 +338,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../configuration/extensions/py-mdown-extensions/">PyMdown Extensions</a>
+    terminal-mkdocs-side-nav-item" href="../../configuration/extensions/pymdown-extensions/">PyMdown Extensions</a>
         
     
     </li>
@@ -886,7 +887,6 @@ tiles:
 
 # Page Content as usual
 </code></pre>
-<p><br></p>
 <h2 id="configuration-options">Configuration Options<a class="headerlink" href="#configuration-options" title="Anchor link to this section for reference">#</a></h2>
 <dl>
 <dt><code>show_tiles_first</code></dt>
@@ -902,10 +902,9 @@ tiles:
 <p>CSS class to add to the grid's HTML for advanced styling. See <a href="../examples/override-styling/">Override Styling</a> for example.</p>
 </dd>
 </dl>
-<p><br></p>
 <h2 id="default-tile-placement">Default Tile Placement<a class="headerlink" href="#default-tile-placement" title="Anchor link to this section for reference">#</a></h2>
 <p>See <a _="," href="../examples/example-page/" target="_blank" title="open default grid example in new tab">Example Page</a></p>
-<p><strong>Markdown</strong>:</p>
+<h3 id="markdown">Markdown<a class="headerlink" href="#markdown" title="Anchor link to this section for reference">#</a></h3>
 <pre><code class="language-markdown">---
 tiles:
   - caption: '@petradr'
@@ -932,10 +931,9 @@ Maecenas facilisis id tortor volutpat fermentum. Integer volutpat arcu leo, sed 
 
 &lt;br&gt;
 </code></pre>
-<p><br></p>
 <h2 id="tiles-first">Tiles First<a class="headerlink" href="#tiles-first" title="Anchor link to this section for reference">#</a></h2>
 <p>See <a _="," href="../examples/images-only/" target="_blank" title="open tiles first example in new tab">Tiles First example</a></p>
-<p><strong>Markdown</strong>:</p>
+<h3 id="markdown_1">Markdown<a class="headerlink" href="#markdown_1" title="Anchor link to this section for reference">#</a></h3>
 <pre><code class="language-markdown">---
 show_tiles_first: true
 tiles:
@@ -947,8 +945,6 @@ tiles:
     img_src: ../../../img/picsum/143_200x200.jpeg
 ---
 
-&lt;br&gt;
-
 # Image Only Tiles 
 The tiles on this page do not have `link_*` attributes[^tile-reference].  They are rendered as a captioned images instead of linked images.
 
@@ -957,7 +953,6 @@ The tiles on this page are placed before the main page content.  This is because
 
 [^tile-reference]: see [Tile Reference](../tile.md)  
 
-&lt;br&gt;
 
 ## Markdown
 
@@ -973,15 +968,15 @@ tiles:
     img_src: ../../../img/picsum/143_200x200.jpeg
 ---
 </code></pre>
-<!-- no closing ``` because the snippet page ends in markdown -->
+<!-- no closing ``` code block because the snippet page ends in markdown code block -->
 </section>
 
-
+<section></section>
 <br>
 <aside>
     <p>
         <small>
-            <i>Page last updated 2023-01-21. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/tile-grid/grid.md">GitHub</a>.</i>
+            <i>Page last updated 2023-01-26. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/tile-grid/grid.md">GitHub</a>.</i>
         </small>
     </p>
 </aside>
