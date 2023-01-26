@@ -33,6 +33,10 @@ body {
     border-width: thin !important;
 }
 
+.terminal-mkdocs-pad-to-match-side-nav {
+    padding-top: calc(var(--global-space) * 2);
+}
+
 .terminal-mkdocs-tile-grid {
     display: grid;
     grid-gap: 1em;
