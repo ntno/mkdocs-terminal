@@ -101,6 +101,11 @@ Calling `super()` will include any Terminal for MkDocs features which are insert
 :   Wraps the built-in Search modal
 
 
+`site_lang`
+
+:   Wraps the HTML language attribute
+
+
 `before_markdown_content`
 
 :   Section before main markdown content
@@ -133,6 +138,7 @@ Calling `super()` will include any Terminal for MkDocs features which are insert
 | htmltitle               | main.html             | base.html                     |
 | search                  | main.html             | base.html                     |
 | search_modal            | main.html             | base.html                     |
+| site_lang               | main.html             | base.html                     |
 | before_markdown_content | partials/page.html    | partials/page-base.html       |
 | markdown_content        | partials/page.html    | partials/page-base.html       |
 | after_markdown_content  | partials/page.html    | partials/page-base.html       |
