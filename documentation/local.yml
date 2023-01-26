@@ -26,6 +26,7 @@ plugins:
 watch:
   - '../terminal/css'
   - '../terminal/partials'
+  - '../terminal/base.html'
   - '../terminal/macros'
   - '../terminal/pluglets/tile_grid/templates'
   - './mkdocs.yml'
