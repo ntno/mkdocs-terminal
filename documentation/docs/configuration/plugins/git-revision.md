@@ -3,7 +3,7 @@ The third-party [git-revision-date]{target="_blank"} plugin automatically adds t
 
 [git-revision-date]: https://github.com/zhaoterryy/mkdocs-git-revision-date-plugin
 [MkDocs Page Metadata]: https://www.mkdocs.org/user-guide/writing-your-docs/#meta-data
-[^mkdocs-page-meta]: see [MkDocs Page Metadata]{target="_blank"} for more information
+[^mkdocs-page-meta]: see [MkDocs Page Metadata]{target="_blank"} for more info
 
 # Built-in Support
 When the `git-revision-date` plugin is installed and enabled and the `revision.date` theme feature is enabled, Terminal for MkDocs will display the date of the most recent change to a page's source file on the rendered site page.  This component is added at the bottom of each page unless [page-specific hiding] is enabled.
@@ -19,7 +19,7 @@ When the `git-revision-date` plugin is installed and enabled and the `revision.d
 [page-specific hiding]: git-revision.md#advanced-configuration
 
 
-## Quick Setup
+# Quick Setup
 
 ## 1. Install Plugin
 Add the package to your `requirements.txt` file:
@@ -50,7 +50,7 @@ theme:
 ```
 <br>
 
-## Advanced Configuration
+# Advanced Configuration
 There are two revision-related theme features that can be individually enabled.  The example above only discusses `revision.date` as it is easier to configure without error.  
 
 The second revision-related theme feature is `revision.history`.  Enabling this theme feature will add a "See revision history..." note to the bottom of the page.  The link included in this note relies on MkDocs' [repo_url]{target="_blank"}, [repo_name]{target="_blank"}, and [edit_uri]{target="_blank"}/[edit_uri_template]{target="_blank"} settings.  
@@ -73,9 +73,9 @@ Currently the `revision.history` theme feature supports two repository hosts, [G
 [GitHub]: git-revision.md#github
 [Bitbucket]: git-revision.md#bitbucket
 
-#### GitHub
+## GitHub
 
-##### MkDocs project in root directory
+### MkDocs project in root directory
 ```yaml
 repo_url: https://github.com/ntno/ntno.net  
 edit_uri: edit/main/docs/
@@ -90,7 +90,7 @@ theme:
     - revision.history  
 ```
 
-##### MkDocs project in child 'documentation' directory
+### MkDocs project in child 'documentation' directory
 ```yaml
 repo_url: https://github.com/ntno/mkdocs-terminal
 edit_uri_template: https://github.com/ntno/mkdocs-terminal/edit/main/documentation/docs/{path}
@@ -105,8 +105,8 @@ theme:
     - revision.history  
 ```
 
-#### Bitbucket
-##### MkDocs project in root directory
+## Bitbucket
+### MkDocs project in root directory
 ```yaml
 repo_url: https://bitbucket.org/norganick/demo
 edit_uri_template: src/main/docs/{path}?mode=edit
@@ -123,7 +123,7 @@ theme:
 
 
 
-### Adding Repository Hosts
+## Adding Repository Hosts
 If your repository is not stored on GitHub or Bitbucket and you would like to use this feature please [submit a feature request]{target="_blank"} on GitHub.  
 
 You can further customize what revision information is included on the page by implementing your own `revision` template block.  See [Blocks] for more information.

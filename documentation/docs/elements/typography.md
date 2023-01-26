@@ -55,6 +55,6 @@ Note: requires the [pymdownx.mark extension]
 - ~~This was deleted~~
 ```
 
-[pymdownx.tilde extension]: ../../configuration/extensions/py-mdown-extensions/#caret-mark-tilde
-[pymdownx.caret extension]: ../../configuration/extensions/py-mdown-extensions/#caret-mark-tilde
-[pymdownx.mark extension]: ../../configuration/extensions/py-mdown-extensions/#caret-mark-tilde
+[pymdownx.tilde extension]: ../../configuration/extensions/pymdown-extensions/#caret-mark-tilde
+[pymdownx.caret extension]: ../../configuration/extensions/pymdown-extensions/#caret-mark-tilde
+[pymdownx.mark extension]: ../../configuration/extensions/pymdown-extensions/#caret-mark-tilde

@@ -54,7 +54,7 @@ See [Tiles First example]{target="_blank", title="open tiles first example in ne
 tile-grid/examples/images-only.md
 --8<--
 
-<!-- no closing ``` because the snippet page ends in markdown -->
+<!-- no closing ``` code block because the snippet page ends in markdown code block -->
 
 
 [Example Page]: examples/example-page.md

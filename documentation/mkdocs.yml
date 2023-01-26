@@ -23,8 +23,8 @@ nav:
       - '___Git Revision': 'configuration/plugins/git-revision.md'
       - '___Search': 'configuration/plugins/search.md'      
       - Extensions: 'configuration/extensions/index.md'
-      - Python Markdown: 'configuration/extensions/python-markdown.md'
-      - PyMdown Extensions: 'configuration/extensions/py-mdown-extensions.md'
+      - Markdown Extensions: 'configuration/extensions/python-markdown.md'
+      - PyMdown Extensions: 'configuration/extensions/pymdown-extensions.md'
       - '___Snippets': 'configuration/extensions/snippets.md'
     - Navigation:
         - Section Indexes: 'navigation/section-indexes.md'

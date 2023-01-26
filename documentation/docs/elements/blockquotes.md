@@ -2,6 +2,7 @@
 
 > Measuring programming progress by lines of code is like measuring aircraft building progress by weight.
 
+## Markdown
 ```markdown
 > Measuring programming progress by lines of code is like measuring aircraft building progress by weight.
 ```
@@ -18,7 +19,8 @@
   </blockquote>
 </section>
 
-```
+### HTML
+```html
 <section>
   <blockquote>
     <p>

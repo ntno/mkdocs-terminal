@@ -1,10 +1,11 @@
 # Links
 A link can be specified with markdown by putting the link's **display text** in square brackets followed by the link's **address** in parentheses.  There is no space in between the square brackets and the open parenthesis.
 
-## Simple Example
+# Simple Example
 
 [Home Page](https://ntno.github.io/mkdocs-terminal/)
 
+## Markdown
 ```markdown
 [Home Page](https://ntno.github.io/mkdocs-terminal/)
 ```
@@ -25,6 +26,8 @@ The `title="go to source code"` adds a on hover title to the link.
 
 [GitHub Repository](https://github.com/ntno/mkdocs-terminal){target="_blank", title="go to source code"}
 
+
+### Markdown
 ```markdown
 [GitHub Repository](https://github.com/ntno/mkdocs-terminal){target="_blank", title="go to source code"}
 ```

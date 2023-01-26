@@ -1,4 +1,4 @@
-<div class="btn-group" markdown>
+<div class="terminal-mkdocs-pad-to-match-side-nav" markdown>
 [Default](default.md) |
 [Gruvbox Dark](gruvbox-dark.md) |
 [Dark](dark.md) |

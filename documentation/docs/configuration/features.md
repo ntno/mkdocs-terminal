@@ -14,40 +14,42 @@ theme:
     - revision.history
 ```
 
-### navigation.side.hide  
+## navigation.side.hide  
 hides side panel on all site pages.  the side panel includes the [Side Navigation Menu](../configuration/index.md#side-navigation-menu) and the [Side Page Table of Contents](../configuration/index.md#page-table-of-contents).
 
-### navigation.side.indexes  
+## navigation.side.indexes  
 enables section links in the side navigation menu.  
 ignored if `navigation.side.hide` is set.  
 see [Section Indexes](../navigation/section-indexes.md) for details.  
 
-### navigation.side.toc.hide  
+## navigation.side.toc.hide  
 hides table of contents in side panel on all site pages.  
 ignored if `navigation.side.hide` is set.  
 see [Page Table of Contents](../configuration/index.md#page-table-of-contents) for more info. 
 
-### navigation.top.hide  
+## navigation.top.hide  
 hides top navigation on all site pages.  
 see [Top Navigation Menu](../configuration/index.md#top-navigation-menu) for more info.  
 
-### navigation.top.cursor_animation.hide  
+## navigation.top.cursor_animation.hide  
 hides the blinking cursor animation in the top nav.  
 ignored if `navigation.top.hide` is set.  
 
-### navigation.top.search_button.hide
+## navigation.top.search_button.hide
 hides the search button in the top nav.  
 ignored if `navigation.top.hide` is set. 
 
-### revision.date
+## revision.date
 enables the "Page last updated..." text at the bottom of the page.  requires [git-revision-date plugin setup].
 
-### revision.history
+## revision.history
 enables the "See revision history..." text at the bottom of the page.  requires [git-revision-date plugin setup] and additional [git-revision-date configuration].
 
 
 [git-revision-date plugin setup]: ../plugins/git-revision/
 [git-revision-date configuration]: ../plugins/git-revision/#advanced-configuration
+
+<hr>
 
 # Page Features
 
@@ -68,14 +70,14 @@ hide:
 [YAML Style Meta-Data]: https://www.mkdocs.org/user-guide/writing-your-docs/#yaml-style-meta-data
 [Terminal for MkDocs components]: ../#theme-components
 
-### hide: revision_date
+## hide: revision_date
 hides the "Page last updated" text at the bottom of the page.  ignored if `revision.date` Theme Feature is not enabled.  ignored if `git-revision-date` plugin is not enabled.  
 
-### hide: revision_history
+## hide: revision_history
 hides the "See revision history..." text at the bottom of the page.  ignored if `revision.history` Theme Feature is not enabled.  ignored if `git-revision-date` plugin is not enabled.  
 
-### hide: side_toc
+## hide: side_toc
 hides the table of contents in the side panel on the page.
 
-### hide: top_nav
+## hide: top_nav
 hides top navigation on the page.  
