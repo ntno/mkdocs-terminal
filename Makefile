@@ -56,6 +56,7 @@ clean-node:
 clean: clean-dist clean-node
 
 install-test-prereqs:
+	$(SUDO_FLAG) apt-get autoclean
 	$(SUDO_FLAG) apt-get update && $(SUDO_FLAG) apt install -y tidy
 
 install-test-requirements:	
