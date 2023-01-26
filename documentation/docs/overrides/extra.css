@@ -5,8 +5,3 @@ h4::before {
     content: "\A";
     white-space: pre;
   }
-
-/* padding to align before markdown content (link bars for example) */
-.pad_to_match_side_nav {
-  padding: calc(var(--global-space) * 2) 0 0;
-}
