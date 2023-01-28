@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.6">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.8">
      
     
     <meta name="author" content="ntno"> 
@@ -107,7 +107,7 @@
 
 <li property="itemListElement" typeof="ListItem">
     <a href="#" class="menu-item" data-toggle="modal" data-target="#mkdocs_search_modal" property="item" typeof="SearchAction">
-        <i class="fa fa-search"></i> <span property="name">Search</span>
+        <i aria-hidden="true" class="fa fa-search"></i> <span property="name">Search</span>
     </a>
     <meta property="position" content="3">
 </li>
@@ -913,7 +913,7 @@
     </div>
 
     
-    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="alertdialog" aria-modal="true" aria-labelledby="searchModalLabel">
     <div class="modal-dialog modal-lg" role="search">
         <div class="modal-content">
             <div class="modal-header">
@@ -921,10 +921,10 @@
                 <button type="button" class="close btn btn-default btn-ghost" data-dismiss="modal"><span aria-hidden="true">x</span><span class="sr-only">Close</span></button>
             </div>
             <div class="modal-body">
-                <p>Type to start searching</p>
+                <p id="searchInputLabel">Type to start searching</p>
                 <form>
                     <div class="form-group">
-                        <input type="search" class="form-control" aria-label="" placeholder="" id="mkdocs-search-query" title="Please enter search terms here">
+                        <input type="search" class="form-control" aria-labelledby="searchInputLabel" placeholder="" id="mkdocs-search-query" title="Please enter search terms here">
                     </div>
                 </form>
                 <div id="mkdocs-search-results" data-no-results-text="No document matches found"></div>
