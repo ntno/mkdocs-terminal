@@ -21,6 +21,7 @@ nav:
       - Blocks: 'configuration/blocks.md'
       - Plugins: 'configuration/plugins/index.md'
       - '___Git Revision': 'configuration/plugins/git-revision.md'
+      - '___Macros': 'configuration/plugins/macros.md'
       - '___Search': 'configuration/plugins/search.md'      
       - Extensions: 'configuration/extensions/index.md'
       - Markdown Extensions: 'configuration/extensions/python-markdown.md'
@@ -90,6 +91,9 @@ plugins:
         - configuration/palettes/pink.md#pink-palette
         - configuration/palettes/sans-dark.md#sans-dark-palette
         - configuration/palettes/sans.md#sans-palette
+  - macros:
+      modules: 
+        - mkdocs-terminal:terminal.pluglets.tile_grid.main
 
 ## deploy settings
 theme:
