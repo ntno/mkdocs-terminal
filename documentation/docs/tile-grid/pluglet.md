@@ -17,3 +17,8 @@ plugins:
 
 ## Usage
 `{{ tile_grid(page.meta) }}`
+
+
+## 4. Enable Built-In MkDocs
+
+[pluglets](https://mkdocs-macros-plugin.readthedocs.io/en/latest/pluglets/
