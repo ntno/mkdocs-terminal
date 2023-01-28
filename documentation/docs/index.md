@@ -21,7 +21,7 @@ In addition to simple, monospace styling, Terminal for MkDocs also provides:
 [Terminal for MkDocs on GitHub](https://github.com/ntno/mkdocs-terminal){target="_blank"}  
 [Terminal for MkDocs on PyPI](https://pypi.org/project/mkdocs-terminal/){target="_blank"}  
 [Terminal for MkDocs Documentation](https://ntno.github.io/mkdocs-terminal/){target="_blank"}  
-[MkDocs documentation](https://www.mkdocs.org/){target="_blank"}  
+[MkDocs Documentation](https://www.mkdocs.org/){target="_blank"}  
 
 
 ### License
