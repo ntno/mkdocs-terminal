@@ -1,4 +1,4 @@
-<div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+<div class="modal" id="mkdocs_search_modal" tabindex="-1" role="alertdialog" aria-modal="true" aria-labelledby="searchModalLabel">
     <div class="modal-dialog modal-lg" role="search">
         <div class="modal-content">
             <div class="modal-header">
@@ -6,10 +6,10 @@
                 <button type="button" class="close btn btn-default btn-ghost" data-dismiss="modal"><span aria-hidden="true">{{ search_modal_ns.close_text }}</span><span class="sr-only">{{ search_modal_ns.screen_reader_close_text }}</span></button>
             </div>
             <div class="modal-body">
-                <p>{{ search_modal_ns.instructions }}</p>
+                <p id="searchInputLabel">{{ search_modal_ns.instructions }}</p>
                 <form>
                     <div class="form-group">
-                        <input type="search" class="form-control" aria-label="{{ search_modal_ns.prompt }}" placeholder="{{ search_modal_ns.prompt }}" id="mkdocs-search-query" title="{{ search_modal_ns.tooltip }}">
+                        <input type="search" class="form-control" aria-labelledby="searchInputLabel" placeholder="{{ search_modal_ns.prompt }}" id="mkdocs-search-query" title="{{ search_modal_ns.tooltip }}">
                     </div>
                 </form>
                 <div id="mkdocs-search-results" data-no-results-text="{{ search_modal_ns.no_results }}"></div>
