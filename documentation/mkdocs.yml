@@ -94,6 +94,7 @@ plugins:
 ## deploy settings
 theme:
   name: terminal
+  custom_dir: theme_overrides
   features:
     - navigation.side.indexes
     - revision.date
