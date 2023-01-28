@@ -20,6 +20,10 @@ tiles:
 
 :   Defaults to `false`.  If `true`, tiles will be added to the final page above the main page content.  If `false` (or unspecified), tiles will be added to the final page below the main content.
 
+`show_tiles_inline`
+
+:   TODO
+
 `grid_id`
 
 :   ID to add to the grid's HTML for advanced styling. See [Override Styling] for example.
@@ -31,6 +35,9 @@ tiles:
 
 [Override Styling]: examples/override-styling.md
 
+
+## Markdown Captions
+TODO
 
 ## Default Tile Placement
 
