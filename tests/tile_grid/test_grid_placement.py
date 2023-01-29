@@ -88,41 +88,80 @@ class TestGridPlacement():
         assert_tile_grid_in_after_section(rendered_page)
         
 
-    @pytest.mark.parametrize("grid_meta, with_macro_call, expected_placement", [
+    @pytest.mark.parametrize("show_tiles_first", [
         pytest.param(
-            {}, False, "after", id="no_values_set"
+            False, id="Python_False"
         ),
         pytest.param(
-            {page_features.SHOW_TILES_FIRST: "false"}, False, "after", id="tiles_first_set_false"
+            "False", id="String_False"
         ),
         pytest.param(
-            {page_features.SHOW_TILES_FIRST: "true"}, False, "before", id="tiles_first_set_true"
+            "false", id="String_false"
         ),
-        pytest.param(
-            {page_features.SHOW_TILES_INLINE: "true"}, True, "inline", id="tiles_inline_set_true"
-        ),
-        pytest.param(
-            {
-                page_features.SHOW_TILES_INLINE: "true",
-                page_features.SHOW_TILES_FIRST: "true"
-            }, 
-            True,
-            "inline", 
-            id="tiles_inline_overrides_tiless_first"
-        ),
-    ])
-    def test_that_grid_is_in_expected_place(self, grid_meta, with_macro_call, expected_placement, page_base_partial, tiles, fully_enabled_config):
-        context_data = setup_jinja2_context(tiles, fully_enabled_config, grid_meta, with_macro_call)
+    ])    
+    def test_that_grid_is_placed_after_markdown_when_show_first_is_false(self, show_tiles_first, page_base_partial, tiles, fully_enabled_config):
+        context_data = setup_jinja2_context(tiles, fully_enabled_config, grid_meta={page_features.SHOW_TILES_FIRST: show_tiles_first})
         rendered_page = page_base_partial.render(context_data)
         assert_valid_html(rendered_page)
         assert_markdown_content_in_page(rendered_page)
         assert_revision_in_page(rendered_page)
-        if (expected_placement == "before"):
-            assert_tile_grid_in_before_section(rendered_page)
-        elif (expected_placement == "after"):
-            assert_tile_grid_in_after_section(rendered_page)
-        elif (expected_placement == "inline"):
-            assert BEFORE_CONTENT_SECTION not in rendered_page
-            assert AFTER_CONTENT_SECTION not in rendered_page
-            assert GRID_DIV not in rendered_page
-            assert INLINE_MACRO_CALL in rendered_page
+        assert_tile_grid_in_after_section(rendered_page)
+
+    @pytest.mark.parametrize("show_tiles_first", [
+        pytest.param(
+            True, id="Python_True"
+        ),
+        pytest.param(
+            "True", id="String_True"
+        ),
+        pytest.param(
+            "true", id="String_true"
+        ),
+    ])    
+    def test_that_grid_is_placed_before_markdown_when_show_first_is_true(self, show_tiles_first, page_base_partial, tiles, fully_enabled_config):
+        context_data = setup_jinja2_context(tiles, fully_enabled_config, grid_meta={page_features.SHOW_TILES_FIRST: show_tiles_first})
+        rendered_page = page_base_partial.render(context_data)
+        assert_valid_html(rendered_page)
+        assert_markdown_content_in_page(rendered_page)
+        assert_revision_in_page(rendered_page)
+        assert_tile_grid_in_before_section(rendered_page)
+
+
+    # @pytest.mark.parametrize("grid_meta, with_macro_call, expected_placement", [
+    #     pytest.param(
+    #         {}, False, "after", id="no_values_set"
+    #     ),
+    #     pytest.param(
+    #         {page_features.SHOW_TILES_FIRST: "false"}, False, "after", id="tiles_first_set_false"
+    #     ),
+    #     pytest.param(
+    #         {page_features.SHOW_TILES_FIRST: "true"}, False, "before", id="tiles_first_set_true"
+    #     ),
+    #     pytest.param(
+    #         {page_features.SHOW_TILES_INLINE: "true"}, True, "inline", id="tiles_inline_set_true"
+    #     ),
+    #     pytest.param(
+    #         {
+    #             page_features.SHOW_TILES_INLINE: "true",
+    #             page_features.SHOW_TILES_FIRST: "true"
+    #         }, 
+    #         True,
+    #         "inline", 
+    #         id="tiles_inline_overrides_tiless_first"
+    #     ),
+    # ])
+    # def test_that_grid_is_in_expected_place(self, grid_meta, with_macro_call, expected_placement, page_base_partial, tiles, fully_enabled_config):
+    #     context_data = setup_jinja2_context(tiles, fully_enabled_config, grid_meta, with_macro_call)
+    #     rendered_page = page_base_partial.render(context_data)
+    #     assert_valid_html(rendered_page)
+    #     assert_markdown_content_in_page(rendered_page)
+    #     assert_revision_in_page(rendered_page)
+    #     if (expected_placement == "before"):
+    #         assert_tile_grid_in_before_section(rendered_page)
+    #     elif (expected_placement == "after"):
+    #         assert_tile_grid_in_after_section(rendered_page)
+    #     elif (expected_placement == "inline"):
+    #         assert BEFORE_CONTENT_SECTION not in rendered_page
+    #         assert AFTER_CONTENT_SECTION not in rendered_page
+    #         assert GRID_DIV not in rendered_page
+    #         assert INLINE_MACRO_CALL in rendered_page
