@@ -1,6 +1,6 @@
-# from tests.utils.html import assert_valid_html
+from tests.utils.html import assert_valid_html
 # from tests.utils.filters import mock_markup_filter
-# from tests.interface import theme_plugins
+from tests.interface import page_features
 import pytest
 PAGE_BASE_PARTIAL_PATH = "partials/page-base.html"
 
@@ -8,6 +8,14 @@ PAGE_BASE_PARTIAL_PATH = "partials/page-base.html"
 @pytest.fixture
 def page_base_partial(env_with_terminal_loader):
     return env_with_terminal_loader.get_template(PAGE_BASE_PARTIAL_PATH)
+
+
+@pytest.fixture
+def tiles(minimal_linked_image_tile, minimal_link_tile, minimal_image_tile):
+    minimal_linked_image_tile.tile_id = "myLinkedImageTile"
+    minimal_link_tile.tile_id = "myLinkOnlyTile"
+    minimal_image_tile.tile_id = "myImageOnlyTile"
+    return [minimal_linked_image_tile, minimal_link_tile, minimal_image_tile]
 
 
 class TestGridPlacement():
@@ -20,22 +28,39 @@ class TestGridPlacement():
             {}, "after", id="default_values"
         ),
         pytest.param(
-            {"show_tiles_first": False}, "after", id="show_tiles_first_FALSE"
+            {page_features.SHOW_TILES_FIRST: False}, "after", id="show_last"
         ),
         pytest.param(
-            {"show_tiles_first": True}, "before", id="show_tiles_first_TRUE"
+            {page_features.SHOW_TILES_FIRST: True}, "before", id="show_first"
         ),
         pytest.param(
-            {"show_tiles_inline": True}, "inline", id="show_tiles_inline_TRUE"
+            {page_features.SHOW_TILES_INLINE: True}, "inline", id="show_inline"
         ),
         pytest.param(
             {
-                "show_tiles_inline": True,
-                "show_tiles_first": True
+                page_features.SHOW_TILES_INLINE: True,
+                page_features.SHOW_TILES_FIRST: True
             }, "inline", id="inline_overrides_first"
         ),
     ])
-    def test_that_grid_is_in_expected_place(self, grid_configuration, expected_placement):
+    def test_that_grid_is_in_expected_place(self, grid_configuration, expected_placement, page_base_partial, tiles):
         print(grid_configuration)
         print(expected_placement)
-        pass
+        context_data = {
+            "page": {
+                "content": "placeholder_markdown_content",
+                "meta": {
+                    "tiles": [tiles]
+                }
+            },
+            "config":{
+                "theme":{}
+            }
+        }
+        rendered_page = page_base_partial.render(context_data)
+        assert_valid_html(rendered_page)
+        assert "class=\"terminal-mkdocs-tile-grid \">" in rendered_page
+        assert "id=\"myLinkedImageTile\"" in rendered_page
+        assert "id=\"myLinkOnlyTile\"" in rendered_page
+        assert "id=\"myImageOnlyTile\"" in rendered_page
+
