@@ -1,5 +1,8 @@
-{% if page and page.meta %}       
-    {% set show_tiles_first = "true" if page.meta.show_tiles_first %}
+{% if page and page.meta %}
+    {% set show_tiles_inline = true if page.meta.show_tiles_inline is sameas true or page.meta.show_tiles_inline == "true" else false %}
+    {% set show_tiles_first = true if page.meta.show_tiles_first is sameas true or page.meta.show_tiles_first == "true" else false %}
+    {% set show_tiles_before = true if not show_tiles_inline and show_tiles_first else false %}
+    {% set show_tiles_after = true if not show_tiles_inline and not show_tiles_first else false %}
     {% if page.meta.hide %}
         {% set hide_git_revision_date = "true" if "git_revision_date" in page.meta.hide %}
     {% endif %}

@@ -18,7 +18,6 @@ theme:
 
 plugins:
   - terminal/md-to-html
-  - search
   - macros:
       verbose: true
       modules: 
