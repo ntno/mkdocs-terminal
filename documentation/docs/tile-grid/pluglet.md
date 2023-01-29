@@ -10,21 +10,59 @@ In order to affect what appears within the page's markdown content; i.e., inline
 
 //todo - figure here
 
-## Setup
-install `mkdocs-macros-plugin`.
-mkdocs.yml:
+# Setup
+Follow the instuctions in the [MkDocs Macros Plugin] documentation.  Then enable the Terminal for MkDocs Tile Grid Pluglet by adding  
+```text
+mkdocs-terminal:terminal.pluglets.tile_grid.main
+```  
+to the `modules` list option of the `macros` plugin:
 
-```
+```yaml
 plugins:
-  - md-to-html
+  - search
   - macros:
       modules: 
         - mkdocs-terminal:terminal.pluglets.tile_grid.main
 ```
 
-## Usage
-`{% raw %}{{ tile_grid(page.meta) }}{% endraw %}`
+# Usage
+
+## 1. Define Grid
+Defined your tile grid according to the [Tile Grid Overview].  
+
+[Tile Grid Overview]: ../
+
+## 2. Configure Grid
+Set `show_tiles_inline` to `true`.   
+
+## 3. Call Tile_Grid Macro
+Add a call to the `tile_grid` macro wherever on the page you would like the grid to be displayed:
+
+```markdown
+---
+show_tiles_inline: true
+tiles:
+  - caption: '@petradr'
+    img_src: ../../../img/picsum/167_200x200.jpeg
+    img_title: 'to Picsum homepage'
+    img_alt: 'close up of fallen leaves.'
+    link_href: https://picsum.photos/ 
+  - caption: 'Marcin Czerwinski'
+    img_src: ../../../img/picsum/127_200x200.jpeg
+    img_title: 'to Picsum homepage'
+    img_alt: 'close up of green moss on a log.'
+    link_href: https://picsum.photos/ 
+  - caption: "Steve Richey"
+    img_src: ../../../img/picsum/143_200x200.jpeg
+    img_title: 'to Picsum homepage'
+    img_alt: 'overhead of fallen leaves.'
+    link_href: https://picsum.photos/
+---
+
+# My Inline Grid
+{% raw %}{{ tile_grid(page.meta) }}{% endraw %}
+```
 
 
-## 4. Enable Built-In MkDocs
+
 
