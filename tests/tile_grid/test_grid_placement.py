@@ -34,25 +34,25 @@ class TestGridPlacement():
 
     @pytest.mark.parametrize("grid_configuration, with_macro_call, expected_placement", [
         pytest.param(
-            {}, False, "after", id="default_values"
+            {}, False, "after", id="no_values_set"
         ),
         pytest.param(
-            {page_features.SHOW_TILES_FIRST: False}, False, "after", id="show_last"
+            {page_features.SHOW_TILES_FIRST: "false"}, False, "after", id="tiles_first_set_false"
         ),
         pytest.param(
-            {page_features.SHOW_TILES_FIRST: True}, False, "before", id="show_first"
+            {page_features.SHOW_TILES_FIRST: "true"}, False, "before", id="tiles_first_set_true"
         ),
         pytest.param(
-            {page_features.SHOW_TILES_INLINE: True}, True, "inline", id="show_inline"
+            {page_features.SHOW_TILES_INLINE: "true"}, True, "inline", id="tiles_inline_set_true"
         ),
         pytest.param(
             {
-                page_features.SHOW_TILES_INLINE: True,
-                page_features.SHOW_TILES_FIRST: True
+                page_features.SHOW_TILES_INLINE: "true",
+                page_features.SHOW_TILES_FIRST: "true"
             }, 
             True,
             "inline", 
-            id="inline_overrides_first"
+            id="tiles_inline_overrides_tiless_first"
         ),
     ])
     def test_that_grid_is_in_expected_place(self, grid_configuration, with_macro_call, expected_placement, page_base_partial, tiles, fully_enabled_config):
@@ -82,9 +82,11 @@ class TestGridPlacement():
         if (expected_placement == "before"):
             assert before_content_indicator in rendered_page
             assert grid_indicator in rendered_page
+            assert after_content_indicator not in rendered_page
         elif (expected_placement == "after"):
             assert after_content_indicator in rendered_page
             assert grid_indicator in rendered_page
+            assert before_content_indicator not in rendered_page
         elif (expected_placement == "inline"):
             assert before_content_indicator not in rendered_page
             assert after_content_indicator not in rendered_page
