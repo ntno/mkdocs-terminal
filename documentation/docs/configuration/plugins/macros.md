@@ -48,3 +48,8 @@ A table with entries describing the MkDocs configuration for your site should be
 </section>
 
 
+## 4. Configuration
+
+See [MkDocs Macros Plugin]{target="_blank"} documentation for configuration options.
+
+[MkDocs Macros Plugin]: https://mkdocs-macros-plugin.readthedocs.io/en/latest/#configuration-of-the-plugin
