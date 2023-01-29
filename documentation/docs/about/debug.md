@@ -1,5 +1,5 @@
 ---
-show_tiles_first: true
+show_tiles_inline: true
 tiles:
   - caption: '*@petradr*'
     img_src: ../../img/picsum/167_200x200.jpeg
