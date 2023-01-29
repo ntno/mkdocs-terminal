@@ -1,6 +1,3 @@
----
-ignore_macros: true
----
 # Tile Grid Pluglet
 
 ## Setup
@@ -16,9 +13,9 @@ plugins:
 ```
 
 ## Usage
-`{{ tile_grid(page.meta) }}`
+`{% raw %}{{ tile_grid(page.meta) }}{% endraw %}`
 
 
 ## 4. Enable Built-In MkDocs
 
-[pluglets](https://mkdocs-macros-plugin.readthedocs.io/en/latest/pluglets/
+[pluglets]: https://mkdocs-macros-plugin.readthedocs.io/en/latest/pluglets/

@@ -1,6 +1,3 @@
----
-ignore_macros: true
----
 # Template Blocks
 
 In some situations you may want to include your own Jinja2 page templates.  Terminal for MkDocs supports overriding or extending the blocks listed in [Reference](blocks.md#overridable-blocks).  
@@ -48,11 +45,13 @@ You can add a custom banner above each page's content by adding the following th
 **file location**: ./overrides/partials/page.html  
 
 ```jinja2
+{% raw %}
 {% extends "partials/page-base.html" %}
 {%- block before_markdown_content %}
 {% include "partials/banner.html" %}
 {{ super() }}
 {%- endblock before_markdown_content %}
+{% endraw %}
 ```
 
 If you wanted to override higher level blocks[^block-levels] you would add them in `main.html`: 
@@ -63,7 +62,9 @@ If you wanted to override higher level blocks[^block-levels] you would add them 
 **file location**: ./overrides/main.html  
 
 ```jinja2
+{% raw %}
 {% extends "base.html" %}
+{% endraw %}
 ```
 
 Calling `super()` will include any Terminal for MkDocs features which are inserted before the main content (like the [Tile Grid] when `show_tiles_first` is set to `true`).
