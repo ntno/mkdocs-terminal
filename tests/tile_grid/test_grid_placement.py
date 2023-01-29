@@ -4,6 +4,11 @@ from tests.interface import page_features, theme_plugins, theme_features
 import pytest
 PAGE_BASE_PARTIAL_PATH = "partials/page-base.html"
 INLINE_MACRO_CALL = "{{ tile_grid(page.meta) }}"
+BEFORE_CONTENT_SECTION = "<section id=\"mkdocs-terminal-before-content\" class=\"terminal-mkdocs-pad-to-match-side-nav\">"
+CONTENT_SECTION = "<section id=\"mkdocs-terminal-content\">"
+AFTER_CONTENT_SECTION = "<section id=\"mkdocs-terminal-after-content\">"
+REVISION_SECTION = "<section id=\"mkdocs-terminal-revision\">"
+GRID_DIV = "<div class=\"terminal-mkdocs-tile-grid \">"
 
 @pytest.fixture
 def page_base_partial(env_with_terminal_loader):
@@ -30,9 +35,60 @@ def fully_enabled_config():
     return enabled_config
 
 
+def setup_jinja2_context(tiles, fully_enabled_config, grid_meta={}, include_macro_call=False):
+    tiles_meta = {"tiles": [tiles]}
+    revision_meta = {"revision_date": "revision_date_placeholder"}
+    page_meta = {**grid_meta, **tiles_meta, **revision_meta}
+    if(include_macro_call):
+        page_content = "markdown_content_placeholder\n    " + INLINE_MACRO_CALL
+    else:
+        page_content = "markdown_content_placeholder" 
+    context_data = {
+        "page": {
+            "content": page_content,
+            "meta": page_meta
+        },
+        **fully_enabled_config
+    }
+    return context_data
+
+
+def assert_markdown_content_in_page(html_fragment):
+    assert CONTENT_SECTION in html_fragment
+    assert "markdown_content_placeholder" in html_fragment
+
+
+def assert_revision_in_page(html_fragment):
+    assert REVISION_SECTION in html_fragment
+    assert "revision_date_placeholder" in html_fragment
+
+
+def assert_tile_grid_in_before_section(html_fragment):
+    assert BEFORE_CONTENT_SECTION in html_fragment
+    assert GRID_DIV in html_fragment
+    assert AFTER_CONTENT_SECTION not in html_fragment
+    # TODO - assert grid_indicator inside before_content section
+
+
+def assert_tile_grid_in_after_section(html_fragment):
+    assert AFTER_CONTENT_SECTION in html_fragment
+    assert GRID_DIV in html_fragment
+    assert BEFORE_CONTENT_SECTION not in html_fragment
+    # TODO - assert grid_indicator inside after_content section
+
+
 class TestGridPlacement():
 
-    @pytest.mark.parametrize("grid_configuration, with_macro_call, expected_placement", [
+    def test_that_grid_is_placed_after_markdown_by_default(self, page_base_partial, tiles, fully_enabled_config):
+        context_data = setup_jinja2_context(tiles, fully_enabled_config)
+        rendered_page = page_base_partial.render(context_data)
+        assert_valid_html(rendered_page)
+        assert_markdown_content_in_page(rendered_page)
+        assert_revision_in_page(rendered_page)
+        assert_tile_grid_in_after_section(rendered_page)
+        
+
+    @pytest.mark.parametrize("grid_meta, with_macro_call, expected_placement", [
         pytest.param(
             {}, False, "after", id="no_values_set"
         ),
@@ -55,39 +111,18 @@ class TestGridPlacement():
             id="tiles_inline_overrides_tiless_first"
         ),
     ])
-    def test_that_grid_is_in_expected_place(self, grid_configuration, with_macro_call, expected_placement, page_base_partial, tiles, fully_enabled_config):
-        tiles_meta = {"tiles": [tiles]}
-        revision_meta = {"revision_date": "revision_date_placeholder"}
-        page_meta = {**grid_configuration, **tiles_meta, **revision_meta}
-        if(with_macro_call):
-            page_content = "markdown_content_placeholder\n    " + INLINE_MACRO_CALL
-        else:
-            page_content = "markdown_content_placeholder" 
-        context_data = {
-            "page": {
-                "content": page_content,
-                "meta": page_meta
-            },
-            **fully_enabled_config
-        }
+    def test_that_grid_is_in_expected_place(self, grid_meta, with_macro_call, expected_placement, page_base_partial, tiles, fully_enabled_config):
+        context_data = setup_jinja2_context(tiles, fully_enabled_config, grid_meta, with_macro_call)
         rendered_page = page_base_partial.render(context_data)
         assert_valid_html(rendered_page)
-        assert "<section id=\"mkdocs-terminal-content\">" in rendered_page
-        assert "markdown_content_placeholder" in rendered_page
-        assert "<section id=\"mkdocs-terminal-revision\">" in rendered_page
-        assert "revision_date_placeholder" in rendered_page
-        before_content_indicator = "<section id=\"mkdocs-terminal-before-content\""
-        after_content_indicator = "<section id=\"mkdocs-terminal-after-content\">"
-        grid_indicator = "<div class=\"terminal-mkdocs-tile-grid \">"
+        assert_markdown_content_in_page(rendered_page)
+        assert_revision_in_page(rendered_page)
         if (expected_placement == "before"):
-            assert before_content_indicator in rendered_page
-            assert grid_indicator in rendered_page
-            assert after_content_indicator not in rendered_page
+            assert_tile_grid_in_before_section(rendered_page)
         elif (expected_placement == "after"):
-            assert after_content_indicator in rendered_page
-            assert grid_indicator in rendered_page
-            assert before_content_indicator not in rendered_page
+            assert_tile_grid_in_after_section(rendered_page)
         elif (expected_placement == "inline"):
-            assert before_content_indicator not in rendered_page
-            assert after_content_indicator not in rendered_page
-            assert grid_indicator not in rendered_page
+            assert BEFORE_CONTENT_SECTION not in rendered_page
+            assert AFTER_CONTENT_SECTION not in rendered_page
+            assert GRID_DIV not in rendered_page
+            assert INLINE_MACRO_CALL in rendered_page
