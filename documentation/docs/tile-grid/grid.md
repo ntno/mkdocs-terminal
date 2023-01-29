@@ -37,8 +37,6 @@ tiles:
 [Override Styling]: examples/override-styling.md
 [Tile Grid Pluglet]: pluglet.md
 
-## Markdown Captions
-TODO
 
 ## Default Tile Placement
 
