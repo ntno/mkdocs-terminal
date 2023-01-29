@@ -93,10 +93,7 @@ class TestGridPlacement():
             False, id="Python_False"
         ),
         pytest.param(
-            "False", id="String_False"
-        ),
-        pytest.param(
-            "false", id="String_false"
+            "false", id="YAML_false"
         ),
     ])    
     def test_that_grid_is_placed_after_markdown_when_show_first_is_false(self, show_tiles_first, page_base_partial, tiles, fully_enabled_config):
@@ -112,10 +109,7 @@ class TestGridPlacement():
             True, id="Python_True"
         ),
         pytest.param(
-            "True", id="String_True"
-        ),
-        pytest.param(
-            "true", id="String_true"
+            "true", id="YAML_true"
         ),
     ])    
     def test_that_grid_is_placed_before_markdown_when_show_first_is_true(self, show_tiles_first, page_base_partial, tiles, fully_enabled_config):
