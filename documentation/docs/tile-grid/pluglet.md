@@ -1,6 +1,6 @@
 # Tile Grid Pluglet Reference
 
-By default the Terminal for MkDocs tile grid is displayed using logic in the theme's templates.  These templates add components around the page's markdown content (for example, the side navigation menu or the latest git revision date for the page).
+By default the Terminal for MkDocs Tile Grid is displayed using logic in the theme's templates.  These templates add components around the page's markdown content (for example, the side navigation menu or the latest git revision date for the page).
 
 We can use the MkDocs Macros Plugin to affect what appears within the page's markdown content; i.e., inline.  This plugin, in combination with Terminal for MkDocs' built-in Tile Grid Pluglet, will render the tile grid within a page's markdown content instead of before or after the markdown content.
 
