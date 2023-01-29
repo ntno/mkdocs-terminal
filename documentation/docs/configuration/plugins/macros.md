@@ -2,7 +2,7 @@
 
 The third-party [macros]{target="_blank"} plugin transforms markdown pages into [jinja2]{target="_blank"} templates.  This allows you to create complex and feature-rich pages using variables, calls to custom functions, and filters.  
 
-You can write and publish your own functions to use with the plugin.  These functions are called macros.  You can also install macros written by others via pip.  Once a macro has been installed, it must be enabled in your MkDocs config before you can use it.
+You can write and publish your own functions to use in your markdown pages.  These functions are called macros.  You can also install macros written by others via pip.  Once a macro has been installed, it must be enabled in your MkDocs config before you can use it.
 
 [macros]: https://mkdocs-macros-plugin.readthedocs.io/en/latest/
 [jinja2]: https://jinja.palletsprojects.com/en/3.1.x/intro/
