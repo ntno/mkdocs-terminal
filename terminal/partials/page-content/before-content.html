@@ -1,3 +1,5 @@
 {% if show_tiles_first %}
-<section class="terminal-mkdocs-pad-to-match-side-nav">{% include "pluglets/tile_grid/templates/j2-partials/tiles.html" %}</section>
+<section id="mkdocs-terminal-before-content" class="terminal-mkdocs-pad-to-match-side-nav">
+{% include "pluglets/tile_grid/templates/j2-partials/tiles.html" %}
+</section>
 {% endif %}
