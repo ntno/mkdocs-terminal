@@ -77,7 +77,7 @@ file location: `.`
 filename: `mkdocs.yml`  
 
 ```
-site_name: tile grid demo
+site_name: Tile Grid Demo
 
 nav:
     - Home: 'index.md'
