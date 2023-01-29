@@ -18,10 +18,25 @@ theme:
 
 plugins:
   - terminal/md-to-html
-  - search
+  - git-revision-date
+  # - search
+  # - exclude-search:      
+  #     exclude:
+  #       - overrides
+  #       - about/coverage-report/*
+  #       - configuration/palettes/*
+  #       - elements/examples/*
+  #     ignore:
+  #       - configuration/palettes/index.md#theme-color-palettes
+  #       - configuration/palettes/dark.md#dark-palette
+  #       - configuration/palettes/default.md#default-palette
+  #       - configuration/palettes/gruvbox-dark.md#gruvbox-dark-palette
+  #       - configuration/palettes/pink.md#pink-palette
+  #       - configuration/palettes/sans-dark.md#sans-dark-palette
+  #       - configuration/palettes/sans.md#sans-palette
   - macros:
       verbose: true
-      modules: 
+      modules:
         - mkdocs-terminal:terminal.pluglets.tile_grid.main
 
 watch:

@@ -1,16 +1,16 @@
 # MkDocs Macros Plugin
 
-The third-party [macros]{target="_blank"} plugin transforms markdown pagess into jina2 templates.  This allows you to create more complex and feature-rich pages using variables, calls to cutom macros (functions), and filters.  
+The third-party [macros]{target="_blank"} plugin transforms markdown pages into [jinja2]{target="_blank"} templates.  This allows you to create more complex and feature-rich pages using variables, calls to custom functions, and filters.  
 
-You can write and publish your own macros or you can install others' macros via pip and enable in your MkDocs config.
+You can write and publish your own functions for the plugin.  These are called macros.  You can also install macros written by others via pip.  Once a macro has been installed, it musst be enabled in your MkDocs config before you can use it.
 
 [macros]: https://mkdocs-macros-plugin.readthedocs.io/en/latest/
-
+[jinja2]: https://jinja.palletsprojects.com/en/3.1.x/intro/
 
 # Quick Setup
 
 ## 1. Install Plugin
-Add the package to your `requirements.txt` file:
+Add the `mkdocs-macros-plugin` package to your `requirements.txt` file:
 
 ```text
 # MkDocs Plugins
@@ -22,7 +22,7 @@ Then run:  `pip install -r ./requirements.txt`
 
 ## 2. Enable Plugin
 
-Enable the Git Revision Date Plugin by adding `macros` to the `plugins` list in `mkdocs.yml`:
+Enable the MkDocs Macros Plugin by adding `macros` to the `plugins` list in `mkdocs.yml`:
 ```yaml
 plugins:
     - search
@@ -32,7 +32,12 @@ plugins:
 
 ## 3. Verify Setup
 
-Test that the plugin is working correctly by adding `{% raw %}{{ macros_info() }}{% endraw %}` to one of your documentation pages.  You should see a table with entries describing the MkDocs configuration for your site and details about the build environment:
+Test that the plugin is working correctly by calling the built-in info macro to one of your documentation pages:  
+```markdown
+# Test Page
+{% raw %}{{ macros_info() }}{% endraw %}
+```  
+You should see a table with entries describing the MkDocs configuration for your site and details about the build environment:
 
 <section markdown>
 <figure markdown>
