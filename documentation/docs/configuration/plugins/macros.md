@@ -1,8 +1,8 @@
 # MkDocs Macros Plugin
 
-The third-party [macros]{target="_blank"} plugin transforms markdown pages into [jinja2]{target="_blank"} templates.  This allows you to create more complex and feature-rich pages using variables, calls to custom functions, and filters.  
+The third-party [macros]{target="_blank"} plugin transforms markdown pages into [jinja2]{target="_blank"} templates.  This allows you to create complex and feature-rich pages using variables, calls to custom functions, and filters.  
 
-You can write and publish your own functions for the plugin.  These are called macros.  You can also install macros written by others via pip.  Once a macro has been installed, it musst be enabled in your MkDocs config before you can use it.
+You can write and publish your own functions to use with the plugin.  These functions are called macros.  You can also install macros written by others via pip.  Once a macro has been installed, it must be enabled in your MkDocs config before you can use it.
 
 [macros]: https://mkdocs-macros-plugin.readthedocs.io/en/latest/
 [jinja2]: https://jinja.palletsprojects.com/en/3.1.x/intro/
@@ -32,12 +32,13 @@ plugins:
 
 ## 3. Verify Setup
 
-Test that the plugin is working correctly by calling the built-in info macro to one of your documentation pages:  
+Test that the plugin is working correctly by calling the built-in info macro from one of your documentation pages:  
+
+**file**: macros-test.md  
 ```markdown
-# Test Page
 {% raw %}{{ macros_info() }}{% endraw %}
 ```  
-You should see a table with entries describing the MkDocs configuration for your site and details about the build environment:
+A table with entries describing the MkDocs configuration for your site should be rendered in place of the macro call:
 
 <section markdown>
 <figure markdown>
