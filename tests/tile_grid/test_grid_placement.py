@@ -14,19 +14,21 @@ def page_base_partial(env_with_terminal_loader):
 def tiles(minimal_linked_image_tile, minimal_link_tile, minimal_image_tile):
     return [minimal_linked_image_tile, minimal_link_tile, minimal_image_tile]
 
+
 @pytest.fixture
 def fully_enabled_config():
     enabled_config = {
-        "config":{
+        "config": {
             "plugins": [theme_plugins.REVISION],
-                "theme":{
-                    "features": [
-                        theme_features.SHOW_REVISION_DATE
-                    ]
-                }
+            "theme": {
+                "features": [
+                    theme_features.SHOW_REVISION_DATE
+                ]
             }
+        }
     }
     return enabled_config
+
 
 class TestGridPlacement():
 
@@ -73,11 +75,11 @@ class TestGridPlacement():
         before_content_indicator = "<section id=\"mkdocs-terminal-before-content\""
         after_content_indicator = "<section id=\"mkdocs-terminal-after-content\">"
         grid_indicator = "<div class=\"terminal-mkdocs-tile-grid \">"
-        if(expected_placement == "before"):
+        if (expected_placement == "before"):
             assert before_content_indicator in rendered_page
-        elif(expected_placement == "after"):
+        elif (expected_placement == "after"):
             assert after_content_indicator in rendered_page
-        elif(expected_placement == "inline"):
+        elif (expected_placement == "inline"):
             assert before_content_indicator not in rendered_page
             assert after_content_indicator not in rendered_page
         assert grid_indicator in rendered_page
