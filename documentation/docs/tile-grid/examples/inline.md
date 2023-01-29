@@ -18,10 +18,10 @@ tiles:
     link_href: https://picsum.photos/
 ---
 
-# Inline Tile Grid with Macro Plugin
+# My Page Content
 
-When `show_tiles_inline` is set to true, tiles will be rendered wherever the built-in pluglet is called.
+Aliquam eu augue hendrerit, bibendum felis sit amet, commodo lorem.
 
 {{ tile_grid(page.meta) }}
 
-See pluglet page for more info.
+Maecenas facilisis id tortor volutpat fermentum. Integer volutpat arcu leo, sed semper sapien facilisis ut. Nam ac tincidunt sem, eu gravida augue. Suspendisse varius facilisis rhoncus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam elementum vitae lacus a sodales. 
