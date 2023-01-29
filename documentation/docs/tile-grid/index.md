@@ -5,7 +5,7 @@ Terminal for MkDocs enables you to quickly create a grid of linked tiles.  Each 
 <section markdown>
 <figure markdown>
  <a href="examples/example-page">
-![Tile Grid Example](../img/tile-grid/overview-example.png){title="to tile grid example page"; alt="screenshot of web page with three square images in a row" .terminal-mkdocs-thin-border }
+![Tile Grid Example](../img/tile-grid/overview-example.png){title="to tile grid example page"; alt="web page with three square images in a row.  images appear after Lorem Ipsum text." .terminal-mkdocs-thin-border }
 </a>
 <figcaption>Tile Grid Example</figcaption>
 </figure>
