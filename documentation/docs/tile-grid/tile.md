@@ -48,11 +48,13 @@ A tile can represent an image, a link, or a linked image.
 
 `link_text`
 
-:   Text to display for a [link only] tile.  Ignored if `img_src` is specified.
+:   Text to display for a [link only] tile.  
+    Ignored if `img_src` is specified.
 
 `link_title`
 
-:   Text to display on hover.  Should not be used if `img_title` is already specified.
+:   Text to display on hover.  
+    Should not be used if `img_title` is already specified.
 
 `tile_id`
 
