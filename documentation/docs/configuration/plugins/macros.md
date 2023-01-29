@@ -1,7 +1,3 @@
----
-ignore_macros: true
----
-
 # MkDocs Macros Plugin
 
 The third-party [macros]{target="_blank"} plugin transforms markdown pagess into jina2 templates.  This allows you to create more complex and feature-rich pages using variables, calls to cutom macros (functions), and filters.  
@@ -36,7 +32,7 @@ plugins:
 
 ## 3. Verify Setup
 
-Test that the plugin is working correctly by adding `{{ macros_info() }}` to one of your documentation pages.  You should see a table with entries describing the MkDocs configuration for your site and details about the build environment:
+Test that the plugin is working correctly by adding `{% raw %}{{ macros_info() }}{% endraw %}` to one of your documentation pages.  You should see a table with entries describing the MkDocs configuration for your site and details about the build environment:
 
 <section markdown>
 <figure markdown>
