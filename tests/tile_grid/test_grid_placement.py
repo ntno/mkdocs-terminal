@@ -10,6 +10,7 @@ AFTER_CONTENT_SECTION = "<section id=\"mkdocs-terminal-after-content\">"
 REVISION_SECTION = "<section id=\"mkdocs-terminal-revision\">"
 GRID_DIV = "<div class=\"terminal-mkdocs-tile-grid \">"
 
+
 @pytest.fixture
 def page_base_partial(env_with_terminal_loader):
     return env_with_terminal_loader.get_template(PAGE_BASE_PARTIAL_PATH)
@@ -39,10 +40,10 @@ def setup_jinja2_context(tiles, fully_enabled_config, grid_meta={}, include_macr
     tiles_meta = {"tiles": [tiles]}
     revision_meta = {"revision_date": "revision_date_placeholder"}
     page_meta = {**grid_meta, **tiles_meta, **revision_meta}
-    if(include_macro_call):
+    if (include_macro_call):
         page_content = "markdown_content_placeholder\n    " + INLINE_MACRO_CALL
     else:
-        page_content = "markdown_content_placeholder" 
+        page_content = "markdown_content_placeholder"
     context_data = {
         "page": {
             "content": page_content,
@@ -86,7 +87,6 @@ class TestGridPlacement():
         assert_markdown_content_in_page(rendered_page)
         assert_revision_in_page(rendered_page)
         assert_tile_grid_in_after_section(rendered_page)
-        
 
     @pytest.mark.parametrize("show_tiles_first", [
         pytest.param(
@@ -95,7 +95,7 @@ class TestGridPlacement():
         pytest.param(
             "false", id="YAML_false"
         ),
-    ])    
+    ])
     def test_that_grid_is_placed_after_markdown_when_show_first_is_false(self, show_tiles_first, page_base_partial, tiles, fully_enabled_config):
         context_data = setup_jinja2_context(tiles, fully_enabled_config, grid_meta={page_features.SHOW_TILES_FIRST: show_tiles_first})
         rendered_page = page_base_partial.render(context_data)
@@ -111,7 +111,7 @@ class TestGridPlacement():
         pytest.param(
             "true", id="YAML_true"
         ),
-    ])    
+    ])
     def test_that_grid_is_placed_before_markdown_when_show_first_is_true(self, show_tiles_first, page_base_partial, tiles, fully_enabled_config):
         context_data = setup_jinja2_context(tiles, fully_enabled_config, grid_meta={page_features.SHOW_TILES_FIRST: show_tiles_first})
         rendered_page = page_base_partial.render(context_data)
@@ -119,7 +119,6 @@ class TestGridPlacement():
         assert_markdown_content_in_page(rendered_page)
         assert_revision_in_page(rendered_page)
         assert_tile_grid_in_before_section(rendered_page)
-
 
     @pytest.mark.parametrize("grid_meta, expected_placement", [
         pytest.param(
@@ -138,8 +137,8 @@ class TestGridPlacement():
             {
                 page_features.SHOW_TILES_INLINE: True,
                 page_features.SHOW_TILES_FIRST: True
-            }, 
-            "inline", 
+            },
+            "inline",
             id="tiles_first_set_true_and_inline_set_true_expect_inline"
         ),
     ])
