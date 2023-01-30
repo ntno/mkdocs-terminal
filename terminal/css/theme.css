@@ -1,4 +1,6 @@
 /*! Terminal for MkDocs | MIT License | github.com/ntno/mkdocs-terminal */
+
+
 /*! terminal.css 0.7.2  | MIT License | github.com/Gioni06/terminal.css */
 
 body {
@@ -41,17 +43,14 @@ body {
     display: grid;
     grid-gap: 1em;
     grid-template-rows: auto;
-    grid-template-columns: repeat(
-        auto-fit,
-        minmax(calc(var(--page-width) / 6), 1fr)
-    );
+    grid-template-columns: repeat( auto-fit, minmax(calc(var(--page-width) / 6), 1fr));
 }
 
 .terminal-mkdocs-tile {
     border: none !important;
 }
 
-.terminal-mkdocs-tile > figure > a {
+.terminal-mkdocs-tile>figure>a {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -67,20 +66,28 @@ body {
     border-color: var(--error-color);
     color: var(--error-color);
 }
-/* ***************************************************************** */
-/* Terminal.css Overrides */
+
+
 /* ***************************************************************** */
 
+
+/* Terminal.css Overrides */
+
+
+/* ***************************************************************** */
+
+
 /* don't display backticks on `code` items, just highlight */
+
 code::after,
 code::before {
     content: "" !important;
     display: inline;
 }
 
+
 /*! terminal.css | MIT License |  https://github.com/Gioni06/terminal.css/pull/36 */
-blockquote > *:last-child {
+
+blockquote>*:last-child {
     margin-bottom: 0;
 }
-  
-  
