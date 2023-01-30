@@ -51,7 +51,7 @@ hides the underline styling on links.  the underline text decoration on links is
 
 [git-revision-date plugin setup]: ../plugins/git-revision/
 [git-revision-date configuration]: ../plugins/git-revision/#advanced-configuration
-[non-color link indicator]: https://www.w3.org/TR/WCAG20-TECHS/G182.html
+[non-color link indicator]: https://www.w3.org/WAI/WCAG21/Techniques/general/G182.html
 <hr>
 
 # Page Features
