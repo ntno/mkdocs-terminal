@@ -12,6 +12,7 @@ theme:
     - navigation.top.search_button.hide
     - revision.date
     - revision.history
+    - style.links.underline.hide
 ```
 
 ## navigation.side.hide  
@@ -45,10 +46,12 @@ enables the "Page last updated..." text at the bottom of the page.  requires [gi
 ## revision.history
 enables the "See revision history..." text at the bottom of the page.  requires [git-revision-date plugin setup] and additional [git-revision-date configuration].
 
+## style.links.underline.hide
+hides the underline styling on links.  the underline text decoration on links is added to make the links identifiable without color vision.  if you choose to hide this styling you should consider adding an alternate [non-color link indicator]{target="_blank"}.    
 
 [git-revision-date plugin setup]: ../plugins/git-revision/
 [git-revision-date configuration]: ../plugins/git-revision/#advanced-configuration
-
+[non-color link indicator]: https://www.w3.org/TR/WCAG20-TECHS/G182.html
 <hr>
 
 # Page Features
