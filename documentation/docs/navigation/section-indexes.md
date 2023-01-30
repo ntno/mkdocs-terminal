@@ -3,7 +3,7 @@
 When the section index theme feature is enabled, documents can be directly attached to sections.  This is particularly useful for providing overview pages. 
 
 ## Example Scenario
-Let's say you have a site with 'Release Notes' and 'About' sections.  The 'Release Notes' section is nested inside the 'About' section and each section contains an overview page.
+Let's say you have a site with *Release Notes* and *About* documents.  The *Release Notes* documents are a subsection of the *About* section.  Both sections contain an overview page:
 
 <figure markdown>
 ```directory
@@ -18,19 +18,19 @@ Let's say you have a site with 'Release Notes' and 'About' sections.  The 'Relea
 │  │  ├─ license.md
 │  │  └─ contributing.md
 │  ├─ index.md                # Home
-│  └─ troubleshooting.md
+│  └─ help.md
 ├─ requirements.txt
 └─ mkdocs.yml
 ```
-<figcaption></figcaption>
+<figcaption markdown>The *Release Notes* section is inside the *About* section.<br>Each section has an overview page.</figcaption>
 </figure>
 
-## With Section Indexes
+## With Section Indexes Feature
 *About* and *Release Notes* are clickable in the side navigation.  The index page for the *About* section does not appear as a subpage of the *About* category:
 
 ![Section index pages enabled](../img/about_page_with_section_indexes.png){title="'About' and 'Release Notes' are clickable in the side navigation"; alt="'Release Notes' is rendered as a clickable link in the side navigation" .terminal-mkdocs-thin-border}
 
-## Without Section Indexes
+## Without Section Indexes Feature
 *About* and *Release Notes* are not clickable in the side navigation.  Instead, they are rendered as greyed out text.  The index page for the *About* section appears as a subpage of the *About* category:
 
 ![Section index pages enabled](../img/about_page_without_section_indexes.png){title="'About' and 'Release Notes' are not clickable in the side navigation"; alt="'Release Notes' is rendered as greyed out text in the side navigation" .terminal-mkdocs-thin-border}
