@@ -14,5 +14,13 @@
   #mkdocs-terminal-site-name.terminal-prompt::after {
       display: none;
   }
-</style> 
+</style>
+{%- endif -%}
+{% if 'style.links.underline.hide' in features -%}
+<!-- link underline override -->
+<style>
+#terminal-mkdocs-main-content a:not(.headerlink){
+    text-decoration: none;
+}
+</style>
 {%- endif -%}

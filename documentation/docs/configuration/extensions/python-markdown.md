@@ -105,34 +105,33 @@ markdown_extensions:
 
 The following configuration options are supported:
 
-[`permalink`](#+toc.permalink){ #+toc.permalink }
-
+`permalink`
 :   
     **Default**: `false`
 
     This option adds an anchor link containing the paragraph symbol (if `true`) or another custom symbol at the end of each headline, exactly like on the page you're currently viewing.
 
 
-[`permalink_title`](#+toc.permalink_title){ #+toc.permalink_title }
+`permalink_title`
 
 :   **Default**: `Permanent link`
 
     This option sets the title of the anchor link which is shown on hover and read by screen readers.  For accessibility reasons, it might be beneficial to change it to a more discernable name, stating that the anchor links to the section itself.  Ex: `Anchor link to this section for reference`
 
 
-[`toc_depth`](#+toc.toc_depth){ #+toc.toc_depth }
+`toc_depth`
 
 :   **Default**: `6` 
 
     Defines the range of levels to be included in the table of contents. This may be useful for project documentation with deeply structured headings to decrease the length of the table of contents, or to remove the table of contents altogether.  See [Table of Contents Example] for further discussion.
 
-[`baselevel`](#+toc.baselevel){ #+toc.baselevel }
+`baselevel`
 
 :   **Default**: `1` 
 
     Base level for headers.  See [Table of Contents Example] for further discussion.
 
-[`anchorlink`](#+toc.anchorlink){ #+toc.anchorlink }
+`anchorlink`
 
 :   **Default**: `false`
   

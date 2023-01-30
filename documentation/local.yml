@@ -12,6 +12,7 @@ theme:
     # - navigation.top.search_button.hide
     - revision.date
     - revision.history
+    # - style.links.underline.hide
   static_templates:
     - 404.html
     - about/coverage-report/index.html

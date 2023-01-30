@@ -24,24 +24,15 @@ See [Version Identification and Dependency Specification]{target="_blank"} for a
 
 |         Release          | Theme Status | Supported? |
 | :----------------------: | :----------: | :--------: |
+| [3.9.0]{target="_blank"} |    Alpha     |     no     |
 | [3.7.0]{target="_blank"} |    Alpha     |     no     |
 | [3.0.0]{target="_blank"} |    Alpha     |     no     |
 | [2.2.0]{target="_blank"} |    Alpha     |     no     |
-| [2.0.2]{target="_blank"} |    Alpha     |     no     |
-| [1.2.4]{target="_blank"} |    Alpha     |     no     |
-| [1.2.2]{target="_blank"} |    Alpha     |     no     |
-| [1.2.0]{target="_blank"} |    Alpha     |     no     |
-| [1.1.0]{target="_blank"} |    Alpha     |     no     |
-| [1.0.0]{target="_blank"} |    Alpha     |     no     |
+
 
 <br>
 
-  [1.0.0]: https://github.com/ntno/mkdocs-terminal/releases/tag/1.0.0
-  [1.1.0]: https://github.com/ntno/mkdocs-terminal/releases/tag/1.1.0
-  [1.2.0]: https://github.com/ntno/mkdocs-terminal/releases/tag/1.2.0
-  [1.2.2]: https://github.com/ntno/mkdocs-terminal/releases/tag/1.2.2
-  [1.2.4]: https://github.com/ntno/mkdocs-terminal/releases/tag/1.2.4
-  [2.0.2]: https://github.com/ntno/mkdocs-terminal/releases/tag/2.0.2
-  [2.2.0]: https://github.com/ntno/mkdocs-terminal/releases/tag/2.2.0
-  [3.0.0]: https://github.com/ntno/mkdocs-terminal/releases/tag/3.0.0
-  [3.7.0]: https://github.com/ntno/mkdocs-terminal/releases/tag/3.7.0
+[3.9.0]: https://github.com/ntno/mkdocs-terminal/releases/tag/3.9.0
+[3.7.0]: https://github.com/ntno/mkdocs-terminal/releases/tag/3.7.0
+[3.0.0]: https://github.com/ntno/mkdocs-terminal/releases/tag/3.0.0
+[2.2.0]: https://github.com/ntno/mkdocs-terminal/releases/tag/2.2.0
