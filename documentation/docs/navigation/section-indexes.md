@@ -48,6 +48,9 @@ Let's say you have a site with *Release Notes* and *About* documents.  The *Rele
 
 2. Add a page with the title 'Index' as a subpage in the `nav` config in `mkdocs.yml`:
 
+      <figure markdown>
+
+
         nav:
             - Home: 'index.md'
             - Troubleshooting: 'help.md'
@@ -60,5 +63,7 @@ Let's say you have a site with *Release Notes* and *About* documents.  The *Rele
                 - v1: 'about/release-notes/version-1.md'
                 - v2: 'about/release-notes/version-2.md'
 
+      <figcaption markdown>Use the page title 'Index' for section indexes.</figcaption>
+      </figure>
 
 
