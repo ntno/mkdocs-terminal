@@ -47,7 +47,8 @@ Terminal for MkDocs' Tile Grid relies on the *meta*[^mkdocs-page-meta] attribute
   - `npm install broken-link-checker -g`
   - `blc http://localhost:8080 -ro`
 - [YAML boolean syntax](https://yaml.org/spec/1.2.2/#10212-boolean)  
-  
+- [ascii directory tree generator](https://ascii-tree-generator.com/)
+
 ## regex
 ### linked image
 `<div .*? <figure(.)[^>]*? <a(.)*<img`
