@@ -42,6 +42,10 @@ Terminal for MkDocs' Tile Grid relies on the *meta*[^mkdocs-page-meta] attribute
 - [magic mock](https://docs.python.org/3/library/unittest.mock.html)  
 - [python debugger](https://www.geeksforgeeks.org/python-debugger-python-pdb/)  
 - [broken link chekcer](https://matthewsetter.com/writing-tools/npm-broken-link-checker/)  
+  - `docker container ls`
+  - `docker exec -it CONTAINER_ID /bin/bash`
+  - `npm install broken-link-checker -g`
+  - `blc http://localhost:8080 -ro`
 - [YAML boolean syntax](https://yaml.org/spec/1.2.2/#10212-boolean)  
   
 ## regex
