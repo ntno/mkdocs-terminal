@@ -6,8 +6,14 @@ body {
     padding-bottom: 50px;
 }
 
+/* underline links, not including heading anchors */
 #terminal-mkdocs-main-content a:not(.headerlink){
-    text-decoration: underline
+    text-decoration: underline;
+}
+
+/* do not underline button links */
+a.btn {
+    text-decoration: none !important;
 }
 
 .terminal-mkdocs-main-grid {
