@@ -16,11 +16,11 @@
   }
 </style>
 {%- endif -%}
-{% if 'style.underline_links' in features -%}
-<!-- link_underline override -->
+{% if 'style.links.underline.hide' in features -%}
+<!-- link underline override -->
 <style>
-  #terminal-mkdocs-main-content a:not(.headerlink){
-      text-decoration: underline
-  }
+#terminal-mkdocs-main-content a:not(.headerlink){
+    text-decoration: none;
+}
 </style>
 {%- endif -%}

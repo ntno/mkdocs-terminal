@@ -6,6 +6,10 @@ body {
     padding-bottom: 50px;
 }
 
+#terminal-mkdocs-main-content a:not(.headerlink){
+    text-decoration: underline
+}
+
 .terminal-mkdocs-main-grid {
     display: grid;
     grid-column-gap: 1.4em;
