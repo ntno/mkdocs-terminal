@@ -42,7 +42,7 @@ A table with entries describing the MkDocs configuration for your site should be
 
 <section markdown>
 <figure markdown>
-![Info Macro Output](../../img/macros/mkdocs_macros_config_info.png){alt="data table with entries corresponding to attributes in mkdocs.yml." .terminal-mkdocs-thin-border }
+![Info Macro Output](../../img/mkdocs-macros-config-info.png){alt="data table with entries corresponding to attributes in mkdocs.yml." .terminal-mkdocs-thin-border }
 <figcaption>Info Macro Output</figcaption>
 </figure>
 </section>
