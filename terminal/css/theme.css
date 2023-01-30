@@ -16,6 +16,12 @@ a.btn {
     text-decoration: none !important;
 }
 
+/* update visited link color */
+a:visited {
+    color: var(--primary-color-lightened);
+}
+
+
 .terminal-mkdocs-main-grid {
     display: grid;
     grid-column-gap: 1.4em;
