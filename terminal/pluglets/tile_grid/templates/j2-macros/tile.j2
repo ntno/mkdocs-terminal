@@ -24,9 +24,9 @@
             {%- endif -%}
             {%- if ns.has_link -%}
                 {% if ns.has_image %} 
-            </a>{% else %}{{ tile.link_text|default(tile.link_href, true) }}</a>{%- endif -%}
+            </a>{% else %}{{ tile.link_text|default(tile.link_href, true) }}</a>{%- endif %}
             {%- endif -%}
-            {%- if ns.has_caption %}
+            {%- if ns.has_caption -%}
                 {%- if use_markup %}
             <figcaption>{{ tile.caption|string|trim|markup }}</figcaption>
                 {% else %}
@@ -36,4 +36,4 @@
         </figure>
     </div>
 {%- endif -%}
-{%- endmacro -%}
+{% endmacro %}
