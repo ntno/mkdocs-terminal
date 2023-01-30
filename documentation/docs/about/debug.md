@@ -37,7 +37,6 @@ tiles:
                   <img src="../../img/picsum/167_200x200.jpeg" alt="close up image of fallen leaves" title="to Picsum homepage" > 
           </a>
           <figcaption><p><em>@petradr</em></p></figcaption>
-
       </figure>
   </div>
   <div class="terminal-mkdocs-tile ">
@@ -46,7 +45,6 @@ tiles:
                   <img src="../../img/picsum/127_200x200.jpeg" alt="close up image of green moss on a log" title="to Picsum homepage" > 
           </a>
           <figcaption><p>Marcin <strong>C</strong>zerwinski</p></figcaption>
-
       </figure>
   </div>
   <div class="terminal-mkdocs-tile ">
@@ -55,7 +53,6 @@ tiles:
                   <img src="../../img/picsum/143_200x200.jpeg" alt="overhead image of fallen leaves" title="to Picsum homepage" > 
           </a>
           <figcaption><p><a href="https://picsum.photos/">Steve Richey</a></p></figcaption>
-
       </figure>
   </div>
 </div>
