@@ -2,7 +2,28 @@
 
 When the section index theme feature is enabled, documents can be directly attached to sections.  This is particularly useful for providing overview pages. 
 
-## Examples
+## Example Scenario
+Let's say you have a site with 'Release Notes' and 'About' sections.  The 'Release Notes' section is nested inside the 'About' section and each section contains an overview page.
+
+<figure markdown>
+```directory
+.
+├─ docs/
+│  ├─ about/
+│  │  ├─ release-notes/
+│  │  │  ├─ index.md          # Release Notes Overview
+│  │  │  ├─ version-1.md
+│  │  │  └─ version-2.md
+│  │  ├─ index.md             # About Overview
+│  │  ├─ license.md
+│  │  └─ contributing.md
+│  ├─ index.md                # Home
+│  └─ troubleshooting.md
+├─ requirements.txt
+└─ mkdocs.yml
+```
+<figcaption></figcaption>
+</figure>
 
 ## With Section Indexes
 *About* and *Release Notes* are clickable in the side navigation.  The index page for the *About* section does not appear as a subpage of the *About* category:
@@ -15,7 +36,7 @@ When the section index theme feature is enabled, documents can be directly attac
 ![Section index pages enabled](../img/about_page_without_section_indexes.png){title="'About' and 'Release Notes' are not clickable in the side navigation"; alt="'Release Notes' is rendered as greyed out text in the side navigation" .terminal-mkdocs-thin-border}
 
 
-## Setup
+# Setup
 1. Add the `navigation.side.indexes` feature to the theme configuration in `mkdocs.yml`:
 
         
