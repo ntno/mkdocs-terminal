@@ -11,11 +11,9 @@
 {%- set custom_grid_css = page.meta.grid_css if page.meta.grid_css|string|length -%}
 {%- endif -%}
 {% if show_tiles %}
-<section>
-    <div {% if custom_grid_id %}id="{{ custom_grid_id }}" {% endif %}class="terminal-mkdocs-tile-grid {{ custom_grid_css }}">
-        {% for tile in page.meta.tiles %}
-        {{ tile_helper.make_tile( tile, use_markup ) }}
-        {%- endfor %}
-    </div>
-</section>
+<div {% if custom_grid_id %}id="{{ custom_grid_id }}" {% endif %}class="terminal-mkdocs-tile-grid {{ custom_grid_css }}">
+    {% for tile in page.meta.tiles %}
+    {{ tile_helper.make_tile( tile, use_markup ) }}
+    {%- endfor %}
+</div>
 {%- endif -%}
