@@ -61,3 +61,10 @@ class TestStyles():
         rendered_styles = styles_partial.render(context_data)
         assert "#mkdocs-terminal-site-name.terminal-prompt::after" in rendered_styles
         assert_valid_html(rendered_styles)
+
+    def test_that_override_css_added_when_link_underline_enabled(self, styles_partial, enabled_context):
+        enabled_context["config"]["theme"]["features"] = [theme_features.ENABLE_LINK_UNDERLINE]
+        context_data = enabled_context
+        rendered_styles = styles_partial.render(context_data)
+        assert "#terminal-mkdocs-main-content a:not(.headerlink)" in rendered_styles
+        assert_valid_html(rendered_styles)
