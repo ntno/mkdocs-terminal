@@ -5,17 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.8">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.10.0">
      
     
     <meta name="author" content="ntno"> 
     
-    <link rel="canonical" href="https://ntno.github.io/mkdocs-terminal/navigation/section-indexes/"><link rel="icon" type="image/png" sizes="192x192" href="../../img/android-chrome-192x192.png" />
-<link rel="icon" type="image/png" sizes="512x512" href="../../img/android-chrome-512x512.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="../../img/apple-touch-icon.png" />
-<link rel="shortcut icon" type="image/png" sizes="48x48" href="../../img/favicon.ico" />
-<link rel="icon" type="image/png" sizes="16x16" href="../../img/favicon-16x16.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png" />
+    <link rel="canonical" href="https://ntno.github.io/mkdocs-terminal/navigation/section-indexes/">
 
 
     
@@ -30,7 +25,12 @@
 <link href="../../css/theme.css" rel="stylesheet"> 
 <!-- default color palette-->
 <link href="../../css/palettes/default.css" rel="stylesheet">
-
+<!-- link underline override -->
+<style>
+#terminal-mkdocs-main-content a:not(.headerlink){
+    text-decoration: none;
+}
+</style>
 
     
     <link href="../../overrides/extra.css" rel="stylesheet">  
@@ -55,7 +55,6 @@
     <script src="../../search/main.js"></script>
     
 
-    
     
 </head>
 
@@ -263,6 +262,25 @@
             <a class="
 
     terminal-mkdocs-side-nav-item" href="../../configuration/plugins/git-revision/">___Git Revision</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../configuration/plugins/macros/">___Macros</a>
         
     
     </li>
@@ -520,6 +538,25 @@
         
             <a class="
 
+    terminal-mkdocs-side-nav-item" href="../../tile-grid/pluglet/">Pluglet Reference</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
     terminal-mkdocs-side-nav-item" href="../../tile-grid/examples/example-page/">Example</a>
         
     
@@ -578,6 +615,25 @@
             <a class="
 
     terminal-mkdocs-side-nav-item" href="../../tile-grid/examples/override-styling/">Override Styling</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../tile-grid/examples/inline/">Inline Example</a>
         
     
     </li>
@@ -864,17 +920,49 @@
 <nav>
     <ul>
         <li><a href="#section-indexes">Section Indexes</a></li>
-        <li><a href="#setup">Setup</a></li><li><a href="#examples">Examples</a></li><li><a href="#with-section-indexes">With Section Indexes</a></li><li><a href="#without-section-indexes">Without Section Indexes</a></li>
+        <li><a href="#example-scenario">Example Scenario</a></li><li><a href="#with-section-indexes-feature">With Section Indexes Feature</a></li><li><a href="#without-section-indexes-feature">Without Section Indexes Feature</a></li><li><a href="#setup">Setup</a></li>
+        
     </ul>
 </nav></aside>
-            <main>       
+            <main id="terminal-mkdocs-main-content">
+    
+    
+    
     
     
 
-<section>
+<section id="mkdocs-terminal-content">
     <h1 id="section-indexes">Section Indexes<a class="headerlink" href="#section-indexes" title="Anchor link to this section for reference">#</a></h1>
 <p>When the section index theme feature is enabled, documents can be directly attached to sections.  This is particularly useful for providing overview pages. </p>
-<h2 id="setup">Setup<a class="headerlink" href="#setup" title="Anchor link to this section for reference">#</a></h2>
+<h2 id="example-scenario">Example Scenario<a class="headerlink" href="#example-scenario" title="Anchor link to this section for reference">#</a></h2>
+<p>Let's say you have a site with <em>Release Notes</em> and <em>About</em> documents.  The <em>Release Notes</em> documents are a subsection of the <em>About</em> section.  Both sections contain an overview page:</p>
+<figure>
+<pre><code class="language-directory">.
+├─ docs/
+│  ├─ about/
+│  │  ├─ release-notes/
+│  │  │  ├─ index.md          # Release Notes Overview
+│  │  │  ├─ version-1.md
+│  │  │  └─ version-2.md
+│  │  ├─ index.md             # About Overview
+│  │  ├─ license.md
+│  │  └─ contributing.md
+│  ├─ index.md                # Home
+│  └─ help.md
+├─ requirements.txt
+└─ mkdocs.yml
+</code></pre>
+<figcaption>
+<p>The <em>Release Notes</em> section is inside the <em>About</em> section.<br>Each section has an overview page.</p>
+</figcaption>
+</figure>
+<h2 id="with-section-indexes-feature">With Section Indexes Feature<a class="headerlink" href="#with-section-indexes-feature" title="Anchor link to this section for reference">#</a></h2>
+<p><em>About</em> and <em>Release Notes</em> are clickable in the side navigation.  The index page for the <em>About</em> section does not appear as a subpage of the <em>About</em> category:</p>
+<p><img alt="'Release Notes' is rendered as a clickable link in the side navigation" class="terminal-mkdocs-thin-border" src="../../img/about_page_with_section_indexes.png" /></p>
+<h2 id="without-section-indexes-feature">Without Section Indexes Feature<a class="headerlink" href="#without-section-indexes-feature" title="Anchor link to this section for reference">#</a></h2>
+<p><em>About</em> and <em>Release Notes</em> are not clickable in the side navigation.  Instead, they are rendered as greyed out text.  The index page for the <em>About</em> section appears as a subpage of the <em>About</em> category:</p>
+<p><img alt="'Release Notes' is rendered as greyed out text in the side navigation" class="terminal-mkdocs-thin-border" src="../../img/about_page_without_section_indexes.png" /></p>
+<h1 id="setup">Setup<a class="headerlink" href="#setup" title="Anchor link to this section for reference">#</a></h1>
 <ol>
 <li>
 <p>Add the <code>navigation.side.indexes</code> feature to the theme configuration in <code>mkdocs.yml</code>:</p>
@@ -886,6 +974,7 @@
 </li>
 <li>
 <p>Add a page with the title 'Index' as a subpage in the <code>nav</code> config in <code>mkdocs.yml</code>:</p>
+<figure markdown>
 <pre><code>nav:
     - Home: 'index.md'
     - Troubleshooting: 'help.md'
@@ -898,26 +987,25 @@
         - v1: 'about/release-notes/version-1.md'
         - v2: 'about/release-notes/version-2.md'
 </code></pre>
+<p><figcaption markdown>Use the page title 'Index' for section indexes.</figcaption>
+  </figure></p>
 </li>
 </ol>
-<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Anchor link to this section for reference">#</a></h2>
-<h2 id="with-section-indexes">With Section Indexes<a class="headerlink" href="#with-section-indexes" title="Anchor link to this section for reference">#</a></h2>
-<p><em>About</em> and <em>Release Notes</em> are clickable in the side navigation.  The index page for the <em>About</em> section does not appear as a subpage of the <em>About</em> category:</p>
-<p><img _=";" alt="'Release Notes' is rendered as a clickable link in the side navigation" class="terminal-mkdocs-thin-border" src="../../img/about_page_with_section_indexes.png" title="'About' and 'Release Notes' are clickable in the side navigation" /></p>
-<h2 id="without-section-indexes">Without Section Indexes<a class="headerlink" href="#without-section-indexes" title="Anchor link to this section for reference">#</a></h2>
-<p><em>About</em> and <em>Release Notes</em> are not clickable in the side navigation.  Instead, they are rendered as greyed out text.  The index page for the <em>About</em> section appears as a subpage of the <em>About</em> category:</p>
-<p><img _=";" alt="'Release Notes' is rendered as greyed out text in the side navigation" class="terminal-mkdocs-thin-border" src="../../img/about_page_without_section_indexes.png" title="'About' and 'Release Notes' are not clickable in the side navigation" /></p>
 </section>
 
-<section></section>
+<section id="mkdocs-terminal-after-content">
+    
+</section>
+<section id="mkdocs-terminal-revision">
 <br>
 <aside>
     <p>
         <small>
-            <i>Page last updated 2023-01-27. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/navigation/section-indexes.md">GitHub</a>.</i>
+            <i>Page last updated 2023-01-30. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/navigation/section-indexes.md">GitHub</a>.</i>
         </small>
     </p>
 </aside>
+</section>
             </main>
         </div>
         <hr><footer>

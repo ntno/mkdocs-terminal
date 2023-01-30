@@ -5,17 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.8">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.10.0">
      
     
     <meta name="author" content="ntno"> 
     
-    <link rel="canonical" href="https://ntno.github.io/mkdocs-terminal/configuration/blocks/"><link rel="icon" type="image/png" sizes="192x192" href="../../img/android-chrome-192x192.png" />
-<link rel="icon" type="image/png" sizes="512x512" href="../../img/android-chrome-512x512.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="../../img/apple-touch-icon.png" />
-<link rel="shortcut icon" type="image/png" sizes="48x48" href="../../img/favicon.ico" />
-<link rel="icon" type="image/png" sizes="16x16" href="../../img/favicon-16x16.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png" />
+    <link rel="canonical" href="https://ntno.github.io/mkdocs-terminal/configuration/blocks/">
 
 
     
@@ -30,7 +25,12 @@
 <link href="../../css/theme.css" rel="stylesheet"> 
 <!-- default color palette-->
 <link href="../../css/palettes/default.css" rel="stylesheet">
-
+<!-- link underline override -->
+<style>
+#terminal-mkdocs-main-content a:not(.headerlink){
+    text-decoration: none;
+}
+</style>
 
     
     <link href="../../overrides/extra.css" rel="stylesheet">  
@@ -55,7 +55,6 @@
     <script src="../../search/main.js"></script>
     
 
-    
     
 </head>
 
@@ -261,6 +260,25 @@
             <a class="
 
     terminal-mkdocs-side-nav-item" href="../plugins/git-revision/">___Git Revision</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../plugins/macros/">___Macros</a>
         
     
     </li>
@@ -524,6 +542,25 @@
         
             <a class="
 
+    terminal-mkdocs-side-nav-item" href="../../tile-grid/pluglet/">Pluglet Reference</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
     terminal-mkdocs-side-nav-item" href="../../tile-grid/examples/example-page/">Example</a>
         
     
@@ -582,6 +619,25 @@
             <a class="
 
     terminal-mkdocs-side-nav-item" href="../../tile-grid/examples/override-styling/">Override Styling</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../tile-grid/examples/inline/">Inline Example</a>
         
     
     </li>
@@ -873,11 +929,14 @@
         
     </ul>
 </nav></aside>
-            <main>       
+            <main id="terminal-mkdocs-main-content">
+    
+    
+    
     
     
 
-<section>
+<section id="mkdocs-terminal-content">
     <h1 id="template-blocks">Template Blocks<a class="headerlink" href="#template-blocks" title="Anchor link to this section for reference">#</a></h1>
 <p>In some situations you may want to include your own Jinja2 page templates.  Terminal for MkDocs supports overriding or extending the blocks listed in <a href="./#overridable-blocks">Reference</a>.  </p>
 <p>This is an advanced MkDocs feature.  For an extended discussion, see the <a href="https://www.mkdocs.org/user-guide/customizing-your-theme/#using-the-theme-custom_dir" target="_blank">official MkDocs guide</a>.</p>
@@ -906,16 +965,20 @@
 <p>You can add a custom banner above each page's content by adding the following theme extension:</p>
 <p><strong>file name</strong>: page.html<br />
 <strong>file location</strong>: ./overrides/partials/page.html  </p>
-<pre><code class="language-jinja2">{% extends &quot;partials/page-base.html&quot; %}
+<pre><code class="language-jinja2">
+{% extends &quot;partials/page-base.html&quot; %}
 {%- block before_markdown_content %}
 {% include &quot;partials/banner.html&quot; %}
 {{ super() }}
 {%- endblock before_markdown_content %}
+
 </code></pre>
 <p>If you wanted to override higher level blocks<sup id="fnref:block-levels"><a class="footnote-ref" href="#fn:block-levels">1</a></sup> you would add them in <code>main.html</code>: </p>
 <p><strong>file name</strong>: main.html<br />
 <strong>file location</strong>: ./overrides/main.html  </p>
-<pre><code class="language-jinja2">{% extends &quot;base.html&quot; %}
+<pre><code class="language-jinja2">
+{% extends &quot;base.html&quot; %}
+
 </code></pre>
 <p>Calling <code>super()</code> will include any Terminal for MkDocs features which are inserted before the main content (like the <a href="../../tile-grid/">Tile Grid</a> when <code>show_tiles_first</code> is set to <code>true</code>).</p>
 <hr>
@@ -1044,15 +1107,19 @@
 </div>
 </section>
 
-<section></section>
+<section id="mkdocs-terminal-after-content">
+    
+</section>
+<section id="mkdocs-terminal-revision">
 <br>
 <aside>
     <p>
         <small>
-            <i>Page last updated 2023-01-27. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/configuration/blocks.md">GitHub</a>.</i>
+            <i>Page last updated 2023-01-30. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/configuration/blocks.md">GitHub</a>.</i>
         </small>
     </p>
 </aside>
+</section>
             </main>
         </div>
         <hr><footer>

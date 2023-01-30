@@ -10,12 +10,12 @@
     
     <meta name="author" content="ntno"> 
     
-    <link rel="canonical" href="https://ntno.github.io/mkdocs-terminal/tile-grid/tile/">
+    <link rel="canonical" href="https://ntno.github.io/mkdocs-terminal/tile-grid/pluglet/">
 
 
     
  
-<title>Tile Reference - Terminal for MkDocs</title>
+<title>Pluglet Reference - Terminal for MkDocs</title>
 
 
 <link href="../../css/fontawesome/css/fontawesome.min.css" rel="stylesheet">
@@ -503,9 +503,11 @@
                 <li class="terminal-mkdocs-side-nav-li-ul-li">
     
         
-        <span class="
+        
+            <a class="
 
-    terminal-mkdocs-side-nav-item--active">Tile Reference</span>
+    terminal-mkdocs-side-nav-item" href="../tile/">Tile Reference</a>
+        
     
     </li>
             
@@ -539,11 +541,9 @@
                 <li class="terminal-mkdocs-side-nav-li-ul-li">
     
         
-        
-            <a class="
+        <span class="
 
-    terminal-mkdocs-side-nav-item" href="../pluglet/">Pluglet Reference</a>
-        
+    terminal-mkdocs-side-nav-item--active">Pluglet Reference</span>
     
     </li>
             
@@ -923,8 +923,11 @@
 </div><hr>
 <nav>
     <ul>
-        <li><a href="#tile-reference">Tile Reference</a></li>
-        <li><a href="#required-attributes">Required Attributes</a></li><li><a href="#optional-attributes">Optional Attributes</a></li>
+        <li><a href="#tile-grid-pluglet-reference">Tile Grid Pluglet Reference</a></li>
+        <li><a href="#setup">Setup</a></li>
+        <li><a href="#usage">Usage</a></li>
+        <li><a href="#1-define-grid">1. Define Grid</a></li><li><a href="#2-configure-grid">2. Configure Grid</a></li><li><a href="#3-call-tile_grid-macro">3. Call tile_grid Macro</a></li><li><a href="#example">Example</a></li>
+        
     </ul>
 </nav></aside>
             <main id="terminal-mkdocs-main-content">
@@ -935,67 +938,74 @@
     
 
 <section id="mkdocs-terminal-content">
-    <h1 id="tile-reference">Tile Reference<a class="headerlink" href="#tile-reference" title="Anchor link to this section for reference">#</a></h1>
-<p>A tile can represent an image, a link, or a linked image.  </p>
-<h2 id="required-attributes">Required Attributes<a class="headerlink" href="#required-attributes" title="Anchor link to this section for reference">#</a></h2>
-<ul>
-<li><code>img_src</code> is required for a <a href="../examples/images-only/">image only</a> tile.  </li>
-<li><code>link_href</code> is required for a <a href="../examples/links-only/">link only</a> tile.  </li>
-<li><code>img_src</code> and <code>link_href</code> are required for a <a href="../examples/example-page/">linked image</a> tile.  </li>
-</ul>
-<h2 id="optional-attributes">Optional Attributes<a class="headerlink" href="#optional-attributes" title="Anchor link to this section for reference">#</a></h2>
-<dl>
-<dt><code>caption</code></dt>
-<dd>
-<p>The figure caption.</p>
-</dd>
-<dt><code>img_src</code></dt>
-<dd>
-<p>The image source.  Can be an external image like <code>https://picsum.photos/id/167/200/200</code> or an internal MkDocs image like <code>../img/palettes/default.png</code>.</p>
-</dd>
-<dt><code>img_title</code></dt>
-<dd>
-<p>Text to display on hover.</p>
-</dd>
-<dt><code>img_alt</code></dt>
-<dd>
-<p>Alternate text for the image if the image cannot be displayed.</p>
-</dd>
-<dt><code>img_width</code></dt>
-<dd>
-<p>Width to set on the image element.</p>
-</dd>
-<dt><code>img_height</code></dt>
-<dd>
-<p>Height to set on the image element.</p>
-</dd>
-<dt><code>link_href</code></dt>
-<dd>
-<p>Web page URL.  Can be an external web page or an internal MkDocs page like <code>./default/</code>.</p>
-</dd>
-<dt><code>link_target</code></dt>
-<dd>
-<p>Specifies where to open the linked webpage.  <code>_blank</code> will open the link in a new tab.  <code>_self</code> will open the link in the current window.</p>
-</dd>
-<dt><code>link_text</code></dt>
-<dd>
-<p>Text to display for a <a href="../examples/links-only/">link only</a> tile.<br />
-Ignored if <code>img_src</code> is specified.</p>
-</dd>
-<dt><code>link_title</code></dt>
-<dd>
-<p>Text to display on hover.<br />
-Should not be used if <code>img_title</code> is already specified.</p>
-</dd>
-<dt><code>tile_id</code></dt>
-<dd>
-<p>ID to add to the tile's HTML for advanced styling. See <a href="../examples/links-only/#extra-css">Extra CSS</a> for example.  </p>
-</dd>
-<dt><code>tile_css</code></dt>
-<dd>
-<p>CSS class to add to the tile's HTML for advanced styling. See <a href="../examples/links-only/#extra-css">Extra CSS</a> for example.  </p>
-</dd>
-</dl>
+    <h1 id="tile-grid-pluglet-reference">Tile Grid Pluglet Reference<a class="headerlink" href="#tile-grid-pluglet-reference" title="Anchor link to this section for reference">#</a></h1>
+<p>By default the Terminal for MkDocs Tile Grid is displayed using logic in the theme's templates.  These templates add components around the page's markdown content (for example, the side navigation menu or the latest git revision date for the page).</p>
+<p>We can use the MkDocs Macros Plugin to affect what appears within the page's markdown content; i.e., inline.  This plugin, in combination with Terminal for MkDocs' built-in Tile Grid Pluglet, will render the tile grid within a page's markdown content instead of before or after the markdown content.</p>
+<section>
+<figure>
+<p><a href="../examples/inline">
+<img _alt="web page with three square images in a row.  images appear in between Lorem Ipsum paragraphs." alt="Tile Grid Inline Example" class="terminal-mkdocs-thin-border" src="../../img/tile-grid/inline-example.png" title="to tile grid inline example page" />
+</a></p>
+<figcaption>Tile Grid Inline Example</figcaption>
+</figure>
+</section>
+<p><br></p>
+<h1 id="setup">Setup<a class="headerlink" href="#setup" title="Anchor link to this section for reference">#</a></h1>
+<p>Follow the instuctions in the <a href="../../configuration/plugins/macros">MkDocs Macros Plugin</a> reference.  Then enable the Terminal for MkDocs Tile Grid Pluglet by adding  </p>
+<pre><code class="language-text">mkdocs-terminal:terminal.pluglets.tile_grid.main
+</code></pre>
+<p>to the <code>modules</code> config option of the <code>macros</code> plugin:</p>
+<pre><code class="language-yaml">plugins:
+  - search
+  - macros:
+      modules: 
+        - mkdocs-terminal:terminal.pluglets.tile_grid.main
+</code></pre>
+<h1 id="usage">Usage<a class="headerlink" href="#usage" title="Anchor link to this section for reference">#</a></h1>
+<h2 id="1-define-grid">1. Define Grid<a class="headerlink" href="#1-define-grid" title="Anchor link to this section for reference">#</a></h2>
+<p>Define your tile grid according to the <a href="../">Tile Grid Overview</a>.  </p>
+<h2 id="2-configure-grid">2. Configure Grid<a class="headerlink" href="#2-configure-grid" title="Anchor link to this section for reference">#</a></h2>
+<p>Set <code>show_tiles_inline</code> to <code>true</code>.   </p>
+<h2 id="3-call-tile_grid-macro">3. Call tile_grid Macro<a class="headerlink" href="#3-call-tile_grid-macro" title="Anchor link to this section for reference">#</a></h2>
+<p>Add the following macro call wherever on the page you would like the grid to be displayed:</p>
+<pre><code class="language-markdown">{{ tile_grid(page.meta) }}
+</code></pre>
+<h1 id="example">Example<a class="headerlink" href="#example" title="Anchor link to this section for reference">#</a></h1>
+<pre><code class="language-markdown">---
+show_tiles_inline: true
+tiles:
+  - caption: '@petradr'
+    img_src: ../../../img/picsum/167_200x200.jpeg
+    img_title: 'to Picsum homepage'
+    img_alt: 'close up of fallen leaves.'
+    link_href: https://picsum.photos/ 
+  - caption: 'Marcin Czerwinski'
+    img_src: ../../../img/picsum/127_200x200.jpeg
+    img_title: 'to Picsum homepage'
+    img_alt: 'close up of green moss on a log.'
+    link_href: https://picsum.photos/ 
+  - caption: &quot;Steve Richey&quot;
+    img_src: ../../../img/picsum/143_200x200.jpeg
+    img_title: 'to Picsum homepage'
+    img_alt: 'overhead of fallen leaves.'
+    link_href: https://picsum.photos/
+---
+
+# My Page Content
+
+Aliquam eu augue hendrerit, bibendum felis sit amet, commodo lorem.
+
+Maecenas facilisis id tortor volutpat fermentum. Integer volutpat arcu leo, sed semper sapien facilisis ut. Nam ac tincidunt sem, eu gravida augue. Suspendisse varius facilisis rhoncus. 
+
+## Inline Example
+{{ tile_grid(page.meta) }}
+
+## Error Output
+{{ tile_grid(&quot;invalid&quot;) }}
+
+# Page Content Continued
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam elementum vitae lacus a sodales. 
+</code></pre>
 </section>
 
 <section id="mkdocs-terminal-after-content">
@@ -1006,7 +1016,7 @@ Should not be used if <code>img_title</code> is already specified.</p>
 <aside>
     <p>
         <small>
-            <i>Page last updated 2023-01-30. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/tile-grid/tile.md">GitHub</a>.</i>
+            <i>Page last updated 2023-01-30. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/tile-grid/pluglet.md">GitHub</a>.</i>
         </small>
     </p>
 </aside>

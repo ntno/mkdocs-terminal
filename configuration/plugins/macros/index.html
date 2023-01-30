@@ -5,57 +5,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.8">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.10.0">
      
     
     <meta name="author" content="ntno"> 
     
-    <link rel="canonical" href="https://ntno.github.io/mkdocs-terminal/about/debug/"><link rel="icon" type="image/png" sizes="192x192" href="../../img/android-chrome-192x192.png" />
-<link rel="icon" type="image/png" sizes="512x512" href="../../img/android-chrome-512x512.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="../../img/apple-touch-icon.png" />
-<link rel="shortcut icon" type="image/png" sizes="48x48" href="../../img/favicon.ico" />
-<link rel="icon" type="image/png" sizes="16x16" href="../../img/favicon-16x16.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png" />
+    <link rel="canonical" href="https://ntno.github.io/mkdocs-terminal/configuration/plugins/macros/">
 
 
     
  
-<title>Debug Markdown Experiments - Terminal for MkDocs</title>
+<title>___Macros - Terminal for MkDocs</title>
 
 
-<link href="../../css/fontawesome/css/fontawesome.min.css" rel="stylesheet">
-<link href="../../css/fontawesome/css/solid.min.css" rel="stylesheet">
-<link href="../../css/normalize.css" rel="stylesheet">
-<link href="../../css/terminal.css" rel="stylesheet">
-<link href="../../css/theme.css" rel="stylesheet"> 
+<link href="../../../css/fontawesome/css/fontawesome.min.css" rel="stylesheet">
+<link href="../../../css/fontawesome/css/solid.min.css" rel="stylesheet">
+<link href="../../../css/normalize.css" rel="stylesheet">
+<link href="../../../css/terminal.css" rel="stylesheet">
+<link href="../../../css/theme.css" rel="stylesheet"> 
 <!-- default color palette-->
-<link href="../../css/palettes/default.css" rel="stylesheet">
-
+<link href="../../../css/palettes/default.css" rel="stylesheet">
+<!-- link underline override -->
+<style>
+#terminal-mkdocs-main-content a:not(.headerlink){
+    text-decoration: none;
+}
+</style>
 
     
-    <link href="../../overrides/extra.css" rel="stylesheet">  
+    <link href="../../../overrides/extra.css" rel="stylesheet">  
     
     
 
     
     <!-- search css support -->
-<link href="../../css/search/bootstrap-modal.css" rel="stylesheet">
+<link href="../../../css/search/bootstrap-modal.css" rel="stylesheet">
 <!-- search scripts -->
 <script>
-    var base_url = "../..",
+    var base_url = "../../..",
     shortcuts = "{}";
 </script>
-<script src="../../js/jquery/jquery-1.10.1.min.js" defer></script>
-<script src="../../js/bootstrap/bootstrap.min.js" defer></script>
-<script src="../../js/mkdocs/base.js" defer></script>
+<script src="../../../js/jquery/jquery-1.10.1.min.js" defer></script>
+<script src="../../../js/bootstrap/bootstrap.min.js" defer></script>
+<script src="../../../js/mkdocs/base.js" defer></script>
     
     
     
     
-    <script src="../../search/main.js"></script>
+    <script src="../../../search/main.js"></script>
     
 
-    
     
 </head>
 
@@ -71,7 +70,7 @@
                 
                 
                 <li property="itemListElement" typeof="ListItem">
-                    <a href="../.." class="menu-item " property="item" typeof="WebPage">
+                    <a href="../../.." class="menu-item " property="item" typeof="WebPage">
                         <span property="name">Home</span>
                     </a>
                     <meta property="position" content="0">
@@ -87,7 +86,7 @@
                 
                 
                 <li property="itemListElement" typeof="ListItem">
-                    <a href="../../install/" class="menu-item " property="item" typeof="WebPage">
+                    <a href="../../../install/" class="menu-item " property="item" typeof="WebPage">
                         <span property="name">Install</span>
                     </a>
                     <meta property="position" content="1">
@@ -95,7 +94,7 @@
                 
                 
                 <li property="itemListElement" typeof="ListItem">
-                    <a href="../../releases/" class="menu-item " property="item" typeof="WebPage">
+                    <a href="../../../releases/" class="menu-item " property="item" typeof="WebPage">
                         <span property="name">Releases</span>
                     </a>
                     <meta property="position" content="2">
@@ -137,7 +136,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../..">Home</a>
+    terminal-mkdocs-side-nav-item" href="../../..">Home</a>
         
     
     
@@ -165,7 +164,7 @@
         
         <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../configuration/">Configuration</a>
+    terminal-mkdocs-side-nav-item--active" href="../../">Configuration</a>
     
     
         
@@ -187,7 +186,7 @@
         
         <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../configuration/palettes/">Color Palettes</a>
+    terminal-mkdocs-side-nav-item" href="../../palettes/">Color Palettes</a>
     
     </li>
             
@@ -205,26 +204,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../configuration/features/">Features</a>
-        
-    
-    </li>
-            
-        
-            
-            
-                
-                
-            
-
-             
-                <li class="terminal-mkdocs-side-nav-li-ul-li">
-    
-        
-        
-            <a class="
-
-    terminal-mkdocs-side-nav-item" href="../../configuration/blocks/">Blocks</a>
+    terminal-mkdocs-side-nav-item" href="../../features/">Features</a>
         
     
     </li>
@@ -243,7 +223,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../configuration/plugins/">Plugins</a>
+    terminal-mkdocs-side-nav-item" href="../../blocks/">Blocks</a>
         
     
     </li>
@@ -262,7 +242,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../configuration/plugins/git-revision/">___Git Revision</a>
+    terminal-mkdocs-side-nav-item" href="../">Plugins</a>
         
     
     </li>
@@ -281,7 +261,43 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../configuration/plugins/search/">___Search</a>
+    terminal-mkdocs-side-nav-item" href="../git-revision/">___Git Revision</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        <span class="
+
+    terminal-mkdocs-side-nav-item--active">___Macros</span>
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../search/">___Search</a>
         
     
     </li>
@@ -300,7 +316,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../configuration/extensions/">Extensions</a>
+    terminal-mkdocs-side-nav-item" href="../../extensions/">Extensions</a>
         
     
     </li>
@@ -319,7 +335,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../configuration/extensions/python-markdown/">Markdown Extensions</a>
+    terminal-mkdocs-side-nav-item" href="../../extensions/python-markdown/">Markdown Extensions</a>
         
     
     </li>
@@ -338,7 +354,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../configuration/extensions/pymdown-extensions/">PyMdown Extensions</a>
+    terminal-mkdocs-side-nav-item" href="../../extensions/pymdown-extensions/">PyMdown Extensions</a>
         
     
     </li>
@@ -357,7 +373,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../configuration/extensions/snippets/">___Snippets</a>
+    terminal-mkdocs-side-nav-item" href="../../extensions/snippets/">___Snippets</a>
         
     
     </li>
@@ -416,7 +432,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../navigation/section-indexes/">Section Indexes</a>
+    terminal-mkdocs-side-nav-item" href="../../../navigation/section-indexes/">Section Indexes</a>
         
     
     </li>
@@ -435,7 +451,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../navigation/toc/">Table of Contents</a>
+    terminal-mkdocs-side-nav-item" href="../../../navigation/toc/">Table of Contents</a>
         
     
     </li>
@@ -467,7 +483,7 @@
         
         <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../tile-grid/">Tile Grid</a>
+    terminal-mkdocs-side-nav-item" href="../../../tile-grid/">Tile Grid</a>
     
     
         
@@ -488,7 +504,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../tile-grid/tile/">Tile Reference</a>
+    terminal-mkdocs-side-nav-item" href="../../../tile-grid/tile/">Tile Reference</a>
         
     
     </li>
@@ -507,7 +523,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../tile-grid/grid/">Grid Reference</a>
+    terminal-mkdocs-side-nav-item" href="../../../tile-grid/grid/">Grid Reference</a>
         
     
     </li>
@@ -526,7 +542,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../tile-grid/examples/example-page/">Example</a>
+    terminal-mkdocs-side-nav-item" href="../../../tile-grid/pluglet/">Pluglet Reference</a>
         
     
     </li>
@@ -545,7 +561,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../tile-grid/examples/images-only/">Image Only</a>
+    terminal-mkdocs-side-nav-item" href="../../../tile-grid/examples/example-page/">Example</a>
         
     
     </li>
@@ -564,7 +580,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../tile-grid/examples/links-only/">Link Only</a>
+    terminal-mkdocs-side-nav-item" href="../../../tile-grid/examples/images-only/">Image Only</a>
         
     
     </li>
@@ -583,7 +599,45 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../tile-grid/examples/override-styling/">Override Styling</a>
+    terminal-mkdocs-side-nav-item" href="../../../tile-grid/examples/links-only/">Link Only</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../../tile-grid/examples/override-styling/">Override Styling</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../../tile-grid/examples/inline/">Inline Example</a>
         
     
     </li>
@@ -642,7 +696,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../elements/blockquotes/">Blockquotes</a>
+    terminal-mkdocs-side-nav-item" href="../../../elements/blockquotes/">Blockquotes</a>
         
     
     </li>
@@ -661,7 +715,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../elements/buttons/">Buttons</a>
+    terminal-mkdocs-side-nav-item" href="../../../elements/buttons/">Buttons</a>
         
     
     </li>
@@ -680,7 +734,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../elements/definitions/">Definitions</a>
+    terminal-mkdocs-side-nav-item" href="../../../elements/definitions/">Definitions</a>
         
     
     </li>
@@ -699,7 +753,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../elements/figure/">Figures</a>
+    terminal-mkdocs-side-nav-item" href="../../../elements/figure/">Figures</a>
         
     
     </li>
@@ -718,7 +772,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../elements/footnotes/">Footnotes</a>
+    terminal-mkdocs-side-nav-item" href="../../../elements/footnotes/">Footnotes</a>
         
     
     </li>
@@ -737,7 +791,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../elements/links/">Links</a>
+    terminal-mkdocs-side-nav-item" href="../../../elements/links/">Links</a>
         
     
     </li>
@@ -756,7 +810,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../elements/lists/">Lists</a>
+    terminal-mkdocs-side-nav-item" href="../../../elements/lists/">Lists</a>
         
     
     </li>
@@ -775,7 +829,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../elements/table/">Tables</a>
+    terminal-mkdocs-side-nav-item" href="../../../elements/table/">Tables</a>
         
     
     </li>
@@ -794,7 +848,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../elements/tooltips/">Tooltips</a>
+    terminal-mkdocs-side-nav-item" href="../../../elements/tooltips/">Tooltips</a>
         
     
     </li>
@@ -813,7 +867,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../elements/typography/">Typography</a>
+    terminal-mkdocs-side-nav-item" href="../../../elements/typography/">Typography</a>
         
     
     </li>
@@ -836,7 +890,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../install/">Install</a>
+    terminal-mkdocs-side-nav-item" href="../../../install/">Install</a>
         
     
     
@@ -855,7 +909,7 @@
         
             <a class="
 
-    terminal-mkdocs-side-nav-item" href="../../releases/">Releases</a>
+    terminal-mkdocs-side-nav-item" href="../../../releases/">Releases</a>
         
     
     
@@ -869,63 +923,64 @@
 </div><hr>
 <nav>
     <ul>
-        <li><a href="#debug-markdown-experiments">Debug Markdown Experiments</a></li>
-        <li><a href="#incorrect-usage">incorrect usage</a></li><li><a href="#correct-usage">correct usage</a></li>
+        <li><a href="#mkdocs-macros-plugin">MkDocs Macros Plugin</a></li>
+        <li><a href="#quick-setup">Quick Setup</a></li>
+        <li><a href="#1-install-plugin">1. Install Plugin</a></li><li><a href="#2-enable-plugin">2. Enable Plugin</a></li><li><a href="#3-verify-setup">3. Verify Setup</a></li><li><a href="#4-configuration">4. Configuration</a></li>
     </ul>
 </nav></aside>
-            <main>       
+            <main id="terminal-mkdocs-main-content">
+    
+    
+    
     
     
 
-<section class="terminal-mkdocs-pad-to-match-side-nav">
+<section id="mkdocs-terminal-content">
+    <h1 id="mkdocs-macros-plugin">MkDocs Macros Plugin<a class="headerlink" href="#mkdocs-macros-plugin" title="Anchor link to this section for reference">#</a></h1>
+<p>The third-party <a href="https://mkdocs-macros-plugin.readthedocs.io/en/latest/" target="_blank">macros</a> plugin transforms markdown pages into <a href="https://jinja.palletsprojects.com/en/3.1.x/intro/" target="_blank">jinja2</a> templates.  This allows you to create complex and feature-rich pages using variables, calls to custom functions, and filters.  </p>
+<p>You can write and publish your own functions to use in your markdown pages.  These functions are called macros.  You can also install macros written by others via pip.  Once a macro has been installed, it must be enabled in your MkDocs config before you can use it.</p>
+<h1 id="quick-setup">Quick Setup<a class="headerlink" href="#quick-setup" title="Anchor link to this section for reference">#</a></h1>
+<h2 id="1-install-plugin">1. Install Plugin<a class="headerlink" href="#1-install-plugin" title="Anchor link to this section for reference">#</a></h2>
+<p>Add the <code>mkdocs-macros-plugin</code> package to your <code>requirements.txt</code> file:</p>
+<pre><code class="language-text"># MkDocs Plugins
+mkdocs-macros-plugin
+</code></pre>
+<p>Then run:  <code>pip install -r ./requirements.txt</code></p>
+<h2 id="2-enable-plugin">2. Enable Plugin<a class="headerlink" href="#2-enable-plugin" title="Anchor link to this section for reference">#</a></h2>
+<p>Enable the MkDocs Macros Plugin by adding <code>macros</code> to the <code>plugins</code> list in <code>mkdocs.yml</code>:</p>
+<pre><code class="language-yaml">plugins:
+    - search
+    - macros
+</code></pre>
+<h2 id="3-verify-setup">3. Verify Setup<a class="headerlink" href="#3-verify-setup" title="Anchor link to this section for reference">#</a></h2>
+<p>Test that the plugin is working correctly by calling the built-in info macro from one of your documentation pages:  </p>
+<p><strong>file</strong>: macros-test.md  </p>
+<pre><code class="language-markdown">{{ macros_info() }}
+</code></pre>
+<p>A table with entries describing the MkDocs configuration for your site should be rendered in place of the macro call:</p>
 <section>
-    <div class="terminal-mkdocs-tile-grid ">
-        
-        <div class="terminal-mkdocs-tile ">
-            <figure>
-                <a  href="https://picsum.photos/" > 
-                        <img src="../../img/picsum/167_200x200.jpeg" alt="close up image of fallen leaves" title="to Picsum homepage" > 
-                </a>
-                <figcaption><p><em>@petradr</em></p></figcaption>
-                    
-            </figure>
-        </div>
-        <div class="terminal-mkdocs-tile ">
-            <figure>
-                <a  href="https://picsum.photos/" > 
-                        <img src="../../img/picsum/127_200x200.jpeg" alt="close up image of green moss on a log" title="to Picsum homepage" > 
-                </a>
-                <figcaption><p>Marcin <strong>C</strong>zerwinski</p></figcaption>
-                    
-            </figure>
-        </div>
-        <div class="terminal-mkdocs-tile ">
-            <figure>
-                <a  href="https://picsum.photos/" > 
-                        <img src="../../img/picsum/143_200x200.jpeg" alt="overhead image of fallen leaves" title="to Picsum homepage" > 
-                </a>
-                <figcaption><p><a href="https://picsum.photos/">Steve Richey</a></p></figcaption>
-                    
-            </figure>
-        </div>
-    </div>
-</section></section>
-
-<section>
-    <h1 id="debug-markdown-experiments">Debug Markdown Experiments<a class="headerlink" href="#debug-markdown-experiments" title="Anchor link to this section for reference">#</a></h1>
-<h2 id="incorrect-usage">incorrect usage<a class="headerlink" href="#incorrect-usage" title="Anchor link to this section for reference">#</a></h2>
-<p>{{ tile_grid("sdf") }}</p>
-<h2 id="correct-usage">correct usage<a class="headerlink" href="#correct-usage" title="Anchor link to this section for reference">#</a></h2>
-<p>{{ tile_grid(page.meta) }}</p>
+<figure>
+<p><img alt="data table with entries corresponding to attributes in mkdocs.yml." class="terminal-mkdocs-thin-border" src="../../../img/macros/mkdocs-macros-config-info.png" /></p>
+<figcaption>Info Macro Output</figcaption>
+</figure>
 </section>
+<h2 id="4-configuration">4. Configuration<a class="headerlink" href="#4-configuration" title="Anchor link to this section for reference">#</a></h2>
+<p>See <a href="https://mkdocs-macros-plugin.readthedocs.io/en/latest/#configuration-of-the-plugin" target="_blank">MkDocs Macros Plugin</a> documentation for configuration options.</p>
+</section>
+
+<section id="mkdocs-terminal-after-content">
+    
+</section>
+<section id="mkdocs-terminal-revision">
 <br>
 <aside>
     <p>
         <small>
-            <i>Page last updated 2023-01-27. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/about/debug.md">GitHub</a>.</i>
+            <i>Page last updated 2023-01-30. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/configuration/plugins/macros.md">GitHub</a>.</i>
         </small>
     </p>
 </aside>
+</section>
             </main>
         </div>
         <hr><footer>

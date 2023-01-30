@@ -5,17 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.8">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.10.0">
      
     
     <meta name="author" content="ntno"> 
     
-    <link rel="canonical" href="https://ntno.github.io/mkdocs-terminal/configuration/features/"><link rel="icon" type="image/png" sizes="192x192" href="../../img/android-chrome-192x192.png" />
-<link rel="icon" type="image/png" sizes="512x512" href="../../img/android-chrome-512x512.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="../../img/apple-touch-icon.png" />
-<link rel="shortcut icon" type="image/png" sizes="48x48" href="../../img/favicon.ico" />
-<link rel="icon" type="image/png" sizes="16x16" href="../../img/favicon-16x16.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png" />
+    <link rel="canonical" href="https://ntno.github.io/mkdocs-terminal/configuration/features/">
 
 
     
@@ -30,7 +25,12 @@
 <link href="../../css/theme.css" rel="stylesheet"> 
 <!-- default color palette-->
 <link href="../../css/palettes/default.css" rel="stylesheet">
-
+<!-- link underline override -->
+<style>
+#terminal-mkdocs-main-content a:not(.headerlink){
+    text-decoration: none;
+}
+</style>
 
     
     <link href="../../overrides/extra.css" rel="stylesheet">  
@@ -55,7 +55,6 @@
     <script src="../../search/main.js"></script>
     
 
-    
     
 </head>
 
@@ -261,6 +260,25 @@
             <a class="
 
     terminal-mkdocs-side-nav-item" href="../plugins/git-revision/">___Git Revision</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../plugins/macros/">___Macros</a>
         
     
     </li>
@@ -524,6 +542,25 @@
         
             <a class="
 
+    terminal-mkdocs-side-nav-item" href="../../tile-grid/pluglet/">Pluglet Reference</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
     terminal-mkdocs-side-nav-item" href="../../tile-grid/examples/example-page/">Example</a>
         
     
@@ -582,6 +619,25 @@
             <a class="
 
     terminal-mkdocs-side-nav-item" href="../../tile-grid/examples/override-styling/">Override Styling</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../tile-grid/examples/inline/">Inline Example</a>
         
     
     </li>
@@ -868,15 +924,18 @@
 <nav>
     <ul>
         <li><a href="#theme-features">Theme Features</a></li>
-        <li><a href="#navigationsidehide">navigation.side.hide</a></li><li><a href="#navigationsideindexes">navigation.side.indexes</a></li><li><a href="#navigationsidetochide">navigation.side.toc.hide</a></li><li><a href="#navigationtophide">navigation.top.hide</a></li><li><a href="#navigationtopcursor_animationhide">navigation.top.cursor_animation.hide</a></li><li><a href="#navigationtopsearch_buttonhide">navigation.top.search_button.hide</a></li><li><a href="#revisiondate">revision.date</a></li><li><a href="#revisionhistory">revision.history</a></li><li><a href="#page-features">Page Features</a></li>
+        <li><a href="#navigationsidehide">navigation.side.hide</a></li><li><a href="#navigationsideindexes">navigation.side.indexes</a></li><li><a href="#navigationsidetochide">navigation.side.toc.hide</a></li><li><a href="#navigationtophide">navigation.top.hide</a></li><li><a href="#navigationtopcursor_animationhide">navigation.top.cursor_animation.hide</a></li><li><a href="#navigationtopsearch_buttonhide">navigation.top.search_button.hide</a></li><li><a href="#revisiondate">revision.date</a></li><li><a href="#revisionhistory">revision.history</a></li><li><a href="#stylelinksunderlinehide">style.links.underline.hide</a></li><li><a href="#page-features">Page Features</a></li>
         <li><a href="#hide-revision_date">hide: revision_date</a></li><li><a href="#hide-revision_history">hide: revision_history</a></li><li><a href="#hide-side_toc">hide: side_toc</a></li><li><a href="#hide-top_nav">hide: top_nav</a></li>
     </ul>
 </nav></aside>
-            <main>       
+            <main id="terminal-mkdocs-main-content">
+    
+    
+    
     
     
 
-<section>
+<section id="mkdocs-terminal-content">
     <h1 id="theme-features">Theme Features<a class="headerlink" href="#theme-features" title="Anchor link to this section for reference">#</a></h1>
 <pre><code class="language-yaml">theme:
   name: terminal
@@ -889,6 +948,7 @@
     - navigation.top.search_button.hide
     - revision.date
     - revision.history
+    - style.links.underline.hide
 </code></pre>
 <h2 id="navigationsidehide">navigation.side.hide<a class="headerlink" href="#navigationsidehide" title="Anchor link to this section for reference">#</a></h2>
 <p>hides side panel on all site pages.  the side panel includes the <a href="../#side-navigation-menu">Side Navigation Menu</a> and the <a href="../#page-table-of-contents">Side Page Table of Contents</a>.</p>
@@ -913,6 +973,8 @@ ignored if <code>navigation.top.hide</code> is set. </p>
 <p>enables the "Page last updated..." text at the bottom of the page.  requires <a href="../plugins/git-revision/">git-revision-date plugin setup</a>.</p>
 <h2 id="revisionhistory">revision.history<a class="headerlink" href="#revisionhistory" title="Anchor link to this section for reference">#</a></h2>
 <p>enables the "See revision history..." text at the bottom of the page.  requires <a href="../plugins/git-revision/">git-revision-date plugin setup</a> and additional <a href="../plugins/git-revision/#advanced-configuration">git-revision-date configuration</a>.</p>
+<h2 id="stylelinksunderlinehide">style.links.underline.hide<a class="headerlink" href="#stylelinksunderlinehide" title="Anchor link to this section for reference">#</a></h2>
+<p>hides the underline styling on links.  the underline text decoration on links is added to make the links identifiable without color vision.  if you choose to hide this styling you should consider adding an alternate <a href="https://www.w3.org/WAI/WCAG21/Techniques/general/G182.html" target="_blank">non-color link indicator</a>.    </p>
 <hr>
 
 <h1 id="page-features">Page Features<a class="headerlink" href="#page-features" title="Anchor link to this section for reference">#</a></h1>
@@ -936,15 +998,19 @@ hide:
 <p>hides top navigation on the page.  </p>
 </section>
 
-<section></section>
+<section id="mkdocs-terminal-after-content">
+    
+</section>
+<section id="mkdocs-terminal-revision">
 <br>
 <aside>
     <p>
         <small>
-            <i>Page last updated 2023-01-27. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/configuration/features.md">GitHub</a>.</i>
+            <i>Page last updated 2023-01-30. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/configuration/features.md">GitHub</a>.</i>
         </small>
     </p>
 </aside>
+</section>
             </main>
         </div>
         <hr><footer>

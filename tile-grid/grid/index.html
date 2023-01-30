@@ -5,17 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.8">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.10.0">
      
     
     <meta name="author" content="ntno"> 
     
-    <link rel="canonical" href="https://ntno.github.io/mkdocs-terminal/tile-grid/grid/"><link rel="icon" type="image/png" sizes="192x192" href="../../img/android-chrome-192x192.png" />
-<link rel="icon" type="image/png" sizes="512x512" href="../../img/android-chrome-512x512.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="../../img/apple-touch-icon.png" />
-<link rel="shortcut icon" type="image/png" sizes="48x48" href="../../img/favicon.ico" />
-<link rel="icon" type="image/png" sizes="16x16" href="../../img/favicon-16x16.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png" />
+    <link rel="canonical" href="https://ntno.github.io/mkdocs-terminal/tile-grid/grid/">
 
 
     
@@ -30,7 +25,12 @@
 <link href="../../css/theme.css" rel="stylesheet"> 
 <!-- default color palette-->
 <link href="../../css/palettes/default.css" rel="stylesheet">
-
+<!-- link underline override -->
+<style>
+#terminal-mkdocs-main-content a:not(.headerlink){
+    text-decoration: none;
+}
+</style>
 
     
     <link href="../../overrides/extra.css" rel="stylesheet">  
@@ -55,7 +55,6 @@
     <script src="../../search/main.js"></script>
     
 
-    
     
 </head>
 
@@ -263,6 +262,25 @@
             <a class="
 
     terminal-mkdocs-side-nav-item" href="../../configuration/plugins/git-revision/">___Git Revision</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../../configuration/plugins/macros/">___Macros</a>
         
     
     </li>
@@ -524,6 +542,25 @@
         
             <a class="
 
+    terminal-mkdocs-side-nav-item" href="../pluglet/">Pluglet Reference</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
     terminal-mkdocs-side-nav-item" href="../examples/example-page/">Example</a>
         
     
@@ -582,6 +619,25 @@
             <a class="
 
     terminal-mkdocs-side-nav-item" href="../examples/override-styling/">Override Styling</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../examples/inline/">Inline Example</a>
         
     
     </li>
@@ -871,11 +927,14 @@
         <li><a href="#configuration-options">Configuration Options</a></li><li><a href="#default-tile-placement">Default Tile Placement</a></li><li><a href="#tiles-first">Tiles First</a></li>
     </ul>
 </nav></aside>
-            <main>       
+            <main id="terminal-mkdocs-main-content">
+    
+    
+    
     
     
 
-<section>
+<section id="mkdocs-terminal-content">
     <h1 id="grid-reference">Grid Reference<a class="headerlink" href="#grid-reference" title="Anchor link to this section for reference">#</a></h1>
 <p>Terminal for MkDocs <a href="../" title="to Tile Grid overview">Tile Grid</a> can be further customized using the following configuration options.  These options should be specified in the markdown page's metadata in the same way that <code>tiles</code> are specified:</p>
 <pre><code>---
@@ -891,7 +950,12 @@ tiles:
 <dl>
 <dt><code>show_tiles_first</code></dt>
 <dd>
-<p>Defaults to <code>false</code>.  If <code>true</code>, tiles will be added to the final page above the main page content.  If <code>false</code> (or unspecified), tiles will be added to the final page below the main content.</p>
+<p>Defaults to <code>false</code>.  If <code>true</code>, tiles will be added to the final page above the main page content.  If <code>false</code> (or unspecified), tiles will be added to the final page below the main content.<br />
+Ignored if <code>show_tiles_inline</code> is <code>true</code>.</p>
+</dd>
+<dt><code>show_tiles_inline</code></dt>
+<dd>
+<p>Defaults to <code>false</code>.  If <code>true</code>, tiles will be rendered on the final page using the <a href="../pluglet/">Tile Grid Pluglet</a> (if enabled).</p>
 </dd>
 <dt><code>grid_id</code></dt>
 <dd>
@@ -910,17 +974,17 @@ tiles:
   - caption: '@petradr'
     img_src: ../../../img/picsum/167_200x200.jpeg
     img_title: 'to Picsum homepage'
-    img_alt: 'close up image of fallen leaves'
+    img_alt: 'close up of fallen leaves.'
     link_href: https://picsum.photos/ 
   - caption: 'Marcin Czerwinski'
     img_src: ../../../img/picsum/127_200x200.jpeg
     img_title: 'to Picsum homepage'
-    img_alt: 'close up image of green moss on a log'
+    img_alt: 'close up of green moss on a log.'
     link_href: https://picsum.photos/ 
   - caption: 'Steve Richey'
     img_src: ../../../img/picsum/143_200x200.jpeg
     img_title: 'to Picsum homepage'
-    img_alt: 'overhead image of fallen leaves'
+    img_alt: 'overhead of fallen leaves.'
     link_href: https://picsum.photos/ 
 ---
 
@@ -971,15 +1035,19 @@ tiles:
 <!-- no closing ``` code block because the snippet page ends in markdown code block -->
 </section>
 
-<section></section>
+<section id="mkdocs-terminal-after-content">
+    
+</section>
+<section id="mkdocs-terminal-revision">
 <br>
 <aside>
     <p>
         <small>
-            <i>Page last updated 2023-01-27. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/tile-grid/grid.md">GitHub</a>.</i>
+            <i>Page last updated 2023-01-30. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/tile-grid/grid.md">GitHub</a>.</i>
         </small>
     </p>
 </aside>
+</section>
             </main>
         </div>
         <hr><footer>

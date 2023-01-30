@@ -16,24 +16,24 @@
     {%- set ns.is_valid = true -%}
 {%- endif -%}
 {%- if ns.is_valid -%}
-        <div {% if tile.tile_id is defined and tile.tile_id|string|length %} id="{{ tile.tile_id }}" {% endif %}class="terminal-mkdocs-tile {{ tile.tile_css }}">
-            <figure>
-                {% if ns.has_link -%}{{ link_helper.make_link_start(tile) }}{% endif %}
-                {%- if ns.has_image %} 
-                        {{ image_helper.make_image(tile) }}
-                {%- endif -%}
-                {%- if ns.has_link -%}
-                    {% if ns.has_image %} 
-                </a>{% else %}{{ tile.link_text|default(tile.link_href, true) }}</a>{%- endif -%}
-                {%- endif -%}
-                {%- if ns.has_caption %}
-                    {%- if use_markup %}
-                <figcaption>{{ tile.caption|string|trim|markup }}</figcaption>
-                    {% else %}
-                <figcaption>{{ tile.caption|string|trim }}</figcaption>
-                    {%- endif %}
+    <div {% if tile.tile_id is defined and tile.tile_id|string|length %} id="{{ tile.tile_id }}" {% endif %}class="terminal-mkdocs-tile {{ tile.tile_css }}">
+        <figure>
+            {% if ns.has_link -%}{{ link_helper.make_link_start(tile) }}{% endif %}
+            {%- if ns.has_image %} 
+                    {{ image_helper.make_image(tile) }}
+            {%- endif -%}
+            {%- if ns.has_link -%}
+                {% if ns.has_image %} 
+            </a>{% else %}{{ tile.link_text|default(tile.link_href, true) }}</a>{%- endif %}
+            {%- endif -%}
+            {%- if ns.has_caption -%}
+                {%- if use_markup %}
+            <figcaption>{{ tile.caption|string|trim|markup }}</figcaption>
+                {% else %}
+            <figcaption>{{ tile.caption|string|trim }}</figcaption>
                 {%- endif %}
-            </figure>
-        </div>
+            {%- endif %}
+        </figure>
+    </div>
 {%- endif -%}
-{%- endmacro -%}
+{% endmacro %}

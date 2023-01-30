@@ -5,17 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.7.8">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.10.0">
      
     
     <meta name="author" content="ntno"> 
     
-    <link rel="canonical" href="https://ntno.github.io/mkdocs-terminal/tile-grid/"><link rel="icon" type="image/png" sizes="192x192" href="../img/android-chrome-192x192.png" />
-<link rel="icon" type="image/png" sizes="512x512" href="../img/android-chrome-512x512.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="../img/apple-touch-icon.png" />
-<link rel="shortcut icon" type="image/png" sizes="48x48" href="../img/favicon.ico" />
-<link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png" />
+    <link rel="canonical" href="https://ntno.github.io/mkdocs-terminal/tile-grid/">
 
 
     
@@ -30,7 +25,12 @@
 <link href="../css/theme.css" rel="stylesheet"> 
 <!-- default color palette-->
 <link href="../css/palettes/default.css" rel="stylesheet">
-
+<!-- link underline override -->
+<style>
+#terminal-mkdocs-main-content a:not(.headerlink){
+    text-decoration: none;
+}
+</style>
 
     
     <link href="../overrides/extra.css" rel="stylesheet">  
@@ -55,7 +55,6 @@
     <script src="../search/main.js"></script>
     
 
-    
     
 </head>
 
@@ -263,6 +262,25 @@
             <a class="
 
     terminal-mkdocs-side-nav-item" href="../configuration/plugins/git-revision/">___Git Revision</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="../configuration/plugins/macros/">___Macros</a>
         
     
     </li>
@@ -526,6 +544,25 @@
         
             <a class="
 
+    terminal-mkdocs-side-nav-item" href="pluglet/">Pluglet Reference</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
     terminal-mkdocs-side-nav-item" href="examples/example-page/">Example</a>
         
     
@@ -584,6 +621,25 @@
             <a class="
 
     terminal-mkdocs-side-nav-item" href="examples/override-styling/">Override Styling</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
+    terminal-mkdocs-side-nav-item" href="examples/inline/">Inline Example</a>
         
     
     </li>
@@ -874,17 +930,20 @@
         <li><a href="#mkdocsyml">mkdocs.yml</a></li><li><a href="#example-pagemd">example-page.md</a></li>
     </ul>
 </nav></aside>
-            <main>       
+            <main id="terminal-mkdocs-main-content">
+    
+    
+    
     
     
 
-<section>
+<section id="mkdocs-terminal-content">
     <h1 id="terminal-for-mkdocs-tile-grid">Terminal for MkDocs Tile Grid<a class="headerlink" href="#terminal-for-mkdocs-tile-grid" title="Anchor link to this section for reference">#</a></h1>
 <p>Terminal for MkDocs enables you to quickly create a grid of linked tiles.  Each tile can contain an image, link, and caption.</p>
 <section>
 <figure>
 <p><a href="examples/example-page">
-<img _=";" alt="screenshot of web page with three square images in a row" class="terminal-mkdocs-thin-border" src="../img/tile-grid/overview-example.png" title="to tile grid example page" />
+<img _=";" alt="web page with three square images in a row.  images appear after Lorem Ipsum text." class="terminal-mkdocs-thin-border" src="../img/tile-grid/overview-example.png" title="to tile grid example page" />
 </a></p>
 <figcaption>Tile Grid Example</figcaption>
 </figure>
@@ -929,7 +988,7 @@ tiles:
 <h2 id="mkdocsyml">mkdocs.yml<a class="headerlink" href="#mkdocsyml" title="Anchor link to this section for reference">#</a></h2>
 <p>file location: <code>.</code><br />
 filename: <code>mkdocs.yml</code>  </p>
-<pre><code>site_name: tile grid demo
+<pre><code>site_name: Tile Grid Demo
 
 nav:
     - Home: 'index.md'
@@ -946,17 +1005,17 @@ tiles:
   - caption: '@petradr'
     img_src: ../../../img/picsum/167_200x200.jpeg
     img_title: 'to Picsum homepage'
-    img_alt: 'close up image of fallen leaves'
+    img_alt: 'close up of fallen leaves.'
     link_href: https://picsum.photos/ 
   - caption: 'Marcin Czerwinski'
     img_src: ../../../img/picsum/127_200x200.jpeg
     img_title: 'to Picsum homepage'
-    img_alt: 'close up image of green moss on a log'
+    img_alt: 'close up of green moss on a log.'
     link_href: https://picsum.photos/ 
   - caption: 'Steve Richey'
     img_src: ../../../img/picsum/143_200x200.jpeg
     img_title: 'to Picsum homepage'
-    img_alt: 'overhead image of fallen leaves'
+    img_alt: 'overhead of fallen leaves.'
     link_href: https://picsum.photos/ 
 ---
 
@@ -980,15 +1039,19 @@ Maecenas facilisis id tortor volutpat fermentum. Integer volutpat arcu leo, sed 
 </div>
 </section>
 
-<section></section>
+<section id="mkdocs-terminal-after-content">
+    
+</section>
+<section id="mkdocs-terminal-revision">
 <br>
 <aside>
     <p>
         <small>
-            <i>Page last updated 2023-01-27. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/tile-grid/index.md">GitHub</a>.</i>
+            <i>Page last updated 2023-01-30. See revision history on <a target="_blank" href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/tile-grid/index.md">GitHub</a>.</i>
         </small>
     </p>
 </aside>
+</section>
             </main>
         </div>
         <hr><footer>
