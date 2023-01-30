@@ -22,6 +22,13 @@ tiles:
 
 Aliquam eu augue hendrerit, bibendum felis sit amet, commodo lorem.
 
+Maecenas facilisis id tortor volutpat fermentum. Integer volutpat arcu leo, sed semper sapien facilisis ut. Nam ac tincidunt sem, eu gravida augue. Suspendisse varius facilisis rhoncus. 
+
+## Inline Example
 {{ tile_grid(page.meta) }}
 
-Maecenas facilisis id tortor volutpat fermentum. Integer volutpat arcu leo, sed semper sapien facilisis ut. Nam ac tincidunt sem, eu gravida augue. Suspendisse varius facilisis rhoncus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam elementum vitae lacus a sodales. 
+## Error Output
+{{ tile_grid("invalid") }}
+
+# Page Content Continued
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam elementum vitae lacus a sodales. 
