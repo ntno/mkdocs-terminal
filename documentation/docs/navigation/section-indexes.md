@@ -28,12 +28,12 @@ Let's say you have a site with *Release Notes* and *About* documents.  The *Rele
 ## With Section Indexes Feature
 *About* and *Release Notes* are clickable in the side navigation.  The index page for the *About* section does not appear as a subpage of the *About* category:
 
-![Section index pages enabled](../img/about_page_with_section_indexes.png){title="'About' and 'Release Notes' are clickable in the side navigation"; alt="'Release Notes' is rendered as a clickable link in the side navigation" .terminal-mkdocs-thin-border}
+![section index pages enabled](../img/about_page_with_section_indexes.png){alt="'Release Notes' is rendered as a clickable link in the side navigation" .terminal-mkdocs-thin-border}
 
 ## Without Section Indexes Feature
 *About* and *Release Notes* are not clickable in the side navigation.  Instead, they are rendered as greyed out text.  The index page for the *About* section appears as a subpage of the *About* category:
 
-![Section index pages enabled](../img/about_page_without_section_indexes.png){title="'About' and 'Release Notes' are not clickable in the side navigation"; alt="'Release Notes' is rendered as greyed out text in the side navigation" .terminal-mkdocs-thin-border}
+![section index pages enabled](../img/about_page_without_section_indexes.png){alt="'Release Notes' is rendered as greyed out text in the side navigation" .terminal-mkdocs-thin-border}
 
 
 # Setup
