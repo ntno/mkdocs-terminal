@@ -32,7 +32,8 @@ class TestPlugletUserInterface():
     # see https://github.com/hackebrot/pytest-tricks/issues/32
     def test_usage_message_when_bad_input(self, pluglet_macro_mock, bad_input):
         pluglet_output = tile_grid(bad_input)
-        assert theme_pluglets.TILE_GRID_MACRO_USAGE_MESSAGE == pluglet_output
+        assert theme_pluglets.TILE_GRID_MACRO_SECTION_START_TAG in pluglet_output
+        assert theme_pluglets.TILE_GRID_MACRO_USAGE_MESSAGE in pluglet_output
         assert_valid_html(pluglet_output)
         pluglet_macro_mock.jinja2_env.get_template.assert_not_called()
 
@@ -43,6 +44,21 @@ class TestPlugletUserInterface():
         minimal_linked_image_tile.tile_id = "myTileId"
         page_meta = {"tiles": [minimal_linked_image_tile]}
         pluglet_output = tile_grid(page_meta)
+        assert theme_pluglets.TILE_GRID_MACRO_SECTION_START_TAG in pluglet_output
+        assert theme_pluglets.TILE_GRID_MACRO_USAGE_MESSAGE not in pluglet_output
+        assert "id=\"myTileId\"" in pluglet_output
+        assert_valid_html(pluglet_output)
+        pluglet_macro_mock.jinja2_env.get_template.assert_called_once()
+        pluglet_macro_mock.jinja2_env.get_template.assert_called_with("pluglets/tile_grid/templates/j2-partials/tiles.html")
+
+    @patch('terminal.pluglets.tile_grid.main.MACRO')
+    def test_pluglet_wraps_grid_in_section_tag(self, pluglet_macro_mock, minimal_linked_image_tile, grid_partial):
+        pluglet_macro_mock.jinja2_env.get_template.return_value = grid_partial
+
+        minimal_linked_image_tile.tile_id = "myTileId"
+        page_meta = {"tiles": [minimal_linked_image_tile]}
+        pluglet_output = tile_grid(page_meta)
+        assert theme_pluglets.TILE_GRID_MACRO_SECTION_START_TAG in pluglet_output
         assert theme_pluglets.TILE_GRID_MACRO_USAGE_MESSAGE not in pluglet_output
         assert "id=\"myTileId\"" in pluglet_output
         assert_valid_html(pluglet_output)
