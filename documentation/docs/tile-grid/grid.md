@@ -18,7 +18,12 @@ tiles:
 
 `show_tiles_first`
 
-:   Defaults to `false`.  If `true`, tiles will be added to the final page above the main page content.  If `false` (or unspecified), tiles will be added to the final page below the main content.
+:   Defaults to `false`.  If `true`, tiles will be added to the final page above the main page content.  If `false` (or unspecified), tiles will be added to the final page below the main content.  
+    Ignored if `show_tiles_inline` is `true`.
+
+`show_tiles_inline`
+
+:   Defaults to `false`.  If `true`, tiles will be rendered on the final page using the [Tile Grid Pluglet] (if enabled).
 
 `grid_id`
 
@@ -30,6 +35,7 @@ tiles:
 
 
 [Override Styling]: examples/override-styling.md
+[Tile Grid Pluglet]: pluglet.md
 
 
 ## Default Tile Placement

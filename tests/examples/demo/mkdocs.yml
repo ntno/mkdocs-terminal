@@ -22,18 +22,24 @@ nav:
       - Deployment: 'user-guide/deploying-your-docs.md'
       - Styling: 'user-guide/styling-your-docs.md'
       - Writing: 'user-guide/writing-your-docs.md'
-
+    - Plugins:
+      - Macros: 'macros-test.md'
 
 markdown_extensions:
   - meta
   - toc:
       permalink: "#"
 
+plugins:
+  - macros:
+      verbose: true
+      modules:
+        - mkdocs-terminal:terminal.pluglets.tile_grid.main
 
 theme:
   name: terminal
-  custom_dir: 'overrides'
-  palette: gruvbox_dark
+  # custom_dir: 'overrides'
+  # palette: gruvbox_dark
   features:
     # - toc.hide
     # - navigation.side.hide

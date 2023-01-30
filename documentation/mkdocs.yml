@@ -21,6 +21,7 @@ nav:
       - Blocks: 'configuration/blocks.md'
       - Plugins: 'configuration/plugins/index.md'
       - '___Git Revision': 'configuration/plugins/git-revision.md'
+      - '___Macros': 'configuration/plugins/macros.md'
       - '___Search': 'configuration/plugins/search.md'      
       - Extensions: 'configuration/extensions/index.md'
       - Markdown Extensions: 'configuration/extensions/python-markdown.md'
@@ -33,10 +34,12 @@ nav:
       - Index: 'tile-grid/index.md'
       - Tile Reference: 'tile-grid/tile.md'
       - Grid Reference: 'tile-grid/grid.md'
+      - Pluglet Reference: 'tile-grid/pluglet.md'
       - Example: 'tile-grid/examples/example-page.md'
       - Image Only: 'tile-grid/examples/images-only.md'
       - Link Only: 'tile-grid/examples/links-only.md'
       - Override Styling: 'tile-grid/examples/override-styling.md'
+      - Inline Example: 'tile-grid/examples/inline.md'
     - Elements:
       - Blockquotes: 'elements/blockquotes.md'
       - Buttons: 'elements/buttons.md'
@@ -50,8 +53,6 @@ nav:
       - Typography: 'elements/typography.md'
     - Install: 'install.md'
     - Releases: 'releases.md'
-    # - About: 
-    #   - Debug: 'about/debug.md'
 
 markdown_extensions:
   # Python Markdown  
@@ -90,6 +91,9 @@ plugins:
         - configuration/palettes/pink.md#pink-palette
         - configuration/palettes/sans-dark.md#sans-dark-palette
         - configuration/palettes/sans.md#sans-palette
+  - macros:
+      modules: 
+        - mkdocs-terminal:terminal.pluglets.tile_grid.main
 
 ## deploy settings
 theme:

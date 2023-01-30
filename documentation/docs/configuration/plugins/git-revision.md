@@ -37,6 +37,7 @@ Then run:  `pip install -r ./requirements.txt`
 Enable the Git Revision Date Plugin by adding `git-revision-date` to the `plugins` list in `mkdocs.yml`:
 ```yaml
 plugins:
+  - search
   - git-revision-date
 ```
 
