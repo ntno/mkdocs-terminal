@@ -15,7 +15,7 @@ installed with a supported version.
 
 ## Caret, Mark & Tilde
 
-The [Caret], [Mark] and [Tilde] extensions add the ability to highlight text
+The [Caret], [Mark], and [Tilde] extensions add the ability to highlight text
 and define subscript and superscript using a simple syntax. Enable them together
 via `mkdocs.yml`:
 
