@@ -1,35 +1,29 @@
 ---
 show_tiles_first: true
 tiles:
-  - caption: Default
+  - caption: Default. <br>[fig. details](#default)
     img_src: ../../img/palettes/default.png
     img_alt: Default Demo Page
-    img_desc: 'demo site with a white background and light blue hyperlinks.'
     link_href: ./default/
   - caption: Gruvbox Dark
     img_src: ../../img/palettes/gruvbox_dark.png
     img_alt: Gruvbox Dark Demo Page
-    img_desc: 'demo site with a dark grey background, orange hyperlinks, and light yellow text.'
     link_href: ./gruvbox-dark/
   - caption: Dark
     img_src: ../../img/palettes/dark.png
     img_alt: Dark Demo Page
-    img_desc: 'demo site with a black background, light blue hyperlinks, and white text.'
     link_href: ./dark/    
   - caption: Pink
     img_src: ../../img/palettes/pink.png
     img_alt: Pink Demo Page
-    img_desc: 'demo site with a white background and pink hyperlinks.'
     link_href: ./pink/        
   - caption: Sans
     img_src: ../../img/palettes/sans.png
     img_alt: Sans Demo Page
-    img_desc: 'demo site with a white background, light blue hyperlinks, and sans font.'
     link_href: ./sans/    
   - caption: Sans Dark
     img_src: ../../img/palettes/sans_dark.png
     img_alt: Sans Dark Demo Page
-    img_desc: 'demo site with a black background, light blue hyperlinks, and white text in sans font.'
     link_href: ./sans-dark/            
 ---
 # Theme Color Palettes
@@ -50,3 +44,12 @@ theme:
   palette: pink
 ```
 
+##### Image Descriptions
+###### Default
+demo site with a white background and light blue hyperlinks.
+
+  <!-- img_desc: 'demo site with a dark grey background, orange hyperlinks, and light yellow text.'
+  img_desc: 'demo site with a black background, light blue hyperlinks, and white text.'
+  img_desc: 'demo site with a white background and pink hyperlinks.'
+  img_desc: 'demo site with a white background, light blue hyperlinks, and sans font.'
+  img_desc: 'demo site with a black background, light blue hyperlinks, and white text in sans font.' -->
