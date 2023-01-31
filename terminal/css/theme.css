@@ -16,6 +16,10 @@ a.btn {
     text-decoration: none !important;
 }
 
+.terminal-mkdocs-tile-link a:hover {
+    color: var(--primary-color) !important;
+}
+
 .terminal-mkdocs-main-grid {
     display: grid;
     grid-column-gap: 1.4em;
