@@ -13,7 +13,7 @@ markdown_extensions:
         - docs
 ```
 
-See the [Snippets documentation][Snippets]{target="_blank"} for more information on configuration options.
+See the [Snippets documentation][Snippets] for more information on configuration options.
 
   [Snippets]: https://facelessuser.github.io/pymdown-extensions/extensions/snippets/
   

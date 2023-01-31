@@ -2,7 +2,7 @@
 
 In some situations you may want to include your own Jinja2 page templates.  Terminal for MkDocs supports overriding or extending the blocks listed in [Reference](blocks.md#overridable-blocks).  
 
-This is an advanced MkDocs feature.  For an extended discussion, see the [official MkDocs guide]{target="_blank"}.
+This is an advanced MkDocs feature.  For an extended discussion, see the [official MkDocs guide].
 
 
 [official MkDocs guide]: https://www.mkdocs.org/user-guide/customizing-your-theme/#using-the-theme-custom_dir

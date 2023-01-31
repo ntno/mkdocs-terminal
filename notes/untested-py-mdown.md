@@ -1,4 +1,4 @@
-In general, all extensions that are part of [PyMdown Extensions]{target="_blank"} should work with Material for MkDocs. The following list includes all extensions that
+In general, all extensions that are part of [PyMdown Extensions] should work with Material for MkDocs. The following list includes all extensions that
 are natively supported, meaning they work without any further adjustments.
 
 ### Arithmatex
@@ -219,7 +219,7 @@ markdown_extensions:
       emoji_generator: !!python/name:materialx.emoji.to_svg
 ```
 
-1.  [PyMdown Extensions]{target="_blank"} uses the `pymdownx` namespace, but in order to
+1.  [PyMdown Extensions] uses the `pymdownx` namespace, but in order to
     support the inlining of icons, the `materialx` namespace must be used, as it
     extends the functionality of `pymdownx`.
 
@@ -649,7 +649,7 @@ The following configuration options are supported:
 :   :octicons-milestone-24: Default: `headerid.slugify` – This option allows for
     customization of the slug function. For some languages, the default may not
     produce good and readable identifiers – consider using another slug function
-    like for example those from [PyMdown Extensions]{target="_blank"}[Slugs]:
+    like for example those from [PyMdown Extensions][Slugs]:
 
     === "Unicode"
 

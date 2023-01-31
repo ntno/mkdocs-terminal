@@ -35,8 +35,8 @@ Note: this example requires the [attr_list extension] be enabled.
 
 | Release | Supported? |
 | :-----: | :---------: |
-| [1.0.0]{target="_blank"} | yes |
-| [0.0.0]{target="_blank"} | no |
+| [1.0.0] | yes |
+| [0.0.0] | no |
 
   [1.0.0]: https://github.com/ntno/mkdocs-terminal/releases/tag/1.0.0
   [0.0.0]: https://github.com/ntno/mkdocs-terminal/releases/tag/0.0.0
@@ -45,8 +45,8 @@ Note: this example requires the [attr_list extension] be enabled.
 ```markdown
 | Release | Supported? |
 | :-----: | :---------: |
-| [1.0.0]{target="_blank"} | yes |
-| [0.0.0]{target="_blank"} | no |
+| [1.0.0] | yes |
+| [0.0.0] | no |
 
   [1.0.0]: https://github.com/ntno/mkdocs-terminal/releases/tag/1.0.0
   [0.0.0]: https://github.com/ntno/mkdocs-terminal/releases/tag/0.0.0

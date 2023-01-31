@@ -1,7 +1,7 @@
 # Table of Contents
 By default, only the top two sections by nesting level will display in the table of contents at the bottom left.  
 
-For fine-grained control of which items display in the table of contents, add `toc` to `markdown_extensions` and configure according to the `toc` package's [extension options](https://python-markdown.github.io/extensions/toc/#usage){target="_blank"}.
+For fine-grained control of which items display in the table of contents, add `toc` to `markdown_extensions` and configure according to the `toc` package's [extension options](https://python-markdown.github.io/extensions/toc/#usage).
 
 **file**: `mkdocs.yml`  
 ```yaml
@@ -42,9 +42,9 @@ Quisque sed posuere erat. Praesent et volutpat orci. Cras vulputate, leo id pret
 
 ### (h3) Felis catus
 Domestic cats:  
-- [Maine Coon](https://en.wikipedia.org/wiki/Maine_Coon){target="_blank"}  
-- [Siberian](https://en.wikipedia.org/wiki/Siberian_cat){target="_blank"}  
-- [Sphynx](https://en.wikipedia.org/wiki/Sphynx_cat){target="_blank"}  
+- [Maine Coon](https://en.wikipedia.org/wiki/Maine_Coon)  
+- [Siberian](https://en.wikipedia.org/wiki/Siberian_cat)  
+- [Sphynx](https://en.wikipedia.org/wiki/Sphynx_cat)  
 
 ## (h2) Pantherinae - (roaring)
 Aliquam turpis purus, mattis et enim nec, euismod varius augue. Duis sit amet pretium justo. Praesent tortor dolor, tempor tempor erat vitae, facilisis blandit urna. Quisque lacinia fermentum ligula, sit amet dapibus mauris laoreet eget. Cras facilisis viverra libero, vel molestie ante posuere eget. 
@@ -63,9 +63,9 @@ Curabitur metus tellus, commodo et faucibus vitae, posuere ut dolor. Vivamus ult
 
 ##### (h5) Canis familiaris
 Domestic dogs:  
-- [Alaskan Husky](https://en.wikipedia.org/wiki/Alaskan_husky){target="_blank"}  
-- [Beagle](https://en.wikipedia.org/wiki/Beagle){target="_blank"}  
-- [Greyhound](https://en.wikipedia.org/wiki/Greyhound){target="_blank"}  
+- [Alaskan Husky](https://en.wikipedia.org/wiki/Alaskan_husky)  
+- [Beagle](https://en.wikipedia.org/wiki/Beagle)  
+- [Greyhound](https://en.wikipedia.org/wiki/Greyhound)  
 
 
 

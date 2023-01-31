@@ -1,10 +1,10 @@
 # Installation
 
 ## 1. Setup MkDocs project
-See [Getting Started](https://www.mkdocs.org/getting-started/){target="_blank"} for details.
+See [Getting Started](https://www.mkdocs.org/getting-started/) for details.
 
 ## 2. Install Theme
-Install the [mkdocs-terminal pip package](https://pypi.org/project/mkdocs-terminal/){target="_blank"}.  Add the package to your `requirements.txt` file:
+Install the [mkdocs-terminal pip package](https://pypi.org/project/mkdocs-terminal/).  Add the package to your `requirements.txt` file:
 
 ```text
 mkdocs

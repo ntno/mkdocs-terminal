@@ -5,7 +5,7 @@ hide:
 ---
 
 # mkdocs-terminal
-Terminal for MkDocs is a third party theme that brings the [Terminal.css](https://github.com/Gioni06/terminal.css){target="_blank"} stylesheet to MkDocs documentation sites.  
+Terminal for MkDocs is a third party theme that brings the [Terminal.css](https://github.com/Gioni06/terminal.css) stylesheet to MkDocs documentation sites.  
 
 In addition to simple, monospace styling, Terminal for MkDocs also provides: 
 
@@ -18,10 +18,10 @@ In addition to simple, monospace styling, Terminal for MkDocs also provides:
 - and more
 
 ## Developer Info
-[Terminal for MkDocs on GitHub](https://github.com/ntno/mkdocs-terminal){target="_blank"}  
-[Terminal for MkDocs on PyPI](https://pypi.org/project/mkdocs-terminal/){target="_blank"}  
-[Terminal for MkDocs Documentation](https://ntno.github.io/mkdocs-terminal/){target="_blank"}  
-[MkDocs Documentation](https://www.mkdocs.org/){target="_blank"}  
+[Terminal for MkDocs on GitHub](https://github.com/ntno/mkdocs-terminal)  
+[Terminal for MkDocs on PyPI](https://pypi.org/project/mkdocs-terminal/)  
+[Terminal for MkDocs Documentation](https://ntno.github.io/mkdocs-terminal/)  
+[MkDocs Documentation](https://www.mkdocs.org/)  
 
 
 ### License

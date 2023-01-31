@@ -5,7 +5,7 @@ configuration/extensions/links.md
 # Extensions
 
 Markdown is a very small language with a kind-of reference implementation called
-[John Gruber's Markdown]{target="_blank"}. [Python Markdown]{target="_blank"} and [PyMdown Extensions]{target="_blank"} are two packages that enhance the Markdown writing experience, adding useful syntax extensions for technical writing.
+[John Gruber's Markdown]. [Python Markdown] and [PyMdown Extensions] are two packages that enhance the Markdown writing experience, adding useful syntax extensions for technical writing.
 
   [John Gruber's Markdown]: https://daringfireball.net/projects/markdown/
   [Python Markdown]: https://python-markdown.github.io/extensions/
@@ -106,4 +106,4 @@ markdown_extensions:
 ```
 
 # Credit
-This documentation page is based on squidfunk's Material for MkDocs [Extensions](https://squidfunk.github.io/mkdocs-material/setup/extensions/){target="_blank"} documentation.
+This documentation page is based on squidfunk's Material for MkDocs [Extensions](https://squidfunk.github.io/mkdocs-material/setup/extensions/) documentation.

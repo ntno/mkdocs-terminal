@@ -47,7 +47,7 @@ enables the "Page last updated..." text at the bottom of the page.  requires [gi
 enables the "See revision history..." text at the bottom of the page.  requires [git-revision-date plugin setup] and additional [git-revision-date configuration].
 
 ## style.links.underline.hide
-hides the underline styling on links.  the underline text decoration on links is added to make the links identifiable without color vision.  if you choose to hide this styling you should consider adding an alternate [non-color link indicator]{target="_blank"}.    
+hides the underline styling on links.  the underline text decoration on links is added to make the links identifiable without color vision.  if you choose to hide this styling you should consider adding an alternate [non-color link indicator].    
 
 [git-revision-date plugin setup]: ../plugins/git-revision/
 [git-revision-date configuration]: ../plugins/git-revision/#advanced-configuration
@@ -56,7 +56,7 @@ hides the underline styling on links.  the underline text decoration on links is
 
 # Page Features
 
-To hide certain [Terminal for MkDocs components] on a per-page basis, add a [YAML Style Meta-Data]{target="_blank"} section to the very top of your Markdown page. Inside this metadata section, add the attribute `hide` which is a list of page-specific feature names.
+To hide certain [Terminal for MkDocs components] on a per-page basis, add a [YAML Style Meta-Data] section to the very top of your Markdown page. Inside this metadata section, add the attribute `hide` which is a list of page-specific feature names.
 
 Pay special attention to the indentation. There should be two spaces before the `-` marking the start of a component name: 
 
