@@ -156,7 +156,7 @@ Remember to work in the project's [Docker container](#developer-setup) to avoid 
 ![Docker Container](documentation/docs/img/developer-setup/developer-container.png)
 
 
-Test suites can always be improved!  See [GitHub issue](https://github.com/ntno/mkdocs-terminal/issues/13) for current progress/discussion.  If you have experience creating automated tests for Jinja2 please consider making a contribution.  
+Test suites can always be improved!  Please consider making a contribution or starting a discussion if you have any ideas.  
 
 ### Push Changes and Create PR
 See [Work On Pull Request](https://github.com/susam/gitpr#work-on-pull-request) for help on adding/pushing changes to your feature branch.  
