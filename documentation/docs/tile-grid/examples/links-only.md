@@ -12,20 +12,17 @@ tiles:
     link_href: ../example-page
   - caption: "\\#tile_123"
     tile_id: "tile_123"
-    link_target: "_self"
-    link_title: go to overview in this window
+    link_title: go to overview
     link_text: Tile Grid Overview
     link_href: ../..
   - caption: "\\#tile_456"
     tile_id: "tile_456"
-    link_target: "_self"
-    link_title: go to tile reference in this window
+    link_title: go to tile reference
     link_text: Tile Reference
     link_href: ../../tile
   - caption: ".example_highlight"
     tile_css: "example_highlight"
-    link_target: "_self"
-    link_title: go to grid reference in this window
+    link_title: go to grid reference
     link_text: Grid Reference
     link_href: ../../grid
 ---
@@ -68,20 +65,17 @@ tiles:
     link_href: ../example-page
   - caption: "\\#tile_123"
     tile_id: "tile_123"
-    link_target: "_self"
-    link_title: go to overview in this window
+    link_title: go to overview
     link_text: Tile Grid Overview
     link_href: ../..
   - caption: "\\#tile_456"
     tile_id: "tile_456"
-    link_target: "_self"
-    link_title: go to tile reference in this window
+    link_title: go to tile reference
     link_text: Tile Reference
     link_href: ../../tile
   - caption: ".example_highlight"
     tile_css: "example_highlight"
-    link_target: "_self"
-    link_title: go to grid reference in this window
+    link_title: go to grid reference
     link_text: Grid Reference
     link_href: ../../grid
 ---

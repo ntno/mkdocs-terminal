@@ -4,7 +4,7 @@ configuration/extensions/links.md
 
 # Python Markdown
 
-Terminal for MkDocs is compatible with some of the [Python Markdown]{target="_blank"} extensions. The following is a list of all extensions which have been tested with this theme, linking to documentation which explain how they can be used.
+Terminal for MkDocs is compatible with some of the [Python Markdown] extensions. The following is a list of all extensions which have been tested with this theme, linking to documentation which explain how they can be used.
 
   [Python Markdown]: https://python-markdown.github.io/extensions/
 
@@ -12,7 +12,7 @@ Terminal for MkDocs is compatible with some of the [Python Markdown]{target="_bl
 
 ## Attribute Lists
 
-The [Attribute Lists]{target="_blank"} extension helps to add HTML attributes and CSS classes to [almost every][Attribute Lists limitations]{target="_blank"} Markdown inline- and block-level element with a special syntax. Enable it via `mkdocs.yml`:
+The [Attribute Lists] extension helps to add HTML attributes and CSS classes to [almost every][Attribute Lists limitations] Markdown inline- and block-level element with a special syntax. Enable it via `mkdocs.yml`:
 
 ``` yaml
 markdown_extensions:
@@ -33,8 +33,8 @@ No configuration options are available. See reference for usage:
 
 ## Definition Lists
 
-The [Definition Lists]{target="_blank"} extension adds the ability to add definition lists (more
-commonly known as [description lists]{target="_blank"} – `dl` in HTML) via Markdown to a
+The [Definition Lists] extension adds the ability to add definition lists (more
+commonly known as [description lists] – `dl` in HTML) via Markdown to a
 document. Enable it via `mkdocs.yml`:
 
 ``` yaml
@@ -52,7 +52,7 @@ No configuration options are available. See reference for usage:
 
 ## Footnotes
 
-The [Footnotes]{target="_blank"} extension enables inline footnotes which are then
+The [Footnotes] extension enables inline footnotes which are then
 rendered below all Markdown content of a document. Enable it via `mkdocs.yml`:
 
 ``` yaml
@@ -71,7 +71,7 @@ No configuration options are supported. See reference for usage:
 
 ## Markdown in HTML
 
-The [Markdown in HTML]{target="_blank"} extension allows for writing Markdown inside of HTML, which is useful for wrapping Markdown content with custom elements. Enable it
+The [Markdown in HTML] extension allows for writing Markdown inside of HTML, which is useful for wrapping Markdown content with custom elements. Enable it
 via `mkdocs.yml`:
 
 ``` yaml
@@ -79,7 +79,7 @@ markdown_extensions:
   - md_in_html
 ```
 
-From the [Markdown in HTML]{target="_blank"} extension's docs:
+From the [Markdown in HTML] extension's docs:
 > By default, Markdown ignores any content within a raw HTML block-level element. With the `md_in_html` extension enabled, the content of a raw HTML block-level element can be parsed as Markdown by including a `markdown` attribute on the opening tag. The `markdown` attribute will be stripped from the output, while all other attributes will be preserved.
 
 
@@ -95,7 +95,7 @@ No configuration options are available. See reference for usage:
 
 ## Table of Contents
 
-The [Table of Contents]{target="_blank"} extension automatically generates a table of contents from a document which Terminal for MkDocs will render as part of the resulting page. It can be configured via `mkdocs.yml`:
+The [Table of Contents] extension automatically generates a table of contents from a document which Terminal for MkDocs will render as part of the resulting page. It can be configured via `mkdocs.yml`:
 
 ``` yaml
 markdown_extensions:
@@ -151,7 +151,7 @@ See reference for usage:
 
 ## Tables
 
-The [Tables]{target="_blank"} extension adds the ability to create tables in Markdown by using a simple syntax. Enable it via `mkdocs.yml` (albeit it should be enabled by
+The [Tables] extension adds the ability to create tables in Markdown by using a simple syntax. Enable it via `mkdocs.yml` (albeit it should be enabled by
 default):
 
 ``` yaml
@@ -170,5 +170,5 @@ No configuration options are available. See reference for usage:
 
 # Credit
 
-This documentation page is based on squidfunk's Material for MkDocs [Python Markdown](https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown/){target="_blank"} documentation.
+This documentation page is based on squidfunk's Material for MkDocs [Python Markdown](https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown/) documentation.
 

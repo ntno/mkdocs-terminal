@@ -1,5 +1,5 @@
 # Search Plugin
-MkDocs comes with a built-in and automatically enabled [search plugin]{target="_blank"}.  
+MkDocs comes with a built-in and automatically enabled [search plugin].  
 
 [search plugin]: https://www.mkdocs.org/user-guide/configuration/#search
 

@@ -1,9 +1,9 @@
 # Git Revision Date Plugin
-The third-party [git-revision-date]{target="_blank"} plugin automatically adds the last revision date of a markdown page to its MkDocs Page Metadata[^mkdocs-page-meta].  
+The third-party [git-revision-date] plugin automatically adds the last revision date of a markdown page to its MkDocs Page Metadata[^mkdocs-page-meta].  
 
 [git-revision-date]: https://github.com/zhaoterryy/mkdocs-git-revision-date-plugin
 [MkDocs Page Metadata]: https://www.mkdocs.org/user-guide/writing-your-docs/#meta-data
-[^mkdocs-page-meta]: see [MkDocs Page Metadata]{target="_blank"} for more info
+[^mkdocs-page-meta]: see [MkDocs Page Metadata] for more info
 
 # Built-in Support
 When the `git-revision-date` plugin is installed and enabled and the `revision.date` theme feature is enabled, Terminal for MkDocs will display the date of the most recent change to a page's source file on the rendered site page.  This component is added at the bottom of each page unless [page-specific hiding] is enabled.
@@ -54,7 +54,7 @@ theme:
 # Advanced Configuration
 There are two revision-related theme features that can be individually enabled.  The example above only discusses `revision.date` as it is easier to configure without error.  
 
-The second revision-related theme feature is `revision.history`.  Enabling this theme feature will add a "See revision history..." note to the bottom of the page.  The link included in this note relies on MkDocs' [repo_url]{target="_blank"}, [repo_name]{target="_blank"}, and [edit_uri]{target="_blank"}/[edit_uri_template]{target="_blank"} settings.  
+The second revision-related theme feature is `revision.history`.  Enabling this theme feature will add a "See revision history..." note to the bottom of the page.  The link included in this note relies on MkDocs' [repo_url], [repo_name], and [edit_uri]/[edit_uri_template] settings.  
 
 [repo_url]: https://www.mkdocs.org/user-guide/configuration/#repo_url
 [repo_name]: https://www.mkdocs.org/user-guide/configuration/#repo_name
@@ -125,7 +125,7 @@ theme:
 
 
 ## Adding Repository Hosts
-If your repository is not stored on GitHub or Bitbucket and you would like to use this feature please [submit a feature request]{target="_blank"} on GitHub.  
+If your repository is not stored on GitHub or Bitbucket and you would like to use this feature please [submit a feature request] on GitHub.  
 
 You can further customize what revision information is included on the page by implementing your own `revision` template block.  See [Blocks] for more information.
 

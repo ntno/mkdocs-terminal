@@ -40,7 +40,7 @@ tiles:
 
 ## Default Tile Placement
 
-See [Example Page]{target="_blank", title="open default grid example in new tab"}
+See [Example Page]
 
 ### Markdown
 ```markdown
@@ -52,7 +52,7 @@ tile-grid/examples/example-page.md
 
 ## Tiles First
 
-See [Tiles First example]{target="_blank", title="open tiles first example in new tab"}
+See [Tiles First example]
 
 ### Markdown
 ```markdown

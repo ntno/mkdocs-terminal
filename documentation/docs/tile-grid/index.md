@@ -15,7 +15,7 @@ Terminal for MkDocs enables you to quickly create a grid of linked tiles.  Each 
 To use this feature, complete the following steps:
 
 ## 1. Add `tiles` to Page Metadata
-Add a [YAML Style Meta-Data]{target="_blank"} section to the very top of your Markdown page.  The metadata should contain the attribute `tiles` which is a list of YAML objects.  
+Add a [YAML Style Meta-Data] section to the very top of your Markdown page.  The metadata should contain the attribute `tiles` which is a list of YAML objects.  
 
 Pay special attention to the indentation.  There should be two spaces before the `-` marking the start of an object.  There should be four spaces before any additional object attribute:  
 
@@ -50,8 +50,8 @@ nav:
         - Also Works: 'tile-grid/examples/example-page.md'
 ```
 
-[^mkdocs-page-object]: [MkDocs Page Object]{target="_blank"}
-[^mkdocs-page-meta]: [MkDocs Page Metadata]{target="_blank"}
+[^mkdocs-page-object]: [MkDocs Page Object]
+[^mkdocs-page-meta]: [MkDocs Page Metadata]
 
 [YAML Style Meta-Data]: https://www.mkdocs.org/user-guide/writing-your-docs/#yaml-style-meta-data
 [MkDocs Page Object]: https://www.mkdocs.org/dev-guide/themes/#navigation-objects

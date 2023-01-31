@@ -124,7 +124,7 @@ class TestRevision():
         context_data = enabled_context
         rendered_revision = revision_partial.render(context_data)
         assert "Page last updated 2022/05/06. See revision history on" in rendered_revision
-        assert "<a target=\"_blank\" href=\"" + expected_page_history_url + "\">GitHub</a>" in rendered_revision
+        assert "<a href=\"" + expected_page_history_url + "\">GitHub</a>" in rendered_revision
         assert_valid_html(rendered_revision)
 
     def test_bitbucket_history_link(self, revision_partial, enabled_context):
@@ -135,7 +135,7 @@ class TestRevision():
         context_data = enabled_context
         rendered_revision = revision_partial.render(context_data)
         assert "Page last updated 2023/03/04. See revision history on" in rendered_revision
-        assert "<a target=\"_blank\" href=\"" + expected_page_source_url + "\">Bitbucket</a>" in rendered_revision
+        assert "<a href=\"" + expected_page_source_url + "\">Bitbucket</a>" in rendered_revision
         assert_valid_html(rendered_revision)
 
     def test_last_updated_text_hidden_when_date_disabled_on_page(self, revision_partial, enabled_context):

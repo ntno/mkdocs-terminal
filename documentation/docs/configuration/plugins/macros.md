@@ -1,6 +1,6 @@
 # MkDocs Macros Plugin
 
-The third-party [macros]{target="_blank"} plugin transforms markdown pages into [jinja2]{target="_blank"} templates.  This allows you to create complex and feature-rich pages using variables, calls to custom functions, and filters.  
+The third-party [macros] plugin transforms markdown pages into [jinja2] templates.  This allows you to create complex and feature-rich pages using variables, calls to custom functions, and filters.  
 
 You can write and publish your own functions to use in your markdown pages.  These functions are called macros.  You can also install macros written by others via pip.  Once a macro has been installed, it must be enabled in your MkDocs config before you can use it.
 
@@ -50,6 +50,6 @@ A table with entries describing the MkDocs configuration for your site should be
 
 ## 4. Configuration
 
-See [MkDocs Macros Plugin]{target="_blank"} documentation for configuration options.
+See [MkDocs Macros Plugin] documentation for configuration options.
 
 [MkDocs Macros Plugin]: https://mkdocs-macros-plugin.readthedocs.io/en/latest/#configuration-of-the-plugin

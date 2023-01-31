@@ -4,7 +4,7 @@ configuration/extensions/links.md
 
 # PyMdown Extensions
 
-The [PyMdown Extensions]{target="_blank"} package is an excellent collection of
+The [PyMdown Extensions] package is an excellent collection of
 additional extensions perfectly suited for advanced technical writing. Terminal
 for MkDocs lists this package as an explicit dependency so it's automatically
 installed with a supported version.
@@ -15,7 +15,7 @@ installed with a supported version.
 
 ## Caret, Mark & Tilde
 
-The [Caret]{target="_blank"}, [Mark]{target="_blank"} and [Tilde]{target="_blank"} extensions add the ability to highlight text
+The [Caret], [Mark], and [Tilde] extensions add the ability to highlight text
 and define subscript and superscript using a simple syntax. Enable them together
 via `mkdocs.yml`:
 
@@ -47,7 +47,7 @@ See reference for usage:
 
 ## Snippets
 
-The [Snippets]{target="_blank"} extension adds the ability to embed content from arbitrary files into a document, including other documents or source files, by using a simple syntax. Enable it via `mkdocs.yml`:
+The [Snippets] extension adds the ability to embed content from arbitrary files into a document, including other documents or source files, by using a simple syntax. Enable it via `mkdocs.yml`:
 
 ``` yaml
 markdown_extensions:
@@ -56,7 +56,7 @@ markdown_extensions:
 
 The configuration options of this extension are not specific to Terminal for
 MkDocs, as they only impact the Markdown parsing stage. See the [Snippets 
-documentation][Snippets]{target="_blank"} for more information.
+documentation][Snippets] for more information.
 
   [Snippets]: https://facelessuser.github.io/pymdown-extensions/extensions/snippets/
   
@@ -69,4 +69,4 @@ See reference for usage:
 
 # Credit
 
-This documentation page is based on squidfunk's Material for MkDocs [Pymdown Extension](https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown-extensions/){target="_blank"} documentation.
+This documentation page is based on squidfunk's Material for MkDocs [Pymdown Extension](https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown-extensions/) documentation.

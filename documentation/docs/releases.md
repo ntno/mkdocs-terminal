@@ -1,6 +1,6 @@
 # Versioning
 
-Terminal for MkDocs uses [semantic versioning]{target="_blank"}.  Each version number is in the format `MAJOR.MINOR.PATCH`.  Given a version number `MAJOR.MINOR.PATCH`:
+Terminal for MkDocs uses [semantic versioning].  Each version number is in the format `MAJOR.MINOR.PATCH`.  Given a version number `MAJOR.MINOR.PATCH`:
 
 - the **MAJOR** version increments with an incompatible API change
 - the **MINOR** version increments with added functionality in a backwards compatible manner
@@ -15,7 +15,7 @@ We recommend that you pin your dependency on `mkdocs-terminal` to the latest sup
 
 example: `mkdocs-terminal~=3.0`
 
-See [Version Identification and Dependency Specification]{target="_blank"} for additional constraint examples.
+See [Version Identification and Dependency Specification] for additional constraint examples.
 
 [Version Identification and Dependency Specification]: https://peps.python.org/pep-0440/#examples
 
@@ -24,10 +24,10 @@ See [Version Identification and Dependency Specification]{target="_blank"} for a
 
 |         Release          | Theme Status | Supported? |
 | :----------------------: | :----------: | :--------: |
-| [3.9.0]{target="_blank"} |    Alpha     |     no     |
-| [3.7.0]{target="_blank"} |    Alpha     |     no     |
-| [3.0.0]{target="_blank"} |    Alpha     |     no     |
-| [2.2.0]{target="_blank"} |    Alpha     |     no     |
+| [3.9.0] |    Alpha     |     no     |
+| [3.7.0] |    Alpha     |     no     |
+| [3.0.0] |    Alpha     |     no     |
+| [2.2.0] |    Alpha     |     no     |
 
 
 <br>
