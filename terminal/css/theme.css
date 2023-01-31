@@ -17,9 +17,9 @@ a.btn {
 }
 
 /* if linked tile, highlight the link container on hover */
-.terminal-mkdocs-tile-link:has(a:hover) {
+/* .terminal-mkdocs-tile-link:has(a:hover) {
     color: var(--primary-color) !important;
-}
+} */
 
 .terminal-mkdocs-main-grid {
     display: grid;
