@@ -5,6 +5,7 @@ tiles:
     img_src: ../../img/palettes/default.png
     img_alt: Default Demo Page
     link_href: ./default/
+    tile_css: img_link
   - caption: <a id="fnref:2" class="footnote-ref" title="to image description" alt="to long image description" href="#fn:2">Gruvbox Dark</a>
     img_src: ../../img/palettes/gruvbox_dark.png
     img_alt: Gruvbox Dark Demo Page
@@ -26,6 +27,12 @@ tiles:
     img_alt: Sans Dark Demo Page
     link_href: ./sans-dark/            
 ---
+<style> 
+  .img_link div:has(a:not(.footnote-ref):hover) {
+    color: var(--primary-color) !important;
+  }
+</style>
+
 # Theme Color Palettes
 Terminal for MkDocs subports the following color palettes by default:
 
