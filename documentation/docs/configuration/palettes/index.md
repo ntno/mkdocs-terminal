@@ -34,7 +34,7 @@ tiles:
 ---
 
 # Theme Color Palettes
-Terminal for MkDocs subports the following color palettes by default:
+Terminal for MkDocs supports the following color palettes by default:
 
   - [default](default.md)
   - [gruvbox_dark](gruvbox-dark.md)
