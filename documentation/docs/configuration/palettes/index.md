@@ -1,27 +1,27 @@
 ---
 show_tiles_first: true
 tiles:
-  - caption: Default <sub id="fnref:1"><a class="footnote-ref" alt="to long image description" href="#fn:1">1</a></sub>
+  - caption: Default <a id="fnref:1" class="footnote-ref" alt="to long image description" href="#fn:1">1</a>
     img_src: ../../img/palettes/default.png
     img_alt: Default Demo Page
     link_href: ./default/
-  - caption: Gruvbox Dark <sub id="fnref:2"><a class="footnote-ref" alt="to long image description" href="#fn:2">2</a></sub>
+  - caption: Gruvbox Dark <a id="fnref:2" class="footnote-ref" alt="to long image description" href="#fn:2">2</a>
     img_src: ../../img/palettes/gruvbox_dark.png
     img_alt: Gruvbox Dark Demo Page
     link_href: ./gruvbox-dark/
-  - caption: Dark <sub id="fnref:3"><a class="footnote-ref" alt="to long image description" href="#fn:3">3</a></sub>
+  - caption: Dark <a id="fnref:3" class="footnote-ref" alt="to long image description" href="#fn:3">3</a>
     img_src: ../../img/palettes/dark.png
     img_alt: Dark Demo Page
     link_href: ./dark/    
-  - caption: Pink <sub id="fnref:4"><a class="footnote-ref" alt="to long image description" href="#fn:4">4</a></sub>
+  - caption: Pink <a id="fnref:4" class="footnote-ref" alt="to long image description" href="#fn:4">4</a>
     img_src: ../../img/palettes/pink.png
     img_alt: Pink Demo Page
     link_href: ./pink/        
-  - caption: Sans <sub id="fnref:5"><a class="footnote-ref" alt="to long image description" href="#fn:5">5</a></sub>
+  - caption: Sans <a id="fnref:5" class="footnote-ref" alt="to long image description" href="#fn:5">5</a>
     img_src: ../../img/palettes/sans.png
     img_alt: Sans Demo Page
     link_href: ./sans/    
-  - caption: Sans Dark <sub id="fnref:6"><a class="footnote-ref" alt="to long image description" href="#fn:6">6</a></sub>
+  - caption: Sans Dark <a id="fnref:6" class="footnote-ref" alt="to long image description" href="#fn:6">6</a>
     img_src: ../../img/palettes/sans_dark.png
     img_alt: Sans Dark Demo Page
     link_href: ./sans-dark/            
