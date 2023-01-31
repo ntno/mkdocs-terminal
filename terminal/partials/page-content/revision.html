@@ -26,10 +26,10 @@
             {%- if show_date -%}Page last updated {{ page.meta.revision_date }}. {% endif %}
             {%- if show_history -%}
             {%- if config.repo_name == "GitHub" -%}
-            See revision history on <a target="_blank" href="{{ page.edit_url | replace('/edit/','/commits/') }}">{{ config.repo_name }}</a>.
+            See revision history on <a href="{{ page.edit_url | replace('/edit/','/commits/') }}">{{ config.repo_name }}</a>.
             {%- endif -%}
             {%- if config.repo_name == "Bitbucket" -%}
-            See revision history on <a target="_blank" href="{{ page.edit_url | replace('mode=edit','mode=read') }}">{{ config.repo_name }}</a>.
+            See revision history on <a href="{{ page.edit_url | replace('mode=edit','mode=read') }}">{{ config.repo_name }}</a>.
             {%- endif -%}
             {%- endif -%}
             </i>
