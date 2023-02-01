@@ -66,7 +66,7 @@ class TestTileUtil():
         assert_image_only_tile_expectations(tile_util_macro, valid_image_only_tile)
         assert "true" == tile_util_macro.module.has_caption(valid_image_only_tile)
 
-    def test_integer_tile_does_not_throw_exception(self, tile_util_macro, all_integer_tile):
+    def test_utils_do_not_throw_exception_with_integer_tile(self, tile_util_macro, all_integer_tile):
         tile = all_integer_tile
         try:
             assert "true" == tile_util_macro.module.has_link(tile)
