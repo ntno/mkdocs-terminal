@@ -1,11 +1,13 @@
 
 {% import 'pluglets/tile_grid/templates/j2-macros/tile-image.j2' as image_helper %}
 {% import 'pluglets/tile_grid/templates/j2-macros/tile-link.j2' as link_helper %}
+{% import 'pluglets/tile_grid/templates/j2-macros/tile-util.j2' as tile_util %}
+
+
+
 {% macro make_tile( tile, use_markup ) %}
 {%- set ns = namespace(is_valid=false, has_link=false, has_image=false, has_caption=false) -%}
-{%- if tile.img_src is defined and tile.img_src|string|length -%}
-    {%- set ns.has_image = true -%}
-{%- endif -%}
+{%- set ns.has_image = tile_util.has_image(tile) -%}
 {%- if tile.link_href is defined and tile.link_href|string|length -%}
     {%- set ns.has_link = true -%}
 {%- endif -%}

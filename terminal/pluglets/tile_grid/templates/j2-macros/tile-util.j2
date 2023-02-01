@@ -1,5 +1,29 @@
+{% macro has_caption( tile ) -%}
+{% if tile.caption is defined and tile.caption|string|length %}
+true
+{% else %}
+false
+{% endif %}
+{%- endmacro -%}
+
+{% macro has_image( tile ) -%}
+{% if tile.img_src is defined and tile.img_src|string|length %}
+true
+{% else %}
+false
+{% endif %}
+{%- endmacro -%}
+
+{% macro has_link( tile ) -%}
+{% if tile.link_href is defined and tile.link_href|string|length %}
+true
+{% else %}
+false
+{% endif %}
+{%- endmacro -%}
+
 {% macro is_image_only( tile ) -%}
-{% if tile.img_src|string|length and not tile.link_href|string|length %}
+{% if has_image(tile) and not has_link(tile) %}
 true
 {% else %}
 false
@@ -7,7 +31,7 @@ false
 {%- endmacro -%}
 
 {% macro is_link_only( tile ) -%}
-{% if not tile.img_src|string|length and tile.link_href|string|length %}
+{% if has_link(tile) and not has_image(tile) %}
 true
 {% else %}
 false
@@ -15,7 +39,15 @@ false
 {%- endmacro -%}
 
 {% macro is_linked_tile( tile ) -%}
-{% if tile.img_src|string|length and tile.link_href|string|length %}
+{% if has_image(tile) and has_link(tile) %}
+true
+{% else %}
+false
+{% endif %}
+{%- endmacro -%}
+
+{% macro is_valid( tile ) -%}
+{% if is_image_only(tile) or is_link_only(tile) or is_linked_tile(tile) %}
 true
 {% else %}
 false
