@@ -3,14 +3,12 @@
 {% import 'pluglets/tile_grid/templates/j2-macros/tile-link.j2' as link_helper %}
 {% import 'pluglets/tile_grid/templates/j2-macros/tile-util.j2' as tile_util %}
 
-
-
 {% macro make_tile( tile, use_markup ) %}
 {%- set ns = namespace(is_valid=false, has_link=false, has_image=false, has_caption=false) -%}
-{%- set ns.has_image = tile_util.has_image(tile) -%}
-{%- set ns.has_link = tile_util.has_link(tile) -%}
-{%- set ns.has_caption = tile_util.has_caption(tile) -%}
-{%- set ns.is_valid = tile_util.is_valid(tile) -%}
+{%- set ns.has_image = tile_util.has_image(tile) == "true" -%}
+{%- set ns.has_link = tile_util.has_link(tile) == "true" -%}
+{%- set ns.has_caption = tile_util.has_caption(tile) == "true" -%}
+{%- set ns.is_valid = tile_util.is_valid(tile) == "true" -%}
 {%- if ns.is_valid -%}
     <div {% if tile.tile_id is defined and tile.tile_id|string|length %} id="{{ tile.tile_id }}" {% endif %}class="terminal-mkdocs-tile {{ tile.tile_css }}">
         <figure>

@@ -1,4 +1,3 @@
-from tests.interface.tile import Tile
 import pytest
 TILE_UTIL_MACRO_PATH = "pluglets/tile_grid/templates/j2-macros/tile-util.j2"
 
@@ -77,8 +76,8 @@ class TestTileUtil():
 
             assert "false" == tile_util_macro.module.is_link_only(tile)
             assert "false" == tile_util_macro.module.is_image_only(tile)
-        except:
-            pytest.fail("util macros should not throw exception")
+        except Exception as ex:
+            pytest.fail("util macros should not throw exception", ex)
 
     def test_utils_with_minimal_linked_image_tile(self, tile_util_macro, minimal_linked_image_tile):
         assert_linked_image_tile_expectations(tile_util_macro, minimal_linked_image_tile)
