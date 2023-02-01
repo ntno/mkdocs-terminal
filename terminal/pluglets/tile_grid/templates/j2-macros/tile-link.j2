@@ -1,5 +1,5 @@
+{% import 'pluglets/tile_grid/templates/j2-macros/tile-util.j2' as util %}
 {% macro make_link_start( tile ) -%}
 <div class="terminal-mkdocs-tile-link"><a href="{{ tile.link_href }}" 
-    {%- if tile.link_title is defined and tile.link_title|string|length %} title="{{ tile.link_title }}"{% endif %} 
-    {%- if tile.link_target is defined and tile.link_target|string|length %} target="{{ tile.link_target }}"{% endif %} >
+    {% if util.is_link_only(tile) or util.is_linked_tile(tile) %}{%- if tile.title is defined and tile.title|string|length %} title="{{ tile.title }}"{% endif %}{% endif %} >
 {%- endmacro -%}
