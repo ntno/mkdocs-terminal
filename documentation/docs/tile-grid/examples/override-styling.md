@@ -5,12 +5,15 @@ grid_css: "example_solid_border"
 tiles:
   - caption: '@petradr'
     img_src: ../../../img/picsum/167_200x200.jpeg
+    text: 'close up of fallen leaves.'
     tile_css: "example_dashed_border"
   - caption: 'Marcin Czerwinski'
     img_src: ../../../img/picsum/127_200x200.jpeg
+    text: 'close up of green moss on a log.'
     tile_css: "example_dashed_border"
   - caption: '@Guillaume'
     img_src: ../../../img/picsum/120_small.jpg
+    text: 'milky way with a rustic picket fence in the foreground'
     img_width: "250"
     tile_css: "example_dashed_border"
 ---
@@ -83,12 +86,15 @@ grid_css: "example_solid_border"
 tiles:
   - caption: '@petradr'
     img_src: ../../../img/picsum/167_200x200.jpeg
+    text: 'close up of fallen leaves.'
     tile_css: "example_dashed_border"
   - caption: 'Marcin Czerwinski'
     img_src: ../../../img/picsum/127_200x200.jpeg
+    text: 'close up of green moss on a log.'
     tile_css: "example_dashed_border"
   - caption: '@Guillaume'
     img_src: ../../../img/picsum/120_small.jpg
+    text: 'milky way with a rustic picket fence in the foreground'
     img_width: "250"
     tile_css: "example_dashed_border"
 ---
