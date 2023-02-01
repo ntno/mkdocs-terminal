@@ -63,6 +63,21 @@ class TestTile():
         assert "alt=\"an unusual backup text\"" in rendered_tile
         assert_valid_html(rendered_tile)
 
+    def test_title_added_to_anchor_tag_for_linked_image(self, tile_macro, valid_linked_image_tile):
+        rendered_tile = tile_macro.module.make_tile(valid_linked_image_tile, False)
+        assert_valid_html(rendered_tile)
+        pass
+
+    def test_title_added_to_img_tag_for_image_only(self, tile_macro, valid_image_only_tile):
+        rendered_tile = tile_macro.module.make_tile(valid_image_only_tile, False)
+        assert_valid_html(rendered_tile)
+        pass
+
+    def test_title_added_to_anchor_tag_for_link_only(self, tile_macro, valid_link_only_tile):
+        rendered_tile = tile_macro.module.make_tile(valid_link_only_tile, False)
+        assert_valid_html(rendered_tile)
+        pass
+
     def test_href_used_as_display_when_no_text_provided(self, tile_macro):
         tile = Tile(link_href=defaults.GITHUB_LINK_HREF)
         rendered_tile = tile_macro.module.make_tile(tile)
