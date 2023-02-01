@@ -68,6 +68,16 @@ def all_integer_tile():
 
 
 @pytest.fixture
+def valid_link_only_tile():
+    return Tile(caption=defaults.GITHUB_CAPTION, tile_id="myGitHubLinkTile", tile_css="myGitHubTileClass", text=defaults.GITHUB_TEXT, link_href=defaults.GITHUB_LINK_HREF, title=defaults.GITHUB_TITLE)
+
+
+@pytest.fixture
+def valid_image_only_tile():
+    return Tile(caption=defaults.GITHUB_CAPTION, tile_id="myGitHubLinkTile", tile_css="myGitHubTileClass", text=defaults.GITHUB_IMG_DESCRIPTION, img_src=defaults.GITHUB_IMG_SRC, img_width=defaults.GITHUB_IMG_WIDTH, img_height=defaults.GITHUB_IMG_HEIGHT)
+
+
+@pytest.fixture
 def valid_linked_image_tile():
     return Tile(caption=defaults.GITHUB_CAPTION, tile_id="myGitHubLinkTile", tile_css="myGitHubTileClass", text=defaults.GITHUB_TEXT, link_href=defaults.GITHUB_LINK_HREF, title=defaults.GITHUB_TITLE, img_src=defaults.GITHUB_IMG_SRC, img_width=defaults.GITHUB_IMG_WIDTH, img_height=defaults.GITHUB_IMG_HEIGHT)
 
