@@ -94,7 +94,7 @@ markdown_extensions:
   - meta
   - toc:
       permalink: "#"
-      permalink_title: Anchor link to this section for reference
+      permatitle: Anchor link to this section for reference
 
   # PyMdown Extensions
   - pymdownx.caret

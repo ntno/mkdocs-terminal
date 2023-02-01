@@ -4,26 +4,26 @@ tiles:
   - caption: a minimal link tile
     link_href: ../example-page
   - caption: a link tile with text
-    link_text: Tile Grid Example
+    text: Tile Grid Example
     link_href: ../example-page
   - caption: a link tile with hover title
-    link_title: go to the tile grid example page
-    link_text: Tile Grid Example
+    title: go to the tile grid example page
+    text: Tile Grid Example
     link_href: ../example-page
   - caption: "\\#tile_123"
     tile_id: "tile_123"
-    link_title: go to overview
-    link_text: Tile Grid Overview
+    title: go to overview
+    text: Tile Grid Overview
     link_href: ../..
   - caption: "\\#tile_456"
     tile_id: "tile_456"
-    link_title: go to tile reference
-    link_text: Tile Reference
+    title: go to tile reference
+    text: Tile Reference
     link_href: ../../tile
   - caption: ".example_highlight"
     tile_css: "example_highlight"
-    link_title: go to grid reference
-    link_text: Grid Reference
+    title: go to grid reference
+    text: Grid Reference
     link_href: ../../grid
 ---
 <style> #tile_456 {border: solid !important;border-width: thin !important;}.example_highlight {background-color: #FFFF00;}</style>
@@ -57,26 +57,26 @@ tiles:
   - caption: a minimal link tile
     link_href: ../example-page
   - caption: a link tile with text
-    link_text: Tile Grid Example
+    text: Tile Grid Example
     link_href: ../example-page
   - caption: a link tile with hover title
-    link_title: go to the tile grid example page
-    link_text: Tile Grid Example
+    title: go to the tile grid example page
+    text: Tile Grid Example
     link_href: ../example-page
   - caption: "\\#tile_123"
     tile_id: "tile_123"
-    link_title: go to overview
-    link_text: Tile Grid Overview
+    title: go to overview
+    text: Tile Grid Overview
     link_href: ../..
   - caption: "\\#tile_456"
     tile_id: "tile_456"
-    link_title: go to tile reference
-    link_text: Tile Reference
+    title: go to tile reference
+    text: Tile Reference
     link_href: ../../tile
   - caption: ".example_highlight"
     tile_css: "example_highlight"
-    link_title: go to grid reference
-    link_text: Grid Reference
+    title: go to grid reference
+    text: Grid Reference
     link_href: ../../grid
 ---
 ```
