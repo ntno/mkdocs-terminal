@@ -74,7 +74,7 @@ def valid_link_only_tile():
 
 @pytest.fixture
 def valid_image_only_tile():
-    return Tile(caption=defaults.GITHUB_CAPTION, tile_id="myGitHubLinkTile", tile_css="myGitHubTileClass", text=defaults.GITHUB_IMG_DESCRIPTION, img_src=defaults.GITHUB_IMG_SRC, img_width=defaults.GITHUB_IMG_WIDTH, img_height=defaults.GITHUB_IMG_HEIGHT)
+    return Tile(caption=defaults.GITHUB_CAPTION, tile_id="myGitHubLinkTile", tile_css="myGitHubTileClass", text=defaults.GITHUB_IMG_DESCRIPTION, img_src=defaults.GITHUB_IMG_SRC, title=defaults.GITHUB_IMG_ONLY_TITLE, img_width=defaults.GITHUB_IMG_WIDTH, img_height=defaults.GITHUB_IMG_HEIGHT)
 
 
 @pytest.fixture
