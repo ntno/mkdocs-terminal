@@ -3,17 +3,17 @@ tiles:
   - caption: '@petradr'
     img_src: ../../../img/picsum/167_200x200.jpeg
     title: 'to Picsum homepage'
-    text: 'close up of fallen leaves.'
+    text: 'Picsum Photos'
     link_href: https://picsum.photos/ 
   - caption: 'Marcin Czerwinski'
     img_src: ../../../img/picsum/127_200x200.jpeg
     title: 'to Picsum homepage'
-    text: 'close up of green moss on a log.'
+    text: 'Picsum Photos'
     link_href: https://picsum.photos/ 
   - caption: 'Steve Richey'
     img_src: ../../../img/picsum/143_200x200.jpeg
     title: 'to Picsum homepage'
-    text: 'overhead of fallen leaves.'
+    text: 'Picsum Photos'
     link_href: https://picsum.photos/ 
 ---
 
