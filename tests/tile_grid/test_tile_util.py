@@ -18,7 +18,7 @@ class TestTileUtil():
         assert "false" == tile_util_macro.module.is_valid(tile)
         assert "false" == tile_util_macro.module.is_link_only(tile)
         assert "false" == tile_util_macro.module.is_image_only(tile)
-        assert "false" == tile_util_macro.module.is_linked_tile(tile)
+        assert "false" == tile_util_macro.module.is_linked_image(tile)
 
     def test_minimal_link_tile_is_valid(self, tile_util_macro, minimal_link_tile):
         tile = minimal_link_tile
@@ -29,7 +29,7 @@ class TestTileUtil():
         assert "false" == tile_util_macro.module.has_image(tile)
         assert "false" == tile_util_macro.module.has_caption(tile)
         assert "false" == tile_util_macro.module.is_image_only(tile)
-        assert "false" == tile_util_macro.module.is_linked_tile(tile)
+        assert "false" == tile_util_macro.module.is_linked_image(tile)
 
     def test_minimal_image_tile_is_valid(self, tile_util_macro, minimal_image_tile):
         tile = minimal_image_tile
@@ -40,14 +40,14 @@ class TestTileUtil():
         assert "false" == tile_util_macro.module.has_link(tile)        
         assert "false" == tile_util_macro.module.has_caption(tile)
         assert "false" == tile_util_macro.module.is_link_only(tile)
-        assert "false" == tile_util_macro.module.is_linked_tile(tile)
+        assert "false" == tile_util_macro.module.is_linked_image(tile)
 
     def test_minimal_linked_image_tile_is_valid(self, tile_util_macro, minimal_linked_image_tile):
         tile = minimal_linked_image_tile
         assert "true" == tile_util_macro.module.has_link(tile)
         assert "true" == tile_util_macro.module.has_image(tile)
         assert "true" == tile_util_macro.module.is_valid(tile)
-        assert "true" == tile_util_macro.module.is_linked_tile(tile)
+        assert "true" == tile_util_macro.module.is_linked_image(tile)
 
         assert "false" == tile_util_macro.module.has_caption(tile)
         assert "false" == tile_util_macro.module.is_link_only(tile)
