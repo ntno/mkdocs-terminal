@@ -22,13 +22,19 @@ A tile can represent an image, a link, or a linked image.
 
 :   The image source.  Can be an external image like `https://picsum.photos/id/167/200/200` or an internal MkDocs image like `../img/palettes/default.png`.
 
-`img_title`
+`link_href`
+
+:   The link destination.  Can be an external web page or a relative internal MkDocs page like `./tile-grid/`.
+
+`text`
+
+:   - **Image Only Tile** a short description of the image (used by screen readers and as a fallback value if the image cannot be loaded)
+    - **Link Only Tile** the text to display for the hyperlink
+    - **Linked Image Tile** the text which describes the purpose of the link (ex: for a image tile which is linked to a page about various dog breeds your alt text would be "Dog Breeds", *not* an extensive description of the image which may be a picture of a Golden Retriever)  
+
+`title`
 
 :   Text to display on hover.
-
-`img_alt`
-
-:   Alternate text for the image if the image cannot be displayed.
 
 `img_width`
 
@@ -37,24 +43,6 @@ A tile can represent an image, a link, or a linked image.
 `img_height`
 
 :   Height to set on the image element.
-
-`link_href`
-
-:   Web page URL.  Can be an external web page or an internal MkDocs page like `./default/`.
-
-`link_target`
-
-:   Specifies where to open the linked webpage.  `_blank` will open the link in a new tab.  `_self` will open the link in the current window.
-
-`link_text`
-
-:   Text to display for a [link only] tile.  
-    Ignored if `img_src` is specified.
-
-`link_title`
-
-:   Text to display on hover.  
-    Should not be used if `img_title` is already specified.
 
 `tile_id`
 
