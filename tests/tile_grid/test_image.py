@@ -26,9 +26,9 @@ class TestImage():
         assert_valid_html(rendered_image)
 
     def test_all_img_attributes_used(self, image_macro):
-        tile = Tile(text=defaults.GITHUB_IMG_DESCRIPTION, title=defaults.GITHUB_IMG_ONLY_TITLE, img_src=defaults.GITHUB_IMG_SRC, img_width=defaults.GITHUB_IMG_WIDTH, img_height=defaults.GITHUB_IMG_HEIGHT)
+        tile = Tile(text=defaults.GITHUB_IMG_ONLY_DESCRIPTION, title=defaults.GITHUB_IMG_ONLY_TITLE, img_src=defaults.GITHUB_IMG_SRC, img_width=defaults.GITHUB_IMG_WIDTH, img_height=defaults.GITHUB_IMG_HEIGHT)
         rendered_image = image_macro.module.make_image(tile)
-        assert "alt=\"" + defaults.GITHUB_IMG_DESCRIPTION + "\"" in rendered_image
+        assert "alt=\"" + defaults.GITHUB_IMG_ONLY_DESCRIPTION + "\"" in rendered_image
         assert "src=\"" + defaults.GITHUB_IMG_SRC + "\"" in rendered_image
         assert "title=\"" + defaults.GITHUB_IMG_ONLY_TITLE + "\"" in rendered_image
         assert "width=\"" + defaults.GITHUB_IMG_WIDTH + "\"" in rendered_image
