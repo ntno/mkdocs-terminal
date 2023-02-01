@@ -64,12 +64,12 @@ def minimal_linked_image_tile():
 
 @pytest.fixture
 def all_integer_tile():
-    return Tile(caption=0, tile_id=1, tile_css=2, link_text=3, link_href=4, link_title=5, link_target=6, img_src=7, img_alt=8, img_title=9, img_width=10, img_height=11)
+    return Tile(caption=0, img_src=1, link_href=2, text=3, title=4, img_width=5, img_height=6, tile_id=7, tile_css=8)
 
 
 @pytest.fixture
 def valid_linked_image_tile():
-    return Tile(caption=defaults.GITHUB_CAPTION, tile_id="myGitHubLinkTile", tile_css="myGitHubTileClass", link_text=defaults.GITHUB_LINK_TEXT, link_href=defaults.GITHUB_LINK_HREF, link_title=defaults.GITHUB_LINK_TITLE, link_target=defaults.GITHUB_LINK_TARGET, img_src=defaults.GITHUB_IMG_SRC, img_alt=defaults.GITHUB_IMG_ALT, img_title=defaults.GITHUB_IMG_TITLE, img_width=defaults.GITHUB_IMG_WIDTH, img_height=defaults.GITHUB_IMG_HEIGHT)
+    return Tile(caption=defaults.GITHUB_CAPTION, tile_id="myGitHubLinkTile", tile_css="myGitHubTileClass", text=defaults.GITHUB_TEXT, link_href=defaults.GITHUB_LINK_HREF, title=defaults.GITHUB_TITLE, img_src=defaults.GITHUB_IMG_SRC, img_width=defaults.GITHUB_IMG_WIDTH, img_height=defaults.GITHUB_IMG_HEIGHT)
 
 
 @pytest.fixture

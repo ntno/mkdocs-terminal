@@ -45,7 +45,7 @@ class TestTile():
         assert_valid_html(rendered_tile)
 
     def test_backup_text_added_to_link_only_tile(self, tile_macro):
-        tile = Tile(link_text="link_display_text", link_href=defaults.GITHUB_LINK_HREF)
+        tile = Tile(text="link_display_text", link_href=defaults.GITHUB_LINK_HREF)
         rendered_tile = tile_macro.module.make_tile(tile)
         assert ">link_display_text</a>" in rendered_tile
         assert_valid_html(rendered_tile)
