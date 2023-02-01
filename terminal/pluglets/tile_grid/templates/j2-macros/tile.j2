@@ -17,7 +17,7 @@
                     {{ image_helper.make_image(tile) }}
             {%- endif -%}
             {%- if ns.has_link -%}
-                {% if ns.has_image  %} 
+                {% if ns.has_image %} 
             </a></div>{% else %}{{ tile.text|default(tile.link_href, true) }}</a></div>{%- endif %}
             {%- endif -%}
             {%- if ns.has_caption -%}
