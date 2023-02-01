@@ -1,55 +1,55 @@
-{% macro has_caption( tile ) -%}
-{% if tile.caption is defined and tile.caption|string|length %}
+{%- macro has_caption( tile ) -%}
+{%- if tile.caption is defined and tile.caption|string|length -%}
 true
-{% else %}
+{%- else -%}
 false
-{% endif %}
+{%- endif -%}
 {%- endmacro -%}
 
-{% macro has_image( tile ) -%}
-{% if tile.img_src is defined and tile.img_src|string|length %}
+{%- macro has_image( tile ) -%}
+{%- if tile.img_src is defined and tile.img_src|string|length -%}
 true
-{% else %}
+{%- else -%}
 false
-{% endif %}
+{%- endif -%}
 {%- endmacro -%}
 
-{% macro has_link( tile ) -%}
-{% if tile.link_href is defined and tile.link_href|string|length %}
+{%- macro has_link( tile ) -%}
+{%- if tile.link_href is defined and tile.link_href|string|length -%}
 true
-{% else %}
+{%- else -%}
 false
-{% endif %}
+{%- endif -%}
 {%- endmacro -%}
 
-{% macro is_image_only( tile ) -%}
-{% if has_image(tile) and not has_link(tile) %}
+{%- macro is_image_only( tile ) -%}
+{%- if has_image(tile) == "true" and has_link(tile) != "true" -%}
 true
-{% else %}
+{%- else -%}
 false
-{% endif %}
+{%- endif -%}
 {%- endmacro -%}
 
-{% macro is_link_only( tile ) -%}
-{% if has_link(tile) and not has_image(tile) %}
+{%- macro is_link_only( tile ) -%}
+{%- if has_link(tile) == "true" and has_image(tile) != "true" -%}
 true
-{% else %}
+{%- else -%}
 false
-{% endif %}
+{%- endif -%}
 {%- endmacro -%}
 
-{% macro is_linked_tile( tile ) -%}
-{% if has_image(tile) and has_link(tile) %}
+{%- macro is_linked_tile( tile ) -%}
+{%- if has_image(tile) == "true" and has_link(tile) == "true" -%}
 true
-{% else %}
+{%- else -%}
 false
-{% endif %}
+{%- endif -%}
 {%- endmacro -%}
 
-{% macro is_valid( tile ) -%}
-{% if is_image_only(tile) or is_link_only(tile) or is_linked_tile(tile) %}
+{%- macro is_valid( tile ) -%}
+{%- if is_image_only(tile) == "true" or is_link_only(tile) == "true" or is_linked_tile(tile) == "true" -%}
 true
-{% else %}
+{%- else -%}
 false
-{% endif %}
+{%- endif -%}
 {%- endmacro -%}
