@@ -1,12 +1,12 @@
 ---
 show_tiles_first: true
 tiles:
-  - caption: a minimal link tile
-    link_href: ../example-page
-  - caption: a link tile with text
-    text: Tile Grid Example
-    link_href: ../example-page
-  - caption: a link tile with hover title
+  - caption: a captioned link
+    link_href: https://github.com
+  - caption: display text specified
+    text: GitHub
+    link_href: https://github.com
+  - caption: with hover title
     title: go to the tile grid example page
     text: Tile Grid Example
     link_href: ../example-page
@@ -54,12 +54,12 @@ To demonstrate how tiles can be styled individually, the following `<style>` HTM
 ---
 show_tiles_first: true
 tiles:
-  - caption: a minimal link tile
-    link_href: ../example-page
-  - caption: a link tile with text
-    text: Tile Grid Example
-    link_href: ../example-page
-  - caption: a link tile with hover title
+  - caption: a captioned link
+    link_href: https://github.com
+  - caption: display text specified
+    text: GitHub
+    link_href: https://github.com
+  - caption: with hover title
     title: go to the tile grid example page
     text: Tile Grid Example
     link_href: ../example-page
