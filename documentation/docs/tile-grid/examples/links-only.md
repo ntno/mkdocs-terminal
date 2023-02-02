@@ -3,7 +3,7 @@ show_tiles_first: true
 tiles:
   - caption: a captioned link
     link_href: https://github.com
-  - caption: display text specified
+  - caption: display specified text
     link_href: https://github.com
     alt_text: GitHub
   - caption: with tooltip
@@ -26,7 +26,16 @@ tiles:
     alt_text: Grid Reference
     tooltip: go to grid reference
 ---
-<style> #tile_456 {border: solid;border-width: thin;}.example_highlight {background-color: #FFFF00;}</style>
+<style>
+  #tile_456 {
+    border: solid;
+    border-width: thin;
+  }
+
+  .example_highlight {
+    background-color: #FFFF00;
+  } 
+</style>
 <hr>
 
 # Link Only Tiles 
@@ -49,14 +58,14 @@ To demonstrate how tiles can be styled individually, the following `<style>` HTM
 ```
 
 ## Tile Markdown
-
+Note that `tile_456` has been used for `tile_id` in the second to last tile.  Note that `example_highlight` has been used for `tile_css` in the last tile.  
 ```markdown
 ---
 show_tiles_first: true
 tiles:
   - caption: a captioned link
     link_href: https://github.com
-  - caption: display text specified
+  - caption: display specified text
     link_href: https://github.com
     alt_text: GitHub
   - caption: with tooltip
