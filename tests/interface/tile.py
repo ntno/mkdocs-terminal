@@ -8,15 +8,13 @@ log = logging.getLogger(__name__)
 
 class Tile:
     def __init__(
-        self, caption="", img_src="", link_href="", alt_text="", tooltip="", img_width="", img_height="", tile_id="", tile_css=""
+        self, caption="", img_src="", link_href="", alt_text="", tooltip="", tile_id="", tile_css=""
     ) -> None:
         self.caption = caption
         self.img_src = img_src
         self.link_href = link_href
         self.alt_text = alt_text
         self.tooltip = tooltip
-        self.img_width = img_width
-        self.img_height = img_height
         self.tile_id = tile_id
         self.tile_css = tile_css
 
@@ -43,12 +41,6 @@ class Tile:
 
     tooltip: Optional[Any]
     """Text to display on hover."""
-
-    img_width: Optional[Any]
-    """Width to set on the image element."""
-
-    img_height: Optional[Any]
-    """Height to set on the image element."""
 
     tile_id: Optional[Any]
     """ID to add to the tile's HTML for advanced styling."""
