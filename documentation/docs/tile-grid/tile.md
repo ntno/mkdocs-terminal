@@ -28,10 +28,10 @@ A tile can represent an image, a link, or a linked image.
 
 `alt_text`
 
-:   - **Image Only Tile:** a short description of the image
-    - **Link Only Tile:** the text to display for the hyperlink
-    - **Linked Image Tile:** the text which describes the purpose of the link.  
-    For more information on what to use as alternate text, see the [Alternate Text Resources](tile.md#alternate-text) below.
+:   **Image Only Tile**: a short description of the image.  
+    **Link Only Tile**: the text to display for the hyperlink.  
+    **Linked Image Tile**: the text which describes the purpose of the link.  
+    For more information on what to use as alternate text, see the [Alternate Text Resources](tile.md#alternate-text) below.  
 
 `tooltip`
 
