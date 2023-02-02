@@ -51,13 +51,10 @@ nav:
         - Also Works: 'tile-grid/examples/example-page.md'
 ```
 
-[^mkdocs-page-object]: [MkDocs Page Object]
-[^mkdocs-page-meta]: [MkDocs Page Metadata]
+[^mkdocs-page-object]: [MkDocs Page Object Documentation]
 
 [YAML Style Meta-Data]: https://www.mkdocs.org/user-guide/writing-your-docs/#yaml-style-meta-data
-[MkDocs Page Object]: https://www.mkdocs.org/dev-guide/themes/#navigation-objects
-[MkDocs Page Metadata]: https://www.mkdocs.org/dev-guide/themes/#mkdocs.structure.pages.Page.meta
-[Markdown Metadata]: https://www.mkdocs.org/user-guide/writing-your-docs/#meta-data
+[MkDocs Page Object Documentation]: https://www.mkdocs.org/dev-guide/themes/#navigation-objects
 
 ## 3. Configure Tile Grid
 The Tile Grid can be further configured using the attributes described in the [Grid Reference](grid.md).  For example, the grid can be configured to display before the main page content:
