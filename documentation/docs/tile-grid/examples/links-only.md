@@ -6,7 +6,7 @@ tiles:
   - caption: display text specified
     link_href: https://github.com
     alt_text: GitHub
-  - caption: with hover title
+  - caption: with tooltip
     link_href: ../example-page
     alt_text: Tile Grid Example
     tooltip: go to the tile grid example page
@@ -30,7 +30,7 @@ tiles:
 <hr>
 
 # Link Only Tiles 
-The tiles on this page do not have `img_*` attributes.  They are rendered as captioned links instead of linked images.
+The tiles on this page do not have a `img_src` attribute.  They are rendered as captioned links instead of linked images.
 
 To demonstrate how tiles can be styled individually, the following `<style>` HTML is included in this page's markdown:
 
@@ -59,7 +59,7 @@ tiles:
   - caption: display text specified
     link_href: https://github.com
     alt_text: GitHub
-  - caption: with hover title
+  - caption: with tooltip
     link_href: ../example-page
     alt_text: Tile Grid Example
     tooltip: go to the tile grid example page
