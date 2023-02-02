@@ -76,7 +76,7 @@ To demonstrate how the tile grid's style can be overriden, the following `<style
 ```
 
 ## Grid Markdown
-Note that the metadata on this page includes `grid_id: "grid_123"` and `grid_css: "example_solid_border"`.  These settings override the tile grid's original styling to the custom styling defined on this page (see [above](override-styling.md#extra-css)).
+Note that the metadata on this page includes `grid_id: "grid_123"` and `grid_css: "example_solid_border"`.  These settings override the tile grid's original styling to the custom styling defined on this page (see previous section).
 
 ```markdown
 ---
