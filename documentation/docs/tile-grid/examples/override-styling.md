@@ -1,38 +1,32 @@
 ---
 show_tiles_first: true
 grid_id: "grid_123"
-grid_css: "example_solid_border"
+grid_css: "example_dashed_border"
 tiles:
   - caption: '@petradr'
     img_src: ../../../img/picsum/167_200x200.jpeg
     alt_text: 'close up of fallen leaves.'
-    tile_css: "example_dashed_border"
   - caption: 'Marcin Czerwinski'
     img_src: ../../../img/picsum/127_200x200.jpeg
     alt_text: 'close up of green moss on a log.'
-    tile_css: "example_dashed_border"
   - caption: '@Guillaume'
     img_src: ../../../img/picsum/120_small.jpg
     alt_text: 'milky way with a rustic picket fence in the foreground'
-    img_width: "250"
-    tile_css: "example_dashed_border"
 ---
 
 <style> 
-    .example_solid_border {
-      border: solid !important;
-      border-width: thin !important;
-    }
-
     .example_dashed_border { 
         border: dashed !important;
         border-width: thin !important;
     }
 
     #grid_123 {
-        grid-gap: .5em !important;
-        grid-template-columns: 100px 100px 250px !important;
-        padding: 30px;
+        grid-template-columns: calc(var(--page-width) / 3) !important;
+        grid-row-gap: 1em;
+        justify-content: space-evenly;
+        justify-items: center;
+        align-content: space-evenly;
+        align-items: center;
     }
 </style>
 
@@ -68,9 +62,7 @@ To demonstrate how the tile grid's style can be overriden, the following `<style
     }
 
     #grid_123 {
-        grid-gap: .5em !important;
-        grid-template-columns: 100px 100px 250px !important;
-        padding: 30px;
+     
     }
 </style>
 ```
@@ -82,20 +74,16 @@ Note that the metadata on this page includes `grid_id: "grid_123"` and `grid_css
 ---
 show_tiles_first: true
 grid_id: "grid_123"
-grid_css: "example_solid_border"
+grid_css: "example_dashed_border"
 tiles:
   - caption: '@petradr'
     img_src: ../../../img/picsum/167_200x200.jpeg
     alt_text: 'close up of fallen leaves.'
-    tile_css: "example_dashed_border"
   - caption: 'Marcin Czerwinski'
     img_src: ../../../img/picsum/127_200x200.jpeg
     alt_text: 'close up of green moss on a log.'
-    tile_css: "example_dashed_border"
   - caption: '@Guillaume'
     img_src: ../../../img/picsum/120_small.jpg
     alt_text: 'milky way with a rustic picket fence in the foreground'
-    img_width: "250"
-    tile_css: "example_dashed_border"
 ---
 ```
