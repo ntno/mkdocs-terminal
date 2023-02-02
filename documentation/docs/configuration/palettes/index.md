@@ -3,32 +3,32 @@ show_tiles_first: true
 tiles:
   - caption: <a id="fnref:1" class="footnote-ref" title="to image description" alt="to long image description" href="#fn:1">Default</a>
     img_src: ../../img/palettes/default.png
-    title: to Default Demo Page 
+    tooltip: to Default Demo Page 
     text: Default Demo Page
     link_href: ./default/
   - caption: <a id="fnref:2" class="footnote-ref" title="to image description" alt="to long image description" href="#fn:2">Gruvbox Dark</a>
     img_src: ../../img/palettes/gruvbox_dark.png
-    title: to Gruvbox Dark Demo Page
+    tooltip: to Gruvbox Dark Demo Page
     text: Gruvbox Dark Demo Page
     link_href: ./gruvbox-dark/
   - caption: <a id="fnref:3" class="footnote-ref" title="to image description" alt="to long image description" href="#fn:3">Dark</a>
     img_src: ../../img/palettes/dark.png
-    title: to Dark Demo Page 
+    tooltip: to Dark Demo Page 
     text: Dark Demo Page
     link_href: ./dark/    
   - caption: <a id="fnref:4" class="footnote-ref" title="to image description" alt="to long image description" href="#fn:4">Pink</a>
     img_src: ../../img/palettes/pink.png
-    title: to Pink Demo Page
+    tooltip: to Pink Demo Page
     text: Pink Demo Page
     link_href: ./pink/        
   - caption: <a id="fnref:5" class="footnote-ref" title="to image description" alt="to long image description" href="#fn:5">Sans</a>
     img_src: ../../img/palettes/sans.png
-    title: to Sans Demo Page
+    tooltip: to Sans Demo Page
     text: Sans Demo Page
     link_href: ./sans/    
   - caption: <a id="fnref:6" class="footnote-ref" title="to image description" alt="to long image description" href="#fn:6">Sans Dark</a>
     img_src: ../../img/palettes/sans_dark.png
-    title: to Sans Dark Demo Page 
+    tooltip: to Sans Dark Demo Page 
     text: Sans Dark Demo Page
     link_href: ./sans-dark/            
 ---

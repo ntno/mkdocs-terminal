@@ -7,22 +7,22 @@ tiles:
     text: GitHub
     link_href: https://github.com
   - caption: with hover title
-    title: go to the tile grid example page
+    tooltip: go to the tile grid example page
     text: Tile Grid Example
     link_href: ../example-page
   - caption: "\\#tile_123"
     tile_id: "tile_123"
-    title: go to overview
+    tooltip: go to overview
     text: Tile Grid Overview
     link_href: ../..
   - caption: "\\#tile_456"
     tile_id: "tile_456"
-    title: go to tile reference
+    tooltip: go to tile reference
     text: Tile Reference
     link_href: ../../tile
   - caption: ".example_highlight"
     tile_css: "example_highlight"
-    title: go to grid reference
+    tooltip: go to grid reference
     text: Grid Reference
     link_href: ../../grid
 ---
@@ -60,22 +60,22 @@ tiles:
     text: GitHub
     link_href: https://github.com
   - caption: with hover title
-    title: go to the tile grid example page
+    tooltip: go to the tile grid example page
     text: Tile Grid Example
     link_href: ../example-page
   - caption: "\\#tile_123"
     tile_id: "tile_123"
-    title: go to overview
+    tooltip: go to overview
     text: Tile Grid Overview
     link_href: ../..
   - caption: "\\#tile_456"
     tile_id: "tile_456"
-    title: go to tile reference
+    tooltip: go to tile reference
     text: Tile Reference
     link_href: ../../tile
   - caption: ".example_highlight"
     tile_css: "example_highlight"
-    title: go to grid reference
+    tooltip: go to grid reference
     text: Grid Reference
     link_href: ../../grid
 ---
