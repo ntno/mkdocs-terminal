@@ -31,7 +31,7 @@ A tile can represent an image, a link, or a linked image.
 :   **Image Only Tile**: a short description of the image.  
     **Link Only Tile**: the text to display for the hyperlink.  
     **Linked Image Tile**: text which describes the hyperlink destination.  
-    For more information see the [Alternate Text Resources](tile.md#alternate-text) below.  
+    For more information see [Alternate Text Resources](tile.md#alternate-text).  
 
 `tooltip`
 
@@ -39,11 +39,13 @@ A tile can represent an image, a link, or a linked image.
 
 `tile_id`
 
-:   ID to add to the tile's HTML for advanced styling. See [Extra CSS] for example.  
+:   ID to add to the tile's HTML for advanced styling.  
+    See [Extra CSS] for example.  
 
 `tile_css`
 
-:   CSS class to add to the tile's HTML for advanced styling. See [Extra CSS] for example.  
+:   CSS class to add to the tile's HTML for advanced styling.  
+    See [Extra CSS] for example.  
 
 [Extra CSS]: examples/links-only.md#extra-css
 

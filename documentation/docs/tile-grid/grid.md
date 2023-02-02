@@ -27,11 +27,13 @@ tiles:
 
 `grid_id`
 
-:   ID to add to the grid's HTML for advanced styling. See [Override Styling] for example.
+:   ID to add to the grid's HTML for advanced styling.  
+    See [Override Styling] for example.
 
 `grid_css`
 
-:   CSS class to add to the grid's HTML for advanced styling. See [Override Styling] for example.
+:   CSS class to add to the grid's HTML for advanced styling.  
+    See [Override Styling] for example.
 
 
 [Override Styling]: examples/override-styling.md
