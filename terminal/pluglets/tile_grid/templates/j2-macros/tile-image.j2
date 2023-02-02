@@ -1,7 +1,7 @@
 {% import 'pluglets/tile_grid/templates/j2-macros/tile-util.j2' as tile_util %}
 {% macro make_image( tile ) -%}
-<img src="{{ tile.img_src }}" alt="{{ tile.text|default('', true ) }}"
-    {%- if tile_util.is_image_only(tile) == "true" -%}{%- if tile.title is defined and tile.title|string|length %} title="{{ tile.title }}"{% endif %}{% endif %}
+<img src="{{ tile.img_src }}" alt="{{ tile.alt_text|default('', true ) }}"
+    {%- if tile_util.is_image_only(tile) == "true" -%}{%- if tile.tooltip is defined and tile.tooltip|string|length %} title="{{ tile.tooltip }}"{% endif %}{% endif %}
     {%- if tile.img_width is defined and tile.img_width|string|length %} width="{{ tile.img_width }}"{% endif %} 
     {%- if tile.img_height is defined and tile.img_height|string|length %} height="{{ tile.img_height }}"{% endif %} >
 {%- endmacro -%}

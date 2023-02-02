@@ -8,13 +8,13 @@ log = logging.getLogger(__name__)
 
 class Tile:
     def __init__(
-        self, caption="", img_src="", link_href="", text="", title="", img_width="", img_height="", tile_id="", tile_css=""
+        self, caption="", img_src="", link_href="", alt_text="", tooltip="", img_width="", img_height="", tile_id="", tile_css=""
     ) -> None:
         self.caption = caption
         self.img_src = img_src
         self.link_href = link_href
-        self.text = text
-        self.title = title
+        self.alt_text = alt_text
+        self.tooltip = tooltip
         self.img_width = img_width
         self.img_height = img_height
         self.tile_id = tile_id
@@ -38,10 +38,10 @@ class Tile:
     link_href: Optional[Any]
     """Web page URL.  Can be an external web page or a relative internal MkDocs page like `./tile-grid/`"""
 
-    text: Optional[Any]
+    alt_text: Optional[Any]
     """Text to display for a [link only] tile.  Image description for a [image only] tile.  Link description for a [linked image] tile."""
 
-    title: Optional[Any]
+    tooltip: Optional[Any]
     """Text to display on hover."""
 
     img_width: Optional[Any]

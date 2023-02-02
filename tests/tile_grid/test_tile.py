@@ -52,13 +52,13 @@ class TestTile():
         assert_valid_html(rendered_tile)
 
     def test_text_included_in_link_only_tile(self, tile_macro):
-        tile = Tile(text="link_display_text", link_href=defaults.GITHUB_LINK_HREF)
+        tile = Tile(alt_text="link_display_text", link_href=defaults.GITHUB_LINK_HREF)
         rendered_tile = tile_macro.module.make_tile(tile)
         assert ">link_display_text</a>" in rendered_tile
         assert_valid_html(rendered_tile)
 
     def test_text_used_for_image_alt_when_image_included(self, tile_macro, valid_linked_image_tile):
-        valid_linked_image_tile.text = "an unusual backup text"
+        valid_linked_image_tile.alt_text = "an unusual backup text"
         rendered_tile = tile_macro.module.make_tile(valid_linked_image_tile)
         assert "alt=\"an unusual backup text\"" in rendered_tile
         assert_valid_html(rendered_tile)
@@ -93,7 +93,7 @@ class TestTile():
         try:
             tile_macro.module.make_tile(all_integer_tile)
         except Exception as ex:
-            pytest.fail(f"Got exception during render: {ex})")
+            pytest.fail(f"Got exception during render: {ex}")
 
     def test_caption_when_run_through_markup_filter(self, tile_macro, valid_linked_image_tile):
         valid_linked_image_tile.caption = "myCaption"

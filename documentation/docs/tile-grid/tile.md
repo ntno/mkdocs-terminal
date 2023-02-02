@@ -26,13 +26,13 @@ A tile can represent an image, a link, or a linked image.
 
 :   The link destination.  Can be an external web page or a relative internal MkDocs page like `./tile-grid/`.
 
-`text`
+`alt_text`
 
 :   - **Image Only Tile:** a short description of the image (used by screen readers and as a fallback value if the image cannot be loaded)
     - **Link Only Tile:** the text to display for the hyperlink
     - **Linked Image Tile:** the text which describes the purpose of the link (ex: for a image tile which is linked to a page about various dog breeds your alt text would be "Dog Breeds", *not* an extensive description of the image which may be a picture of a Golden Retriever)  
 
-`title`
+`tooltip`
 
 :   Text to display on hover.
 

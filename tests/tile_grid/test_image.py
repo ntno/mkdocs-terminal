@@ -26,11 +26,11 @@ class TestImage():
         assert_valid_html(rendered_image)
 
     def test_all_img_attributes_used(self, image_macro):
-        tile = Tile(text=defaults.GITHUB_IMG_ONLY_DESCRIPTION, title=defaults.GITHUB_IMG_ONLY_TITLE, img_src=defaults.GITHUB_IMG_SRC, img_width=defaults.GITHUB_IMG_WIDTH, img_height=defaults.GITHUB_IMG_HEIGHT)
+        tile = Tile(alt_text=defaults.GITHUB_IMG_ONLY_DESCRIPTION, tooltip=defaults.GITHUB_IMG_ONLY_TOOLTIP, img_src=defaults.GITHUB_IMG_SRC, img_width=defaults.GITHUB_IMG_WIDTH, img_height=defaults.GITHUB_IMG_HEIGHT)
         rendered_image = image_macro.module.make_image(tile)
         assert "alt=\"" + defaults.GITHUB_IMG_ONLY_DESCRIPTION + "\"" in rendered_image
         assert "src=\"" + defaults.GITHUB_IMG_SRC + "\"" in rendered_image
-        assert "title=\"" + defaults.GITHUB_IMG_ONLY_TITLE + "\"" in rendered_image
+        assert "title=\"" + defaults.GITHUB_IMG_ONLY_TOOLTIP + "\"" in rendered_image
         assert "width=\"" + defaults.GITHUB_IMG_WIDTH + "\"" in rendered_image
         assert "height=\"" + defaults.GITHUB_IMG_HEIGHT + "\"" in rendered_image
         assert_valid_html(rendered_image)
@@ -44,4 +44,4 @@ class TestImage():
         try:
             image_macro.module.make_image(all_integer_tile)
         except Exception as ex:
-            pytest.fail(f"Got exception during render: {ex})")
+            pytest.fail(f"Got exception during render: {ex}")
