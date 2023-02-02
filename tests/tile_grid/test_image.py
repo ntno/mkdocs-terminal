@@ -44,4 +44,4 @@ class TestImage():
         try:
             image_macro.module.make_image(all_integer_tile)
         except Exception as ex:
-            pytest.fail(f"Got exception during render: {ex})")
+            pytest.fail(f"Got exception during render: {ex}")
