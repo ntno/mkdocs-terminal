@@ -6,12 +6,19 @@ tiles:
   - caption: '@petradr'
     img_src: ../../../img/picsum/167_200x200.jpeg
     alt_text: 'close up of fallen leaves.'
+    tile_css: 'allow_size_override'
+    img_width: 100px
+    img_height: 100px
   - caption: 'Marcin Czerwinski'
     img_src: ../../../img/picsum/127_200x200.jpeg
     alt_text: 'close up of green moss on a log.'
+    tile_css: 'allow_size_override'
   - caption: '@Guillaume'
     img_src: ../../../img/picsum/120_small.jpg
     alt_text: 'milky way with a rustic picket fence in the foreground'
+    tile_css: 'allow_size_override'
+    img_width: 100px
+    img_height: 100px
 ---
 
 <style> 
@@ -19,14 +26,16 @@ tiles:
         border: dashed !important;
         border-width: thin !important;
     }
+    .allow_size_override img {
+        width: none !important;
+        height: none !important;
+    }
 
     #grid_123 {
         grid-template-columns: calc(var(--page-width) / 3) !important;
         grid-row-gap: 1em;
         justify-content: space-evenly;
         justify-items: center;
-        align-content: space-evenly;
-        align-items: center;
     }
 </style>
 
