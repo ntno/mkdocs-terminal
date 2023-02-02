@@ -11,20 +11,20 @@ tiles:
     alt_text: Tile Grid Example
     tooltip: go to the tile grid example page
   - caption: "\\#tile_123"
-    tile_id: "tile_123"
     link_href: ../..
     alt_text: Tile Grid Overview
     tooltip: go to overview
+    tile_id: "tile_123"
   - caption: "\\#tile_456"
-    tile_id: "tile_456"
     link_href: ../../tile
     alt_text: Tile Reference
     tooltip: go to tile reference
+    tile_id: "tile_456"
   - caption: ".example_highlight"
-    tile_css: "example_highlight"
     link_href: ../../grid
     alt_text: Grid Reference
     tooltip: go to grid reference
+    tile_css: "example_highlight"
 ---
 <style>
   #tile_456 {
@@ -59,6 +59,7 @@ To demonstrate how tiles can be styled individually, the following `<style>` HTM
 
 ## Tile Markdown
 Note:  
+
 - `tile_id` has been set to `tile_456` in the second to last tile.  
 - `tile_css` has been set to `example_highlight` in the last tile.  
 ```markdown
@@ -75,19 +76,19 @@ tiles:
     alt_text: Tile Grid Example
     tooltip: go to the tile grid example page
   - caption: "\\#tile_123"
-    tile_id: "tile_123"
     link_href: ../..
     alt_text: Tile Grid Overview
     tooltip: go to overview
+    tile_id: "tile_123"
   - caption: "\\#tile_456"
-    tile_id: "tile_456"
     link_href: ../../tile
     alt_text: Tile Reference
     tooltip: go to tile reference
+    tile_id: "tile_456"
   - caption: ".example_highlight"
-    tile_css: "example_highlight"
     link_href: ../../grid
     alt_text: Grid Reference
     tooltip: go to grid reference
+    tile_css: "example_highlight"
 ---
 ```
