@@ -38,13 +38,13 @@ tiles:
 
 # Tile Grid Style Overrides
 
-Tile Grid can be further customized by setting the `grid_id` and `grid_css` attributes in the markdown page's metadata[^1].  
+The rendering of Terminal for MkDocs Tile Grid can be customized by setting the `grid_id` and `grid_css` attributes in the markdown page's metadata[^1].  
 
 - `grid_id` sets the HTML ID on the div containing the tile grid.  
 
 - `grid_css` is added to the div's CSS classes.  
 
-[^1]: see [Overview] for more info on page metadata
+[^1]: see [Overview] for more info on page metadata.
 [Overview]: ../..#1-add-tiles-to-page-metadata
 
 ## Extra CSS
