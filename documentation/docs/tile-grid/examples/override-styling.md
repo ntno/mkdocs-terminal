@@ -22,10 +22,7 @@ tiles:
         border: dashed !important;
         border-width: thin !important;
     }
-    .override_tile > figure > img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
+    .override_tile {
         width: 100px !important;
     }
     #grid_123 {
@@ -51,24 +48,24 @@ The rendering of Terminal for MkDocs Tile Grid can be customized by setting the 
 To demonstrate how the tile grid's style can be overriden, the following `<style>` HTML is included in this page's markdown:
 
 - `.example_dashed_border`: sets the border to a dashed line
-- `.override_tile > figure > img`: sets image width to 100px  
+- `.override_tile`: sets image width to 100px  
 - `#grid_123`: sets the tile grid's column widths explicitly  
 
 
 ```css
 <style> 
-    .example_solid_border {
-      border: solid !important;
-      border-width: thin !important;
-    }
-
     .example_dashed_border { 
         border: dashed !important;
         border-width: thin !important;
     }
-
+    .override_tile {
+        width: 100px !important;
+    }
     #grid_123 {
-     
+        grid-template-columns: calc(var(--page-width) / 3) !important;
+        grid-row-gap: 1em;
+        justify-content: space-evenly;
+        justify-items: center;
     }
 </style>
 ```
@@ -85,11 +82,14 @@ tiles:
   - caption: '@petradr'
     img_src: ../../../img/picsum/167_200x200.jpeg
     alt_text: 'close up of fallen leaves.'
+    tile_css: 'override_tile'
   - caption: 'Marcin Czerwinski'
     img_src: ../../../img/picsum/127_200x200.jpeg
     alt_text: 'close up of green moss on a log.'
+    tile_css: 'override_tile'
   - caption: '@Guillaume'
     img_src: ../../../img/picsum/120_small.jpg
     alt_text: 'milky way with a rustic picket fence in the foreground'
+    tile_css: 'override_tile'
 ---
 ```
