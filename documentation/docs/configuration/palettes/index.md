@@ -3,33 +3,33 @@ show_tiles_first: true
 tiles:
   - caption: <a id="fnref:1" class="footnote-ref" title="to image description" alt="to long image description" href="#fn:1">Default</a>
     img_src: ../../img/palettes/default.png
-    img_title: to Default Demo Page 
-    img_alt: Default Demo Page
+    tooltip: to Default Demo Page 
+    alt_text: Default Demo Page
     link_href: ./default/
   - caption: <a id="fnref:2" class="footnote-ref" title="to image description" alt="to long image description" href="#fn:2">Gruvbox Dark</a>
     img_src: ../../img/palettes/gruvbox_dark.png
-    img_title: to Gruvbox Dark Demo Page
-    img_alt: Gruvbox Dark Demo Page
+    tooltip: to Gruvbox Dark Demo Page
+    alt_text: Gruvbox Dark Demo Page
     link_href: ./gruvbox-dark/
   - caption: <a id="fnref:3" class="footnote-ref" title="to image description" alt="to long image description" href="#fn:3">Dark</a>
     img_src: ../../img/palettes/dark.png
-    img_title: to Dark Demo Page 
-    img_alt: Dark Demo Page
+    tooltip: to Dark Demo Page 
+    alt_text: Dark Demo Page
     link_href: ./dark/    
   - caption: <a id="fnref:4" class="footnote-ref" title="to image description" alt="to long image description" href="#fn:4">Pink</a>
     img_src: ../../img/palettes/pink.png
-    img_title: to Pink Demo Page
-    img_alt: Pink Demo Page
+    tooltip: to Pink Demo Page
+    alt_text: Pink Demo Page
     link_href: ./pink/        
   - caption: <a id="fnref:5" class="footnote-ref" title="to image description" alt="to long image description" href="#fn:5">Sans</a>
     img_src: ../../img/palettes/sans.png
-    img_title: to Sans Demo Page
-    img_alt: Sans Demo Page
+    tooltip: to Sans Demo Page
+    alt_text: Sans Demo Page
     link_href: ./sans/    
   - caption: <a id="fnref:6" class="footnote-ref" title="to image description" alt="to long image description" href="#fn:6">Sans Dark</a>
     img_src: ../../img/palettes/sans_dark.png
-    img_title: to Sans Dark Demo Page 
-    img_alt: Sans Dark Demo Page
+    tooltip: to Sans Dark Demo Page 
+    alt_text: Sans Dark Demo Page
     link_href: ./sans-dark/            
 ---
 

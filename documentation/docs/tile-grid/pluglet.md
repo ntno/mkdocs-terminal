@@ -6,10 +6,8 @@ We can use the MkDocs Macros Plugin to affect what appears within the page's mar
 
 <section markdown>
 <figure markdown>
-<a href="../examples/inline">
-![Tile Grid Inline Example](../img/tile-grid/inline-example.png){title="to tile grid inline example page";alt="web page with three square images in a row.  images appear in between Lorem Ipsum paragraphs." .terminal-mkdocs-thin-border }
-</a>
-<figcaption>Tile Grid Inline Example</figcaption>
+![Tile Grid Inline Example](../img/tile-grid/inline-example.png){alt="web page with three square images in a row.  images appear in between Lorem Ipsum paragraphs." .terminal-mkdocs-thin-border }
+<figcaption markdown>[Tile Grid Inline Example](../examples/inline){title="to tile grid inline example page"}</figcaption>
 </figure>
 </section>
 <br>
