@@ -26,7 +26,7 @@ tiles:
     alt_text: Grid Reference
     tooltip: go to grid reference
 ---
-<style> #tile_456 {border: solid !important;border-width: thin !important;}.example_highlight {background-color: #FFFF00;}</style>
+<style> #tile_456 {border: solid;border-width: thin;}.example_highlight {background-color: #FFFF00;}</style>
 <hr>
 
 # Link Only Tiles 
@@ -38,8 +38,8 @@ To demonstrate how tiles can be styled individually, the following `<style>` HTM
 ```html
 <style>
   #tile_456 {
-    border: solid !important;
-    border-width: thin !important;
+    border: solid;
+    border-width: thin;
   }
 
   .example_highlight {
