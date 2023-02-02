@@ -6,15 +6,15 @@ tiles:
   - caption: '@petradr'
     img_src: ../../../img/picsum/167_200x200.jpeg
     alt_text: 'close up of fallen leaves.'
-    tile_css: 'override_tile'
+    tile_css: 'override_width'
   - caption: 'Marcin Czerwinski'
     img_src: ../../../img/picsum/127_200x200.jpeg
     alt_text: 'close up of green moss on a log.'
-    tile_css: 'override_tile'
+    tile_css: 'override_width'
   - caption: '@Guillaume'
     img_src: ../../../img/picsum/120_small.jpg
     alt_text: 'milky way with a rustic picket fence in the foreground'
-    tile_css: 'override_tile'
+    tile_css: 'override_width'
 ---
 
 <style> 
@@ -22,11 +22,11 @@ tiles:
         border: dashed;
         border-width: thin;
     }
-    .override_tile {
+    .override_width {
         width: 100px;
     }
     #grid_123 {
-        grid-template-columns: calc(var(--page-width) / 3);
+        grid-template-columns: 200px;
         grid-row-gap: 1em;
         justify-content: space-evenly;
         justify-items: center;
@@ -48,7 +48,7 @@ The rendering of Terminal for MkDocs Tile Grid can be customized by setting the 
 To demonstrate how the tile grid's style can be overriden, the following `<style>` HTML is included in this page's markdown:
 
 - `.example_dashed_border`: sets the border to a dashed line
-- `.override_tile`: sets image width to 100px  
+- `.override_width`: sets image width to 100px  
 - `#grid_123`: sets the tile grid's column widths explicitly  
 
 
@@ -58,7 +58,7 @@ To demonstrate how the tile grid's style can be overriden, the following `<style
         border: dashed;
         border-width: thin;
     }
-    .override_tile {
+    .override_width {
         width: 100px;
     }
     #grid_123 {
@@ -82,14 +82,14 @@ tiles:
   - caption: '@petradr'
     img_src: ../../../img/picsum/167_200x200.jpeg
     alt_text: 'close up of fallen leaves.'
-    tile_css: 'override_tile'
+    tile_css: 'override_width'
   - caption: 'Marcin Czerwinski'
     img_src: ../../../img/picsum/127_200x200.jpeg
     alt_text: 'close up of green moss on a log.'
-    tile_css: 'override_tile'
+    tile_css: 'override_width'
   - caption: '@Guillaume'
     img_src: ../../../img/picsum/120_small.jpg
     alt_text: 'milky way with a rustic picket fence in the foreground'
-    tile_css: 'override_tile'
+    tile_css: 'override_width'
 ---
 ```
