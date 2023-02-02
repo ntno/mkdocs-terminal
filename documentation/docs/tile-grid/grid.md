@@ -1,5 +1,5 @@
 # Grid Reference
-Terminal for MkDocs [Tile Grid](index.md){title="to Tile Grid overview"} can be further customized using the following configuration options.  These options should be specified in the markdown page's metadata in the same way that `tiles` are specified:
+Terminal for MkDocs Tile Grid can be further customized using the following configuration options.  These options should be specified in the markdown page's metadata in the same way that `tiles` are specified:
 
 ```
 ---
@@ -52,7 +52,7 @@ tile-grid/examples/example-page.md
 
 ## Tiles First
 
-See [Tiles First example]
+See [Tiles First Example]
 
 ### Markdown
 ```markdown
@@ -64,4 +64,4 @@ tile-grid/examples/images-only.md
 
 
 [Example Page]: examples/example-page.md
-[Tiles First example]: examples/images-only.md
+[Tiles First Example]: examples/images-only.md
