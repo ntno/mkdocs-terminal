@@ -37,14 +37,6 @@ A tile can represent an image, a link, or a linked image.
 
 :   Text to display on hover.
 
-`img_width`
-
-:   Width to set on the image element.
-
-`img_height`
-
-:   Height to set on the image element.
-
 `tile_id`
 
 :   ID to add to the tile's HTML for advanced styling. See [Extra CSS] for example.  

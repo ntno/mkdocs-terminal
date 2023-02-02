@@ -64,7 +64,7 @@ def minimal_linked_image_tile():
 
 @pytest.fixture
 def all_integer_tile():
-    return Tile(caption=0, img_src=1, link_href=2, alt_text=3, tooltip=4, img_width=5, img_height=6, tile_id=7, tile_css=8)
+    return Tile(caption=0, img_src=1, link_href=2, alt_text=3, tooltip=4, tile_id=5, tile_css=6)
 
 
 @pytest.fixture
@@ -74,12 +74,12 @@ def valid_link_only_tile():
 
 @pytest.fixture
 def valid_image_only_tile():
-    return Tile(caption=defaults.GITHUB_CAPTION, tile_id="myGitHubLinkTile", tile_css="myGitHubTileClass", alt_text=defaults.GITHUB_IMG_ONLY_DESCRIPTION, img_src=defaults.GITHUB_IMG_SRC, tooltip=defaults.GITHUB_IMG_ONLY_TOOLTIP, img_width=defaults.GITHUB_IMG_WIDTH, img_height=defaults.GITHUB_IMG_HEIGHT)
+    return Tile(caption=defaults.GITHUB_CAPTION, tile_id="myGitHubLinkTile", tile_css="myGitHubTileClass", alt_text=defaults.GITHUB_IMG_ONLY_DESCRIPTION, img_src=defaults.GITHUB_IMG_SRC, tooltip=defaults.GITHUB_IMG_ONLY_TOOLTIP)
 
 
 @pytest.fixture
 def valid_linked_image_tile():
-    return Tile(caption=defaults.GITHUB_CAPTION, tile_id="myGitHubLinkTile", tile_css="myGitHubTileClass", alt_text=defaults.GITHUB_LINK_TEXT, link_href=defaults.GITHUB_LINK_HREF, tooltip=defaults.GITHUB_LINK_TOOLTIP, img_src=defaults.GITHUB_IMG_SRC, img_width=defaults.GITHUB_IMG_WIDTH, img_height=defaults.GITHUB_IMG_HEIGHT)
+    return Tile(caption=defaults.GITHUB_CAPTION, tile_id="myGitHubLinkTile", tile_css="myGitHubTileClass", alt_text=defaults.GITHUB_LINK_TEXT, link_href=defaults.GITHUB_LINK_HREF, tooltip=defaults.GITHUB_LINK_TOOLTIP, img_src=defaults.GITHUB_IMG_SRC)
 
 
 @pytest.fixture
