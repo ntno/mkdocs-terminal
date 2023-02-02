@@ -58,7 +58,9 @@ To demonstrate how tiles can be styled individually, the following `<style>` HTM
 ```
 
 ## Tile Markdown
-Note that `tile_456` has been used for `tile_id` in the second to last tile.  Note that `example_highlight` has been used for `tile_css` in the last tile.  
+Note:  
+- `tile_id` has been set to `tile_456` in the second to last tile.  
+- `tile_css` has been set to `example_highlight` in the last tile.  
 ```markdown
 ---
 show_tiles_first: true
