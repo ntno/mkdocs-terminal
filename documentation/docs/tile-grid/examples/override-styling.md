@@ -19,14 +19,14 @@ tiles:
 
 <style> 
     .example_dashed_border { 
-        border: dashed !important;
-        border-width: thin !important;
+        border: dashed;
+        border-width: thin;
     }
     .override_tile {
-        width: 100px !important;
+        width: 100px;
     }
     #grid_123 {
-        grid-template-columns: calc(var(--page-width) / 3) !important;
+        grid-template-columns: calc(var(--page-width) / 3);
         grid-row-gap: 1em;
         justify-content: space-evenly;
         justify-items: center;
@@ -55,14 +55,14 @@ To demonstrate how the tile grid's style can be overriden, the following `<style
 ```css
 <style> 
     .example_dashed_border { 
-        border: dashed !important;
-        border-width: thin !important;
+        border: dashed;
+        border-width: thin;
     }
     .override_tile {
-        width: 100px !important;
+        width: 100px;
     }
     #grid_123 {
-        grid-template-columns: calc(var(--page-width) / 3) !important;
+        grid-template-columns: calc(var(--page-width) / 3);
         grid-row-gap: 1em;
         justify-content: space-evenly;
         justify-items: center;
