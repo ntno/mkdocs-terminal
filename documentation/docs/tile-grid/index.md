@@ -40,7 +40,7 @@ Each tile object may have any of the attributes described in the [Tile Reference
 ## 2. Add Page to Nav
 Add the markdown file which includes the `tiles` metadata to the site's navigation in `mkdocs.yml`.  If the page is not included in the `mkdocs.yml` *nav*, the markdown will not be loaded as a MkDocs Page Object[^mkdocs-page-object] and will not include your metadata.
 
-*Note*: the page does not need to be visible in the final [side navigation theme component](../configuration/).  Deeply nested pages can also use the tile grid feature.  
+*Note*: the page does not need to be visible in the final side navigation menu.  Deeply nested pages can also use the tile grid feature.  
 
 ```
 nav:
