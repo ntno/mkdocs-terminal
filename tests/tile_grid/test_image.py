@@ -10,7 +10,7 @@ def image_macro(env_with_terminal_loader):
     return env_with_terminal_loader.get_template("pluglets/tile_grid/templates/j2-macros/tile-image.j2")
 
 
-class TestImage():
+class TestTileImage():
 
     def test_empty_image_is_invalid(self, image_macro, empty_tile):
         rendered_image = image_macro.module.make_image(empty_tile)
