@@ -4,26 +4,26 @@ tiles:
   - caption: a captioned link
     link_href: https://github.com
   - caption: display text specified
-    text: GitHub
+    alt_text: GitHub
     link_href: https://github.com
   - caption: with hover title
     tooltip: go to the tile grid example page
-    text: Tile Grid Example
+    alt_text: Tile Grid Example
     link_href: ../example-page
   - caption: "\\#tile_123"
     tile_id: "tile_123"
     tooltip: go to overview
-    text: Tile Grid Overview
+    alt_text: Tile Grid Overview
     link_href: ../..
   - caption: "\\#tile_456"
     tile_id: "tile_456"
     tooltip: go to tile reference
-    text: Tile Reference
+    alt_text: Tile Reference
     link_href: ../../tile
   - caption: ".example_highlight"
     tile_css: "example_highlight"
     tooltip: go to grid reference
-    text: Grid Reference
+    alt_text: Grid Reference
     link_href: ../../grid
 ---
 <style> #tile_456 {border: solid !important;border-width: thin !important;}.example_highlight {background-color: #FFFF00;}</style>
@@ -57,26 +57,26 @@ tiles:
   - caption: a captioned link
     link_href: https://github.com
   - caption: display text specified
-    text: GitHub
+    alt_text: GitHub
     link_href: https://github.com
   - caption: with hover title
     tooltip: go to the tile grid example page
-    text: Tile Grid Example
+    alt_text: Tile Grid Example
     link_href: ../example-page
   - caption: "\\#tile_123"
     tile_id: "tile_123"
     tooltip: go to overview
-    text: Tile Grid Overview
+    alt_text: Tile Grid Overview
     link_href: ../..
   - caption: "\\#tile_456"
     tile_id: "tile_456"
     tooltip: go to tile reference
-    text: Tile Reference
+    alt_text: Tile Reference
     link_href: ../../tile
   - caption: ".example_highlight"
     tile_css: "example_highlight"
     tooltip: go to grid reference
-    text: Grid Reference
+    alt_text: Grid Reference
     link_href: ../../grid
 ---
 ```

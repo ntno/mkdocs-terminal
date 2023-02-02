@@ -3,13 +3,13 @@ show_tiles_first: true
 tiles:
   - caption: '@petradr'
     img_src: ../../../img/picsum/167_200x200.jpeg
-    text: 'close up of fallen leaves.'
+    alt_text: 'close up of fallen leaves.'
   - caption: 'Marcin Czerwinski'
     img_src: ../../../img/picsum/127_200x200.jpeg
-    text: 'close up of green moss on a log.'
+    alt_text: 'close up of green moss on a log.'
   - caption: "Steve Richey"
     img_src: ../../../img/picsum/143_200x200.jpeg
-    text: 'overhead of fallen leaves.'
+    alt_text: 'overhead of fallen leaves.'
 ---
 
 # Image Only Tiles 
@@ -29,12 +29,12 @@ show_tiles_first: true
 tiles:
   - caption: '@petradr'
     img_src: ../../../img/picsum/167_200x200.jpeg
-    text: 'close up of fallen leaves.'
+    alt_text: 'close up of fallen leaves.'
   - caption: 'Marcin Czerwinski'
     img_src: ../../../img/picsum/127_200x200.jpeg
-    text: 'close up of green moss on a log.'
+    alt_text: 'close up of green moss on a log.'
   - caption: "Steve Richey"
     img_src: ../../../img/picsum/143_200x200.jpeg
-    text: 'overhead of fallen leaves.'
+    alt_text: 'overhead of fallen leaves.'
 ---
 ```
