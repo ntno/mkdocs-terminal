@@ -13,7 +13,7 @@ tiles:
     tile_css: 'override_width'
   - caption: '@Guillaume'
     img_src: ../../../img/picsum/120_small.jpg
-    alt_text: 'milky way with a rustic picket fence in the foreground'
+    alt_text: 'dark green, starry sky with a rustic picket fence in the foreground.'
     tile_css: 'override_width'
 ---
 
@@ -89,7 +89,7 @@ tiles:
     tile_css: 'override_width'
   - caption: '@Guillaume'
     img_src: ../../../img/picsum/120_small.jpg
-    alt_text: 'milky way with a rustic picket fence in the foreground'
+    alt_text: 'dark green, starry sky with a rustic picket fence in the foreground.'
     tile_css: 'override_width'
 ---
 ```
