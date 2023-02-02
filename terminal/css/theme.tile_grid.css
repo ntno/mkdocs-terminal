@@ -12,7 +12,7 @@
 
 /* center link text within the tile */
 .terminal-mkdocs-tile {
-    border: none !important;
+    border: none;
     text-align: center;
 }
 
