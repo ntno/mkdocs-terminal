@@ -1,0 +1,26 @@
+.terminal-mkdocs-tile-grid {
+    display: grid;
+    grid-gap: 1em;
+    grid-template-rows: auto;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(calc(var(--page-width) / 6), 1fr)
+    );
+}
+
+.terminal-mkdocs-tile {
+    border: none !important;
+    text-align: center;
+}
+
+.terminal-mkdocs-tile div > figure > img,
+.terminal-mkdocs-tile div > figure > a > img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.terminal-mkdocs-tile > div > figure > a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

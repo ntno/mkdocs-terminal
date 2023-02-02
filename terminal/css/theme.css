@@ -16,6 +16,7 @@ a.btn {
     text-decoration: none !important;
 }
 
+/* grid for side nav and main content */
 .terminal-mkdocs-main-grid {
     display: grid;
     grid-column-gap: 1.4em;
@@ -23,6 +24,7 @@ a.btn {
     grid-template-rows: auto;
 }
 
+/* place main content under side nav when screen is too narrow */
 @media only screen and (min-width: 70em) {
     .terminal-mkdocs-main-grid {
         grid-template-columns: 4fr 9fr;
@@ -37,34 +39,14 @@ a.btn {
     color: var(--secondary-color);
 }
 
-.terminal-mkdocs-thin-border {
-    border: solid !important;
-    border-color: var(--secondary-color) !important;
-    border-width: thin !important;
-}
-
 .terminal-mkdocs-pad-to-match-side-nav {
     padding-top: calc(var(--global-space) * 2);
 }
 
-.terminal-mkdocs-tile-grid {
-    display: grid;
-    grid-gap: 1em;
-    grid-template-rows: auto;
-    grid-template-columns: repeat(
-        auto-fit,
-        minmax(calc(var(--page-width) / 6), 1fr)
-    );
-}
-
-.terminal-mkdocs-tile {
-    border: none !important;
-}
-
-.terminal-mkdocs-tile > figure > a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.terminal-mkdocs-thin-border {
+    border: solid !important;
+    border-color: var(--secondary-color) !important;
+    border-width: thin !important;
 }
 
 .terminal-mkdocs-macro-error-banner {
