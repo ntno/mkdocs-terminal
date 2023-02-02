@@ -12,7 +12,7 @@ markdown_extensions:
 
 <section markdown>
 <figure markdown>
-![some image](../img/picsum/120_small.jpg){ title="a starry night" ; alt="a dark sky filled with stars" }
+![some image](../img/picsum/120_small.jpg){ title="a starry night" alt="a dark sky filled with stars" }
 <figcaption>@Guillaume via Picsum</figcaption>
 </figure>
 </section>
@@ -23,7 +23,7 @@ markdown_extensions:
 ```markdown
 <section markdown>
 <figure markdown>
-![some image](../img/picsum/120_small.jpg){ title="a starry night" ; alt="a dark sky filled with stars" }
+![some image](../img/picsum/120_small.jpg){ title="a starry night" alt="a dark sky filled with stars" }
 <figcaption>@Guillaume via Picsum</figcaption>
 </figure>
 </section>
