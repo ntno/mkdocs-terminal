@@ -47,7 +47,7 @@ Terminal for MkDocs Tile Grid can be customized by setting the `grid_id` and `gr
 ## Extra CSS
 To demonstrate how the tile grid's style can be overriden, the following `<style>` HTML is included in this page's markdown:
 
-- `.override_border`: sets the tile grid's border to a dashed line
+- `.override_border`: sets the tile grid's border to a dashed line  
 - `.override_width`: sets the tile's image width to 100px  
 - `#grid_123`: sets the tile grid's column widths explicitly  
 
