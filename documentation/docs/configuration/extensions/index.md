@@ -4,8 +4,7 @@ configuration/extensions/links.md
 
 # Extensions
 
-Markdown is a very small language with a kind-of reference implementation called
-[John Gruber's Markdown]. Python Markdown and PyMdown Extensions are two packages that enhance the Markdown writing experience, adding useful syntax extensions for technical writing.
+Markdown is a very small language with a kind-of reference implementation called [John Gruber's Markdown]. Python Markdown and PyMdown Extensions are two packages that enhance the Markdown writing experience, adding useful syntax extensions for technical writing.
 
 [John Gruber's Markdown]: https://daringfireball.net/projects/markdown/
 
