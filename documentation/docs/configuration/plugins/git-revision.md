@@ -1,7 +1,7 @@
 # Git Revision Date Plugin
-The third-party [git-revision-date] plugin automatically adds the last revision date of a markdown page to its MkDocs Page Metadata[^mkdocs-page-meta].  
+The third-party [git-revision-date plugin] automatically adds the last revision date of a markdown page to its MkDocs Page Metadata[^mkdocs-page-meta].  
 
-[git-revision-date]: https://github.com/zhaoterryy/mkdocs-git-revision-date-plugin
+[git-revision-date plugin]: https://github.com/zhaoterryy/mkdocs-git-revision-date-plugin
 [MkDocs Page Metadata]: https://www.mkdocs.org/user-guide/writing-your-docs/#meta-data
 [^mkdocs-page-meta]: see [MkDocs Page Metadata] for more info
 
@@ -16,7 +16,7 @@ When the `git-revision-date` plugin is installed and enabled and the `revision.d
 </section>
 <br>
 
-[page-specific hiding]: git-revision.md#advanced-configuration
+[page-specific hiding]: ../../features#page-features
 
 
 # Quick Setup
@@ -64,7 +64,7 @@ The second revision-related theme feature is `revision.history`.  Enabling this 
 <section markdown>
 <figure markdown>
 ![Advanced Configuration](../../img/annotated/revision-features.png){title="'Page last updated' text and 'See revision history' text are controlled by separate theme features"; alt="screenshot with revision.date component and revision.history component marked" .terminal-mkdocs-thin-border }
-<figcaption>'revision.date' and 'revision.history' Theme Features</figcaption>
+<figcaption markdown>*revision.date* and *revision.history* Theme Features</figcaption>
 </figure>
 </section>
 <br>
