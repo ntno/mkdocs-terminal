@@ -32,13 +32,10 @@ For example, on this page **h1-Felidae** shows up in the table of contents becau
 
 # (h1) Felidae 
 
-Praesent enim enim, imperdiet vel erat dapibus, pulvinar placerat urna. Pellentesque a tristique metus. Mauris iaculis, quam et pulvinar tempor, mi ligula dignissim lectus, et venenatis nulla est dignissim quam. Phasellus sollicitudin quis quam id vestibulum. Quisque convallis in justo vel volutpat.
-
-- Sed molestie nisl eu enim euismod ultricies.
-- In sit amet lacus ac ex ornare sagittis.
+Felidae is the family of mammals in the order Carnivora colloquially referred to as cats.
 
 ## (h2) Felinae - (purring)
-Quisque sed posuere erat. Praesent et volutpat orci. Cras vulputate, leo id pretium cursus, elit risus aliquet est, eget finibus purus orci in velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean est metus, sollicitudin eu tincidunt et, feugiat nec est. 
+The Felinae are a subfamily of the family Felidae. This subfamily comprises the small cats having a bony hyoid, because of which they are able to purr but not roar.
 
 ### (h3) Felis catus
 Domestic cats:  
@@ -47,19 +44,17 @@ Domestic cats:
 - [Sphynx](https://en.wikipedia.org/wiki/Sphynx_cat)  
 
 ## (h2) Pantherinae - (roaring)
-Aliquam turpis purus, mattis et enim nec, euismod varius augue. Duis sit amet pretium justo. Praesent tortor dolor, tempor tempor erat vitae, facilisis blandit urna. Quisque lacinia fermentum ligula, sit amet dapibus mauris laoreet eget. Cras facilisis viverra libero, vel molestie ante posuere eget. 
+Pantherinae is a subfamily within the family Felidae.  Pantherinae species are characterised by an imperfectly ossified hyoid bone with elastic tendons that enable their larynx to be mobile.
 
 ### (h3) Panthera leo 
-The Lion.
+The lion.
 
 ### (h3) Panthera tigris 
-The Tiger.
+The tiger.
 
 # (h1) Canidae
 
-Suspendisse eget neque sed nulla maximus ornare vitae non ligula. In a sollicitudin ligula. Donec fringilla dolor id sapien venenatis maximus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nam lacinia consectetur posuere. Praesent malesuada sapien et velit gravida, vel aliquet tellus porttitor. Suspendisse pellentesque id ligula a rutrum. 
-
-Curabitur metus tellus, commodo et faucibus vitae, posuere ut dolor. Vivamus ultricies, risus sed euismod imperdiet, est ante convallis nibh, nec venenatis leo nulla et elit. Morbi malesuada rutrum est ac tristique. Fusce sit amet dolor ut nibh posuere elementum ut eget nisi. Cras sed accumsan ante. Fusce luctus iaculis dui. 
+Canidae is a biological family of dog-like carnivorans, colloquially referred to as dogs, and constitutes a clade. A member of this family is also called a canid.  There are three subfamilies found within the canid family, which are the extinct Borophaginae and Hesperocyoninae, and the extant Caninae.
 
 ##### (h5) Canis familiaris
 Domestic dogs:  
