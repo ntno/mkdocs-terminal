@@ -5,34 +5,13 @@ configuration/extensions/links.md
 # Extensions
 
 Markdown is a very small language with a kind-of reference implementation called
-[John Gruber's Markdown]. [Python Markdown] and [PyMdown Extensions] are two packages that enhance the Markdown writing experience, adding useful syntax extensions for technical writing.
+[John Gruber's Markdown]. Python Markdown and PyMdown Extensions are two packages that enhance the Markdown writing experience, adding useful syntax extensions for technical writing.
 
-  [John Gruber's Markdown]: https://daringfireball.net/projects/markdown/
-  [Python Markdown]: https://python-markdown.github.io/extensions/
-  [PyMdown Extensions]: https://facelessuser.github.io/pymdown-extensions/
+[John Gruber's Markdown]: https://daringfireball.net/projects/markdown/
 
 ## Suggested Extensions
 
-The following extensions have been confirmed to work with Terminal for MkDocs and are strongly recommended. Click on each extension to learn about its purpose and
-configuration:
-
-<!-- 
-TODO
-- [Abbreviations]
-- [Admonition]
-- [Arithmatex]
-- [BetterEm]
-- [Critic]
-- [Details]
-- [Emoji]
-- [Highlight]
-- [Keys]
-- [SmartSymbols]
-- [SuperFences]
-- [Tabbed]
-- [Tasklist]
-- -->
-
+The following extensions have been confirmed to work with Terminal for MkDocs and are recommended:
 
 <div markdown>
 
@@ -60,14 +39,11 @@ TODO
 
 # Configuration
 
-Extensions are configured as part of `mkdocs.yml` – the MkDocs configuration
-file. The following sections contain two example configurations to bootstrap
-your documentation project.
+Extensions are enabled in the MkDocs configuration file.  See below for two example configurations to bootstrap your documentation project.
 
 ## Minimal Config
 
-This configuration is a good starting point for when you're using Terminal for 
-MkDocs for the first time. The best idea is to explore the [suggested extensions](#suggested-extensions) and gradually add what you want to use:
+The minimal configuration is a good starting point for when you're using MkDocs for the first time.  You can explore the [suggested extensions](#suggested-extensions) and gradually add extensions as needed:
 
 ``` yaml
 markdown_extensions:
@@ -81,7 +57,7 @@ markdown_extensions:
 
 ## Recommended Config
 
-This configuration enables all Markdown-related features of Terminal for MkDocs
+The recommended configuration enables all Markdown-related features of Terminal for MkDocs
 and is great for experienced users bootstrapping a new documentation project:
 
 ``` yaml
@@ -106,4 +82,4 @@ markdown_extensions:
 ```
 
 # Credit
-This documentation page is based on squidfunk's Material for MkDocs [Extensions](https://squidfunk.github.io/mkdocs-material/setup/extensions/) documentation.
+This documentation page is based on squidfunk's [Material for MkDocs Extensions](https://squidfunk.github.io/mkdocs-material/setup/extensions/) documentation.
