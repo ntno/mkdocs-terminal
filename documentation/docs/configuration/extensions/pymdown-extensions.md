@@ -4,10 +4,7 @@ configuration/extensions/links.md
 
 # PyMdown Extensions
 
-The [PyMdown Extensions] package is an excellent collection of
-additional extensions perfectly suited for advanced technical writing. Terminal
-for MkDocs lists this package as an explicit dependency so it's automatically
-installed with a supported version.
+The [PyMdown Extensions] package is an excellent collection of extensions suited for advanced technical writing. Terminal for MkDocs lists this package as an explicit dependency so it's automatically installed with a supported version.
 
   [PyMdown Extensions]: https://facelessuser.github.io/pymdown-extensions/
 
@@ -69,4 +66,4 @@ See reference for usage:
 
 # Credit
 
-This documentation page is based on squidfunk's Material for MkDocs [Pymdown Extension](https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown-extensions/) documentation.
+This documentation page is based on squidfunk's [Material for MkDocs Pymdown Extension](https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown-extensions/) documentation.

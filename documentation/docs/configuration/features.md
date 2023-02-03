@@ -16,38 +16,38 @@ theme:
 ```
 
 ## navigation.side.hide  
-hides side panel on all site pages.  the side panel includes the [Side Navigation Menu](../configuration/index.md#side-navigation-menu) and the [Side Page Table of Contents](../configuration/index.md#page-table-of-contents).
+Hides the side navigation menu and page table of contents on all site pages.
 
 ## navigation.side.indexes  
-enables section links in the side navigation menu.  
-ignored if `navigation.side.hide` is set.  
-see [Section Indexes](../navigation/section-indexes.md) for details.  
+Enables section links in the side navigation menu.  
+Ignored if `navigation.side.hide` is set.  
+See [Section Indexes](../navigation/section-indexes.md) for details.  
 
 ## navigation.side.toc.hide  
-hides table of contents in side panel on all site pages.  
-ignored if `navigation.side.hide` is set.  
-see [Page Table of Contents](../configuration/index.md#page-table-of-contents) for more info. 
+Hides page table of contents on all site pages.  
+Ignored if `navigation.side.hide` is set.  
+See [Page Table of Contents](../configuration/index.md#page-table-of-contents) for more info. 
 
 ## navigation.top.hide  
-hides top navigation on all site pages.  
-see [Top Navigation Menu](../configuration/index.md#top-navigation-menu) for more info.  
+Hides top navigation menu on all site pages.  
+See [Top Navigation Menu](../configuration/index.md#top-navigation-menu) for more info.  
 
 ## navigation.top.cursor_animation.hide  
-hides the blinking cursor animation in the top nav.  
-ignored if `navigation.top.hide` is set.  
+Hides the blinking cursor animation in the top navigation menu.  
+Ignored if `navigation.top.hide` is set.  
 
 ## navigation.top.search_button.hide
-hides the search button in the top nav.  
-ignored if `navigation.top.hide` is set. 
+Hides the search button in the top navigation menu.  
+Ignored if `navigation.top.hide` is set.  
 
 ## revision.date
-enables the "Page last updated..." text at the bottom of the page.  requires [git-revision-date plugin setup].
+Enables the "Page last updated..." text at the bottom of each site page.  Requires [git-revision-date plugin setup].
 
 ## revision.history
-enables the "See revision history..." text at the bottom of the page.  requires [git-revision-date plugin setup] and additional [git-revision-date configuration].
+Enables the "See revision history..." text at the bottom of each site page.  Requires [git-revision-date plugin setup] and additional [git-revision-date configuration].
 
 ## style.links.underline.hide
-hides the underline styling on links.  the underline text decoration on links is added to make the links identifiable without color vision.  if you choose to hide this styling you should consider adding an alternate [non-color link indicator].    
+Hides the underline styling on links.  The underline text decoration on links is added to make links identifiable without color vision.  If you choose to hide this styling you should consider adding an alternate [non-color link indicator].    
 
 [git-revision-date plugin setup]: ../plugins/git-revision/
 [git-revision-date configuration]: ../plugins/git-revision/#advanced-configuration
@@ -56,7 +56,7 @@ hides the underline styling on links.  the underline text decoration on links is
 
 # Page Features
 
-To hide certain [Terminal for MkDocs components] on a per-page basis, add a [YAML Style Meta-Data] section to the very top of your Markdown page. Inside this metadata section, add the attribute `hide` which is a list of page-specific feature names.
+To hide certain Terminal for MkDocs components on a per-page basis, add a [YAML Style Meta-Data] section to the very top of your Markdown page. Inside this metadata section, add the attribute `hide` which is a list of page-specific feature names.
 
 Pay special attention to the indentation. There should be two spaces before the `-` marking the start of a component name: 
 
@@ -71,16 +71,19 @@ hide:
 ```
 
 [YAML Style Meta-Data]: https://www.mkdocs.org/user-guide/writing-your-docs/#yaml-style-meta-data
-[Terminal for MkDocs components]: ../#theme-components
 
 ## hide: revision_date
-hides the "Page last updated" text at the bottom of the page.  ignored if `revision.date` Theme Feature is not enabled.  ignored if `git-revision-date` plugin is not enabled.  
+Hides the "Page last updated" text at the bottom of the page.  
+Ignored if `revision.date` Theme Feature is not enabled.  
+Ignored if `git-revision-date` plugin is not enabled.  
 
 ## hide: revision_history
-hides the "See revision history..." text at the bottom of the page.  ignored if `revision.history` Theme Feature is not enabled.  ignored if `git-revision-date` plugin is not enabled.  
+Hides the "See revision history..." text at the bottom of the page.  
+Ignored if `revision.history` Theme Feature is not enabled.  
+Ignored if `git-revision-date` plugin is not enabled.  
 
 ## hide: side_toc
-hides the table of contents in the side panel on the page.
+Hides the table of contents in the side panel on the page.
 
 ## hide: top_nav
-hides top navigation on the page.  
+Hides the top navigation menu on the page.  
