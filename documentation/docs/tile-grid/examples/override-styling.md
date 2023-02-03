@@ -62,7 +62,7 @@ To demonstrate how the tile grid's style can be overriden, the following `<style
         width: 100px;
     }
     #grid_123 {
-        grid-template-columns: calc(var(--page-width) / 3);
+        grid-template-columns: 200px;
         grid-row-gap: 1em;
         justify-content: space-evenly;
         justify-items: center;
