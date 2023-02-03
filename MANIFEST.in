@@ -16,3 +16,4 @@ exclude SECURITY.md
 exclude package-lock.json
 exclude requirements.test.txt
 exclude .coveragerc
+exclude mkdocs-terminal.png
