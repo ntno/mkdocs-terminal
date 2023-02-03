@@ -39,7 +39,6 @@ The Felinae are a subfamily of the family Felidae. This subfamily comprises the 
 
 ### (h3) Felis catus
 Domestic cats:  
-
 - [Maine Coon](https://en.wikipedia.org/wiki/Maine_Coon)  
 - [Siberian](https://en.wikipedia.org/wiki/Siberian_cat)  
 - [Sphynx](https://en.wikipedia.org/wiki/Sphynx_cat)  
@@ -59,7 +58,6 @@ Canidae is a biological family of dog-like carnivorans, colloquially referred to
 
 ##### (h5) Canis familiaris
 Domestic dogs:  
-
 - [Alaskan Husky](https://en.wikipedia.org/wiki/Alaskan_husky)  
 - [Beagle](https://en.wikipedia.org/wiki/Beagle)  
 - [Greyhound](https://en.wikipedia.org/wiki/Greyhound)  
