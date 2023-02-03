@@ -17,7 +17,8 @@ tiles:
     alt_text: 'Picsum Photo API.'
     link_href: https://picsum.photos/
 ---
-
+<!-- NOTE: [start:example]/[end:example] HTML comments support live example in snippets.md. -->
+<!-- --8<-- [start:example] -->
 --8<--
 configuration/palettes/links.md
 --8<--
@@ -25,7 +26,7 @@ configuration/palettes/links.md
 # Gruvbox Dark Palette
 
 To use the gruvbox_dark color palette, add the `palette` attribute to your theme configuration in `mkdocs.yml`:
-
+<!-- --8<-- [end:example] -->
 ```yaml
 theme:
   name: terminal

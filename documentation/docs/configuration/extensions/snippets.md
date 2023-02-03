@@ -48,8 +48,6 @@ To use the gruvbox_dark color palette, add the `palette` attribute to your theme
 This will result in a final markdown for `gruvbox-dark.md` which includes the content in `links.md`: 
 
 ```markdown
---8<--
-configuration/palettes/gruvbox-dark.md::7
---8<--
+--8<-- "configuration/palettes/gruvbox-dark.md:example"
 ...
 ```
