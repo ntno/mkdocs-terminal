@@ -19,4 +19,4 @@ class TestTileLinkHelper():
         try:
             tile_link_macro.module.make_link_start(all_integer_tile)
         except Exception as ex:
-            pytest.fail(f"Got exception during render: {ex})")
+            pytest.fail(f"Got exception during render: {ex}")

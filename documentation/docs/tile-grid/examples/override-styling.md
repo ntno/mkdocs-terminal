@@ -1,95 +1,95 @@
 ---
 show_tiles_first: true
 grid_id: "grid_123"
-grid_css: "example_solid_border"
+grid_css: "override_border"
 tiles:
   - caption: '@petradr'
     img_src: ../../../img/picsum/167_200x200.jpeg
-    tile_css: "example_dashed_border"
+    alt_text: 'close up of fallen leaves.'
+    tile_css: 'override_width'
   - caption: 'Marcin Czerwinski'
     img_src: ../../../img/picsum/127_200x200.jpeg
-    tile_css: "example_dashed_border"
+    alt_text: 'close up of green moss on a log.'
+    tile_css: 'override_width'
   - caption: '@Guillaume'
     img_src: ../../../img/picsum/120_small.jpg
-    img_width: "250"
-    tile_css: "example_dashed_border"
+    alt_text: 'dark green, starry sky with a rustic picket fence in the foreground.'
+    tile_css: 'override_width'
 ---
 
 <style> 
-    .example_solid_border {
-      border: solid !important;
-      border-width: thin !important;
+    .override_border { 
+        border: dashed;
+        border-width: thin;
     }
-
-    .example_dashed_border { 
-        border: dashed !important;
-        border-width: thin !important;
+    .override_width {
+        width: 100px;
     }
-
     #grid_123 {
-        grid-gap: .5em !important;
-        grid-template-columns: 100px 100px 250px !important;
-        padding: 30px;
+        grid-template-columns: 200px;
+        grid-row-gap: 1em;
+        justify-content: space-evenly;
+        justify-items: center;
     }
 </style>
 
 # Tile Grid Style Overrides
 
-Tile Grid can be further customized by setting the `grid_id` and `grid_css` attributes in the markdown page's metadata[^1].  
+Terminal for MkDocs Tile Grid can be customized by setting the `grid_id` and `grid_css` attributes in the markdown page's metadata[^1].  
 
 - `grid_id` sets the HTML ID on the div containing the tile grid.  
 
 - `grid_css` is added to the div's CSS classes.  
 
-[^1]: see [Overview] for more info on page metadata
+[^1]: see [Overview] for more info on page metadata.
 [Overview]: ../..#1-add-tiles-to-page-metadata
 
 ## Extra CSS
 To demonstrate how the tile grid's style can be overriden, the following `<style>` HTML is included in this page's markdown:
 
-- `example_solid_border`: sets the border to a solid line  
-- `example_dashed_border`: sets the border to a dashed line  
+- `.override_border`: sets the tile grid's border to a dashed line  
+- `.override_width`: sets the tile's image width to 100px  
 - `#grid_123`: sets the tile grid's column widths explicitly  
 
 
 ```css
 <style> 
-    .example_solid_border {
-      border: solid !important;
-      border-width: thin !important;
+    .override_border { 
+        border: dashed;
+        border-width: thin;
     }
-
-    .example_dashed_border { 
-        border: dashed !important;
-        border-width: thin !important;
+    .override_width {
+        width: 100px;
     }
-
     #grid_123 {
-        grid-gap: .5em !important;
-        grid-template-columns: 100px 100px 250px !important;
-        padding: 30px;
+        grid-template-columns: 200px;
+        grid-row-gap: 1em;
+        justify-content: space-evenly;
+        justify-items: center;
     }
 </style>
 ```
 
 ## Grid Markdown
-Note that the metadata on this page includes `grid_id: "grid_123"` and `grid_css: "example_solid_border"`.  These settings override the tile grid's original styling to the custom styling defined on this page (see [above](override-styling.md#extra-css)).
+Note that the metadata on this page includes `grid_id: "grid_123"` and `grid_css: "override_border"`.  These settings override the tile grid's original styling to the custom styling defined on this page (see previous section).
 
 ```markdown
 ---
 show_tiles_first: true
 grid_id: "grid_123"
-grid_css: "example_solid_border"
+grid_css: "override_border"
 tiles:
   - caption: '@petradr'
     img_src: ../../../img/picsum/167_200x200.jpeg
-    tile_css: "example_dashed_border"
+    alt_text: 'close up of fallen leaves.'
+    tile_css: 'override_width'
   - caption: 'Marcin Czerwinski'
     img_src: ../../../img/picsum/127_200x200.jpeg
-    tile_css: "example_dashed_border"
+    alt_text: 'close up of green moss on a log.'
+    tile_css: 'override_width'
   - caption: '@Guillaume'
     img_src: ../../../img/picsum/120_small.jpg
-    img_width: "250"
-    tile_css: "example_dashed_border"
+    alt_text: 'dark green, starry sky with a rustic picket fence in the foreground.'
+    tile_css: 'override_width'
 ---
 ```

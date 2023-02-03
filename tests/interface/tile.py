@@ -8,18 +8,13 @@ log = logging.getLogger(__name__)
 
 class Tile:
     def __init__(
-        self, caption="", img_src="", img_title="", img_alt="", img_width="", img_height="", link_href="", link_target="", link_text="", link_title="", tile_id="", tile_css=""
+        self, caption="", img_src="", link_href="", alt_text="", tooltip="", tile_id="", tile_css=""
     ) -> None:
         self.caption = caption
         self.img_src = img_src
-        self.img_title = img_title
-        self.img_alt = img_alt
-        self.img_width = img_width
-        self.img_height = img_height
         self.link_href = link_href
-        self.link_target = link_target
-        self.link_text = link_text
-        self.link_title = link_title
+        self.alt_text = alt_text
+        self.tooltip = tooltip
         self.tile_id = tile_id
         self.tile_css = tile_css
 
@@ -38,29 +33,14 @@ class Tile:
     img_src: Optional[Any]
     """The image source.  Can be an external image like `https://picsum.photos/id/167/200/200` or an internal MkDocs image like `../img/palettes/default.png`."""
 
-    img_title: Optional[Any]
-    """Text to display on hover."""
-
-    img_alt: Optional[Any]
-    """Alternate text for the image if the image cannot be displayed."""
-
-    img_width: Optional[Any]
-    """Width to set on the image element."""
-
-    img_height: Optional[Any]
-    """Height to set on the image element."""
-
     link_href: Optional[Any]
-    """Web page URL.  Can be an external web page or an internal MkDocs page like `./default/`."""
+    """Web page URL.  Can be an external web page or a relative internal MkDocs page like `./tile-grid/`"""
 
-    link_target: Optional[Any]
-    """Specifies where to open the linked webpage.  `_blank` will open the link in a new tab.  `_self` will open the link in the current window."""
+    alt_text: Optional[Any]
+    """Text to display for a [link only] tile.  Image description for a [image only] tile.  Link description for a [linked image] tile."""
 
-    link_text: Optional[Any]
-    """Text to display for a [link only] tile.  Ignored if `img_src` is specified."""
-
-    link_title: Optional[Any]
-    """Text to display on hover.  Should not be used if `img_title` is already specified."""
+    tooltip: Optional[Any]
+    """Text to display on hover."""
 
     tile_id: Optional[Any]
     """ID to add to the tile's HTML for advanced styling."""

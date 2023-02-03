@@ -4,10 +4,8 @@ Terminal for MkDocs enables you to quickly create a grid of linked tiles.  Each 
 
 <section markdown>
 <figure markdown>
- <a href="examples/example-page">
-![Tile Grid Example](../img/tile-grid/overview-example.png){title="to tile grid example page"; alt="web page with three square images in a row.  images appear after Lorem Ipsum text." .terminal-mkdocs-thin-border }
-</a>
-<figcaption>Tile Grid Example</figcaption>
+![Tile Grid Example](../img/tile-grid/overview-example.png){alt="web page with three square images in a row.  images appear after Lorem Ipsum text." .terminal-mkdocs-thin-border }
+<figcaption markdown>[Tile Grid Example](./examples/example-page)</figcaption>
 </figure>
 </section>
 <br>
@@ -24,10 +22,13 @@ Pay special attention to the indentation.  There should be two spaces before the
 tiles:
   - caption: '@petradr'
     img_src: https://picsum.photos/id/167/200/200
+    alt_text: 'close up of fallen leaves.'
   - caption: 'Marcin Czerwinski'
     img_src: https://picsum.photos/id/127/200/200
+    alt_text: 'close up of green moss on a log.'
   - caption: 'Steve Richey'
     img_src: https://picsum.photos/id/143/200/200
+    alt_text: 'overhead of fallen leaves.'
 ---
 
 # My Page Content
@@ -39,7 +40,7 @@ Each tile object may have any of the attributes described in the [Tile Reference
 ## 2. Add Page to Nav
 Add the markdown file which includes the `tiles` metadata to the site's navigation in `mkdocs.yml`.  If the page is not included in the `mkdocs.yml` *nav*, the markdown will not be loaded as a MkDocs Page Object[^mkdocs-page-object] and will not include your metadata.
 
-*Note*: the page does not need to be visible in the final [side navigation theme component](../configuration/).  Deeply nested pages can also use the tile grid feature.  
+*Note*: the page does not need to be visible in the final side navigation menu.  Deeply nested pages can also use the tile grid feature.  
 
 ```
 nav:
@@ -50,13 +51,10 @@ nav:
         - Also Works: 'tile-grid/examples/example-page.md'
 ```
 
-[^mkdocs-page-object]: [MkDocs Page Object]
-[^mkdocs-page-meta]: [MkDocs Page Metadata]
+[^mkdocs-page-object]: [MkDocs Page Object Documentation]
 
 [YAML Style Meta-Data]: https://www.mkdocs.org/user-guide/writing-your-docs/#yaml-style-meta-data
-[MkDocs Page Object]: https://www.mkdocs.org/dev-guide/themes/#navigation-objects
-[MkDocs Page Metadata]: https://www.mkdocs.org/dev-guide/themes/#mkdocs.structure.pages.Page.meta
-[Markdown Metadata]: https://www.mkdocs.org/user-guide/writing-your-docs/#meta-data
+[MkDocs Page Object Documentation]: https://www.mkdocs.org/dev-guide/themes/#navigation-objects
 
 ## 3. Configure Tile Grid
 The Tile Grid can be further configured using the attributes described in the [Grid Reference](grid.md).  For example, the grid can be configured to display before the main page content:

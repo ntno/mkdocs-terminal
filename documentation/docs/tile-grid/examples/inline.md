@@ -3,19 +3,13 @@ show_tiles_inline: true
 tiles:
   - caption: '@petradr'
     img_src: ../../../img/picsum/167_200x200.jpeg
-    img_title: 'to Picsum homepage'
-    img_alt: 'close up of fallen leaves.'
-    link_href: https://picsum.photos/ 
+    alt_text: 'close up of fallen leaves.'
   - caption: 'Marcin Czerwinski'
     img_src: ../../../img/picsum/127_200x200.jpeg
-    img_title: 'to Picsum homepage'
-    img_alt: 'close up of green moss on a log.'
-    link_href: https://picsum.photos/ 
+    alt_text: 'close up of green moss on a log.'
   - caption: "Steve Richey"
     img_src: ../../../img/picsum/143_200x200.jpeg
-    img_title: 'to Picsum homepage'
-    img_alt: 'overhead of fallen leaves.'
-    link_href: https://picsum.photos/
+    alt_text: 'overhead of fallen leaves.'
 ---
 
 # My Page Content
