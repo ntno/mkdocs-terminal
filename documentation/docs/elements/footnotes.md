@@ -70,5 +70,5 @@ To define a multi-line footnote, create a paragraph on the next line after the m
 
 
 [^credit]:
-    This documentation page is based on squidfunk's Material for MkDocs [Footnotes](https://squidfunk.github.io/mkdocs-material/reference/footnotes/) documentation.
+    This documentation page is based on squidfunk's [Material for MkDocs Footnotes](https://squidfunk.github.io/mkdocs-material/reference/footnotes/) documentation.
 
