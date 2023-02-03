@@ -49,7 +49,7 @@ No configuration options are available. See reference for usage:
 
 ## Footnotes
 
-The [Footnotes] extension enables inline footnotes which are then rendered below all of a document's Markdown content. Enable it via `mkdocs.yml`:
+The [Footnotes] extension enables inline footnotes which are then rendered below all of a document's Markdown content.  Enable it via `mkdocs.yml`:
 
 ``` yaml
 markdown_extensions:
