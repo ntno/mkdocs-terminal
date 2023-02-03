@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.11.0">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-4.0.0">
      
     
     <meta name="author" content="ntno"> 
@@ -22,15 +22,11 @@
 <link href="../../../css/fontawesome/css/solid.min.css" rel="stylesheet">
 <link href="../../../css/normalize.css" rel="stylesheet">
 <link href="../../../css/terminal.css" rel="stylesheet">
-<link href="../../../css/theme.css" rel="stylesheet"> 
+<link href="../../../css/theme.css" rel="stylesheet">
+<link href="../../../css/theme.tile_grid.css" rel="stylesheet">
 <!-- default color palette-->
 <link href="../../../css/palettes/default.css" rel="stylesheet">
-<!-- link underline override -->
-<style>
-#terminal-mkdocs-main-content a:not(.headerlink){
-    text-decoration: none;
-}
-</style>
+
 
     
     <link href="../../../overrides/extra.css" rel="stylesheet">  
@@ -939,22 +935,22 @@
 <div class="terminal-mkdocs-tile-grid ">
     <div class="terminal-mkdocs-tile ">
         <figure>
-            <div class="terminal-mkdocs-tile-link"><a href="../example-page" >../example-page</a></div>
-            <figcaption><p>a minimal link tile</p></figcaption>
+            <div class="terminal-mkdocs-tile-link"><a href="https://github.com" >https://github.com</a></div>
+            <figcaption><p>a captioned link</p></figcaption>
                 
         </figure>
     </div>
     <div class="terminal-mkdocs-tile ">
         <figure>
-            <div class="terminal-mkdocs-tile-link"><a href="../example-page" >Tile Grid Example</a></div>
-            <figcaption><p>a link tile with text</p></figcaption>
+            <div class="terminal-mkdocs-tile-link"><a href="https://github.com" >GitHub</a></div>
+            <figcaption><p>display specified text</p></figcaption>
                 
         </figure>
     </div>
     <div class="terminal-mkdocs-tile ">
         <figure>
             <div class="terminal-mkdocs-tile-link"><a href="../example-page" title="go to the tile grid example page" >Tile Grid Example</a></div>
-            <figcaption><p>a link tile with hover title</p></figcaption>
+            <figcaption><p>with tooltip</p></figcaption>
                 
         </figure>
     </div>
@@ -984,17 +980,26 @@
 </section>
 
 <section id="mkdocs-terminal-content">
-    <style> #tile_456 {border: solid !important;border-width: thin !important;}.example_highlight {background-color: #FFFF00;}</style>
+    <style>
+  #tile_456 {
+    border: solid;
+    border-width: thin;
+  }
+
+  .example_highlight {
+    background-color: #FFFF00;
+  } 
+</style>
 <hr>
 
 <h1 id="link-only-tiles">Link Only Tiles<a class="headerlink" href="#link-only-tiles" title="Anchor link to this section for reference">#</a></h1>
-<p>The tiles on this page do not have <code>img_*</code> attributes.  They are rendered as captioned links instead of linked images.</p>
+<p>The tiles on this page do not have a <code>img_src</code> attribute.  They are rendered as captioned links instead of linked images.</p>
 <p>To demonstrate how tiles can be styled individually, the following <code>&lt;style&gt;</code> HTML is included in this page's markdown:</p>
 <h2 id="extra-css">Extra CSS<a class="headerlink" href="#extra-css" title="Anchor link to this section for reference">#</a></h2>
 <pre><code class="language-html">&lt;style&gt;
   #tile_456 {
-    border: solid !important;
-    border-width: thin !important;
+    border: solid;
+    border-width: thin;
   }
 
   .example_highlight {
@@ -1003,33 +1008,38 @@
 &lt;/style&gt;
 </code></pre>
 <h2 id="tile-markdown">Tile Markdown<a class="headerlink" href="#tile-markdown" title="Anchor link to this section for reference">#</a></h2>
+<p>Note:  </p>
+<ul>
+<li><code>tile_id</code> has been set to <code>tile_456</code> in the second to last tile.  </li>
+<li><code>tile_css</code> has been set to <code>example_highlight</code> in the last tile.  </li>
+</ul>
 <pre><code class="language-markdown">---
 show_tiles_first: true
 tiles:
-  - caption: a minimal link tile
+  - caption: a captioned link
+    link_href: https://github.com
+  - caption: display specified text
+    link_href: https://github.com
+    alt_text: GitHub
+  - caption: with tooltip
     link_href: ../example-page
-  - caption: a link tile with text
-    link_text: Tile Grid Example
-    link_href: ../example-page
-  - caption: a link tile with hover title
-    link_title: go to the tile grid example page
-    link_text: Tile Grid Example
-    link_href: ../example-page
+    alt_text: Tile Grid Example
+    tooltip: go to the tile grid example page
   - caption: &quot;\\#tile_123&quot;
-    tile_id: &quot;tile_123&quot;
-    link_title: go to overview
-    link_text: Tile Grid Overview
     link_href: ../..
+    alt_text: Tile Grid Overview
+    tooltip: go to overview
+    tile_id: &quot;tile_123&quot;
   - caption: &quot;\\#tile_456&quot;
-    tile_id: &quot;tile_456&quot;
-    link_title: go to tile reference
-    link_text: Tile Reference
     link_href: ../../tile
+    alt_text: Tile Reference
+    tooltip: go to tile reference
+    tile_id: &quot;tile_456&quot;
   - caption: &quot;.example_highlight&quot;
-    tile_css: &quot;example_highlight&quot;
-    link_title: go to grid reference
-    link_text: Grid Reference
     link_href: ../../grid
+    alt_text: Grid Reference
+    tooltip: go to grid reference
+    tile_css: &quot;example_highlight&quot;
 ---
 </code></pre>
 </section>
@@ -1038,7 +1048,7 @@ tiles:
 <aside>
     <p>
         <small>
-            <i>Page last updated 2023-01-31. See revision history on <a href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/tile-grid/examples/links-only.md">GitHub</a>.</i>
+            <i>Page last updated 2023-02-03. See revision history on <a href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/tile-grid/examples/links-only.md">GitHub</a>.</i>
         </small>
     </p>
 </aside>

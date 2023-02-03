@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.11.0">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-4.0.0">
      
     
     <meta name="author" content="ntno"> 
@@ -22,15 +22,11 @@
 <link href="../../css/fontawesome/css/solid.min.css" rel="stylesheet">
 <link href="../../css/normalize.css" rel="stylesheet">
 <link href="../../css/terminal.css" rel="stylesheet">
-<link href="../../css/theme.css" rel="stylesheet"> 
+<link href="../../css/theme.css" rel="stylesheet">
+<link href="../../css/theme.tile_grid.css" rel="stylesheet">
 <!-- default color palette-->
 <link href="../../css/palettes/default.css" rel="stylesheet">
-<!-- link underline override -->
-<style>
-#terminal-mkdocs-main-content a:not(.headerlink){
-    text-decoration: none;
-}
-</style>
+
 
     
     <link href="../../overrides/extra.css" rel="stylesheet">  
@@ -938,8 +934,8 @@
 
 <section id="mkdocs-terminal-content">
     <h1 id="template-blocks">Template Blocks<a class="headerlink" href="#template-blocks" title="Anchor link to this section for reference">#</a></h1>
-<p>In some situations you may want to include your own Jinja2 page templates.  Terminal for MkDocs supports overriding or extending the blocks listed in <a href="./#overridable-blocks">Reference</a>.  </p>
-<p>This is an advanced MkDocs feature.  For an extended discussion, see the <a href="https://www.mkdocs.org/user-guide/customizing-your-theme/#using-the-theme-custom_dir">official MkDocs guide</a>.</p>
+<p>In some situations you may want to include your own Jinja2 page templates.  Terminal for MkDocs supports overriding or extending the blocks listed in <a href="./#overridable-blocks">Overridable Blocks</a>.  </p>
+<p>This is an advanced MkDocs feature.  For an extended discussion, see the <a href="https://www.mkdocs.org/user-guide/customizing-your-theme/#overriding-template-blocks">official MkDocs guide</a>.</p>
 <h2 id="example-scenario">Example Scenario<a class="headerlink" href="#example-scenario" title="Anchor link to this section for reference">#</a></h2>
 <p>Let's say you want to add a banner above each page's markdown content.  You still want to be able to show a <a href="../../tile-grid/">Tile Grid</a> at the top of the page, but you want the banner to appear above the grid if one is defined.</p>
 <h2 id="1-add-overrides-folder">1. Add Overrides Folder<a class="headerlink" href="#1-add-overrides-folder" title="Anchor link to this section for reference">#</a></h2>
@@ -956,7 +952,9 @@
 └─ mkdocs.yml          # MkDocs config
 </code></pre>
 <h2 id="2-add-theme-custom-directory">2. Add Theme Custom Directory<a class="headerlink" href="#2-add-theme-custom-directory" title="Anchor link to this section for reference">#</a></h2>
-<p>Configure MkDocs to look at the new <code>./overrides</code> folder</p>
+<p>Configure MkDocs to look at the new <code>./overrides</code> folder:</p>
+<p><strong>file name</strong>: mkdocs.yml<br />
+<strong>file location</strong>: ./</p>
 <pre><code class="language-yaml">theme:
   name: terminal
   custom_dir: overrides
@@ -967,6 +965,7 @@
 <strong>file location</strong>: ./overrides/partials/page.html  </p>
 <pre><code class="language-jinja2">
 {% extends &quot;partials/page-base.html&quot; %}
+
 {%- block before_markdown_content %}
 {% include &quot;partials/banner.html&quot; %}
 {{ super() }}
@@ -980,7 +979,7 @@
 {% extends &quot;base.html&quot; %}
 
 </code></pre>
-<p>Calling <code>super()</code> will include any Terminal for MkDocs features which are inserted before the main content (like the <a href="../../tile-grid/">Tile Grid</a> when <code>show_tiles_first</code> is set to <code>true</code>).</p>
+<p>Calling <code>super()</code> will include any Terminal for MkDocs features which are inside the original block definition.</p>
 <hr>
 
 <h1 id="overridable-blocks">Overridable Blocks<a class="headerlink" href="#overridable-blocks" title="Anchor link to this section for reference">#</a></h1>
@@ -1115,7 +1114,7 @@
 <aside>
     <p>
         <small>
-            <i>Page last updated 2023-01-31. See revision history on <a href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/configuration/blocks.md">GitHub</a>.</i>
+            <i>Page last updated 2023-02-03. See revision history on <a href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/configuration/blocks.md">GitHub</a>.</i>
         </small>
     </p>
 </aside>

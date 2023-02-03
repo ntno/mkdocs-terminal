@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.11.0">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-4.0.0">
      
     
     <meta name="author" content="ntno"> 
@@ -22,15 +22,11 @@
 <link href="../css/fontawesome/css/solid.min.css" rel="stylesheet">
 <link href="../css/normalize.css" rel="stylesheet">
 <link href="../css/terminal.css" rel="stylesheet">
-<link href="../css/theme.css" rel="stylesheet"> 
+<link href="../css/theme.css" rel="stylesheet">
+<link href="../css/theme.tile_grid.css" rel="stylesheet">
 <!-- default color palette-->
 <link href="../css/palettes/default.css" rel="stylesheet">
-<!-- link underline override -->
-<style>
-#terminal-mkdocs-main-content a:not(.headerlink){
-    text-decoration: none;
-}
-</style>
+
 
     
     <link href="../overrides/extra.css" rel="stylesheet">  
@@ -942,10 +938,10 @@
 <p>Terminal for MkDocs enables you to quickly create a grid of linked tiles.  Each tile can contain an image, link, and caption.</p>
 <section>
 <figure>
-<p><a href="examples/example-page">
-<img _=";" alt="web page with three square images in a row.  images appear after Lorem Ipsum text." class="terminal-mkdocs-thin-border" src="../img/tile-grid/overview-example.png" title="to tile grid example page" />
-</a></p>
-<figcaption>Tile Grid Example</figcaption>
+<p><img alt="web page with three square images in a row.  images appear after Lorem Ipsum text." class="terminal-mkdocs-thin-border" src="../img/tile-grid/overview-example.png" /></p>
+<figcaption>
+<p><a href="./examples/example-page">Tile Grid Example</a></p>
+</figcaption>
 </figure>
 </section>
 <p><br></p>
@@ -957,10 +953,13 @@
 tiles:
   - caption: '@petradr'
     img_src: https://picsum.photos/id/167/200/200
+    alt_text: 'close up of fallen leaves.'
   - caption: 'Marcin Czerwinski'
     img_src: https://picsum.photos/id/127/200/200
+    alt_text: 'close up of green moss on a log.'
   - caption: 'Steve Richey'
     img_src: https://picsum.photos/id/143/200/200
+    alt_text: 'overhead of fallen leaves.'
 ---
 
 # My Page Content
@@ -968,7 +967,7 @@ tiles:
 <p>Each tile object may have any of the attributes described in the <a href="tile/">Tile Reference</a>.</p>
 <h2 id="2-add-page-to-nav">2. Add Page to Nav<a class="headerlink" href="#2-add-page-to-nav" title="Anchor link to this section for reference">#</a></h2>
 <p>Add the markdown file which includes the <code>tiles</code> metadata to the site's navigation in <code>mkdocs.yml</code>.  If the page is not included in the <code>mkdocs.yml</code> <em>nav</em>, the markdown will not be loaded as a MkDocs Page Object<sup id="fnref:mkdocs-page-object"><a class="footnote-ref" href="#fn:mkdocs-page-object">1</a></sup> and will not include your metadata.</p>
-<p><em>Note</em>: the page does not need to be visible in the final <a href="../configuration/">side navigation theme component</a>.  Deeply nested pages can also use the tile grid feature.  </p>
+<p><em>Note</em>: the page does not need to be visible in the final side navigation menu.  Deeply nested pages can also use the tile grid feature.  </p>
 <pre><code>nav:
     - Home: 'index.md'
     - Example Page: 'tile-grid/examples/example-page.md'
@@ -1004,18 +1003,18 @@ filename: <code>example-page.md</code>  </p>
 tiles:
   - caption: '@petradr'
     img_src: ../../../img/picsum/167_200x200.jpeg
-    img_title: 'to Picsum homepage'
-    img_alt: 'close up of fallen leaves.'
+    tooltip: 'to Picsum homepage'
+    alt_text: 'Picsum Photo API.'
     link_href: https://picsum.photos/ 
   - caption: 'Marcin Czerwinski'
     img_src: ../../../img/picsum/127_200x200.jpeg
-    img_title: 'to Picsum homepage'
-    img_alt: 'close up of green moss on a log.'
+    tooltip: 'to Picsum homepage'
+    alt_text: 'Picsum Photo API.'
     link_href: https://picsum.photos/ 
   - caption: 'Steve Richey'
     img_src: ../../../img/picsum/143_200x200.jpeg
-    img_title: 'to Picsum homepage'
-    img_alt: 'overhead of fallen leaves.'
+    tooltip: 'to Picsum homepage'
+    alt_text: 'Picsum Photo API.'
     link_href: https://picsum.photos/ 
 ---
 
@@ -1030,10 +1029,7 @@ Maecenas facilisis id tortor volutpat fermentum. Integer volutpat arcu leo, sed 
 <hr />
 <ol>
 <li id="fn:mkdocs-page-object">
-<p><a href="https://www.mkdocs.org/dev-guide/themes/#navigation-objects">MkDocs Page Object</a>&#160;<a class="footnote-backref" href="#fnref:mkdocs-page-object" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-<li id="fn:mkdocs-page-meta">
-<p><a href="https://www.mkdocs.org/dev-guide/themes/#mkdocs.structure.pages.Page.meta">MkDocs Page Metadata</a>&#160;<a class="footnote-backref" href="#fnref:mkdocs-page-meta" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p><a href="https://www.mkdocs.org/dev-guide/themes/#navigation-objects">MkDocs Page Object Documentation</a>&#160;<a class="footnote-backref" href="#fnref:mkdocs-page-object" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -1047,7 +1043,7 @@ Maecenas facilisis id tortor volutpat fermentum. Integer volutpat arcu leo, sed 
 <aside>
     <p>
         <small>
-            <i>Page last updated 2023-01-31. See revision history on <a href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/tile-grid/index.md">GitHub</a>.</i>
+            <i>Page last updated 2023-02-03. See revision history on <a href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/tile-grid/index.md">GitHub</a>.</i>
         </small>
     </p>
 </aside>

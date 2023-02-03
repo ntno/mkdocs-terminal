@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.11.0">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-4.0.0">
      
     
     <meta name="author" content="ntno"> 
@@ -22,15 +22,11 @@
 <link href="../../../css/fontawesome/css/solid.min.css" rel="stylesheet">
 <link href="../../../css/normalize.css" rel="stylesheet">
 <link href="../../../css/terminal.css" rel="stylesheet">
-<link href="../../../css/theme.css" rel="stylesheet"> 
+<link href="../../../css/theme.css" rel="stylesheet">
+<link href="../../../css/theme.tile_grid.css" rel="stylesheet">
 <!-- default color palette-->
 <link href="../../../css/palettes/default.css" rel="stylesheet">
-<!-- link underline override -->
-<style>
-#terminal-mkdocs-main-content a:not(.headerlink){
-    text-decoration: none;
-}
-</style>
+
 
     
     <link href="../../../overrides/extra.css" rel="stylesheet">  
@@ -936,27 +932,27 @@
 
 <section id="mkdocs-terminal-before-content" class="terminal-mkdocs-pad-to-match-side-nav">
 
-<div id="grid_123" class="terminal-mkdocs-tile-grid example_solid_border">
-    <div class="terminal-mkdocs-tile example_dashed_border">
+<div id="grid_123" class="terminal-mkdocs-tile-grid override_border">
+    <div class="terminal-mkdocs-tile override_width">
         <figure>
              
-                    <img src="../../../img/picsum/167_200x200.jpeg" alt="" >
+                    <img src="../../../img/picsum/167_200x200.jpeg" alt="close up of fallen leaves." >
             <figcaption><p>@petradr</p></figcaption>
                 
         </figure>
     </div>
-    <div class="terminal-mkdocs-tile example_dashed_border">
+    <div class="terminal-mkdocs-tile override_width">
         <figure>
              
-                    <img src="../../../img/picsum/127_200x200.jpeg" alt="" >
+                    <img src="../../../img/picsum/127_200x200.jpeg" alt="close up of green moss on a log." >
             <figcaption><p>Marcin Czerwinski</p></figcaption>
                 
         </figure>
     </div>
-    <div class="terminal-mkdocs-tile example_dashed_border">
+    <div class="terminal-mkdocs-tile override_width">
         <figure>
              
-                    <img src="../../../img/picsum/120_small.jpg" alt="" width="250" >
+                    <img src="../../../img/picsum/120_small.jpg" alt="dark green, starry sky with a rustic picket fence in the foreground." >
             <figcaption><p>@Guillaume</p></figcaption>
                 
         </figure>
@@ -967,25 +963,23 @@
 
 <section id="mkdocs-terminal-content">
     <style> 
-    .example_solid_border {
-      border: solid !important;
-      border-width: thin !important;
+    .override_border { 
+        border: dashed;
+        border-width: thin;
     }
-
-    .example_dashed_border { 
-        border: dashed !important;
-        border-width: thin !important;
+    .override_width {
+        width: 100px;
     }
-
     #grid_123 {
-        grid-gap: .5em !important;
-        grid-template-columns: 100px 100px 250px !important;
-        padding: 30px;
+        grid-template-columns: 200px;
+        grid-row-gap: 1em;
+        justify-content: space-evenly;
+        justify-items: center;
     }
 </style>
 
 <h1 id="tile-grid-style-overrides">Tile Grid Style Overrides<a class="headerlink" href="#tile-grid-style-overrides" title="Anchor link to this section for reference">#</a></h1>
-<p>Tile Grid can be further customized by setting the <code>grid_id</code> and <code>grid_css</code> attributes in the markdown page's metadata<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.  </p>
+<p>Terminal for MkDocs Tile Grid can be customized by setting the <code>grid_id</code> and <code>grid_css</code> attributes in the markdown page's metadata<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.  </p>
 <ul>
 <li>
 <p><code>grid_id</code> sets the HTML ID on the div containing the tile grid.  </p>
@@ -997,52 +991,52 @@
 <h2 id="extra-css">Extra CSS<a class="headerlink" href="#extra-css" title="Anchor link to this section for reference">#</a></h2>
 <p>To demonstrate how the tile grid's style can be overriden, the following <code>&lt;style&gt;</code> HTML is included in this page's markdown:</p>
 <ul>
-<li><code>example_solid_border</code>: sets the border to a solid line  </li>
-<li><code>example_dashed_border</code>: sets the border to a dashed line  </li>
+<li><code>.override_border</code>: sets the tile grid's border to a dashed line  </li>
+<li><code>.override_width</code>: sets the tile's image width to 100px  </li>
 <li><code>#grid_123</code>: sets the tile grid's column widths explicitly  </li>
 </ul>
 <pre><code class="language-css">&lt;style&gt; 
-    .example_solid_border {
-      border: solid !important;
-      border-width: thin !important;
+    .override_border { 
+        border: dashed;
+        border-width: thin;
     }
-
-    .example_dashed_border { 
-        border: dashed !important;
-        border-width: thin !important;
+    .override_width {
+        width: 100px;
     }
-
     #grid_123 {
-        grid-gap: .5em !important;
-        grid-template-columns: 100px 100px 250px !important;
-        padding: 30px;
+        grid-template-columns: 200px;
+        grid-row-gap: 1em;
+        justify-content: space-evenly;
+        justify-items: center;
     }
 &lt;/style&gt;
 </code></pre>
 <h2 id="grid-markdown">Grid Markdown<a class="headerlink" href="#grid-markdown" title="Anchor link to this section for reference">#</a></h2>
-<p>Note that the metadata on this page includes <code>grid_id: "grid_123"</code> and <code>grid_css: "example_solid_border"</code>.  These settings override the tile grid's original styling to the custom styling defined on this page (see <a href="./#extra-css">above</a>).</p>
+<p>Note that the metadata on this page includes <code>grid_id: "grid_123"</code> and <code>grid_css: "override_border"</code>.  These settings override the tile grid's original styling to the custom styling defined on this page (see previous section).</p>
 <pre><code class="language-markdown">---
 show_tiles_first: true
 grid_id: &quot;grid_123&quot;
-grid_css: &quot;example_solid_border&quot;
+grid_css: &quot;override_border&quot;
 tiles:
   - caption: '@petradr'
     img_src: ../../../img/picsum/167_200x200.jpeg
-    tile_css: &quot;example_dashed_border&quot;
+    alt_text: 'close up of fallen leaves.'
+    tile_css: 'override_width'
   - caption: 'Marcin Czerwinski'
     img_src: ../../../img/picsum/127_200x200.jpeg
-    tile_css: &quot;example_dashed_border&quot;
+    alt_text: 'close up of green moss on a log.'
+    tile_css: 'override_width'
   - caption: '@Guillaume'
     img_src: ../../../img/picsum/120_small.jpg
-    img_width: &quot;250&quot;
-    tile_css: &quot;example_dashed_border&quot;
+    alt_text: 'dark green, starry sky with a rustic picket fence in the foreground.'
+    tile_css: 'override_width'
 ---
 </code></pre>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:1">
-<p>see <a href="../..#1-add-tiles-to-page-metadata">Overview</a> for more info on page metadata&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>see <a href="../..#1-add-tiles-to-page-metadata">Overview</a> for more info on page metadata.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -1052,7 +1046,7 @@ tiles:
 <aside>
     <p>
         <small>
-            <i>Page last updated 2023-01-31. See revision history on <a href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/tile-grid/examples/override-styling.md">GitHub</a>.</i>
+            <i>Page last updated 2023-02-03. See revision history on <a href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/tile-grid/examples/override-styling.md">GitHub</a>.</i>
         </small>
     </p>
 </aside>

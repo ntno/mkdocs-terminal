@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.11.0">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-4.0.0">
      
     
     <meta name="author" content="ntno"> 
@@ -22,15 +22,11 @@
 <link href="../css/fontawesome/css/solid.min.css" rel="stylesheet">
 <link href="../css/normalize.css" rel="stylesheet">
 <link href="../css/terminal.css" rel="stylesheet">
-<link href="../css/theme.css" rel="stylesheet"> 
+<link href="../css/theme.css" rel="stylesheet">
+<link href="../css/theme.tile_grid.css" rel="stylesheet">
 <!-- default color palette-->
 <link href="../css/palettes/default.css" rel="stylesheet">
-<!-- link underline override -->
-<style>
-#terminal-mkdocs-main-content a:not(.headerlink){
-    text-decoration: none;
-}
-</style>
+
 
     
     <link href="../overrides/extra.css" rel="stylesheet">  
@@ -939,33 +935,45 @@
 <section id="mkdocs-terminal-content">
     <h1 id="theme-components">Theme Components<a class="headerlink" href="#theme-components" title="Anchor link to this section for reference">#</a></h1>
 <p>The MkDocs Terminal theme layout consists of three major components.  The top navigation bar, the side navigation bar, and the page table of contents.  Each of these components can be hidden site-wide (see <a href="features/">Theme Features</a>), however they are enabled by default.</p>
-<section>
 <figure>
-<p><img _=";" alt="screenshot with hideable MkDocs Terminal components annotated" class="terminal-mkdocs-thin-border" src="../img/annotated/hideable_components.png" title="Hideable UI Components" /></p>
-<figcaption>Hideable UI Components</figcaption>
+<p><img alt="top navigation menu and side navigation menu annotated.  Page table of contents appears below side navigation menu." class="terminal-mkdocs-thin-border" src="../img/annotated/hideable_components.png" /></p>
+<figcaption>
+<p><em>Top Nav</em>, <em>Side Nav</em>, and <em>Table of Contents</em> are enabled by default</p>
+</figcaption>
 </figure>
-</section>
 <h2 id="top-navigation-menu">Top Navigation Menu<a class="headerlink" href="#top-navigation-menu" title="Anchor link to this section for reference">#</a></h2>
-<p>This component includes the <code>site_name</code> at the top left and the top level pages as defined in the <code>nav</code> section of <code>mkdocs.yml</code> at the top right:</p>
+<p>The top navigation menu includes the <code>site_name</code> at the top left and root level pages at the top right.  Root level pages are pages which are not child pages and are not a section index:</p>
+<figure>
 <pre><code class="language-yaml">site_name: Terminal Theme Demo
 nav:
     - Home: 'index.md'
     - Troubleshooting: 'help.md'
 </code></pre>
+<figcaption>
+<p><em>Home</em> and <em>Troubleshooting</em> appear in the top navigation menu</p>
+</figcaption>
+</figure>
 <h2 id="side-navigation-menu">Side Navigation Menu<a class="headerlink" href="#side-navigation-menu" title="Anchor link to this section for reference">#</a></h2>
-<p>This component includes the first through second level pages as defined in the <code>nav</code> section of <code>mkdocs.yml</code> in the left sidebar:</p>
+<p>The navigation menu in the left sidebar includes the root level and second level pages as defined in the <code>nav</code> section of <code>mkdocs.yml</code>:</p>
+<figure>
 <pre><code class="language-yaml">nav:
     - Home: 'index.md'
     - Troubleshooting: 'help.md'
     - About: 
+      - Index: 'about/index.md'
       - Contributing: 'about/contributing.md'
       - License: 'about/license.md'
       - Release Notes:
+        - Index: 'about/release-notes/index.md'
         - v1: 'about/release-notes/version-1.md'
         - v2: 'about/release-notes/version-2.md'
 </code></pre>
+<figcaption>
+<p><em>Home</em>, <em>Troubleshooting</em>, <em>About</em>, <em>Contributing</em>, <em>License</em>, and <em>Release Notes</em> appear in the side navigation menu</p>
+</figcaption>
+</figure>
 <h2 id="page-table-of-contents">Page Table of Contents<a class="headerlink" href="#page-table-of-contents" title="Anchor link to this section for reference">#</a></h2>
-<p>The table of contents (TOC) component is located directly underneath the side-nav component.  It includes links to the the top two sections in the current page's markdown.  See <a href="../navigation/toc/">TOC Example</a> for details.</p>
+<p>The table of contents (TOC) is located directly underneath the side navigation menu.  It includes links to the the top two sections in the current page's markdown.  See <a href="../navigation/toc/">TOC Example</a> for details.</p>
 </section>
 
 <section id="mkdocs-terminal-after-content">
@@ -976,7 +984,7 @@ nav:
 <aside>
     <p>
         <small>
-            <i>Page last updated 2023-01-31. See revision history on <a href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/configuration/index.md">GitHub</a>.</i>
+            <i>Page last updated 2023-02-03. See revision history on <a href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/configuration/index.md">GitHub</a>.</i>
         </small>
     </p>
 </aside>

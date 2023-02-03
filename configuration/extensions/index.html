@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.11.0">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-4.0.0">
      
     
     <meta name="author" content="ntno"> 
@@ -22,15 +22,11 @@
 <link href="../../css/fontawesome/css/solid.min.css" rel="stylesheet">
 <link href="../../css/normalize.css" rel="stylesheet">
 <link href="../../css/terminal.css" rel="stylesheet">
-<link href="../../css/theme.css" rel="stylesheet"> 
+<link href="../../css/theme.css" rel="stylesheet">
+<link href="../../css/theme.tile_grid.css" rel="stylesheet">
 <!-- default color palette-->
 <link href="../../css/palettes/default.css" rel="stylesheet">
-<!-- link underline override -->
-<style>
-#terminal-mkdocs-main-content a:not(.headerlink){
-    text-decoration: none;
-}
-</style>
+
 
     
     <link href="../../overrides/extra.css" rel="stylesheet">  
@@ -938,33 +934,14 @@
 
 <section id="mkdocs-terminal-content">
     <div class="terminal-mkdocs-pad-to-match-side-nav btn-group">
-<p><a href="./">Overview</a> |
+<p><a alt="Extensions Overview" href="./">Overview</a> |
 <a href="python-markdown/">Python Markdown Extensions</a> |
 <a href="pymdown-extensions/">PyMdown Extensions</a> </p>
 </div>
 <h1 id="extensions">Extensions<a class="headerlink" href="#extensions" title="Anchor link to this section for reference">#</a></h1>
-<p>Markdown is a very small language with a kind-of reference implementation called
-<a href="https://daringfireball.net/projects/markdown/">John Gruber's Markdown</a>. <a href="https://python-markdown.github.io/extensions/">Python Markdown</a> and <a href="https://facelessuser.github.io/pymdown-extensions/">PyMdown Extensions</a> are two packages that enhance the Markdown writing experience, adding useful syntax extensions for technical writing.</p>
+<p>Markdown is a very small language with a kind-of reference implementation called <a href="https://daringfireball.net/projects/markdown/">John Gruber's Markdown</a>. Python Markdown and PyMdown Extensions are two packages that enhance the Markdown writing experience, adding useful syntax extensions for technical writing.</p>
 <h2 id="suggested-extensions">Suggested Extensions<a class="headerlink" href="#suggested-extensions" title="Anchor link to this section for reference">#</a></h2>
-<p>The following extensions have been confirmed to work with Terminal for MkDocs and are strongly recommended. Click on each extension to learn about its purpose and
-configuration:</p>
-<!-- 
-TODO
-- [Abbreviations]
-- [Admonition]
-- [Arithmatex]
-- [BetterEm]
-- [Critic]
-- [Details]
-- [Emoji]
-- [Highlight]
-- [Keys]
-- [SmartSymbols]
-- [SuperFences]
-- [Tabbed]
-- [Tasklist]
-- -->
-
+<p>The following extensions have been confirmed to work with Terminal for MkDocs and are recommended:</p>
 <div>
 <ul>
 <li><a href="python-markdown/#attribute-lists">Attribute Lists</a></li>
@@ -978,12 +955,9 @@ TODO
 </ul>
 </div>
 <h1 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Anchor link to this section for reference">#</a></h1>
-<p>Extensions are configured as part of <code>mkdocs.yml</code> – the MkDocs configuration
-file. The following sections contain two example configurations to bootstrap
-your documentation project.</p>
+<p>Extensions are enabled in the MkDocs configuration file.  See below for two example configurations to bootstrap your documentation project.</p>
 <h2 id="minimal-config">Minimal Config<a class="headerlink" href="#minimal-config" title="Anchor link to this section for reference">#</a></h2>
-<p>This configuration is a good starting point for when you're using Terminal for 
-MkDocs for the first time. The best idea is to explore the <a href="#suggested-extensions">suggested extensions</a> and gradually add what you want to use:</p>
+<p>The minimal configuration is a good starting point for when you're using MkDocs for the first time.  You can explore the suggested extensions and gradually add extensions as needed:</p>
 <pre><code class="language-yaml">markdown_extensions:
   # Python Markdown  
   - attr_list
@@ -993,7 +967,7 @@ MkDocs for the first time. The best idea is to explore the <a href="#suggested-e
       permalink: &quot;#&quot;
 </code></pre>
 <h2 id="recommended-config">Recommended Config<a class="headerlink" href="#recommended-config" title="Anchor link to this section for reference">#</a></h2>
-<p>This configuration enables all Markdown-related features of Terminal for MkDocs
+<p>The recommended configuration enables all Markdown-related features of Terminal for MkDocs
 and is great for experienced users bootstrapping a new documentation project:</p>
 <pre><code class="language-yaml">markdown_extensions:
   # Python Markdown  
@@ -1015,7 +989,7 @@ and is great for experienced users bootstrapping a new documentation project:</p
         - docs
 </code></pre>
 <h1 id="credit">Credit<a class="headerlink" href="#credit" title="Anchor link to this section for reference">#</a></h1>
-<p>This documentation page is based on squidfunk's Material for MkDocs <a href="https://squidfunk.github.io/mkdocs-material/setup/extensions/">Extensions</a> documentation.</p>
+<p>This documentation page is based on squidfunk's <a href="https://squidfunk.github.io/mkdocs-material/setup/extensions/">Material for MkDocs Extensions</a> documentation.</p>
 </section>
 
 <section id="mkdocs-terminal-after-content">
@@ -1026,7 +1000,7 @@ and is great for experienced users bootstrapping a new documentation project:</p
 <aside>
     <p>
         <small>
-            <i>Page last updated 2023-01-31. See revision history on <a href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/configuration/extensions/index.md">GitHub</a>.</i>
+            <i>Page last updated 2023-02-03. See revision history on <a href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/configuration/extensions/index.md">GitHub</a>.</i>
         </small>
     </p>
 </aside>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.11.0">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-4.0.0">
      
     
     <meta name="author" content="ntno"> 
@@ -22,15 +22,11 @@
 <link href="../../css/fontawesome/css/solid.min.css" rel="stylesheet">
 <link href="../../css/normalize.css" rel="stylesheet">
 <link href="../../css/terminal.css" rel="stylesheet">
-<link href="../../css/theme.css" rel="stylesheet"> 
+<link href="../../css/theme.css" rel="stylesheet">
+<link href="../../css/theme.tile_grid.css" rel="stylesheet">
 <!-- default color palette-->
 <link href="../../css/palettes/default.css" rel="stylesheet">
-<!-- link underline override -->
-<style>
-#terminal-mkdocs-main-content a:not(.headerlink){
-    text-decoration: none;
-}
-</style>
+
 
     
     <link href="../../overrides/extra.css" rel="stylesheet">  
@@ -951,34 +947,34 @@
     - style.links.underline.hide
 </code></pre>
 <h2 id="navigationsidehide">navigation.side.hide<a class="headerlink" href="#navigationsidehide" title="Anchor link to this section for reference">#</a></h2>
-<p>hides side panel on all site pages.  the side panel includes the <a href="../#side-navigation-menu">Side Navigation Menu</a> and the <a href="../#page-table-of-contents">Side Page Table of Contents</a>.</p>
+<p>Hides the side navigation menu and page table of contents on all site pages.</p>
 <h2 id="navigationsideindexes">navigation.side.indexes<a class="headerlink" href="#navigationsideindexes" title="Anchor link to this section for reference">#</a></h2>
-<p>enables section links in the side navigation menu.<br />
-ignored if <code>navigation.side.hide</code> is set.<br />
-see <a href="../../navigation/section-indexes/">Section Indexes</a> for details.  </p>
+<p>Enables section links in the side navigation menu.<br />
+Ignored if <code>navigation.side.hide</code> is set.<br />
+See <a href="../../navigation/section-indexes/">Section Indexes</a> for details.  </p>
 <h2 id="navigationsidetochide">navigation.side.toc.hide<a class="headerlink" href="#navigationsidetochide" title="Anchor link to this section for reference">#</a></h2>
-<p>hides table of contents in side panel on all site pages.<br />
-ignored if <code>navigation.side.hide</code> is set.<br />
-see <a href="../#page-table-of-contents">Page Table of Contents</a> for more info. </p>
+<p>Hides page table of contents on all site pages.<br />
+Ignored if <code>navigation.side.hide</code> is set.<br />
+See <a href="../#page-table-of-contents">Page Table of Contents</a> for more info. </p>
 <h2 id="navigationtophide">navigation.top.hide<a class="headerlink" href="#navigationtophide" title="Anchor link to this section for reference">#</a></h2>
-<p>hides top navigation on all site pages.<br />
-see <a href="../#top-navigation-menu">Top Navigation Menu</a> for more info.  </p>
+<p>Hides top navigation menu on all site pages.<br />
+See <a href="../#top-navigation-menu">Top Navigation Menu</a> for more info.  </p>
 <h2 id="navigationtopcursor_animationhide">navigation.top.cursor_animation.hide<a class="headerlink" href="#navigationtopcursor_animationhide" title="Anchor link to this section for reference">#</a></h2>
-<p>hides the blinking cursor animation in the top nav.<br />
-ignored if <code>navigation.top.hide</code> is set.  </p>
+<p>Hides the blinking cursor animation in the top navigation menu.<br />
+Ignored if <code>navigation.top.hide</code> is set.  </p>
 <h2 id="navigationtopsearch_buttonhide">navigation.top.search_button.hide<a class="headerlink" href="#navigationtopsearch_buttonhide" title="Anchor link to this section for reference">#</a></h2>
-<p>hides the search button in the top nav.<br />
-ignored if <code>navigation.top.hide</code> is set. </p>
+<p>Hides the search button in the top navigation menu.<br />
+Ignored if <code>navigation.top.hide</code> is set.  </p>
 <h2 id="revisiondate">revision.date<a class="headerlink" href="#revisiondate" title="Anchor link to this section for reference">#</a></h2>
-<p>enables the "Page last updated..." text at the bottom of the page.  requires <a href="../plugins/git-revision/">git-revision-date plugin setup</a>.</p>
+<p>Enables the "Page last updated..." text at the bottom of each site page.  Requires <a href="../plugins/git-revision/">git-revision-date plugin setup</a>.</p>
 <h2 id="revisionhistory">revision.history<a class="headerlink" href="#revisionhistory" title="Anchor link to this section for reference">#</a></h2>
-<p>enables the "See revision history..." text at the bottom of the page.  requires <a href="../plugins/git-revision/">git-revision-date plugin setup</a> and additional <a href="../plugins/git-revision/#advanced-configuration">git-revision-date configuration</a>.</p>
+<p>Enables the "See revision history..." text at the bottom of each site page.  Requires <a href="../plugins/git-revision/">git-revision-date plugin setup</a> and additional <a href="../plugins/git-revision/#advanced-configuration">git-revision-date configuration</a>.</p>
 <h2 id="stylelinksunderlinehide">style.links.underline.hide<a class="headerlink" href="#stylelinksunderlinehide" title="Anchor link to this section for reference">#</a></h2>
-<p>hides the underline styling on links.  the underline text decoration on links is added to make the links identifiable without color vision.  if you choose to hide this styling you should consider adding an alternate <a href="https://www.w3.org/WAI/WCAG21/Techniques/general/G182.html">non-color link indicator</a>.    </p>
+<p>Hides the underline styling on links.  The underline text decoration on links is added to make links identifiable without color vision.  If you choose to hide this styling you should consider adding an alternate <a href="https://www.w3.org/WAI/WCAG21/Techniques/general/G182.html">non-color link indicator</a>.    </p>
 <hr>
 
 <h1 id="page-features">Page Features<a class="headerlink" href="#page-features" title="Anchor link to this section for reference">#</a></h1>
-<p>To hide certain <a href="../#theme-components">Terminal for MkDocs components</a> on a per-page basis, add a <a href="https://www.mkdocs.org/user-guide/writing-your-docs/#yaml-style-meta-data">YAML Style Meta-Data</a> section to the very top of your Markdown page. Inside this metadata section, add the attribute <code>hide</code> which is a list of page-specific feature names.</p>
+<p>To hide certain Terminal for MkDocs components on a per-page basis, add a <a href="https://www.mkdocs.org/user-guide/writing-your-docs/#yaml-style-meta-data">YAML Style Meta-Data</a> section to the very top of your Markdown page. Inside this metadata section, add the attribute <code>hide</code> which is a list of page-specific feature names.</p>
 <p>Pay special attention to the indentation. There should be two spaces before the <code>-</code> marking the start of a component name: </p>
 <pre><code class="language-markdown">---
 hide:
@@ -989,13 +985,17 @@ hide:
 ---
 </code></pre>
 <h2 id="hide-revision_date">hide: revision_date<a class="headerlink" href="#hide-revision_date" title="Anchor link to this section for reference">#</a></h2>
-<p>hides the "Page last updated" text at the bottom of the page.  ignored if <code>revision.date</code> Theme Feature is not enabled.  ignored if <code>git-revision-date</code> plugin is not enabled.  </p>
+<p>Hides the "Page last updated" text at the bottom of the page.<br />
+Ignored if <code>revision.date</code> Theme Feature is not enabled.<br />
+Ignored if <code>git-revision-date</code> plugin is not enabled.  </p>
 <h2 id="hide-revision_history">hide: revision_history<a class="headerlink" href="#hide-revision_history" title="Anchor link to this section for reference">#</a></h2>
-<p>hides the "See revision history..." text at the bottom of the page.  ignored if <code>revision.history</code> Theme Feature is not enabled.  ignored if <code>git-revision-date</code> plugin is not enabled.  </p>
+<p>Hides the "See revision history..." text at the bottom of the page.<br />
+Ignored if <code>revision.history</code> Theme Feature is not enabled.<br />
+Ignored if <code>git-revision-date</code> plugin is not enabled.  </p>
 <h2 id="hide-side_toc">hide: side_toc<a class="headerlink" href="#hide-side_toc" title="Anchor link to this section for reference">#</a></h2>
-<p>hides the table of contents in the side panel on the page.</p>
+<p>Hides the table of contents in the side panel on the page.</p>
 <h2 id="hide-top_nav">hide: top_nav<a class="headerlink" href="#hide-top_nav" title="Anchor link to this section for reference">#</a></h2>
-<p>hides top navigation on the page.  </p>
+<p>Hides the top navigation menu on the page.  </p>
 </section>
 
 <section id="mkdocs-terminal-after-content">
@@ -1006,7 +1006,7 @@ hide:
 <aside>
     <p>
         <small>
-            <i>Page last updated 2023-01-31. See revision history on <a href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/configuration/features.md">GitHub</a>.</i>
+            <i>Page last updated 2023-02-03. See revision history on <a href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/configuration/features.md">GitHub</a>.</i>
         </small>
     </p>
 </aside>

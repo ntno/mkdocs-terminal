@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.11.0">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-4.0.0">
      
     
     <meta name="author" content="ntno"> 
@@ -22,15 +22,11 @@
 <link href="../../css/fontawesome/css/solid.min.css" rel="stylesheet">
 <link href="../../css/normalize.css" rel="stylesheet">
 <link href="../../css/terminal.css" rel="stylesheet">
-<link href="../../css/theme.css" rel="stylesheet"> 
+<link href="../../css/theme.css" rel="stylesheet">
+<link href="../../css/theme.tile_grid.css" rel="stylesheet">
 <!-- default color palette-->
 <link href="../../css/palettes/default.css" rel="stylesheet">
-<!-- link underline override -->
-<style>
-#terminal-mkdocs-main-content a:not(.headerlink){
-    text-decoration: none;
-}
-</style>
+
 
     
     <link href="../../overrides/extra.css" rel="stylesheet">  
@@ -924,7 +920,8 @@
 <nav>
     <ul>
         <li><a href="#tile-reference">Tile Reference</a></li>
-        <li><a href="#required-attributes">Required Attributes</a></li><li><a href="#optional-attributes">Optional Attributes</a></li>
+        <li><a href="#required-attributes">Required Attributes</a></li><li><a href="#optional-attributes">Optional Attributes</a></li><li><a href="#alternate-text">Alternate Text</a></li>
+        <li><a href="#best-practices">Best Practices</a></li><li><a href="#additional-resources">Additional Resources</a></li>
     </ul>
 </nav></aside>
             <main id="terminal-mkdocs-main-content">
@@ -951,51 +948,55 @@
 </dd>
 <dt><code>img_src</code></dt>
 <dd>
-<p>The image source.  Can be an external image like <code>https://picsum.photos/id/167/200/200</code> or an internal MkDocs image like <code>../img/palettes/default.png</code>.</p>
-</dd>
-<dt><code>img_title</code></dt>
-<dd>
-<p>Text to display on hover.</p>
-</dd>
-<dt><code>img_alt</code></dt>
-<dd>
-<p>Alternate text for the image if the image cannot be displayed.</p>
-</dd>
-<dt><code>img_width</code></dt>
-<dd>
-<p>Width to set on the image element.</p>
-</dd>
-<dt><code>img_height</code></dt>
-<dd>
-<p>Height to set on the image element.</p>
+<p>The image source.  Can be an external image like <code>https://picsum.photos/id/167/200/200</code> or an internal MkDocs image like <code>../img/picsum/167_200x200.jpeg</code>.</p>
 </dd>
 <dt><code>link_href</code></dt>
 <dd>
-<p>Web page URL.  Can be an external web page or an internal MkDocs page like <code>./default/</code>.</p>
+<p>The link destination.  Can be an external web page or a relative internal MkDocs page like <code>./tile-grid/</code>.</p>
 </dd>
-<dt><code>link_target</code></dt>
+<dt><code>alt_text</code></dt>
 <dd>
-<p>Specifies where to open the linked webpage.  <code>_blank</code> will open the link in a new tab.  <code>_self</code> will open the link in the current window.</p>
+<p><strong>Image Only Tile</strong>: a short description of the image.<br />
+<strong>Link Only Tile</strong>: the text to display for the hyperlink.<br />
+<strong>Linked Image Tile</strong>: text which describes the hyperlink destination.<br />
+For more information see <a href="./#alternate-text">Alternate Text Resources</a>.  </p>
 </dd>
-<dt><code>link_text</code></dt>
+<dt><code>tooltip</code></dt>
 <dd>
-<p>Text to display for a <a href="../examples/links-only/">link only</a> tile.<br />
-Ignored if <code>img_src</code> is specified.</p>
-</dd>
-<dt><code>link_title</code></dt>
-<dd>
-<p>Text to display on hover.<br />
-Should not be used if <code>img_title</code> is already specified.</p>
+<p>Text to display on hover.</p>
 </dd>
 <dt><code>tile_id</code></dt>
 <dd>
-<p>ID to add to the tile's HTML for advanced styling. See <a href="../examples/links-only/#extra-css">Extra CSS</a> for example.  </p>
+<p>ID to add to the tile's HTML for advanced styling.<br />
+See <a href="../examples/links-only/#extra-css">Extra CSS</a> for example.  </p>
 </dd>
 <dt><code>tile_css</code></dt>
 <dd>
-<p>CSS class to add to the tile's HTML for advanced styling. See <a href="../examples/links-only/#extra-css">Extra CSS</a> for example.  </p>
+<p>CSS class to add to the tile's HTML for advanced styling.<br />
+See <a href="../examples/links-only/#extra-css">Extra CSS</a> for example.  </p>
 </dd>
 </dl>
+<h1 id="alternate-text">Alternate Text<a class="headerlink" href="#alternate-text" title="Anchor link to this section for reference">#</a></h1>
+<blockquote>
+<p>Pages should provide effective text alternatives for screen readers in the form of alt text. When a screen reader encounters an image, it will attempt to read a text alternative.</p>
+<p>Text alternatives are also important when images do not load. Users with cognitive impairments may prefer to disable images from loading. Likewise, images may not load when a user has a slow internet connection. In both cases, the browser will show the image’s alt text.</p>
+<p><a href="https://usability.yale.edu/web-accessibility/articles/images">Yale Usability &amp; Web Accessibility Guide</a></p>
+</blockquote>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Anchor link to this section for reference">#</a></h2>
+<ul>
+<li>Be brief: less than 100 characters.  </li>
+<li>Avoid “image of”, “photo of”, "screenshot of", etc.</li>
+<li><mark>Alternate text for image links should describe the purpose of the link, NOT the image.</mark> <ul>
+<li>If it is important to describe the image itself, add a description in the caption or in the surrounding text.</li>
+</ul>
+</li>
+<li>Decorative images should have blank or empty alt text.</li>
+</ul>
+<h2 id="additional-resources">Additional Resources<a class="headerlink" href="#additional-resources" title="Anchor link to this section for reference">#</a></h2>
+<ul>
+<li><a href="https://www.w3.org/WAI/tutorials/images/">Guidance by Image Type/Function</a></li>
+<li><a href="https://webaim.org/techniques/alttext/#context">The Importance of Context</a></li>
+</ul>
 </section>
 
 <section id="mkdocs-terminal-after-content">
@@ -1006,7 +1007,7 @@ Should not be used if <code>img_title</code> is already specified.</p>
 <aside>
     <p>
         <small>
-            <i>Page last updated 2023-01-31. See revision history on <a href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/tile-grid/tile.md">GitHub</a>.</i>
+            <i>Page last updated 2023-02-03. See revision history on <a href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/tile-grid/tile.md">GitHub</a>.</i>
         </small>
     </p>
 </aside>

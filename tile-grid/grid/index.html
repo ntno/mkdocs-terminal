@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.11.0">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-4.0.0">
      
     
     <meta name="author" content="ntno"> 
@@ -22,15 +22,11 @@
 <link href="../../css/fontawesome/css/solid.min.css" rel="stylesheet">
 <link href="../../css/normalize.css" rel="stylesheet">
 <link href="../../css/terminal.css" rel="stylesheet">
-<link href="../../css/theme.css" rel="stylesheet"> 
+<link href="../../css/theme.css" rel="stylesheet">
+<link href="../../css/theme.tile_grid.css" rel="stylesheet">
 <!-- default color palette-->
 <link href="../../css/palettes/default.css" rel="stylesheet">
-<!-- link underline override -->
-<style>
-#terminal-mkdocs-main-content a:not(.headerlink){
-    text-decoration: none;
-}
-</style>
+
 
     
     <link href="../../overrides/extra.css" rel="stylesheet">  
@@ -936,7 +932,7 @@
 
 <section id="mkdocs-terminal-content">
     <h1 id="grid-reference">Grid Reference<a class="headerlink" href="#grid-reference" title="Anchor link to this section for reference">#</a></h1>
-<p>Terminal for MkDocs <a href="../" title="to Tile Grid overview">Tile Grid</a> can be further customized using the following configuration options.  These options should be specified in the markdown page's metadata in the same way that <code>tiles</code> are specified:</p>
+<p>Terminal for MkDocs Tile Grid can be further customized using the following configuration options.  These options should be specified in the markdown page's metadata in the same way that <code>tiles</code> are specified:</p>
 <pre><code>---
 show_tiles_first: true
 tiles:
@@ -959,11 +955,13 @@ Ignored if <code>show_tiles_inline</code> is <code>true</code>.</p>
 </dd>
 <dt><code>grid_id</code></dt>
 <dd>
-<p>ID to add to the grid's HTML for advanced styling. See <a href="../examples/override-styling/">Override Styling</a> for example.</p>
+<p>ID to add to the grid's HTML for advanced styling.<br />
+See <a href="../examples/override-styling/">Override Styling</a> for example.</p>
 </dd>
 <dt><code>grid_css</code></dt>
 <dd>
-<p>CSS class to add to the grid's HTML for advanced styling. See <a href="../examples/override-styling/">Override Styling</a> for example.</p>
+<p>CSS class to add to the grid's HTML for advanced styling.<br />
+See <a href="../examples/override-styling/">Override Styling</a> for example.</p>
 </dd>
 </dl>
 <h2 id="default-tile-placement">Default Tile Placement<a class="headerlink" href="#default-tile-placement" title="Anchor link to this section for reference">#</a></h2>
@@ -973,18 +971,18 @@ Ignored if <code>show_tiles_inline</code> is <code>true</code>.</p>
 tiles:
   - caption: '@petradr'
     img_src: ../../../img/picsum/167_200x200.jpeg
-    img_title: 'to Picsum homepage'
-    img_alt: 'close up of fallen leaves.'
+    tooltip: 'to Picsum homepage'
+    alt_text: 'Picsum Photo API.'
     link_href: https://picsum.photos/ 
   - caption: 'Marcin Czerwinski'
     img_src: ../../../img/picsum/127_200x200.jpeg
-    img_title: 'to Picsum homepage'
-    img_alt: 'close up of green moss on a log.'
+    tooltip: 'to Picsum homepage'
+    alt_text: 'Picsum Photo API.'
     link_href: https://picsum.photos/ 
   - caption: 'Steve Richey'
     img_src: ../../../img/picsum/143_200x200.jpeg
-    img_title: 'to Picsum homepage'
-    img_alt: 'overhead of fallen leaves.'
+    tooltip: 'to Picsum homepage'
+    alt_text: 'Picsum Photo API.'
     link_href: https://picsum.photos/ 
 ---
 
@@ -996,26 +994,27 @@ Maecenas facilisis id tortor volutpat fermentum. Integer volutpat arcu leo, sed 
 &lt;br&gt;
 </code></pre>
 <h2 id="tiles-first">Tiles First<a class="headerlink" href="#tiles-first" title="Anchor link to this section for reference">#</a></h2>
-<p>See <a href="../examples/images-only/">Tiles First example</a></p>
+<p>See <a href="../examples/images-only/">Tiles First Example</a></p>
 <h3 id="markdown_1">Markdown<a class="headerlink" href="#markdown_1" title="Anchor link to this section for reference">#</a></h3>
 <pre><code class="language-markdown">---
 show_tiles_first: true
 tiles:
   - caption: '@petradr'
     img_src: ../../../img/picsum/167_200x200.jpeg
+    alt_text: 'close up of fallen leaves.'
   - caption: 'Marcin Czerwinski'
     img_src: ../../../img/picsum/127_200x200.jpeg
-  - caption: 'Steve Richey'
+    alt_text: 'close up of green moss on a log.'
+  - caption: &quot;Steve Richey&quot;
     img_src: ../../../img/picsum/143_200x200.jpeg
+    alt_text: 'overhead of fallen leaves.'
 ---
 
 # Image Only Tiles 
-The tiles on this page do not have `link_*` attributes[^tile-reference].  They are rendered as a captioned images instead of linked images.
+The tiles on this page do not have a `link_href` attribute.  They are rendered as static images instead of linked images.
 
 # Tiles First
 The tiles on this page are placed before the main page content.  This is because the [grid option](../grid.md) `show_tiles_first` is set to `true`.
-
-[^tile-reference]: see [Tile Reference](../tile.md)  
 
 
 ## Markdown
@@ -1026,10 +1025,13 @@ show_tiles_first: true
 tiles:
   - caption: '@petradr'
     img_src: ../../../img/picsum/167_200x200.jpeg
+    alt_text: 'close up of fallen leaves.'
   - caption: 'Marcin Czerwinski'
     img_src: ../../../img/picsum/127_200x200.jpeg
-  - caption: 'Steve Richey'
+    alt_text: 'close up of green moss on a log.'
+  - caption: &quot;Steve Richey&quot;
     img_src: ../../../img/picsum/143_200x200.jpeg
+    alt_text: 'overhead of fallen leaves.'
 ---
 </code></pre>
 <!-- no closing ``` code block because the snippet page ends in markdown code block -->
@@ -1043,7 +1045,7 @@ tiles:
 <aside>
     <p>
         <small>
-            <i>Page last updated 2023-01-31. See revision history on <a href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/tile-grid/grid.md">GitHub</a>.</i>
+            <i>Page last updated 2023-02-03. See revision history on <a href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/tile-grid/grid.md">GitHub</a>.</i>
         </small>
     </p>
 </aside>

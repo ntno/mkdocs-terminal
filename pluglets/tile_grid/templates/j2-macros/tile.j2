@@ -1,20 +1,14 @@
 
 {% import 'pluglets/tile_grid/templates/j2-macros/tile-image.j2' as image_helper %}
 {% import 'pluglets/tile_grid/templates/j2-macros/tile-link.j2' as link_helper %}
+{% import 'pluglets/tile_grid/templates/j2-macros/tile-util.j2' as tile_util %}
+
 {% macro make_tile( tile, use_markup ) %}
 {%- set ns = namespace(is_valid=false, has_link=false, has_image=false, has_caption=false) -%}
-{%- if tile.img_src is defined and tile.img_src|string|length -%}
-    {%- set ns.has_image = true -%}
-{%- endif -%}
-{%- if tile.link_href is defined and tile.link_href|string|length -%}
-    {%- set ns.has_link = true -%}
-{%- endif -%}
-{%- if tile.caption is defined and tile.caption|string|length -%}
-    {%- set ns.has_caption = true -%}
-{%- endif -%}
-{%- if ns.has_link or ns.has_image -%}
-    {%- set ns.is_valid = true -%}
-{%- endif -%}
+{%- set ns.has_image = tile_util.has_image(tile) == "true" -%}
+{%- set ns.has_link = tile_util.has_link(tile) == "true" -%}
+{%- set ns.has_caption = tile_util.has_caption(tile) == "true" -%}
+{%- set ns.is_valid = tile_util.is_valid(tile) == "true" -%}
 {%- if ns.is_valid -%}
     <div {% if tile.tile_id is defined and tile.tile_id|string|length %} id="{{ tile.tile_id }}" {% endif %}class="terminal-mkdocs-tile {{ tile.tile_css }}">
         <figure>
@@ -24,7 +18,7 @@
             {%- endif -%}
             {%- if ns.has_link -%}
                 {% if ns.has_image %} 
-            </a></div>{% else %}{{ tile.link_text|default(tile.link_href, true) }}</a></div>{%- endif %}
+            </a></div>{% else %}{{ tile.alt_text|default(tile.link_href, true) }}</a></div>{%- endif %}
             {%- endif -%}
             {%- if ns.has_caption -%}
                 {%- if use_markup %}

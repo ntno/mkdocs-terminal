@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-3.11.0">
+    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-4.0.0">
      
     
     <meta name="author" content="ntno"> 
@@ -22,15 +22,11 @@
 <link href="../../../css/fontawesome/css/solid.min.css" rel="stylesheet">
 <link href="../../../css/normalize.css" rel="stylesheet">
 <link href="../../../css/terminal.css" rel="stylesheet">
-<link href="../../../css/theme.css" rel="stylesheet"> 
+<link href="../../../css/theme.css" rel="stylesheet">
+<link href="../../../css/theme.tile_grid.css" rel="stylesheet">
 <!-- default color palette-->
 <link href="../../../css/palettes/default.css" rel="stylesheet">
-<!-- link underline override -->
-<style>
-#terminal-mkdocs-main-content a:not(.headerlink){
-    text-decoration: none;
-}
-</style>
+
 
     
     <link href="../../../overrides/extra.css" rel="stylesheet">  
@@ -941,7 +937,7 @@
     <div class="terminal-mkdocs-tile ">
         <figure>
              
-                    <img src="../../../img/picsum/167_200x200.jpeg" alt="" >
+                    <img src="../../../img/picsum/167_200x200.jpeg" alt="close up of fallen leaves." >
             <figcaption><p>@petradr</p></figcaption>
                 
         </figure>
@@ -949,7 +945,7 @@
     <div class="terminal-mkdocs-tile ">
         <figure>
              
-                    <img src="../../../img/picsum/127_200x200.jpeg" alt="" >
+                    <img src="../../../img/picsum/127_200x200.jpeg" alt="close up of green moss on a log." >
             <figcaption><p>Marcin Czerwinski</p></figcaption>
                 
         </figure>
@@ -957,7 +953,7 @@
     <div class="terminal-mkdocs-tile ">
         <figure>
              
-                    <img src="../../../img/picsum/143_200x200.jpeg" alt="" >
+                    <img src="../../../img/picsum/143_200x200.jpeg" alt="overhead of fallen leaves." >
             <figcaption><p>Steve Richey</p></figcaption>
                 
         </figure>
@@ -968,7 +964,7 @@
 
 <section id="mkdocs-terminal-content">
     <h1 id="image-only-tiles">Image Only Tiles<a class="headerlink" href="#image-only-tiles" title="Anchor link to this section for reference">#</a></h1>
-<p>The tiles on this page do not have <code>link_*</code> attributes<sup id="fnref:tile-reference"><a class="footnote-ref" href="#fn:tile-reference">1</a></sup>.  They are rendered as a captioned images instead of linked images.</p>
+<p>The tiles on this page do not have a <code>link_href</code> attribute.  They are rendered as static images instead of linked images.</p>
 <h1 id="tiles-first">Tiles First<a class="headerlink" href="#tiles-first" title="Anchor link to this section for reference">#</a></h1>
 <p>The tiles on this page are placed before the main page content.  This is because the <a href="../../grid/">grid option</a> <code>show_tiles_first</code> is set to <code>true</code>.</p>
 <h2 id="markdown">Markdown<a class="headerlink" href="#markdown" title="Anchor link to this section for reference">#</a></h2>
@@ -977,27 +973,22 @@ show_tiles_first: true
 tiles:
   - caption: '@petradr'
     img_src: ../../../img/picsum/167_200x200.jpeg
+    alt_text: 'close up of fallen leaves.'
   - caption: 'Marcin Czerwinski'
     img_src: ../../../img/picsum/127_200x200.jpeg
-  - caption: 'Steve Richey'
+    alt_text: 'close up of green moss on a log.'
+  - caption: &quot;Steve Richey&quot;
     img_src: ../../../img/picsum/143_200x200.jpeg
+    alt_text: 'overhead of fallen leaves.'
 ---
 </code></pre>
-<div class="footnote">
-<hr />
-<ol>
-<li id="fn:tile-reference">
-<p>see <a href="../../tile/">Tile Reference</a>&#160;<a class="footnote-backref" href="#fnref:tile-reference" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div>
 </section>
 <section id="mkdocs-terminal-revision">
 <br>
 <aside>
     <p>
         <small>
-            <i>Page last updated 2023-01-31. See revision history on <a href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/tile-grid/examples/images-only.md">GitHub</a>.</i>
+            <i>Page last updated 2023-02-03. See revision history on <a href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/tile-grid/examples/images-only.md">GitHub</a>.</i>
         </small>
     </p>
 </aside>
