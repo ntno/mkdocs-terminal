@@ -22,7 +22,7 @@ markdown_extensions:
 ```
 
 ### Default Nesting Explanation
-For example, on this page **h1-Felidae** shows up in the table of contents because it is one of the highest level sections.  **h2-Felinae** and **h2-Pantherinae** show up because they are directly underneath a top level section.  
+On this page **h1-Felidae** shows up in the table of contents because it is one of the highest level sections.  **h2-Felinae** and **h2-Pantherinae** show up because they are directly underneath a top level section.  
 
 **h3-Felis-catus**, **h3-Panthera-leo**, and **h3-Panthera tigris** do *NOT* display in the table of contents because they are nested at a third level (not because they use the `<h3>` header).  Note that **h5-Canis-familiaris** displays in the table of contents even though it uses a `<h5>` header.  This is because it is in a subsection directly underneath the top level **h1-Canidae** section.
 
@@ -39,6 +39,7 @@ The Felinae are a subfamily of the family Felidae. This subfamily comprises the 
 
 ### (h3) Felis catus
 Domestic cats:  
+
 - [Maine Coon](https://en.wikipedia.org/wiki/Maine_Coon)  
 - [Siberian](https://en.wikipedia.org/wiki/Siberian_cat)  
 - [Sphynx](https://en.wikipedia.org/wiki/Sphynx_cat)  
@@ -58,6 +59,7 @@ Canidae is a biological family of dog-like carnivorans, colloquially referred to
 
 ##### (h5) Canis familiaris
 Domestic dogs:  
+
 - [Alaskan Husky](https://en.wikipedia.org/wiki/Alaskan_husky)  
 - [Beagle](https://en.wikipedia.org/wiki/Beagle)  
 - [Greyhound](https://en.wikipedia.org/wiki/Greyhound)  
