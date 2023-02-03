@@ -49,8 +49,7 @@ No configuration options are available. See reference for usage:
 
 ## Footnotes
 
-The [Footnotes] extension enables inline footnotes which are then
-rendered below all Markdown content of a document. Enable it via `mkdocs.yml`:
+The [Footnotes] extension enables inline footnotes which are then rendered below all Markdown content of a document. Enable it via `mkdocs.yml`:
 
 ``` yaml
 markdown_extensions:
@@ -120,6 +119,7 @@ The following configuration options are supported:
     
     Set to `true` to render all headers as links to themselves.
 
+<br>
 The other configuration options of this extension have not been tested with Terminal for MkDocs and may yield unexpected results.
 
 See reference for usage:
@@ -132,8 +132,7 @@ See reference for usage:
 
 ## Tables
 
-The [Tables] extension adds the ability to create tables in Markdown by using a simple syntax. Enable it via `mkdocs.yml` (albeit it should be enabled by
-default):
+The [Tables] extension adds a Markdown syntax for data tables.  It is enabled by default but you can specify it explicitly in `mkdocs.yml`:
 
 ``` yaml
 markdown_extensions:
@@ -151,5 +150,5 @@ No configuration options are available. See reference for usage:
 
 # Credit
 
-This documentation page is based on squidfunk's Material for MkDocs [Python Markdown](https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown/) documentation.
+This documentation page is based on squidfunk's [Material for MkDocs Python Markdown](https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown/) documentation.
 
