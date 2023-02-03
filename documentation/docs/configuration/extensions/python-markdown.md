@@ -120,7 +120,7 @@ The following configuration options are supported:
     
     Set to `true` to render all headers as links to themselves.
 
-The other configuration options of this extension have not been tested with Terminal for MkDocs and may yield unexpected results.  Use them at your own risk.
+The other configuration options of this extension have not been tested with Terminal for MkDocs and may yield unexpected results.
 
 See reference for usage:
 
