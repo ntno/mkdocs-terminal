@@ -1,11 +1,11 @@
 # Template Blocks
 
-In some situations you may want to include your own Jinja2 page templates.  Terminal for MkDocs supports overriding or extending the blocks listed in [Reference](blocks.md#overridable-blocks).  
+In some situations you may want to include your own Jinja2 page templates.  Terminal for MkDocs supports overriding or extending the blocks listed in [Overridable Blocks](blocks.md#overridable-blocks).  
 
 This is an advanced MkDocs feature.  For an extended discussion, see the [official MkDocs guide].
 
+[official MkDocs guide]: https://www.mkdocs.org/user-guide/customizing-your-theme/#overriding-template-blocks
 
-[official MkDocs guide]: https://www.mkdocs.org/user-guide/customizing-your-theme/#using-the-theme-custom_dir
 
 ## Example Scenario
 Let's say you want to add a banner above each page's markdown content.  You still want to be able to show a [Tile Grid] at the top of the page, but you want the banner to appear above the grid if one is defined.
@@ -30,7 +30,10 @@ Create the following directory structure and add your banner snippet to `banner.
 
 
 ## 2. Add Theme Custom Directory
-Configure MkDocs to look at the new `./overrides` folder
+Configure MkDocs to look at the new `./overrides` folder:
+
+**file name**: mkdocs.yml  
+**file location**: ./
 ```yaml
 theme:
   name: terminal
@@ -47,6 +50,7 @@ You can add a custom banner above each page's content by adding the following th
 ```jinja2
 {% raw %}
 {% extends "partials/page-base.html" %}
+
 {%- block before_markdown_content %}
 {% include "partials/banner.html" %}
 {{ super() }}
@@ -67,7 +71,7 @@ If you wanted to override higher level blocks[^block-levels] you would add them 
 {% endraw %}
 ```
 
-Calling `super()` will include any Terminal for MkDocs features which are inserted before the main content (like the [Tile Grid] when `show_tiles_first` is set to `true`).
+Calling `super()` will include any Terminal for MkDocs features which are inside the original block definition.
 <hr>
 
 # Overridable Blocks
