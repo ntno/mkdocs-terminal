@@ -43,7 +43,7 @@ Extensions are enabled in the MkDocs configuration file.  See below for two exam
 
 ## Minimal Config
 
-The minimal configuration is a good starting point for when you're using MkDocs for the first time.  You can explore the [suggested extensions](#suggested-extensions) and gradually add extensions as needed:
+The minimal configuration is a good starting point for when you're using MkDocs for the first time.  You can explore the suggested extensions and gradually add extensions as needed:
 
 ``` yaml
 markdown_extensions:
