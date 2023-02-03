@@ -1,7 +1,7 @@
 ---
 show_tiles_first: true
 grid_id: "grid_123"
-grid_css: "example_dashed_border"
+grid_css: "override_border"
 tiles:
   - caption: '@petradr'
     img_src: ../../../img/picsum/167_200x200.jpeg
@@ -18,7 +18,7 @@ tiles:
 ---
 
 <style> 
-    .example_dashed_border { 
+    .override_border { 
         border: dashed;
         border-width: thin;
     }
@@ -47,14 +47,14 @@ The rendering of Terminal for MkDocs Tile Grid can be customized by setting the 
 ## Extra CSS
 To demonstrate how the tile grid's style can be overriden, the following `<style>` HTML is included in this page's markdown:
 
-- `.example_dashed_border`: sets the border to a dashed line
+- `.override_border`: sets the border to a dashed line
 - `.override_width`: sets image width to 100px  
 - `#grid_123`: sets the tile grid's column widths explicitly  
 
 
 ```css
 <style> 
-    .example_dashed_border { 
+    .override_border { 
         border: dashed;
         border-width: thin;
     }
@@ -71,13 +71,13 @@ To demonstrate how the tile grid's style can be overriden, the following `<style
 ```
 
 ## Grid Markdown
-Note that the metadata on this page includes `grid_id: "grid_123"` and `grid_css: "example_dashed_border"`.  These settings override the tile grid's original styling to the custom styling defined on this page (see previous section).
+Note that the metadata on this page includes `grid_id: "grid_123"` and `grid_css: "override_border"`.  These settings override the tile grid's original styling to the custom styling defined on this page (see previous section).
 
 ```markdown
 ---
 show_tiles_first: true
 grid_id: "grid_123"
-grid_css: "example_dashed_border"
+grid_css: "override_border"
 tiles:
   - caption: '@petradr'
     img_src: ../../../img/picsum/167_200x200.jpeg
