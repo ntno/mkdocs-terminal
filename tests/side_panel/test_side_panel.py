@@ -43,7 +43,7 @@ class TestSidePanel():
         enabled_context["config"]["theme"]["features"] = [theme_features.HIDE_SIDE_NAV, theme_features.HIDE_SIDE_TOC]
         context_data = enabled_context
         rendered_side_panel = side_panel_partial.render(context_data)
-        assert "<aside id=\"menu\"></aside>" in rendered_side_panel
+        assert "<aside id=\"terminal-mkdocs-side-panel\"></aside>" in rendered_side_panel
         assert_valid_html(rendered_side_panel, ALLOW_EMPTY_ELEMENTS)
 
     def test_that_visual_break_between_side_nav_and_side_toc(self, side_panel_partial, enabled_context):
