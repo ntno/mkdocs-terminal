@@ -1,5 +1,5 @@
 {%- set features = config.theme.features or [] -%}
-<aside id="menu">
+<aside id="terminal-mkdocs-side-panel">
     {%- if "navigation.side.hide" not in features -%}
     {%- block side_nav %}{% include "partials/side-nav/side-nav.html" %}{%- endblock side_nav %}
     {%- block side_toc %}{% include "partials/side-panel/side-toc.html" %}{%- endblock side_toc %}
