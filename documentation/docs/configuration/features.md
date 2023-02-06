@@ -6,6 +6,7 @@ theme:
   features:
     - navigation.side.hide
     - navigation.side.indexes
+    - navigation.side.prev_next
     - navigation.side.toc.hide
     - navigation.top.hide
     - navigation.top.cursor_animation.hide

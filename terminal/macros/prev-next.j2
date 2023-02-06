@@ -1,0 +1,13 @@
+{% macro make_prev_next( ) -%}
+<div class="terminal-mkdocs-pad-to-match-side-nav btn-group">
+{%- if page.previous_page %}
+<a href="{{ page.previous_page.url|url }}" title="{{ page.previous_page.title }}"><i class="fa-sharp fa-solid fa-arrow-left"></i> {% trans %}Previous{% endtrans %}</a>
+{%- endif %}
+{%- if page.previous_page and page.next_page %}
+|
+{%- endif %}
+{%- if page.next_page %}
+<a href="{{ page.next_page.url|url }}" title="{{ page.next_page.title }}">{% trans %}Next{% endtrans %} <i class="fa-sharp fa-solid fa-arrow-right"></i></a>
+{%- endif %}
+</div>
+{%- endmacro -%}
