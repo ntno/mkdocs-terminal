@@ -6,11 +6,12 @@ theme:
   features:
     # - navigation.side.hide
     - navigation.side.indexes
-    - navigation.side.prev_next
+    # - navigation.side.prev_next
     # - navigation.side.toc.hide
     # - navigation.top.hide
     # - navigation.top.cursor_animation.hide
     # - navigation.top.search_button.hide
+    - navigation.page.bottom.prev_next
     - revision.date
     - revision.history
     # - style.links.underline.hide
