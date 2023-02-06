@@ -1,0 +1,22 @@
+/* grid for footer */
+.terminal-mkdocs-footer-grid {
+    display: grid;
+    grid-row-gap: 2em;
+    grid-column-gap: 2em;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+}
+
+/* place main content under side nav when screen is too narrow */
+@media only screen and (min-width: 50em) {
+    .terminal-mkdocs-footer-grid {
+        grid-template-columns: 5fr 3fr;
+    }
+    #terminal-mkdocs-footer-prev-next {
+        text-align: right;
+    }
+}
+
+#terminal-mkdocs-footer-copyright-info{
+    text-align: left;
+}

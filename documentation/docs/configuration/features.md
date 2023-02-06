@@ -4,6 +4,8 @@
 theme:
   name: terminal
   features:
+    - footer.prev_next
+    - navigation.page.bottom.prev_next
     - navigation.side.hide
     - navigation.side.indexes
     - navigation.side.prev_next

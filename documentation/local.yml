@@ -4,6 +4,7 @@ theme:
   name: null
   custom_dir: '../terminal'
   features:
+    - footer.prev_next
     # - navigation.side.hide
     - navigation.side.indexes
     # - navigation.side.prev_next
@@ -11,7 +12,7 @@ theme:
     # - navigation.top.hide
     # - navigation.top.cursor_animation.hide
     # - navigation.top.search_button.hide
-    - navigation.page.bottom.prev_next
+    # - navigation.page.bottom.prev_next
     - revision.date
     - revision.history
     # - style.links.underline.hide
