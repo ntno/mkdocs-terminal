@@ -1,0 +1,68 @@
+# Translations template for mkdocs-terminal.
+# Copyright (C) 2023 ntno/mkdocs-terminal
+# This file is distributed under the same license as the mkdocs-terminal project.
+# Natan Organick, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: mkdocs-terminal 4.3.0\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2023-02-06 04:14+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+
+#: terminal/404.html:7
+msgid "The page you requested could not be found."
+msgstr ""
+
+#: terminal/404.html:8
+msgid "Return Home"
+msgstr ""
+
+#: terminal/partials/footer.html:5
+msgid "Site built with"
+msgstr ""
+
+#: terminal/partials/footer.html:5
+msgid "and"
+msgstr ""
+
+#: terminal/partials/page-content/revision.html:26
+msgid "Page last updated"
+msgstr ""
+
+#: terminal/partials/page-content/revision.html:29
+#: terminal/partials/page-content/revision.html:32
+msgid "See revision history on"
+msgstr ""
+
+#: terminal/partials/search/modal.html
+msgid "Search"
+msgstr ""
+
+#: terminal/partials/search/modal.html
+msgid "x"
+msgstr ""
+
+#: terminal/partials/search/modal.html
+msgid "Close"
+msgstr ""
+
+#: terminal/partials/search/modal.html
+msgid "Type to start searching"
+msgstr ""
+
+#: terminal/partials/search/modal.html
+msgid "Please enter search terms here"
+msgstr ""
+#: terminal/partials/search/modal.html
+msgid "No document matches found"
+msgstr ""
+
