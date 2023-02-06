@@ -1,5 +1,0 @@
-{% import 'macros/prev-next.j2' as prev_next_helper with context %}
-{%- set features = config.theme.features or [] -%}
-{%- if "navigation.page.bottom.prev_next" in features and page and (page.next_page or page.previous_page) %}
-{{ prev_next_helper.make_prev_next() }}
-{%- endif %}
