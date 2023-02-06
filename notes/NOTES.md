@@ -48,7 +48,10 @@ Terminal for MkDocs' Tile Grid relies on the *meta*[^mkdocs-page-meta] attribute
   - `blc http://localhost:8080 -ro`
 - [YAML boolean syntax](https://yaml.org/spec/1.2.2/#10212-boolean)  
 - [ascii directory tree generator](https://ascii-tree-generator.com/)
-
+- [extract babel messages]
+  - `pip install Babel`
+  - `pybabel extract --no-wrap --sort-by-file --project=mkdocs-terminal --version=4.3.0  -c ADD_COMMENTS -F babel.cfg -o en-t terminal/`
+  - `pybabel extract --no-wrap --sort-by-file --project=mkdocs-terminal --version=4.3.0  -c ADD_COMMENTS -F babel.cfg -o en-t documentation/site`
 ## regex
 ### linked image
 `<div .*? <figure(.)[^>]*? <a(.)*<img`
