@@ -24,7 +24,7 @@ a.btn {
     grid-template-rows: auto;
 }
 
-/* place main content under side nav when screen is too narrow */
+/* place main content to the right of side nav when screen wide enough for two columns */
 @media only screen and (min-width: 70em) {
     .terminal-mkdocs-main-grid {
         grid-template-columns: 4fr 9fr;

@@ -2,6 +2,7 @@
 PALETTE_OPTION = "palette"
 
 # theme features
+FOOTER_PREV_NEXT = "footer.prev_next"
 SHOW_REVISION_DATE = "revision.date"
 SHOW_REVISION_HISTORY = "revision.history"
 HIDE_TOP_NAV = "navigation.top.hide"

@@ -16,6 +16,8 @@ def env():
     env = Environment()
     env.filters['url'] = mock_url_filter
     env.filters[DEFAULT_MARKUP_FILTER_NAME] = mock_markup_filter
+    env.add_extension('jinja2.ext.i18n')
+    env.install_null_translations()
     return env
 
 
