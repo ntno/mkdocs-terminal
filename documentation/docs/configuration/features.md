@@ -15,6 +15,8 @@ theme:
     - revision.history
     - style.links.underline.hide
 ```
+## footer.prev_next
+Adds "Previous" and "Next" links to the bottom of each site page.
 
 ## navigation.side.hide  
 Hides the side navigation menu and page table of contents on all site pages.
