@@ -4,8 +4,8 @@ theme:
   name: null
   custom_dir: '../terminal'
   features:
-    - navigation.side.hide
     - footer.prev_next
+    # - navigation.side.hide
     - navigation.side.indexes
     # - navigation.side.toc.hide
     # - navigation.top.hide
