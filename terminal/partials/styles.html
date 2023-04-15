@@ -21,9 +21,11 @@
 }
 
 {% if 'navigation.side.hide' not in features -%}
-/* when side navigation is not hidden, use a two column grid.  
-   if the screen is too narrow, fall back to the initial one column grid layout.
-   in this case the main content will be placed under the navigation panel. */
+/*  
+*   when side navigation is not hidden, use a two column grid.  
+*   if the screen is too narrow, fall back to the initial one column grid layout.
+*   in this case the main content will be placed under the navigation panel. 
+*/
 @media only screen and (min-width: 70em) {
     .terminal-mkdocs-main-grid {
         grid-template-columns: 4fr 9fr;
