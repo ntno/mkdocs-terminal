@@ -7,11 +7,12 @@
 <link href="{{ 'css/terminal.css' | url }}" rel="stylesheet">
 <link href="{{ 'css/theme.css' | url }}" rel="stylesheet">
 <link href="{{ 'css/theme.tile_grid.css' | url }}" rel="stylesheet">
-<!-- {{ palette_name }} color palette-->
+<!-- {{ palette_name }} color palette -->
 <link href="{{ palette | url }}" rel="stylesheet">
 
+<!-- page layout -->
 <style>
-/* grid for side nav and main content */
+/* initially set page layout to a one column grid */
 .terminal-mkdocs-main-grid {
     display: grid;
     grid-column-gap: 1.4em;
@@ -20,7 +21,9 @@
 }
 
 {% if 'navigation.side.hide' not in features -%}
-/* place main content under side nav when screen is too narrow */
+/* when side navigation is not hidden, use a two column grid.  
+   if the screen is too narrow, fall back to the initial one column grid layout.
+   in this case the main content will be placed under the navigation panel. */
 @media only screen and (min-width: 70em) {
     .terminal-mkdocs-main-grid {
         grid-template-columns: 4fr 9fr;
@@ -28,8 +31,6 @@
 }
 {%- endif -%}
 </style>
-
-
 
 {% if 'navigation.top.cursor_animation.hide' in features -%}
 <!-- cursor_animation override -->
@@ -39,6 +40,7 @@
   }
 </style>
 {%- endif -%}
+
 {% if 'style.links.underline.hide' in features -%}
 <!-- link underline override -->
 <style>
