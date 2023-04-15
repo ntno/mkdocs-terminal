@@ -5,7 +5,7 @@ theme:
   custom_dir: '../terminal'
   features:
     - navigation.side.hide
-    # - navigation.side.indexes
+    - navigation.side.indexes
     # - navigation.side.toc.hide
     # - navigation.top.hide
     # - navigation.top.cursor_animation.hide
