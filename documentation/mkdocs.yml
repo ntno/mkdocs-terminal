@@ -100,6 +100,7 @@ theme:
   name: terminal
   custom_dir: theme_overrides
   features:
+    - footer.prev_next
     - navigation.side.indexes
     - revision.date
     - revision.history
