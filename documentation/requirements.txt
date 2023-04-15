@@ -1,5 +1,5 @@
 mkdocs
-mkdocs-terminal~=4.0
+mkdocs-terminal~=4.3
 
 # Python Markdown Extensions
 pygments>=2.14
