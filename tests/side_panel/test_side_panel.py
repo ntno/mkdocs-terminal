@@ -39,11 +39,11 @@ def side_panel_partial(env_with_terminal_loader):
 
 
 class TestSidePanel():
-    def test_no_panel_content_when_theme_feature_enabled(self, side_panel_partial, enabled_context):
-        enabled_context["config"]["theme"]["features"] = [theme_features.HIDE_SIDE_NAV, theme_features.HIDE_SIDE_TOC]
+    def test_no_panel_element_when_hide_feature_enabled(self, side_panel_partial, enabled_context):
+        enabled_context["config"]["theme"]["features"] = [theme_features.HIDE_SIDE_NAV]
         context_data = enabled_context
         rendered_side_panel = side_panel_partial.render(context_data)
-        assert "<aside id=\"terminal-mkdocs-side-panel\"></aside>" in rendered_side_panel
+        assert rendered_side_panel.strip() == ""
         assert_valid_html(rendered_side_panel, ALLOW_EMPTY_ELEMENTS)
 
     def test_that_visual_break_between_side_nav_and_side_toc(self, side_panel_partial, enabled_context):
