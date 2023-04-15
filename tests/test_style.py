@@ -68,3 +68,17 @@ class TestStyles():
         rendered_styles = styles_partial.render(context_data)
         assert "#terminal-mkdocs-main-content a:not(.headerlink)" in rendered_styles
         assert_valid_html(rendered_styles)
+
+    def test_that_main_grid_has_two_columns_by_default(self, styles_partial, enabled_context):
+        rendered_styles = styles_partial.render(enabled_context)
+        assert "grid-template-columns: auto;" in rendered_styles
+        assert "grid-template-columns: 4fr 9fr;" in rendered_styles
+        assert_valid_html(rendered_styles)
+
+    def test_that_main_grid_is_one_column_when_side_nav_is_hidden(self, styles_partial, enabled_context):
+        enabled_context["config"]["theme"]["features"] = [theme_features.HIDE_SIDE_NAV]
+        context_data = enabled_context
+        rendered_styles = styles_partial.render(context_data)
+        assert "grid-template-columns: auto;" in rendered_styles
+        assert "grid-template-columns: 4fr 9fr;" not in rendered_styles
+        assert_valid_html(rendered_styles)
