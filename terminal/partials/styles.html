@@ -9,6 +9,28 @@
 <link href="{{ 'css/theme.tile_grid.css' | url }}" rel="stylesheet">
 <!-- {{ palette_name }} color palette-->
 <link href="{{ palette | url }}" rel="stylesheet">
+
+<style>
+/* grid for side nav and main content */
+.terminal-mkdocs-main-grid {
+    display: grid;
+    grid-column-gap: 1.4em;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+}
+
+{% if 'navigation.side.hide' not in features -%}
+/* place main content under side nav when screen is too narrow */
+@media only screen and (min-width: 70em) {
+    .terminal-mkdocs-main-grid {
+        grid-template-columns: 4fr 9fr;
+    }
+}
+{%- endif -%}
+</style>
+
+
+
 {% if 'navigation.top.cursor_animation.hide' in features -%}
 <!-- cursor_animation override -->
 <style>
