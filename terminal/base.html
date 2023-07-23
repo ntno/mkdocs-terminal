@@ -37,7 +37,7 @@
     {% block analytics %}{% endblock analytics %}
 </head>
 
-<body {%- block body_attrs %}class="terminal"{%- endblock body_attrs %}>
+<body {% block body_attrs %}class="terminal"{% endblock body_attrs %}>
     {%- block top_nav %}{% include "partials/top-nav/top.html" %}{%- endblock top_nav %}
         
     <div class="container">
