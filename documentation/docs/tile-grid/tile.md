@@ -50,7 +50,7 @@ A tile can represent an image, a link, or a linked image.
 [Extra CSS]: examples/links-only.md#extra-css
 
 
-# Alternate Text
+## Alternate Text
 
 > Pages should provide effective text alternatives for screen readers in the form of alt text. When a screen reader encounters an image, it will attempt to read a text alternative.
 > 

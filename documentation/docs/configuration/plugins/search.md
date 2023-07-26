@@ -3,7 +3,7 @@ MkDocs comes with a built-in and automatically enabled [search plugin].
 
 [search plugin]: https://www.mkdocs.org/user-guide/configuration/#search
 
-# Built-in Support
+## Built-in Support
 Terminal for MkDocs supports the built-in search plugin by providing a search button in the top navigation menu and a search modal to display search results:
 
 <section markdown>
@@ -13,7 +13,7 @@ Terminal for MkDocs supports the built-in search plugin by providing a search bu
 </figure>
 </section>
 
-## Configuration
+### Configuration
 The search button in the top navigation bar can be hidden by adding `navigation.top.search_button.hide` to your theme feature configuration in `mkdocs.yml`:
 
 ```yaml

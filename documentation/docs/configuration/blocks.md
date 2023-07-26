@@ -12,7 +12,7 @@ Let's say you want to add a banner above each page's markdown content.  You stil
 [Tile Grid]: ../tile-grid/index.md
 
 
-## 1. Add Overrides Folder
+### 1. Add Overrides Folder
 Create the following directory structure and add your banner snippet to `banner.html`:
 
 ```directory
@@ -29,7 +29,7 @@ Create the following directory structure and add your banner snippet to `banner.
 ```
 
 
-## 2. Add Theme Custom Directory
+### 2. Add Theme Custom Directory
 Configure MkDocs to look at the new `./overrides` folder:
 
 **file name**: mkdocs.yml  
@@ -41,7 +41,7 @@ theme:
 ```
 
 
-## 3. Add Extended Partial 
+### 3. Add Extended Partial 
 You can add a custom banner above each page's content by adding the following theme extension:
 
 **file name**: page.html  
@@ -74,7 +74,7 @@ If you wanted to override higher level blocks[^block-levels] you would add them 
 Calling `super()` will include any Terminal for MkDocs features which are inside the original block definition.
 <hr>
 
-# Overridable Blocks
+## Overridable Blocks
 
 `analytics`
 
@@ -133,7 +133,7 @@ Calling `super()` will include any Terminal for MkDocs features which are inside
 [Git Revision Plugin]: ../plugins/git-revision
 
 
-# Override Locations
+## Override Locations
 
 | Block Name              | Add to `./overrides/` | Extend From `mkdocs-terminal` |
 | ----------------------- | --------------------- | ----------------------------- |

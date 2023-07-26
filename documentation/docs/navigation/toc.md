@@ -21,7 +21,7 @@ markdown_extensions:
       permalink_title: Anchor link to this section for reference
 ```
 
-### Default Nesting Explanation
+## Default Nesting Explanation
 On this page **(h1) Felidae** shows up in the table of contents because it is one of the highest level sections.  
 
 **(h2) Felinae** and **(h2) Pantherinae** show up because they are directly underneath a top level section.  

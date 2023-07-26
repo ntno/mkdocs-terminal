@@ -8,9 +8,9 @@ The [PyMdown Extensions] package is an excellent collection of extensions suited
 
   [PyMdown Extensions]: https://facelessuser.github.io/pymdown-extensions/
 
-# Suggested PyMdown Extensions
+## Suggested PyMdown Extensions
 
-## Caret, Mark & Tilde
+### Caret, Mark & Tilde
 
 The [Caret], [Mark], and [Tilde] extensions add the ability to highlight text
 and define subscript and superscript using a simple syntax. Enable them together
@@ -42,7 +42,7 @@ See reference for usage:
   [Tilde]: https://facelessuser.github.io/pymdown-extensions/extensions/tilde/
 
 
-## Snippets
+### Snippets
 
 The [Snippets] extension adds the ability to embed content from arbitrary files into a document, including other documents or source files, by using a simple syntax. Enable it via `mkdocs.yml`:
 
@@ -64,6 +64,6 @@ See reference for usage:
   [Adding Snippets]: ./snippets.md
 
 
-# Credit
+## Credit
 
 This documentation page is based on squidfunk's [Material for MkDocs Pymdown Extension](https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown-extensions/) documentation.

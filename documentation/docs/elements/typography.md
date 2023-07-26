@@ -1,4 +1,4 @@
-# Emphasis
+## Emphasis
 
 Emphasis, aka italics, with *asterisks* or _underscores_.  
 Strong emphasis, aka bold, with **asterisks** or __underscores__.  
@@ -10,7 +10,7 @@ Strong emphasis, aka bold, with **asterisks** or __underscores__.
 Combined emphasis with **asterisks and _underscores_**.  
 ```
 
-# Strikethrough
+## Strikethrough
 Note: requires the [pymdownx.tilde extension]
 
 Strikethrough uses two tildes. ~~Scratch this.~~
@@ -19,7 +19,7 @@ Strikethrough uses two tildes. ~~Scratch this.~~
 Strikethrough uses two tildes. ~~Scratch this.~~
 ```
 
-# Subscript 
+## Subscript 
 Note: requires the [pymdownx.tilde extension]
 
 CH~3~CH~2~OH  
@@ -30,7 +30,7 @@ CH~3~CH~2~OH
 text~a\ subscript~  
 ```
 
-# Superscript
+## Superscript
 Note: requires the [pymdownx.caret extension]
 
 2^2^ = 4  
@@ -41,7 +41,7 @@ text^a\ superscript^
 text^a\ superscript^  
 ```
 
-# Marks
+## Marks
 Note: requires the [pymdownx.mark extension]
 
 - ==This was marked==
