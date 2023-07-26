@@ -8,9 +8,9 @@ Terminal for MkDocs is compatible with some of the [Python Markdown] extensions.
 
   [Python Markdown]: https://python-markdown.github.io/extensions/
 
-# Suggested Python Markdown Extensions
+## Suggested Python Markdown Extensions
 
-## Attribute Lists
+### Attribute Lists
 
 The [Attribute Lists] extension helps to add HTML attributes and CSS classes to Markdown inline and block-level elements. Enable it via `mkdocs.yml`:
 
@@ -30,7 +30,7 @@ No configuration options are available. See reference for usage:
   [Adding tooltips]: ../../elements/tooltips.md#example
   [Adding link target]: ../../elements/links.md#enhanced-example
 
-## Definition Lists
+### Definition Lists
 
 The [Definition Lists] extension adds a Markdown syntax for definition lists (more commonly known as [description lists]). Enable it via `mkdocs.yml`:
 
@@ -47,7 +47,7 @@ No configuration options are available. See reference for usage:
   [description lists]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dl
   [Using definition lists]: ../../elements/definitions.md#example
 
-## Footnotes
+### Footnotes
 
 The [Footnotes] extension enables inline footnotes which are then rendered below all of a document's Markdown content.  Enable it via `mkdocs.yml`:
 
@@ -65,7 +65,7 @@ See reference for usage:
   [Adding footnote markers]: ../../elements/footnotes.md#example-footnote-marker
   [Adding footnote content]: ../../elements/footnotes.md#example-footnote-content
 
-## Markdown in HTML
+### Markdown in HTML
 
 The [Markdown in HTML] extension allows for writing Markdown inside of HTML, which is useful for wrapping Markdown content with custom elements. Enable it
 via `mkdocs.yml`:
@@ -89,7 +89,7 @@ No configuration options are available. See reference for usage:
   [Adding Figures]: ../../elements/figure.md#example
 
 
-## Table of Contents
+### Table of Contents
 
 The [Table of Contents] extension automatically generates a table of contents from a document which Terminal for MkDocs will render as part of the resulting page. It can be configured via `mkdocs.yml`:
 
@@ -130,7 +130,7 @@ See reference for usage:
   [Table of Contents Example]: ../../navigation/toc.md
 
 
-## Tables
+### Tables
 
 The [Tables] extension adds a Markdown syntax for data tables.  It is enabled by default but you can specify it explicitly in `mkdocs.yml`:
 
@@ -148,7 +148,7 @@ No configuration options are available. See reference for usage:
   [Adding tables]: ../../elements/table.md#example
 
 
-# Credit
+## Credit
 
 This documentation page is based on squidfunk's [Material for MkDocs Python Markdown](https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown/) documentation.
 

@@ -12,7 +12,7 @@ We can use the MkDocs Macros Plugin to affect what appears within the page's mar
 </section>
 <br>
 
-# Setup
+## Setup
 Follow the instuctions in the [MkDocs Macros Plugin] reference.  Then enable the Terminal for MkDocs Tile Grid Pluglet by adding  
 ```text
 mkdocs-terminal:terminal.pluglets.tile_grid.main
@@ -28,24 +28,24 @@ plugins:
 ```
 [MkDocs Macros Plugin]: ../../configuration/plugins/macros
 
-# Usage
+## Usage
 
-## 1. Define Grid
+### 1. Define Grid
 Define your tile grid according to the [Tile Grid Overview].  
 
 [Tile Grid Overview]: ../
 
-## 2. Configure Grid  
+### 2. Configure Grid  
 Set `show_tiles_inline` to `true`.   
 
-## 3. Call tile_grid Macro
+### 3. Call tile_grid Macro
 Add the following macro call wherever on the page you would like the grid to be displayed:
 
 ```markdown
 {% raw %}{{ tile_grid(page.meta) }}{% endraw %}
 ```
 
-# Example
+## Example
 
 ```markdown
 --8<--

@@ -8,50 +8,50 @@ markdown_extensions:
   - md_in_html
 ```
 
-# Examples
-## Default
+## Examples
+### Default
 [Default](buttons.md#default){ .btn .btn-default }  
 
 ```markdown
 [Default](buttons.md#default){ .btn .btn-default }
 ```
 
-## Primary
+### Primary
 [Primary Button](buttons.md#primary){ .btn .btn-primary }  
 
 ```markdown
 [Primary Button](buttons.md#primary){ .btn .btn-primary } 
 ```
 
-## Error
+### Error
 [Error Button](buttons.md#error){ .btn .btn-error }  
 
 ```markdown
 [Error Button](buttons.md#error){ .btn .btn-error } 
 ```
 
-## Ghost Default
+### Ghost Default
 [Ghost Default](buttons.md#ghost-default){ .btn .btn-default .btn-ghost }  
 
 ```markdown
 [Ghost Default](buttons.md#ghost-default){ .btn .btn-default .btn-ghost }  
 ```
 
-## Ghost Primary
+### Ghost Primary
 [Ghost Primary Button](buttons.md#ghost-primary){ .btn .btn-primary .btn-ghost }  
 
 ```markdown
 [Ghost Primary Button](buttons.md#ghost-primary){ .btn .btn-primary .btn-ghost } 
 ```
 
-## Ghost Error
+### Ghost Error
 [Ghost Error Button](buttons.md#ghost-error){ .btn .btn-error .btn-ghost }  
 
 ```markdown
 [Ghost Error Button](buttons.md#ghost-error){ .btn .btn-error .btn-ghost }  
 ```
 
-## Block Level
+### Block Level
 [Block Level Button](buttons.md#block-level){ .btn .btn-primary .btn-block } 
 
 ```markdown

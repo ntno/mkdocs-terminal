@@ -7,7 +7,7 @@ markdown_extensions:
   - def_list
 ```
 
-# Example
+## Example
 
 `Lorem ipsum dolor sit amet`
 
@@ -25,7 +25,7 @@ markdown_extensions:
     mollis.  Nam vulputate tincidunt fringilla.  Nullam 
     dignissim ultrices urna non auctor.
 
-## Markdown
+### Markdown
 
 ```markdown
 `Lorem ipsum dolor sit amet`

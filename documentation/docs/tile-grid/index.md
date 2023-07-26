@@ -68,9 +68,9 @@ tiles:
 ```
 
 
-# Complete Example
+## Complete Example
 
-## mkdocs.yml
+### mkdocs.yml
 file location: `.`  
 filename: `mkdocs.yml`  
 
@@ -84,7 +84,7 @@ nav:
 theme:
   name: terminal
 ```
-## example-page.md
+### example-page.md
 file location: `./docs/tile-grid/examples/example-page.md`  
 filename: `example-page.md`  
 

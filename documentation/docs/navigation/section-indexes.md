@@ -36,7 +36,7 @@ Let's say you have a site with *Release Notes* and *About* documents.  The *Rele
 ![section index pages enabled](../img/about_page_without_section_indexes.png){alt="'Release Notes' is rendered as greyed out text in the side navigation" .terminal-mkdocs-thin-border}
 
 
-# Setup
+## Setup
 1. Add the `navigation.side.indexes` feature to the theme configuration in `mkdocs.yml`:
 
         

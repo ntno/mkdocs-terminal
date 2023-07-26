@@ -7,9 +7,9 @@ You can write and publish your own functions to use in your markdown pages.  The
 [mkdocs-macros plugin]: https://mkdocs-macros-plugin.readthedocs.io/en/latest/
 [jinja2]: https://jinja.palletsprojects.com/en/3.1.x/intro/
 
-# Quick Setup
+## Quick Setup
 
-## 1. Install Plugin
+### 1. Install Plugin
 Add the `mkdocs-macros-plugin` package to your `requirements.txt` file:
 
 ```text
@@ -20,7 +20,7 @@ mkdocs-macros-plugin
 Then run:  `pip install -r ./requirements.txt`
 
 
-## 2. Enable Plugin
+### 2. Enable Plugin
 
 Enable the MkDocs Macros Plugin by adding `macros` to the `plugins` list in `mkdocs.yml`:
 ```yaml
@@ -30,7 +30,7 @@ plugins:
 ```
 
 
-## 3. Verify Setup
+### 3. Verify Setup
 
 Test that the plugin is working correctly by calling the built-in info macro from one of your documentation pages:  
 
@@ -48,7 +48,7 @@ A table with entries describing the MkDocs configuration for your site should be
 </section>
 
 
-## 4. Configuration
+### 4. Configuration
 
 See the plugin's [configuration documentation] for additional options.
 

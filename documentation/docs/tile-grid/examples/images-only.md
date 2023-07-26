@@ -15,11 +15,11 @@ tiles:
 # Image Only Tiles 
 The tiles on this page do not have a `link_href` attribute.  They are rendered as static images instead of linked images.
 
-# Tiles First
+## Tiles First
 The tiles on this page are placed before the main page content.  This is because the [grid option](../grid.md) `show_tiles_first` is set to `true`.
 
  
-## Markdown
+### Markdown
 
 ```markdown
 ---

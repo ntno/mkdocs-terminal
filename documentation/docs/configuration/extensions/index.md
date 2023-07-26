@@ -36,11 +36,11 @@ The following extensions have been confirmed to work with Terminal for MkDocs an
   [Tables]: python-markdown.md#tables
 
 
-# Configuration
+## Configuration
 
 Extensions are enabled in the MkDocs configuration file.  See below for two example configurations to bootstrap your documentation project.
 
-## Minimal Config
+### Minimal Config
 
 The minimal configuration is a good starting point for when you're using MkDocs for the first time.  You can explore the suggested extensions and gradually add extensions as needed:
 
@@ -54,7 +54,7 @@ markdown_extensions:
       permalink: "#"
 ```
 
-## Recommended Config
+### Recommended Config
 
 The recommended configuration enables all Markdown-related features of Terminal for MkDocs
 and is great for experienced users bootstrapping a new documentation project:
@@ -80,5 +80,5 @@ markdown_extensions:
         - docs
 ```
 
-# Credit
+## Credit
 This documentation page is based on squidfunk's [Material for MkDocs Extensions](https://squidfunk.github.io/mkdocs-material/setup/extensions/) documentation.
