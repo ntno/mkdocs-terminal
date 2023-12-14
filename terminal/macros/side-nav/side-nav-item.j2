@@ -1,23 +1,33 @@
-{% macro index_item( nav_item, class ) -%}
-    {% if nav_item.active %}
-        <span {% if class %}class="{{ class }}"{% endif %}>{{ nav_item.parent.title }}</span>
-    {% else %}
-        <a {% if class %}class="{{ class }}"{% endif %} href="{{ nav_item.url|url }}">{{ nav_item.parent.title }}</a>
-    {% endif %}
-{%- endmacro -%}
+{% import 'macros/side-nav/side-nav-utils.j2' as side_nav_utils with context %}
 
+{% macro side_nav_item( nav_item, nesting_level) -%}
+    {% if nesting_level <= side_nav_utils.get_max_nesting()|int %}
+        {% if nav_item.children %}
+            <li>
+            {# if the section has an index page, use the index page's URL for the href link #}
+            {% if side_nav_utils.has_index_page(nav_item) %}
+                <a href="{{ side_nav_utils.get_section_url(nav_item) | url }}"><span {{ side_nav_utils.get_class_attr_snippet( nav_item ) }}>{{ nav_item.title }}</span></a>
 
+            {# if the section does not have an index, just display the section title #}
+            {% else %}
+                <span {{ side_nav_utils.get_class_attr_snippet( nav_item ) }}>{{ nav_item.title }}</span>
+            {% endif %}
 
-{% macro non_index_item( nav_item, class ) -%}
-    {% if nav_item.active %}
-        <span {% if class %}class="{{ class }}"{% endif %}>{{ nav_item.title }}</span>
-    {% else %}
-        {% if nav_item.is_section %}
-            {# nav_item.is_section covers MkDocs Section objects #}
-            {# MkDocs Section objects do not have a URL to use as a link #}
-            <span {% if class %}class="{{ class }}"{% endif %}>{{ nav_item.title }}</span>
+            {# if the section has children, recurse #}
+            {% for child in nav_item.children %}
+                <ul>
+                    {{ side_nav_item(child, nesting_level+1) }}
+                </ul>
+            {% endfor %}
+            </li>
         {% else %}
-            <a {% if class %}class="{{ class }}"{% endif %} href="{{ nav_item.url|url }}">{{ nav_item.title }}</a>
-        {% endif %}
-    {% endif %}
+            {# don't render section index pages as sub pages (this would be redundant) #}
+            {% if nav_item.is_page and ( nav_item.title != side_nav_utils.get_section_index_title_indicator()) %}
+                <li>
+                    {# if the item is a page then use its link #}
+                    <a href="{{ nav_item.url | url }}"><span {{ side_nav_utils.get_class_attr_snippet( nav_item ) }}>{{ nav_item.title }}</span></a>
+                </li>
+            {% endif %}
+        {%endif%}
+    {%endif%}
 {%- endmacro -%}

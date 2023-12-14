@@ -28,7 +28,7 @@ No configuration options are available. See reference for usage:
   [Attribute Lists]: https://python-markdown.github.io/extensions/attr_list/
   [Adding buttons]: ../../elements/buttons.md#default
   [Adding tooltips]: ../../elements/tooltips.md#example
-  [Adding link target]: ../../elements/links.md#enhanced-example
+  [Adding link target]: ../../elements/links.md#example
 
 ## Definition Lists
 

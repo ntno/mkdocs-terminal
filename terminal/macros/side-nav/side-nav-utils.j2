@@ -1,0 +1,71 @@
+{# returns the default title "Index" if 'config.extra.SECTION_INDEX_PAGE_TITLE' is undefined #}
+{# returns the user's 'config.extra.SECTION_INDEX_PAGE_TITLE' value otherwise #}
+{% macro get_section_index_title_indicator() -%}
+{% if config.extra.SECTION_INDEX_PAGE_TITLE %}{{ config.extra.SECTION_INDEX_PAGE_TITLE }}{% else %}Index{% endif %}
+{%- endmacro -%}
+
+{# returns the default maximum side navigation depth "2" if 'config.extra.MAX_SIDE_NAV_SECTION_NESTING' #}
+{% macro get_max_nesting() -%}
+{% if config.extra.MAX_SIDE_NAV_SECTION_NESTING %}{{ config.extra.MAX_SIDE_NAV_SECTION_NESTING }}{% else %}2{% endif %}
+{%- endmacro -%}
+
+{# returns "True" if nav_item has children and one of the children has a 'title' attribute == 'Index'#}
+{# returns "" otherwise #}
+{% macro has_index_page( nav_item ) -%}
+{% if nav_item.children|selectattr("title", "eq", get_section_index_title_indicator() )|list|length == 0 %}{% else %}True{% endif %}
+{%- endmacro -%}
+
+{# if nav_item has one index page, return the index page's URL #}
+{# returns "" otherwise #}
+{% macro get_section_url(nav_item) -%}
+{% if nav_item.children|selectattr("title", "eq", get_section_index_title_indicator() )|list|length == 1 %}
+{%- set section_index_page = nav_item.children|selectattr("title", "eq", get_section_index_title_indicator() )|first %}{{ section_index_page.url }}{% else %}{% endif %}
+{%- endmacro -%}
+
+
+{% macro get_base_class( nav_item ) -%}
+    {% set ns = namespace(class="terminal-mkdocs-side-nav-item", is_active_index=false) %}
+    {% if nav_item.active %}
+        {%- set ns.class = ns.class ~ "--active" -%}
+    {% endif %}
+
+    {% if "navigation.side.indexes" in features and nav_item.title == get_section_index_title_indicator() %}
+        {# if nav_item is a index page, check to see if any of its' siblings are active) #}
+        {% for index_sibling in nav_item.parent.children %}
+            {% if index_sibling.active %}
+                {% set ns.is_active_index = true %}
+            {% endif %}
+        {% endfor %}
+        {% if ns.is_active_index %}
+            {%- set ns.class = ns.class ~ "--active" -%}
+        {% endif %}
+    {% endif %}
+    
+    {{ ns.class|trim }}
+{%- endmacro -%}
+
+
+{# 'terminal-mkdocs-side-nav-section-no-index' css class used to indicate a non-clickable folder #}
+{% macro get_class( nav_item ) -%}
+    {% set ns = namespace(class="") %}
+    {%- set ns.class = get_base_class( nav_item ) -%}
+
+    {% if nav_item.children %}
+        {% if "navigation.side.indexes" not in features %}
+            {%- set ns.class = ns.class ~ " terminal-mkdocs-side-nav-section-no-index" -%}
+        {% else %}
+            {% if nav_item.children|selectattr("title", "eq", get_section_index_title_indicator() )|list|length == 0 %}
+                {%- set ns.class = ns.class ~ " terminal-mkdocs-side-nav-section-no-index" -%}           
+            {% endif %}
+        {% endif %}
+    {% endif %}
+
+    {{ ns.class|trim }}
+{%- endmacro -%}
+
+{# returns HTML class attribute snippet#}
+{% macro get_class_attr_snippet( nav_item ) -%}
+    {% set macro_ns = namespace(class="") -%}
+    {% set macro_ns.class = get_class( nav_item ) -%}
+    {% if macro_ns.class %}class="{{ macro_ns.class }}"{% endif %}
+{%- endmacro -%}
