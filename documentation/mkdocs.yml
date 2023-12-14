@@ -19,14 +19,11 @@ nav:
         - Sans Dark: 'configuration/palettes/sans-dark.md'
       - Features: 'configuration/features.md'
       - Blocks: 'configuration/blocks.md'
-      - Plugins: 'configuration/plugins/index.md'
-      - '___Git Revision': 'configuration/plugins/git-revision.md'
-      - '___Macros': 'configuration/plugins/macros.md'
-      - '___Search': 'configuration/plugins/search.md'      
-      - Extensions: 'configuration/extensions/index.md'
-      - Markdown Extensions: 'configuration/extensions/python-markdown.md'
-      - PyMdown Extensions: 'configuration/extensions/pymdown-extensions.md'
-      - '___Snippets': 'configuration/extensions/snippets.md'
+      - Plugins: 
+        - Index: 'configuration/plugins/index.md'
+        - Git Revision: 'configuration/plugins/git-revision.md'
+        - Macros: 'configuration/plugins/macros.md'
+        - Search: 'configuration/plugins/search.md'      
     - Navigation:
         - Section Indexes: 'navigation/section-indexes.md'
         - Table of Contents: 'navigation/toc.md'
@@ -51,6 +48,12 @@ nav:
       - Tables: 'elements/table.md'
       - Tooltips: 'elements/tooltips.md'
       - Typography: 'elements/typography.md'
+    - Extensions: 
+      - Index: 'configuration/extensions/index.md'
+      - Markdown Extensions: 'configuration/extensions/python-markdown.md'
+      - PyMdown Extensions: 
+        - Index: 'configuration/extensions/pymdown-extensions.md'
+        - Snippets: 'configuration/extensions/snippets.md'      
     - Install: 'install.md'
     - Releases: 'releases.md'
 
@@ -110,3 +113,6 @@ theme:
 
 extra_css:
   - overrides/extra.css
+
+extra:
+  MAX_SIDE_NAV_SECTION_NESTING: 4
