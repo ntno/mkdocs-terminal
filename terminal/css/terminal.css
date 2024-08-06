@@ -853,6 +853,9 @@ textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus {
     .terminal-menu li:last-child {
         margin-right: 0;
     }
+    .terminal-mkdocs-main-grid {
+        position: block;
+    }
 }
 
 .terminal-media:not(:last-child) {
