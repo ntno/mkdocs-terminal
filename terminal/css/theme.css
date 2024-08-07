@@ -44,6 +44,27 @@ a.btn {
     border-color: var(--error-color);
     color: var(--error-color);
 }
+
+
+
+.terminal-mkdocs-main-grid aside {
+    position: sticky;
+    top: calc(var(--global-space) * 2);
+}
+
+@media only screen and (min-width:30em) {
+    @media only screen and (min-width: 30em) {
+       
+        .terminal-menu li:last-child {
+            .terminal-menu li:last-child {
+                margin-right: 0 margin-right: 0;
+            }
+            .terminal-mkdocs-main-grid {
+                position: block;
+            }
+        }
+    }
+}
 /* ***************************************************************** */
 /* Terminal.css Overrides */
 /* ***************************************************************** */
