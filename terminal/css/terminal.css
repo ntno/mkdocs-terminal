@@ -28,7 +28,12 @@
 
 *::selection {
     background: var(--primary-color);
-    color: var(--invert-font-color);
+    color: var(--invert-font-color)
+}
+
+::selection {
+    background: var(--primary-color);
+    color: var(--invert-font-color)
 }
 
 body {
@@ -38,6 +43,7 @@ body {
     margin: 0;
     font-family: var(--font-stack);
     word-wrap: break-word;
+    background-color: var(--background-color);
     background-color: var(--background-color);
 }
 
@@ -139,6 +145,7 @@ h6 {
     position: relative;
     margin-bottom: var(--global-line-height);
     font-weight: 600;
+    font-weight: 600;
 }
 
 blockquote {
@@ -222,9 +229,11 @@ pre code {
 .terminal-prompt {
     position: relative;
     white-space: nowrap;
+    white-space: nowrap;
 }
 
 .terminal-prompt::before {
+    content: "> ";
     content: "> ";
 }
 
@@ -239,13 +248,16 @@ pre code {
     width: 3px;
     bottom: -2px;
     position: relative;
+    position: relative;
 }
 
 @keyframes cursor {
     0% {
         opacity: 0;
+        opacity: 0;
     }
     50% {
+        opacity: 1;
         opacity: 1;
     }
     100% {
@@ -256,8 +268,10 @@ pre code {
 @keyframes cursor {
     0% {
         opacity: 0;
+        opacity: 0;
     }
     50% {
+        opacity: 1;
         opacity: 1;
     }
     100% {
@@ -270,9 +284,11 @@ li>ul>li {
     position: relative;
     display: block;
     padding-left: calc(var(--global-space) * 2);
+    padding-left: calc(var(--global-space) * 2);
 }
 
 nav>ul>li {
+    padding-left: 0;
     padding-left: 0;
 }
 
@@ -342,6 +358,7 @@ ul ul {
     flex-grow: 1;
     font-size: var(--global-font-size);
     margin-top: 0;
+    margin-top: 0;
 }
 
 .terminal-menu li {
@@ -406,6 +423,7 @@ hr {
     overflow: hidden;
     margin: calc(var(--global-space) * 4) 0;
     border: 0;
+    border-bottom: 1px dashed var(--secondary-color);
     border-bottom: 1px dashed var(--secondary-color);
 }
 
@@ -473,6 +491,7 @@ img {
     content: "";
     display: none;
     visibility: hidden;
+    opacity: 0;
     opacity: 0;
 }
 
@@ -572,6 +591,8 @@ input::placeholder,
 textarea::placeholder {
     color: var(--secondary-color) !important;
     opacity: 1;
+    color: var(--secondary-color) !important;
+    opacity: 1;
 }
 
 textarea {
@@ -594,6 +615,7 @@ textarea:focus {
 
 textarea:not(:placeholder-shown):invalid {
     border-color: var(--error-color);
+    border-color: var(--error-color);
 }
 
 input:-webkit-autofill,
@@ -611,6 +633,7 @@ select:-webkit-autofill:focus {
 
 .form-group {
     margin-bottom: var(--global-line-height);
+    overflow: auto;
     overflow: auto;
 }
 
@@ -630,6 +653,7 @@ select:-webkit-autofill:focus {
     user-select: none;
     position: relative;
     z-index: 1;
+    z-index: 1;
 }
 
 .btn:active {
@@ -647,14 +671,17 @@ select:-webkit-autofill:focus {
     border-color: var(--tertiary-color);
     color: var(--tertiary-color);
     z-index: 2;
+    z-index: 2;
 }
 
 .btn.btn-ghost:hover {
+    background-color: transparent;
     background-color: transparent;
 }
 
 .btn-block {
     width: 100%;
+    display: flex;
     display: flex;
 }
 
@@ -844,11 +871,11 @@ select:-webkit-autofill:focus {
 }
 
 .terminal-media:not(:last-child) {
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.25rem
 }
 
 .terminal-media-left {
-    padding-right: var(--global-space);
+    padding-right: var(--global-space)
 }
 
 .terminal-media-left,
@@ -948,6 +975,7 @@ figure>figcaption {
 
 .hljs-string {
     color: var(--secondary-color);
+    color: var(--secondary-color);
 }
 
 .hljs-deletion,
@@ -962,6 +990,7 @@ figure>figcaption {
 }
 
 .hljs-attr {
+    color: var(--primary-color);
     color: var(--primary-color);
 }
 
