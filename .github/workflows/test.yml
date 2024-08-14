@@ -32,7 +32,8 @@ jobs:
           cd tidy-html5/build/cmake
           cmake ../.. -DCMAKE_BUILD_TYPE=Release "-DCMAKE_OSX_ARCHITECTURES=x86_64;arm64"
           make 
-
+          sudo make install
+          
           which tidy
           tidy --version
 
