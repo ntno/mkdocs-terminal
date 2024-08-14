@@ -70,6 +70,13 @@ code::before {
 }
 
 
+/* use the `code-bg-color` for `code` blocks */
+
+pre code {
+    background-color: var(--code-bg-color);
+}
+
+
 /*! terminal.css | MIT License |  https://github.com/Gioni06/terminal.css/pull/36 */
 
 blockquote>*:last-child {
