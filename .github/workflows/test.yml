@@ -25,9 +25,14 @@ jobs:
       - if: ${{ matrix.platform == 'macos-latest' }} 
         name: (macos) Install Testing Prereqs
         run: |
-          brew install tidy-html5
-          tidy --version
-          which tidy
+          cmake --help
+          git clone git@github.com:htacg/tidy-html5.git
+          cd build/cmake
+          cmake ../.. -DCMAKE_BUILD_TYPE=Release "-DCMAKE_OSX_ARCHITECTURES=x86_64;arm64"
+          make 
+          # brew install tidy-html5
+          # tidy --version
+          # which tidy
       - name: Install Tox
         run: make install-tox
       - name: Test Build/Package with Tox
