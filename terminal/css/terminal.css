@@ -315,7 +315,7 @@ ul ul {
 
 .terminal-menu ul {
     list-style-type: none;
-    padding: 0!important;
+    padding: 0 !important;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -550,31 +550,31 @@ textarea {
 
 input::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder {
-    color: var(--secondary-color)!important;
+    color: var(--secondary-color) !important;
     opacity: 1
 }
 
 input::-moz-placeholder,
 textarea::-moz-placeholder {
-    color: var(--secondary-color)!important;
+    color: var(--secondary-color) !important;
     opacity: 1
 }
 
 input:-ms-input-placeholder,
 textarea:-ms-input-placeholder {
-    color: var(--secondary-color)!important;
+    color: var(--secondary-color) !important;
     opacity: 1
 }
 
 input::-ms-input-placeholder,
 textarea::-ms-input-placeholder {
-    color: var(--secondary-color)!important;
+    color: var(--secondary-color) !important;
     opacity: 1
 }
 
 input::placeholder,
 textarea::placeholder {
-    color: var(--secondary-color)!important;
+    color: var(--secondary-color) !important;
     opacity: 1
 }
 
@@ -732,8 +732,8 @@ textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus {
 }
 
 .btn-small {
-    padding: .5em 1.3em!important;
-    font-size: .9em!important
+    padding: .5em 1.3em !important;
+    font-size: .9em !important
 }
 
 .btn-group {
