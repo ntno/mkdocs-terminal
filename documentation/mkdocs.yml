@@ -43,6 +43,7 @@ nav:
     - Elements:
       - Blockquotes: 'elements/blockquotes.md'
       - Buttons: 'elements/buttons.md'
+      - Code: 'elements/code.md'
       - Definitions: 'elements/definitions.md'
       - Figures: 'elements/figure.md'
       - Footnotes: 'elements/footnotes.md'
@@ -72,6 +73,8 @@ markdown_extensions:
   - pymdownx.snippets:
       base_path: 
         - docs
+  - pymdownx.highlight:
+      use_pygments: false
 
 plugins:
   - md-to-html
@@ -108,5 +111,14 @@ theme:
     - 404.html
     - about/coverage-report/index.html
 
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/highlight.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/languages/bash.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/languages/javascript.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/languages/java.min.js
+  - overrides/highlight.js
+
 extra_css:
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/default.min.css
   - overrides/extra.css
+              
