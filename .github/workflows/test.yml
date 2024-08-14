@@ -26,6 +26,8 @@ jobs:
         name: (macos) Install Testing Prereqs
         run: |
           brew install tidy-html5
+          tidy --version
+          which tidy
       - name: Install Tox
         run: make install-tox
       - name: Test Build/Package with Tox
