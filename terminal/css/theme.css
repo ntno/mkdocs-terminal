@@ -82,10 +82,3 @@ code::before {
 pre code {
     background-color: var(--code-bg-color);
 }
-
-
-/* fix trailing `>` symbol on blockquotes - https://github.com/Gioni06/terminal.css/pull/36 */
-
-blockquote>*:last-child {
-    margin-bottom: 0;
-}
