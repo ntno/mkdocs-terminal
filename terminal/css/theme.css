@@ -77,8 +77,9 @@ code::before {
 }
 
 
-/* use the `code-bg-color` for `code` blocks */
+/* use the `code-bg-color` and `code-font-color` for `<code>` blocks */
 
 pre code {
     background-color: var(--code-bg-color);
+    color: var(--code-font-color);
 }
