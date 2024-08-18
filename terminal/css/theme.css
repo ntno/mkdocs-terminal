@@ -1,7 +1,7 @@
 /*! Terminal for MkDocs | MIT License | github.com/ntno/mkdocs-terminal */
 
 
-/*! terminal.css 0.7.2  | MIT License | github.com/Gioni06/terminal.css */
+/*! terminal.css 0.7.4  | MIT License | github.com/Gioni06/terminal.css */
 
 body {
     padding-top: 50px;
@@ -52,6 +52,13 @@ a.btn {
 }
 
 
+/* set figcaption paragraph text to the secondary color.  this occurs when using markdown inside the figcaption */
+
+figure>figcaption>p {
+    color: var(--secondary-color);
+}
+
+
 /* ***************************************************************** */
 
 
@@ -77,7 +84,7 @@ pre code {
 }
 
 
-/*! terminal.css | MIT License |  https://github.com/Gioni06/terminal.css/pull/36 */
+/* fix trailing `>` symbol on blockquotes - https://github.com/Gioni06/terminal.css/pull/36 */
 
 blockquote>*:last-child {
     margin-bottom: 0;
