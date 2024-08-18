@@ -19,7 +19,7 @@
     },
     "scripts": {},
     "dependencies": {
-        "terminal.css": "^0.7.2"
+        "terminal.css": "^0.7.4"
     },
     "devDependencies": {},
     "engines": {
