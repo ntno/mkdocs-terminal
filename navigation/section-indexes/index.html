@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.4.2, mkdocs-terminal-4.3.0">
+    <meta name="generator" content="mkdocs-1.6.0, mkdocs-terminal-4.5.0">
      
     
     <meta name="author" content="ntno"> 
@@ -25,8 +25,30 @@
 <link href="../../css/theme.css" rel="stylesheet">
 <link href="../../css/theme.tile_grid.css" rel="stylesheet">
 <link href="../../css/theme.footer.css" rel="stylesheet">
-<!-- default color palette-->
+<!-- default color palette -->
 <link href="../../css/palettes/default.css" rel="stylesheet">
+
+<!-- page layout -->
+<style>
+/* initially set page layout to a one column grid */
+.terminal-mkdocs-main-grid {
+    display: grid;
+    grid-column-gap: 1.4em;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+}
+
+/*  
+*   when side navigation is not hidden, use a two column grid.  
+*   if the screen is too narrow, fall back to the initial one column grid layout.
+*   in this case the main content will be placed under the navigation panel. 
+*/
+@media only screen and (min-width: 70em) {
+    .terminal-mkdocs-main-grid {
+        grid-template-columns: 4fr 9fr;
+    }
+}</style>
+
 
 
     
@@ -916,7 +938,8 @@
         <li><a href="#example-scenario">Example Scenario</a></li><li><a href="#with-section-indexes-feature">With Section Indexes Feature</a></li><li><a href="#without-section-indexes-feature">Without Section Indexes Feature</a></li><li><a href="#setup">Setup</a></li>
         
     </ul>
-</nav></aside>
+</nav>
+</aside>
             <main id="terminal-mkdocs-main-content">
     
     
@@ -994,7 +1017,7 @@
 <aside>
     <p>
         <small>
-            <i>Page last updated 2023-04-15. See revision history on <a href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/navigation/section-indexes.md">GitHub</a>.</i>
+            <i>Page last updated 2024-08-17. See revision history on <a href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/navigation/section-indexes.md">GitHub</a>.</i>
         </small>
     </p>
 </aside>
