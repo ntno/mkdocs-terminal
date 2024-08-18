@@ -16,6 +16,7 @@
     --progress-bar-background: #727578;
     --progress-bar-fill: #151515;
     --code-bg-color: #e8eff2;
+    --code-font-color: var(--font-color);
     --input-style: solid;
     --display-h1-decoration: none;
     --block-background-color: var(--background-color);
