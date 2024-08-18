@@ -1,4 +1,4 @@
-/*! terminal.css 0.7.4 | MIT License | github.com/Gioni06/terminal.css */
+/*! terminal.css 0.7.5 | MIT License | github.com/Gioni06/terminal.css */
 
 :root {
     --global-font-size: 15px;
@@ -110,8 +110,6 @@ ul,
 h1,
 .logo {
     position: relative;
-    display: inline-block;
-    display: table-cell;
     padding: calc(var(--global-space) * 2) 0 calc(var(--global-space) * 2);
     margin: 0;
     overflow: hidden;
@@ -144,7 +142,6 @@ h6 {
 blockquote {
     position: relative;
     padding-left: calc(var(--global-space) * 2);
-    padding-left: 2ch;
     overflow: hidden;
 }
 
@@ -156,6 +153,10 @@ blockquote::after {
     left: 0;
     line-height: var(--global-line-height);
     color: #9ca2ab;
+}
+
+blockquote>*:last-child {
+    margin-bottom: 0;
 }
 
 code {
@@ -210,13 +211,11 @@ pre code {
     font-size: var(--global-font-size);
     font-style: normal;
     font-family: var(--font-stack);
-    color: var(--font-color);
 }
 
 .terminal code {
     font-size: var(--global-font-size);
     font-style: normal;
-    color: var(--font-color);
 }
 
 .terminal-prompt {
@@ -411,7 +410,6 @@ hr {
 
 p {
     margin: 0 0 var(--global-line-height);
-    color: var(--font-color);
 }
 
 .container {
@@ -425,7 +423,7 @@ p {
 }
 
 img {
-    width: 100%;
+    max-width: 100%;
 }
 
 .progress-bar {
@@ -451,7 +449,7 @@ img {
     border: 6px solid transparent;
     border-top-color: var(--progress-bar-fill);
     position: absolute;
-    top: -12px;
+    top: -6px;
     right: -6px;
 }
 
@@ -463,7 +461,7 @@ img {
     white-space: nowrap;
     position: absolute;
     border: 6px solid transparent;
-    top: -38px;
+    top: -32px;
     right: 0;
     transform: translateX(50%);
 }
@@ -493,8 +491,10 @@ table th {
     font-size: 1em;
 }
 
-table thead th {
+table thead tr th {
     font-size: 1em;
+    vertical-align: middle;
+    font-weight: 700;
 }
 
 table tfoot tr th {
@@ -504,11 +504,6 @@ table tfoot tr th {
 table caption {
     font-size: 1em;
     margin: 0 0 1em;
-}
-
-table tbody td:first-child {
-    font-weight: 700;
-    color: var(--secondary-color);
 }
 
 .form {
@@ -529,12 +524,18 @@ input[type="email"],
 input[type="text"],
 input[type="number"],
 input[type="password"],
-input[type="search"] {
+input[type="search"],
+input[type="date"],
+input[type="time"] {
     border: 1px var(--input-style) var(--font-color);
     width: 100%;
     padding: 0.7em 0.5em;
     font-size: 1em;
     font-family: var(--font-stack);
+    /* stylelint-disable */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    /* stylelint-enable */
     appearance: none;
     border-radius: 0;
 }
@@ -544,12 +545,20 @@ input[type="text"]:active,
 input[type="number"]:active,
 input[type="password"]:active,
 input[type="search"]:active,
+input[type="date"]:active,
+input[type="time"]:active,
 input[type="email"]:focus,
 input[type="text"]:focus,
 input[type="number"]:focus,
 input[type="password"]:focus,
-input[type="search"]:focus {
+input[type="search"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus {
     outline: none;
+    /* stylelint-disable */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    /* stylelint-enable */
     appearance: none;
     border: 1px solid var(--font-color);
 }
@@ -558,7 +567,9 @@ input[type="text"]:not(:placeholder-shown):invalid,
 input[type="email"]:not(:placeholder-shown):invalid,
 input[type="password"]:not(:placeholder-shown):invalid,
 input[type="search"]:not(:placeholder-shown):invalid,
-input[type="number"]:not(:placeholder-shown):invalid {
+input[type="number"]:not(:placeholder-shown):invalid,
+input[type="date"]:not(:placeholder-shown):invalid,
+input[type="time"]:not(:placeholder-shown):invalid {
     border-color: var(--error-color);
 }
 
@@ -588,12 +599,34 @@ textarea {
 
 textarea:focus {
     outline: none;
+    /* stylelint-disable */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    /* stylelint-enable */
     appearance: none;
     border: 1px solid var(--font-color);
 }
 
 textarea:not(:placeholder-shown):invalid {
     border-color: var(--error-color);
+}
+
+select {
+    border: 1px var(--input-style) var(--font-color);
+    width: 100%;
+    padding: .7em .5em;
+    font-size: 1em;
+    font-family: var(--font-stack);
+    color: var(--font-color);
+    border-radius: 0;
+    /* stylelint-disable */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    /* stylelint-enable */
+    background-color: var(--background-color);
+    background-image: url("data:image/svg+xml;utf8,<svg fill='currentColor' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right .5em bottom .5em;
 }
 
 input:-webkit-autofill,
@@ -807,7 +840,11 @@ select:-webkit-autofill:focus {
     border-color: var(--primary-color);
 }
 
-@media screen and (width <=960px) {
+
+/* stylelint-disable */
+
+@media screen and (min-width: 960px) {
+    /* stylelint-enable */
     label {
         display: block;
         width: 100%;
@@ -817,13 +854,21 @@ select:-webkit-autofill:focus {
     }
 }
 
-@media screen and (width <=480px) {
+
+/* stylelint-disable */
+
+@media screen and (min-width: 480px) {
+    /* stylelint-enable */
     form {
         width: 100%;
     }
 }
 
-@media only screen and (width >=30em) {
+
+/* stylelint-disable */
+
+@media screen and (min-width: 30rem) {
+    /* stylelint-enable */
     .terminal-nav {
         flex-direction: row;
         align-items: center;
@@ -835,8 +880,7 @@ select:-webkit-autofill:focus {
         margin-top: calc(var(--global-space) * 2);
     }
     .terminal-menu li {
-        margin: 0;
-        margin-right: 2em;
+        margin: 0 2em 0 0;
     }
     .terminal-menu li:last-child {
         margin-right: 0;
@@ -903,6 +947,36 @@ figure {
 figure>figcaption {
     color: var(--secondary-color);
     text-align: center;
+}
+
+.terminal-banner {
+    background-color: var(--font-color);
+    color: var(--invert-font-color);
+    padding: calc(var(--global-space) * 2);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.terminal-banner>.container {
+    max-width: var(--page-width);
+}
+
+.terminal-banner>.container,
+.terminal-banner>.container-fluid {
+    margin: 0 auto;
+    padding: 0;
+}
+
+
+/* stylelint-disable */
+
+@media screen and (min-width: 30rem) {
+    /* stylelint-enable */
+    .terminal-banner {
+        flex-direction: row;
+    }
 }
 
 .hljs {
