@@ -48,7 +48,14 @@ a.btn {
     justify-content: center;
     padding: .65em 2em;
     border-color: var(--error-color);
-    color: var(--error-color);
+}
+
+p.terminal-mkdocs-macro-error-banner {
+    color: var(--font-color);
+}
+
+p.terminal-mkdocs-macro-error-banner>code {
+    color: var(--code-font-color);
 }
 
 
