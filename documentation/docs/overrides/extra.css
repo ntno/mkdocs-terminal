@@ -7,6 +7,9 @@ h4::before {
     white-space: pre;
 }
 
+
+/* sticky side panel - https://github.com/ntno/mkdocs-terminal/issues/140 */
+
 #terminal-mkdocs-side-panel {
     top: calc(var(--global-space) * 4);
     position: sticky;
