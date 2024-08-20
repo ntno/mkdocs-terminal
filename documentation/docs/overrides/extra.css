@@ -11,7 +11,7 @@ h4::before {
 /* sticky side panel - https://github.com/ntno/mkdocs-terminal/issues/140 */
 
 #terminal-mkdocs-side-panel {
-    top: calc(var(--global-space) * 4);
+    top: calc(var(--global-space) * 2);
     position: sticky;
     overflow-y: scroll;
     max-height: 90vh;
