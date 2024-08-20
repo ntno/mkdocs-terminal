@@ -8,7 +8,7 @@ h4::before {
 }
 
 #terminal-mkdocs-side-panel {
-    top: calc(var(--global-space) * 5);
+    top: calc(var(--global-space) * 4);
     position: sticky;
     overflow-y: scroll;
     max-height: 90vh;
