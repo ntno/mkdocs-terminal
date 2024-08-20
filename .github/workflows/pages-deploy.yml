@@ -38,6 +38,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ inputs.tag }}
+          fetch-depth: 0
   call-metadata-workflow:
     needs: [check-out-tag]
     uses: ./.github/workflows/meta.yml 
