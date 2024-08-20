@@ -1,7 +1,7 @@
 /*! Terminal for MkDocs | MIT License | github.com/ntno/mkdocs-terminal */
 
 
-/*! terminal.css 0.7.4  | MIT License | github.com/Gioni06/terminal.css */
+/*! terminal.css 0.7.5  | MIT License | github.com/Gioni06/terminal.css */
 
 body {
     padding-top: 50px;
@@ -48,7 +48,14 @@ a.btn {
     justify-content: center;
     padding: .65em 2em;
     border-color: var(--error-color);
-    color: var(--error-color);
+}
+
+p.terminal-mkdocs-macro-error-banner {
+    color: var(--font-color);
+}
+
+p.terminal-mkdocs-macro-error-banner>code {
+    color: var(--code-font-color);
 }
 
 
@@ -77,15 +84,9 @@ code::before {
 }
 
 
-/* use the `code-bg-color` for `code` blocks */
+/* use the `code-bg-color` and `code-font-color` for `<code>` blocks */
 
 pre code {
     background-color: var(--code-bg-color);
-}
-
-
-/* fix trailing `>` symbol on blockquotes - https://github.com/Gioni06/terminal.css/pull/36 */
-
-blockquote>*:last-child {
-    margin-bottom: 0;
+    color: var(--code-font-color);
 }

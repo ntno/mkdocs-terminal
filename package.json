@@ -1,6 +1,6 @@
 {
     "name": "mkdocs-terminal",
-    "version": "4.5.1",
+    "version": "4.6.0",
     "description": "Terminal.css theme for MkDocs",
     "keywords": [
         "mkdocs",
@@ -19,7 +19,7 @@
     },
     "scripts": {},
     "dependencies": {
-        "terminal.css": "^0.7.4"
+        "terminal.css": "^0.7.5"
     },
     "devDependencies": {},
     "engines": {
