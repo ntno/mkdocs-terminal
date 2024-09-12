@@ -1,4 +1,4 @@
-from tests.utils.html import assert_valid_html
+from tests.utils.html_utils import assert_valid_html
 from tests.interface import page_features, theme_features, theme_plugins
 import pytest
 
