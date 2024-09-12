@@ -7,7 +7,7 @@
 - Currently assumes all non-background colors are foreground colors for the test)
 ## Legend
 - ✅: all WCAG tests passed
-☑️: some WCAG tests passed
+- ☑️: some WCAG tests passed
 - ❌: no WCAG tests passed
 - Symbols link to WCAG api response with tests
 # blueberry.css
