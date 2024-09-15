@@ -27,6 +27,7 @@ nav:
       - '___PyMdown': 'configuration/extensions/pymdown-extensions.md'
       - '___Snippets': 'configuration/extensions/snippets.md'
       - Overrides: 'configuration/overrides/index.md'
+      - '___Highlight.js': 'configuration/overrides/highlightjs.md'
       - '___Blocks': 'configuration/blocks.md'
     - Navigation:
         - Section Indexes: 'navigation/section-indexes.md'
