@@ -58,17 +58,3 @@ echo "hello stars" >> file.txt
 echo "hello moon" >> file.txt
 grep --color "s" file.txt
 ```
-
-```markdown
-    ```
-```
-
-<code>
-```
-</code>
-
-`` foo` `` produces foo`  
-`` `foo `` produces `foo  
-`` ` `` produces single backtick `  
-
-``` ``two backticks`` ``` produces ``two backticks``
