@@ -7,10 +7,12 @@
 
 # Code
 
-A outlined code block can be specified in markdown by putting three backticks (<code>\`\`\`</code>) at the beginning of a line, content on the following lines, and lastly three back ticks at the beginning   in between three backticks.  
+Specify a code block in markdown by enclosing text between three backticks (<code>\`\`\`</code>).  If each of the beginning/closing backtick groups are given their own line, the code block will be rendered with an outlined box (see [Block Examples](#block-examples)).  If the backtick groups are not given their own lines, the code block will be rendered inline (see [Inline Examples](#inline-examples)).
 
 
-## Example - default
+
+## Code Block Examples
+### Default Code Block
 
 <div class="no_hljs">
 ```
@@ -20,24 +22,45 @@ console.log(numbers);
 ```
 </div>
 
-## Example - with HilightJS
+### Default Code Block Markdown
 
+<div class="no_hljs">
+````
 ```
 const numbers = [102, -1, 2];
 numbers.sort((a, b) => a - b);
 console.log(numbers);
 ```
+````
+</div>
 
-## Markdown
-<code class="no_hljs">
-```markdown 
-``` # start the code block with three backticks 
+### Highlighted Code Block
+
+```js
 const numbers = [102, -1, 2];
 numbers.sort((a, b) => a - b);
 console.log(numbers);
-``` # end the code block
-``` 
-</code>
+```
+
+### Highlighted Code Block Markdown
+
+<div class="no_hljs">
+````
+```js
+const numbers = [102, -1, 2];
+numbers.sort((a, b) => a - b);
+console.log(numbers);
+```
+````
+</div>
+
+
+
+
+
+
+
+
 
 
 ## language-specific highlighting
