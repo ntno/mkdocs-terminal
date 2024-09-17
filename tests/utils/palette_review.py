@@ -25,7 +25,7 @@ intro = ('## Steps\n'
          '- Currently assumes all non-background colors are foreground colors for the test)\n')
 legend = ("## Legend\n"
           "- ✅: all WCAG tests passed\n"
-          "☑️: some WCAG tests passed\n"
+          "- ☑️: some WCAG tests passed\n"
           "- ❌: no WCAG tests passed\n"
           "- Symbols link to WCAG api response with tests")
 
