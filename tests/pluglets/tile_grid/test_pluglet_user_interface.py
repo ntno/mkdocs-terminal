@@ -1,5 +1,5 @@
 from terminal.pluglets.tile_grid.util import tile_grid
-from tests.utils.html import assert_valid_html
+from tests.utils.html_utils import assert_valid_html
 from tests.interface import theme_pluglets
 from unittest.mock import patch
 import pytest
