@@ -77,6 +77,7 @@ for p in palettes:
                 try:
                     url = f"https://webaim.org/resources/contrastchecker/?fcolor={y}&bcolor={v}&api"
                     resp = get(url)
+                    url = url.replace("&api", "")
                     grades = resp.json()
                     del grades["ratio"]
                     if all(grade == "pass" for grade in grades.values()):
@@ -84,7 +85,7 @@ for p in palettes:
                     elif any(grade == "pass" for grade in grades.values()):
                         row += f"\n      <td><a href='{url}'>:ballot_box_with_check:</a></td>"
                     else:
-                        row += f"<\n      <td><a href='{url.replace('&api', '')}'>:x:</a></td>"
+                        row += f"<\n      <td><a href='{url}'>:x:</a></td>"
                 except (ConnectionError, ConnectionRefusedError, ConnectionRefusedError):
                     row += f"<\n      <td><a href='{url}'>:no_entry:</a></td>"
             row += "\n    </tr>"
