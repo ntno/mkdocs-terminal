@@ -1,5 +1,5 @@
 from tests.interface import theme_features
-from tests.utils.html_utils import assert_valid_html, ALLOW_EMPTY_ELEMENTS
+from tests.utils.html import assert_valid_html, ALLOW_EMPTY_ELEMENTS
 import pytest
 
 

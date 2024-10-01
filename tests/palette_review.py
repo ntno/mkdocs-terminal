@@ -61,7 +61,7 @@ for p in palettes:
     if len(backgrounds.keys()) < 1 or len(foregrounds.keys()) < 1:
         with open(Path(os.getcwd()) / "tests" / "palette_report.md", "a+") as f:
             f.write(f"\n# {p.name}")
-            f.write("\n- Style does not have enough foregrounds and bakcgrounds to compare.\n")
+            f.write("\n- Style does not have enough foregrounds and backgrounds to compare.\n")
     else:
         backgrounds = {k: v for k, v in sorted(backgrounds.items(), key=lambda item: item[1])}
         foregrounds = {k: v for k, v in sorted(foregrounds.items(), key=lambda item: item[1])}
@@ -84,7 +84,7 @@ for p in palettes:
                     elif any(grade == "pass" for grade in grades.values()):
                         row += f"\n      <td><a href='{url}'>:ballot_box_with_check:</a></td>"
                     else:
-                        row += f"<\n      <td><a href='{url}'>:x:</a></td>"
+                        row += f"<\n      <td><a href='{url.replace('&api', '')}'>:x:</a></td>"
                 except (ConnectionError, ConnectionRefusedError, ConnectionRefusedError):
                     row += f"<\n      <td><a href='{url}'>:no_entry:</a></td>"
             row += "\n    </tr>"

@@ -1,5 +1,5 @@
 from tests.interface import theme_features, page_features
-from tests.utils.html_utils import assert_valid_html
+from tests.utils.html import assert_valid_html
 import pytest
 
 

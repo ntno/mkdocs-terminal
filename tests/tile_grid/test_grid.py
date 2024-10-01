@@ -1,4 +1,4 @@
-from tests.utils.html_utils import assert_valid_html
+from tests.utils.html import assert_valid_html
 from tests.utils.filters import mock_markup_filter
 from tests.interface import theme_plugins
 import pytest

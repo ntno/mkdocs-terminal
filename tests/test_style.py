@@ -1,4 +1,4 @@
-from tests.utils.html_utils import assert_valid_html
+from tests.utils.html import assert_valid_html
 from tests.interface import theme_features
 from tests.utils.filters import MOCK_URL_PATH_PREFIX
 import pytest

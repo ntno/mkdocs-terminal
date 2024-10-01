@@ -1,5 +1,5 @@
 from tests.interface.tile import Tile
-from tests.utils.html_utils import assert_valid_html, tile_has_anchor, tile_has_img
+from tests.utils.html import assert_valid_html, tile_has_anchor, tile_has_img
 from tests.utils.filters import mock_markup_filter
 from tests import defaults
 import pytest
