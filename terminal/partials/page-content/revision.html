@@ -31,6 +31,8 @@
             {%- if config.repo_name == "Bitbucket" -%}
             See revision history on <a href="{{ page.edit_url | replace('mode=edit','mode=read') }}">{{ config.repo_name }}</a>.
             {%- endif -%}
+            {%- if config.repo_name == "Codeberg" -%}
+            See revision history on <a href="{{ page.edit_url | replace('_edit','commits/branch') }}">{{ config.repo_name }}</a>.
             {%- endif -%}
             </i>
         </small>
