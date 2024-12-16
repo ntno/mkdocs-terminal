@@ -138,6 +138,17 @@ class TestRevision():
         assert "<a href=\"" + expected_page_source_url + "\">Bitbucket</a>" in rendered_revision
         assert_valid_html(rendered_revision)
 
+    def test_codeberg_history_link(self, revision_partial, enabled_context):
+        expected_page_source_url = "https://codeberg.org/myUsername/myRepository/commits/main/docs/index.md"
+        enabled_context["page"]["meta"]["revision_date"] = "2023/03/04"
+        enabled_context["page"]["edit_url"] = "https://codeberg.org/myUsername/myRepository/_edit/main/docs/index.md"
+        enabled_context["config"]["repo_name"] = "Codeberg"
+        context_data = enabled_context
+        rendered_revision = revision_partial.render(context_data)
+        assert "Page last updated 2023/03/04. See revision history on" in rendered_revision
+        assert "<a href=\"" + expected_page_source_url + "\">Codeberg</a>" in rendered_revision
+        assert_valid_html(rendered_revision)
+
     def test_last_updated_text_hidden_when_date_disabled_on_page(self, revision_partial, enabled_context):
         enabled_context["page"]["meta"]["hide"] = [page_features.HIDE_REVISION_DATE_ON_PAGE]
         context_data = enabled_context
