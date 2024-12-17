@@ -124,7 +124,7 @@ theme:
 ```
 
 ## Codeberg
-### MkDocs projet in root directory
+### MkDocs project in root directory
 ```yaml
 repo_url: https://codeberg.org/exampleUser/exampleRepository
 edit_url_template: _edit/main/docs/{path}
