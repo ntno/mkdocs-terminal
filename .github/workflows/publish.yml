@@ -70,7 +70,7 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
 
       - name: Set up Python dependencies
-        run: pip install --upgrade build twine
+        run: pip install --upgrade build packaging twine
 
       - name: Build Python package
         run: python -m build
