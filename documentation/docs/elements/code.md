@@ -7,15 +7,13 @@
 
 # Code
 
-Specify code in markdown by enclosing text between three backticks (<code>\`\`\`</code>).  If each beginning/closing backtick group is given its own line, the code block will be rendered with an outlined box.  If the backtick groups are not given their own lines, the code block will be rendered inline.
+Specify code in markdown by enclosing text content between three backticks (<code>\`\`\`</code>).  If each beginning/closing backtick group is given its own line, the code block will be rendered with an outlined box as an independent block.  
 
-## Examples
+If the backtick groups are *not* given their own lines, the code block will be rendered inline.
 
-### Inline Code
+For convenience, inline code blocks can also be specified by enclosing text between one backtick (<code>\`</code>) instead of three.
 
-The ```printf``` and ```echo``` commands can be used to print text to the screen in a shell session.  However, `printf` supports text formatting and `echo` does not.
-
-### Default Code Block
+## Code Block
 
 <div class="no_hljs">
 ```
@@ -25,49 +23,26 @@ console.log(numbers);
 ```
 </div>
 
-### Highlighted Code Block
+## Code Block Markdown
 
-```javascript
+<div class="no_hljs">
+````
+```
 const numbers = [102, -1, 2];
 numbers.sort((a, b) => a - b);
 console.log(numbers);
 ```
+````
+</div>
 
-## Markdown
+## Inline Code
+
+The ```printf``` and ```echo``` commands can be used to print text to the screen in a shell session.  However, `printf` supports text formatting and `echo` does not.
 
 ### Inline Code Markdown
 
-A single backtick can also be used to mark code text inline:
-
+<div class="no_hljs">
 ````
 The ```printf``` and ```echo``` commands can be used to print text to the screen in a shell session.  However, `printf` supports text formatting and `echo` does not.
 ````
-
-### Default Code Block Markdown
-
-<div class="no_hljs">
-````
-```
-const numbers = [102, -1, 2];
-numbers.sort((a, b) => a - b);
-console.log(numbers);
-```
-````
 </div>
-
-### Highlighted Code Block Markdown
-
-The [highlight.js] library can be used to enable language-specific code highlighting.  See [highlight.js override] for instructions.
-
-<div class="no_hljs">
-````
-```javascript
-const numbers = [102, -1, 2];
-numbers.sort((a, b) => a - b);
-console.log(numbers);
-```
-````
-</div>
-
-[highlight.js]: https://highlightjs.org/
-[highlight.js override]: ../../configuration/overrides/highlightjs
