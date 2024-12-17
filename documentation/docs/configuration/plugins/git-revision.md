@@ -122,10 +122,24 @@ theme:
     - revision.history  
 ```
 
+## Codeberg
+### MkDocs projet in root directory
+```yaml
+repo_url: https://codeberg.org/exampleUser/exampleRepository
+edit_url_template: _edit/main/docs/{path}
 
+plugins:
+  - git-revision-date
+
+theme:
+  name: terminal
+  features:
+    - revision.date
+    - revision.history
+```
 
 ## Adding Repository Hosts
-If your repository is not stored on GitHub or Bitbucket and you would like to use this feature please [submit a feature request] on GitHub.  
+If your repository is not stored on GitHub, Bitbucket, or Codeberg and you would like to use this feature please [submit a feature request] on GitHub.  
 
 You can further customize what revision information is included on the page by implementing your own `revision` template block.  See [Blocks] for more information.
 
