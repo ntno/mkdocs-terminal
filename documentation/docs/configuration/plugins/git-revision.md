@@ -69,10 +69,11 @@ The second revision-related theme feature is `revision.history`.  Enabling this 
 </section>
 <br>
 
-Currently the `revision.history` theme feature supports two repository hosts, [GitHub] and [Bitbucket].  See below for example configurations.  
+Currently the `revision.history` theme feature supports three repository hosts: [GitHub], [Bitbucket], and [Codeberg].  See below for example configurations.  
 
 [GitHub]: git-revision.md#github
 [Bitbucket]: git-revision.md#bitbucket
+[Codeberg]: git-revision.md#codeberg
 
 ## GitHub
 
@@ -122,10 +123,24 @@ theme:
     - revision.history  
 ```
 
+## Codeberg
+### MkDocs project in root directory
+```yaml
+repo_url: https://codeberg.org/exampleUser/exampleRepository
+edit_url_template: _edit/main/docs/{path}
 
+plugins:
+  - git-revision-date
+
+theme:
+  name: terminal
+  features:
+    - revision.date
+    - revision.history
+```
 
 ## Adding Repository Hosts
-If your repository is not stored on GitHub or Bitbucket and you would like to use this feature please [submit a feature request] on GitHub.  
+If your repository is not stored on GitHub, Bitbucket, or Codeberg and you would like to use this feature please [submit a feature request] on GitHub.  
 
 You can further customize what revision information is included on the page by implementing your own `revision` template block.  See [Blocks] for more information.
 

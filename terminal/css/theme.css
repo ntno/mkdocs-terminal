@@ -1,7 +1,7 @@
 /*! Terminal for MkDocs | MIT License | github.com/ntno/mkdocs-terminal */
 
 
-/*! terminal.css 0.7.2  | MIT License | github.com/Gioni06/terminal.css */
+/*! terminal.css 0.7.5  | MIT License | github.com/Gioni06/terminal.css */
 
 body {
     padding-top: 50px;
@@ -48,7 +48,21 @@ a.btn {
     justify-content: center;
     padding: .65em 2em;
     border-color: var(--error-color);
-    color: var(--error-color);
+}
+
+p.terminal-mkdocs-macro-error-banner {
+    color: var(--font-color);
+}
+
+p.terminal-mkdocs-macro-error-banner>code {
+    color: var(--code-font-color);
+}
+
+
+/* set figcaption paragraph text to the secondary color.  this occurs when using markdown inside the figcaption */
+
+figure>figcaption>p {
+    color: var(--secondary-color);
 }
 
 
@@ -70,8 +84,9 @@ code::before {
 }
 
 
-/*! terminal.css | MIT License |  https://github.com/Gioni06/terminal.css/pull/36 */
+/* use the `code-bg-color` and `code-font-color` for `<code>` blocks */
 
-blockquote>*:last-child {
-    margin-bottom: 0;
+pre code {
+    background-color: var(--code-bg-color);
+    color: var(--code-font-color);
 }
