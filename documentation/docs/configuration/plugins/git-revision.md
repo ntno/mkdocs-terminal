@@ -139,7 +139,7 @@ theme:
 ```
 
 ## Adding Repository Hosts
-If your repository is not stored on GitHub, Bitbucket or Codeberg and you would like to use this feature please [submit a feature request] on GitHub.  
+If your repository is not stored on GitHub, Bitbucket, or Codeberg and you would like to use this feature please [submit a feature request] on GitHub.  
 
 You can further customize what revision information is included on the page by implementing your own `revision` template block.  See [Blocks] for more information.
 
