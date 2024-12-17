@@ -69,10 +69,11 @@ The second revision-related theme feature is `revision.history`.  Enabling this 
 </section>
 <br>
 
-Currently the `revision.history` theme feature supports two repository hosts, [GitHub] and [Bitbucket].  See below for example configurations.  
+Currently the `revision.history` theme feature supports three repository hosts: [GitHub], [Bitbucket], and [Codeberg].  See below for example configurations.  
 
 [GitHub]: git-revision.md#github
 [Bitbucket]: git-revision.md#bitbucket
+[Codeberg]: git-revision.md#codeberg
 
 ## GitHub
 
@@ -123,7 +124,7 @@ theme:
 ```
 
 ## Codeberg
-### MkDocs projet in root directory
+### MkDocs project in root directory
 ```yaml
 repo_url: https://codeberg.org/exampleUser/exampleRepository
 edit_url_template: _edit/main/docs/{path}
