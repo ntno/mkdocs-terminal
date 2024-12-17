@@ -1,4 +1,5 @@
 <style> 
+    /* the no_hljs CSS class is used in this documentation page to call out the visual difference between code rendered with highlight.js and code rendered with the default styling attributes */
     .no_hljs span { 
         color: var(--global-font-color) !important;
         font-weight: inherit !important;
