@@ -16,8 +16,6 @@ Specify the `highlight.js` javascript and CSS source files.  At a minimum you wi
 ```yaml
 theme:
   name: terminal
-  features:
-    - navigation.side.indexes
 
 extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/highlight.min.js
