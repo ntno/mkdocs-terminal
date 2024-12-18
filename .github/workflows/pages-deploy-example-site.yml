@@ -1,0 +1,31 @@
+name: Deploy Example Site to GitHub Pages
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Docs tag to deploy'
+        required: true
+        type: string
+      mkdocs-terminal-version:
+        description: 'with mkdocs-terminal version'
+        required: false
+        type: string
+      example-site-name:
+        description: 'name of site in ./tests/examples/'
+        required: true
+        type: choice
+        options:
+          - highlightjs
+
+jobs:
+  deploy-highlightjs-example:
+    name: Deploy ${{ inputs.example-site-name }}
+    if: inputs.environment == 'highlightjs'
+    uses: ntno/mkdocs-terminal/.github/workflows/reusable-pages-deploy.yml@main
+    with:
+      tag: ${{ inputs.tag }}
+      mkdocs-terminal-version: ${{ inputs.mkdocs-terminal-version }}
+      example-site-name: 'highlightjs'
+    secrets:
+      GH_DEPLOY_KEY: ${{ secrets.DEPLOY_KEY_HIGHLIGHTJS }}
