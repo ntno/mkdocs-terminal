@@ -1,10 +1,8 @@
-site_url: https://ntno.github.io/mkdocs-terminal
-repo_url: https://github.com/ntno/mkdocs-terminal
+site_name: Terminal Theme with Highlight.js
+site_url: https://ntno.github.io/mkdocs-terminal-example-highlightjs
 copyright: Copyright 2024 Natan Organick, All rights reserved
 site_author: ntno
 
-
-site_name: Terminal Theme with Highlight.js
 nav:
     - Home: 'index.md'
     - Languages: 
