@@ -1,0 +1,48 @@
+name: Reusable Deploy Documentation to GitHub Pages Workflow
+
+on:
+  secrets:
+    GH_DEPLOY_KEY: 
+      description: 'GitHub Deploy Key with write access to the target GitHub Pages repository'
+      required: true
+  workflow_call:
+    inputs:
+      tag:
+        description: 'Docs tag to deploy'
+        required: true
+        type: string
+      mkdocs-terminal-version:
+        description: 'with mkdocs-terminal version'
+        required: false
+        type: string
+      example-site-name:
+        description: 'name of site in ./tests/examples/'
+        required: true
+        type: string
+
+jobs:
+  build-deploy-mkdocs:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag }}
+      - name: Install Explicitly Set mkdocs-terminal Version
+        run: |
+          if [[ "${{ inputs.mkdocs-terminal-version }}" == "" ]]; then
+              echo "no mkdocs-version override specified..."
+          else
+              pip install mkdocs-terminal==${{ inputs.mkdocs-terminal-version }}
+          fi
+      - name: Build MkDocs
+        run: |
+          cd tests/examples
+          make build site="${{ inputs.example-site-name }}"
+          cd -
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          deploy_key: ${{ secrets.GH_DEPLOY_KEY }}
+          external_repository: ntno/mkdocs-terminal-examples-${{ inputs.example-site-name }}
+          publish_dir: ./tests/examples/${{ inputs.example-site-name }}/site
