@@ -1,11 +1,11 @@
 name: Reusable Deploy Documentation to GitHub Pages Workflow
 
 on:
-  secrets:
-    GH_DEPLOY_KEY: 
-      description: 'GitHub Deploy Key with write access to the target GitHub Pages repository'
-      required: true
   workflow_call:
+    secrets:
+      GH_DEPLOY_KEY: 
+        description: 'GitHub Deploy Key with write access to the target GitHub Pages repository'
+        required: true
     inputs:
       tag:
         description: 'Docs tag to deploy'
