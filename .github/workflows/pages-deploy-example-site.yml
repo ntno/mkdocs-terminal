@@ -21,7 +21,7 @@ on:
 jobs:
   deploy-highlightjs-example:
     name: Deploy ${{ inputs.example-site-name }}
-    if: inputs.environment == 'highlightjs'
+    if: inputs.example-site-name == 'highlightjs'
     uses: ntno/mkdocs-terminal/.github/workflows/reusable-pages-deploy.yml@main
     with:
       tag: ${{ inputs.tag }}
