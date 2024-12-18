@@ -44,5 +44,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           deploy_key: ${{ secrets.GH_DEPLOY_KEY }}
-          external_repository: ntno/mkdocs-terminal-examples-${{ inputs.example-site-name }}
+          external_repository: ntno/mkdocs-terminal-example-${{ inputs.example-site-name }}
           publish_dir: ./tests/examples/${{ inputs.example-site-name }}/site
