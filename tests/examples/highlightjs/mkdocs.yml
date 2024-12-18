@@ -1,0 +1,29 @@
+site_name: Terminal Theme with Highlight.js
+site_url: https://ntno.github.io/mkdocs-terminal-example-highlightjs
+copyright: Copyright 2024 Natan Organick, All rights reserved
+site_author: ntno
+
+nav:
+    - Home: 'index.md'
+    - Languages: 
+      - Bash: 'languages/bash.md'
+      - Python: 'languages/python.md'
+      - Javascript: 'languages/javascript.md'
+    
+
+theme:
+  name: terminal
+  features:
+    - navigation.side.indexes
+
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/highlight.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/languages/bash.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/languages/javascript.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/languages/python.min.js
+  - highlight.js
+
+extra_css:
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/default.min.css
+
+              
