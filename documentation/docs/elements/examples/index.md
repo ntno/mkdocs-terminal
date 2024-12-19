@@ -1,5 +1,6 @@
 --8<--
 elements/examples/typography.md
+elements/examples/code.md
 elements/examples/buttons.md
 elements/examples/table.md
 elements/examples/footnotes.md
