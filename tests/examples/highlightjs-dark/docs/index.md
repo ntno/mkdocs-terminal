@@ -17,13 +17,14 @@ Please review the [highlight.js docs] for more information:
 ## Set Up
 ### Add highlight.js
 
-Specify the `highlight.js` javascript and CSS source files.  At a minimum you will need to include the main script `highlight.min.js` and stylesheet `a11y-light.min.css`.  You should also specify language specific scripts as needed.
+Specify the `highlight.js` javascript and CSS source files.  At a minimum you will need to include the main script `highlight.min.js` and stylesheet `a11y-dark.min.css`.  You should also specify language specific scripts as needed.
 
 `mkdocs.yml` excerpt:
 
 ```yaml
 theme:
   name: terminal
+  palette: dark
 
 extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.0/highlight.min.js
@@ -33,7 +34,7 @@ extra_javascript:
   - highlight.js
 
 extra_css:
-  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.0/styles/a11y-light.min.css
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.0/styles/a11y-dark.min.css
 ```
 
 ### Add Custom Highlighter Code
