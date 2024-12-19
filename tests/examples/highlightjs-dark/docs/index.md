@@ -5,12 +5,14 @@ This example site uses the [highlight.js] javascript library to add code highlig
 Please review the [highlight.js docs] for more information:
 
 - [supported languages]
-- [get the latest files from a CDN]
+- [style options]
+- [get the latest files]
 
 [highlight.js]: https://highlightjs.org/
 [highlight.js docs]: https://highlightjs.readthedocs.io/en/latest/readme.html
 [supported languages]: https://highlightjs.readthedocs.io/en/latest/supported-languages.html
-[get the latest files from a CDN]: https://highlightjs.readthedocs.io/en/latest/readme.html#fetch-via-cdn
+[get the latest files]: https://cdnjs.com/libraries/highlight.js
+[style options]: https://highlightjs.org/examples
 
 ## Set Up
 ### Add highlight.js
