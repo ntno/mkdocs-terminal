@@ -39,6 +39,6 @@ extra_javascript:
   - highlight.js
 
 extra_css:
-  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.0/styles/default.min.css
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.0/styles/a11y-light.min.css
 
               
