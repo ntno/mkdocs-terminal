@@ -23,13 +23,30 @@ jobs:
   deploy-example-site:
     name: Deploy ${{ inputs.example-site-name }}
     environment: ${{ inputs.example-site-name }}
-    uses: ntno/mkdocs-terminal/.github/workflows/reusable-pages-deploy.yml@main
-    with:
-      tag: ${{ inputs.tag }}
-      mkdocs-terminal-version: ${{ inputs.mkdocs-terminal-version }}
-      example-site-name: ${{ inputs.example-site-name }}
-    secrets:
-      GH_DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag }}
+      - name: Install Explicitly Set mkdocs-terminal Version
+        run: |
+          if [[ "${{ inputs.mkdocs-terminal-version }}" == "" ]]; then
+              echo "no mkdocs-version override specified..."
+          else
+              pip install mkdocs-terminal==${{ inputs.mkdocs-terminal-version }}
+          fi
+      - name: Build MkDocs
+        run: |
+          cd tests/examples
+          make build site="${{ inputs.example-site-name }}"
+          cd -
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          deploy_key: ${{ secrets.DEPLOY_KEY }}
+          external_repository: ${{ vars.GH_REPOSITORY_OWNER }}/${{ vars.GH_REPOSITORY_NAME }}
+          publish_dir: ./tests/examples/${{ inputs.example-site-name }}/site
 
   deploy-highlightjs-example:
     name: Deploy ${{ inputs.example-site-name }}
