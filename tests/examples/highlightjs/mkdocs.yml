@@ -8,9 +8,9 @@ site_author: ntno
 nav:
     - Home: 'index.md'
     - Languages: 
-      - Bash: 'languages/bash.md'
-      - Python: 'languages/python.md'
-      - Javascript: 'languages/javascript.md'
+      - Bash: 'sample-languages/bash.md'
+      - Python: 'sample-languages/python.md'
+      - Javascript: 'sample-languages/javascript.md'
     
 plugins:
   - git-revision-date
@@ -23,13 +23,13 @@ theme:
     - revision.history
 
 extra_javascript:
-  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/highlight.min.js
-  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/languages/bash.min.js
-  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/languages/javascript.min.js
-  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/languages/python.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.0/highlight.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.0/languages/bash.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.0/languages/javascript.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.0/languages/python.min.js
   - highlight.js
 
 extra_css:
-  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/default.min.css
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.0/styles/default.min.css
 
               
