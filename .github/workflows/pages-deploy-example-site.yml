@@ -17,6 +17,7 @@ on:
         type: choice
         options:
           - highlightjs
+          - highlightjs-dark
 
 jobs:
   deploy-highlightjs-example:
@@ -29,3 +30,14 @@ jobs:
       example-site-name: 'highlightjs'
     secrets:
       GH_DEPLOY_KEY: ${{ secrets.DEPLOY_KEY_HIGHLIGHTJS }}
+
+  deploy-highlightjs-dark-example:
+    name: Deploy ${{ inputs.example-site-name }}
+    if: inputs.example-site-name == 'highlightjs-dark'
+    uses: ntno/mkdocs-terminal/.github/workflows/reusable-pages-deploy.yml@main
+    with:
+      tag: ${{ inputs.tag }}
+      mkdocs-terminal-version: ${{ inputs.mkdocs-terminal-version }}
+      example-site-name: 'highlightjs-dark'
+    secrets:
+      GH_DEPLOY_KEY: ${{ secrets.DEPLOY_KEY_HIGHLIGHTJS_DARK }}
