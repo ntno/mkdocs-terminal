@@ -40,11 +40,11 @@ jobs:
       - name: Build MkDocs
         run: |
           cd tests/examples
-          make build site="${{ inputs.environment-name }}"
+          make build site="${{ vars.EXAMPLE_NAME }}"
           cd -
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           deploy_key: ${{ secrets.DEPLOY_KEY }}
           external_repository: ${{ vars.GH_REPOSITORY_OWNER }}/${{ vars.GH_REPOSITORY_NAME }}
-          publish_dir: ./tests/examples/${{ inputs.environment-name }}/site
+          publish_dir: ./tests/examples/${{ vars.EXAMPLE_NAME }}/site
