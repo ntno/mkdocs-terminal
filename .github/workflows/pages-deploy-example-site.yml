@@ -1,5 +1,15 @@
 name: Deploy Example Site to GitHub Pages
 
+# requires the following environment configuration set up in GitHub Actions
+#
+# secrets:
+#   DEPLOY_KEY - private key with write access to the target GitHub repository
+# variables:
+#   EXAMPLE_NAME - name of the example subfolder in ./tests/examples/; ex: 'highlightjs-dark'
+#   GH_PAGES_URL - URL of target environment; ex: 'https://ntno.github.io/mkdocs-terminal-example-highlightjs-dark/'
+#   GH_REPOSITORY_NAME - name of the target GitHub repository.  target repository must be configured with matching public key.  ex: 'mkdocs-terminal-example-highlightjs-dark'
+#   GH_REPOSITORY_OWNER - owner of the target GitHub repository; ex: 'ntno'
+
 on:
   workflow_dispatch:
     inputs:
@@ -23,7 +33,9 @@ on:
 jobs:
   deploy-example-site:
     name: Deploy ${{ inputs.environment-name }}
-    environment: ${{ inputs.environment-name }}
+    environment: 
+      name: ${{ inputs.environment-name }}
+      url: ${{ vars.GH_PAGES_URL }}
     runs-on: ubuntu-latest
     steps: 
       - name: Checkout
