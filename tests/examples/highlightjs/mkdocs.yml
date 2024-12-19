@@ -1,4 +1,4 @@
-site_name: Terminal Theme with Highlight.js
+site_name: mkdocs-terminal theme with highlight.js
 site_url: https://ntno.github.io/mkdocs-terminal-example-highlightjs
 repo_url: https://github.com/ntno/mkdocs-terminal
 edit_uri_template: https://github.com/ntno/mkdocs-terminal/edit/main/tests/examples/highlightjs/docs/{path}
@@ -6,30 +6,39 @@ copyright: Copyright 2024 Natan Organick, All rights reserved
 site_author: ntno
 
 nav:
-    - Home: 'index.md'
+    - Configuration: 'index.md'
     - Languages: 
-      - Bash: 'languages/bash.md'
-      - Python: 'languages/python.md'
-      - Javascript: 'languages/javascript.md'
+      - Bash: 'sample-languages/bash.md'
+      - Python: 'sample-languages/python.md'
+      - Javascript: 'sample-languages/javascript.md'
     
 plugins:
   - git-revision-date
 
+markdown_extensions:
+  - toc:
+      baselevel: "1"
+      toc_depth: "2-4"
+      permalink: "#"
+      permalink_title: Anchor link to this section for reference
+
 theme:
   name: terminal
   features:
+    - footer.prev_next
+    - navigation.top.search_button.hide
     - navigation.side.indexes
     - revision.date
     - revision.history
 
 extra_javascript:
-  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/highlight.min.js
-  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/languages/bash.min.js
-  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/languages/javascript.min.js
-  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/languages/python.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.0/highlight.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.0/languages/bash.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.0/languages/javascript.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.0/languages/python.min.js
   - highlight.js
 
 extra_css:
-  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/default.min.css
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.0/styles/default.min.css
 
               
