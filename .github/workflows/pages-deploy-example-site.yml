@@ -7,12 +7,13 @@ on:
         description: 'Docs tag to deploy'
         required: true
         type: string
+        default: main
       mkdocs-terminal-version:
         description: 'with mkdocs-terminal version'
         required: false
         type: string
-      example-site-name:
-        description: 'name of site in ./tests/examples/'
+      environment-name:
+        description: 'Name of the environment to deploy'
         required: true
         type: choice
         options:
@@ -20,24 +21,30 @@ on:
           - highlightjs-dark
 
 jobs:
-  deploy-highlightjs-example:
-    name: Deploy ${{ inputs.example-site-name }}
-    if: inputs.example-site-name == 'highlightjs'
-    uses: ntno/mkdocs-terminal/.github/workflows/reusable-pages-deploy.yml@main
-    with:
-      tag: ${{ inputs.tag }}
-      mkdocs-terminal-version: ${{ inputs.mkdocs-terminal-version }}
-      example-site-name: 'highlightjs'
-    secrets:
-      GH_DEPLOY_KEY: ${{ secrets.DEPLOY_KEY_HIGHLIGHTJS }}
-
-  deploy-highlightjs-dark-example:
-    name: Deploy ${{ inputs.example-site-name }}
-    if: inputs.example-site-name == 'highlightjs-dark'
-    uses: ntno/mkdocs-terminal/.github/workflows/reusable-pages-deploy.yml@main
-    with:
-      tag: ${{ inputs.tag }}
-      mkdocs-terminal-version: ${{ inputs.mkdocs-terminal-version }}
-      example-site-name: 'highlightjs-dark'
-    secrets:
-      GH_DEPLOY_KEY: ${{ secrets.DEPLOY_KEY_HIGHLIGHTJS_DARK }}
+  deploy-example-site:
+    name: Deploy ${{ inputs.environment-name }}
+    environment: ${{ inputs.environment-name }}
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag }}
+      - name: Install Explicitly Set mkdocs-terminal Version
+        run: |
+          if [[ "${{ inputs.mkdocs-terminal-version }}" == "" ]]; then
+              echo "no mkdocs-version override specified..."
+          else
+              pip install mkdocs-terminal==${{ inputs.mkdocs-terminal-version }}
+          fi
+      - name: Build MkDocs
+        run: |
+          cd tests/examples
+          make build site="${{ vars.EXAMPLE_NAME }}"
+          cd -
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          deploy_key: ${{ secrets.DEPLOY_KEY }}
+          external_repository: ${{ vars.GH_REPOSITORY_OWNER }}/${{ vars.GH_REPOSITORY_NAME }}
+          publish_dir: ./tests/examples/${{ vars.EXAMPLE_NAME }}/site
