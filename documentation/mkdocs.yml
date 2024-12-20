@@ -48,7 +48,6 @@ nav:
       - Blockquotes: 'elements/blockquotes.md'
       - Buttons: 'elements/buttons.md'
       - Code: 'elements/code.md'
-      - Code, Highlighted: 'elements/code_hilighting.md'
       - Definitions: 'elements/definitions.md'
       - Figures: 'elements/figure.md'
       - Footnotes: 'elements/footnotes.md'
