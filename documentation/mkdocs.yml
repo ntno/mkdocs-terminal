@@ -75,8 +75,6 @@ markdown_extensions:
   - pymdownx.snippets:
       base_path: 
         - docs
-  - pymdownx.highlight:
-      use_pygments: false
 
 plugins:
   - md-to-html
