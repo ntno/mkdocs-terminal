@@ -25,7 +25,7 @@ tiles:
 # Code Hilighting
 
 Code blocks can be highlighted for increased readability.  
-Please note that there are multiple ways of highlighting code in a MkDocs site and some methods conflict with each other.
+Please note that there are multiple ways of highlighting code in a MkDocs site and some methods may conflict with each other.
 
 ## highlight.js
 
