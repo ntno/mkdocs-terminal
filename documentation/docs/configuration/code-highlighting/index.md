@@ -22,5 +22,22 @@ tiles:
 </style>
 
 
+# Code Hilighting
+
+Code blocks can be highlighted for increased readability.  
+Please note that there are multiple ways of highlighting code in a MkDocs site and some methods conflict with each other.
+
+## highlight.js
+
+The [highlight.js] library can be used to enable language-specific code highlighting.  This library works by applying code highlighting to a page after it is loaded in the user's web browser.
+
+Configuration Instructions:  
+
+- [Highlight.js Default](https://ntno.github.io/mkdocs-terminal-example-highlightjs)
+- [Highlight.js Dark](https://ntno.github.io/mkdocs-terminal-example-highlightjs-dark)
+
+[highlight.js]: https://highlightjs.org/
+
+
 [^1]: white background with green strings and brown commands.
 [^2]: black background with bright green strings and orange commands.
