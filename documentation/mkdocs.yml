@@ -17,6 +17,8 @@ nav:
         - Pink: 'configuration/palettes/pink.md'
         - Sans: 'configuration/palettes/sans.md'
         - Sans Dark: 'configuration/palettes/sans-dark.md'
+      - Code Highlighting:
+        - Index: 'configuration/code-highlighting/index.md'
       - Features: 'configuration/features.md'
       - Blocks: 'configuration/blocks.md'
       - Plugins: 'configuration/plugins/index.md'
@@ -43,6 +45,7 @@ nav:
     - Elements:
       - Blockquotes: 'elements/blockquotes.md'
       - Buttons: 'elements/buttons.md'
+      - Code: 'elements/code.md'
       - Definitions: 'elements/definitions.md'
       - Figures: 'elements/figure.md'
       - Footnotes: 'elements/footnotes.md'
