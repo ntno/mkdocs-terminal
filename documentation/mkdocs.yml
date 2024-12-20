@@ -17,6 +17,9 @@ nav:
         - Pink: 'configuration/palettes/pink.md'
         - Sans: 'configuration/palettes/sans.md'
         - Sans Dark: 'configuration/palettes/sans-dark.md'
+      - Code Highlighting:
+        - Index: 'configuration/code-highlighting/index.md'
+        - '___Highlight.js': 'configuration/code-highlighting/highlightjs.md'
       - Features: 'configuration/features.md'
       - Plugins: 'configuration/plugins/index.md'
       - '___Git Revision': 'configuration/plugins/git-revision.md'
@@ -27,8 +30,7 @@ nav:
       - '___PyMdown': 'configuration/extensions/pymdown-extensions.md'
       - '___Snippets': 'configuration/extensions/snippets.md'
       - Overrides: 'configuration/overrides/index.md'
-      - '___Highlight.js': 'configuration/overrides/highlightjs.md'
-      - '___Blocks': 'configuration/blocks.md'
+      - '___Blocks': 'configuration/blocks.md'    
     - Navigation:
         - Section Indexes: 'navigation/section-indexes.md'
         - Table of Contents: 'navigation/toc.md'
@@ -114,14 +116,6 @@ theme:
     - 404.html
     - about/coverage-report/index.html
 
-extra_javascript:
-  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/highlight.min.js
-  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/languages/bash.min.js
-  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/languages/javascript.min.js
-  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/languages/java.min.js
-  - overrides/highlight.js
-
 extra_css:
-  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/default.min.css
   - overrides/extra.css
               
