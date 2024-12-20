@@ -19,7 +19,6 @@ nav:
         - Sans Dark: 'configuration/palettes/sans-dark.md'
       - Code Highlighting:
         - Index: 'configuration/code-highlighting/index.md'
-        - '___Highlight.js': 'configuration/code-highlighting/highlightjs.md'
       - Features: 'configuration/features.md'
       - Plugins: 'configuration/plugins/index.md'
       - '___Git Revision': 'configuration/plugins/git-revision.md'
