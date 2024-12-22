@@ -2,7 +2,7 @@
 
 ## Block Highlighting
 
-Language highlighting can be enabled with `highlight.js` by adding a [supported programming language](https://highlightjs.readthedocs.io/en/latest/supported-languages.html) name directly after the first <code>```</code> grouping in a code block:
+Language highlighting can be enabled with `highlight.js` by adding a [supported programming language](https://highlightjs.readthedocs.io/en/latest/supported-languages.html) name directly after the first <code>```</code> grouping in a Markdown code block:
 
 ```bash
 --8<--
