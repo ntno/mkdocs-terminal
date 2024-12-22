@@ -11,9 +11,6 @@ nav:
       - Bash: 'sample-languages/bash.md'
       - Python: 'sample-languages/python.md'
       - Javascript: 'sample-languages/javascript.md'
-    
-plugins:
-  - git-revision-date
 
 markdown_extensions:
   - toc:
@@ -21,6 +18,9 @@ markdown_extensions:
       toc_depth: "2-4"
       permalink: "#"
       permalink_title: Anchor link to this section for reference
+  - pymdownx.snippets:
+      base_path: 
+        - docs
 
 theme:
   name: terminal
@@ -29,8 +29,6 @@ theme:
     - footer.prev_next
     - navigation.top.search_button.hide
     - navigation.side.indexes
-    - revision.date
-    - revision.history
 
 extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.0/highlight.min.js
