@@ -3,14 +3,9 @@
 Bash language highlighting with HIGHLIGHTING_METHOD_PLACEHOLDER:
 
 ```bash
-#!/bin/bash
-echo "Today is " `date`
-
-echo -e "\nenter the path to a directory"
-read the_path
-
-echo -e "\nfiles and folders: "
-ls $the_path
+--8<--
+sample-languages/scripts/example.sh
+--8<--
 ```
 
 Script adapted from Zaira Hira's ["Bash Scripting Tutorial Linux Shell Script and Command Line For Beginners"](https://www.freecodecamp.org/news/bash-scripting-tutorial-linux-shell-script-and-command-line-for-beginners/)

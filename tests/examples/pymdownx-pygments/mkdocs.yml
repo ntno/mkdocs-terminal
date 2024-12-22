@@ -21,6 +21,9 @@ markdown_extensions:
       toc_depth: "2-4"
       permalink: "#"
       permalink_title: Anchor link to this section for reference
+  - pymdownx.snippets:
+      base_path: 
+        - docs
   - pymdownx.superfences
   - pymdownx.highlight:
       use_pygments: true
