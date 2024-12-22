@@ -2,6 +2,8 @@
 
 TODO - explain what pymdownx Markdown extension and pygments library do
 
+https://pygments.org/languages/
+https://pygments.org/styles/
 ## Set Up
 ### Install TODO
 
