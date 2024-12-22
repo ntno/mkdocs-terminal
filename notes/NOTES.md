@@ -5,7 +5,7 @@
 #### (####) Canis (wolves, dogs, coyotes)
 ## Hideable Components
 In order to hide components on a per-page basis, you need the meta markdown extension
-```mkdocs.yml
+```yaml
 markdown_extensions:
   - meta
 ```
