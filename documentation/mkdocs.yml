@@ -80,12 +80,9 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.highlight:
       use_pygments: true
-      pygments_lang_class: true
-      auto_title: true
       pygments_style: default
       noclasses: true
-      code_attr_on_pre: true
-      
+      auto_title: true
 
 plugins:
   - md-to-html
