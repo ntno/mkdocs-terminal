@@ -1,5 +1,3 @@
-#!/usr/bin/python
- 
 # calculate factorial of n
 def fact(n):
 
@@ -10,8 +8,8 @@ def fact(n):
     # minimum amount of work
     return n * fact(n - 1)
 
-n = 5
 
-# calculate factorial
-factorial = fact(n)
-print(f"{n}! = {factorial}")
+if __name__=="__main__":
+    n = 5
+    factorial = fact(n)
+    print(f"{n}! = {factorial}")
