@@ -67,6 +67,8 @@ markdown_extensions:
   - toc:
       permalink: "#"
       permalink_title: Anchor link to this section for reference
+  # - markdown.extensions.codehilite:
+  #     css_class: highlight
 
   # PyMdown Extensions
   - pymdownx.caret
@@ -75,6 +77,15 @@ markdown_extensions:
   - pymdownx.snippets:
       base_path: 
         - docs
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      use_pygments: true
+      pygments_lang_class: true
+      auto_title: true
+      pygments_style: default
+      noclasses: true
+      code_attr_on_pre: true
+      
 
 plugins:
   - md-to-html

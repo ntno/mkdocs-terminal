@@ -8,7 +8,7 @@ For convenience, inline code blocks can also be specified by enclosing text betw
 
 ## Code Block
 
-```
+```javascript
 const numbers = [102, -1, 2]; 
 numbers.sort((a, b) => a - b);
 console.log(numbers);
@@ -16,8 +16,8 @@ console.log(numbers);
 
 ## Code Block Markdown
 
-````
-```
+````markdown
+```javascript
 const numbers = [102, -1, 2];
 numbers.sort((a, b) => a - b);
 console.log(numbers);
