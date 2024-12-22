@@ -18,7 +18,7 @@ The `:::javascript console.log()` function can be used to print content to the c
 
 ### Inline Markdown
 
-```markdown
+```text
 The `:::javascript console.log()` function can be used to print content to the console:
 ```:::javascript console.log("Hello World")```.
 ```
