@@ -1,6 +1,6 @@
 # Python
 
-Python language highlighting with `highlight.js`:
+Python language highlighting with Language highlighting can be enabled with `highlight.js` by adding a [supported programming language](https://highlightjs.readthedocs.io/en/latest/supported-languages.html) name directly after the first <code>```</code> grouping in a code block:
 
 ```python
 # calculate factorial of n
