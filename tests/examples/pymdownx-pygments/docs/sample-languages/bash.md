@@ -2,17 +2,24 @@
 sample-languages/bash-base.md
 --8<--
 
-## Inline Example
+## Inline Hilighting
 
-Inline language-specific highlighting can be added using the syntax <code>\`\`\`:::LANGUAGE code-snippet\`\`\`</code> or <code>\`:::LANGUAGE code-snippet\`</code>.  
+Inline highlighting can be added by prefixing the code snippet with three colons and the name of the [pygments-supported programming language](https://pygments.org/languages/):
 
-For example to 
-The ```:::bash printf``` and ```:::bash echo``` commands can be used to print text to the screen in a shell session.  However, `:::bash printf` supports text formatting and `:::bash echo` does not.
+```text
+```:::LANGUAGE some code snippet```
+or
+`:::LANGUAGE some code snippet`
+```
 
-Read input interactively from the command line: ```:::bash read the_path```.
+### Example
+
+The `:::bash read` command can be used to read input from STDIN.  Use the array flag `-a` to store the provided word sequence as an array:
+```:::bash read -a my_array <<< "hello world"; echo ${my_array[0]}```.
+
+### Markdown
 
 ```markdown
-The ```:::bash printf``` and ```:::bash echo``` commands can be used to print text to the screen in a shell session.  However, `:::bash printf` supports text formatting and `:::bash echo` does not.
-
-Read input interactively from the command line: ```:::bash read the_path```.
+The `:::bash read` command can be used to read input from STDIN.  Use the array flag `-a` to store the provided word sequence as an array:
+```:::bash read -a my_array <<< "hello world"; echo ${my_array[0]}```.
 ```
