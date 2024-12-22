@@ -29,8 +29,8 @@ update-tag: check-site
 # note the single quotes and \` to escape a backtick
 # ex: make update-code-highlight-example site=highlightjs-dark method-regex='\`highlight.js\`'
 # ex: make update-code-highlight-example site=pymdownx-pygments method-regex='the \`pymdownx\` extension and the default \`pygments\` style set'
-highlightjs_string='Language highlighting can be enabled with \`highlight.js\` by adding a [supported programming language](https://highlightjs.readthedocs.io/en/latest/supported-languages.html) name directly after the first <code>\`\`\`</code> grouping in a code block'
-# pymdownx_string='Language highlighting can be enabled with \`pymdownx\` by adding a [supported programming language](https://pygments.org/languages/) name directly after the first <code>\`\`\`</code> grouping in a code block'
+highlightjs_string='Language highlighting can be enabled with \`highlight.js\` by adding a [supported programming language](https://highlightjs.readthedocs.io/en/latest/supported-languages.html) name directly after the first <code>\`\`\`</code> grouping in a Markdown code block'
+# pymdownx_string='Language highlighting can be enabled with \`pymdownx\` by adding a [supported programming language](https://pygments.org/languages/) name directly after the first <code>\`\`\`</code> grouping in a Markdown code block'
 
 update-code-highlight-example: check-site check-method-regex
 	cp -r template-code-markdown-docs/docs/ $(site)/docs/
