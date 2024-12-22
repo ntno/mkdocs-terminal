@@ -35,3 +35,9 @@ theme:
     - navigation.side.indexes
     - revision.date
     - revision.history
+
+
+extra_css:
+  - mkdocs-terminal_override.css
+
+              

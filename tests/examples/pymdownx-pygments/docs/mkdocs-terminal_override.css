@@ -1,0 +1,4 @@
+:root {
+    --code-bg-color: var(--background-color);
+    --code-font-color: var(--font-color);
+}
