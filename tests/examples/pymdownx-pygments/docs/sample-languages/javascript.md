@@ -1,6 +1,6 @@
 # Javascript
 
-Javascript language highlighting with the `pymdownx` highlight and superfences extensions and the default `pygments` style set:
+Javascript language highlighting with the `pymdownx` extension and the default `pygments` style set:
 
 ```javascript
 let score1 = 2;

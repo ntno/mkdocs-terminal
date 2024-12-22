@@ -1,6 +1,6 @@
 # Python
 
-Python language highlighting with the `pymdownx` highlight and superfences extensions and the default `pygments` style set:
+Python language highlighting with the `pymdownx` extension and the default `pygments` style set:
 
 ```python
 # calculate factorial of n

@@ -1,4 +1,4 @@
-site_name: mkdocs-terminal theme with pymdownx highlight and pygments
+site_name: mkdocs-terminal theme with pymdownx and pygments
 site_url: https://ntno.github.io/mkdocs-terminal-pymdownx-pygments
 repo_url: https://github.com/ntno/mkdocs-terminal
 edit_uri_template: https://github.com/ntno/mkdocs-terminal/edit/main/tests/examples/pymdownx-pygments/docs/{path}

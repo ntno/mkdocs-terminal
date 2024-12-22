@@ -1,6 +1,6 @@
 # Bash
 
-Bash language highlighting with the `pymdownx` highlight and superfences extensions and the default `pygments` style set:
+Bash language highlighting with the `pymdownx` extension and the default `pygments` style set:
 
 ```bash
 #!/bin/bash
