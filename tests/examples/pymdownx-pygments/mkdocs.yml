@@ -1,0 +1,37 @@
+site_name: mkdocs-terminal theme with pymdownx highlight and pygments
+site_url: https://ntno.github.io/mkdocs-terminal-pymdownx-pygments
+repo_url: https://github.com/ntno/mkdocs-terminal
+edit_uri_template: https://github.com/ntno/mkdocs-terminal/edit/main/tests/examples/pymdownx-pygments/docs/{path}
+copyright: Copyright 2024 Natan Organick, All rights reserved
+site_author: ntno
+
+nav:
+    - Configuration: 'index.md'
+    - Languages: 
+      - Bash: 'sample-languages/bash.md'
+      - Python: 'sample-languages/python.md'
+      - Javascript: 'sample-languages/javascript.md'
+    
+plugins:
+  - git-revision-date
+
+markdown_extensions:
+  - toc:
+      baselevel: "1"
+      toc_depth: "2-4"
+      permalink: "#"
+      permalink_title: Anchor link to this section for reference
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      use_pygments: true
+      pygments_style: default
+      noclasses: true
+
+theme:
+  name: terminal
+  features:
+    - footer.prev_next
+    - navigation.top.search_button.hide
+    - navigation.side.indexes
+    - revision.date
+    - revision.history
