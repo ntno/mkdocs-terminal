@@ -26,6 +26,14 @@ update-tag: check-site
 	git tag -d $(site) && git push origin :refs/tags/$(site)
 	git tag $(site) && git push origin $(site)
 
+update-code-highlight-example: check-site check-method-regex
+	cp -r template-code-markdown-docs/docs/ $(site)/docs/
+	find $(site)/docs/ -type f -print0 | xargs -0 sed -i '' s#HIGHLIGHTING_METHOD_PLACEHOLDER#$(method-regex)#g
+
+check-method-regex:
+ifndef site
+	$(error method-regex is not set)
+endif
 
 check-site:
 ifndef site
