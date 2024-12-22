@@ -1,7 +1,7 @@
 # Grid Reference
 Terminal for MkDocs Tile Grid can be further customized using the following configuration options.  These options should be specified in the markdown page's metadata in the same way that `tiles` are specified:
 
-```
+```markdown
 ---
 show_tiles_first: true
 tiles:

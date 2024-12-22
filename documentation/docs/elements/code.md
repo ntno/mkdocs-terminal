@@ -8,7 +8,7 @@ For convenience, inline code blocks can also be specified by enclosing text betw
 
 ## Code Block
 
-```
+```javascript
 const numbers = [102, -1, 2]; 
 numbers.sort((a, b) => a - b);
 console.log(numbers);
@@ -16,8 +16,8 @@ console.log(numbers);
 
 ## Code Block Markdown
 
-````
-```
+````markdown
+```javascript
 const numbers = [102, -1, 2];
 numbers.sort((a, b) => a - b);
 console.log(numbers);
@@ -30,6 +30,6 @@ The ```printf``` and ```echo``` commands can be used to print text to the screen
 
 ### Inline Code Markdown
 
-````
+````markdown
 The ```printf``` and ```echo``` commands can be used to print text to the screen in a shell session.  However, `printf` supports text formatting and `echo` does not.
 ````

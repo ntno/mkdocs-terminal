@@ -11,7 +11,7 @@ This configuration adds the ability to define inline footnotes, which are then
 rendered below all Markdown content of a document. Add the following lines to
 `mkdocs.yml`:
 
-``` yaml
+```yaml
 markdown_extensions:
   - footnotes
 ```

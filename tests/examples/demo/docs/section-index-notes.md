@@ -5,7 +5,7 @@ When section index pages are enabled, documents can be directly attached to
 sections, which is particularly useful for providing overview pages. Add the
 following lines to `mkdocs.yml`:
 
-``` yaml
+```yaml
 theme:
   features:
     - navigation.indexes # (1)!
@@ -26,7 +26,7 @@ In order to link a page to a section, create a new document with the name
 `index.md` in the respective folder, and add it to the beginning of your
 navigation section:
 
-``` yaml
+```yaml
 nav:
   - Section:
     - section/index.md

@@ -42,7 +42,7 @@ Add the markdown file which includes the `tiles` metadata to the site's navigati
 
 *Note*: the page does not need to be visible in the final side navigation menu.  Deeply nested pages can also use the tile grid feature.  
 
-```
+```yaml
 nav:
     - Home: 'index.md'
     - Example Page: 'tile-grid/examples/example-page.md'
@@ -74,7 +74,7 @@ tiles:
 file location: `.`  
 filename: `mkdocs.yml`  
 
-```
+```yaml
 site_name: Tile Grid Demo
 
 nav:
