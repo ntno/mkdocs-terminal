@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Today is " `date`
+echo "Today is " $(date)
 
 echo -e "\nenter the path to a directory"
 read the_path
