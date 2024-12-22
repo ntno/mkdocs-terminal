@@ -26,6 +26,10 @@ markdown_extensions:
       use_pygments: true
       pygments_style: default
       noclasses: true
+      guess_lang: true
+  - pymdownx.inlinehilite:
+      css_class: 'highlight inline-mkdocs-terminal-override'
+      style_plain_text: true
 
 theme:
   name: terminal

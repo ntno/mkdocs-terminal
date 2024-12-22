@@ -18,3 +18,8 @@ Script adapted from Zaira Hira's ["Bash Scripting Tutorial Linux Shell Script an
 ## Inline Example
 
 The ```printf``` and ```echo``` commands can be used to print text to the screen in a shell session.  However, `printf` supports text formatting and `echo` does not.
+
+The ```:::bash printf``` and ```:::bash echo``` commands can be used to print text to the screen in a shell session.  However, `:::bash printf` supports text formatting and `:::bash echo` does not.
+
+
+Read input interactively from the command line: ```:::bash read the_path```.
