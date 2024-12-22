@@ -17,13 +17,13 @@ In addition to simple, monospace styling, Terminal for MkDocs also provides:
 
 terminal.css theme for MkDocs can be installed with `pip`:
 
-``` sh
+```bash
 pip install mkdocs-terminal
 ```
 
 Add the following lines to `mkdocs.yml`:
 
-``` yaml
+```yaml
 theme:
   name: terminal
 ```

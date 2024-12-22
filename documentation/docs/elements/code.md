@@ -30,6 +30,6 @@ The ```printf``` and ```echo``` commands can be used to print text to the screen
 
 ### Inline Code Markdown
 
-````
+````markdown
 The ```printf``` and ```echo``` commands can be used to print text to the screen in a shell session.  However, `printf` supports text formatting and `echo` does not.
 ````
