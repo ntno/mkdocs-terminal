@@ -20,5 +20,4 @@ sample-languages/scripts/example.py
 ```
 ````
 
-
 Script adapted from Palistha Singh's ["How Does Recursion Work? Explained with Code Examples"](https://www.freecodecamp.org/news/what-is-recursion/)
