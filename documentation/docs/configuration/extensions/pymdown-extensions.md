@@ -16,7 +16,7 @@ The [Caret], [Mark], and [Tilde] extensions add the ability to highlight text
 and define subscript and superscript using a simple syntax. Enable them together
 via `mkdocs.yml`:
 
-``` yaml
+```yaml
 markdown_extensions:
   - pymdownx.caret
   - pymdownx.mark
@@ -46,7 +46,7 @@ See reference for usage:
 
 The [Snippets] extension adds the ability to embed content from arbitrary files into a document, including other documents or source files, by using a simple syntax. Enable it via `mkdocs.yml`:
 
-``` yaml
+```yaml
 markdown_extensions:
   - pymdownx.snippets
 ```

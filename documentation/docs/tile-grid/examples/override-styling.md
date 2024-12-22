@@ -52,7 +52,7 @@ To demonstrate how the tile grid's style can be overriden, the following `<style
 - `#grid_123`: sets the tile grid's column widths explicitly  
 
 
-```css
+```html
 <style> 
     .override_border { 
         border: dashed;
