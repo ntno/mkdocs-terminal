@@ -11,7 +11,8 @@ Inline highlighting can be added by prefixing the code snippet with three colons
 or
 `:::LANGUAGE some code snippet`
 ```
-Example:
+
+**Example:**
 
 The `:::bash read` command can be used to read input from STDIN.  Use the array flag `-a` to store the provided word sequence as an array:
 ```:::bash read -a my_array <<< "hello world"; echo ${my_array[0]}```.

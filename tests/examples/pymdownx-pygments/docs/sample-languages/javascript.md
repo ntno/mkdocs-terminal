@@ -11,7 +11,8 @@ Inline highlighting can be added by prefixing the code snippet with three colons
 or
 `:::LANGUAGE some code snippet`
 ```
-Example:
+
+**Example:**
 
 The `:::javascript console.log()` function can be used to print content to the console:
 ```:::javascript console.log("Hello World")```.
