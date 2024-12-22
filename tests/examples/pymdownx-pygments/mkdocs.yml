@@ -1,5 +1,5 @@
 site_name: mkdocs-terminal theme with pymdownx and pygments
-site_url: https://ntno.github.io/mkdocs-terminal-pymdownx-pygments
+site_url: https://ntno.github.io/mkdocs-terminal-example-pymdownx-pygments
 repo_url: https://github.com/ntno/mkdocs-terminal
 edit_uri_template: https://github.com/ntno/mkdocs-terminal/edit/main/tests/examples/pymdownx-pygments/docs/{path}
 copyright: Copyright 2024 Natan Organick, All rights reserved
@@ -21,15 +21,12 @@ markdown_extensions:
   - pymdownx.snippets:
       base_path: 
         - docs
-  - pymdownx.superfences
+  - pymdownx.superfences              # required for pymdownx highlight/inlinehilite
   - pymdownx.highlight:
-      use_pygments: true  
-      pygments_style: default
-      noclasses: true
-      guess_lang: true
-  - pymdownx.inlinehilite:
-      css_class: 'highlight inline-mkdocs-terminal-override'
-      style_plain_text: true
+      use_pygments: true              # style code blocks using the pygments library    
+      pygments_style: default         # use the 'default' builtin pygments style
+      noclasses: true                 # write styles into the HTML style attribute
+  - pymdownx.inlinehilite             # style inline code
 
 theme:
   name: terminal
@@ -37,8 +34,3 @@ theme:
     - footer.prev_next
     - navigation.top.search_button.hide
     - navigation.side.indexes
-
-extra_css:
-  - mkdocs-terminal_override.css
-
-              
