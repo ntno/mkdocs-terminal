@@ -2,7 +2,7 @@
 
 ## Block Highlighting
 
-Bash language highlighting HIGHLIGHTING_METHOD_PLACEHOLDER:
+HIGHLIGHTING_METHOD_PLACEHOLDER:
 
 ```bash
 --8<--

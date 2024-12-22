@@ -2,11 +2,11 @@
 
 ## Block Highlighting
 
-Python language highlighting HIGHLIGHTING_METHOD_PLACEHOLDER:
+HIGHLIGHTING_METHOD_PLACEHOLDER:
 
 ```python
 --8<--
-sample-languages/scripts/example.sh
+sample-languages/scripts/example.py
 --8<--
 ```
 
@@ -15,7 +15,7 @@ sample-languages/scripts/example.sh
 ````markdown
 ```python
 --8<--
-sample-languages/scripts/example.sh
+sample-languages/scripts/example.py
 --8<--
 ```
 ````
