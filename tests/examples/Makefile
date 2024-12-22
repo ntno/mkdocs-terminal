@@ -26,9 +26,12 @@ update-tag: check-site
 	git tag -d $(site) && git push origin :refs/tags/$(site)
 	git tag $(site) && git push origin $(site)
 
+# note the single quotes and \` to escape a backtick
+# ex: make update-code-highlight-example site=highlightjs-dark method-regex='\`highlight.js\`'
+# ex: make update-code-highlight-example site=pymdownx-pygments-default method-regex='the \`pymdownx\` highlight and superfences extensions and the default \`pygments\` style set'
 update-code-highlight-example: check-site check-method-regex
 	cp -r template-code-markdown-docs/docs/ $(site)/docs/
-	find $(site)/docs/ -type f -print0 | xargs -0 sed -i '' s#HIGHLIGHTING_METHOD_PLACEHOLDER#$(method-regex)#g
+	find $(site)/docs/ -type f -print0 | xargs -0 sed -i '' "s#HIGHLIGHTING_METHOD_PLACEHOLDER#$(method-regex)#g"
 
 check-method-regex:
 ifndef site
