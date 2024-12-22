@@ -12,7 +12,7 @@ sample-languages/scripts/example.sh
 
 ### Block Markdown 
 
-````markdown
+````text
 ```bash
 --8<--
 sample-languages/scripts/example.sh

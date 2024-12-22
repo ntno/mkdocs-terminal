@@ -12,7 +12,7 @@ sample-languages/scripts/example.js
 
 ### Block Markdown 
 
-````markdown
+````text
 ```javascript
 --8<--
 sample-languages/scripts/example.js

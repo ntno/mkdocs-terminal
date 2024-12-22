@@ -12,7 +12,7 @@ sample-languages/scripts/example.py
 
 ### Block Markdown 
 
-````markdown
+````text
 ```python
 --8<--
 sample-languages/scripts/example.py
