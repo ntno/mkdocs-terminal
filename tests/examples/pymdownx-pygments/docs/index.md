@@ -1,14 +1,21 @@
-# mkdocs-terminal with pymdownx and pygments
+# mkdocs-terminal with PyMdown and Pygments
 
-TODO - explain what pymdownx Markdown extension and pygments library do
+This example site uses the [Pygments] library and [PyMdown Extensions] to hilight code blocks as they are rendered to HTML during the MkDocs build process.
 
-- https://pygments.org/languages/
-- https://pygments.org/styles/
+Please review the Pygments docs for more information on supported programming languages and available styles:
+
+- [Pygments Supported Languages] 
+- [Pygments Builtin Styles]
+
+[Pygments]: https://pygments.org/
+[PyMdown Extensions]: https://facelessuser.github.io/pymdown-extensions/
+[Pygments Supported Languages]: https://pygments.org/languages/
+[Pygments Builtin Styles]: https://pygments.org/styles/
 
 ## Set Up
-### Install Required Extensions and Libraries
+### Install Pygments and PyMdown
 
-Install [Pygments] (at a minimum version 2.12) and [PyMdown Extensions]:
+Install Pygments (minimum version 2.12) and PyMdown Extensions:
 
 ```text
 mkdocs
@@ -18,10 +25,8 @@ mkdocs-terminal~=4.0
 pygments>=2.12
 pymdown-extensions
 ```
-[Pygments]: https://pygments.org/
-[PyMdown Extensions]: https://facelessuser.github.io/pymdown-extensions/
 
-### Enable Extensions
+### Enable PyMdown Extensions
 
 Enable the pymdownx extensions according to the PyMdown documentation:
 
@@ -31,7 +36,7 @@ Enable the pymdownx extensions according to the PyMdown documentation:
 [PyMdown Highlight]: https://facelessuser.github.io/pymdown-extensions/extensions/highlight/
 [PyMdown InlineHilite]: https://facelessuser.github.io/pymdown-extensions/extensions/inlinehilite/
 
-Note for the configuration used in this example, `pymdownx.superfences` must be enabled.
+**Note:** for the configuration used in this example site, `pymdownx.superfences` must be enabled.
 
 `mkdocs.yml` excerpt:
 
