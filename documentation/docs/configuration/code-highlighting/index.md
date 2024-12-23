@@ -1,28 +1,28 @@
 ---
 show_tiles_first: true
 tiles:
-  - caption: <a id="fnref:1" class="footnote-ref" title="to image description" alt="to Default Highlight.js Bash example description." href="#fn:1">Highlight.js (Default)</a>
-    img_src: ../../img/code-highlighting/default_highlightjs.png
-    tooltip: to Highlight.js Demo Site
-    alt_text: Highlight.js Demo Site
-    link_href: https://ntno.github.io/mkdocs-terminal-example-highlightjs
-    tile_css: image_border
-  - caption: <a id="fnref:2" class="footnote-ref" title="to image description" alt="to Dark Highlight.js Bash example description." href="#fn:2">Highlight.js (Dark)</a>
-    img_src: ../../img/code-highlighting/dark_highlightjs.png
-    tooltip: to Highlight.js Dark Demo Site
-    alt_text: Highlight.js Dark Demo Site
-    link_href: https://ntno.github.io/mkdocs-terminal-example-highlightjs-dark
-  - caption: <a id="fnref:3" class="footnote-ref" title="to image description" alt="to Default PyMdown + Pygments Bash example description." href="#fn:3">PyMdown + Pygments (Default)</a>
+  - caption: <a id="fnref:1" class="footnote-ref" title="to image description" alt="to Default PyMdown + Pygments Bash example description." href="#fn:1">PyMdown + Pygments (Default)</a>
     img_src: ../../img/code-highlighting/default_terminal_default_pygments.png
     tooltip: to PyMdown + Pygments Demo Site
     alt_text: PyMdown + Pygments Demo Site
     link_href: https://ntno.github.io/mkdocs-terminal-example-pymdown-pygments
     tile_css: image_border
-  - caption: <a id="fnref:4" class="footnote-ref" title="to image description" alt="to Dark PyMdown + Pygments Bash example description." href="#fn:4">PyMdown + Pygments (Dark)</a>
+  - caption: <a id="fnref:2" class="footnote-ref" title="to image description" alt="to Dark PyMdown + Pygments Bash example description." href="#fn:2">PyMdown + Pygments (Dark)</a>
     img_src: ../../img/code-highlighting/dark_terminal_github-dark_pygments.png
     tooltip: to PyMdown + Pygments Dark Demo Site
     alt_text: PyMdown + Pygments Dark Demo Site
     link_href: https://ntno.github.io/mkdocs-terminal-example-pymdown-pygments-dark
+  - caption: <a id="fnref:3" class="footnote-ref" title="to image description" alt="to Default Highlight.js Bash example description." href="#fn:3">Highlight.js (Default)</a>
+    img_src: ../../img/code-highlighting/default_highlightjs.png
+    tooltip: to Highlight.js Demo Site
+    alt_text: Highlight.js Demo Site
+    link_href: https://ntno.github.io/mkdocs-terminal-example-highlightjs
+    tile_css: image_border
+  - caption: <a id="fnref:4" class="footnote-ref" title="to image description" alt="to Dark Highlight.js Bash example description." href="#fn:4">Highlight.js (Dark)</a>
+    img_src: ../../img/code-highlighting/dark_highlightjs.png
+    tooltip: to Highlight.js Dark Demo Site
+    alt_text: Highlight.js Dark Demo Site
+    link_href: https://ntno.github.io/mkdocs-terminal-example-highlightjs-dark
 ---
 <style>
   .image_border a img {
@@ -50,7 +50,8 @@ Configuration Instructions:
 [highlight.js]: https://highlightjs.org/
 
 
-[^1]: white background with green strings and brown commands.
-[^2]: black background with bright green strings and orange commands.
-[^3]: light blue background with red strings and green commands.
-[^4]: dark grey background with light blue strings and white commands.
+
+[^1]: light blue background with red strings and green commands.
+[^2]: dark grey background with light blue strings and white commands.
+[^3]: white background with green strings and brown commands.
+[^4]: black background with bright green strings and orange commands.
