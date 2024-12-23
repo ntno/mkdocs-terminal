@@ -18,6 +18,11 @@ tiles:
     alt_text: PyMdown + Pygments Demo Site
     link_href: https://ntno.github.io/mkdocs-terminal-example-pymdown-pygments
     tile_css: image_border
+  - caption: <a id="fnref:4" class="footnote-ref" title="to image description" alt="to Dark PyMdown + Pygments Bash example description." href="#fn:4">PyMdown + Pygments (Dark)</a>
+    img_src: ../../img/code-highlighting/dark_terminal_github-dark_pygments.png
+    tooltip: to PyMdown + Pygments Dark Demo Site
+    alt_text: PyMdown + Pygments Dark Demo Site
+    link_href: https://ntno.github.io/mkdocs-terminal-example-pymdown-pygments-dark
 ---
 <style>
   .image_border a img {
@@ -48,3 +53,4 @@ Configuration Instructions:
 [^1]: white background with green strings and brown commands.
 [^2]: black background with bright green strings and orange commands.
 [^3]: light blue background with red strings and green commands.
+[^4]: dark grey background with light blue strings and white commands.
