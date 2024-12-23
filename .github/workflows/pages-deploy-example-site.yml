@@ -30,6 +30,7 @@ on:
           - highlightjs
           - highlightjs-dark
           - pymdown-pygments
+          - pymdown-pygments-dark
 
 jobs:
   deploy-example-site:

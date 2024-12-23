@@ -36,6 +36,7 @@ update-code-highlight-example: check-site check-method-regex
 
 update-all-highlight-examples: 
 	$(MAKE) update-code-highlight-example site=pymdown-pygments method-regex=$(pymdownx_string)
+	$(MAKE) update-code-highlight-example site=pymdown-pygments-dark method-regex=$(pymdownx_string)	
 	$(MAKE) update-code-highlight-example site=highlightjs method-regex=$(highlightjs_string)
 	$(MAKE) update-code-highlight-example site=highlightjs-dark method-regex=$(highlightjs_string)
 
