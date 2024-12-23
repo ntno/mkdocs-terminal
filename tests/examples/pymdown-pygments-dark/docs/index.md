@@ -42,12 +42,12 @@ Enable the pymdownx extensions according to the PyMdown documentation:
 
 ```yaml
 markdown_extensions:
-  - pymdownx.superfences         # required extension
+  - pymdownx.superfences          # required extension
   - pymdownx.highlight:
-      use_pygments: true         # use pygments library    
-      pygments_style: monokai    # use 'monokai' style
-      noclasses: true            # update HTML style attr
-  - pymdownx.inlinehilite        # style inline code
+      use_pygments: true          # use pygments library    
+      pygments_style: github-dark # use 'github-dark' style
+      noclasses: true             # update HTML style attr
+  - pymdownx.inlinehilite         # style inline code
 
 theme:
   name: terminal
