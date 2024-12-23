@@ -4,7 +4,7 @@ sample-languages/python-base.md
 
 ## Inline Hilighting
 
-Inline highlighting can be added by prefixing the code snippet with three colons and the name of the [pygments-supported programming language](https://pygments.org/languages/):
+Inline highlighting can be added by prefixing the code snippet with three colons and the name of the [supported programming language](https://pygments.org/languages/):
 
 ```text
 ```:::LANGUAGE some code snippet```
