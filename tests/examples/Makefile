@@ -35,7 +35,7 @@ update-code-highlight-example: check-site check-method-regex
 	find $(site)/docs/ -type f -print0 | xargs -0 sed -i '' "s#HIGHLIGHTING_METHOD_PLACEHOLDER#$(method-regex)#g"
 
 update-all-highlight-examples: 
-	$(MAKE) update-code-highlight-example site=pymdownx-pygments method-regex=$(pymdownx_string)
+	$(MAKE) update-code-highlight-example site=pymdown-pygments method-regex=$(pymdownx_string)
 	$(MAKE) update-code-highlight-example site=highlightjs method-regex=$(highlightjs_string)
 	$(MAKE) update-code-highlight-example site=highlightjs-dark method-regex=$(highlightjs_string)
 
