@@ -1,5 +1,6 @@
 ---
 show_tiles_first: true
+grid_id: "grid_code_hilighting_options"
 tiles:
   - caption: <a id="fnref:1" class="footnote-ref" title="to image description" alt="to Default PyMdown + Pygments Bash example description." href="#fn:1">PyMdown + Pygments (Default)</a>
     img_src: ../../img/code-highlighting/default_terminal_default_pygments.png
@@ -29,6 +30,13 @@ tiles:
     border: solid;
     border-width: thin;
     border-color: var(--secondary-color);
+  }
+
+  #grid_code_hilighting_options {
+    grid-template-columns: 300px 300px;
+    grid-row-gap: 1em;
+    justify-content: space-evenly;
+    justify-items: center;
   }
 </style>
 
