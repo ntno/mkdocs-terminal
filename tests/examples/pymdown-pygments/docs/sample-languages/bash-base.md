@@ -2,7 +2,7 @@
 
 ## Block Highlighting
 
-Language highlighting can be enabled with `pymdownx` by adding a [supported programming language](https://pygments.org/languages/) name directly after the first <code>```</code> grouping in a Markdown code block:
+Language highlighting can be enabled with PyMdown and Pygments by adding a [supported programming language](https://pygments.org/languages/) name directly after the first <code>```</code> grouping in a Markdown code block:
 
 ```bash
 --8<--
