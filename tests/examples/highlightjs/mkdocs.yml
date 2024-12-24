@@ -9,6 +9,7 @@ nav:
     - Configuration: 'index.md'
     - Languages: 
       - Bash: 'sample-languages/bash.md'
+      - Cobol: 'sample-languages/cobol.md'
       - Python: 'sample-languages/python.md'
       - Javascript: 'sample-languages/javascript.md'
 
@@ -21,6 +22,7 @@ markdown_extensions:
   - pymdownx.snippets:
       base_path: 
         - docs
+  - pymdownx.blocks.definition
 
 theme:
   name: terminal
@@ -31,12 +33,8 @@ theme:
 
 extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.0/highlight.min.js
-  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.0/languages/bash.min.js
-  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.0/languages/javascript.min.js
-  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.0/languages/python.min.js
-  - highlight.js
+  - https://unpkg.com/highlightjs-cobol/dist/cobol.min.js
+  - add_hljs_highlight.js
 
 extra_css:
   - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.0/styles/a11y-light.min.css
-
-              
