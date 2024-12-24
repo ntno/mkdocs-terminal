@@ -27,7 +27,7 @@ update-tag: check-site
 	git tag $(site) && git push origin $(site)
 
 # note the single quotes and \` to escape a backtick
-highlightjs_string='Language highlighting can be enabled with \`highlight.js\` by adding a [supported programming language](https://highlightjs.readthedocs.io/en/latest/supported-languages.html) name directly after the first <code>\`\`\`</code> grouping in a Markdown code block'
+highlightjs_string='Language highlighting can be enabled with Highlight.js by adding a [supported programming language](https://highlightjs.readthedocs.io/en/latest/supported-languages.html) name directly after the first <code>\`\`\`</code> grouping in a Markdown code block'
 pymdownx_string='Language highlighting can be enabled with PyMdown and Pygments by adding a [supported programming language](https://pygments.org/languages/) name directly after the first <code>\`\`\`</code> grouping in a Markdown code block'
 
 update-code-highlight-example: check-site check-method-regex
