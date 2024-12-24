@@ -20,4 +20,4 @@ sample-languages/scripts/example.cbl
 ```
 ````
 
-Script adapted from Yvan Scher's ["How to Use Variables and Data Types in JavaScript – Explained With Code Examples"](https://medium.com/@yvanscher/7-cobol-examples-with-explanations-ae1784b4d576)
+Script adapted from Yvan Scher's ["7 cobol examples with explanations"](https://medium.com/@yvanscher/7-cobol-examples-with-explanations-ae1784b4d576)
