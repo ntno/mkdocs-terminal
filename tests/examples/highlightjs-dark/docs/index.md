@@ -41,17 +41,20 @@ Add the Highlight.js javascript library file(s) to your `mkdocs.yml`:
 highlight.min.js
 
 - **Required.** the core Highlight.js library logic and highlighting instructions for ~40 common programming languages
-
+<br>
+<br>
 
 add_hljs_highlight.js
 
 - **Required.** a small script which uses the Highlight.js library to hilight code blocks once an HTML page is loaded in the browser (see [Add Highlighter Code](index.md#add-highlighter-code))
-
+<br>
+<br>
 
 LANGUAGE.min.js
 
 - **Optional.** highlighting instructions for any language not included in the core library
-
+<br>
+<br>
 ///
 
 #### CSS files
