@@ -10,7 +10,7 @@ nav:
     - Languages: 
       - Bash: 'sample-languages/bash.md'
       - Cobol: 'sample-languages/cobol.md'
-      - Javascript: 'sample-languages/javascript.md'      
+      - Javascript: 'sample-languages/javascript.md'
       - Python: 'sample-languages/python.md'
 
 markdown_extensions:
