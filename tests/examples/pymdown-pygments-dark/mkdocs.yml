@@ -9,8 +9,9 @@ nav:
     - Configuration: 'index.md'
     - Languages: 
       - Bash: 'sample-languages/bash.md'
-      - Python: 'sample-languages/python.md'
+      - Cobol: 'sample-languages/cobol.md'
       - Javascript: 'sample-languages/javascript.md'
+      - Python: 'sample-languages/python.md'
 
 markdown_extensions:
   - toc:
