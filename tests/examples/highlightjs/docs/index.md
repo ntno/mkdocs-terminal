@@ -1,15 +1,15 @@
-# mkdocs-terminal with highlight.js
+# mkdocs-terminal with Highlight.js
 
-This example site uses the [highlight.js] javascript library to add code highlighting to a page after it is loaded in the user's web browser.
+This example site uses the [Highlight.js] javascript library to add code highlighting to a page after it is loaded in the user's web browser.
 
-Please review the [highlight.js docs] for more information:
+Please review the [Highlight.js docs] for more information:
 
 - [supported languages]
 - [style options]
 - [get the latest files]
 
-[highlight.js]: https://highlightjs.org/
-[highlight.js docs]: https://highlightjs.readthedocs.io/en/latest/readme.html
+[Highlight.js]: https://highlightjs.org/
+[Highlight.js docs]: https://highlightjs.readthedocs.io/en/latest/readme.html
 [supported languages]: https://highlightjs.readthedocs.io/en/latest/supported-languages.html
 [get the latest files]: https://cdnjs.com/libraries/highlight.js
 [style options]: https://highlightjs.org/examples
@@ -18,7 +18,7 @@ Please review the [highlight.js docs] for more information:
 
 ### Add Highlighter Code
 
-Create a javascript file which will trigger the `highlight.js` library to highlight code blocks.  
+Create a javascript file which will trigger the Highlight.js library to highlight code blocks.  
 
 Save the file in your MkDocs docs folder and reference it in the `extra_javascript` section of `mkdocs.yml`:
 
@@ -32,20 +32,20 @@ function hljs_highlight() {
 
 For this example site the above javascript code is saved to `docs/add_hljs_highlight.js`.
 
-### Add highlight.js Library
+### Add Highlight.js Library
 #### javascript files
 
-Add the `highlight.js` javascript library file(s) to your `mkdocs.yml`:
+Add the Highlight.js javascript library file(s) to your `mkdocs.yml`:
 
 /// define
 highlight.min.js
 
-- **Required.** the core `highlight.js` library logic and highlighting instructions for ~40 common programming languages
+- **Required.** the core Highlight.js library logic and highlighting instructions for ~40 common programming languages
 
 
 add_hljs_highlight.js
 
-- **Required.** a small script which uses the `hilight.js` library to hilight code blocks once an HTML page is loaded in the browser (see [Add Highlighter Code](index.md#add-highlighter-code))
+- **Required.** a small script which uses the Highlight.js library to hilight code blocks once an HTML page is loaded in the browser (see [Add Highlighter Code](index.md#add-highlighter-code))
 
 
 LANGUAGE.min.js
@@ -56,7 +56,9 @@ LANGUAGE.min.js
 
 #### CSS files
 
-Terminal for MkDocs comes with built-in CSS styling for `hilight.js`.  This means that you don't have to specify an external stylesheet for code hilighting when you use `highlight.js`.  However if you prefer one of the community `hilight.js` [style options] you can specify it in the `extra_css` attribute in `mkdocs.yml`:
+Terminal for MkDocs comes with built-in CSS styling for Highlight.js.  This means that you don't have to specify an external stylesheet for code hilighting when you use Highlight.js.
+
+If you prefer one of the community Highlight.js [style options] you can specify it in the `extra_css` attribute in `mkdocs.yml`:
 
 ```yaml
 extra_css:
