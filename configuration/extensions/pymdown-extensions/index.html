@@ -978,7 +978,7 @@
     <ul>
         <li><a href="#pymdown-extensions">PyMdown Extensions</a></li>
         <li><a href="#suggested-pymdown-extensions">Suggested PyMdown Extensions</a></li>
-        <li><a href="#caret-mark-tilde">Caret, Mark &amp; Tilde</a></li><li><a href="#snippets">Snippets</a></li><li><a href="#credit">Credit</a></li>
+        <li><a href="#caret-mark-tilde">Caret, Mark &amp; Tilde</a></li><li><a href="#snippets">Snippets</a></li><li><a href="#superfences">SuperFences</a></li><li><a href="#highlight-and-inlinehilite">Highlight and InlineHilite</a></li><li><a href="#credit">Credit</a></li>
         
     </ul>
 </nav>
@@ -1029,6 +1029,23 @@ documentation</a> for more information.</p>
 <ul>
 <li><a href="../snippets/">Adding Snippets</a></li>
 </ul>
+<h2 id="superfences">SuperFences<a class="headerlink" href="#superfences" title="Anchor link to this section for reference">#</a></h2>
+<p>The <a href="https://facelessuser.github.io/pymdown-extensions/extensions/superfences/">SuperFences</a> extension allows fenced blocks to be nested inside block quotes, lists, or other block elements.  Enable it via <code>mkdocs.yml</code>:</p>
+<pre><code class="language-yaml">markdown_extensions:
+  - pymdownx.superfences
+</code></pre>
+<p>This extension is incompatible with the Python Markdown extension <code>markdown.extensions.fenced_code</code>.</p>
+<h2 id="highlight-and-inlinehilite">Highlight and InlineHilite<a class="headerlink" href="#highlight-and-inlinehilite" title="Anchor link to this section for reference">#</a></h2>
+<p>The <a href="https://facelessuser.github.io/pymdown-extensions/extensions/highlight/">Highlight</a> and <a href="https://facelessuser.github.io/pymdown-extensions/extensions/inlinehilite/">InlineHilite</a> extensions can be used to highlight code blocks.  If used with the <a href="#superfences">PyMdown SuperFences</a> extension line numbers can be added as well.  Enable them via <code>mkdocs.yml</code>:</p>
+<pre><code class="language-yaml">markdown_extensions:
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+</code></pre>
+<p>See reference for recommended configuration options:</p>
+<ul>
+<li><a href="../../code-highlighting/#pymdown-and-pygments">Code Highlighting &gt; PyMdown and Pygments</a></li>
+</ul>
 <h1 id="credit">Credit<a class="headerlink" href="#credit" title="Anchor link to this section for reference">#</a></h1>
 <p>This documentation page is based on squidfunk's <a href="https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown-extensions/">Material for MkDocs Pymdown Extension</a> documentation.</p>
 </section>
@@ -1041,7 +1058,7 @@ documentation</a> for more information.</p>
 <aside>
     <p>
         <small>
-            <i>Page last updated 2024-12-22. See revision history on <a href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/configuration/extensions/pymdown-extensions.md">GitHub</a>.</i>
+            <i>Page last updated 2024-12-24. See revision history on <a href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/configuration/extensions/pymdown-extensions.md">GitHub</a>.</i>
         </small>
     </p>
 </aside>
