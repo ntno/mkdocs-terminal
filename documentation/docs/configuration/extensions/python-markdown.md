@@ -14,7 +14,7 @@ Terminal for MkDocs is compatible with some of the [Python Markdown] extensions.
 
 The [Attribute Lists] extension helps to add HTML attributes and CSS classes to Markdown inline and block-level elements. Enable it via `mkdocs.yml`:
 
-``` yaml
+```yaml
 markdown_extensions:
   - attr_list
 ```
@@ -34,7 +34,7 @@ No configuration options are available. See reference for usage:
 
 The [Definition Lists] extension adds a Markdown syntax for definition lists (more commonly known as [description lists]). Enable it via `mkdocs.yml`:
 
-``` yaml
+```yaml
 markdown_extensions:
   - def_list
 ```
@@ -51,7 +51,7 @@ No configuration options are available. See reference for usage:
 
 The [Footnotes] extension enables inline footnotes which are then rendered below all of a document's Markdown content.  Enable it via `mkdocs.yml`:
 
-``` yaml
+```yaml
 markdown_extensions:
   - footnotes
 ```
@@ -70,7 +70,7 @@ See reference for usage:
 The [Markdown in HTML] extension allows for writing Markdown inside of HTML, which is useful for wrapping Markdown content with custom elements. Enable it
 via `mkdocs.yml`:
 
-``` yaml
+```yaml
 markdown_extensions:
   - md_in_html
 ```
@@ -93,7 +93,7 @@ No configuration options are available. See reference for usage:
 
 The [Table of Contents] extension automatically generates a table of contents from a document which Terminal for MkDocs will render as part of the resulting page. It can be configured via `mkdocs.yml`:
 
-``` yaml
+```yaml
 markdown_extensions:
   - toc:
       permalink: "#"
@@ -134,7 +134,7 @@ See reference for usage:
 
 The [Tables] extension adds a Markdown syntax for data tables.  It is enabled by default but you can specify it explicitly in `mkdocs.yml`:
 
-``` yaml
+```yaml
 markdown_extensions:
   - tables
 ```

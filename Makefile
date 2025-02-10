@@ -36,7 +36,7 @@ serve-local-theme:
 #########################################################
 
 install-build-requirements:
-	pip install --upgrade build
+	pip install --upgrade build packaging
 
 build-pip-dist:
 	python -m build --outdir ./dist

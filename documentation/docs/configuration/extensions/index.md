@@ -44,7 +44,7 @@ Extensions are enabled in the MkDocs configuration file.  See below for two exam
 
 The minimal configuration is a good starting point for when you're using MkDocs for the first time.  You can explore the suggested extensions and gradually add extensions as needed:
 
-``` yaml
+```yaml
 markdown_extensions:
   # Python Markdown  
   - attr_list
@@ -59,7 +59,7 @@ markdown_extensions:
 The recommended configuration enables all Markdown-related features of Terminal for MkDocs
 and is great for experienced users bootstrapping a new documentation project:
 
-``` yaml
+```yaml
 markdown_extensions:
   # Python Markdown  
   - attr_list

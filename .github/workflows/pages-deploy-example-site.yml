@@ -1,0 +1,64 @@
+name: Deploy Example Site to GitHub Pages
+
+# requires the following environment configuration set up in GitHub Actions
+#
+# secrets:
+#   DEPLOY_KEY - private key with write access to the target GitHub repository
+# variables:
+#   EXAMPLE_NAME - name of the example subfolder in ./tests/examples/; ex: 'highlightjs-dark'
+#   GH_PAGES_URL - URL of target environment; ex: 'https://ntno.github.io/mkdocs-terminal-example-highlightjs-dark/'
+#   GH_REPOSITORY_NAME - name of the target GitHub repository.  target repository must be configured with matching public key.  ex: 'mkdocs-terminal-example-highlightjs-dark'
+#   GH_REPOSITORY_OWNER - owner of the target GitHub repository; ex: 'ntno'
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Docs tag to deploy'
+        required: true
+        type: string
+        default: main
+      mkdocs-terminal-version:
+        description: 'with mkdocs-terminal version'
+        required: false
+        type: string
+      environment-name:
+        description: 'Name of the environment to deploy'
+        required: true
+        type: choice
+        options:
+          - highlightjs
+          - highlightjs-dark
+          - pymdown-pygments
+          - pymdown-pygments-dark
+
+jobs:
+  deploy-example-site:
+    name: Deploy ${{ inputs.environment-name }}
+    environment: 
+      name: ${{ inputs.environment-name }}
+      url: ${{ vars.GH_PAGES_URL }}
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag }}
+      - name: Install Explicitly Set mkdocs-terminal Version
+        run: |
+          if [[ "${{ inputs.mkdocs-terminal-version }}" == "" ]]; then
+              echo "no mkdocs-version override specified..."
+          else
+              pip install mkdocs-terminal==${{ inputs.mkdocs-terminal-version }}
+          fi
+      - name: Build MkDocs
+        run: |
+          cd tests/examples
+          make build site="${{ vars.EXAMPLE_NAME }}"
+          cd -
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          deploy_key: ${{ secrets.DEPLOY_KEY }}
+          external_repository: ${{ vars.GH_REPOSITORY_OWNER }}/${{ vars.GH_REPOSITORY_NAME }}
+          publish_dir: ./tests/examples/${{ vars.EXAMPLE_NAME }}/site

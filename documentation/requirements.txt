@@ -1,9 +1,9 @@
 mkdocs
-mkdocs-terminal~=4.3
+mkdocs-terminal~=4.5
 
 # Python Markdown Extensions
-pygments>=2.14
-pymdown-extensions>=9.9
+pygments>=2.18
+pymdown-extensions>=10.12
 
 # MkDocs Plugins
 mkdocs-git-revision-date-plugin

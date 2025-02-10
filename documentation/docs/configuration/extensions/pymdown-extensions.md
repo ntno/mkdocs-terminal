@@ -16,7 +16,7 @@ The [Caret], [Mark], and [Tilde] extensions add the ability to highlight text
 and define subscript and superscript using a simple syntax. Enable them together
 via `mkdocs.yml`:
 
-``` yaml
+```yaml
 markdown_extensions:
   - pymdownx.caret
   - pymdownx.mark
@@ -46,7 +46,7 @@ See reference for usage:
 
 The [Snippets] extension adds the ability to embed content from arbitrary files into a document, including other documents or source files, by using a simple syntax. Enable it via `mkdocs.yml`:
 
-``` yaml
+```yaml
 markdown_extensions:
   - pymdownx.snippets
 ```
@@ -62,6 +62,37 @@ See reference for usage:
 - [Adding Snippets]
 
   [Adding Snippets]: ./snippets.md
+
+## SuperFences
+
+The [SuperFences] extension allows fenced blocks to be nested inside block quotes, lists, or other block elements.  Enable it via `mkdocs.yml`:
+
+```yaml
+markdown_extensions:
+  - pymdownx.superfences
+```
+
+This extension is incompatible with the Python Markdown extension `markdown.extensions.fenced_code`.
+
+  [SuperFences]: https://facelessuser.github.io/pymdown-extensions/extensions/superfences/
+
+## Highlight and InlineHilite
+
+The [Highlight] and [InlineHilite] extensions can be used to highlight code blocks.  If used with the [PyMdown SuperFences](#superfences) extension line numbers can be added as well.  Enable them via `mkdocs.yml`:
+
+```yaml
+markdown_extensions:
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+```
+
+See reference for recommended configuration options:
+
+- [Code Highlighting > PyMdown and Pygments](../code-highlighting/index.md#pymdown-and-pygments)
+
+  [Highlight]: https://facelessuser.github.io/pymdown-extensions/extensions/highlight/
+  [InlineHilite]: https://facelessuser.github.io/pymdown-extensions/extensions/inlinehilite/
 
 
 # Credit
