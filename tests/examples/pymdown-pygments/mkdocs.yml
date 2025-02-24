@@ -2,7 +2,7 @@ site_name: mkdocs-terminal theme with PyMdown and Pygments
 site_url: https://ntno.github.io/mkdocs-terminal-example-pymdown-pygments
 repo_url: https://github.com/ntno/mkdocs-terminal
 edit_uri_template: https://github.com/ntno/mkdocs-terminal/edit/main/tests/examples/pymdown-pygments/docs/{path}
-copyright: Copyright 2024 Natan Organick, All rights reserved
+copyright: Copyright 2023-2025 Natan Organick, All rights reserved
 site_author: ntno
 
 nav:
