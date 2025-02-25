@@ -94,6 +94,28 @@ See reference for recommended configuration options:
   [Highlight]: https://facelessuser.github.io/pymdown-extensions/extensions/highlight/
   [InlineHilite]: https://facelessuser.github.io/pymdown-extensions/extensions/inlinehilite/
 
+## Admonitions
+
+The [Details] extension can be used to create admonitions (sometimes called callouts). By default, mkdocs terminal supports three admonition types: default, error, and primary. Enable them via `mkdocs.yml`:
+
+```yaml
+markdown_extensions:
+  - pymdownx.blocks.details:
+      types:
+        - name: 'default'
+          class: 'terminal-alert'
+          title: ''
+        - name: 'error'
+          class: 'terminal-alert-error'
+          title: ''
+        - name: 'primary'
+          class: 'terminal-alert-primary'
+          title: ''
+```
+
+If you wish to add more admonition types, you can change the types above, and then define the custom classes in a [css overide](tile-grid/examples/overide-styling).
+
+  [Details]: https://facelessuser.github.io/pymdown-extensions/extensions/blocks/plugins/details/
 
 # Credit
 
