@@ -113,7 +113,7 @@ markdown_extensions:
           title: ''
 ```
 
-If you wish to use different admonition types, you can change the types above, and then define the custom classes in a [css overide](/tile-grid/examples/overide-styling).
+If you wish to use different admonition types, you can change the types above, and then define the custom classes in a [css overide](/tile-grid/examples/override-styling).
 
   [Details]: https://facelessuser.github.io/pymdown-extensions/extensions/blocks/plugins/details/
 
