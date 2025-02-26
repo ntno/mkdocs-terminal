@@ -94,26 +94,38 @@ See reference for recommended configuration options:
   [Highlight]: https://facelessuser.github.io/pymdown-extensions/extensions/highlight/
   [InlineHilite]: https://facelessuser.github.io/pymdown-extensions/extensions/inlinehilite/
 
-## Admonitions
+## Details
 
-The [Details] extension can be used to create admonitions (sometimes called callouts). By default, mkdocs terminal supports three admonition types: default, error, and primary. Enable them via `mkdocs.yml`:
+The [Details] extension can be used to create admonitions (sometimes called callouts). By default, mkdocs terminal supports three details types. Enable them via `mkdocs.yml`:
+
+/// info
+This is an info block
+///
+
+/// warning
+This is a warning
+///
+
+/// important
+This is important
+///
 
 ```yaml
 markdown_extensions:
   - pymdownx.blocks.details:
       types:
-        - name: 'default'
-          class: 'terminal-alert'
-          title: ''
-        - name: 'error'
-          class: 'terminal-alert-error'
-          title: ''
-        - name: 'primary'
-          class: 'terminal-alert-primary'
-          title: ''
+        - name: info 
+          class: terminal-alert
+          title: Info
+        - name: warning
+          class: terminal-alert-error
+          title: Warning
+        - name: important
+          class: terminal-alert-primary
+          title: Important
 ```
 
-If you wish to use different admonition types, you can change the types above, and then define the custom classes in a [css override](/tile-grid/examples/override-styling).
+If you wish to use different detail types, you can change the types above, and then define the custom classes in a extra_css file.
 
   [Details]: https://facelessuser.github.io/pymdown-extensions/extensions/blocks/plugins/details/
 
