@@ -130,6 +130,10 @@ markdown_extensions:
   [Details]: https://facelessuser.github.io/pymdown-extensions/extensions/blocks/plugins/details/
   [extra_css MkDocs feature]: https://www.mkdocs.org/user-guide/configuration/#extra_css
 
+See reference for usage:
+- [Adding Details]
+  [Adding Details]: ../../../elements/details
+
 # Credit
 
 This documentation page is based on squidfunk's [Material for MkDocs Pymdown Extension](https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown-extensions/) documentation.
