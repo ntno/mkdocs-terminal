@@ -96,7 +96,7 @@ See reference for recommended configuration options:
 
 ## Details
 
-The [Details] extension can be used to create admonitions (sometimes called callouts). By default, mkdocs terminal supports three details types. Enable them via `mkdocs.yml`:
+The [Details] extension can be used to create admonitions (sometimes called callouts). By default, Terminal for Mkdocs supports three categories. Enable them via `mkdocs.yml`:
 
 /// info
 This is an info block
@@ -125,9 +125,10 @@ markdown_extensions:
           title: Important
 ```
 
-If you wish to use different detail types, you can change the types above, and then define the custom classes in a extra_css file.
-
+* To use different categories, update the `name` attribute.
+* To use a custom style, update the `class` attribute to the name of your custom CSS class (remember to load the custom CSS via the [extra_css MkDocs feature]).
   [Details]: https://facelessuser.github.io/pymdown-extensions/extensions/blocks/plugins/details/
+  [extra_css MkDocs feature]: https://www.mkdocs.org/user-guide/configuration/#extra_css
 
 # Credit
 
