@@ -31,6 +31,15 @@ This is a warning
 This is important
 ///
 
+/// info | Note
+This is an info block with the title overwritten to "Note"
+///
+
+/// warning
+    open: True
+This is a warning that is expanded by default
+///
+
 # Markdown
 
 ```markdown
@@ -44,6 +53,15 @@ This is a warning
 
 /// important
 This is important
+///
+
+/// info | Note
+This is an info block with the title overwritten to "Note"
+///
+
+/// warning
+    open: True
+This is a warning that is expanded by default
 ///
 ```
 
