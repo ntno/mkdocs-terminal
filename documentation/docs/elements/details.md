@@ -10,10 +10,10 @@ markdown_extensions:
           class: terminal-alert
           title: Info
         - name: warn
-          class: terminal-alert terminal-alert-error
+          class: 'terminal-alert terminal-alert-error'
           title: Warning
         - name: important
-          class: terminal-alert terminal-alert-primary
+          class: 'terminal-alert terminal-alert-primary'
           title: Important
 ```
 
