@@ -94,6 +94,45 @@ See reference for recommended configuration options:
   [Highlight]: https://facelessuser.github.io/pymdown-extensions/extensions/highlight/
   [InlineHilite]: https://facelessuser.github.io/pymdown-extensions/extensions/inlinehilite/
 
+## Details
+
+The [Details] extension can be used to create admonitions (sometimes called callouts). By default, Terminal for Mkdocs supports three categories. Enable them via `mkdocs.yml`:
+
+/// info
+This is an info block
+///
+
+/// warning
+This is a warning
+///
+
+/// important
+This is important
+///
+
+```yaml
+markdown_extensions:
+  - pymdownx.blocks.details:
+      types:
+        - name: info 
+          class: terminal-alert
+          title: Info
+        - name: warning
+          class: 'terminal-alert terminal-alert-error'
+          title: Warning
+        - name: important
+          class: 'terminal-alert terminal-alert-primary'
+          title: Important
+```
+
+* To use different categories, update the `name` attribute.
+* To use a custom style, update the `class` attribute to the name of your custom CSS class (remember to load the custom CSS via the [extra_css MkDocs feature]).
+  [Details]: https://facelessuser.github.io/pymdown-extensions/extensions/blocks/plugins/details/
+  [extra_css MkDocs feature]: https://www.mkdocs.org/user-guide/configuration/#extra_css
+
+See reference for usage:
+- [Adding Details]
+  [Adding Details]: ../../../elements/details
 
 # Credit
 

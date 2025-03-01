@@ -47,6 +47,7 @@ nav:
       - Buttons: 'elements/buttons.md'
       - Code: 'elements/code.md'
       - Definitions: 'elements/definitions.md'
+      - Details: 'elements/details.md'
       - Figures: 'elements/figure.md'
       - Footnotes: 'elements/footnotes.md'
       - Links: 'elements/links.md'
@@ -75,6 +76,17 @@ markdown_extensions:
   - pymdownx.snippets:
       base_path: 
         - docs
+  - pymdownx.blocks.details:
+      types:
+        - name: info
+          class: terminal-alert
+          title: Info
+        - name: warning
+          class: 'terminal-alert terminal-alert-error'
+          title: Warning
+        - name: important
+          class: 'terminal-alert terminal-alert-primary'
+          title: Important
 
 plugins:
   - md-to-html
