@@ -1,6 +1,6 @@
 # Details setup
 
-Enabling detail blocks requires the `pymdown.blocks.details` extension. Add it to the `markdown_extensions` configuration in `mkdocs.yml`:
+Enabling detail blocks requires the [pymdown.blocks.details extension]. Add it to the `markdown_extensions` configuration in `mkdocs.yml`:
 
 ```yaml
 markdown_extensions:
@@ -10,12 +10,14 @@ markdown_extensions:
           class: terminal-alert
           title: Info
         - name: warn
-          class: terminal-alert terminal-alert-error
+          class: 'terminal-alert terminal-alert-error'
           title: Warning
         - name: important
-          class: terminal-alert terminal-alert-primary
+          class: 'terminal-alert terminal-alert-primary'
           title: Important
 ```
+
+[pymdown.blocks.details extension]: ../../configuration/extensions/pymdown-extensions/#details
 
 # Example
 

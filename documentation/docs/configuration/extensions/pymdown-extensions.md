@@ -131,7 +131,9 @@ markdown_extensions:
   [extra_css MkDocs feature]: https://www.mkdocs.org/user-guide/configuration/#extra_css
 
 See reference for usage:
+
 - [Adding Details]
+
   [Adding Details]: ../../../elements/details
 
 # Credit
