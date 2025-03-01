@@ -808,6 +808,25 @@
         
             <a class="
 
+    terminal-mkdocs-side-nav-item" href="../../../elements/details/">Details</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="
+
     terminal-mkdocs-side-nav-item" href="../../../elements/figure/">Figures</a>
         
     
@@ -978,7 +997,7 @@
     <ul>
         <li><a href="#pymdown-extensions">PyMdown Extensions</a></li>
         <li><a href="#suggested-pymdown-extensions">Suggested PyMdown Extensions</a></li>
-        <li><a href="#caret-mark-tilde">Caret, Mark &amp; Tilde</a></li><li><a href="#snippets">Snippets</a></li><li><a href="#superfences">SuperFences</a></li><li><a href="#highlight-and-inlinehilite">Highlight and InlineHilite</a></li><li><a href="#credit">Credit</a></li>
+        <li><a href="#caret-mark-tilde">Caret, Mark &amp; Tilde</a></li><li><a href="#snippets">Snippets</a></li><li><a href="#superfences">SuperFences</a></li><li><a href="#highlight-and-inlinehilite">Highlight and InlineHilite</a></li><li><a href="#details">Details</a></li><li><a href="#credit">Credit</a></li>
         
     </ul>
 </nav>
@@ -1046,6 +1065,41 @@ documentation</a> for more information.</p>
 <ul>
 <li><a href="../../code-highlighting/#pymdown-and-pygments">Code Highlighting &gt; PyMdown and Pygments</a></li>
 </ul>
+<h2 id="details">Details<a class="headerlink" href="#details" title="Anchor link to this section for reference">#</a></h2>
+<p>The <a href="https://facelessuser.github.io/pymdown-extensions/extensions/blocks/plugins/details/">Details</a> extension can be used to create admonitions (sometimes called callouts). By default, Terminal for Mkdocs supports three categories. Enable them via <code>mkdocs.yml</code>:</p>
+<details class="terminal-alert">
+<summary>Info</summary>
+<p>This is an info block</p>
+</details>
+<details class="terminal-alert terminal-alert-error">
+<summary>Warning</summary>
+<p>This is a warning</p>
+</details>
+<details class="terminal-alert terminal-alert-primary">
+<summary>Important</summary>
+<p>This is important</p>
+</details>
+<pre><code class="language-yaml">markdown_extensions:
+  - pymdownx.blocks.details:
+      types:
+        - name: info 
+          class: terminal-alert
+          title: Info
+        - name: warning
+          class: 'terminal-alert terminal-alert-error'
+          title: Warning
+        - name: important
+          class: 'terminal-alert terminal-alert-primary'
+          title: Important
+</code></pre>
+<ul>
+<li>To use different categories, update the <code>name</code> attribute.</li>
+<li>To use a custom style, update the <code>class</code> attribute to the name of your custom CSS class (remember to load the custom CSS via the <a href="https://www.mkdocs.org/user-guide/configuration/#extra_css">extra_css MkDocs feature</a>).</li>
+</ul>
+<p>See reference for usage:</p>
+<ul>
+<li><a href="../../../elements/details">Adding Details</a></li>
+</ul>
 <h1 id="credit">Credit<a class="headerlink" href="#credit" title="Anchor link to this section for reference">#</a></h1>
 <p>This documentation page is based on squidfunk's <a href="https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown-extensions/">Material for MkDocs Pymdown Extension</a> documentation.</p>
 </section>
@@ -1058,7 +1112,7 @@ documentation</a> for more information.</p>
 <aside>
     <p>
         <small>
-            <i>Page last updated 2024-12-24. See revision history on <a href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/configuration/extensions/pymdown-extensions.md">GitHub</a>.</i>
+            <i>Page last updated 2025-03-01. See revision history on <a href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/configuration/extensions/pymdown-extensions.md">GitHub</a>.</i>
         </small>
     </p>
 </aside>
@@ -1069,7 +1123,7 @@ documentation</a> for more information.</p>
     <div class="terminal-mkdocs-footer-grid">
         <div id="terminal-mkdocs-footer-copyright-info">
             
-            <p class="text-center text-muted">Copyright 2023 Natan Organick, All rights reserved</p>
+            <p class="text-center text-muted">Copyright 2023-2025 Natan Organick, All rights reserved</p>
              Site built with <a href="http://www.mkdocs.org">MkDocs</a> and <a href="https://github.com/ntno/mkdocs-terminal">Terminal for MkDocs</a>.
         </div>
         <div id="terminal-mkdocs-footer-prev-next">
