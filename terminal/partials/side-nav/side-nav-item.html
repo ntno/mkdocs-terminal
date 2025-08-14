@@ -24,12 +24,23 @@
                 {% endif %}
             {% endif %}
 
-            {% if found_index %}
-                <li class="terminal-mkdocs-side-nav-li-ul-li">{{ side_nav_item( nav_item.children|selectattr("title", "eq", index_helper.get_section_index_page_title())|list|first ) }}</li>
-            {% else %} 
-                <li class="terminal-mkdocs-side-nav-li-ul-li">{{ side_nav_item( nav_item ) }}</li>
-            {% endif %}
-        {% endfor %}    
+            <li class="terminal-mkdocs-side-nav-li-ul-li">
+                {% if found_index %}
+                    {{ side_nav_item( nav_item.children|selectattr("title", "eq", index_helper.get_section_index_page_title())|list|first ) }}
+                {% else %}
+                    {{ side_nav_item( nav_item ) }}
+                {% endif %}
+
+                {# Add recursive nesting for deeper levels #}
+                {% if nav_item.children %}
+                    {% if found_index %}
+                        {{ second_level_folder( nav_item.children|rejectattr("title", "eq", index_helper.get_section_index_page_title())|list ) }}
+                    {% else %}
+                        {{ second_level_folder( nav_item.children ) }}
+                    {% endif %}
+                {% endif %}
+            </li>
+        {% endfor %}
     </ul>
 {%- endmacro -%}
 
