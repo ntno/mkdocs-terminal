@@ -1,6 +1,7 @@
 {% import 'macros/side-nav/side-nav-item-class.j2' as class_helper with context %}
 {% import 'macros/side-nav/side-nav-item.j2' as item_helper with context %}
 {% import 'macros/side-nav/section-index-page-title.j2' as index_helper with context %}
+{% import 'macros/side-nav/max-nesting.j2' as nesting_helper with context %}
 
 {% macro side_nav_item( nav_item ) -%}
     {% set macro_ns = namespace(class="") %}
@@ -13,7 +14,8 @@
     {% endif %}
 {%- endmacro -%}
 
-{% macro second_level_folder( nav_items ) -%}
+{% macro nested_folder( nav_items, nesting_level ) -%}
+   {% if nesting_level <= nesting_helper.get_max_nesting()|int %}
     <ul class="terminal-mkdocs-side-nav-li-ul">
         {% for nav_item in nav_items %}
             {% set found_index = false %}
@@ -34,14 +36,15 @@
                 {# Add recursive nesting for deeper levels #}
                 {% if nav_item.children %}
                     {% if found_index %}
-                        {{ second_level_folder( nav_item.children|rejectattr("title", "eq", index_helper.get_section_index_page_title())|list ) }}
+                        {{ nested_folder( nav_item.children|rejectattr("title", "eq", index_helper.get_section_index_page_title())|list , nesting_level+1 ) }}
                     {% else %}
-                        {{ second_level_folder( nav_item.children ) }}
+                        {{ nested_folder( nav_item.children , nesting_level+1 ) }}
                     {% endif %}
                 {% endif %}
             </li>
         {% endfor %}
     </ul>
+    {%endif%}
 {%- endmacro -%}
 
 <li class="terminal-mkdocs-side-nav-li">
@@ -55,16 +58,18 @@
             {% endif %}    
         {% endif %}
 
+        {% if nesting_helper.get_max_nesting()|int >= 1 %}
         {% if "navigation.side.indexes" in features and ns.found_index %}     
             {{ side_nav_item(ns.index_matches[0]) }}
         {% else %}
             {{ side_nav_item( nav_item ) }}
         {% endif %}
+        {% endif %}
       
         {% if "navigation.side.indexes" in features and ns.found_index %}
-            {{ second_level_folder( nav_item.children|rejectattr("title", "eq", index_helper.get_section_index_page_title())|list ) }}
+            {{ nested_folder( nav_item.children|rejectattr("title", "eq", index_helper.get_section_index_page_title())|list , 2 ) }}
         {% else %}
-            {{ second_level_folder( nav_item.children ) }}
+            {{ nested_folder( nav_item.children , 2 ) }}
         {% endif %}
     {% else %}
     {{ side_nav_item( nav_item ) }}
