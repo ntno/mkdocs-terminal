@@ -59,4 +59,4 @@ plugins:
 #     - 'overrides'
 
 extra:
-  MAX_SIDE_NAV_SECTION_NESTING: 0
+  MAX_SIDE_NAV_SECTION_NESTING: 3
