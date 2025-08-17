@@ -59,3 +59,19 @@ class TestSideNav():
         stripped_side_nav = strip_whitespace(rendered_side_nav)
         assert format("<a class=\"%s\" href=\"mocked_url_path/\">Home</a>" % expected_style) in stripped_side_nav
         assert format("<a class=\"%s\" href=\"mocked_url_path/about/\">About</a>" % expected_style) in stripped_side_nav
+
+    # if a flat nav entry is active, it should be a span instead of a link
+    def test_active_flat_nav_entry_styled_as_span(self, flat_nav, side_nav_partial):
+        default_style = "terminal-mkdocs-side-nav-item"
+        active_style = "terminal-mkdocs-side-nav-item--active"
+        site_navigation=flat_nav
+        enabled_context = {
+                "nav": site_navigation
+        }
+        site_navigation.items[1].active = True  # Mark 'About' as active
+        rendered_side_nav = side_nav_partial.render(enabled_context)
+        assert_valid_html(rendered_side_nav)
+        print(rendered_side_nav)
+        stripped_side_nav = strip_whitespace(rendered_side_nav)
+        assert format("<a class=\"%s\" href=\"mocked_url_path/\">Home</a>" % default_style) in stripped_side_nav
+        assert format("<span class=\"%s\">About</span>" % active_style) in stripped_side_nav
