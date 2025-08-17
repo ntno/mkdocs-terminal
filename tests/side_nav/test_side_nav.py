@@ -1,5 +1,5 @@
 from tests.interface import theme_features, page_features
-from tests.utils.html import assert_valid_html
+from tests.utils.html import assert_valid_html, strip_whitespace
 import pytest
 from mkdocs.structure.files import File, Files, set_exclusions
 from mkdocs.structure.nav import Section, _get_by_type, get_navigation
@@ -30,54 +30,32 @@ def flat_nav():
         ]
     return build_site_navigation_from_config(nav_cfg)
 
-
-PAGE_STYLE="terminal-mkdocs-side-nav-item"
+@pytest.fixture
+def empty_nav():
+    nav_cfg = []
+    return build_site_navigation_from_config(nav_cfg)
 
 
 class TestSideNav():
-        def test_flat_nav_entries_styled_as_pages(self, flat_nav, side_nav_partial):
-            site_navigation=flat_nav
-            enabled_context = {
-                 "nav": site_navigation
-            }
-            rendered_side_nav = side_nav_partial.render(enabled_context)
-            print(rendered_side_nav)
-            
-            print(site_navigation)
+    def test_empty_side_nav(self, empty_nav, side_nav_partial):
+        site_navigation=empty_nav
+        enabled_context = {
+                "nav": site_navigation
+        }
+        rendered_side_nav = side_nav_partial.render(enabled_context)
+        print(rendered_side_nav)
+        stripped_side_nav = strip_whitespace(rendered_side_nav)
+        assert "<nav> </nav>" in stripped_side_nav
 
-            assert_valid_html(rendered_side_nav)
-            assert "<a class=\"" + PAGE_STYLE + "\" href=\"mocked_url_path/home/\">Home</a>" in rendered_side_nav
-            assert "<a class=\"" + PAGE_STYLE + "\" href=\"mocked_url_path/about/\">About</a>" in rendered_side_nav
-            assert len(site_navigation.items) == 2
-            assert len(site_navigation.pages) == 2
-            assert repr(site_navigation.homepage) == "Page(title='Home', url='/')"
-            assert 1 == 2
-            # self.assertEqual(str(site_navigation).strip(), expected)
-            # self.assertEqual(, 2)
-            # self.assertEqual(len(site_navigation.pages), 2)
-            # self.assertEqual(, )
 
-    # def test_no_content_when_theme_feature_enabled(self, side_toc_partial, enabled_context):
-    #     enabled_context["config"]["theme"]["features"] = [theme_features.HIDE_SIDE_TOC]
-    #     context_data = enabled_context
-    #     rendered_side_toc = side_toc_partial.render(context_data)
-    #     assert rendered_side_toc == ""
-
-    # def test_no_content_when_page_feature_enabled(self, side_toc_partial, enabled_context):
-    #     enabled_context["page"]["meta"]["hide"] = [page_features.HIDE_SIDE_TOC_ON_PAGE]
-    #     context_data = enabled_context
-    #     rendered_side_toc = side_toc_partial.render(context_data)
-    #     assert rendered_side_toc == ""
-
-    # def test_no_entries_when_page_has_no_headers(self, side_toc_partial, enabled_context):
-    #     enabled_context["page"]["toc"] = []
-    #     context_data = enabled_context
-    #     rendered_side_toc = side_toc_partial.render(context_data)
-    #     assert rendered_side_toc == ""
-
-    # def test_has_entries_when_page_has_headers(self, side_toc_partial, enabled_context):
-    #     context_data = enabled_context
-    #     rendered_side_toc = side_toc_partial.render(context_data)
-    #     assert "<a href=\"anchor_to_first_header_placeholder\">first_header_placeholder</a>" in rendered_side_toc
-    #     assert "<a href=\"anchor_to_child_header_placeholder\">child_header_placeholder</a>" in rendered_side_toc
-    #     assert_valid_html(rendered_side_toc)
+    def test_flat_nav_entries_styled_as_simple_nav_items(self, flat_nav, side_nav_partial):
+        expected_style = "terminal-mkdocs-side-nav-item"
+        site_navigation=flat_nav
+        enabled_context = {
+                "nav": site_navigation
+        }
+        rendered_side_nav = side_nav_partial.render(enabled_context)
+        assert_valid_html(rendered_side_nav)
+        stripped_side_nav = strip_whitespace(rendered_side_nav)
+        assert format("<a class=\"%s\" href=\"mocked_url_path/\">Home</a>" % expected_style) in stripped_side_nav
+        assert format("<a class=\"%s\" href=\"mocked_url_path/about/\">About</a>" % expected_style) in stripped_side_nav
