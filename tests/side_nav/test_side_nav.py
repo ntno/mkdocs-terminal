@@ -31,6 +31,9 @@ def flat_nav():
     return build_site_navigation_from_config(nav_cfg)
 
 
+PAGE_STYLE="terminal-mkdocs-side-nav-item"
+
+
 class TestSideNav():
         def test_flat_nav_entries_styled_as_pages(self, flat_nav, side_nav_partial):
             site_navigation=flat_nav
@@ -41,6 +44,10 @@ class TestSideNav():
             print(rendered_side_nav)
             
             print(site_navigation)
+
+            assert_valid_html(rendered_side_nav)
+            assert "<a class=\"" + PAGE_STYLE + "\" href=\"mocked_url_path/home/\">Home</a>" in rendered_side_nav
+            assert "<a class=\"" + PAGE_STYLE + "\" href=\"mocked_url_path/about/\">About</a>" in rendered_side_nav
             assert len(site_navigation.items) == 2
             assert len(site_navigation.pages) == 2
             assert repr(site_navigation.homepage) == "Page(title='Home', url='/')"
