@@ -104,6 +104,7 @@ class TestSideNav():
         assert format("<a class=\"%s\" href=\"mocked_url_path/\">Home</a>" % default_style) in stripped_side_nav
         assert format("<span class=\"%s\">About</span>" % active_style) in stripped_side_nav
 
+    # a section with children but without an index should be styled as a span
     def test_nest_without_index_styled_as_section_span(self, nest_one_nav, side_nav_partial):
         expected_style = "terminal-mkdocs-side-nav-item terminal-mkdocs-side-nav-section-no-index"
         site_navigation=nest_one_nav
@@ -118,6 +119,7 @@ class TestSideNav():
         assert format("<span class=\" %s\">About</span>" % expected_style) in stripped_side_nav
         assert format("<span class=\" %s\">API Guide</span>" % expected_style) in stripped_side_nav
 
+    # a section with children but without an index should be styled as an activated span when its child is active
     def test_nest_without_index_styled_active_when_child_active(self, nest_one_nav, side_nav_partial):
         default_style = "terminal-mkdocs-side-nav-item terminal-mkdocs-side-nav-section-no-index"
         active_style = "terminal-mkdocs-side-nav-item--active terminal-mkdocs-side-nav-section-no-index"
