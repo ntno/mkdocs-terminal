@@ -151,4 +151,3 @@ class TestSideNav():
         assert_valid_html(rendered_side_nav)
         stripped_side_nav = strip_whitespace(rendered_side_nav)
         assert format("<a class=\"%s\" href=\"mocked_url_path/about/release-notes/\">Release notes</a>" % expected_section_index_style) in stripped_side_nav
-     
