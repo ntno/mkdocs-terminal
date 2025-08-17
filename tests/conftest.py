@@ -8,7 +8,9 @@ from terminal.plugins.md_to_html.plugin import DEFAULT_MARKUP_FILTER_NAME
 from terminal.pluglets.tile_grid.macro import TileGridMacroEnvironment
 from unittest.mock import MagicMock, PropertyMock
 import pytest
-
+from mkdocs.structure.files import File, Files
+from mkdocs.structure.nav import get_navigation, Section, Page, Link, Navigation
+from tests.integration_helper import load_config
 
 @pytest.fixture
 def env():
@@ -104,6 +106,115 @@ def inactive_page_2(inactive_page_2_properties):
     return make_mock_nav_object(inactive_page_2_properties)
 
 
+@pytest.fixture
+def empty_nav():
+    nav_cfg = []
+    return build_flat_site_navigation_from_config(nav_cfg)
+
+@pytest.fixture
+def flat_nav():
+    nav_cfg = [
+            {'Home': 'index.md'},
+            {'About': 'about.md'},
+        ]
+    return build_flat_site_navigation_from_config(nav_cfg)
+
+@pytest.fixture
+def nest_one_nav():
+    nav_cfg = [
+            {'Home': 'index.md'},
+            {
+                'API Guide': [
+                    {'Running': 'api-guide/running.md'},
+                    {'Testing': 'api-guide/testing.md'},
+                    {'Debugging': 'api-guide/debugging.md'},
+                ]
+            },
+            {
+                'About': [
+                    {'Release notes': 'about/release-notes.md'},
+                    {'License': 'about/license.md'},
+                ]
+            },
+        ]
+    cfg = load_config(nav=nav_cfg, site_url='http://example.com/')
+    fs = [
+        'index.md',
+        'api-guide/running.md',
+        'api-guide/testing.md',
+        'api-guide/debugging.md',
+        'about/release-notes.md',
+        'about/license.md',
+    ]
+    files = Files([File(s, cfg.docs_dir, cfg.site_dir, cfg.use_directory_urls) for s in fs])
+    return get_navigation(files, cfg)
+
+@pytest.fixture
+def nest_two_nav():
+    nav_cfg = [
+    {'Home': 'index.md'},
+    {
+        'API Guide': [
+            {'Running': 'api-guide/running.md'},
+            {'Testing': 'api-guide/testing.md'},
+            {'Debugging': 'api-guide/debugging.md'},
+            {
+                'Advanced': [
+                    {'Part 1': 'api-guide/advanced/part-1.md'},
+                ]
+            },
+        ]
+    },
+    {
+        'About': [
+            {'Release notes': 'about/release-notes.md'},
+            {'License': 'about/license.md'},
+        ]
+    },
+    ]
+    cfg = load_config(nav=nav_cfg, site_url='http://example.com/')
+    fs = [
+        'index.md',
+        'api-guide/running.md',
+        'api-guide/testing.md',
+        'api-guide/debugging.md',
+        'api-guide/advanced/part-1.md',
+        'about/release-notes.md',
+        'about/license.md',
+    ]
+    files = Files([File(s, cfg.docs_dir, cfg.site_dir, cfg.use_directory_urls) for s in fs])
+    return get_navigation(files, cfg)
+
+# @pytest.fixture
+# def nest_three_nav():
+    
+#     nav_cfg = [
+#         Page(title="Home", file="index.md", config=cfg),
+#         Section(title="API Guide", children=[
+#             Page(title="Running", file="api-guide/running.md"),
+#             Page(title="Testing", file="api-guide/testing.md"),
+#             Page(title="Debugging", file="api-guide/debugging.md"),
+#             Section(title="Advanced", children=[
+#                 Page(title="Part 1", file="api-guide/advanced/part-1.md"),
+#             ])
+#         ]),
+#         Section(title="About", children=[
+#             Section(title="Release notes", children=[
+#                 Page(title="Index", file="about/supported-versions.md"),
+#                 Section(title="Version 1.0", children=[
+#                     Page(title="Changelog", file="about/release-notes/v1.0.md"),
+#                 ]),
+#                 Section(title="Version 2.0", children=[
+#                     Page(title="Changelog", file="about/release-notes/v2.0.md"),
+#                 ]),
+#             ]),
+#             Page(title="License", file="about/license.md"),
+#         ]),
+#     ]
+#     # cfg = load_config(nav=nav_cfg, site_url='http://example.com/')
+#     return Navigation(items=nav_cfg, pages=[item for item in nav_cfg if isinstance(item, Page)])
+    
+
 def make_nav_object_property_mocks(is_section_value, title_value, url_value, active_value):
     properties = {}
     properties["is_section"] = PropertyMock(return_value=is_section_value)
@@ -120,6 +231,18 @@ def make_mock_nav_object(mock_properties):
     type(nav_object).url = mock_properties["url"]
     type(nav_object).active = mock_properties["active"]
     return nav_object
+
+def build_flat_site_navigation_from_config(nav_cfg):
+    cfg = load_config(nav=nav_cfg, site_url='http://example.com/')
+    fs = [
+        File(list(item.values())[0], cfg.docs_dir, cfg.site_dir, cfg.use_directory_urls)
+        for item in nav_cfg
+    ]
+    files = Files(fs)
+    site_navigation = get_navigation(files, cfg)
+    return site_navigation
+
+
 
 
 # @pytest.fixture

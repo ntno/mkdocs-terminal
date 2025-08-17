@@ -1,100 +1,9 @@
-from tests.interface import theme_features, page_features
+
 from tests.utils.html import assert_valid_html, strip_whitespace
+import tests.interface.theme_features as theme_features
 import pytest
-from mkdocs.structure.files import File, Files, set_exclusions
-from mkdocs.structure.nav import Section, _get_by_type, get_navigation
-from mkdocs.structure.pages import Page
-from tests.integration_helper import load_config
 
 
-def build_flat_site_navigation_from_config(nav_cfg):
-    cfg = load_config(nav=nav_cfg, site_url='http://example.com/')
-    fs = [
-        File(list(item.values())[0], cfg.docs_dir, cfg.site_dir, cfg.use_directory_urls)
-        for item in nav_cfg
-    ]
-    files = Files(fs)
-    site_navigation = get_navigation(files, cfg)
-    return site_navigation
-
-@pytest.fixture
-def empty_nav():
-    nav_cfg = []
-    return build_flat_site_navigation_from_config(nav_cfg)
-
-@pytest.fixture
-def flat_nav():
-    nav_cfg = [
-            {'Home': 'index.md'},
-            {'About': 'about.md'},
-        ]
-    return build_flat_site_navigation_from_config(nav_cfg)
-
-@pytest.fixture
-def nest_one_nav():
-    nav_cfg = [
-            {'Home': 'index.md'},
-            {
-                'API Guide': [
-                    {'Running': 'api-guide/running.md'},
-                    {'Testing': 'api-guide/testing.md'},
-                    {'Debugging': 'api-guide/debugging.md'},
-                ]
-            },
-            {
-                'About': [
-                    {'Release notes': 'about/release-notes.md'},
-                    {'License': 'about/license.md'},
-                ]
-            },
-        ]
-    cfg = load_config(nav=nav_cfg, site_url='http://example.com/')
-    fs = [
-        'index.md',
-        'api-guide/running.md',
-        'api-guide/testing.md',
-        'api-guide/debugging.md',
-        'about/release-notes.md',
-        'about/license.md',
-    ]
-    files = Files([File(s, cfg.docs_dir, cfg.site_dir, cfg.use_directory_urls) for s in fs])
-    return get_navigation(files, cfg)
-
-@pytest.fixture
-def nest_two_nav():
-    nav_cfg = [
-    {'Home': 'index.md'},
-    {
-        'API Guide': [
-            {'Running': 'api-guide/running.md'},
-            {'Testing': 'api-guide/testing.md'},
-            {'Debugging': 'api-guide/debugging.md'},
-            {
-                'Advanced': [
-                    {'Part 1': 'api-guide/advanced/part-1.md'},
-                ]
-            },
-        ]
-    },
-    {
-        'About': [
-            {'Release notes': 'about/release-notes.md'},
-            {'License': 'about/license.md'},
-        ]
-    },
-    ]
-    cfg = load_config(nav=nav_cfg, site_url='http://example.com/')
-    fs = [
-        'index.md',
-        'api-guide/running.md',
-        'api-guide/testing.md',
-        'api-guide/debugging.md',
-        'api-guide/advanced/part-1.md',
-        'about/release-notes.md',
-        'about/license.md',
-    ]
-    files = Files([File(s, cfg.docs_dir, cfg.site_dir, cfg.use_directory_urls) for s in fs])
-    return get_navigation(files, cfg)
 
 
 @pytest.fixture
@@ -188,3 +97,21 @@ class TestSideNav():
         
         assert "Advanced" in stripped_side_nav
         assert "Part 1" not in stripped_side_nav
+    
+    # def test_section_with_index_styled_as_link(self, nest_three_nav, side_nav_partial):
+    #     site_navigation=nest_three_nav
+    #     enabled_context = {
+    #             "nav": site_navigation,
+    #             "config":{
+    #                 "theme": {
+    #                     "features": [theme_features.SHOW_INDEX_SECTIONS]
+    #                 }
+    #             }
+    #         }
+    #     print(site_navigation)
+    #     rendered_side_nav = side_nav_partial.render(enabled_context)
+   
+    #     assert_valid_html(rendered_side_nav)
+    #     stripped_side_nav = strip_whitespace(rendered_side_nav)
+    #     print(stripped_side_nav)
+    #     assert 1 == 2
