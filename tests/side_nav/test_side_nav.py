@@ -6,6 +6,12 @@ from mkdocs.structure.nav import Section, _get_by_type, get_navigation
 from mkdocs.structure.pages import Page
 from tests.integration_base import dedent, load_config
 
+
+@pytest.fixture
+def side_nav_partial(env_with_terminal_loader):
+    return env_with_terminal_loader.get_template("partials/side-nav/side-nav.html")
+
+
 def build_site_navigation_from_config(nav_cfg):
     cfg = load_config(nav=nav_cfg, site_url='http://example.com/')
     fs = [
@@ -25,11 +31,14 @@ def flat_nav():
     return build_site_navigation_from_config(nav_cfg)
 
 
-
 class TestSideNav():
-        def test_flat_nav_entries_styled_as_pages(self, flat_nav):
+        def test_flat_nav_entries_styled_as_pages(self, flat_nav, side_nav_partial):
             site_navigation=flat_nav
-           
+            enabled_context = {
+                 "nav": site_navigation
+            }
+            rendered_side_nav = side_nav_partial.render(enabled_context)
+            print(rendered_side_nav)
             
             print(site_navigation)
             assert len(site_navigation.items) == 2
