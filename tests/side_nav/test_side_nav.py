@@ -175,6 +175,7 @@ class TestSideNav():
         assert format("<span class=\" %s\">API Guide</span>" % active_style) in stripped_side_nav
         assert format("<span class=\"%s\">Debugging</span>" % active_child_style) in stripped_side_nav
     
+    # the second level (API Guide > Advanced) is rendered but not the third level (API Guide > Advanced > Part 1)
     def test_second_level_nest_rendered_but_not_third_level(self, nest_two_nav, side_nav_partial):
         site_navigation=nest_two_nav
         enabled_context = {
