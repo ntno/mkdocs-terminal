@@ -1,5 +1,5 @@
+# helpers copied from mkdocs/mkdocs
 # https://github.com/mkdocs/mkdocs/blob/master/mkdocs/tests/base.py
-# test helpers copied from mkdocs/mkdocs
 
 from __future__ import annotations
 
@@ -7,9 +7,6 @@ import os
 import textwrap
 
 from mkdocs.config.defaults import MkDocsConfig
-
-def dedent(text):
-    return textwrap.dedent(text).strip()
 
 def load_config(config_file_path: str | None = None, **cfg) -> MkDocsConfig:
     """Helper to build a simple config for testing."""

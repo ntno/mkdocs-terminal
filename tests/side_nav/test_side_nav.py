@@ -4,7 +4,7 @@ import pytest
 from mkdocs.structure.files import File, Files, set_exclusions
 from mkdocs.structure.nav import Section, _get_by_type, get_navigation
 from mkdocs.structure.pages import Page
-from tests.integration_base import dedent, load_config
+from tests.integration_base import load_config
 
 
 def build_flat_site_navigation_from_config(nav_cfg):
