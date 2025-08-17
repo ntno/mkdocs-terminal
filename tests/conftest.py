@@ -9,14 +9,9 @@ from terminal.pluglets.tile_grid.macro import TileGridMacroEnvironment
 from unittest.mock import MagicMock, PropertyMock
 import pytest
 from mkdocs.structure.files import File, Files
-from mkdocs.structure.nav import get_navigation, Section, Page, Link, Navigation
+from mkdocs.structure.nav import get_navigation
 from tests.integration_helper import load_config
-import tests.interface.theme_features as theme_features
 
-default_theme_config = {
-    "name": "terminal",
-    "features": [],
-}
 
 @pytest.fixture
 def env():
@@ -143,7 +138,7 @@ def nest_one_nav():
                 ]
             },
         ]
-    cfg = load_config(nav=nav_cfg, site_url='http://example.com/', theme=default_theme_config)
+    cfg = load_config(nav=nav_cfg, site_url='http://example.com/')
     fs = [
         'index.md',
         'api-guide/running.md',
@@ -178,7 +173,7 @@ def nest_two_nav():
         ]
     },
     ]
-    cfg = load_config(nav=nav_cfg, site_url='http://example.com/', theme=default_theme_config)
+    cfg = load_config(nav=nav_cfg, site_url='http://example.com/')
     fs = [
         'index.md',
         'api-guide/running.md',
@@ -220,13 +215,7 @@ def nest_three_nav():
             ]
     },
     ]
-    theme_cfg = {
-        "name": "terminal",
-        "features": [theme_features.SHOW_INDEX_SECTIONS]
-    }
-    cfg = load_config(nav=nav_cfg, site_url='http://example.com/', theme=theme_cfg)
-    print(cfg)
-    print("----------")
+    cfg = load_config(nav=nav_cfg, site_url='http://example.com/')
     fs = [
         'index.md',
         'api-guide/running.md',
@@ -260,7 +249,7 @@ def make_mock_nav_object(mock_properties):
     return nav_object
 
 def build_flat_site_navigation_from_config(nav_cfg):
-    cfg = load_config(nav=nav_cfg, site_url='http://example.com/', theme=default_theme_config)
+    cfg = load_config(nav=nav_cfg, site_url='http://example.com/')
     fs = [
         File(list(item.values())[0], cfg.docs_dir, cfg.site_dir, cfg.use_directory_urls)
         for item in nav_cfg
