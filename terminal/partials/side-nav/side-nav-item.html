@@ -1,6 +1,6 @@
-{% import 'macros/side-nav/side-nav-item-class.j2' as class_helper with context %}
-{% import 'macros/side-nav/side-nav-item.j2' as item_helper with context %}
-{% import 'macros/side-nav/section-index-page-title.j2' as index_helper with context %}
+{%- import 'macros/side-nav/side-nav-item-class.j2' as class_helper with context -%}
+{%- import 'macros/side-nav/side-nav-item.j2' as item_helper with context -%}
+{%- import 'macros/side-nav/section-index-page-title.j2' as index_helper with context -%}
 
 {% macro side_nav_item( nav_item ) -%}
     {% set macro_ns = namespace(class="") %}
