@@ -60,6 +60,42 @@ def nest_one_nav():
     files = Files([File(s, cfg.docs_dir, cfg.site_dir, cfg.use_directory_urls) for s in fs])
     return get_navigation(files, cfg)
 
+@pytest.fixture
+def nest_two_nav():
+    nav_cfg = [
+    {'Home': 'index.md'},
+    {
+        'API Guide': [
+            {'Running': 'api-guide/running.md'},
+            {'Testing': 'api-guide/testing.md'},
+            {'Debugging': 'api-guide/debugging.md'},
+            {
+                'Advanced': [
+                    {'Part 1': 'api-guide/advanced/part-1.md'},
+                ]
+            },
+        ]
+    },
+    {
+        'About': [
+            {'Release notes': 'about/release-notes.md'},
+            {'License': 'about/license.md'},
+        ]
+    },
+    ]
+    cfg = load_config(nav=nav_cfg, site_url='http://example.com/')
+    fs = [
+        'index.md',
+        'api-guide/running.md',
+        'api-guide/testing.md',
+        'api-guide/debugging.md',
+        'api-guide/advanced/part-1.md',
+        'about/release-notes.md',
+        'about/license.md',
+    ]
+    files = Files([File(s, cfg.docs_dir, cfg.site_dir, cfg.use_directory_urls) for s in fs])
+    return get_navigation(files, cfg)
+
 
 @pytest.fixture
 def side_nav_partial(env_with_terminal_loader):
@@ -138,3 +174,16 @@ class TestSideNav():
         assert format("<span class=\" %s\">About</span>" % default_style) in stripped_side_nav
         assert format("<span class=\" %s\">API Guide</span>" % active_style) in stripped_side_nav
         assert format("<span class=\"%s\">Debugging</span>" % active_child_style) in stripped_side_nav
+    
+    def test_second_level_nest_rendered_but_not_third_level(self, nest_two_nav, side_nav_partial):
+        site_navigation=nest_two_nav
+        enabled_context = {
+                "nav": site_navigation
+        }
+        rendered_side_nav = side_nav_partial.render(enabled_context)
+   
+        assert_valid_html(rendered_side_nav)
+        stripped_side_nav = strip_whitespace(rendered_side_nav)
+        
+        assert "Advanced" in stripped_side_nav
+        assert "Part 1" not in stripped_side_nav
