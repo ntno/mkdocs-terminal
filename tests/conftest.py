@@ -11,6 +11,12 @@ import pytest
 from mkdocs.structure.files import File, Files
 from mkdocs.structure.nav import get_navigation, Section, Page, Link, Navigation
 from tests.integration_helper import load_config
+import tests.interface.theme_features as theme_features
+
+default_theme_config = {
+    "name": "terminal",
+    "features": [],
+}
 
 @pytest.fixture
 def env():
@@ -137,7 +143,7 @@ def nest_one_nav():
                 ]
             },
         ]
-    cfg = load_config(nav=nav_cfg, site_url='http://example.com/')
+    cfg = load_config(nav=nav_cfg, site_url='http://example.com/', theme=default_theme_config)
     fs = [
         'index.md',
         'api-guide/running.md',
@@ -172,7 +178,7 @@ def nest_two_nav():
         ]
     },
     ]
-    cfg = load_config(nav=nav_cfg, site_url='http://example.com/')
+    cfg = load_config(nav=nav_cfg, site_url='http://example.com/', theme=default_theme_config)
     fs = [
         'index.md',
         'api-guide/running.md',
@@ -185,35 +191,56 @@ def nest_two_nav():
     files = Files([File(s, cfg.docs_dir, cfg.site_dir, cfg.use_directory_urls) for s in fs])
     return get_navigation(files, cfg)
 
-# @pytest.fixture
-# def nest_three_nav():
+
+@pytest.fixture
+def nest_three_nav():
+    nav_cfg = [
+    {'Home': 'index.md'},
+    {
+        'API Guide': [
+            {'Running': 'api-guide/running.md'},
+            {'Testing': 'api-guide/testing.md'},
+            {'Debugging': 'api-guide/debugging.md'},
+            {
+                'Advanced': [
+                    {'Part 1': 'api-guide/advanced/part-1.md'},
+                ]
+            },
+        ]
+    },
+    {
+      'Release notes': [
+                {'Index': 'about/release-notes/index.md'},
+                {'v1.0': [
+                    {'Changelog': 'about/release-notes/v1.0.md'},
+                ]},
+                {'v2.0': [
+                    {   'Changelog': 'about/release-notes/v2.0.md'},
+                ]},
+            ]
+    },
+    ]
+    theme_cfg = {
+        "name": "terminal",
+        "features": [theme_features.SHOW_INDEX_SECTIONS]
+    }
+    cfg = load_config(nav=nav_cfg, site_url='http://example.com/', theme=theme_cfg)
+    print(cfg)
+    print("----------")
+    fs = [
+        'index.md',
+        'api-guide/running.md',
+        'api-guide/testing.md',
+        'api-guide/debugging.md',
+        'api-guide/advanced/part-1.md',
+        'about/release-notes/index.md',
+        'about/release-notes/v1.0.md',
+        'about/release-notes/v2.0.md',
     
-#     nav_cfg = [
-#         Page(title="Home", file="index.md", config=cfg),
-#         Section(title="API Guide", children=[
-#             Page(title="Running", file="api-guide/running.md"),
-#             Page(title="Testing", file="api-guide/testing.md"),
-#             Page(title="Debugging", file="api-guide/debugging.md"),
-#             Section(title="Advanced", children=[
-#                 Page(title="Part 1", file="api-guide/advanced/part-1.md"),
-#             ])
-#         ]),
-#         Section(title="About", children=[
-#             Section(title="Release notes", children=[
-#                 Page(title="Index", file="about/supported-versions.md"),
-#                 Section(title="Version 1.0", children=[
-#                     Page(title="Changelog", file="about/release-notes/v1.0.md"),
-#                 ]),
-#                 Section(title="Version 2.0", children=[
-#                     Page(title="Changelog", file="about/release-notes/v2.0.md"),
-#                 ]),
-#             ]),
-#             Page(title="License", file="about/license.md"),
-#         ]),
-#     ]
-#     # cfg = load_config(nav=nav_cfg, site_url='http://example.com/')
-#     return Navigation(items=nav_cfg, pages=[item for item in nav_cfg if isinstance(item, Page)])
-    
+    ]
+    files = Files([File(s, cfg.docs_dir, cfg.site_dir, cfg.use_directory_urls) for s in fs])
+    return get_navigation(files, cfg)
+
 
 def make_nav_object_property_mocks(is_section_value, title_value, url_value, active_value):
     properties = {}
@@ -233,7 +260,7 @@ def make_mock_nav_object(mock_properties):
     return nav_object
 
 def build_flat_site_navigation_from_config(nav_cfg):
-    cfg = load_config(nav=nav_cfg, site_url='http://example.com/')
+    cfg = load_config(nav=nav_cfg, site_url='http://example.com/', theme=default_theme_config)
     fs = [
         File(list(item.values())[0], cfg.docs_dir, cfg.site_dir, cfg.use_directory_urls)
         for item in nav_cfg
