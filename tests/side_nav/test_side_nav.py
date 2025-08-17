@@ -3,8 +3,13 @@ from tests.utils.html import assert_valid_html, strip_whitespace
 import tests.interface.theme_features as theme_features
 import pytest
 
-
-
+DEFAULT_CONFIG = {
+        "theme": {
+            "name": "terminal",
+            "features": [],
+        },
+        "extra":{}
+    } 
 
 @pytest.fixture
 def side_nav_partial(env_with_terminal_loader):
@@ -14,7 +19,8 @@ class TestSideNav():
     def test_empty_side_nav(self, empty_nav, side_nav_partial):
         site_navigation=empty_nav
         enabled_context = {
-                "nav": site_navigation
+                "nav": site_navigation,
+                "config": DEFAULT_CONFIG
         }
         rendered_side_nav = side_nav_partial.render(enabled_context)
         print(rendered_side_nav)
@@ -26,7 +32,8 @@ class TestSideNav():
         expected_style = "terminal-mkdocs-side-nav-item"
         site_navigation=flat_nav
         enabled_context = {
-                "nav": site_navigation
+                "nav": site_navigation,
+                "config": DEFAULT_CONFIG
         }
         rendered_side_nav = side_nav_partial.render(enabled_context)
         assert_valid_html(rendered_side_nav)
@@ -40,8 +47,10 @@ class TestSideNav():
         active_style = "terminal-mkdocs-side-nav-item--active"
         site_navigation=flat_nav
         enabled_context = {
-                "nav": site_navigation
+                "nav": site_navigation,
+                "config": DEFAULT_CONFIG
         }
+                
         site_navigation.items[1].active = True  # Mark 'About' as active
         rendered_side_nav = side_nav_partial.render(enabled_context)
         assert_valid_html(rendered_side_nav)
@@ -54,7 +63,8 @@ class TestSideNav():
         expected_style = "terminal-mkdocs-side-nav-item terminal-mkdocs-side-nav-section-no-index"
         site_navigation=nest_one_nav
         enabled_context = {
-                "nav": site_navigation
+                "nav": site_navigation,
+                "config": DEFAULT_CONFIG
         }
         rendered_side_nav = side_nav_partial.render(enabled_context)
         assert_valid_html(rendered_side_nav)
@@ -71,7 +81,8 @@ class TestSideNav():
         active_child_style = "terminal-mkdocs-side-nav-item--active"
         site_navigation=nest_one_nav
         enabled_context = {
-                "nav": site_navigation
+                "nav": site_navigation,
+                "config": DEFAULT_CONFIG
         }
         # Mark 'Debugging' as active
         site_navigation.items[1].children[2].active = True
@@ -88,7 +99,8 @@ class TestSideNav():
     def test_second_level_nest_rendered_but_not_third_level(self, nest_two_nav, side_nav_partial):
         site_navigation=nest_two_nav
         enabled_context = {
-                "nav": site_navigation
+                "nav": site_navigation,
+                "config": DEFAULT_CONFIG
         }
         rendered_side_nav = side_nav_partial.render(enabled_context)
    
@@ -98,20 +110,45 @@ class TestSideNav():
         assert "Advanced" in stripped_side_nav
         assert "Part 1" not in stripped_side_nav
     
-    # def test_section_with_index_styled_as_link(self, nest_three_nav, side_nav_partial):
-    #     site_navigation=nest_three_nav
-    #     enabled_context = {
-    #             "nav": site_navigation,
-    #             "config":{
-    #                 "theme": {
-    #                     "features": [theme_features.SHOW_INDEX_SECTIONS]
-    #                 }
-    #             }
-    #         }
-    #     print(site_navigation)
-    #     rendered_side_nav = side_nav_partial.render(enabled_context)
-   
-    #     assert_valid_html(rendered_side_nav)
-    #     stripped_side_nav = strip_whitespace(rendered_side_nav)
-    #     print(stripped_side_nav)
-    #     assert 1 == 2
+    
+    # a section with children AND an index should be a link instead of a span
+    def test_section_with_index_is_link(self, nest_three_nav, side_nav_partial):
+        expected_section_index_style = "terminal-mkdocs-side-nav-item"
+        site_navigation=nest_three_nav
+        enabled_context = {
+                "nav": site_navigation,
+                "config":{
+                    "theme": {
+                        "name": "terminal",
+                        "features": [theme_features.SHOW_INDEX_SECTIONS]
+                    },
+                    "extra":{}
+                }
+            }
+        
+        rendered_side_nav = side_nav_partial.render(enabled_context)
+        assert_valid_html(rendered_side_nav)
+        stripped_side_nav = strip_whitespace(rendered_side_nav)
+        assert format("<a class=\"%s\" href=\"mocked_url_path/about/release-notes/\">Release notes</a>" % expected_section_index_style) in stripped_side_nav
+        
+    # a section with children AND an index should be styled as an active link when its child is active
+    def test_section_with_index_styled_active_when_child_active(self, nest_three_nav, side_nav_partial):
+        expected_section_index_style = "terminal-mkdocs-side-nav-item--active"
+        site_navigation=nest_three_nav
+        enabled_context = {
+                "nav": site_navigation,
+                "config":{
+                    "theme": {
+                        "name": "terminal",
+                        "features": [theme_features.SHOW_INDEX_SECTIONS]
+                    },
+                    "extra":{}
+                }
+            }
+        
+        site_navigation.items[2].children[1].active = True  # Mark 'v1.0' as active
+        rendered_side_nav = side_nav_partial.render(enabled_context)
+        assert_valid_html(rendered_side_nav)
+        stripped_side_nav = strip_whitespace(rendered_side_nav)
+        assert format("<a class=\"%s\" href=\"mocked_url_path/about/release-notes/\">Release notes</a>" % expected_section_index_style) in stripped_side_nav
+     
