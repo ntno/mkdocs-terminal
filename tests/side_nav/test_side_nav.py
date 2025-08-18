@@ -8,7 +8,7 @@ DEFAULT_CONFIG = {
         "name": "terminal",
         "features": [],
     },
-    "extra":{}
+    "extra": {}
 } 
 
 
