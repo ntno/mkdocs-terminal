@@ -17,6 +17,7 @@ theme:
   static_templates:
     - 404.html
     - about/coverage-report/index.html
+  side_navigation_max_nesting: 4
 
 plugins:
   - terminal/md-to-html

@@ -14,21 +14,24 @@ nav:
         - Default: 'configuration/palettes/default.md'
         - Gruvbox Dark: 'configuration/palettes/gruvbox-dark.md'
         - Dark: 'configuration/palettes/dark.md'
-        - Pink: 'configuration/palettes/pink.md'
+        # - Pink: 'configuration/palettes/pink.md'
         - Sans: 'configuration/palettes/sans.md'
         - Sans Dark: 'configuration/palettes/sans-dark.md'
       - Code Highlighting:
         - Index: 'configuration/code-highlighting/index.md'
       - Features: 'configuration/features.md'
       - Blocks: 'configuration/blocks.md'
-      - Plugins: 'configuration/plugins/index.md'
-      - '___Git Revision': 'configuration/plugins/git-revision.md'
-      - '___Macros': 'configuration/plugins/macros.md'
-      - '___Search': 'configuration/plugins/search.md'      
-      - Extensions: 'configuration/extensions/index.md'
-      - Markdown Extensions: 'configuration/extensions/python-markdown.md'
-      - PyMdown Extensions: 'configuration/extensions/pymdown-extensions.md'
-      - '___Snippets': 'configuration/extensions/snippets.md'
+      - Plugins: 
+        - Index: 'configuration/plugins/index.md'
+        - 'Git Revision': 'configuration/plugins/git-revision.md'
+        - Macros: 'configuration/plugins/macros.md'
+        - Search: 'configuration/plugins/search.md'      
+      - Extensions: 
+        - Index: 'configuration/extensions/index.md'
+        - Markdown Extensions: 'configuration/extensions/python-markdown.md'
+        - PyMdown Extensions: 
+          - Index: 'configuration/extensions/pymdown-extensions.md'
+          - Snippets: 'configuration/extensions/snippets.md'
     - Navigation:
         - Section Indexes: 'navigation/section-indexes.md'
         - Table of Contents: 'navigation/toc.md'
