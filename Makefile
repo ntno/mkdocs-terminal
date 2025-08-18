@@ -83,7 +83,7 @@ build-local-theme-and-serve: install-from-dist
 #for developer use, assumes you have already installed prereqs
 quick-tests:
 	flake8 --ignore E501 terminal && \
-	flake8 --ignore E501 tests && \
+	flake8 --ignore E501 --exclude tests/examples tests && \
 	pytest --color=yes --capture=no tests
 
 #for developer use, assumes you have already installed prereqs

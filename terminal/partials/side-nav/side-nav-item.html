@@ -1,12 +1,11 @@
-{% import 'macros/side-nav/side-nav-item-class.j2' as class_helper with context %}
-{% import 'macros/side-nav/side-nav-item.j2' as item_helper with context %}
-{% import 'macros/side-nav/section-index-page-title.j2' as index_helper with context %}
-{% import 'macros/side-nav/max-nesting.j2' as nesting_helper with context %}
+{%- import 'macros/side-nav/side-nav-item-class.j2' as class_helper with context -%}
+{%- import 'macros/side-nav/side-nav-item.j2' as item_helper with context -%}
+{%- import 'macros/side-nav/section-index-page-title.j2' as index_helper with context -%}
+{%- import 'macros/side-nav/max-nesting.j2' as nesting_helper with context -%}
 
 {% macro side_nav_item( nav_item ) -%}
     {% set macro_ns = namespace(class="") %}
     {% set macro_ns.class = class_helper.get_class( nav_item ) -%}
-
     {% if "navigation.side.indexes" in features and nav_item.title == index_helper.get_section_index_page_title() %}
         {{ item_helper.index_item( nav_item, macro_ns.class ) }}
     {% else %}
@@ -47,9 +46,8 @@
     {%endif%}
 {%- endmacro -%}
 
-<li class="terminal-mkdocs-side-nav-li">
+        <li class="terminal-mkdocs-side-nav-li">
     {% if nav_item.children %}
-    
         {% set ns = namespace(index_matches=[], found_index=false) %}
         {% if "navigation.side.indexes" in features %}
             {% set ns.index_matches = nav_item.children|selectattr("title", "eq", index_helper.get_section_index_page_title())|list %}
@@ -74,4 +72,4 @@
     {% else %}
     {{ side_nav_item( nav_item ) }}
     {% endif %}
-  </li>
+       </li>
