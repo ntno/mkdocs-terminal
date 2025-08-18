@@ -112,32 +112,34 @@ def empty_nav():
     nav_cfg = []
     return build_flat_site_navigation_from_config(nav_cfg)
 
+
 @pytest.fixture
 def flat_nav():
     nav_cfg = [
-            {'Home': 'index.md'},
-            {'About': 'about.md'},
-        ]
+        {'Home': 'index.md'},
+        {'About': 'about.md'},
+    ]
     return build_flat_site_navigation_from_config(nav_cfg)
+
 
 @pytest.fixture
 def nest_one_nav():
     nav_cfg = [
-            {'Home': 'index.md'},
-            {
-                'API Guide': [
-                    {'Running': 'api-guide/running.md'},
-                    {'Testing': 'api-guide/testing.md'},
-                    {'Debugging': 'api-guide/debugging.md'},
-                ]
-            },
-            {
-                'About': [
-                    {'Release notes': 'about/release-notes.md'},
-                    {'License': 'about/license.md'},
-                ]
-            },
-        ]
+        {'Home': 'index.md'},
+        {
+            'API Guide': [
+                {'Running': 'api-guide/running.md'},
+                {'Testing': 'api-guide/testing.md'},
+                {'Debugging': 'api-guide/debugging.md'},
+            ]
+        },
+        {
+            'About': [
+                {'Release notes': 'about/release-notes.md'},
+                {'License': 'about/license.md'},
+            ]
+        },
+    ]
     cfg = load_config(nav=nav_cfg, site_url='http://example.com/')
     fs = [
         'index.md',
@@ -150,28 +152,29 @@ def nest_one_nav():
     files = Files([File(s, cfg.docs_dir, cfg.site_dir, cfg.use_directory_urls) for s in fs])
     return get_navigation(files, cfg)
 
+
 @pytest.fixture
 def nest_two_nav():
     nav_cfg = [
-    {'Home': 'index.md'},
-    {
-        'API Guide': [
-            {'Running': 'api-guide/running.md'},
-            {'Testing': 'api-guide/testing.md'},
-            {'Debugging': 'api-guide/debugging.md'},
-            {
-                'Advanced': [
-                    {'Part 1': 'api-guide/advanced/part-1.md'},
-                ]
-            },
-        ]
-    },
-    {
-        'About': [
-            {'Release notes': 'about/release-notes.md'},
-            {'License': 'about/license.md'},
-        ]
-    },
+        {'Home': 'index.md'},
+        {
+            'API Guide': [
+                {'Running': 'api-guide/running.md'},
+                {'Testing': 'api-guide/testing.md'},
+                {'Debugging': 'api-guide/debugging.md'},
+                {
+                    'Advanced': [
+                        {'Part 1': 'api-guide/advanced/part-1.md'},
+                    ]
+                },
+            ]
+        },
+        {
+            'About': [
+                {'Release notes': 'about/release-notes.md'},
+                {'License': 'about/license.md'},
+            ]
+        },
     ]
     cfg = load_config(nav=nav_cfg, site_url='http://example.com/')
     fs = [
@@ -190,30 +193,30 @@ def nest_two_nav():
 @pytest.fixture
 def nest_three_nav():
     nav_cfg = [
-    {'Home': 'index.md'},
-    {
-        'API Guide': [
-            {'Running': 'api-guide/running.md'},
-            {'Testing': 'api-guide/testing.md'},
-            {'Debugging': 'api-guide/debugging.md'},
-            {
-                'Advanced': [
-                    {'Part 1': 'api-guide/advanced/part-1.md'},
-                ]
-            },
-        ]
-    },
-    {
-      'Release notes': [
+        {'Home': 'index.md'},
+        {
+            'API Guide': [
+                {'Running': 'api-guide/running.md'},
+                {'Testing': 'api-guide/testing.md'},
+                {'Debugging': 'api-guide/debugging.md'},
+                {
+                    'Advanced': [
+                        {'Part 1': 'api-guide/advanced/part-1.md'},
+                    ]
+                },
+            ]
+        },
+        {
+            'Release notes': [
                 {'Index': 'about/release-notes/index.md'},
                 {'v1.0': [
                     {'Changelog': 'about/release-notes/v1.0.md'},
                 ]},
                 {'v2.0': [
-                    {   'Changelog': 'about/release-notes/v2.0.md'},
+                    {'Changelog': 'about/release-notes/v2.0.md'},
                 ]},
             ]
-    },
+        },
     ]
     cfg = load_config(nav=nav_cfg, site_url='http://example.com/')
     fs = [
@@ -225,7 +228,7 @@ def nest_three_nav():
         'about/release-notes/index.md',
         'about/release-notes/v1.0.md',
         'about/release-notes/v2.0.md',
-    
+
     ]
     files = Files([File(s, cfg.docs_dir, cfg.site_dir, cfg.use_directory_urls) for s in fs])
     return get_navigation(files, cfg)
@@ -248,6 +251,7 @@ def make_mock_nav_object(mock_properties):
     type(nav_object).active = mock_properties["active"]
     return nav_object
 
+
 def build_flat_site_navigation_from_config(nav_cfg):
     cfg = load_config(nav=nav_cfg, site_url='http://example.com/')
     fs = [
@@ -257,9 +261,6 @@ def build_flat_site_navigation_from_config(nav_cfg):
     files = Files(fs)
     site_navigation = get_navigation(files, cfg)
     return site_navigation
-
-
-
 
 # @pytest.fixture
 # def dict_loader():
