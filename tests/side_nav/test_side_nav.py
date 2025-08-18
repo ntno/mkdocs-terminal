@@ -9,7 +9,7 @@ DEFAULT_CONFIG = {
         "features": [],
     },
     "extra": {}
-} 
+}
 
 
 @pytest.fixture
@@ -52,7 +52,7 @@ class TestSideNav():
             "nav": site_navigation,
             "config": DEFAULT_CONFIG
         }
-                
+
         site_navigation.items[1].active = True  # Mark 'About' as active
         rendered_side_nav = side_nav_partial.render(enabled_context)
         assert_valid_html(rendered_side_nav)
@@ -71,7 +71,7 @@ class TestSideNav():
         rendered_side_nav = side_nav_partial.render(enabled_context)
         assert_valid_html(rendered_side_nav)
         stripped_side_nav = strip_whitespace(rendered_side_nav)
-  
+
         # TODO - there is a whitespace bug that inserts a leading space before the expected class in some cases
         assert format("<span class=\" %s\">About</span>" % expected_style) in stripped_side_nav
         assert format("<span class=\" %s\">API Guide</span>" % expected_style) in stripped_side_nav
@@ -96,7 +96,7 @@ class TestSideNav():
         assert format("<span class=\" %s\">About</span>" % default_style) in stripped_side_nav
         assert format("<span class=\" %s\">API Guide</span>" % active_style) in stripped_side_nav
         assert format("<span class=\"%s\">Debugging</span>" % active_child_style) in stripped_side_nav
-    
+
     # the second level (API Guide > Advanced) is rendered but not the third level (API Guide > Advanced > Part 1)
     def test_second_level_nest_rendered_but_not_third_level(self, nest_two_nav, side_nav_partial):
         site_navigation = nest_two_nav
@@ -105,14 +105,13 @@ class TestSideNav():
             "config": DEFAULT_CONFIG
         }
         rendered_side_nav = side_nav_partial.render(enabled_context)
-   
+
         assert_valid_html(rendered_side_nav)
         stripped_side_nav = strip_whitespace(rendered_side_nav)
-        
+
         assert "Advanced" in stripped_side_nav
         assert "Part 1" not in stripped_side_nav
-    
-    
+
     # a section with children AND an index should be a link instead of a span
     def test_section_with_index_is_link(self, nest_three_nav, side_nav_partial):
         expected_section_index_style = "terminal-mkdocs-side-nav-item"
@@ -127,12 +126,12 @@ class TestSideNav():
                 "extra":{}
             }
         }
-        
+
         rendered_side_nav = side_nav_partial.render(enabled_context)
         assert_valid_html(rendered_side_nav)
         stripped_side_nav = strip_whitespace(rendered_side_nav)
         assert format("<a class=\"%s\" href=\"mocked_url_path/about/release-notes/\">Release notes</a>" % expected_section_index_style) in stripped_side_nav
-        
+
     # a section with children AND an index should be styled as an active link when its child is active
     def test_section_with_index_styled_active_when_child_active(self, nest_three_nav, side_nav_partial):
         expected_section_index_style = "terminal-mkdocs-side-nav-item--active"
@@ -147,7 +146,7 @@ class TestSideNav():
                 "extra":{}
             }
         }
-        
+
         site_navigation.items[2].children[1].active = True  # Mark 'v1.0' as active
         rendered_side_nav = side_nav_partial.render(enabled_context)
         assert_valid_html(rendered_side_nav)
