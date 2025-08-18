@@ -2,10 +2,9 @@
 # https://github.com/mkdocs/mkdocs/blob/master/mkdocs/tests/base.py
 
 from __future__ import annotations
-
+from mkdocs.config.defaults import MkDocsConfig
 import os
 
-from mkdocs.config.defaults import MkDocsConfig
 
 def load_config(config_file_path: str | None = None, **cfg) -> MkDocsConfig:
     """Helper to build a simple config for testing."""

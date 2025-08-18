@@ -25,7 +25,6 @@ class TestSideNav():
             "config": DEFAULT_CONFIG
         }
         rendered_side_nav = side_nav_partial.render(enabled_context)
-        print(rendered_side_nav)
         stripped_side_nav = strip_whitespace(rendered_side_nav)
         assert "<nav> </nav>" in stripped_side_nav
 
