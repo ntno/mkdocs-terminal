@@ -15,9 +15,7 @@ LVL_3_NESTING_CONFIG = {
     "theme": {
         "name": "terminal",
         "features": [],
-    },
-    "extra": {
-        "MKDOCS_TERMINAL_MAX_SIDE_NAV_NESTING": 3
+        "side_navigation_max_nesting": 3
     }
 }
 
