@@ -29,10 +29,9 @@ class TestSideNav():
         stripped_side_nav = strip_whitespace(rendered_side_nav)
         assert "<nav> </nav>" in stripped_side_nav
 
-
     def test_flat_nav_entries_styled_as_simple_links(self, flat_nav, side_nav_partial):
         expected_style = "terminal-mkdocs-side-nav-item"
-        site_navigation=flat_nav
+        site_navigation = flat_nav
         enabled_context = {
             "nav": site_navigation,
             "config": DEFAULT_CONFIG
@@ -118,12 +117,12 @@ class TestSideNav():
         site_navigation = nest_three_nav
         enabled_context = {
             "nav": site_navigation,
-            "config":{
+            "config": {
                 "theme": {
                     "name": "terminal",
                     "features": [theme_features.SHOW_INDEX_SECTIONS]
                 },
-                "extra":{}
+                "extra": {}
             }
         }
 
@@ -138,12 +137,12 @@ class TestSideNav():
         site_navigation = nest_three_nav
         enabled_context = {
             "nav": site_navigation,
-            "config":{
+            "config": {
                 "theme": {
                     "name": "terminal",
                     "features": [theme_features.SHOW_INDEX_SECTIONS]
                 },
-                "extra":{}
+                "extra": {}
             }
         }
 
