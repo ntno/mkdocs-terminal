@@ -41,7 +41,7 @@ tiles:
 </style>
 
 
-# Code Hilighting
+# Code Highlighting
 
 Code blocks can be highlighted for increased readability.  
 Please note that there are multiple ways of highlighting code in a MkDocs site and some methods may conflict with each other.
