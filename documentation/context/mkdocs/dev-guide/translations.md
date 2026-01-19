@@ -1,3 +1,8 @@
+---
+source: https://github.com/mkdocs/mkdocs/blob/master/docs/dev-guide/translations.md
+date: 01-18-26
+---
+
 # Translations
 
 Theme localization guide.

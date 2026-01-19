@@ -1,3 +1,8 @@
+---
+source: https://github.com/mkdocs/mkdocs/blob/master/docs/dev-guide/plugins.md
+date: 01-18-26
+---
+
 # MkDocs Plugins
 
 A Guide to installing, using and creating MkDocs Plugins

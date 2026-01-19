@@ -1,3 +1,8 @@
+---
+source: https://github.com/mkdocs/mkdocs/blob/master/docs/dev-guide/api.md
+date: 01-18-26
+---
+
 # API reference
 
 NOTE: The main entry point to the API is through [Events](plugins.md#events) that are received by plugins. These events' descriptions link back to this page.

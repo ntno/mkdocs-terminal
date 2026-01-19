@@ -1,3 +1,8 @@
+---
+source: https://github.com/mkdocs/mkdocs/blob/master/docs/dev-guide/themes.md
+date: 01-18-26
+---
+
 # Developing Themes
 
 A guide to creating and distributing custom themes.
