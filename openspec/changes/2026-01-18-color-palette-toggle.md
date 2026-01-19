@@ -81,7 +81,31 @@ theme:
           css: assets/css/mysite-palette.css
 ```
 
-  The theme should resolve provided `css` paths and include them in the built site assets accordingly. If a custom CSS path is provided, the selector will list the provided name and apply the referenced stylesheet when selected.
+  The theme will not automatically inject arbitrary user files into MkDocs' `extra_css` — therefore site authors must include any custom palette CSS in their `mkdocs.yml` `extra_css` list so MkDocs will copy and link the file into the built site. For example:
+
+```yaml
+theme:
+  name: terminal
+  palette:
+    default: dark
+    selector:
+      enabled: true
+      ui: auto
+      options:
+        - dark
+        - name: mysite
+          css: assets/css/mysite-palette.css
+
+extra_css:
+  - assets/css/mysite-palette.css
+```
+
+If a custom CSS path is provided in `selector.options`, the selector will list the provided name and apply the referenced stylesheet when selected; the author must ensure the file is available in `extra_css` so the browser can load it at runtime.
+
+  - Misconfiguration handling: the theme must validate custom palette entries before exposing them as selectable options. At build/render time the theme should confirm the referenced CSS file is present (for example, listed in `config.extra_css` or available in the built site assets). If the file cannot be found, the theme should:
+    - omit the invalid option from the selector UI,
+    - surface a non-blocking warning for developers (console log during runtime and/or builder-time warning in docs build output), and
+    - continue using the configured `default` palette so end-users are not affected.
 
 Accessibility
 -------------
