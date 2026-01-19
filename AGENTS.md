@@ -16,6 +16,8 @@ Before beginning any task, review the documentation (`DEVELOPER_README.md`, `doc
 
 * Always define dependencies in the `pyproject.toml` file, never use `setup.py` or `setup.cfg` files
 * Prefer using existing dependencies where possible instead of adding new dependencies
+* Do not put `import` statements inside of functions unless necessary to prevent circular imports.  Imports should be at the top of the file.
+* When defining new functions, use keyword arguments instead of positional arguments
 
 ### Production Ready
 
