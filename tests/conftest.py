@@ -306,6 +306,8 @@ def built_example_site(tmp_path_factory, request):
     This fixture builds an example documentation site using the theme files
     from terminal/ to ensure tests validate against the actual theme code.
     
+    The site name is extracted from the example site's mkdocs.yml file.
+    
     Usage:
         def test_something(built_example_site):
             # Returns path to default minimal site
@@ -321,22 +323,33 @@ def built_example_site(tmp_path_factory, request):
     Returns:
         Path to the built site directory
     """
+    import yaml
     from mkdocs.commands.build import build
     
     # Allow parametrization to specify which example to build
     example_name = getattr(request, "param", "minimal")
     
     tmp_dir = tmp_path_factory.mktemp(f"built_{example_name}_site")
-    docs_dir = Path(__file__).parent / "examples" / example_name / "docs"
+    example_dir = Path(__file__).parent / "examples" / example_name
+    docs_dir = example_dir / "docs"
     theme_dir = Path(__file__).parent.parent / "terminal"
     
     if not docs_dir.exists():
         raise ValueError(f"Example site not found at {docs_dir}")
     
+    # Extract site_name from mkdocs.yml
+    mkdocs_yml = example_dir / "mkdocs.yml"
+    site_name = "Test Site"
+    if mkdocs_yml.exists():
+        with open(mkdocs_yml) as f:
+            config_data = yaml.safe_load(f)
+            if config_data and "site_name" in config_data:
+                site_name = config_data["site_name"]
+    
     config = load_config(
         docs_dir=str(docs_dir.resolve()),
         site_dir=str(tmp_dir.resolve()),
-        site_name="Test Site",
+        site_name=site_name,
         theme={
             "name": None,
             "custom_dir": str(theme_dir.resolve())
