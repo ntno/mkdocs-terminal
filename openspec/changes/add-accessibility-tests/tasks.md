@@ -19,11 +19,11 @@ Implementation tasks for adding automated accessibility testing to the Terminal 
 
 ### Phase 2: HTML & Semantic Validation
 
-- [ ] Create `tests/accessibility/test_html_validation.py`
-- [ ] Implement HTML5 structure validation tests
-- [ ] Add tests for semantic HTML elements (headings, nav, main, etc.)
-- [ ] Add tests to verify required HTML attributes
-- [ ] Document HTML validation requirements in test docstrings
+- [x] Create `tests/accessibility/test_html_validation.py`
+- [x] Implement HTML5 structure validation tests
+- [x] Add tests for semantic HTML elements (headings, nav, main, etc.)
+- [x] Add tests to verify required HTML attributes
+- [x] Document HTML validation requirements in test docstrings
 
 ### Phase 3: ARIA & Semantic Attributes
 
