@@ -83,7 +83,6 @@ grid, and utilities for converting select Markdown fragments to HTML during site
 - Follow semantic versioning and bump `package.json` / `terminal/theme_version.html` when releasing a new theme version per
 	`DEVELOPER_README.md` instructions.
 
-
 ## Domain Context
 - This repository implements a MkDocs theme and supporting plugins; familiarity with MkDocs theme discovery,
 	the `theme` and `plugins` entry points, and how MkDocs copies static assets during site build is important.
