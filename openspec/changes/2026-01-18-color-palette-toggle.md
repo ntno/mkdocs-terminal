@@ -116,6 +116,19 @@ Backwards Compatibility
 -----------------------
 - Default behavior: if `theme.palette` is not configured, there is no change.
 - Existing sites that set custom CSS should not be impacted unless they opt into `palette` config or include the toggle UI.
+ - Preserve legacy `palette` string config: some sites currently set `palette: "dark"` (a plain string). The theme must continue to accept that form and treat it as the equivalent of:
+
+```yaml
+palette:
+  default: dark
+  selector:
+    enabled: false
+```
+
+  In other words, a string `palette` value selects the default palette server-side and does not enable the selector UI.
+
+ - Migration: when the theme detects the legacy string form at build/render time, it should normalize the config internally to the new object shape (for template rendering and tests) so downstream code can depend on the new structure without breaking older `mkdocs.yml` files.
+
 
 Testing
 -------
