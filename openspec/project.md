@@ -50,6 +50,40 @@ grid, and utilities for converting select Markdown fragments to HTML during site
 - Follow repository PR template and use draft PRs for early feedback.
 - Releases follow semantic versioning (MAJOR.MINOR.PATCH); see `documentation/docs/releases.md` for details.
 
+### Dependency & Packaging
+- Define runtime and build dependencies in `pyproject.toml`; do not add `setup.py` or `setup.cfg` files.
+- Packaging is done with `hatch`/`hatchling` and `python -m build`; ensure static assets are included (see `tool.hatch.build.targets`).
+
+### Developer Environment
+- Development is container-first: prefer the Docker-based workflow described in `DEVELOPER_README.md` and use `Makefile` targets
+	(`make ubuntu`, `make serve-docs`, `make serve-local-theme`) to run builds and local servers.
+- Use `make install-test-prereqs` and `make install-test-requirements` to prepare CI-like environments locally when needed.
+
+### Comments and Documentation
+- Write concise, informative comments focused on intent and decisions; avoid noisy or redundant comments.
+- Update the `documentation/docs/` site for any user-facing behavior changes and add docs for new theme components.
+
+### Security and Sensitive Data
+- Never hardcode secrets or credentials; do not commit sensitive data to the repository.
+- Do not log sensitive data in tests or runtime.
+
+### Testing & CI Expectations
+- Add unit or integration tests for any new or changed functionality and include them under `tests/`.
+- Keep tests deterministic and avoid network calls where possible; mock external services.
+- CI will run the test matrix via GitHub Actions; ensure platform-specific steps are considered (macOS `tidy-html5` build, etc.).
+
+### Pull Requests & Contributions
+- Follow the `CONTRIBUTING.md` process: open an Issue for large or potentially breaking changes, work in a fork/branch, and use
+	the provided PR template. Keep PRs focused and small.
+
+### Commit Messages
+- Use clear, imperative-style commit messages that summarize the change. PR titles should describe intent and link to issues when applicable.
+
+### Release & Versioning
+- Follow semantic versioning and bump `package.json` / `terminal/theme_version.html` when releasing a new theme version per
+	`DEVELOPER_README.md` instructions.
+
+
 ## Domain Context
 - This repository implements a MkDocs theme and supporting plugins; familiarity with MkDocs theme discovery,
 	the `theme` and `plugins` entry points, and how MkDocs copies static assets during site build is important.
