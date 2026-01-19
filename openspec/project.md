@@ -98,6 +98,8 @@ grid, and utilities for converting select Markdown fragments to HTML during site
 	specific prerequisites to run the full test matrix.
 
 ## External Dependencies
+
+- MkDocs: https://www.mkdocs.org/
 - Upstream Terminal.css project: https://github.com/Gioni06/terminal.css (visual styling)
 - GitHub Actions for CI/CD and GitHub Pages deployment for documentation
 - `tidy-html5` is used in some macOS CI steps and for HTML validation in tests/builds
