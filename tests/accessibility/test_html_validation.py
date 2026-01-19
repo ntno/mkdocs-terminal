@@ -15,8 +15,8 @@ import pytest
 from pathlib import Path
 from bs4 import BeautifulSoup
 from tests.accessibility.utils import (
-    HeadingValidator,
-    SemanticValidator,
+    validate_heading_hierarchy,
+    validate_semantic_html,
 )
 
 
@@ -34,10 +34,7 @@ class TestHeadingStructure:
         index_file = built_minimal_site / "index.html"
         html_content = index_file.read_text(encoding="utf-8")
         
-        validator = HeadingValidator(html_content, "index.html")
-        validator.validate()
-        
-        violations = validator.get_violations()
+        violations = validate_heading_hierarchy(html_content, "index.html")
         h1_violations = [v for v in violations if "h1" in v.lower()]
         assert not h1_violations, f"Heading h1 violations found: {h1_violations}"
 
@@ -68,10 +65,7 @@ class TestHeadingStructure:
             print(f"  {tag}: {text}")
         
         # Validate the filtered HTML
-        validator = HeadingValidator(str(test_soup), "index.html")
-        validator.validate()
-        
-        violations = validator.get_violations()
+        violations = validate_heading_hierarchy(str(test_soup), "index.html")
         hierarchy_violations = [v for v in violations if "skip" in v.lower()]
         assert not hierarchy_violations, f"Heading hierarchy violations: {hierarchy_violations}"
 
@@ -80,10 +74,7 @@ class TestHeadingStructure:
         index_file = built_minimal_site / "index.html"
         html_content = index_file.read_text(encoding="utf-8")
         
-        validator = HeadingValidator(html_content, "index.html")
-        validator.validate()
-        
-        violations = validator.get_violations()
+        violations = validate_heading_hierarchy(html_content, "index.html")
         empty_violations = [v for v in violations if "empty" in v.lower()]
         assert not empty_violations, f"Empty heading violations: {empty_violations}"
 
@@ -102,10 +93,7 @@ class TestSemanticHTML:
         index_file = built_minimal_site / "index.html"
         html_content = index_file.read_text(encoding="utf-8")
         
-        validator = SemanticValidator(html_content, "index.html")
-        validator.validate()
-        
-        violations = validator.get_violations()
+        violations = validate_semantic_html(html_content, "index.html")
         duplicate_violations = [v for v in violations if "duplicate" in v.lower()]
         assert not duplicate_violations, f"Duplicate ID violations: {duplicate_violations}"
 
@@ -114,10 +102,7 @@ class TestSemanticHTML:
         index_file = built_minimal_site / "index.html"
         html_content = index_file.read_text(encoding="utf-8")
         
-        validator = SemanticValidator(html_content, "index.html")
-        validator.validate()
-        
-        violations = validator.get_violations()
+        violations = validate_semantic_html(html_content, "index.html")
         label_violations = [v for v in violations if "label" in v.lower()]
         # Search modal input is expected to have aria-label, so this should pass
         assert not label_violations, f"Form label violations: {label_violations}"
