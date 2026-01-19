@@ -12,11 +12,8 @@ Test Scope:
 """
 
 import pytest
-import os
 from pathlib import Path
 from bs4 import BeautifulSoup
-from mkdocs.commands.build import build
-from tests.integration_helper import load_config
 from tests.accessibility.utils import (
     HeadingValidator,
     SemanticValidator,
@@ -32,24 +29,9 @@ class TestHeadingStructure:
     - All headings must have descriptive text (not empty)
     """
 
-    @pytest.fixture(scope="class")
-    def built_minimal_site(self, tmp_path_factory):
-        """Build the minimal example site for testing."""
-        tmp_dir = tmp_path_factory.mktemp("minimal_site")
-        docs_dir = Path(__file__).parent.parent / "examples" / "minimal" / "docs"
-        
-        config = load_config(
-            docs_dir=str(docs_dir.resolve()),
-            site_dir=str(tmp_dir.resolve()),
-            site_name="Test Site"
-        )
-        build(config)
-        return tmp_dir
-
     def test_index_has_single_h1(self, built_minimal_site):
         """Verify page has exactly one h1 element."""
-        # Use testing/index.html as the root index.html in minimal example
-        index_file = built_minimal_site / "testing" / "index.html"
+        index_file = built_minimal_site / "index.html"
         html_content = index_file.read_text(encoding="utf-8")
         
         validator = HeadingValidator(html_content, "index.html")
@@ -67,43 +49,35 @@ class TestHeadingStructure:
         This causes a h2 -> h4 hierarchy violation. 
         We will filter out this specific header for now.
         """
-        index_file = built_minimal_site / "testing" / "index.html"
+        index_file = built_minimal_site / "index.html"
         html_content = index_file.read_text(encoding="utf-8")
         
-        # Extract and print heading structure for debugging
-        soup = BeautifulSoup(html_content, "html.parser")
-        all_headings = soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6"])
+        # Create a copy of the soup to filter
+        test_soup = BeautifulSoup(html_content, "html.parser")
         
-        # Filter out heading from MkDocs base theme
-        filtered_headings = []
-        for h in all_headings:
-            # Skip headings with known base theme IDs
+        # Remove only the known base theme heading
+        for h in test_soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6"]):
             if h.get("id") in ("keyboardModalLabel",):
-                continue
-            filtered_headings.append(h)
+                h.decompose()
         
-        heading_structure = [(h.name, h.get_text(strip=True)[:60]) for h in filtered_headings]
-        print(f"\nHeading structure found (filtered):")
+        # Extract and print remaining heading structure for debugging
+        remaining_headings = test_soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6"])
+        heading_structure = [(h.name, h.get_text(strip=True)[:60]) for h in remaining_headings]
+        print(f"\nHeading structure found (after filtering base theme):")
         for tag, text in heading_structure:
             print(f"  {tag}: {text}")
         
-        # Validate only the filtered headings
-        if filtered_headings:
-            test_soup = BeautifulSoup(html_content, "html.parser")
-            # Remove all headings first, then add back only filtered ones
-            for h in test_soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6"]):
-                h.decompose()
-            
-            validator = HeadingValidator(str(test_soup), "index.html")
-            validator.validate()
-            
-            violations = validator.get_violations()
-            hierarchy_violations = [v for v in violations if "skip" in v.lower()]
-            assert not hierarchy_violations, f"Heading hierarchy violations: {hierarchy_violations}"
+        # Validate the filtered HTML
+        validator = HeadingValidator(str(test_soup), "index.html")
+        validator.validate()
+        
+        violations = validator.get_violations()
+        hierarchy_violations = [v for v in violations if "skip" in v.lower()]
+        assert not hierarchy_violations, f"Heading hierarchy violations: {hierarchy_violations}"
 
     def test_no_empty_headings(self, built_minimal_site):
         """Verify all headings have descriptive text."""
-        index_file = built_minimal_site / "testing" / "index.html"
+        index_file = built_minimal_site / "index.html"
         html_content = index_file.read_text(encoding="utf-8")
         
         validator = HeadingValidator(html_content, "index.html")
@@ -123,23 +97,9 @@ class TestSemanticHTML:
     - Semantic elements should be used for their intended purpose
     """
 
-    @pytest.fixture(scope="class")
-    def built_minimal_site(self, tmp_path_factory):
-        """Build the minimal example site for testing."""
-        tmp_dir = tmp_path_factory.mktemp("semantic_site")
-        docs_dir = Path(__file__).parent.parent / "examples" / "minimal" / "docs"
-        
-        config = load_config(
-            docs_dir=str(docs_dir.resolve()),
-            site_dir=str(tmp_dir.resolve()),
-            site_name="Test Site"
-        )
-        build(config)
-        return tmp_dir
-
     def test_no_duplicate_ids(self, built_minimal_site):
         """Verify page has no duplicate element IDs."""
-        index_file = built_minimal_site / "testing" / "index.html"
+        index_file = built_minimal_site / "index.html"
         html_content = index_file.read_text(encoding="utf-8")
         
         validator = SemanticValidator(html_content, "index.html")
@@ -151,7 +111,7 @@ class TestSemanticHTML:
 
     def test_form_inputs_have_labels(self, built_minimal_site):
         """Verify form inputs are properly labeled."""
-        index_file = built_minimal_site / "testing" / "index.html"
+        index_file = built_minimal_site / "index.html"
         html_content = index_file.read_text(encoding="utf-8")
         
         validator = SemanticValidator(html_content, "index.html")
@@ -172,27 +132,13 @@ class TestHTMLValidity:
     - Valid element nesting
     """
 
-    @pytest.fixture(scope="class")
-    def built_minimal_site(self, tmp_path_factory):
-        """Build the minimal example site for testing."""
-        tmp_dir = tmp_path_factory.mktemp("validity_site")
-        docs_dir = Path(__file__).parent.parent / "examples" / "minimal" / "docs"
-        
-        config = load_config(
-            docs_dir=str(docs_dir.resolve()),
-            site_dir=str(tmp_dir.resolve()),
-            site_name="Test Site"
-        )
-        build(config)
-        return tmp_dir
-
     def test_index_page_is_valid_html(self, built_minimal_site):
         """Verify generated HTML is valid HTML5.
         
         This test uses BeautifulSoup parsing to verify the HTML structure
         is well-formed and can be parsed successfully.
         """
-        index_file = built_minimal_site / "testing" / "index.html"
+        index_file = built_minimal_site / "index.html"
         html_content = index_file.read_text(encoding="utf-8")
         
         # This will raise if HTML is severely malformed
