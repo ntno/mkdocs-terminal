@@ -15,14 +15,6 @@ and named palettes like `solarized`). The selector should be configurable via `m
 persist user selection (localStorage), be accessible, and degrade gracefully when JavaScript
 is disabled.
 
-Summary
--------
-Add an optional, built-in color-palette switcher to the `mkdocs-terminal` theme that allows
-site visitors to switch between configured palette options (for example, `dark`, `light`,
-and named palettes like `solarized`). The switcher should be configurable via `mkdocs.yml`,
-persist user selection (localStorage), be accessible, and degrade gracefully when JavaScript
-is disabled.
-
 Motivation
 ----------
 - Improve end-user control and accessibility by allowing runtime palette switching.
