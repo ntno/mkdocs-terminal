@@ -28,7 +28,7 @@ jobs:
         run: |
           git clone https://github.com/htacg/tidy-html5.git
           cd tidy-html5/build/cmake
-          cmake ../.. -DCMAKE_BUILD_TYPE=Release "-DCMAKE_OSX_ARCHITECTURES=x86_64;arm64"
+          cmake ../.. -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_BUILD_TYPE=Release "-DCMAKE_OSX_ARCHITECTURES=x86_64;arm64"
           make 
           sudo make install
       - name: Install Tox
