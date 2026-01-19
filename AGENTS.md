@@ -2,7 +2,7 @@
 
 You should always follow the best practices outlined in this document.  If there is a valid reason why you cannot follow one of these practices, you should inform the user and document the reason.
 
-Before beginning any task, review the documentation (`DEVELOPER_README.md`, `documentation/docs/`), the existing tests to understand the project (`tests/`), and the task runner (`Makefile`) to understand what dev tools are available and how to use them.  You should review code related to your request to understand preferred style: for example, you should review other tests before writing a new test suite, or review existing routers before creating a new one.  
+Before beginning any task, review the documentation (`DEVELOPER_README.md`, `documentation/`), the existing tests to understand the project (`tests/`), and the task runner (`Makefile`) to understand what dev tools are available and how to use them.  You should review code related to your request to understand preferred style: for example, you should review other tests before writing a new test suite, or review existing routers before creating a new one.  
 
 ## Personality
 
