@@ -10,12 +10,12 @@ Implementation tasks for adding automated accessibility testing to the Terminal 
 
 ### Phase 1: Infrastructure & Setup
 
-- [ ] Review and document accessibility library choices (axe-core vs pytest-a11y vs custom)
-- [ ] Update `pyproject.toml` with accessibility testing dependencies
-- [ ] Update `requirements.test.txt` with new test dependencies
-- [ ] Create `tests/accessibility/` directory structure
-- [ ] Create `tests/accessibility/__init__.py`
-- [ ] Create `tests/accessibility/utils.py` with common accessibility check helpers
+- [x] Review and document accessibility library choices (axe-core vs pytest-a11y vs custom)
+- [x] Update `pyproject.toml` with accessibility testing dependencies
+- [x] Update `requirements.test.txt` with new test dependencies
+- [x] Create `tests/accessibility/` directory structure
+- [x] Create `tests/accessibility/__init__.py`
+- [x] Create `tests/accessibility/utils.py` with common accessibility check helpers
 
 ### Phase 2: HTML & Semantic Validation
 
