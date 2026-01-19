@@ -12,6 +12,17 @@ Before beginning any task, review the documentation (`DEVELOPER_README.md`, `doc
 
 ## Best Practices
 
+### Python
+
+* Always define dependencies in the `pyproject.toml` file, never use `setup.py` or `setup.cfg` files
+* Prefer using existing dependencies where possible instead of adding new dependencies
+
+### Production Ready
+
+* All generated code should be production ready
+* There should not be any non-production logic branches in the main code package itself
+* Any code or package differences between Development and Production should be avoided unless absolutely necessary
+
 ### Comments
 
 * Comments should improve understanding of the code
