@@ -146,6 +146,24 @@ Implementation Plan
 4. Add tests and documentation updates.
 5. Publish as a minor release (backwards-compatible feature).
 
+Acceptance Criteria
+-------------------
+- Template renders the selector UI when `theme.palette.selector.enabled` is truthy and lists options from `theme.palette.selector.options`.
+- Legacy string config `palette: "<name>"` continues to set the server-side default palette and does not enable the selector UI. The theme internally normalizes legacy config to the new object shape.
+- Custom palette entries referencing CSS files are only exposed when the referenced file is present in `config.extra_css` (or otherwise available in built site assets); missing files are omitted from the selector, a non-blocking warning is surfaced, and the `default` palette is used.
+- Selector respects `selector.ui` and adapts: binary toggle for two options, select/menu for >2; fallbacks behave as specified (e.g., `ui: toggle` falls back to select when incompatible).
+- Client-side selection is applied immediately, persisted to `localStorage`, and restored on subsequent page loads.
+- The selector UI is overridable: a site can replace the partial `terminal/partials/palette_selector.html` or a provided `{% block palette_selector %}` and the theme falls back to the default implementation when no override is present.
+
+Default Bundled Palettes
+------------------------
+The theme will include a curated default set of palette files under `terminal/css/palettes/`. Initial bundled files should include at least:
+
+- dark: `dark.css`
+- light: `default.css`
+
+Additional palettes may be added in future releases; these defaults should be documented in the release notes and configuration docs.
+
 Alternatives Considered
 -----------------------
 - Provide only server-side theme configuration without client toggle — reduces complexity but loses user control.
