@@ -49,7 +49,7 @@ theme:
 
   - UI selection rules: the control implementation adapts to the number of configured `selector.options` and the `selector.ui` preference:
     - `selector.ui: auto` (default):
-      - If `selector.options` contains exactly 2 entries, render a binary toggle/checkbox.
+      - If `selector.options` contains exactly 2 entries, render a binary toggle.
       - If `selector.options` contains more than 2 entries, render a native `<select>` or an accessible menu.
     - `selector.ui: toggle`: force a binary toggle UI. If there are more than 2 `selector.options`, the theme must fall back to a `<select>` (and may log a developer console warning).
     - `selector.ui: select`: force a `<select>` UI. If there are less than 2 `selector.options`, do not render the control.
