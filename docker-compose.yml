@@ -10,7 +10,7 @@ services:
     platform: "linux/amd64"
     restart: "no"
     ports:
-      - "5000:5000"
+      - "8080:8080"
     environment:
       LOG_LEVEL: info
     volumes:
