@@ -69,8 +69,6 @@ def validate_semantic_html(html: str, filename: str = "index.html") -> List[str]
         all_ids.add(element_id)
     
     return violations
-    
-    return violations
 
 
 def validate_aria(html: str, filename: str = "index.html") -> List[str]:
