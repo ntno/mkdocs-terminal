@@ -8,19 +8,19 @@
 
 ## Summary
 
-Add automated accessibility testing to ensure the Terminal for MkDocs theme maintains WCAG 2.1 AA compliance and follows web accessibility best practices. This includes HTML validation, semantic structure verification, ARIA attribute checks, and color contrast validation.
+Add automated accessibility testing to ensure the Terminal for MkDocs theme maintains WCAG 2.1 AA compliance and follows web accessibility best practices. This includes HTML validation, semantic structure verification, ARIA attribute checks, and color contrast validation of theme components only.
 
 ## Motivation
 
-The Terminal for MkDocs theme provides HTML structure and styling that impacts accessibility across all documentation sites using it. Currently, there are no automated tests to:
+The Terminal for MkDocs theme provides HTML structure and styling that impacts accessibility across all documentation sites using it. Currently, there are no automated tests to verify the theme itself is accessible:
 
-1. Verify WCAG 2.1 compliance standards
-2. Validate semantic HTML structure
-3. Check ARIA attributes are properly used
-4. Ensure color contrast meets accessibility standards
-5. Verify keyboard navigation is possible
+1. Verify WCAG 2.1 compliance standards for theme HTML and styling
+2. Validate semantic HTML structure of theme templates
+3. Check ARIA attributes on theme interactive components (nav, search, modals)
+4. Ensure color contrast meets accessibility standards in theme CSS
+5. Verify theme templates support keyboard navigation
 
-These gaps risk publishing inaccessible documentation for users with disabilities and create technical debt as features are added without accessibility validation.
+These gaps risk shipping an inaccessible theme that would affect all users of Terminal for MkDocs. However, validation of user-provided site content (like page headings and form fields in user documentation) is explicitly out of scope—those are the responsibility of site authors, not the theme.
 
 ## Scope
 
@@ -43,20 +43,21 @@ This change creates a new testing capability for accessibility validation:
 - Runtime accessibility enforcement (only testing)
 - Browser-based GUI testing (only static analysis)
 - Internationalization/localization accessibility (future phase)
+- **Validation of user-provided content** — Site authors are responsible for accessible page structure, headings, forms, and content. Tests validate the theme structure only, not user content.
 
 ## Technical Design
 
 ### Testing Strategy
 
-Accessibility tests will use a multi-layered approach:
+Accessibility tests will use a multi-layered approach focused on theme components:
 
-1. **HTML Validation** — Use `html5lib` to validate semantic HTML5 structure
-2. **ARIA Validation** — Check ARIA attributes against the ARIA specification
-3. **Color Contrast** — Validate text/background contrast ratios meet WCAG AA standards
-4. **Link Text** — Ensure links have descriptive, non-empty text
-5. **Image Alt Text** — Check images have alt attributes (with exceptions for decorative images)
-6. **Heading Structure** — Verify heading hierarchy is sequential
-7. **Form Labels** — Ensure form inputs have associated labels
+1. **HTML Validation** — Use `html5lib` to validate semantic HTML5 structure of theme templates
+2. **ARIA Validation** — Check ARIA attributes on theme interactive components (navigation, search, modals, buttons)
+3. **Color Contrast** — Validate text/background contrast ratios in theme CSS meet WCAG AA standards
+4. **Semantic HTML** — Verify theme uses proper semantic elements (`<nav>`, `<main>`, `<aside>`, `<header>`, `<footer>`)
+5. **Theme Accessibility** — Ensure theme templates support keyboard navigation, focus indicators, and screen reader compatibility
+
+**Out of Scope:** Validation of user content structure (heading hierarchy, form labels, link text, alt text) — these are the responsibility of content authors.
 
 ### Implementation Approach
 

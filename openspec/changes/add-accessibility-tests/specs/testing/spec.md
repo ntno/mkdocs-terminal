@@ -4,7 +4,7 @@ Change ID: `add-accessibility-tests`
 
 ## Summary
 
-This change introduces accessibility testing as a formal testing capability for the project.
+This change introduces accessibility testing as a formal testing capability for the Terminal for MkDocs theme. Tests focus on validating the theme's HTML structure, ARIA attributes, and styling—not on validating user-provided content.
 
 ## ADDED Requirements
 
@@ -40,20 +40,14 @@ MUST include automated tests that validate HTML structure, semantic markup, ARIA
 
 ### Requirement: HTML Validation
 
-MUST validate that all generated HTML conforms to HTML5 specification and uses semantic markup appropriately.
+MUST validate that theme-generated HTML conforms to HTML5 specification and uses semantic markup appropriately for theme components.
 
 #### Scenario: Verify semantic structure of theme templates
-- Tests scan all theme templates for proper use of semantic elements
-- Verify `<nav>`, `<main>`, `<aside>`, `<article>` are used appropriately
-- Headings are properly structured (h1, h2, h3... not skipping levels)
-- No duplicate IDs within a page
-- Form inputs are properly associated with labels
-
-#### Scenario: Detect invalid HTML in generated site
-- Built site contains invalid HTML5 (e.g., unclosed tags)
-- HTML validation test fails with location and type of error
-- Developer fixes template or configuration
-- Test passes
+- Tests scan theme templates for proper use of semantic elements
+- Verify `<nav>`, `<main>`, `<aside>`, `<header>`, `<footer>` are used appropriately in theme
+- Navigation regions have proper semantic structure
+- No duplicate IDs within a theme's generated output
+- **Out of scope:** User content heading structure, forms, or content markup
 
 ### Requirement: ARIA Validation
 
@@ -89,22 +83,9 @@ MUST validate that text and interactive elements meet WCAG 2.1 AA color contrast
 
 ### Requirement: Content Accessibility
 
-MUST validate that content within generated sites includes proper alt text, descriptive link text, and other content accessibility requirements.
+**EXPLICITLY OUT OF SCOPE** — Content accessibility (image alt text, link text, heading structure, form labels) is the responsibility of site authors, not the theme. The theme cannot enforce how users structure their documentation content.
 
-#### Scenario: Image alt text validation
-- All images have `alt` attributes or `data-decorative` marker
-- Alt text is descriptive (not "image", "photo", or empty)
-- Decorative images can have empty alt text with explicit marking
-
-#### Scenario: Link text validation
-- Links have visible, descriptive text (not "click here", "link", empty)
-- Links have `href` attributes
-- Links with only icon content have `aria-label` or title
-
-#### Scenario: Heading hierarchy validation
-- Document has exactly one `<h1>` as main heading
-- No skipped heading levels (e.g., h1 → h3 without h2)
-- Heading text is descriptive
+However, the theme MUST support accessibility best practices through proper HTML structure so that when site authors implement accessibility correctly, the theme does not hinder it.
 
 ## MODIFIED Requirements
 

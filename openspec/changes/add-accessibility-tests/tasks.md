@@ -41,20 +41,20 @@ Implementation tasks for adding automated accessibility testing to the Terminal 
 - [ ] Add tests for focus indicators and visual clarity
 - [ ] Document color contrast expectations
 
-### Phase 5: Content Accessibility
+### Phase 5: Theme Accessibility
 
-- [ ] Create tests for image alt text validation
-- [ ] Create tests for link text validation (no empty links)
-- [ ] Create tests for heading hierarchy (H1-H6 sequential)
-- [ ] Create tests for form label associations
-- [ ] Add exception handling for decorative/spacing elements
+- [ ] Verify theme templates support keyboard navigation
+- [ ] Add tests for keyboard focus indicators (visible focus states)
+- [ ] Verify skip-to-content links work properly
+- [ ] Test that interactive elements are keyboard accessible (search, navigation, modals)
+- [ ] Document theme-specific accessibility requirements
 
 ### Phase 6: Test Coverage & Documentation
 
 - [ ] Ensure test coverage reaches 80%+ for accessibility tests
-- [ ] Create developer documentation for adding new accessibility checks
-- [ ] Document known limitations and false positives
-- [ ] Add examples of accessibility checks to test suite
+- [ ] Create developer documentation for adding new accessibility checks to theme
+- [ ] Document known limitations: tests validate theme only, not user content
+- [ ] Add examples of how to write accessibility checks for theme components
 - [ ] Update main README or CONTRIBUTING with accessibility testing info
 
 ### Phase 7: CI/CD Integration
