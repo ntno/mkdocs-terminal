@@ -17,9 +17,6 @@ Out of Scope (User Content):
 These are content decisions made by site authors, not the theme.
 """
 
-import pytest
-from pathlib import Path
-from bs4 import BeautifulSoup
 from tests.accessibility.utils import (
     validate_semantic_html,
     validate_html_structure,
@@ -29,7 +26,7 @@ from tests.accessibility.utils import (
 
 class TestThemeStructure:
     """Tests for theme semantic HTML structure.
-    
+
     Requirement: Theme should generate semantic HTML.
     - No duplicate IDs in theme-generated elements
     - Proper semantic HTML structure for theme components
@@ -40,14 +37,14 @@ class TestThemeStructure:
         """Verify theme-generated HTML has no duplicate element IDs."""
         index_file = built_minimal_site / "index.html"
         html_content = index_file.read_text(encoding="utf-8")
-        
+
         violations = validate_duplicate_ids(html_content, "index.html")
         assert not violations, f"Duplicate ID violations: {violations}"
 
     # TODO: fix the nav violation, see https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/navigation.html
     def test_semantic_element_structure(self, built_minimal_site):
         """Verify theme uses semantic elements correctly.
-        
+
         Checks:
         - Exactly one <main> element
         - <main> is direct child of <body>
@@ -56,14 +53,14 @@ class TestThemeStructure:
         """
         index_file = built_minimal_site / "index.html"
         html_content = index_file.read_text(encoding="utf-8")
-        
+
         violations = validate_semantic_html(html_content, "index.html")
-        assert not violations, f"Semantic element violations:\n" + "\n".join(violations)
+        assert not violations, ("Semantic element violations:\n" + "\n".join(violations))
 
 
 class TestHTMLValidity:
     """Tests for HTML5 validity and proper attribute usage.
-    
+
     Requirement: Generated HTML should be valid HTML5.
     - All required attributes present
     - Proper attribute values and syntax
@@ -72,13 +69,13 @@ class TestHTMLValidity:
 
     def test_index_page_is_valid_html(self, built_minimal_site):
         """Verify generated HTML is valid HTML5.
-        
+
         Uses HTML Tidy to validate HTML5 structure including proper element nesting,
         required attributes, and structural compliance.
         """
         index_file = built_minimal_site / "index.html"
         html_content = index_file.read_text(encoding="utf-8")
-        
+
         violations = validate_html_structure(html_content, "index.html")
         assert not violations, f"HTML structure violations in {index_file.name}:\n" + "\n".join(violations)
 
@@ -86,9 +83,9 @@ class TestHTMLValidity:
         """Verify all generated HTML files have valid basic structure."""
         html_files = list(built_minimal_site.glob("**/*.html"))
         assert len(html_files) > 0, "No HTML files found in built site"
-        
+
         for html_file in html_files:
             html_content = html_file.read_text(encoding="utf-8")
-            
+
             violations = validate_html_structure(html_content, html_file.name)
             assert not violations, f"HTML structure violations in {html_file.name}:\n" + "\n".join(violations)

@@ -302,41 +302,41 @@ def build_flat_site_navigation_from_config(nav_cfg):
 @pytest.fixture(scope="session")
 def built_example_site(tmp_path_factory, request):
     """Build any example site for testing.
-    
+
     This fixture builds an example documentation site using the theme files
     from terminal/ to ensure tests validate against the actual theme code.
-    
+
     The site name is extracted from the example site's mkdocs.yml file.
-    
+
     Usage:
         def test_something(built_example_site):
             # Returns path to default minimal site
-            
+
         # With parametrize to test different examples:
         @pytest.mark.parametrize("built_example_site", ["minimal", "demo"], indirect=True)
         def test_multiple_examples(built_example_site):
             # Runs test with both minimal and demo sites
-    
+
     Args:
         request: pytest request object for parametrization support
-        
+
     Returns:
         Path to the built site directory
     """
     import yaml
     from mkdocs.commands.build import build
-    
+
     # Allow parametrization to specify which example to build
     example_name = getattr(request, "param", "minimal")
-    
+
     tmp_dir = tmp_path_factory.mktemp(f"built_{example_name}_site")
     example_dir = Path(__file__).parent / "examples" / example_name
     docs_dir = example_dir / "docs"
     theme_dir = Path(__file__).parent.parent / "terminal"
-    
+
     if not docs_dir.exists():
         raise ValueError(f"Example site not found at {docs_dir}")
-    
+
     # Extract site_name from mkdocs.yml
     mkdocs_yml = example_dir / "mkdocs.yml"
     site_name = "Test Site"
@@ -345,7 +345,7 @@ def built_example_site(tmp_path_factory, request):
             config_data = yaml.safe_load(f)
             if config_data and "site_name" in config_data:
                 site_name = config_data["site_name"]
-    
+
     config = load_config(
         docs_dir=str(docs_dir.resolve()),
         site_dir=str(tmp_dir.resolve()),
@@ -362,8 +362,7 @@ def built_example_site(tmp_path_factory, request):
 @pytest.fixture(scope="session")
 def built_minimal_site(built_example_site):
     """Convenience fixture for the minimal example site.
-    
+
     This is a simple wrapper around built_example_site for the minimal example.
     """
     return built_example_site
-
