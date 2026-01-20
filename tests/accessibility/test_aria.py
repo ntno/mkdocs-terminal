@@ -1,6 +1,6 @@
 import pytest
 from bs4 import BeautifulSoup
-from tests.accessibility.utils import validate_aria
+from tests.accessibility.utils import validate_aria_buttons, validate_aria_hidden
 
 
 @pytest.fixture
@@ -26,9 +26,8 @@ def test_buttons_have_text_or_aria_label(built_example_site):
         if soup.find("button"):
             button_found = True
 
-        aria_violations = validate_aria(html, html_file.name)
-        violations = [v for v in aria_violations if "Button missing text content or aria-label" in v]
-        all_violations.extend(violations)
+        aria_violations = validate_aria_buttons(html, html_file.name)
+        all_violations.extend(aria_violations)
 
     if not button_found:
         pytest.fail("No <button> elements found in built site. This likely indicates a test misconfiguration or missing modal. At least one button is expected (e.g., in the search modal).")
@@ -36,7 +35,8 @@ def test_buttons_have_text_or_aria_label(built_example_site):
     assert not all_violations, f"Buttons missing text or aria-label: {all_violations}"
 
 
+@pytest.mark.parametrize("built_example_site", ["simple"], indirect=True)
 def test_aria_hidden_only_on_decorative(index_html):
     html, filename = index_html
-    violations = [v for v in validate_aria(html, filename) if "aria-hidden='true' contains content" in v]
+    violations = [v for v in validate_aria_hidden(html, filename) if "aria-hidden='true' contains content" in v]
     assert not violations, f"aria-hidden used on non-decorative elements: {violations}"

@@ -194,49 +194,33 @@ def validate_html_structure(html: str, filename: str = "index.html") -> List[str
     return violations
 
 
-def validate_aria(html: str, filename: str = "index.html") -> List[str]:
-    """Validate ARIA attribute usage.
 
-    Checks for:
-    - Proper ARIA roles on interactive elements
-    - Presence of aria-label or aria-labelledby on unlabeled interactive elements
-    - aria-hidden used appropriately
-    - Modal dialogs have proper ARIA attributes
-
-    Args:
-        html: HTML string to validate
-        filename: Optional filename for error reporting
-
-    Returns:
-        List of violation messages
-    """
+def validate_aria_buttons(html: str, filename: str = "index.html") -> List[str]:
+    """Check that all <button> elements have text content or aria-label."""
     violations: List[str] = []
     soup = BeautifulSoup(html, "html.parser")
+    for element in soup.find_all("button"):
+        text = element.get_text(strip=True)
+        aria_label = element.get("aria-label", "").strip()
+        if not text and not aria_label:
+            violations.append(_format_violation(
+                "Button missing text content or aria-label",
+                filename,
+                element
+            ))
+    return violations
 
-    # Check for interactive elements with proper ARIA
-    interactive_elements = soup.find_all(["button", "a", "input", "select", "textarea"])
-
-    for element in interactive_elements:
-        if element.name == "button":
-            # Button should have text content or aria-label
-            text = element.get_text(strip=True)
-            aria_label = element.get("aria-label", "").strip()
-            if not text and not aria_label:
-                violations.append(_format_violation(
-                    "Button missing text content or aria-label",
-                    filename,
-                    element
-                ))
-
-    # Check for aria-hidden on decorative elements
+def validate_aria_hidden(html: str, filename: str = "index.html") -> List[str]:
+    """Check that aria-hidden is only used on truly decorative elements (no text content)."""
+    violations: List[str] = []
+    soup = BeautifulSoup(html, "html.parser")
     aria_hidden = soup.find_all(attrs={"aria-hidden": "true"})
     for element in aria_hidden:
-        # aria-hidden should only be on truly decorative elements
         if element.get_text(strip=True):
             violations.append(_format_violation(
                 f"Element with aria-hidden='true' contains content: {element}",
                 filename,
                 element
             ))
-
     return violations
+
