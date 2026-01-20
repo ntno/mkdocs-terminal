@@ -23,6 +23,7 @@ from bs4 import BeautifulSoup
 from tests.accessibility.utils import (
     validate_semantic_html,
     validate_html_structure,
+    validate_duplicate_ids,
 )
 
 
@@ -40,9 +41,8 @@ class TestThemeStructure:
         index_file = built_minimal_site / "index.html"
         html_content = index_file.read_text(encoding="utf-8")
         
-        violations = validate_semantic_html(html_content, "index.html")
-        duplicate_violations = [v for v in violations if "duplicate" in v.lower()]
-        assert not duplicate_violations, f"Duplicate ID violations: {duplicate_violations}"
+        violations = validate_duplicate_ids(html_content, "index.html")
+        assert not violations, f"Duplicate ID violations: {violations}"
 
     def test_semantic_element_structure(self, built_minimal_site):
         """Verify theme uses semantic elements correctly.
@@ -57,13 +57,7 @@ class TestThemeStructure:
         html_content = index_file.read_text(encoding="utf-8")
         
         violations = validate_semantic_html(html_content, "index.html")
-        semantic_violations = [
-            v for v in violations 
-            if any(keyword in v.lower() for keyword in [
-                'main', 'nav', 'header', 'footer'
-            ])
-        ]
-        assert not semantic_violations, f"Semantic element violations: {semantic_violations}"
+        assert not violations, f"Semantic element violations:\n" + "\n".join(violations)
 
 
 class TestHTMLValidity:

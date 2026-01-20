@@ -38,17 +38,39 @@ def _format_violation(message: str, filename: str = "index.html", element: Optio
     return violation
 
 
+def validate_duplicate_ids(html: str, filename: str = "index.html") -> List[str]:
+    """Validate that no duplicate IDs exist in HTML.
+    
+    Args:
+        html: HTML string to validate
+        filename: Optional filename for error reporting
+        
+    Returns:
+        List of violation messages (empty if no duplicates found)
+    """
+    violations: List[str] = []
+    soup = BeautifulSoup(html, "html.parser")
+    
+    all_ids: Set[str] = set()
+    for element in soup.find_all(id=True):
+        element_id = element.get("id", "")
+        if element_id in all_ids:
+            violations.append(_format_violation(f"Duplicate ID found: {element_id}", filename, element))
+        all_ids.add(element_id)
+    
+    return violations
 
 
 def validate_semantic_html(html: str, filename: str = "index.html") -> List[str]:
     """Validate semantic HTML structure of theme.
     
     Theme-focused checks:
-    - Duplicate IDs within the page (theme structure issue)
     - Exactly one <main> element, direct child of <body>
     - Multiple <nav> elements have aria-label to distinguish them
     - <header> and <footer> not nested inside <main>
     - Proper use of semantic elements in theme template
+    
+    Note: Duplicate ID checking is handled separately by validate_duplicate_ids()
     
     Out of scope:
     - Form labeling (user content responsibility)
@@ -64,14 +86,6 @@ def validate_semantic_html(html: str, filename: str = "index.html") -> List[str]
     """
     violations: List[str] = []
     soup = BeautifulSoup(html, "html.parser")
-    
-    # Check for duplicate IDs (theme responsibility)
-    all_ids: Set[str] = set()
-    for element in soup.find_all(id=True):
-        element_id = element.get("id", "")
-        if element_id in all_ids:
-            violations.append(_format_violation(f"Duplicate ID found: {element_id}", filename, element))
-        all_ids.add(element_id)
     
     # Check for exactly one <main> element
     main_elements = soup.find_all("main")
