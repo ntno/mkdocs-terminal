@@ -19,10 +19,17 @@ def test_buttons_have_text_or_aria_label(built_example_site):
     assert html_files, "No HTML files found in built simple site"
 
     all_violations = []
+    button_found = False
     for html_file in html_files:
         html = html_file.read_text(encoding="utf-8")
+        soup = BeautifulSoup(html, "html.parser")
+        if soup.find("button"):
+            button_found = True
         violations = [v for v in validate_aria(html, html_file.name) if "Button missing text content or aria-label" in v]
         all_violations.extend(violations)
+
+    if not button_found:
+        pytest.fail("No <button> elements found in built site. This likely indicates a test misconfiguration or missing modal. At least one button is expected (e.g., in the search modal).")
 
     assert not all_violations, f"Buttons missing text or aria-label: {all_violations}"
 
