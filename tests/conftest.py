@@ -337,16 +337,20 @@ def built_example_site(tmp_path_factory, request):
     if not docs_dir.exists():
         raise ValueError(f"Example site not found at {docs_dir}")
 
-    # Extract site_name from mkdocs.yml
+    # Extract site_name and plugins from mkdocs.yml
     mkdocs_yml = example_dir / "mkdocs.yml"
     site_name = "Test Site"
+    plugins = None
     if mkdocs_yml.exists():
         with open(mkdocs_yml) as f:
             config_data = yaml.safe_load(f)
-            if config_data and "site_name" in config_data:
-                site_name = config_data["site_name"]
+            if config_data:
+                if "site_name" in config_data:
+                    site_name = config_data["site_name"]
+                if "plugins" in config_data:
+                    plugins = config_data["plugins"]
 
-    config = load_config(
+    config_kwargs = dict(
         docs_dir=str(docs_dir.resolve()),
         site_dir=str(tmp_dir.resolve()),
         site_name=site_name,
@@ -355,6 +359,10 @@ def built_example_site(tmp_path_factory, request):
             "custom_dir": str(theme_dir.resolve())
         }
     )
+    if plugins is not None:
+        config_kwargs["plugins"] = plugins
+
+    config = load_config(**config_kwargs)
     build(config)
     return tmp_dir
 
