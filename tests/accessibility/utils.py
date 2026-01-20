@@ -18,6 +18,7 @@ User content accessibility is the responsibility of site authors.
 
 from typing import List, Optional, Set
 from bs4 import BeautifulSoup, Tag
+from tidylib import tidy_document
 
 
 def _format_violation(message: str, filename: str = "index.html", element: Optional[Tag] = None) -> str:
@@ -67,6 +68,50 @@ def validate_semantic_html(html: str, filename: str = "index.html") -> List[str]
         if element_id in all_ids:
             violations.append(_format_violation(f"Duplicate ID found: {element_id}", filename, element))
         all_ids.add(element_id)
+    
+    return violations
+
+
+def validate_html_structure(html: str, filename: str = "index.html") -> List[str]:
+    """Validate HTML5 structure and element nesting.
+    
+    Uses HTML Tidy to detect structural issues such as:
+    - Invalid element nesting (e.g., head inside body)
+    - Unclosed or unexpected elements
+    - Content occurring in wrong locations
+    
+    Args:
+        html: HTML string to validate
+        filename: Optional filename for error reporting
+        
+    Returns:
+        List of violation messages
+    """
+    violations: List[str] = []
+    
+    tidy_options = {
+        'doctype': 'html5',
+    }
+    
+    tidied_html, errors = tidy_document(html, options=tidy_options)
+    
+    # Filter for structural problems (nesting, unexpected elements, missing closing tags)
+    error_lines = errors.strip().split('\n') if errors.strip() else []
+    for error in error_lines:
+        if not error:
+            continue
+        
+        # Check for structural keywords that indicate violations
+        is_structural_issue = any(keyword in error.lower() for keyword in [
+            'unexpected',      # unexpected element in wrong context
+            'missing </',      # missing closing tag
+            'previously',      # element already opened (nesting issue)
+            'discarding',      # invalid nesting being ignored
+            'occurs after end' # content in wrong place
+        ])
+        
+        if is_structural_issue:
+            violations.append(_format_violation(error, filename))
     
     return violations
 
