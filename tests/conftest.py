@@ -11,6 +11,8 @@ import pytest
 from mkdocs.structure.files import File, Files
 from mkdocs.structure.nav import get_navigation
 from tests.integration_helper import load_config
+import yaml
+from mkdocs.commands.build import build
 
 
 @pytest.fixture
@@ -323,8 +325,6 @@ def built_example_site(tmp_path_factory, request):
     Returns:
         Path to the built site directory
     """
-    import yaml
-    from mkdocs.commands.build import build
 
     # Allow parametrization to specify which example to build
     example_name = getattr(request, "param", "minimal")
@@ -364,5 +364,13 @@ def built_minimal_site(built_example_site):
     """Convenience fixture for the minimal example site.
 
     This is a simple wrapper around built_example_site for the minimal example.
+    """
+    return built_example_site
+
+@pytest.fixture(scope="session")
+def built_demo_site(built_example_site):
+    """Convenience fixture for the demo example site.
+
+    This is a simple wrapper around built_example_site for the demo example.
     """
     return built_example_site
