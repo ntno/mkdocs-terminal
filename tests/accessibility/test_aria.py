@@ -38,5 +38,9 @@ def test_buttons_have_text_or_aria_label(built_example_site):
 @pytest.mark.parametrize("built_example_site", ["simple"], indirect=True)
 def test_aria_hidden_only_on_decorative(index_html):
     html, filename = index_html
-    violations = [v for v in validate_aria_hidden(html, filename) if "aria-hidden='true' contains content" in v]
+    soup = BeautifulSoup(html, "html.parser")
+    hidden_elements = soup.find_all(attrs={"aria-hidden": "true"})
+    if not hidden_elements:
+        pytest.fail("No elements with aria-hidden='true' found in built site. This likely indicates a test misconfiguration or missing modal. At least one such element is expected (e.g., in the search modal).")
+    violations = validate_aria_hidden(html, filename)
     assert not violations, f"aria-hidden used on non-decorative elements: {violations}"
