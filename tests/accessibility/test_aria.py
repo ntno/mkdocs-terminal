@@ -25,7 +25,9 @@ def test_buttons_have_text_or_aria_label(built_example_site):
         soup = BeautifulSoup(html, "html.parser")
         if soup.find("button"):
             button_found = True
-        violations = [v for v in validate_aria(html, html_file.name) if "Button missing text content or aria-label" in v]
+
+        aria_violations = validate_aria(html, html_file.name)
+        violations = [v for v in aria_violations if "Button missing text content or aria-label" in v]
         all_violations.extend(violations)
 
     if not button_found:
