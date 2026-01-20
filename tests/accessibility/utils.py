@@ -45,11 +45,15 @@ def validate_semantic_html(html: str, filename: str = "index.html") -> List[str]
     
     Theme-focused checks:
     - Duplicate IDs within the page (theme structure issue)
+    - Exactly one <main> element, direct child of <body>
+    - Multiple <nav> elements have aria-label to distinguish them
+    - <header> and <footer> not nested inside <main>
     - Proper use of semantic elements in theme template
     
     Out of scope:
     - Form labeling (user content responsibility)
     - Link text (user content responsibility)
+    - Section/article heading requirements (user content responsibility)
     
     Args:
         html: HTML string to validate
@@ -68,6 +72,53 @@ def validate_semantic_html(html: str, filename: str = "index.html") -> List[str]
         if element_id in all_ids:
             violations.append(_format_violation(f"Duplicate ID found: {element_id}", filename, element))
         all_ids.add(element_id)
+    
+    # Check for exactly one <main> element
+    main_elements = soup.find_all("main")
+    if len(main_elements) != 1:
+        violations.append(_format_violation(
+            f"Expected exactly 1 <main> element, found {len(main_elements)}",
+            filename
+        ))
+    
+    # Check that <main> is direct child of <body>
+    if main_elements:
+        main_elem = main_elements[0]
+        if main_elem.parent.name != "body":
+            violations.append(_format_violation(
+                f"<main> should be direct child of <body>, found parent: {main_elem.parent.name}",
+                filename,
+                main_elem
+            ))
+    
+    # Check that multiple <nav> elements have aria-label to distinguish them
+    nav_elements = soup.find_all("nav")
+    if len(nav_elements) > 1:
+        for nav in nav_elements:
+            if not nav.get("aria-label"):
+                violations.append(_format_violation(
+                    "Multiple <nav> elements should have aria-label to distinguish them",
+                    filename,
+                    nav
+                ))
+    
+    # Check that <header> and <footer> are not inside <main>
+    if main_elements:
+        main_elem = main_elements[0]
+        
+        if main_elem.find("header"):
+            violations.append(_format_violation(
+                "<header> should not be nested inside <main> (should be theme header outside main content)",
+                filename,
+                main_elem.find("header")
+            ))
+        
+        if main_elem.find("footer"):
+            violations.append(_format_violation(
+                "<footer> should not be nested inside <main> (should be theme footer outside main content)",
+                filename,
+                main_elem.find("footer")
+            ))
     
     return violations
 
