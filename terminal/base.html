@@ -42,7 +42,10 @@
         
     <div class="container">
         <div class="terminal-mkdocs-main-grid">
-          {%- block side_panel %}{% include "partials/side-panel/side-panel.html" %}{%- endblock side_panel %}
+            <!-- div required for sticky side panel -->
+            <div> 
+                {%- block side_panel %}{% include "partials/side-panel/side-panel.html" %}{%- endblock side_panel %}
+            </div>
             <main id="terminal-mkdocs-main-content">
                 {%- block content_container %}{% include "partials/page.html" %}{%- endblock content_container %}
             </main>
