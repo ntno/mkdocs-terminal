@@ -211,30 +211,49 @@ class TestLinkAccessibility:
         This test ensures:
         1. Theme region links exist in the site (test configured correctly)
         2. All links in nav/header/footer have descriptive text or aria-label
+        
+        Tested regions: nav, header, footer, aside
         """
         html_files = list(built_example_site.glob("**/*.html"))
         all_violations = []
-        theme_links_found = []
+        links_by_region = {"nav": [], "header": [], "footer": [], "aside": []}
         
         for html_file in html_files:
             html = html_file.read_text(encoding="utf-8")
             soup = BeautifulSoup(html, "html.parser")
             
-            # Find links in theme regions
-            theme_regions = soup.find_all(["nav", "header", "footer", "aside"])
-            for region in theme_regions:
-                links = region.find_all("a")
-                theme_links_found.extend(links)
+            # Find links in each theme region separately for visibility
+            for region_name in ["nav", "header", "footer", "aside"]:
+                regions = soup.find_all(region_name)
+                for region in regions:
+                    links = region.find_all("a")
+                    links_by_region[region_name].extend(links)
             
             violations = validate_link_text(html, html_file.name)
             all_violations.extend(violations)
 
-        # Verify test configuration: at least one theme region link should exist
-        assert theme_links_found, (
-            "No theme region links found in built site. "
-            "Test configuration error: at least one link is expected in theme regions "
-            "(nav, header, footer, or aside). "
-            "Check that example site has navigation structure and theme templates are present."
+        # Verify test configuration: links should exist in key theme regions
+        # At minimum, nav elements should not be empty (semantic requirement)
+        for nav in soup.find_all("nav"):
+            assert nav.find("a"), (
+                "Empty <nav> element found with no links. "
+                "Navigation elements must contain navigation content (links). "
+                "Empty nav elements are semantically incorrect and should be removed."
+            )
+        
+        nav_links = links_by_region["nav"]
+        assert nav_links, (
+            "No links found in <nav> regions. "
+            "Test configuration error: navigation links are expected in the theme. "
+            "Check that example site has navigation structure."
+        )
+
+        # Also verify overall link presence across all regions
+        all_theme_links = sum(len(links) for links in links_by_region.values())
+        assert all_theme_links > 0, (
+            "No theme region links found in any region (nav, header, footer, aside). "
+            "Test configuration error: at least navigation links are expected. "
+            "Check that theme templates have proper structure."
         )
 
         # Verify all theme region links have descriptive text
