@@ -1,0 +1,4 @@
+{# returns the default maximum side navigation depth (2) or 'config.theme.side_navigation_max_nesting' #}
+{% macro get_max_nesting() -%}
+{% if config.theme.side_navigation_max_nesting == 0%}0{% elif config.theme.side_navigation_max_nesting %}{{ config.theme.side_navigation_max_nesting }}{% else %}2{% endif %}
+{%- endmacro -%}

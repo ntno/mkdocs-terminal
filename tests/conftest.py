@@ -154,7 +154,7 @@ def nest_one_nav():
 
 
 @pytest.fixture
-def nest_two_nav():
+def nest_three_nav():
     nav_cfg = [
         {'Home': 'index.md'},
         {
@@ -191,7 +191,7 @@ def nest_two_nav():
 
 
 @pytest.fixture
-def nest_three_nav():
+def nest_three_nav_with_indexed_section():
     nav_cfg = [
         {'Home': 'index.md'},
         {

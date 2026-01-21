@@ -1,6 +1,7 @@
+INHERIT: ../base.yml
 site_url: https://ntno.github.io/mkdocs-terminal
 repo_url: https://github.com/ntno/mkdocs-terminal
-copyright: Copyright 2023 Natan Organick, All rights reserved
+copyright: Copyright 2023-2025 Natan Organick, All rights reserved
 site_author: ntno
 
 
@@ -14,8 +15,15 @@ nav:
       - License: 'about/license.md'
       - Release Notes:
         - Index: 'about/release-notes/index.md'
-        - v1: 'about/release-notes/version-1.md'
-        - v2: 'about/release-notes/version-2.md'
+        - v0:
+          - Details: 'about/release-notes/v0/notes.md'
+        - v1: 
+          - Index: 'about/release-notes/v1/index.md'
+          - Details: 'about/release-notes/v1/notes.md'
+        - v2: 
+          - Index: 'about/release-notes/v2/index.md'
+          - Details: 'about/release-notes/v2/notes.md'
+        - v3: 'about/release-notes/v3-alpha.md'    
     - User Guide:
       - Configuration: 'user-guide/configuration.md'
       - Custom Themes: 'user-guide/custom-themes.md'
@@ -36,16 +44,19 @@ plugins:
       modules:
         - mkdocs-terminal:terminal.pluglets.tile_grid.main
 
-theme:
-  name: terminal
-  # custom_dir: 'overrides'
-  # palette: gruvbox_dark
-  features:
-    # - toc.hide
-    # - navigation.side.hide
-    - navigation.side.indexes
-    # - navigation.top.hide
-    # - navigation.top.cursor_animation.hide
+# theme:
+#   name: terminal
+#   # custom_dir: 'overrides'
+#   # palette: gruvbox_dark
+#   features:
+#     # - toc.hide
+#     # - navigation.side.hide
+#     - navigation.side.indexes
+#     # - navigation.top.hide
+#     # - navigation.top.cursor_animation.hide
 
-watch:
-    - 'overrides'
+# watch:
+#     - 'overrides'
+
+extra:
+  MAX_SIDE_NAV_SECTION_NESTING: 3
