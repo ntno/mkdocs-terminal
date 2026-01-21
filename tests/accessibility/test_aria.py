@@ -230,12 +230,12 @@ class TestLinkAccessibility:
             all_violations.extend(violations)
 
         # Verify test configuration: at least one theme region link should exist
-        if not theme_links_found:
-            pytest.skip(
-                "No theme region links found in built site. "
-                "Test cannot validate link text without links in nav/header/footer. "
-                "Check that example site has navigation or footer links."
-            )
+        assert theme_links_found, (
+            "No theme region links found in built site. "
+            "Test configuration error: at least one link is expected in theme regions "
+            "(nav, header, footer, or aside). "
+            "Check that example site has navigation structure and theme templates are present."
+        )
 
         # Verify all theme region links have descriptive text
         assert not all_violations, (
