@@ -211,16 +211,51 @@ def validate_aria_buttons(html: str, filename: str = "index.html") -> List[str]:
     return violations
 
 def validate_aria_hidden(html: str, filename: str = "index.html") -> List[str]:
-    """Check that aria-hidden is only used on truly decorative elements (no text content)."""
+    """Check that aria-hidden is used correctly.
+
+    Valid use cases:
+    1. Genuinely decorative elements (no text content)
+    2. Visual-only icons/symbols paired with sr-only text alternative
+       Example: <button><span aria-hidden="true">x</span><span class="sr-only">Close</span></button>
+       This pattern is WCAG compliant - the aria-hidden icon is paired with screen-reader-only text.
+
+    Violations:
+    - Elements with aria-hidden="true" that contain text WITHOUT a sr-only sibling alternative
+    """
     violations: List[str] = []
     soup = BeautifulSoup(html, "html.parser")
-    aria_hidden = soup.find_all(attrs={"aria-hidden": "true"})
-    for element in aria_hidden:
-        if element.get_text(strip=True):
+
+    for element in soup.find_all(attrs={"aria-hidden": "true"}):
+        element_text = element.get_text(strip=True)
+        
+        if not element_text:
+            # No text content - genuinely decorative, valid use of aria-hidden
+            continue
+
+        # Element has text content - check if it's a valid paired pattern
+        parent = element.parent
+        if not parent:
+            # No parent, can't have sibling - this is a violation
             violations.append(_format_violation(
-                f"Element with aria-hidden='true' contains content: {element}",
+                f"Element with aria-hidden='true' has text but no sr-only alternative",
                 filename,
                 element
             ))
+            continue
+
+        # Look for sr-only sibling that provides accessible alternative
+        has_sr_only_sibling = any(
+            'sr-only' in elem.get('class', [])
+            for elem in parent.find_all(recursive=False)
+            if elem.name and elem != element
+        )
+
+        if not has_sr_only_sibling:
+            violations.append(_format_violation(
+                f"Element with aria-hidden='true' has text but no sr-only alternative",
+                filename,
+                element
+            ))
+
     return violations
 
