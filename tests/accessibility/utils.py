@@ -210,6 +210,7 @@ def validate_aria_buttons(html: str, filename: str = "index.html") -> List[str]:
             ))
     return violations
 
+# https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA14.html
 def validate_aria_hidden(html: str, filename: str = "index.html") -> List[str]:
     """Check that aria-hidden is used correctly.
 
