@@ -213,14 +213,14 @@ def validate_aria_buttons(html: str, filename: str = "index.html") -> List[str]:
 def validate_aria_hidden(html: str, filename: str = "index.html") -> List[str]:
     """Check that aria-hidden is used correctly.
 
-    Valid use cases:
-    1. Genuinely decorative elements (no text content)
-    2. Visual-only icons/symbols paired with sr-only text alternative
-       Example: <button><span aria-hidden="true">x</span><span class="sr-only">Close</span></button>
-       This pattern is WCAG compliant - the aria-hidden icon is paired with screen-reader-only text.
+    Valid use case:
+    - Genuinely decorative elements (no text content)
 
     Violations:
-    - Elements with aria-hidden="true" that contain text WITHOUT a sr-only sibling alternative
+    - Elements with aria-hidden="true" that contain text content
+
+    Note: Icon buttons should use aria-label for accessible naming, not aria-hidden.
+    Example: <button aria-label="Close">x</button>
     """
     violations: List[str] = []
     soup = BeautifulSoup(html, "html.parser")
@@ -228,31 +228,10 @@ def validate_aria_hidden(html: str, filename: str = "index.html") -> List[str]:
     for element in soup.find_all(attrs={"aria-hidden": "true"}):
         element_text = element.get_text(strip=True)
         
-        if not element_text:
-            # No text content - genuinely decorative, valid use of aria-hidden
-            continue
-
-        # Element has text content - check if it's a valid paired pattern
-        parent = element.parent
-        if not parent:
-            # No parent, can't have sibling - this is a violation
+        if element_text:
+            # Elements with aria-hidden="true" should not contain text
             violations.append(_format_violation(
-                f"Element with aria-hidden='true' has text but no sr-only alternative",
-                filename,
-                element
-            ))
-            continue
-
-        # Look for sr-only sibling that provides accessible alternative
-        has_sr_only_sibling = any(
-            'sr-only' in elem.get('class', [])
-            for elem in parent.find_all(recursive=False)
-            if elem.name and elem != element
-        )
-
-        if not has_sr_only_sibling:
-            violations.append(_format_violation(
-                f"Element with aria-hidden='true' has text but no sr-only alternative",
+                f"Element with aria-hidden='true' contains text. Use aria-label for icon buttons instead.",
                 filename,
                 element
             ))
