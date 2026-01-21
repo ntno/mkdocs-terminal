@@ -27,11 +27,13 @@ Implementation tasks for adding automated accessibility testing to the Terminal 
 
 ### Phase 3: ARIA & Semantic Attributes
 
-- [ ] Create `tests/accessibility/test_aria_attributes.py`
-- [ ] Implement ARIA attribute validation tests
-- [ ] Add tests for ARIA roles on interactive elements
-- [ ] Add tests for aria-label and aria-labelledby usage
-- [ ] Add tests for aria-hidden on decorative elements
+- [x] Create `tests/accessibility/test_aria.py` (note: named test_aria.py, not test_aria_attributes.py)
+- [x] Implement ARIA attribute validation tests (buttons, modal, forms, links)
+- [x] Add tests for ARIA roles on interactive elements (button text/aria-label, modal role/aria-modal)
+- [x] Add tests for aria-label and aria-labelledby usage (modal, search input, form inputs)
+- [x] Add tests for aria-hidden on decorative elements (validation, updated to reflect aria-label preference)
+- [x] Add utility functions: validate_modal_accessibility, validate_form_labels, validate_link_text
+- [x] Improve validate_aria_hidden to encourage aria-label pattern instead of sr-only
 
 ### Phase 4: Color Contrast & Visual Accessibility
 

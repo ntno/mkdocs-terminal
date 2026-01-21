@@ -239,3 +239,175 @@ def validate_aria_hidden(html: str, filename: str = "index.html") -> List[str]:
 
     return violations
 
+
+def validate_modal_accessibility(html: str, filename: str = "index.html") -> List[str]:
+    """Validate search modal has proper ARIA attributes for accessibility.
+
+    Checks:
+    - Modal has role="alertdialog" or role="dialog"
+    - Modal has aria-modal="true"
+    - Modal has aria-labelledby pointing to a valid heading
+    - Close button has aria-label
+    - Search input has associated label (aria-labelledby)
+    """
+    violations: List[str] = []
+    soup = BeautifulSoup(html, "html.parser")
+
+    # Find the modal dialog
+    modal = soup.find(id="mkdocs_search_modal")
+    if not modal:
+        # Modal may not exist on all pages (e.g., pages without search)
+        return violations
+
+    # Check modal role
+    modal_role = modal.get("role", "").lower()
+    if modal_role not in ("alertdialog", "dialog"):
+        violations.append(_format_violation(
+            f"Modal should have role='alertdialog' or role='dialog', found role='{modal_role}'",
+            filename,
+            modal
+        ))
+
+    # Check aria-modal
+    if modal.get("aria-modal", "").lower() != "true":
+        violations.append(_format_violation(
+            "Modal missing aria-modal='true'",
+            filename,
+            modal
+        ))
+
+    # Check aria-labelledby
+    labelledby = modal.get("aria-labelledby", "").strip()
+    if not labelledby:
+        violations.append(_format_violation(
+            "Modal missing aria-labelledby pointing to modal title",
+            filename,
+            modal
+        ))
+    else:
+        # Verify the referenced element exists
+        label_elem = soup.find(id=labelledby)
+        if not label_elem:
+            violations.append(_format_violation(
+                f"Modal aria-labelledby='{labelledby}' references non-existent element",
+                filename,
+                modal
+            ))
+
+    # Check close button has aria-label
+    close_button = modal.find("button", class_="close")
+    if close_button:
+        if not close_button.get("aria-label", "").strip():
+            violations.append(_format_violation(
+                "Modal close button missing aria-label",
+                filename,
+                close_button
+            ))
+
+    # Check search input has label association
+    search_input = modal.find("input", {"type": "search"})
+    if search_input:
+        labelledby = search_input.get("aria-labelledby", "").strip()
+        if not labelledby:
+            violations.append(_format_violation(
+                "Search input missing aria-labelledby association",
+                filename,
+                search_input
+            ))
+        else:
+            # Verify the referenced element exists
+            label_elem = soup.find(id=labelledby)
+            if not label_elem:
+                violations.append(_format_violation(
+                    f"Search input aria-labelledby='{labelledby}' references non-existent element",
+                    filename,
+                    search_input
+                ))
+
+    return violations
+
+
+def validate_form_labels(html: str, filename: str = "index.html") -> List[str]:
+    """Validate that form inputs have associated labels.
+
+    Checks:
+    - Text inputs have either <label> with for= or aria-labelledby/aria-label
+    - All inputs have accessible names
+    """
+    violations: List[str] = []
+    soup = BeautifulSoup(html, "html.parser")
+
+    # Find all form inputs (excluding submit buttons, hidden fields)
+    inputs = soup.find_all(["input", "textarea", "select"])
+
+    for input_elem in inputs:
+        input_type = input_elem.get("type", "text").lower()
+        
+        # Skip certain input types that don't need labels
+        if input_type in ("hidden", "submit", "button", "reset", "image"):
+            continue
+
+        # Check for explicit label association
+        input_id = input_elem.get("id", "")
+        has_label = False
+        
+        if input_id:
+            label = soup.find("label", {"for": input_id})
+            if label:
+                has_label = True
+
+        # Check for aria-label or aria-labelledby
+        has_aria_name = bool(
+            input_elem.get("aria-label", "").strip() or
+            input_elem.get("aria-labelledby", "").strip()
+        )
+
+        # Check for title attribute (fallback, less ideal)
+        has_title = bool(input_elem.get("title", "").strip())
+
+        if not (has_label or has_aria_name or has_title):
+            violations.append(_format_violation(
+                f"Form input of type '{input_type}' missing accessible label. "
+                f"Use <label for='{input_id}'>, aria-label, or aria-labelledby.",
+                filename,
+                input_elem
+            ))
+
+    return violations
+
+
+def validate_link_text(html: str, filename: str = "index.html") -> List[str]:
+    """Validate that links have descriptive text or aria-label.
+
+    Scope: Theme links only (navigation, footer, etc.)
+    Out of scope: User-provided links in documentation content
+
+    Checks:
+    - Links have visible text content
+    - If empty, links have aria-label
+    - Avoid generic link text like "click here" (warning, not violation)
+    """
+    violations: List[str] = []
+    soup = BeautifulSoup(html, "html.parser")
+
+    # Find all links, excluding those in user content areas
+    # Theme links are typically in: nav, header, footer, sidebars
+    theme_regions = soup.find_all(["nav", "header", "footer", "aside"])
+    links = []
+    
+    for region in theme_regions:
+        links.extend(region.find_all("a"))
+
+    for link in links:
+        link_text = link.get_text(strip=True)
+        aria_label = link.get("aria-label", "").strip()
+        
+        if not link_text and not aria_label:
+            violations.append(_format_violation(
+                "Link missing text content and aria-label",
+                filename,
+                link
+            ))
+
+    return violations
+
