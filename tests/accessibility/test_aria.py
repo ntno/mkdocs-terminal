@@ -22,7 +22,7 @@ class TestARIAButtons:
     can announce their purpose.
     """
 
-    @pytest.mark.parametrize("built_example_site", ["simple"], indirect=True)
+    @pytest.mark.parametrize("built_example_site", ["search-enabled"], indirect=True)
     def test_buttons_have_text_or_aria_label(self, built_example_site):
         """Verify all buttons across built site have accessible names.
         
@@ -67,7 +67,7 @@ class TestARIAAttributes:
     Icon buttons should use aria-label for accessible naming.
     """
 
-    @pytest.mark.parametrize("built_example_site", ["simple"], indirect=True)
+    @pytest.mark.parametrize("built_example_site", ["search-enabled"], indirect=True)
     def test_aria_hidden_only_on_decorative(self, built_example_site):
         """Verify aria-hidden='true' only appears on genuinely decorative elements.
         
@@ -113,7 +113,7 @@ class TestModalAccessibility:
     WCAG dialog pattern: role, aria-modal, aria-labelledby.
     """
 
-    @pytest.mark.parametrize("built_example_site", ["simple"], indirect=True)
+    @pytest.mark.parametrize("built_example_site", ["search-enabled"], indirect=True)
     def test_modal_has_correct_aria_attributes(self, built_example_site):
         """Verify search modal has required ARIA attributes for accessibility.
         
@@ -156,7 +156,7 @@ class TestFormAccessibility:
     users know what each input is for.
     """
 
-    @pytest.mark.parametrize("built_example_site", ["simple"], indirect=True)
+    @pytest.mark.parametrize("built_example_site", ["search-enabled"], indirect=True)
     def test_form_inputs_have_labels(self, built_example_site):
         """Verify all form inputs have associated labels or aria-label.
         
@@ -204,7 +204,7 @@ class TestLinkAccessibility:
     descriptive text or aria-label. Avoids generic link text.
     """
 
-    @pytest.mark.parametrize("built_example_site", ["simple"], indirect=True)
+    @pytest.mark.parametrize("built_example_site", ["search-enabled"], indirect=True)
     def test_theme_links_have_text_or_aria_label(self, built_example_site):
         """Verify theme region links have descriptive text or aria-label.
         
