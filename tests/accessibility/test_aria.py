@@ -24,27 +24,39 @@ class TestARIAButtons:
 
     @pytest.mark.parametrize("built_example_site", ["simple"], indirect=True)
     def test_buttons_have_text_or_aria_label(self, built_example_site):
-        """Verify all buttons across built site have accessible names."""
+        """Verify all buttons across built site have accessible names.
+        
+        This test scans all HTML files and ensures:
+        1. At least one button was found (test is configured correctly)
+        2. All buttons have either text content or aria-label
+        """
         html_files = list(built_example_site.glob("**/*.html"))
         assert html_files, "No HTML files found in built simple site"
 
         all_violations = []
-        button_found = False
+        buttons_found = []
+        
         for html_file in html_files:
             html = html_file.read_text(encoding="utf-8")
             soup = BeautifulSoup(html, "html.parser")
-            if soup.find("button"):
-                button_found = True
+            buttons = soup.find_all("button")
+            
+            if buttons:
+                buttons_found.extend(buttons)
 
             aria_violations = validate_aria_buttons(html, html_file.name)
             all_violations.extend(aria_violations)
 
-        if not button_found:
-            pytest.fail(
-                "No <button> elements found in built site. "
-                "At least one button is expected (e.g., in the search modal)."
-            )
+        # Verify test configuration: we should have found at least one button
+        # (e.g., close button in search modal)
+        assert buttons_found, (
+            "No <button> elements found in built site. "
+            "Test configuration error: expected at least one button "
+            "(e.g., search modal close button). "
+            "Check that example site contains interactive elements."
+        )
 
+        # Verify all buttons have accessible names
         assert not all_violations, f"Buttons missing text or aria-label:\n" + "\n".join(all_violations)
 
 
@@ -52,15 +64,46 @@ class TestARIAAttributes:
     """Tests for aria-hidden and other ARIA attributes.
 
     Requirement: aria-hidden should only be used on decorative elements.
-    Screen readers use aria-label for accessible naming of icon buttons.
+    Icon buttons should use aria-label for accessible naming.
     """
 
     @pytest.mark.parametrize("built_example_site", ["simple"], indirect=True)
-    def test_aria_hidden_only_on_decorative(self, index_html):
-        """Verify aria-hidden='true' only appears on decorative elements (no text)."""
-        html, filename = index_html
-        violations = validate_aria_hidden(html, filename)
-        assert not violations, f"aria-hidden used on non-decorative elements:\n" + "\n".join(violations)
+    def test_aria_hidden_only_on_decorative(self, built_example_site):
+        """Verify aria-hidden='true' only appears on genuinely decorative elements.
+        
+        This test ensures:
+        1. Test found aria-hidden elements to validate (test configured correctly)
+        2. Any aria-hidden elements have no text content (truly decorative)
+        
+        Note: After refactoring close button to use aria-label instead of aria-hidden+sr-only,
+        aria-hidden elements should only appear on truly decorative content.
+        """
+        html_files = list(built_example_site.glob("**/*.html"))
+        all_violations = []
+        aria_hidden_found = False
+        
+        for html_file in html_files:
+            html = html_file.read_text(encoding="utf-8")
+            soup = BeautifulSoup(html, "html.parser")
+            
+            # Check if this file has aria-hidden elements
+            if soup.find_all(attrs={"aria-hidden": "true"}):
+                aria_hidden_found = True
+            
+            violations = validate_aria_hidden(html, html_file.name)
+            all_violations.extend(violations)
+
+        # Verify test configuration: aria-hidden elements should exist somewhere
+        # in the theme (even if just for decorative purposes)
+        assert aria_hidden_found, (
+            "No elements with aria-hidden='true' found in built site. "
+            "Test configuration error: aria-hidden is expected to be used in the theme "
+            "(e.g., on decorative icons, visual separators, or other non-semantic elements). "
+            "Check that example site is built correctly and theme templates are present."
+        )
+
+        # Verify all aria-hidden usage is correct (only on decorative elements)
+        assert not all_violations, f"aria-hidden used incorrectly:\n" + "\n".join(all_violations)
 
 
 class TestModalAccessibility:
@@ -72,16 +115,35 @@ class TestModalAccessibility:
 
     @pytest.mark.parametrize("built_example_site", ["simple"], indirect=True)
     def test_modal_has_correct_aria_attributes(self, built_example_site):
-        """Verify search modal has required ARIA attributes for accessibility."""
-        # Build site and check all HTML files for modal accessibility
+        """Verify search modal has required ARIA attributes for accessibility.
+        
+        This test ensures:
+        1. Modal element exists in the site (test configured correctly)
+        2. Modal has all required ARIA attributes for screen reader users
+        """
         html_files = list(built_example_site.glob("**/*.html"))
         all_violations = []
+        modal_found = False
         
         for html_file in html_files:
             html = html_file.read_text(encoding="utf-8")
+            soup = BeautifulSoup(html, "html.parser")
+            
+            # Check if this file contains the search modal
+            if soup.find(id="mkdocs_search_modal"):
+                modal_found = True
+            
             violations = validate_modal_accessibility(html, html_file.name)
             all_violations.extend(violations)
 
+        # Verify test configuration: modal should exist in the site
+        assert modal_found, (
+            "Search modal (id='mkdocs_search_modal') not found in built site. "
+            "Test configuration error: expected modal to be present. "
+            "Check that the search plugin is enabled in the site config."
+        )
+
+        # Verify modal has correct ARIA attributes
         assert not all_violations, (
             "Modal accessibility violations found:\n" + "\n".join(all_violations)
         )
@@ -96,15 +158,40 @@ class TestFormAccessibility:
 
     @pytest.mark.parametrize("built_example_site", ["simple"], indirect=True)
     def test_form_inputs_have_labels(self, built_example_site):
-        """Verify all form inputs have associated labels."""
+        """Verify all form inputs have associated labels or aria-label.
+        
+        This test ensures:
+        1. Form inputs exist in the site (test configured correctly)
+        2. All inputs have accessible names via label, aria-label, or aria-labelledby
+        """
         html_files = list(built_example_site.glob("**/*.html"))
         all_violations = []
+        form_inputs_found = []
         
         for html_file in html_files:
             html = html_file.read_text(encoding="utf-8")
+            soup = BeautifulSoup(html, "html.parser")
+            
+            # Find all form inputs (excluding submit buttons, etc)
+            inputs = soup.find_all(["input", "textarea", "select"])
+            for inp in inputs:
+                input_type = inp.get("type", "text").lower()
+                if input_type not in ("hidden", "submit", "button", "reset", "image"):
+                    form_inputs_found.append(inp)
+            
             violations = validate_form_labels(html, html_file.name)
             all_violations.extend(violations)
 
+        # Verify test configuration: at least one form input should exist
+        # (e.g., search input in modal)
+        assert form_inputs_found, (
+            "No form inputs found in built site. "
+            "Test configuration error: at least one form input is expected "
+            "(e.g., search input in the modal). "
+            "Check that the search plugin is enabled in the site config."
+        )
+
+        # Verify all form inputs have accessible labels
         assert not all_violations, (
             "Form input labeling violations found:\n" + "\n".join(all_violations)
         )
@@ -119,16 +206,40 @@ class TestLinkAccessibility:
 
     @pytest.mark.parametrize("built_example_site", ["simple"], indirect=True)
     def test_theme_links_have_text_or_aria_label(self, built_example_site):
-        """Verify theme region links have descriptive text or aria-label."""
+        """Verify theme region links have descriptive text or aria-label.
+        
+        This test ensures:
+        1. Theme region links exist in the site (test configured correctly)
+        2. All links in nav/header/footer have descriptive text or aria-label
+        """
         html_files = list(built_example_site.glob("**/*.html"))
         all_violations = []
+        theme_links_found = []
         
         for html_file in html_files:
             html = html_file.read_text(encoding="utf-8")
+            soup = BeautifulSoup(html, "html.parser")
+            
+            # Find links in theme regions
+            theme_regions = soup.find_all(["nav", "header", "footer", "aside"])
+            for region in theme_regions:
+                links = region.find_all("a")
+                theme_links_found.extend(links)
+            
             violations = validate_link_text(html, html_file.name)
             all_violations.extend(violations)
 
+        # Verify test configuration: at least one theme region link should exist
+        if not theme_links_found:
+            pytest.skip(
+                "No theme region links found in built site. "
+                "Test cannot validate link text without links in nav/header/footer. "
+                "Check that example site has navigation or footer links."
+            )
+
+        # Verify all theme region links have descriptive text
         assert not all_violations, (
             "Link accessibility violations found:\n" + "\n".join(all_violations)
         )
+
 
