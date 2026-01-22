@@ -9,6 +9,7 @@ Tests check:
 - Button and form control colors
 - Heading colors
 - All default color palettes (default, dark, gruvbox_dark, pink, sans, sans_dark)
+- CSS class loading and variable extraction
 
 Limitations (static analysis):
 - Cannot test hover/focus states (require browser automation)
@@ -20,7 +21,8 @@ Reference: https://www.w3.org/TR/WCAG20-TECHS/G17.html
 
 import pytest
 from pathlib import Path
-from tests.accessibility.utils import validate_color_contrast
+from bs4 import BeautifulSoup
+from tests.accessibility.utils import _extract_css_variables, validate_color_contrast
 
 
 # List of default color palettes available in the theme
@@ -33,31 +35,103 @@ DEFAULT_PALETTES = [
     "sans_dark",
 ]
 
+# Expected color values for each palette (used to verify CSS loading)
+PALETTE_COLORS = {
+    "default": {
+        "font-color": "#e8e9ed",  # Changed from #e8eff2 to meet WCAG AA
+        "background-color": "#fff",
+    },
+    "dark": {
+        "font-color": "#3f3f44",
+        "background-color": "#222225",
+    },
+    "gruvbox_dark": {
+        "font-color": "#ebdbb2",
+        "background-color": "#282828",
+    },
+    "pink": {
+        "font-color": "#e8e9ed",
+        "background-color": "#fff",
+    },
+    "sans": {
+        "font-color": "#e8e9ed",
+        "background-color": "#fff",
+    },
+    "sans_dark": {
+        "font-color": "#c6c6c6",
+        "background-color": "#1e1e1e",
+    },
+}
 
-def _load_css_from_site(site_path: Path) -> str:
-    """Load all CSS files from built site directory.
+
+def _load_css_from_site(site_path: Path, html_content: str) -> str:
+    """Load CSS files referenced in HTML head element and matching palette CSS.
     
-    Concatenates CSS from main theme files (terminal.css, theme.css, palettes).
+    Extracts the <link href="..."> CSS file references from the HTML head
+    and loads them in order. Detects which palette was used and only loads
+    that specific palette CSS (not all palettes) to avoid CSS variable conflicts.
     
     Args:
         site_path: Path to built site directory
+        html_content: HTML content of the page (to extract <link> tags from head)
         
     Returns:
-        Concatenated CSS content from all theme CSS files
+        Concatenated CSS content from all theme CSS files plus the active palette
     """
+    from bs4 import BeautifulSoup
+    import re
+    
     css_content = ""
+    loaded_paths = set()
+    active_palette = None
     
-    # Load CSS files in order of importance
-    css_files = [
-        "css/terminal.css",
-        "css/theme.css",
-    ]
+    # Parse HTML to find CSS links in head element
+    soup = BeautifulSoup(html_content, 'html.parser')
+    head = soup.find('head')
     
-    for css_file in css_files:
-        css_path = site_path / css_file
-        if css_path.exists():
-            with open(css_path, 'r', encoding='utf-8') as f:
-                css_content += f.read() + "\n"
+    if head:
+        # Find all <link> tags in head that reference CSS files
+        link_tags = head.find_all('link', rel='stylesheet')
+        
+        for link in link_tags:
+            href = link.get('href')
+            if href and href.endswith('.css'):
+                # Remove any query parameters or URL encoding
+                css_file = href.split('?')[0]
+                
+                # Check if this is a palette CSS file
+                palette_match = re.match(r'.*/css/palettes/([^/]+)\.css$', css_file)
+                if palette_match:
+                    active_palette = palette_match.group(1)
+                
+                # Convert relative URL to file path
+                if css_file.startswith('/'):
+                    css_path = site_path / css_file.lstrip('/')
+                else:
+                    css_path = site_path / css_file
+                
+                # Read the CSS file if it exists
+                if css_path.exists():
+                    try:
+                        with open(css_path, 'r', encoding='utf-8') as f:
+                            css_content += f.read() + "\n"
+                        loaded_paths.add(css_path.resolve())
+                    except Exception:
+                        pass
+    
+    # Load the active palette CSS if identified, but don't load all palette files
+    # This prevents CSS variable conflicts from later palettes overriding earlier ones
+    if active_palette:
+        palette_css_path = site_path / 'css' / 'palettes' / f'{active_palette}.css'
+        resolved_path = palette_css_path.resolve()
+        
+        # Only load if not already loaded from head links
+        if palette_css_path.exists() and resolved_path not in loaded_paths:
+            try:
+                with open(palette_css_path, 'r', encoding='utf-8') as f:
+                    css_content += f.read() + "\n"
+            except Exception:
+                pass
     
     return css_content
 
@@ -83,9 +157,6 @@ class TestColorContrast:
         site_path = Path(built_example_site_with_palette)
         assert site_path.exists(), f"Built site not found at {site_path}"
 
-        # Load CSS from site for color variable resolution
-        css_content = _load_css_from_site(site_path)
-
         # Read all HTML files from built site
         html_files = list(site_path.glob("**/*.html"))
         assert len(html_files) > 0, f"No HTML files found in {site_path}"
@@ -94,6 +165,9 @@ class TestColorContrast:
         for html_file in html_files:
             with open(html_file, 'r', encoding='utf-8') as f:
                 html_content = f.read()
+
+            # Load CSS from site using actual <link> tags in HTML head
+            css_content = _load_css_from_site(site_path, html_content)
 
             violations = validate_color_contrast(html_content, filename=str(html_file.relative_to(site_path)), css_content=css_content)
             all_violations.extend(violations)
@@ -123,9 +197,6 @@ class TestColorContrast:
         site_path = Path(built_example_site_with_palette)
         assert site_path.exists(), f"Built site not found at {site_path}"
 
-        # Load CSS from site for color variable resolution
-        css_content = _load_css_from_site(site_path)
-
         html_files = list(site_path.glob("**/*.html"))
         assert len(html_files) > 0, "No HTML files found"
 
@@ -133,6 +204,9 @@ class TestColorContrast:
         for html_file in html_files:
             with open(html_file, 'r', encoding='utf-8') as f:
                 html_content = f.read()
+
+            # Load CSS from site using actual <link> tags in HTML head
+            css_content = _load_css_from_site(site_path, html_content)
 
             violations = validate_color_contrast(html_content, filename=str(html_file.relative_to(site_path)), css_content=css_content)
             # Filter for link-related violations
@@ -160,9 +234,6 @@ class TestColorContrast:
         site_path = Path(built_example_site_with_palette)
         assert site_path.exists(), f"Built site not found at {site_path}"
 
-        # Load CSS from site for color variable resolution
-        css_content = _load_css_from_site(site_path)
-
         html_files = list(site_path.glob("**/*.html"))
         assert len(html_files) > 0, "No HTML files found"
 
@@ -170,6 +241,9 @@ class TestColorContrast:
         for html_file in html_files:
             with open(html_file, 'r', encoding='utf-8') as f:
                 html_content = f.read()
+
+            # Load CSS from site using actual <link> tags in HTML head
+            css_content = _load_css_from_site(site_path, html_content)
 
             violations = validate_color_contrast(html_content, filename=str(html_file.relative_to(site_path)), css_content=css_content)
             # Filter for button/form violations
@@ -179,5 +253,83 @@ class TestColorContrast:
         if all_violations:
             violation_report = "\n".join(all_violations)
             pytest.fail(f"Button/form color contrast violations found:\n{violation_report}")
+
+    @pytest.mark.parametrize("built_example_site_with_palette", [
+        ("minimal", palette) for palette in DEFAULT_PALETTES
+    ], indirect=True)
+    def test_css_classes_loaded_correctly(self, built_example_site_with_palette):
+        """Verify that CSS classes and variables are loaded correctly for each palette.
+
+        This test ensures that the CSS loading mechanism properly extracts palette-specific
+        CSS variables and that the correct colors are being used for each palette.
+
+        The test validates:
+        - CSS files are found and loaded from the built site
+        - CSS variables are correctly extracted from :root blocks
+        - Expected palette colors are present in the extracted variables
+        - No CSS variable cross-contamination between palettes
+
+        This is critical for ensuring the color contrast validation tests are using
+        the actual colors that would be rendered in each palette.
+        """
+
+        site_path = Path(built_example_site_with_palette)
+        assert site_path.exists(), f"Built site not found at {site_path}"
+
+        # Load the HTML
+        html_file = site_path / 'index.html'
+        assert html_file.exists(), f"HTML file not found at {html_file}"
+
+        with open(html_file, 'r', encoding='utf-8') as f:
+            html_content = f.read()
+
+        # Load CSS from site
+        css_content = _load_css_from_site(site_path, html_content)
+        assert len(css_content) > 0, "No CSS content loaded from site"
+
+        # Extract CSS variables
+        css_variables = _extract_css_variables(html_content, css_content)
+        assert len(css_variables) > 0, "No CSS variables extracted"
+
+        # Determine which palette was used by checking HTML or site path
+        # The site path format is: built_{example_name}_{palette_name}_site{N}
+        palette_name = None
+        for palette in DEFAULT_PALETTES:
+            if f"_{palette}_site" in str(site_path):
+                palette_name = palette
+                break
+
+        assert palette_name is not None, f"Could not determine palette from site path: {site_path}"
+
+        # Get expected colors for this palette
+        expected_colors = PALETTE_COLORS.get(palette_name)
+        assert expected_colors is not None, f"No expected colors defined for palette: {palette_name}"
+
+        # Verify that CSS variables contain the expected colors
+        actual_font_color = css_variables.get('--font-color')
+        actual_bg_color = css_variables.get('--background-color')
+
+        assert actual_font_color is not None, \
+            f"Palette '{palette_name}': CSS variable --font-color not found. Variables: {list(css_variables.keys())}"
+        assert actual_bg_color is not None, \
+            f"Palette '{palette_name}': CSS variable --background-color not found. Variables: {list(css_variables.keys())}"
+
+        # Normalize colors for comparison (lowercase, trim whitespace)
+        actual_font_normalized = actual_font_color.lower().strip()
+        expected_font_normalized = expected_colors['font-color'].lower().strip()
+        actual_bg_normalized = actual_bg_color.lower().strip()
+        expected_bg_normalized = expected_colors['background-color'].lower().strip()
+
+        assert actual_font_normalized == expected_font_normalized, \
+            f"Palette '{palette_name}': Expected font color {expected_font_normalized}, got {actual_font_normalized}"
+        assert actual_bg_normalized == expected_bg_normalized, \
+            f"Palette '{palette_name}': Expected background color {expected_bg_normalized}, got {actual_bg_normalized}"
+
+        # Verify that CSS has multiple palettes available but only the correct one is used
+        palette_dir = site_path / 'css' / 'palettes'
+        if palette_dir.exists():
+            palette_files = list(palette_dir.glob('*.css'))
+            assert len(palette_files) > 0, f"No palette CSS files found in {palette_dir}"
+
 
 

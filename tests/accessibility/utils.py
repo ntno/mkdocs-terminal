@@ -541,7 +541,8 @@ def _extract_css_variables(html: str, css_content: str = "") -> dict:
 def _parse_css_variables(css_text: str) -> dict:
     """Parse CSS variable definitions from CSS text.
     
-    Looks for :root { --var-name: value; } blocks.
+    Looks for :root { --var-name: value; } blocks (handles multiple blocks).
+    Later definitions override earlier ones (CSS cascade order preserved).
     
     Args:
         css_text: CSS text content
@@ -551,9 +552,12 @@ def _parse_css_variables(css_text: str) -> dict:
     """
     variables = {}
     
-    # Find :root block
-    root_match = re.search(r':root\s*\{([^}]+)\}', css_text, re.DOTALL)
-    if root_match:
+    # Find ALL :root blocks (not just the first one)
+    # Use a more careful regex that handles nested content within blocks
+    # Match :root { ... } where ... can contain any characters except an unmatched }
+    root_pattern = r':root\s*\{([^{}]*(?:\{[^}]*\}[^{}]*)*)\}'
+    
+    for root_match in re.finditer(root_pattern, css_text, re.DOTALL):
         root_content = root_match.group(1)
         # Extract variable assignments: --name: value;
         var_pattern = r'--([a-z0-9-]+)\s*:\s*([^;]+);'
@@ -608,16 +612,16 @@ def _get_element_computed_styles(element: Optional[Tag], css_variables: dict) ->
             if bg_value:
                 styles['background-color'] = bg_value
     
-    # If no inline styles found, check for element-specific variable defaults
-    # For body element, check for --font-color variable
-    if not styles.get('color') and element.name == 'body':
+    # If no inline color specified, use CSS variable defaults
+    # All text elements inherit font-color from body/root CSS variables
+    if not styles.get('color'):
         if '--font-color' in css_variables:
             color_value = _resolve_css_variable('var(--font-color)', css_variables)
             if color_value:
                 styles['color'] = color_value
     
-    # For body element, check for --background-color variable
-    if not styles.get('background-color') and element.name == 'body':
+    # If no inline background color specified, use CSS variable defaults or inherit from body
+    if not styles.get('background-color'):
         if '--background-color' in css_variables:
             bg_value = _resolve_css_variable('var(--background-color)', css_variables)
             if bg_value:
