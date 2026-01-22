@@ -5,6 +5,7 @@ INHERIT: ../base.yml
 site_name: Terminal Theme Simple
 nav:
     - Home: 'index.md'
+    - Elements: 'elements.md'
     - Troubleshooting: 'help.md'
     - About: 
       - Index: 'about/index.md'
@@ -24,3 +25,33 @@ nav:
 
 plugins:
   - search
+
+markdown_extensions:
+  # Python Markdown  
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - meta
+  - toc:
+      permalink: "#"
+      permalink_title: Anchor link to this section for reference
+
+  # PyMdown Extensions
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.snippets:
+      base_path: 
+        - docs
+  - pymdownx.blocks.details:
+      types:
+        - name: info
+          class: terminal-alert
+          title: Info
+        - name: warning
+          class: 'terminal-alert terminal-alert-error'
+          title: Warning
+        - name: important
+          class: 'terminal-alert terminal-alert-primary'
+          title: Important
