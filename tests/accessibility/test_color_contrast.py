@@ -23,17 +23,8 @@ import pytest
 from pathlib import Path
 from bs4 import BeautifulSoup
 from tests.accessibility.utils import _extract_css_variables, validate_color_contrast
+from tests.interface.theme_features import DEFAULT_PALETTES
 
-
-# List of default color palettes available in the theme
-DEFAULT_PALETTES = [
-    "default",
-    "dark",
-    "gruvbox_dark",
-    "pink",
-    "sans",
-    "sans_dark",
-]
 
 # Expected color values for each palette (used to verify CSS loading)
 # These are resolved from the actual palette CSS files, including variable references

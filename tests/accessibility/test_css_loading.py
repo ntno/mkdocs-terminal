@@ -3,12 +3,7 @@
 import pytest
 from pathlib import Path
 from bs4 import BeautifulSoup
-
-
-DEFAULT_PALETTES = [
-    "default",
-    "dark",
-]
+from tests.interface.theme_features import DEFAULT_PALETTES
 
 
 class TestCSSLoading:
