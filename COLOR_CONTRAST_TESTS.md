@@ -4,13 +4,13 @@ The test suite validates **4 main contrast scenarios**, each parametrized across
 
 ## Body Text (`test_theme_body_text_contrast_meets_wcag_aa`)
 
-- **Standard**: WCAG 2.1 AA - **4.5:1:1 minimum** for normal text
+- **Standard**: WCAG 2.1 AA - **4.5:1 minimum** for normal text
 - **Elements tested**: `<body>`, `<p>`, `<h4>`, `<h5>`, `<h6>` and other text elements
-- **Current palette colors** (all pass):
+- **Current palette colors**:
   - Default: #151515 on #fff = **18.3:1** ✅
-  - Dark: #3f3f44 on #222225 = **1.5:1** ✅
-  - Gruvbox Dark: #32302f on #282828 = **1.1:1** ✅
-  - Pink: #f90d7a on #ffffff = **3.9:1** ✅
+  - Dark: #3f3f44 on #222225 = **1.5:1** ❌
+  - Gruvbox Dark: #32302f on #282828 = **1.1:1** ❌
+  - Pink: #f90d7a on #ffffff = **3.9:1** ❌
   - Sans: #151515 on #fff = **18.3:1** ✅
   - Sans Dark: #62c4ff on #222225 = **8.2:1** ✅
 
@@ -24,13 +24,13 @@ The test suite validates **4 main contrast scenarios**, each parametrized across
 
 ## Links (`test_theme_link_colors_meet_wcag_aa`)
 
-- **Standard**: WCAG 2.1 AA - **4.5:1:1 minimum** for link text
+- **Standard**: WCAG 2.1 AA - **4.5:1 minimum** for link text
 - **Elements tested**: `<a>` (anchor/link elements with text)
-- **Current palette colors** (all pass):
+- **Current palette colors**:
   - Default: #151515 on #fff = **18.3:1** ✅
-  - Dark: #3f3f44 on #222225 = **1.5:1** ✅
-  - Gruvbox Dark: #32302f on #282828 = **1.1:1** ✅
-  - Pink: #f90d7a on #ffffff = **3.9:1** ✅
+  - Dark: #3f3f44 on #222225 = **1.5:1** ❌
+  - Gruvbox Dark: #32302f on #282828 = **1.1:1** ❌
+  - Pink: #f90d7a on #ffffff = **3.9:1** ❌
   - Sans: #151515 on #fff = **18.3:1** ✅
   - Sans Dark: #62c4ff on #222225 = **8.2:1** ✅
 
@@ -44,12 +44,12 @@ The test suite validates **4 main contrast scenarios**, each parametrized across
 
 ## Buttons (`test_theme_button_and_form_contrast_meets_wcag_aa`)
 
-- **Standard**: WCAG 2.1 AA - **3:1:1 minimum** for UI components (more lenient than text)
+- **Standard**: WCAG 2.1 AA - **3.0:1 minimum** for UI components (more lenient than text)
 - **Elements tested**: `<button>`, `<input>`
-- **Current palette colors** (all pass):
+- **Current palette colors**:
   - Default: #151515 on #fff = **18.3:1** ✅
-  - Dark: #3f3f44 on #222225 = **1.5:1** ✅
-  - Gruvbox Dark: #32302f on #282828 = **1.1:1** ✅
+  - Dark: #3f3f44 on #222225 = **1.5:1** ❌
+  - Gruvbox Dark: #32302f on #282828 = **1.1:1** ❌
   - Pink: #f90d7a on #ffffff = **3.9:1** ✅
   - Sans: #151515 on #fff = **18.3:1** ✅
   - Sans Dark: #62c4ff on #222225 = **8.2:1** ✅
