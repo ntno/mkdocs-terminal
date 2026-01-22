@@ -2,62 +2,62 @@
 
 The test suite validates **4 main contrast scenarios**, each parametrized across all 6 default palettes:
 
-## 1. Body Text Contrast (`test_theme_body_text_contrast_meets_wcag_aa`)
+## Body Text (`test_theme_body_text_contrast_meets_wcag_aa`)
 
-- **Standard**: WCAG 2.1 AA - **4.5:1 minimum** for normal text
+- **Standard**: WCAG 2.1 AA - **4.5:1:1 minimum** for normal text
 - **Elements tested**: `<body>`, `<p>`, `<h4>`, `<h5>`, `<h6>` and other text elements
 - **Current palette colors** (all pass):
-  - Default: #151515 on #fff = **21.0:1** ✅
-  - Dark: #e8e9ed on #222225 = **15.3:1** ✅
-  - Gruvbox Dark: #ebdbb2 on #282828 = **9.4:1** ✅
-  - Pink: #190910 on #ffffff = **22.0:1** ✅
-  - Sans: #151515 on #fff = **21.0:1** ✅
-  - Sans Dark: #e8e9ed on #222225 = **15.3:1** ✅
+  - Default: #151515 on #fff = **18.3:1** ✅
+  - Dark: #151515 on #fff = **18.3:1** ✅
+  - Gruvbox Dark: #151515 on #fff = **18.3:1** ✅
+  - Pink: #151515 on #fff = **18.3:1** ✅
+  - Sans: #151515 on #fff = **18.3:1** ✅
+  - Sans Dark: #151515 on #fff = **18.3:1** ✅
 
 **Example FAILING values**:
 ```python
-# Font color: #999999, Background: #ffffff
-# Contrast ratio: 4.48:1 (just below 4.5:1 threshold) ❌ FAILS
+    # Font color: #999999, Background: #ffffff
+    # Contrast ratio: 4.48:1 (just below 4.5:1 threshold) ❌ FAILS
 ```
 
 ---
 
-## 2. Link Colors (`test_theme_link_colors_meet_wcag_aa`)
+## Links (`test_theme_link_colors_meet_wcag_aa`)
 
-- **Standard**: WCAG 2.1 AA - **4.5:1 minimum** for link text
+- **Standard**: WCAG 2.1 AA - **4.5:1:1 minimum** for link text
 - **Elements tested**: `<a>` (anchor/link elements with text)
 - **Current palette colors** (all pass):
   - Default: #151515 on #fff = **18.3:1** ✅
-  - Dark: #e8e9ed on #222225 = **15.3:1** ✅
-  - Gruvbox Dark: #ebdbb2 on #282828 = **9.4:1** ✅
-  - Pink: #190910 on #ffffff = **22.0:1** ✅
+  - Dark: #151515 on #fff = **18.3:1** ✅
+  - Gruvbox Dark: #151515 on #fff = **18.3:1** ✅
+  - Pink: #151515 on #fff = **18.3:1** ✅
   - Sans: #151515 on #fff = **18.3:1** ✅
-  - Sans Dark: #e8e9ed on #222225 = **15.3:1** ✅
+  - Sans Dark: #151515 on #fff = **18.3:1** ✅
 
 **Example FAILING values**:
 ```python
-# Link color: #6666ff (Medium blue), Background: #ffffff
-# Contrast ratio: 3.2:1 (below 4.5:1 threshold) ❌ FAILS
+    # Link color: #6666ff (Medium blue), Background: #ffffff
+    # Contrast ratio: 3.2:1 (below 4.5:1 threshold) ❌ FAILS
 ```
 
 ---
 
-## 3. Button & Form Control Contrast (`test_theme_button_and_form_contrast_meets_wcag_aa`)
+## Buttons (`test_theme_button_and_form_contrast_meets_wcag_aa`)
 
-- **Standard**: WCAG 2.1 AA - **3:1 minimum** for UI components (more lenient than text)
-- **Elements tested**: `<button>`, `<input>`, `<label>` 
+- **Standard**: WCAG 2.1 AA - **3:1:1 minimum** for UI components (more lenient than text)
+- **Elements tested**: `<button>`, `<input>`
 - **Current palette colors** (all pass):
-  - Default: #151515 on #fff = **18.3:1** ✅ (button), **18.3:1** ✅ (input)
-  - Dark: #e8e9ed on #222225 = **15.3:1** ✅ (button), **15.3:1** ✅ (input)
-  - Gruvbox Dark: #ebdbb2 on #282828 = **9.4:1** ✅ (button), **9.4:1** ✅ (input)
-  - Pink: #190910 on #ffffff = **22.0:1** ✅ (button), **22.0:1** ✅ (input)
-  - Sans: #151515 on #fff = **18.3:1** ✅ (button), **18.3:1** ✅ (input)
-  - Sans Dark: #e8e9ed on #222225 = **15.3:1** ✅ (button), **15.3:1** ✅ (input)
+  - Default: #151515 on #fff = **18.3:1** ✅
+  - Dark: #151515 on #fff = **18.3:1** ✅
+  - Gruvbox Dark: #151515 on #fff = **18.3:1** ✅
+  - Pink: #151515 on #fff = **18.3:1** ✅
+  - Sans: #151515 on #fff = **18.3:1** ✅
+  - Sans Dark: #151515 on #fff = **18.3:1** ✅
 
 **Example FAILING values**:
 ```python
-# Button text color: #999999, Background: #cccccc
-# Contrast ratio: 2.9:1 (just below 3:1 threshold) ❌ FAILS
+    # Button text color: #999999, Background: #cccccc
+    # Contrast ratio: 2.9:1 (just below 3:1 threshold) ❌ FAILS
 ```
 
 ---
