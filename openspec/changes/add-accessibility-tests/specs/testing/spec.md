@@ -69,12 +69,26 @@ MUST validate that ARIA attributes are used correctly according to ARIA Authorin
 
 MUST validate that text and interactive elements meet WCAG 2.1 AA color contrast standards (4.5:1 minimum for normal text, 3:1 for large text or UI components).
 
+**Scope includes all theme-controlled colors:**
+- Body text and paragraph text
+- Links (unvisited, visited, focus, hover states)
+- Buttons and interactive elements
+- Form controls (input fields, select, textarea)
+- Headers and other themed content structure elements
+
+**Out of scope:** User-authored inline styles or custom text colors added via content markdown or custom CSS.
+
 #### Scenario: Detect low contrast text in theme
 - Theme CSS defines body text color: `#666` on background `#fff`
 - Contrast ratio: 5.74:1 → PASS
 - Developer changes to `#888` on `#fff`
 - Contrast ratio: 3.16:1 → FAIL
 - Test reports violation with suggestion to use darker color
+
+#### Scenario: Verify link contrast
+- Theme link colors meet 4.5:1 contrast with background
+- Link focus states have visible, sufficient contrast
+- Visited link colors (if used) meet contrast requirements
 
 #### Scenario: Verify focus indicator contrast
 - Focus state on buttons has sufficient contrast
@@ -83,9 +97,11 @@ MUST validate that text and interactive elements meet WCAG 2.1 AA color contrast
 
 ### Requirement: Content Accessibility
 
-**EXPLICITLY OUT OF SCOPE** — Content accessibility (image alt text, link text, heading structure, form labels) is the responsibility of site authors, not the theme. The theme cannot enforce how users structure their documentation content.
+**EXPLICITLY OUT OF SCOPE** — User-authored content accessibility (image alt text from user images, user-written link text, user-created heading structure, user-provided form labels, user-defined custom styles) is the responsibility of site authors, not the theme. The theme cannot enforce how users structure or style their documentation content.
 
-However, the theme MUST support accessibility best practices through proper HTML structure so that when site authors implement accessibility correctly, the theme does not hinder it.
+**IN SCOPE:** Theme-provided styling for content elements (body text color, link colors, default heading styles, interactive element colors). The theme MUST provide sufficient contrast ratios and support accessibility best practices through proper HTML structure so that when site authors implement accessible content, the theme does not hinder it.
+
+Example: The theme provides the blue color for links (#0066cc)—this is in scope and must meet 4.5:1 contrast with the page background. If a content author manually adds inline `style="color: #999"` to text in their markdown, that is out of scope and the author's responsibility.
 
 ## MODIFIED Requirements
 

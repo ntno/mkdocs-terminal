@@ -53,11 +53,12 @@ Accessibility tests will use a multi-layered approach focused on theme component
 
 1. **HTML Validation** — Use `html5lib` to validate semantic HTML5 structure of theme templates
 2. **ARIA Validation** — Check ARIA attributes on theme interactive components (navigation, search, modals, buttons)
-3. **Color Contrast** — Validate text/background contrast ratios in theme CSS meet WCAG AA standards
+3. **Color Contrast** — Validate text/background contrast ratios in theme CSS meet WCAG AA standards (body text, links, buttons, form controls)
 4. **Semantic HTML** — Verify theme uses proper semantic elements (`<nav>`, `<main>`, `<aside>`, `<header>`, `<footer>`)
 5. **Theme Accessibility** — Ensure theme templates support keyboard navigation, focus indicators, and screen reader compatibility
 
-**Out of Scope:** Validation of user content structure (heading hierarchy, form labels, link text, alt text) — these are the responsibility of content authors.
+**In Scope:** Theme-controlled colors (body text, link colors, button colors, form control styling) since these are provided by the theme CSS, not by users
+**Out of Scope:** User-authored content styling (custom text colors, inline styles set by content authors, user-defined color overrides) — these are the responsibility of content authors
 
 ### Implementation Approach
 
