@@ -22,7 +22,7 @@ Reference: https://www.w3.org/TR/WCAG20-TECHS/G17.html
 import pytest
 from pathlib import Path
 from bs4 import BeautifulSoup
-from tests.accessibility.utils import _extract_css_variables, validate_color_contrast
+from tests.accessibility.utils import _extract_css_variables, validate_color_contrast, _get_element_computed_styles
 from tests.accessibility.color_utils import get_contrast_ratio, meets_wcag_aa
 from tests.interface.theme_features import DEFAULT_PALETTES
 import re
@@ -172,42 +172,190 @@ class TestColorContrast:
     @pytest.mark.parametrize("built_example_site_with_palette", [
         ("minimal", palette) for palette in DEFAULT_PALETTES
     ], indirect=True)
-    def test_theme_link_colors_meet_wcag_aa(self, built_example_site_with_palette):
-        """Verify theme link colors meet WCAG AA contrast.
+    def test_all_link_color_combinations_meet_wcag_aa(self, built_example_site_with_palette):
+        """Verify all unique link color combinations in built site meet WCAG AA contrast.
 
-        Theme link colors (visited, unvisited, etc.) must meet WCAG 2.1 AA
-        minimum contrast ratio of 4.5:1.
+        Links can use different CSS colors depending on context:
+        - Primary color links (side nav, inline links): --primary-color on --background-color
+        - Font color links (in inverted sections): --font-color on --background-color
+        - Inverted color links (banner/footer): --invert-font-color on --font-color background
 
-        Tests all default color palettes to ensure accessibility across themes.
+        This test extracts all actual link elements and their computed colors,
+        groups them by unique color combinations, and validates each combination
+        meets the 4.5:1 minimum for link text contrast.
 
-        Note: Focus/hover states require browser testing and are out of scope.
-        Reference: https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast
+        Tests all default palettes to ensure accessibility across all themes.
 
-        Validates: Link colors have sufficient contrast with background.
+        Reference: https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum
         """
-
         site_path = Path(built_example_site_with_palette)
         assert site_path.exists(), f"Built site not found at {site_path}"
 
         html_files = list(site_path.glob("**/*.html"))
-        assert len(html_files) > 0, "No HTML files found"
+        assert len(html_files) > 0, "No HTML files found in built site"
 
-        all_violations = []
+        # Collect all link color combinations found
+        link_colors = {}  # {(fg_color, bg_color): [count, [locations]]}
+        
         for html_file in html_files:
             with open(html_file, 'r', encoding='utf-8') as f:
                 html_content = f.read()
 
-            # Load CSS from site using actual <link> tags in HTML head
+            # Load CSS from site
             css_content = _load_css_from_site(site_path, html_content)
+            css_variables = _extract_css_variables(html_content, css_content)
 
-            violations = validate_color_contrast(html_content, filename=str(html_file.relative_to(site_path)), css_content=css_content)
-            # Filter for link-related violations
-            link_violations = [v for v in violations if 'link' in v.lower()]
-            all_violations.extend(link_violations)
+            # Parse HTML to find all links
+            soup = BeautifulSoup(html_content, 'html.parser')
+            links = soup.find_all('a')
 
-        if all_violations:
-            violation_report = "\n".join(all_violations)
-            pytest.fail(f"Link color contrast violations found:\n{violation_report}")
+            file_path = str(html_file.relative_to(site_path))
+
+            for link in links:
+                # Get link text for reporting
+                link_text = link.get_text(strip=True)[:40]
+                if not link_text:
+                    continue
+
+                # Extract computed styles for the link
+                link_styles = _get_element_computed_styles(link, css_variables)
+                link_color = link_styles.get('color')
+                link_bg = link_styles.get('background-color')
+
+                # If no explicit background, check parent elements
+                if not link_bg or link_bg == 'transparent':
+                    parent = link.parent
+                    while parent and not link_bg:
+                        parent_styles = _get_element_computed_styles(parent, css_variables)
+                        parent_bg = parent_styles.get('background-color')
+                        if parent_bg and parent_bg != 'transparent':
+                            link_bg = parent_bg
+                            break
+                        parent = parent.parent
+                    
+                    # Default to body background if still not found
+                    if not link_bg:
+                        body = soup.find('body')
+                        body_styles = _get_element_computed_styles(body, css_variables)
+                        link_bg = body_styles.get('background-color') or '#ffffff'
+
+                if link_color and link_bg:
+                    key = (link_color.lower(), link_bg.lower())
+                    if key not in link_colors:
+                        link_colors[key] = {'count': 0, 'locations': []}
+                    link_colors[key]['count'] += 1
+                    link_colors[key]['locations'].append(f"{file_path}: {link_text[:30]}")
+
+        # Validate each unique link color combination
+        contrast_failures = []
+        for (fg_color, bg_color), data in link_colors.items():
+            ratio = get_contrast_ratio(fg_color, bg_color)
+            if ratio and ratio < 4.5:
+                locations = data['locations'][:3]  # First 3 examples
+                location_str = ", ".join(locations)
+                contrast_failures.append(
+                    f"Link color {fg_color} on {bg_color} = {ratio:.2f}:1 (need 4.5:1) - "
+                    f"Found {data['count']} times - Examples: {location_str}"
+                )
+
+        assert not contrast_failures, \
+            f"Link color contrast violations found:\n" + "\n".join(contrast_failures)
+
+    @pytest.mark.parametrize("built_example_site_with_palette", [
+        ("minimal", palette) for palette in DEFAULT_PALETTES
+    ], indirect=True)
+    def test_all_text_element_colors_meet_wcag_aa(self, built_example_site_with_palette):
+        """Verify all text element color combinations in built site meet WCAG AA contrast.
+
+        Different text elements may use different colors:
+        - Body text (p, span, etc): --font-color on --background-color
+        - Headings: --font-color on --background-color
+        - Code/pre: --code-font-color on --code-bg-color
+        - Inverted text (banner/footer): --invert-font-color on --font-color background
+
+        This test extracts all actual text elements and validates each unique
+        color combination meets the 4.5:1 minimum for normal text.
+
+        Tests all default palettes to ensure accessibility across all themes.
+
+        Reference: https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum
+        """
+        site_path = Path(built_example_site_with_palette)
+        assert site_path.exists(), f"Built site not found at {site_path}"
+
+        html_files = list(site_path.glob("**/*.html"))
+        assert len(html_files) > 0, "No HTML files found in built site"
+
+        # Collect all text element color combinations
+        text_colors = {}  # {(fg_color, bg_color): {count, element_types, locations}}
+        
+        for html_file in html_files:
+            with open(html_file, 'r', encoding='utf-8') as f:
+                html_content = f.read()
+
+            # Load CSS from site
+            css_content = _load_css_from_site(site_path, html_content)
+            css_variables = _extract_css_variables(html_content, css_content)
+
+            # Parse HTML
+            soup = BeautifulSoup(html_content, 'html.parser')
+
+            file_path = str(html_file.relative_to(site_path))
+
+            # Check various text elements
+            text_elements = soup.find_all(['p', 'span', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'li', 'blockquote', 'td', 'th'])
+
+            for elem in text_elements:
+                # Skip empty elements
+                if not elem.get_text(strip=True):
+                    continue
+
+                elem_type = elem.name
+
+                # Extract computed styles
+                elem_styles = _get_element_computed_styles(elem, css_variables)
+                elem_color = elem_styles.get('color')
+                elem_bg = elem_styles.get('background-color')
+
+                # If no explicit background, use parent/body background
+                if not elem_bg or elem_bg == 'transparent':
+                    parent = elem.parent
+                    while parent and (not elem_bg or elem_bg == 'transparent'):
+                        parent_styles = _get_element_computed_styles(parent, css_variables)
+                        parent_bg = parent_styles.get('background-color')
+                        if parent_bg and parent_bg != 'transparent':
+                            elem_bg = parent_bg
+                            break
+                        parent = parent.parent
+
+                    if not elem_bg or elem_bg == 'transparent':
+                        body = soup.find('body')
+                        body_styles = _get_element_computed_styles(body, css_variables)
+                        elem_bg = body_styles.get('background-color') or '#ffffff'
+
+                if elem_color and elem_bg:
+                    key = (elem_color.lower(), elem_bg.lower())
+                    if key not in text_colors:
+                        text_colors[key] = {'count': 0, 'element_types': set(), 'locations': []}
+                    text_colors[key]['count'] += 1
+                    text_colors[key]['element_types'].add(elem_type)
+                    text_colors[key]['locations'].append(f"{file_path}:{elem_type}")
+
+        # Validate each unique text color combination
+        contrast_failures = []
+        for (fg_color, bg_color), data in text_colors.items():
+            ratio = get_contrast_ratio(fg_color, bg_color)
+            if ratio and ratio < 4.5:
+                elem_types = ", ".join(sorted(data['element_types']))
+                locations = data['locations'][:2]  # First 2 examples
+                location_str = ", ".join(locations)
+                contrast_failures.append(
+                    f"Text color {fg_color} on {bg_color} = {ratio:.2f}:1 (need 4.5:1) - "
+                    f"Elements: {elem_types} - Found {data['count']} times"
+                )
+
+        assert not contrast_failures, \
+            f"Text element color contrast violations found:\n" + "\n".join(contrast_failures)
 
     @pytest.mark.parametrize("built_example_site_with_palette", [
         ("minimal", palette) for palette in DEFAULT_PALETTES
@@ -363,7 +511,7 @@ class TestColorContrast:
         """Verify link colors pass WCAG AA validation using dedicated validator.
         
         This test uses the meets_wcag_aa utility function to validate that link colors
-        meet WCAG 2.1 AA standards for text contrast (4.5:1 minimum).
+        meet WCAG 2.1 AA standards for text contrast (4.5:1 minimum for normal text).
         
         Tests each default palette to ensure all link colors are accessible.
         
@@ -379,11 +527,15 @@ class TestColorContrast:
         assert link_color is not None, f"No link color defined for palette: {palette_name}"
         assert background_color is not None, f"No background color defined for palette: {palette_name}"
         
-        # Validate using meets_wcag_aa (expects 4.5:1 minimum for normal text)
-        is_compliant = meets_wcag_aa(link_color, background_color, level="AA", is_large_text=False)
+        # Calculate contrast ratio
+        ratio = get_contrast_ratio(link_color, background_color)
+        assert ratio is not None, f"Could not calculate contrast ratio for {link_color} on {background_color}"
+        
+        # Validate using meets_wcag_aa (expects 4.5:1 minimum for normal text at 14px)
+        is_compliant = meets_wcag_aa(ratio, text_size=14, is_bold=False)
         assert is_compliant, \
             f"Palette '{palette_name}': Link color {link_color} on {background_color} " \
-            f"does not meet WCAG 2.1 AA contrast requirements"
+            f"has contrast {ratio:.2f}:1, does not meet WCAG 2.1 AA minimum of 4.5:1"
 
     @pytest.mark.parametrize("built_example_site_with_palette", [
         ("minimal", palette) for palette in DEFAULT_PALETTES
