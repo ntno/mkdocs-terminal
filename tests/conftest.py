@@ -337,10 +337,11 @@ def built_example_site(tmp_path_factory, request):
     if not docs_dir.exists():
         raise ValueError(f"Example site not found at {docs_dir}")
 
-    # Extract site_name and plugins from mkdocs.yml
+    # Extract site_name, plugins, and markdown_extensions from mkdocs.yml
     mkdocs_yml = example_dir / "mkdocs.yml"
     site_name = "Test Site"
     plugins = None
+    markdown_extensions = None
     if mkdocs_yml.exists():
         with open(mkdocs_yml) as f:
             config_data = yaml.safe_load(f)
@@ -349,6 +350,8 @@ def built_example_site(tmp_path_factory, request):
                     site_name = config_data["site_name"]
                 if "plugins" in config_data:
                     plugins = config_data["plugins"]
+                if "markdown_extensions" in config_data:
+                    markdown_extensions = config_data["markdown_extensions"]
 
     config_kwargs = dict(
         docs_dir=str(docs_dir.resolve()),
@@ -361,6 +364,8 @@ def built_example_site(tmp_path_factory, request):
     )
     if plugins is not None:
         config_kwargs["plugins"] = plugins
+    if markdown_extensions is not None:
+        config_kwargs["markdown_extensions"] = markdown_extensions
 
     config = load_config(**config_kwargs)
     build(config)
@@ -420,10 +425,11 @@ def built_example_site_with_palette(tmp_path_factory, request):
     if not docs_dir.exists():
         raise ValueError(f"Example site not found at {docs_dir}")
 
-    # Extract site_name and plugins from mkdocs.yml
+    # Extract site_name, plugins, and markdown_extensions from mkdocs.yml
     mkdocs_yml = example_dir / "mkdocs.yml"
     site_name = "Test Site"
     plugins = None
+    markdown_extensions = None
     if mkdocs_yml.exists():
         with open(mkdocs_yml) as f:
             config_data = yaml.safe_load(f)
@@ -432,6 +438,8 @@ def built_example_site_with_palette(tmp_path_factory, request):
                     site_name = config_data["site_name"]
                 if "plugins" in config_data:
                     plugins = config_data["plugins"]
+                if "markdown_extensions" in config_data:
+                    markdown_extensions = config_data["markdown_extensions"]
 
     # Build config with palette setting
     theme_config = {
@@ -448,6 +456,8 @@ def built_example_site_with_palette(tmp_path_factory, request):
     )
     if plugins is not None:
         config_kwargs["plugins"] = plugins
+    if markdown_extensions is not None:
+        config_kwargs["markdown_extensions"] = markdown_extensions
 
     config = load_config(**config_kwargs)
     build(config)
