@@ -132,7 +132,7 @@ class TestColorContrast:
     """Tests for WCAG 2.1 AA color contrast compliance in theme."""
 
     @pytest.mark.parametrize("built_example_site_with_palette", [
-        ("minimal", palette) for palette in DEFAULT_PALETTES
+        ("search-enabled", palette) for palette in DEFAULT_PALETTES
     ], indirect=True)
     def test_theme_body_text_contrast_meets_wcag_aa(self, built_example_site_with_palette):
         """Verify theme body text color meets WCAG AA contrast against background.
