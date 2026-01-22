@@ -36,30 +36,31 @@ DEFAULT_PALETTES = [
 ]
 
 # Expected color values for each palette (used to verify CSS loading)
+# These are resolved from the actual palette CSS files, including variable references
 PALETTE_COLORS = {
     "default": {
-        "font-color": "#e8e9ed",  # Changed from #e8eff2 to meet WCAG AA
+        "font-color": "#151515",  # from terminal.css
         "background-color": "#fff",
     },
     "dark": {
-        "font-color": "#3f3f44",
+        "font-color": "#e8e9ed",  # from dark.css
         "background-color": "#222225",
     },
     "gruvbox_dark": {
-        "font-color": "#ebdbb2",
+        "font-color": "#ebdbb2",  # from gruvbox_dark.css: var(--gb-dm-fg1)
         "background-color": "#282828",
     },
     "pink": {
-        "font-color": "#e8e9ed",
-        "background-color": "#fff",
+        "font-color": "#190910",  # from pink.css
+        "background-color": "#ffffff",
     },
     "sans": {
-        "font-color": "#e8e9ed",
+        "font-color": "#151515",  # inherits from terminal.css
         "background-color": "#fff",
     },
     "sans_dark": {
-        "font-color": "#c6c6c6",
-        "background-color": "#1e1e1e",
+        "font-color": "#e8e9ed",  # from sans_dark.css
+        "background-color": "#222225",
     },
 }
 
@@ -293,8 +294,9 @@ class TestColorContrast:
 
         # Determine which palette was used by checking HTML or site path
         # The site path format is: built_{example_name}_{palette_name}_site{N}
+        # Sort by length descending to match longest names first (e.g., 'gruvbox_dark' before 'dark')
         palette_name = None
-        for palette in DEFAULT_PALETTES:
+        for palette in sorted(DEFAULT_PALETTES, key=len, reverse=True):
             if f"_{palette}_site" in str(site_path):
                 palette_name = palette
                 break

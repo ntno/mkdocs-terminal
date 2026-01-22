@@ -515,13 +515,14 @@ def _extract_css_variables(html: str, css_content: str = "") -> dict:
     """Extract CSS custom properties (variables) from HTML and CSS content.
     
     Parses :root { --var-name: value; } definitions to extract CSS variables.
+    Also resolves cascading variable references (e.g., --font-color: var(--fg1)).
     
     Args:
         html: HTML string (may contain <style> tags)
         css_content: Optional additional CSS content to parse
         
     Returns:
-        Dictionary mapping variable names to their values (e.g., {'--font-color': '#000000'})
+        Dictionary mapping variable names to their resolved values (e.g., {'--font-color': '#000000'})
     """
     variables = {}
     
@@ -535,7 +536,13 @@ def _extract_css_variables(html: str, css_content: str = "") -> dict:
     if css_content:
         variables.update(_parse_css_variables(css_content))
     
-    return variables
+    # Resolve cascading variable references
+    # Iterate through variables and resolve any var() references
+    resolved = {}
+    for var_name, var_value in variables.items():
+        resolved[var_name] = _resolve_css_variable(var_value, variables)
+    
+    return resolved
 
 
 def _parse_css_variables(css_text: str) -> dict:
@@ -630,18 +637,23 @@ def _get_element_computed_styles(element: Optional[Tag], css_variables: dict) ->
     return styles
 
 
-def _resolve_css_variable(value: str, css_variables: dict) -> Optional[str]:
+def _resolve_css_variable(value: str, css_variables: dict, max_depth: int = 10) -> Optional[str]:
     """Resolve CSS variable reference to its value.
     
-    Handles var(--variable-name) references.
+    Handles var(--variable-name) references, including cascading variable references.
+    For example: --font-color: var(--gb-dm-fg1) -> #ebdbb2
     
     Args:
         value: CSS value that may contain var() reference
         css_variables: Dictionary of variable definitions
+        max_depth: Maximum recursion depth to prevent infinite loops
         
     Returns:
         Resolved color value, or None if cannot be resolved
     """
+    if max_depth <= 0:
+        return None
+    
     value = value.strip()
     
     # Check if it's a variable reference
@@ -649,7 +661,9 @@ def _resolve_css_variable(value: str, css_variables: dict) -> Optional[str]:
     if var_match:
         var_name = f"--{var_match.group(1)}"
         if var_name in css_variables:
-            return css_variables[var_name].strip()
+            # Recursively resolve in case the variable refers to another variable
+            resolved = _resolve_css_variable(css_variables[var_name].strip(), css_variables, max_depth - 1)
+            return resolved
         return None
     
     # Return as-is if it's a direct color value
