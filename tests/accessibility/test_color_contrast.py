@@ -24,6 +24,7 @@ from pathlib import Path
 from bs4 import BeautifulSoup
 from tests.accessibility.utils import _extract_css_variables, validate_color_contrast
 from tests.interface.theme_features import DEFAULT_PALETTES
+import re
 
 
 # Expected color values for each palette (used to verify CSS loading)
@@ -70,8 +71,6 @@ def _load_css_from_site(site_path: Path, html_content: str) -> str:
     Returns:
         Concatenated CSS content from all theme CSS files plus the active palette
     """
-    from bs4 import BeautifulSoup
-    import re
     
     css_content = ""
     loaded_paths = set()

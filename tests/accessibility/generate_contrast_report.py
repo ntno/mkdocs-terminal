@@ -148,13 +148,16 @@ def generate_scenario_section(scenario_type: str, element_type: str, min_ratio: 
     section = f"## {scenario_type.replace('_', ' ').title()} (`{test_name}`)\n\n"
     section += f"- **Standard**: WCAG 2.1 AA - **{min_ratio}:1 minimum** for {element_type}\n"
     section += f"- **Elements tested**: {elements}\n"
-    section += "- **Current palette colors** (all pass):\n"
+    section += "- **Current palette colors**:\n"
     
-    # Add ratios for each palette
+    # Add ratios for each palette with pass/fail status
     for palette in DEFAULT_PALETTES:
         if palette in palettes_ratios and scenario_type in palettes_ratios[palette]:
             fg, bg, ratio = palettes_ratios[palette][scenario_type]
-            section += f"  - {palette.replace('_', ' ').title()}: {fg} on {bg} = **{ratio:.1f}:1** ✅\n"
+            # Check if ratio meets WCAG standard
+            meets_standard = ratio >= min_ratio
+            status = "✅" if meets_standard else "❌"
+            section += f"  - {palette.replace('_', ' ').title()}: {fg} on {bg} = **{ratio:.1f}:1** {status}\n"
     
     # Add example failing values
     if scenario_type == "body_text":
@@ -280,9 +283,9 @@ The test suite validates **4 main contrast scenarios**, each parametrized across
 """
     
     # Add scenario sections
-    markdown += generate_scenario_section("body_text", "normal text", "4.5:1", palettes_ratios)
-    markdown += generate_scenario_section("links", "link text", "4.5:1", palettes_ratios)
-    markdown += generate_scenario_section("buttons", "UI components (more lenient than text)", "3:1", palettes_ratios)
+    markdown += generate_scenario_section("body_text", "normal text", 4.5, palettes_ratios)
+    markdown += generate_scenario_section("links", "link text", 4.5, palettes_ratios)
+    markdown += generate_scenario_section("buttons", "UI components (more lenient than text)", 3.0, palettes_ratios)
     
     # Write the markdown file
     output_file = Path("COLOR_CONTRAST_TESTS.md")
