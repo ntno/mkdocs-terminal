@@ -35,31 +35,37 @@ PALETTE_COLORS = {
         "font-color": "#151515",  # from terminal.css - 18.3:1 contrast
         "background-color": "#fff",
         "primary-color": "#1a95e0",  # link color - 3.27:1 contrast (FAILS WCAG AA)
+        "error-color": "#d20962",  # alert/details error color - 5.31:1 contrast
     },
     "dark": {
         "font-color": "#3f3f44",  # intentionally modified for testing - 1.5:1 contrast
         "background-color": "#222225",
         "primary-color": "#62c4ff",  # link color - 8.2:1 contrast
+        "error-color": "#ff3c74",  # alert/details error color - 4.65:1 contrast
     },
     "gruvbox_dark": {
         "font-color": "#32302f",  # intentionally modified for testing - 1.1:1 contrast
         "background-color": "#282828",
         "primary-color": "#fabd2f",  # link color - 8.69:1 contrast
+        "error-color": "#fb4934",  # alert/details error color - 4.29:1 contrast (FAILS WCAG AA)
     },
     "pink": {
         "font-color": "#f90d7a",  # intentionally modified for testing - 3.9:1 contrast
         "background-color": "#ffffff",
         "primary-color": "#f90d7a",  # link color - 3.91:1 contrast (FAILS WCAG AA)
+        "error-color": "#bb0047",  # alert/details error color - 6.55:1 contrast
     },
     "sans": {
         "font-color": "#151515",  # inherits from terminal.css - 18.3:1 contrast
         "background-color": "#fff",
         "primary-color": "#1a95e0",  # link color (inherited from default) - 3.27:1 (FAILS WCAG AA)
+        "error-color": "#d20962",  # alert/details error color (inherited from default) - 5.31:1
     },
     "sans_dark": {
         "font-color": "#62c4ff",  # intentionally modified for testing - 8.2:1 contrast
         "background-color": "#222225",
         "primary-color": "#62c4ff",  # link color (inherited from dark) - 8.2:1 contrast
+        "error-color": "#ff3c74",  # alert/details error color (inherited from dark) - 4.65:1
     },
 }
 
@@ -572,6 +578,34 @@ class TestColorContrast:
             f"Palette '{palette_name}': Primary link color {link_color} on {background_color} " \
             f"has contrast {ratio:.2f}:1, does not meet WCAG 2.1 AA minimum of 4.5:1"
 
+    @pytest.mark.parametrize("palette_name", DEFAULT_PALETTES)
+    def test_alert_error_color_meets_wcag_aa(self, palette_name):
+        """Verify terminal-alert-error color meets WCAG AA contrast.
+        
+        Error alerts use the error-color CSS variable for text. This test validates
+        that the error color has sufficient contrast against the page background.
+        
+        Reference: https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum
+        """
+        expected_colors = PALETTE_COLORS.get(palette_name)
+        assert expected_colors is not None, f"No expected colors defined for palette: {palette_name}"
+        
+        error_color = expected_colors.get("error-color")
+        background_color = expected_colors.get("background-color")
+        
+        assert error_color is not None, f"No error color defined for palette: {palette_name}"
+        assert background_color is not None, f"No background color defined for palette: {palette_name}"
+        
+        # Calculate contrast ratio
+        ratio = get_contrast_ratio(error_color, background_color)
+        assert ratio is not None, f"Could not calculate contrast ratio for {error_color} on {background_color}"
+        
+        # Validate using meets_wcag_aa (expects 4.5:1 minimum for normal text at 14px)
+        is_compliant = meets_wcag_aa(ratio, text_size=14, is_bold=False)
+        assert is_compliant, \
+            f"Palette '{palette_name}': Error color {error_color} on {background_color} " \
+            f"has contrast {ratio:.2f}:1, does not meet WCAG 2.1 AA minimum of 4.5:1"
+
     @pytest.mark.parametrize("built_example_site_with_palette", [
         ("minimal", palette) for palette in DEFAULT_PALETTES
     ], indirect=True)
@@ -678,6 +712,123 @@ class TestColorContrast:
         assert abs(ratio - expected_ratio) <= tolerance, \
             f"Palette '{palette_name}': Expected contrast {expected_ratio}:1, " \
             f"got {ratio:.2f}:1 (colors: {link_color} on {background_color})"
+
+    @pytest.mark.parametrize("built_example_site_with_palette", [
+        ("search-enabled", palette) for palette in DEFAULT_PALETTES
+    ], indirect=True)
+    def test_details_alert_elements_meet_wcag_aa_contrast(self, built_example_site_with_palette):
+        """Verify details/alert elements have sufficient contrast for WCAG AA.
+        
+        Tests that terminal-alert elements (including terminal-alert-error and 
+        terminal-alert-primary) have sufficient contrast between their colored text
+        and background. Details elements with alert styling should be readable.
+        
+        This test scans all HTML files looking for:
+        - .terminal-alert elements
+        - .terminal-alert-error elements (red error alerts)
+        - .terminal-alert-primary elements (blue primary alerts)
+        
+        Validates that the text color used in these elements meets 4.5:1 contrast
+        minimum for WCAG 2.1 AA compliance.
+        
+        Tests all default palettes to catch palette-specific contrast issues.
+        
+        Reference: https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum
+        """
+        site_path = Path(built_example_site_with_palette)
+        assert site_path.exists(), f"Built site not found at {site_path}"
+        
+        html_files = list(site_path.glob("**/*.html"))
+        assert len(html_files) > 0, "No HTML files found in built site"
+        
+        # Track all details/alert elements by class and their colors
+        alert_elements = {
+            'error': {'elements': [], 'color_combos': {}},
+            'primary': {'elements': [], 'color_combos': {}},
+        }
+        
+        for html_file in html_files:
+            with open(html_file, 'r', encoding='utf-8') as f:
+                html_content = f.read()
+            
+            # Load CSS from site to extract variables
+            css_content = _load_css_from_site(site_path, html_content)
+            css_variables = _extract_css_variables(html_content, css_content)
+            
+            soup = BeautifulSoup(html_content, 'html.parser')
+            file_path = str(html_file.relative_to(site_path))
+            
+            # Find all alert elements
+            alert_error_elements = soup.find_all(class_='terminal-alert-error')
+            alert_primary_elements = soup.find_all(class_='terminal-alert-primary')
+            
+            for alert_type, elements in [('error', alert_error_elements), ('primary', alert_primary_elements)]:
+                for elem_idx, elem in enumerate(elements):
+                    # Get text content for context
+                    text = elem.get_text(strip=True)[:50]
+                    
+                    # Extract computed style for the alert element
+                    elem_styles = _get_element_computed_styles(elem, css_variables)
+                    alert_color = elem_styles.get('color')
+                    alert_bg = elem_styles.get('background-color')
+                    
+                    # If no explicit background, check parent elements
+                    if not alert_bg or alert_bg == 'transparent':
+                        parent = elem.parent
+                        while parent and (not alert_bg or alert_bg == 'transparent'):
+                            parent_styles = _get_element_computed_styles(parent, css_variables)
+                            parent_bg = parent_styles.get('background-color')
+                            if parent_bg and parent_bg != 'transparent':
+                                alert_bg = parent_bg
+                                break
+                            parent = parent.parent
+                    
+                    # Default to body background if still not found
+                    if not alert_bg:
+                        body = soup.find('body')
+                        body_styles = _get_element_computed_styles(body, css_variables)
+                        alert_bg = body_styles.get('background-color') or '#ffffff'
+                    
+                    if alert_color and alert_bg:
+                        # Store for reporting
+                        location = f"{file_path}:{alert_type} #{elem_idx}"
+                        alert_elements[alert_type]['elements'].append({
+                            'location': location,
+                            'text': text,
+                            'color': alert_color,
+                            'background': alert_bg,
+                        })
+                        
+                        # Group by color combination
+                        color_key = (alert_color.lower(), alert_bg.lower())
+                        if color_key not in alert_elements[alert_type]['color_combos']:
+                            alert_elements[alert_type]['color_combos'][color_key] = {
+                                'count': 0,
+                                'locations': [],
+                            }
+                        alert_elements[alert_type]['color_combos'][color_key]['count'] += 1
+                        alert_elements[alert_type]['color_combos'][color_key]['locations'].append(location)
+        
+        # Validate contrast for each unique color combination
+        failures = []
+        
+        for alert_type in ['error', 'primary']:
+            for (fg_color, bg_color), data in alert_elements[alert_type]['color_combos'].items():
+                ratio = get_contrast_ratio(fg_color, bg_color)
+                
+                if ratio and ratio < 4.5:
+                    locations_str = '\n      '.join(data['locations'][:3])
+                    if len(data['locations']) > 3:
+                        locations_str += f'\n      ... and {len(data["locations"]) - 3} more'
+                    
+                    failures.append(
+                        f"terminal-alert-{alert_type}: {fg_color} on {bg_color} = {ratio:.2f}:1 "
+                        f"({data['count']} elements)\n      {locations_str}"
+                    )
+        
+        assert not failures, \
+            f"Details/alert elements have insufficient contrast (need 4.5:1):\n" + \
+            "\n".join([f"  {f}" for f in failures])
 
 
 
