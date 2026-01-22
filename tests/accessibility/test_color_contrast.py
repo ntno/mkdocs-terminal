@@ -34,26 +34,32 @@ PALETTE_COLORS = {
     "default": {
         "font-color": "#151515",  # from terminal.css - 18.3:1 contrast
         "background-color": "#fff",
+        "primary-color": "#1a95e0",  # link color - 3.27:1 contrast (FAILS WCAG AA)
     },
     "dark": {
         "font-color": "#3f3f44",  # intentionally modified for testing - 1.5:1 contrast
         "background-color": "#222225",
+        "primary-color": "#62c4ff",  # link color - 8.2:1 contrast
     },
     "gruvbox_dark": {
         "font-color": "#32302f",  # intentionally modified for testing - 1.1:1 contrast
         "background-color": "#282828",
+        "primary-color": "#fabd2f",  # link color - 8.69:1 contrast
     },
     "pink": {
         "font-color": "#f90d7a",  # intentionally modified for testing - 3.9:1 contrast
         "background-color": "#ffffff",
+        "primary-color": "#f90d7a",  # link color - 3.91:1 contrast (FAILS WCAG AA)
     },
     "sans": {
         "font-color": "#151515",  # inherits from terminal.css - 18.3:1 contrast
         "background-color": "#fff",
+        "primary-color": "#1a95e0",  # link color (inherited from default) - 3.27:1 (FAILS WCAG AA)
     },
     "sans_dark": {
         "font-color": "#62c4ff",  # intentionally modified for testing - 8.2:1 contrast
         "background-color": "#222225",
+        "primary-color": "#62c4ff",  # link color (inherited from dark) - 8.2:1 contrast
     },
 }
 
@@ -535,6 +541,35 @@ class TestColorContrast:
         is_compliant = meets_wcag_aa(ratio, text_size=14, is_bold=False)
         assert is_compliant, \
             f"Palette '{palette_name}': Link color {link_color} on {background_color} " \
+            f"has contrast {ratio:.2f}:1, does not meet WCAG 2.1 AA minimum of 4.5:1"
+
+    @pytest.mark.parametrize("palette_name", DEFAULT_PALETTES)
+    def test_primary_link_color_meets_wcag_aa(self, palette_name):
+        """Verify primary link colors (used in <a> tags) meet WCAG AA contrast.
+        
+        Primary color is used for links throughout the theme. This test validates
+        that the default primary link color meets WCAG 2.1 AA minimum contrast ratio.
+        
+        Reference: https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum
+        """
+        expected_colors = PALETTE_COLORS.get(palette_name)
+        assert expected_colors is not None, f"No expected colors defined for palette: {palette_name}"
+        
+        # Note: We test primary-color specifically because links use color: var(--primary-color)
+        link_color = expected_colors.get("primary-color")
+        background_color = expected_colors.get("background-color")
+        
+        assert link_color is not None, f"No primary color defined for palette: {palette_name}"
+        assert background_color is not None, f"No background color defined for palette: {palette_name}"
+        
+        # Calculate contrast ratio
+        ratio = get_contrast_ratio(link_color, background_color)
+        assert ratio is not None, f"Could not calculate contrast ratio for {link_color} on {background_color}"
+        
+        # Validate using meets_wcag_aa (expects 4.5:1 minimum for normal text at 14px)
+        is_compliant = meets_wcag_aa(ratio, text_size=14, is_bold=False)
+        assert is_compliant, \
+            f"Palette '{palette_name}': Primary link color {link_color} on {background_color} " \
             f"has contrast {ratio:.2f}:1, does not meet WCAG 2.1 AA minimum of 4.5:1"
 
     @pytest.mark.parametrize("built_example_site_with_palette", [
