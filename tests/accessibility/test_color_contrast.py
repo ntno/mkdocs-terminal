@@ -19,7 +19,7 @@ Reference: https://www.w3.org/TR/WCAG20-TECHS/G17.html
 
 import pytest
 from pathlib import Path
-
+from tests.accessibility.utils import validate_color_contrast
 
 class TestColorContrast:
     """Tests for WCAG 2.1 AA color contrast compliance in theme."""
@@ -33,8 +33,7 @@ class TestColorContrast:
 
         Validates: Default text color has sufficient contrast with background.
         """
-        from tests.accessibility.utils import validate_color_contrast
-
+        
         # Load built site
         site_path = Path(built_example_site)
         assert site_path.exists(), f"Built site not found at {site_path}"
@@ -68,7 +67,6 @@ class TestColorContrast:
 
         Validates: Link colors have sufficient contrast with background.
         """
-        from tests.accessibility.utils import validate_color_contrast
 
         site_path = Path(built_example_site)
         assert site_path.exists(), f"Built site not found at {site_path}"
@@ -99,7 +97,6 @@ class TestColorContrast:
 
         Validates: Button and form element colors have sufficient contrast.
         """
-        from tests.accessibility.utils import validate_color_contrast
 
         site_path = Path(built_example_site)
         assert site_path.exists(), f"Built site not found at {site_path}"
