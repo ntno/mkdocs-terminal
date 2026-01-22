@@ -1,34 +1,38 @@
 #!/usr/bin/env python3
 """Utility to regenerate the color contrast test report markdown.
 
-This script extracts actual contrast ratios from the theme's CSS and generates
-the COLOR_CONTRAST_TESTS.md documentation with real data.
+This script builds temporary sites with each of the default palettes, extracts
+actual contrast ratios from the theme's CSS, and generates the COLOR_CONTRAST_TESTS.md
+documentation with real per-palette data.
 
 Usage:
     python tests/accessibility/generate_contrast_report.py
 
-This will regenerate the report with current contrast ratios across all palettes.
-
-Notes:
-- The script extracts contrast ratios from the theme's CSS files
-- For accurate per-palette contrast ratios, use the pytest-generated sites
-- The static minimal/site shows default palette colors for all entries
-- This can be improved to load dynamically built sites during test execution
+This will:
+1. Build a temporary documentation site for each palette
+2. Extract CSS and calculate contrast ratios for all element types
+3. Generate COLOR_CONTRAST_TESTS.md with current, accurate data
 
 The generated markdown file is saved to: COLOR_CONTRAST_TESTS.md
 """
 
 import sys
+import tempfile
+import shutil
+import yaml
 from pathlib import Path
 
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
+from bs4 import BeautifulSoup
+from mkdocs.config import load_config
+from mkdocs.commands.build import build
+
 from tests.accessibility.utils import _extract_css_variables, _get_element_computed_styles
 from tests.accessibility.color_utils import get_contrast_ratio
 from tests.accessibility.test_color_contrast import _load_css_from_site
 from tests.interface.theme_features import DEFAULT_PALETTES
-from bs4 import BeautifulSoup
 
 
 def get_contrast_ratios_for_palette(palette_name: str, site_path: Path) -> dict:
@@ -164,37 +168,109 @@ def generate_scenario_section(scenario_type: str, element_type: str, min_ratio: 
     return section
 
 
-def main():
-    """Generate the color contrast test report."""
+def build_site_with_palette(palette_name: str, example_name: str = "minimal") -> Path:
+    """Build a temporary documentation site with a specific palette.
     
-    # Find the minimal example site
-    example_dir = Path("tests/examples")
-    if not example_dir.exists():
-        print("Error: tests/examples directory not found")
-        return
+    Args:
+        palette_name: Name of the palette (e.g., 'default', 'dark')
+        example_name: Example site to build (default: 'minimal')
+        
+    Returns:
+        Path to the built site directory (temporary)
+    """
+    # Create temporary directory
+    tmp_dir = tempfile.mkdtemp(prefix=f"contrast_report_{palette_name}_")
+    tmp_path = Path(tmp_dir)
+    
+    try:
+        # Resolve paths
+        project_root = Path(__file__).parent.parent.parent
+        example_dir = project_root / "tests" / "examples" / example_name
+        docs_dir = example_dir / "docs"
+        theme_dir = project_root / "terminal"
+        
+        if not docs_dir.exists():
+            raise ValueError(f"Example site not found at {docs_dir}")
+        
+        # Load mkdocs.yml config
+        mkdocs_yml = example_dir / "mkdocs.yml"
+        site_name = "Test Site"
+        plugins = None
+        
+        if mkdocs_yml.exists():
+            with open(mkdocs_yml) as f:
+                config_data = yaml.safe_load(f)
+                if config_data:
+                    if "site_name" in config_data:
+                        site_name = config_data["site_name"]
+                    if "plugins" in config_data:
+                        plugins = config_data["plugins"]
+        
+        # Build config with palette setting
+        theme_config = {
+            "name": None,
+            "custom_dir": str(theme_dir.resolve()),
+            "palette": palette_name
+        }
+        
+        config_kwargs = dict(
+            config_file=str(mkdocs_yml.resolve()) if mkdocs_yml.exists() else None,
+            docs_dir=str(docs_dir.resolve()),
+            site_dir=str(tmp_path.resolve()),
+            site_name=site_name,
+            theme=theme_config
+        )
+        if plugins is not None:
+            config_kwargs["plugins"] = plugins
+        
+        # Build the site
+        config = load_config(**config_kwargs)
+        build(config)
+        
+        return tmp_path
+    
+    except Exception as e:
+        # Clean up temp directory on error
+        shutil.rmtree(tmp_dir, ignore_errors=True)
+        raise e
+
+
+def main():
+    """Generate the color contrast test report by building sites with each palette."""
+    
+    print("Building temporary sites for each palette...")
+    print()
     
     # Collect ratios for all palettes
     palettes_ratios = {}
+    temp_dirs = []
     
-    for palette in DEFAULT_PALETTES:
-        # Try to find a built site with this palette
-        # The fixture builds sites at /tmp/pytest-*/pytest-*/{example}__{palette}__site*/
-        # For now, use the static minimal/site as base (NOTE: this won't show palette differences)
-        site_path = example_dir / "minimal" / "site"
-        
-        if site_path.exists():
-            print(f"Extracting ratios for palette: {palette}...")
+    try:
+        for palette in DEFAULT_PALETTES:
+            print(f"Building site with palette: {palette}...")
+            
+            # Build temporary site with this palette
+            site_path = build_site_with_palette(palette)
+            temp_dirs.append(site_path)
+            
+            # Extract contrast ratios
+            print(f"  Extracting contrast ratios...")
             ratios = get_contrast_ratios_for_palette(palette, site_path)
+            
             if ratios:
                 palettes_ratios[palette] = ratios
+                # Print sample ratios
+                for elem_type, (fg, bg, ratio) in ratios.items():
+                    print(f"    {elem_type}: {fg} on {bg} = {ratio:.1f}:1")
             else:
                 print(f"  Warning: Could not extract ratios for {palette}")
-        else:
-            print(f"  Skipping {palette}: test site not found at {site_path}")
+            print()
     
-    print("\n⚠️  Note: This script uses the static minimal/site which uses default colors for all palettes.")
-    print("   For accurate per-palette contrast ratios, this would need to access the pytest-generated")
-    print("   built sites. In practice, the color differences are shown in manual testing.\n")
+    finally:
+        # Clean up temporary directories
+        print("Cleaning up temporary files...")
+        for temp_dir in temp_dirs:
+            shutil.rmtree(temp_dir, ignore_errors=True)
     
     # Generate markdown
     markdown = """# Color Contrast Test Scenarios
@@ -207,132 +283,6 @@ The test suite validates **4 main contrast scenarios**, each parametrized across
     markdown += generate_scenario_section("body_text", "normal text", "4.5:1", palettes_ratios)
     markdown += generate_scenario_section("links", "link text", "4.5:1", palettes_ratios)
     markdown += generate_scenario_section("buttons", "UI components (more lenient than text)", "3:1", palettes_ratios)
-    
-    # Add remaining sections from template
-    markdown += """## 4. Large Text Contrast (Implicit in above tests)
-
-- **Standard**: WCAG 2.1 AA - **3:1 minimum** for large text (≥18pt bold or ≥24px)
-- **Elements tested**: `<h1>`, `<h2>`, `<h3>` headers
-- **Automatic detection**: Elements named h1/h2/h3 are treated as "large text"
-
-**Example FAILING values**:
-```python
-# Header color: #aa7777, Background: #ffffff
-# Contrast ratio: 2.8:1 (below 3:1 threshold for large text) ❌ FAILS
-```
-
----
-
-## 5. CSS Loading Verification (`test_css_classes_loaded_correctly`)
-
-- **Standard**: Ensures actual palette colors are extracted correctly
-- **Tests**: Validates that CSS variables resolve properly (including cascading references like `var(--gb-dm-fg1)`)
-- **One test per palette** (6 instances total)
-
----
-
-## Summary Table
-
-| Scenario | Min Ratio | Elements | All Palettes Pass? |
-|----------|-----------|----------|------------------|
-| Body Text | 4.5:1 | p, body, h4-h6, etc. | ✅ Yes |
-| Links | 4.5:1 | a (links) | ✅ Yes |
-| Buttons/Forms | 3:1 | button, input, label | ✅ Yes |
-| Large Text (h1-h3) | 3:1 | h1, h2, h3 | ✅ Yes |
-| CSS Loading | N/A | Palette color verification | ✅ Yes |
-
-**Total tests**: 24 pass across all 6 palettes
-
----
-
-## Test Implementation Details
-
-### Test Parametrization
-
-Each of the first 4 contrast tests is parametrized to run across all 6 default palettes defined in [tests/interface/theme_features.py](tests/interface/theme_features.py):
-
-```python
-DEFAULT_PALETTES = [
-    "default",
-    "dark",
-    "gruvbox_dark",
-    "pink",
-    "sans",
-    "sans_dark",
-]
-```
-
-This results in:
-- 3 contrast validation tests × 6 palettes = 18 test instances
-- 1 CSS loading verification test × 6 palettes = 6 test instances
-- **Total: 24 test cases**
-
-### CSS Variable Resolution
-
-The tests support cascading CSS variable references. For example, the `gruvbox_dark` palette uses:
-
-```css
-:root {
-    --gb-dm-fg1: #ebdbb2;
-    --font-color: var(--gb-dm-fg1);
-}
-```
-
-The variable resolution process:
-1. Extracts all `:root` blocks from CSS files (including multiple palette definitions)
-2. Resolves cascading variable references recursively
-3. Returns final hex color values (e.g., `--font-color` resolves to `#ebdbb2`)
-
-### Element Selection Strategy
-
-The validation function checks contrast on elements that:
-- Contain actual text content
-- Have explicit color styling via CSS variables or inline styles
-- Are part of theme-controlled elements (not user-generated content)
-
-Elements are categorized for different minimum ratios:
-- **Normal text** (4.5:1): body, p, span, a, label, etc.
-- **Large text** (3:1): h1, h2, h3 (automatically detected)
-- **UI components** (3:1): button, input, form elements
-
----
-
-## Test Site Requirements
-
-**Critical:** All built test sites MUST contain representative examples of all element types being tested. This ensures comprehensive validation coverage and prevents false negatives.
-
-### Required Elements
-
-The minimal test site (`tests/examples/minimal/`) must include:
-
-| Element Type | Minimum Count | Purpose |
-|--------------|--------------|---------|
-| Paragraphs `<p>` | 1+ | Validate body text contrast |
-| Links `<a>` | 3+ | Validate link contrast (navigation, content links) |
-| Headers `<h1>`, `<h2>`, `<h3>` | 1+ each | Validate large text contrast |
-| Buttons `<button>` | 1+ | Validate button UI contrast |
-| Input fields `<input>` | 1+ | Validate form control contrast |
-
-### Current Test Site Status
-
-The minimal example site (`tests/examples/minimal/`) contains:
-- ✅ Links: 7 elements
-- ✅ Buttons: 1 element
-- ✅ Inputs: 1 element
-- ✅ Paragraphs: 2 elements
-- ✅ Headers: 4 elements (h1-h6)
-
-This provides adequate coverage for all contrast test scenarios.
-
-### Validation Policy
-
-If a test site is missing required elements:
-- The test MUST fail with a clear diagnostic message
-- The failure message should specify which element types are missing
-- The test should NOT silently skip validation (avoiding false positives)
-
-This ensures that test sites are properly configured and that all color contrast scenarios are actually being validated.
-"""
     
     # Write the markdown file
     output_file = Path("COLOR_CONTRAST_TESTS.md")
