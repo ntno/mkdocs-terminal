@@ -81,4 +81,55 @@ Implementation tasks for adding automated accessibility testing to the Terminal 
 - Integration with existing test infrastructure and fixtures is required
 - All new tests must follow existing test patterns in the project
 - Use example configurations from `tests/examples/` for validation targets
+
+## Phase 3 Implementation Details
+
+**Completed:** January 20-21, 2026
+
+### Test Classes Created
+
+1. **TestARIAButtons** — Button accessibility
+   - `test_buttons_have_text_or_aria_label()` — Validates all buttons have accessible names
+   - Verifies test configuration (requires buttons to exist)
+
+2. **TestARIAAttributes** — ARIA attribute usage
+   - `test_aria_hidden_only_on_decorative()` — Validates aria-hidden only on text-free elements
+   - Verifies test configuration (requires aria-hidden elements to exist)
+
+3. **TestModalAccessibility** — Search modal ARIA compliance
+   - `test_modal_has_correct_aria_attributes()` — Validates modal role, aria-modal, aria-labelledby, close button aria-label, search input labeling
+   - Verifies test configuration (requires modal to exist)
+
+4. **TestFormAccessibility** — Form input labeling
+   - `test_form_inputs_have_labels()` — Validates all form inputs have label associations (label, aria-label, aria-labelledby)
+   - Verifies test configuration (requires form inputs to exist)
+
+5. **TestLinkAccessibility** — Theme region link clarity
+   - `test_theme_links_have_text_or_aria_label()` — Validates nav/header/footer/aside links have descriptive text or aria-label
+   - Validates each nav element individually to catch empty nav elements
+   - Verifies test configuration (requires nav links to exist)
+
+### Utility Functions Added
+
+1. **validate_modal_accessibility()** — Modal ARIA validation
+   - Checks: role, aria-modal, aria-labelledby, close button aria-label, search input aria-labelledby
+
+2. **validate_form_labels()** — Form input labeling
+   - Checks: label associations, aria-label, aria-labelledby, title fallback
+
+3. **validate_link_text()** — Link accessibility
+   - Checks: scoped to theme regions (nav, header, footer, aside)
+   - Ensures links have text or aria-label
+
+4. **validate_aria_hidden()** — Improved decorator element validation
+   - Simplified from sr-only pattern check to strict decorative-only validation
+   - Encourages aria-label approach for icon buttons
+
+### Key Improvements
+
+- **Test Robustness:** All tests now verify test configuration first (hard fail if expected elements not found)
+- **Granular Validation:** Link test validates each nav element individually (catches empty nav issues)
+- **WCAG Alignment:** Tests follow WCAG 2.1 AA standards and ARIA APG patterns
+- **Clear Error Messages:** All assertions provide specific guidance on configuration errors
+- **Template Fixes:** Removed empty nav element from top-nav/menu.html (semantic correctness)
 - Keep accessibility checks maintainable — prefer standard checks over custom validation
