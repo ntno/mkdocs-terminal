@@ -62,3 +62,36 @@ The test suite validates **4 main contrast scenarios**, each parametrized across
 
 ---
 
+
+---
+
+## Link Contrast Test Cases
+
+In addition to the main scenarios above, the test suite includes dedicated test cases specifically for link color contrast validation:
+
+### `test_link_contrast_ratios_meet_wcag_aa_minimum`
+- Validates calculated contrast ratios for each palette's link color
+- Ensures ratio meets WCAG AA minimum of **4.5:1**
+- Parametrized across all 6 default palettes
+- Provides explicit mathematical validation of contrast calculations
+
+### `test_link_contrast_passes_wcag_aa_validation`
+- Uses the `meets_wcag_aa()` utility function for validation
+- Validates link colors against WCAG 2.1 AA standards
+- Tests normal text contrast thresholds (4.5:1)
+- Parametrized across all 6 default palettes
+
+### `test_all_links_in_site_meet_wcag_aa_contrast`
+- Comprehensive scan of all rendered links in built site
+- Validates every `<a>` element has sufficient contrast
+- Tests actual colors extracted from rendered HTML
+- Checks all HTML files across the entire site
+- Parametrized across all 6 default palettes
+
+### `test_link_contrast_ratio_calculations_are_accurate`
+- Regression test for contrast ratio calculation accuracy
+- Validates calculations match expected values for known color combinations
+- Tests all 6 default palettes with expected contrast ratios
+- Ensures calculation algorithm remains mathematically correct
+
+**Reference**: https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum
