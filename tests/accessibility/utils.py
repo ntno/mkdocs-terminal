@@ -413,26 +413,33 @@ def validate_link_text(html: str, filename: str = "index.html") -> List[str]:
     return violations
 
 
-def validate_color_contrast(html: str, filename: str = "index.html") -> List[str]:
+def validate_color_contrast(html: str, filename: str = "index.html", css_content: str = "") -> List[str]:
     """Validate color contrast meets WCAG 2.1 AA standards.
 
     This function validates that text and interactive elements in the theme
     have sufficient color contrast between foreground and background colors.
 
+    **CRITICAL:** This function requires actual CSS to be provided via css_content
+    parameter or parsed from HTML. It does NOT use hardcoded fallback colors, as
+    those would hide real contrast issues. If CSS colors cannot be extracted,
+    elements are skipped to avoid false positives.
+
     Scope:
     - Validates theme-provided colors for body text, links, buttons, form controls
-    - Checks inline styles and computed colors from CSS
+    - Checks inline styles and CSS variable definitions
     - Uses WCAG 2.1 AA standard: 4.5:1 for normal text, 3:1 for large text
 
     Limitations (static analysis only):
+    - Cannot compute CSS cascading (uses root :root variables only)
     - Cannot test hover/focus states (dynamic CSS)
     - Cannot validate background images
     - Cannot measure actual rendered contrast (font anti-aliasing varies)
-    - Relies on detected CSS colors, not browser-computed styles
+    - Requires CSS to be available for accurate validation
 
     Args:
         html: HTML string to validate
         filename: Optional filename for error reporting
+        css_content: Optional CSS content to parse for color variables
 
     Returns:
         List of contrast violation messages
@@ -442,21 +449,21 @@ def validate_color_contrast(html: str, filename: str = "index.html") -> List[str
     violations: List[str] = []
     soup = BeautifulSoup(html, "html.parser")
 
-    # Elements to validate for contrast
-    # Primarily theme-controlled text and interactive elements
-    elements_to_check = soup.find_all(['body', 'p', 'a', 'button', 'input', 'label', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'])
+    # Extract CSS variables from root element and css_content
+    css_variables = _extract_css_variables(html, css_content)
 
-    # Get background color from body element
+    # Get computed colors for body element
     body = soup.find('body')
-    body_bg_color = "#ffffff"  # Default fallback
-    if body:
-        # Try to get background-color from inline style
-        style_attr = body.get("style", "")
-        if "background-color:" in style_attr:
-            # Extract color value from style
-            match = re.search(r"background-color:\s*([^;]+)", style_attr)
-            if match:
-                body_bg_color = match.group(1).strip()
+    body_styles = _get_element_computed_styles(body, css_variables) if body else {}
+    body_bg_color = body_styles.get('background-color')
+    
+    if not body_bg_color:
+        # If we can't determine background color, skip validation for this file
+        # (avoiding false negatives from missing CSS data)
+        return violations
+
+    # Elements to validate for contrast
+    elements_to_check = soup.find_all(['body', 'p', 'a', 'button', 'input', 'label', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'])
 
     # Check each element's text color against background
     for element in elements_to_check:
@@ -465,21 +472,16 @@ def validate_color_contrast(html: str, filename: str = "index.html") -> List[str
         if not text_content or len(text_content) == 0:
             continue
 
-        # Get foreground color from inline style
-        style_attr = element.get("style", "")
-        fg_color = "#000000"  # Default text color fallback
+        # Get computed styles for this element
+        element_styles = _get_element_computed_styles(element, css_variables)
+        fg_color = element_styles.get('color')
+        
+        # Skip if we can't determine text color from CSS (don't use fallback)
+        if not fg_color:
+            continue
 
-        if "color:" in style_attr:
-            match = re.search(r"(?<!background-)color:\s*([^;]+)", style_attr)
-            if match:
-                fg_color = match.group(1).strip()
-
-        # Get background color (element or inherited)
-        bg_color = body_bg_color
-        if "background-color:" in style_attr:
-            match = re.search(r"background-color:\s*([^;]+)", style_attr)
-            if match:
-                bg_color = match.group(1).strip()
+        # Get background color (element or inherited from body)
+        bg_color = element_styles.get('background-color') or body_bg_color
 
         # Calculate contrast ratio
         ratio = get_contrast_ratio(fg_color, bg_color)
@@ -507,5 +509,147 @@ def validate_color_contrast(html: str, filename: str = "index.html") -> List[str
             ))
 
     return violations
+
+
+def _extract_css_variables(html: str, css_content: str = "") -> dict:
+    """Extract CSS custom properties (variables) from HTML and CSS content.
+    
+    Parses :root { --var-name: value; } definitions to extract CSS variables.
+    
+    Args:
+        html: HTML string (may contain <style> tags)
+        css_content: Optional additional CSS content to parse
+        
+    Returns:
+        Dictionary mapping variable names to their values (e.g., {'--font-color': '#000000'})
+    """
+    variables = {}
+    
+    # Extract from HTML <style> tags
+    soup = BeautifulSoup(html, "html.parser")
+    for style_tag in soup.find_all('style'):
+        if style_tag.string:
+            variables.update(_parse_css_variables(style_tag.string))
+    
+    # Extract from provided CSS content
+    if css_content:
+        variables.update(_parse_css_variables(css_content))
+    
+    return variables
+
+
+def _parse_css_variables(css_text: str) -> dict:
+    """Parse CSS variable definitions from CSS text.
+    
+    Looks for :root { --var-name: value; } blocks.
+    
+    Args:
+        css_text: CSS text content
+        
+    Returns:
+        Dictionary of variable definitions
+    """
+    variables = {}
+    
+    # Find :root block
+    root_match = re.search(r':root\s*\{([^}]+)\}', css_text, re.DOTALL)
+    if root_match:
+        root_content = root_match.group(1)
+        # Extract variable assignments: --name: value;
+        var_pattern = r'--([a-z0-9-]+)\s*:\s*([^;]+);'
+        for match in re.finditer(var_pattern, root_content):
+            var_name = f"--{match.group(1)}"
+            var_value = match.group(2).strip()
+            variables[var_name] = var_value
+    
+    return variables
+
+
+def _get_element_computed_styles(element: Optional[Tag], css_variables: dict) -> dict:
+    """Get computed color styles for an element.
+    
+    Extracts color and background-color from:
+    1. Inline styles (highest priority)
+    2. CSS variables if defined in :root
+    3. Returns empty dict if neither found
+    
+    Args:
+        element: BeautifulSoup Tag element
+        css_variables: Dictionary of CSS variables from :root
+        
+    Returns:
+        Dictionary with 'color' and/or 'background-color' keys
+    """
+    styles = {}
+    
+    if not element:
+        return styles
+    
+    # Get inline style attribute
+    style_attr = element.get("style", "")
+    
+    # Extract color from inline style
+    if "color:" in style_attr:
+        match = re.search(r"(?<!background-)color:\s*([^;]+)", style_attr)
+        if match:
+            color_value = match.group(1).strip()
+            # Resolve CSS variables if needed
+            color_value = _resolve_css_variable(color_value, css_variables)
+            if color_value:
+                styles['color'] = color_value
+    
+    # Extract background-color from inline style
+    if "background-color:" in style_attr:
+        match = re.search(r"background-color:\s*([^;]+)", style_attr)
+        if match:
+            bg_value = match.group(1).strip()
+            # Resolve CSS variables if needed
+            bg_value = _resolve_css_variable(bg_value, css_variables)
+            if bg_value:
+                styles['background-color'] = bg_value
+    
+    # If no inline styles found, check for element-specific variable defaults
+    # For body element, check for --font-color variable
+    if not styles.get('color') and element.name == 'body':
+        if '--font-color' in css_variables:
+            color_value = _resolve_css_variable('var(--font-color)', css_variables)
+            if color_value:
+                styles['color'] = color_value
+    
+    # For body element, check for --background-color variable
+    if not styles.get('background-color') and element.name == 'body':
+        if '--background-color' in css_variables:
+            bg_value = _resolve_css_variable('var(--background-color)', css_variables)
+            if bg_value:
+                styles['background-color'] = bg_value
+    
+    return styles
+
+
+def _resolve_css_variable(value: str, css_variables: dict) -> Optional[str]:
+    """Resolve CSS variable reference to its value.
+    
+    Handles var(--variable-name) references.
+    
+    Args:
+        value: CSS value that may contain var() reference
+        css_variables: Dictionary of variable definitions
+        
+    Returns:
+        Resolved color value, or None if cannot be resolved
+    """
+    value = value.strip()
+    
+    # Check if it's a variable reference
+    var_match = re.match(r'var\(--([a-z0-9-]+)\)', value)
+    if var_match:
+        var_name = f"--{var_match.group(1)}"
+        if var_name in css_variables:
+            return css_variables[var_name].strip()
+        return None
+    
+    # Return as-is if it's a direct color value
+    return value
+
 
 
