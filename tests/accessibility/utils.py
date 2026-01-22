@@ -30,6 +30,7 @@ User content accessibility is the responsibility of site authors.
 """
 
 from typing import List, Optional, Set
+import re
 from bs4 import BeautifulSoup, Tag
 from tidylib import tidy_document
 
@@ -410,4 +411,101 @@ def validate_link_text(html: str, filename: str = "index.html") -> List[str]:
             ))
 
     return violations
+
+
+def validate_color_contrast(html: str, filename: str = "index.html") -> List[str]:
+    """Validate color contrast meets WCAG 2.1 AA standards.
+
+    This function validates that text and interactive elements in the theme
+    have sufficient color contrast between foreground and background colors.
+
+    Scope:
+    - Validates theme-provided colors for body text, links, buttons, form controls
+    - Checks inline styles and computed colors from CSS
+    - Uses WCAG 2.1 AA standard: 4.5:1 for normal text, 3:1 for large text
+
+    Limitations (static analysis only):
+    - Cannot test hover/focus states (dynamic CSS)
+    - Cannot validate background images
+    - Cannot measure actual rendered contrast (font anti-aliasing varies)
+    - Relies on detected CSS colors, not browser-computed styles
+
+    Args:
+        html: HTML string to validate
+        filename: Optional filename for error reporting
+
+    Returns:
+        List of contrast violation messages
+    """
+    from .color_utils import get_contrast_ratio, meets_wcag_aa
+    
+    violations: List[str] = []
+    soup = BeautifulSoup(html, "html.parser")
+
+    # Elements to validate for contrast
+    # Primarily theme-controlled text and interactive elements
+    elements_to_check = soup.find_all(['body', 'p', 'a', 'button', 'input', 'label', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'])
+
+    # Get background color from body element
+    body = soup.find('body')
+    body_bg_color = "#ffffff"  # Default fallback
+    if body:
+        # Try to get background-color from inline style
+        style_attr = body.get("style", "")
+        if "background-color:" in style_attr:
+            # Extract color value from style
+            match = re.search(r"background-color:\s*([^;]+)", style_attr)
+            if match:
+                body_bg_color = match.group(1).strip()
+
+    # Check each element's text color against background
+    for element in elements_to_check:
+        # Skip elements without text content
+        text_content = element.get_text(strip=True)
+        if not text_content or len(text_content) == 0:
+            continue
+
+        # Get foreground color from inline style
+        style_attr = element.get("style", "")
+        fg_color = "#000000"  # Default text color fallback
+
+        if "color:" in style_attr:
+            match = re.search(r"(?<!background-)color:\s*([^;]+)", style_attr)
+            if match:
+                fg_color = match.group(1).strip()
+
+        # Get background color (element or inherited)
+        bg_color = body_bg_color
+        if "background-color:" in style_attr:
+            match = re.search(r"background-color:\s*([^;]+)", style_attr)
+            if match:
+                bg_color = match.group(1).strip()
+
+        # Calculate contrast ratio
+        ratio = get_contrast_ratio(fg_color, bg_color)
+
+        # Determine if large text (heuristic: headers are large)
+        is_large_text = element.name in ['h1', 'h2', 'h3']
+        text_size = 24 if is_large_text else 14
+
+        # Check against WCAG AA standard
+        if ratio is not None and not meets_wcag_aa(ratio, text_size=text_size):
+            element_desc = element.name
+            if element_desc == 'a':
+                element_desc = f"link (text: {text_content[:30]})"
+            elif element_desc in ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']:
+                element_desc = f"{element_desc} heading"
+            elif element_desc in ['button', 'input', 'label']:
+                element_desc = f"{element_desc} element"
+
+            violations.append(_format_violation(
+                f"Insufficient color contrast on {element_desc}: {ratio:.2f}:1 "
+                f"(need {4.5 if not is_large_text else 3.0}:1 for WCAG AA). "
+                f"Color: {fg_color}, Background: {bg_color}",
+                filename,
+                element
+            ))
+
+    return violations
+
 
