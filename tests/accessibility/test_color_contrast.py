@@ -606,6 +606,37 @@ class TestColorContrast:
             f"Palette '{palette_name}': Error color {error_color} on {background_color} " \
             f"has contrast {ratio:.2f}:1, does not meet WCAG 2.1 AA minimum of 4.5:1"
 
+    @pytest.mark.parametrize("palette_name", DEFAULT_PALETTES)
+    def test_ghost_error_button_color_meets_wcag_aa(self, palette_name):
+        """Verify ghost error buttons (btn-error.btn-ghost) have sufficient contrast.
+        
+        Ghost error buttons use the error-color CSS variable for text on a transparent
+        background (showing the page background). This test validates that the button
+        text color has sufficient contrast against the page background.
+        
+        Reference: https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum
+        """
+        expected_colors = PALETTE_COLORS.get(palette_name)
+        assert expected_colors is not None, f"No expected colors defined for palette: {palette_name}"
+        
+        # Ghost error buttons use error-color for text on transparent background
+        button_color = expected_colors.get("error-color")
+        background_color = expected_colors.get("background-color")
+        
+        assert button_color is not None, f"No error color defined for palette: {palette_name}"
+        assert background_color is not None, f"No background color defined for palette: {palette_name}"
+        
+        # Calculate contrast ratio
+        ratio = get_contrast_ratio(button_color, background_color)
+        assert ratio is not None, f"Could not calculate contrast ratio for {button_color} on {background_color}"
+        
+        # Validate using meets_wcag_aa (expects 4.5:1 minimum for normal text at 14px)
+        # UI components can use 3:1 but button text is typically at normal size
+        is_compliant = meets_wcag_aa(ratio, text_size=14, is_bold=False)
+        assert is_compliant, \
+            f"Palette '{palette_name}': Ghost error button text color {button_color} on {background_color} " \
+            f"has contrast {ratio:.2f}:1, does not meet WCAG 2.1 AA minimum of 4.5:1"
+
     @pytest.mark.parametrize("built_example_site_with_palette", [
         ("minimal", palette) for palette in DEFAULT_PALETTES
     ], indirect=True)
