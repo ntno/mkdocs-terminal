@@ -211,7 +211,6 @@ Reference: WCAG 2.1 AA 1.1.1 Non-text Content
    - Check for proper use of skip links
 
 2. **Integration**
-   - Export accessibility reports in JSON/XML format
    - Create GitHub Actions summary with violations
    - Add accessibility scoreboard to CI dashboards
 
@@ -219,6 +218,8 @@ Reference: WCAG 2.1 AA 1.1.1 Non-text Content
    - Auto-fix common issues (add missing alt text placeholders)
    - Generate accessibility checklist for reviewers
    - Track a11y improvements over time
+
+**Note:** CSS attribute extraction utilities for report generation are planned as a separate feature and will be addressed in a future specification.
 
 ## Testing the Tests
 
