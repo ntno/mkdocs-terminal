@@ -670,12 +670,16 @@ def _resolve_css_variable(value: str, css_variables: dict, max_depth: int = 10) 
     return value
 
 
-def extract_css_attributes(css_content: str) -> dict:
+def extract_css_attributes(css_content: str, fallback_css_content: str = "") -> dict:
     """Extract theme CSS attribute variables and return as a map.
     
     Extracts CSS custom properties (variables) from the provided CSS content
     and resolves variable references. Automatically resolves chained variable
     references (e.g., --primary-color references another variable).
+    
+    If an attribute is not found in css_content, it will be extracted from
+    fallback_css_content if provided. This allows inheriting missing attributes
+    from a parent/base theme.
     
     Attributes extracted:
     - global-font-size: Base font size
@@ -694,33 +698,41 @@ def extract_css_attributes(css_content: str) -> dict:
     - progress-bar-background: Progress bar background color
     - progress-bar-fill: Progress bar fill color
     - code-bg-color: Code block background color
+    - code-font-color: Code block font color
     - input-style: Input border style
     - display-h1-decoration: H1 decoration setting
+    - block-background-color: Background color for code blocks
     
     Args:
         css_content: CSS file content as a string
+        fallback_css_content: Optional CSS content to use for missing attributes
     
     Returns:
         Dictionary mapping attribute names (without '--' prefix) to their resolved values.
         Variables that reference other variables are recursively resolved.
         Variables that cannot be resolved are not included in the output.
+        Priority is given to css_content; fallback_css_content is used only for missing attributes.
     
     Example:
         css_content = '''
             :root {
+                --font-stack: -apple-system, sans-serif;
+            }
+        '''
+        fallback_css_content = '''
+            :root {
                 --background-color: #fff;
                 --font-color: #151515;
                 --primary-color: #1a95e0;
-                --error-color: #d20962;
             }
         '''
-        result = extract_css_attributes(css_content)
+        result = extract_css_attributes(css_content, fallback_css_content)
         # Returns:
         # {
+        #     'font-stack': '-apple-system, sans-serif',
         #     'background-color': '#fff',
         #     'font-color': '#151515',
-        #     'primary-color': '#1a95e0',
-        #     'error-color': '#d20962'
+        #     'primary-color': '#1a95e0'
         # }
     """
     # List of attributes to extract
@@ -741,11 +753,13 @@ def extract_css_attributes(css_content: str) -> dict:
         'progress-bar-background',
         'progress-bar-fill',
         'code-bg-color',
+        'code-font-color',
+        'block-background-color',
         'input-style',
         'display-h1-decoration',
     ]
     
-    # First pass: extract all CSS variables
+    # First pass: extract all CSS variables from primary content
     all_variables = {}
     var_pattern = r'--([a-z0-9\-]+):\s*([^;]+);'
     for match in re.finditer(var_pattern, css_content, re.IGNORECASE):
@@ -753,13 +767,30 @@ def extract_css_attributes(css_content: str) -> dict:
         var_value = match.group(2).strip()
         all_variables[f'--{var_name}'] = var_value
     
-    # Second pass: extract and resolve requested attributes
+    # Second pass: extract CSS variables from fallback content
+    fallback_variables = {}
+    if fallback_css_content:
+        for match in re.finditer(var_pattern, fallback_css_content, re.IGNORECASE):
+            var_name = match.group(1)
+            var_value = match.group(2).strip()
+            fallback_variables[f'--{var_name}'] = var_value
+    
+    # Third pass: extract and resolve requested attributes
+    # Priority: primary css_content > fallback_css_content
     result = {}
     for attr in attributes_to_extract:
         var_name = f'--{attr}'
+        
+        # Try primary content first
         if var_name in all_variables:
-            # Resolve the variable (in case it references another variable)
             resolved_value = _resolve_css_variable(all_variables[var_name], all_variables)
+            if resolved_value:
+                result[attr] = resolved_value
+                continue
+        
+        # Fall back to fallback content
+        if var_name in fallback_variables:
+            resolved_value = _resolve_css_variable(fallback_variables[var_name], fallback_variables)
             if resolved_value:
                 result[attr] = resolved_value
     

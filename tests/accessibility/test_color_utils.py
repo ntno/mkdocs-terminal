@@ -291,6 +291,88 @@ class TestExtractCSSAttributes:
             assert result[attr] == expected_value, \
                 f"Attribute '{attr}': expected {expected_value}, got {result[attr]}"
 
+    def test_extract_sans_theme_attributes(self):
+        """Test extracting CSS attributes from sans theme palette.
+        
+        The sans palette minimally overrides the default theme, providing only
+        a different font-stack. It inherits all other attributes from the default.
+        """
+        css_file = Path("terminal/css/palettes/sans.css")
+        assert css_file.exists(), "CSS file not found"
+        
+        with open(css_file) as f:
+            css_content = f.read()
+        
+        result = extract_css_attributes(css_content)
+        
+        # Verify extracted attributes
+        assert result is not None
+        assert isinstance(result, dict)
+        
+        # Hard-coded expected values for sans theme
+        # Sans palette only defines font-stack and inherits other attributes
+        expected = {
+            "font-stack": "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol",
+            "global-font-size": "15px",
+            "global-line-height": "1.4em",
+            "input-style": "solid",
+        }
+        
+        for attr, expected_value in expected.items():
+            assert attr in result, f"Attribute '{attr}' not found in extracted attributes"
+            assert result[attr] == expected_value, \
+                f"Attribute '{attr}': expected {expected_value}, got {result[attr]}"
+
+    def test_extract_sans_with_terminal_fallback(self):
+        """Test extracting sans theme attributes with terminal.css as fallback.
+        
+        The sans palette only defines font-stack and global styles, inheriting all
+        color-related attributes from the default theme. This test verifies that
+        the fallback mechanism properly merges the two CSS sources.
+        """
+        sans_file = Path("terminal/css/palettes/sans.css")
+        terminal_file = Path("terminal/css/terminal.css")
+        assert sans_file.exists(), "Sans CSS file not found"
+        assert terminal_file.exists(), "Terminal CSS file not found"
+        
+        with open(sans_file) as f:
+            sans_content = f.read()
+        
+        with open(terminal_file) as f:
+            terminal_content = f.read()
+        
+        # Extract with sans as primary and terminal as fallback
+        result = extract_css_attributes(sans_content, terminal_content)
+        
+        # Verify extracted attributes
+        assert result is not None
+        assert isinstance(result, dict)
+        
+        # Hard-coded expected values combining sans overrides with terminal fallbacks
+        expected = {
+            # From sans.css (primary source, takes precedence)
+            "font-stack": "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol",
+            "global-font-size": "15px",
+            "global-line-height": "1.4em",
+            "input-style": "solid",
+            # From terminal.css (fallback source for missing attributes)
+            "background-color": "#fff",
+            "font-color": "#151515",
+            "primary-color": "#1a95e0",
+            "error-color": "#d20962",
+            "invert-font-color": "#fff",
+            "secondary-color": "#727578",
+            "progress-bar-background": "#727578",
+            "progress-bar-fill": "#151515",
+            "code-bg-color": "#e8eff2",
+            "page-width": "60em",
+        }
+        
+        for attr, expected_value in expected.items():
+            assert attr in result, f"Attribute '{attr}' not found in extracted attributes"
+            assert result[attr] == expected_value, \
+                f"Attribute '{attr}': expected {expected_value}, got {result[attr]}"
+
     def test_extract_handles_variable_resolution(self):
         """Test that CSS variable references are properly resolved.
         
