@@ -509,3 +509,55 @@ def palette_css_attributes(request):
 
     # Extract and return CSS attributes
     return extract_css_attributes(palette_content, fallback_content)
+
+
+@pytest.fixture
+def all_palette_css_attributes():
+    """Extract CSS attributes for all DEFAULT_PALETTES.
+
+    Returns a map of all CSS attributes for each palette in DEFAULT_PALETTES.
+
+    Structure:
+        {
+            "default": {
+                "global-font-size": "16px",
+                "global-line-height": "1.6",
+                "primary-color": "#1a95e0",
+                ... (all CSS attributes)
+            },
+            "dark": { ... },
+            "gruvbox_dark": { ... },
+            ...
+        }
+
+    Returns:
+        Dictionary mapping palette_name -> {css_attr_name -> resolved_value}
+
+    Raises:
+        FileNotFoundError: If any required CSS file is missing
+    """
+    project_dir = Path(__file__).parent.parent.resolve()
+    fallback_css_path = project_dir / "terminal" / "css" / "terminal.css"
+
+    # Verify fallback CSS exists
+    if not fallback_css_path.exists():
+        raise FileNotFoundError(f"Fallback CSS file not found: {fallback_css_path}")
+
+    with open(fallback_css_path, 'r') as f:
+        fallback_content = f.read()
+
+    # Extract attributes for each palette
+    all_attributes = {}
+    for palette_name in DEFAULT_PALETTES:
+        palette_css_path = project_dir / "terminal" / "css" / "palettes" / f"{palette_name}.css"
+
+        if not palette_css_path.exists():
+            raise FileNotFoundError(f"Palette CSS file not found: {palette_css_path}")
+
+        with open(palette_css_path, 'r') as f:
+            palette_content = f.read()
+
+        # Extract CSS attributes for this palette
+        all_attributes[palette_name] = extract_css_attributes(palette_content, fallback_content)
+
+    return all_attributes
