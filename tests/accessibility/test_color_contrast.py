@@ -467,6 +467,9 @@ class TestColorContrast:
         This test uses the meets_wcag_aa utility function to validate that link colors
         meet WCAG 2.1 AA standards for text contrast (4.5:1 minimum for normal text).
         
+        Uses the global-font-size extracted from the palette's CSS to validate with
+        the actual font size rather than a hardcoded value.
+        
         Tests each default palette to ensure all link colors are accessible.
         
         Reference: https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum
@@ -485,11 +488,16 @@ class TestColorContrast:
         ratio = get_contrast_ratio(link_color, background_color)
         assert ratio is not None, f"Could not calculate contrast ratio for {link_color} on {background_color}"
         
-        # Validate using meets_wcag_aa (expects 4.5:1 minimum for normal text at 14px)
-        is_compliant = meets_wcag_aa(ratio, text_size=14, is_bold=False)
+        # Extract font size from palette CSS attributes
+        font_size_str = palette_attributes.get("global-font-size", "14px")
+        # Parse font size value (e.g., "15px" -> 15)
+        font_size = float(font_size_str.replace("px", "").strip())
+        
+        # Validate using meets_wcag_aa with actual palette font size
+        is_compliant = meets_wcag_aa(ratio, text_size=font_size, is_bold=False)
         assert is_compliant, \
             f"Palette '{palette_name}': Link color {link_color} on {background_color} " \
-            f"has contrast {ratio:.2f}:1, does not meet WCAG 2.1 AA minimum of 4.5:1"
+            f"has contrast {ratio:.2f}:1, does not meet WCAG 2.1 AA minimum for {font_size}px text"
 
     @pytest.mark.parametrize("palette_name", DEFAULT_PALETTES)
     def test_primary_link_color_meets_wcag_aa(self, palette_name, all_palette_css_attributes):
