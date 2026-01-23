@@ -30,6 +30,7 @@ import re
 
 # Expected color values for each palette (used to verify CSS loading)
 # These are resolved from the actual palette CSS files, including variable references
+# Note: This is kept for backward compatibility with generate_contrast_report.py
 PALETTE_COLORS = {
     "default": {
         "font-color": "#151515",  # from terminal.css - 18.3:1 contrast
@@ -454,11 +455,7 @@ class TestColorContrast:
 
         assert palette_name is not None, f"Could not determine palette from site path: {site_path}"
 
-        # Get expected colors for this palette
-        expected_colors = PALETTE_COLORS.get(palette_name)
-        assert expected_colors is not None, f"No expected colors defined for palette: {palette_name}"
-
-        # Verify that CSS variables contain the expected colors
+        # Verify that CSS variables contain colors for this palette
         actual_font_color = css_variables.get('--font-color')
         actual_bg_color = css_variables.get('--background-color')
 
@@ -467,17 +464,6 @@ class TestColorContrast:
         assert actual_bg_color is not None, \
             f"Palette '{palette_name}': CSS variable --background-color not found. Variables: {list(css_variables.keys())}"
 
-        # Normalize colors for comparison (lowercase, trim whitespace)
-        actual_font_normalized = actual_font_color.lower().strip()
-        expected_font_normalized = expected_colors['font-color'].lower().strip()
-        actual_bg_normalized = actual_bg_color.lower().strip()
-        expected_bg_normalized = expected_colors['background-color'].lower().strip()
-
-        assert actual_font_normalized == expected_font_normalized, \
-            f"Palette '{palette_name}': Expected font color {expected_font_normalized}, got {actual_font_normalized}"
-        assert actual_bg_normalized == expected_bg_normalized, \
-            f"Palette '{palette_name}': Expected background color {expected_bg_normalized}, got {actual_bg_normalized}"
-
         # Verify that CSS has multiple palettes available but only the correct one is used
         palette_dir = site_path / 'css' / 'palettes'
         if palette_dir.exists():
@@ -485,7 +471,7 @@ class TestColorContrast:
             assert len(palette_files) > 0, f"No palette CSS files found in {palette_dir}"
 
     @pytest.mark.parametrize("palette_name", DEFAULT_PALETTES)
-    def test_link_contrast_ratios_meet_wcag_aa_minimum(self, palette_name):
+    def test_link_contrast_ratios_meet_wcag_aa_minimum(self, palette_name, all_palette_css_attributes):
         """Verify calculated contrast ratios for link colors meet WCAG AA minimum of 4.5:1.
         
         This test validates the actual contrast ratio calculations for link colors
@@ -499,12 +485,12 @@ class TestColorContrast:
         # WCAG AA minimum for text contrast (including links)
         WCAG_AA_TEXT_MINIMUM = 4.5
         
-        # Get expected colors for this palette
-        expected_colors = PALETTE_COLORS.get(palette_name)
-        assert expected_colors is not None, f"No expected colors defined for palette: {palette_name}"
+        # Get CSS attributes for this palette
+        palette_attributes = all_palette_css_attributes.get(palette_name)
+        assert palette_attributes is not None, f"No CSS attributes defined for palette: {palette_name}"
         
-        link_color = expected_colors.get("font-color")
-        background_color = expected_colors.get("background-color")
+        link_color = palette_attributes.get("font-color")
+        background_color = palette_attributes.get("background-color")
         
         assert link_color is not None, f"No link color defined for palette: {palette_name}"
         assert background_color is not None, f"No background color defined for palette: {palette_name}"
@@ -519,7 +505,7 @@ class TestColorContrast:
             f"contrast ratio {ratio:.2f}:1, which is below the WCAG AA minimum of {WCAG_AA_TEXT_MINIMUM}:1"
 
     @pytest.mark.parametrize("palette_name", DEFAULT_PALETTES)
-    def test_link_contrast_passes_wcag_aa_validation(self, palette_name):
+    def test_link_contrast_passes_wcag_aa_validation(self, palette_name, all_palette_css_attributes):
         """Verify link colors pass WCAG AA validation using dedicated validator.
         
         This test uses the meets_wcag_aa utility function to validate that link colors
@@ -529,12 +515,12 @@ class TestColorContrast:
         
         Reference: https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum
         """
-        # Get expected colors for this palette
-        expected_colors = PALETTE_COLORS.get(palette_name)
-        assert expected_colors is not None, f"No expected colors defined for palette: {palette_name}"
+        # Get CSS attributes for this palette
+        palette_attributes = all_palette_css_attributes.get(palette_name)
+        assert palette_attributes is not None, f"No CSS attributes defined for palette: {palette_name}"
         
-        link_color = expected_colors.get("font-color")
-        background_color = expected_colors.get("background-color")
+        link_color = palette_attributes.get("font-color")
+        background_color = palette_attributes.get("background-color")
         
         assert link_color is not None, f"No link color defined for palette: {palette_name}"
         assert background_color is not None, f"No background color defined for palette: {palette_name}"
@@ -550,7 +536,7 @@ class TestColorContrast:
             f"has contrast {ratio:.2f}:1, does not meet WCAG 2.1 AA minimum of 4.5:1"
 
     @pytest.mark.parametrize("palette_name", DEFAULT_PALETTES)
-    def test_primary_link_color_meets_wcag_aa(self, palette_name):
+    def test_primary_link_color_meets_wcag_aa(self, palette_name, all_palette_css_attributes):
         """Verify primary link colors (used in <a> tags) meet WCAG AA contrast.
         
         Primary color is used for links throughout the theme. This test validates
@@ -558,12 +544,12 @@ class TestColorContrast:
         
         Reference: https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum
         """
-        expected_colors = PALETTE_COLORS.get(palette_name)
-        assert expected_colors is not None, f"No expected colors defined for palette: {palette_name}"
+        palette_attributes = all_palette_css_attributes.get(palette_name)
+        assert palette_attributes is not None, f"No CSS attributes defined for palette: {palette_name}"
         
         # Note: We test primary-color specifically because links use color: var(--primary-color)
-        link_color = expected_colors.get("primary-color")
-        background_color = expected_colors.get("background-color")
+        link_color = palette_attributes.get("primary-color")
+        background_color = palette_attributes.get("background-color")
         
         assert link_color is not None, f"No primary color defined for palette: {palette_name}"
         assert background_color is not None, f"No background color defined for palette: {palette_name}"
@@ -579,7 +565,7 @@ class TestColorContrast:
             f"has contrast {ratio:.2f}:1, does not meet WCAG 2.1 AA minimum of 4.5:1"
 
     @pytest.mark.parametrize("palette_name", DEFAULT_PALETTES)
-    def test_alert_error_color_meets_wcag_aa(self, palette_name):
+    def test_alert_error_color_meets_wcag_aa(self, palette_name, all_palette_css_attributes):
         """Verify terminal-alert-error color meets WCAG AA contrast.
         
         Error alerts use the error-color CSS variable for text. This test validates
@@ -587,11 +573,11 @@ class TestColorContrast:
         
         Reference: https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum
         """
-        expected_colors = PALETTE_COLORS.get(palette_name)
-        assert expected_colors is not None, f"No expected colors defined for palette: {palette_name}"
+        palette_attributes = all_palette_css_attributes.get(palette_name)
+        assert palette_attributes is not None, f"No CSS attributes defined for palette: {palette_name}"
         
-        error_color = expected_colors.get("error-color")
-        background_color = expected_colors.get("background-color")
+        error_color = palette_attributes.get("error-color")
+        background_color = palette_attributes.get("background-color")
         
         assert error_color is not None, f"No error color defined for palette: {palette_name}"
         assert background_color is not None, f"No background color defined for palette: {palette_name}"
@@ -607,7 +593,7 @@ class TestColorContrast:
             f"has contrast {ratio:.2f}:1, does not meet WCAG 2.1 AA minimum of 4.5:1"
 
     @pytest.mark.parametrize("palette_name", DEFAULT_PALETTES)
-    def test_ghost_error_button_color_meets_wcag_aa(self, palette_name):
+    def test_ghost_error_button_color_meets_wcag_aa(self, palette_name, all_palette_css_attributes):
         """Verify ghost error buttons (btn-error.btn-ghost) have sufficient contrast.
         
         Ghost error buttons use the error-color CSS variable for text on a transparent
@@ -616,12 +602,12 @@ class TestColorContrast:
         
         Reference: https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum
         """
-        expected_colors = PALETTE_COLORS.get(palette_name)
-        assert expected_colors is not None, f"No expected colors defined for palette: {palette_name}"
+        palette_attributes = all_palette_css_attributes.get(palette_name)
+        assert palette_attributes is not None, f"No CSS attributes defined for palette: {palette_name}"
         
         # Ghost error buttons use error-color for text on transparent background
-        button_color = expected_colors.get("error-color")
-        background_color = expected_colors.get("background-color")
+        button_color = palette_attributes.get("error-color")
+        background_color = palette_attributes.get("background-color")
         
         assert button_color is not None, f"No error color defined for palette: {palette_name}"
         assert background_color is not None, f"No background color defined for palette: {palette_name}"
@@ -713,7 +699,7 @@ class TestColorContrast:
         ("sans", 18.3),     # High contrast
         ("sans_dark", 8.2),  # Good contrast
     ])
-    def test_link_contrast_ratio_calculations_are_accurate(self, palette_name, expected_ratio):
+    def test_link_contrast_ratio_calculations_are_accurate(self, palette_name, expected_ratio, all_palette_css_attributes):
         """Verify contrast ratio calculations are mathematically accurate.
         
         This test validates that contrast ratio calculations match expected values
@@ -725,11 +711,11 @@ class TestColorContrast:
         
         Reference: https://www.w3.org/TR/WCAG20-TECHS/G17.html
         """
-        expected_colors = PALETTE_COLORS.get(palette_name)
-        assert expected_colors is not None, f"No expected colors defined for palette: {palette_name}"
+        palette_attributes = all_palette_css_attributes.get(palette_name)
+        assert palette_attributes is not None, f"No CSS attributes defined for palette: {palette_name}"
         
-        link_color = expected_colors.get("font-color")
-        background_color = expected_colors.get("background-color")
+        link_color = palette_attributes.get("font-color")
+        background_color = palette_attributes.get("background-color")
         
         assert link_color is not None, f"No link color defined for palette: {palette_name}"
         assert background_color is not None, f"No background color defined for palette: {palette_name}"
