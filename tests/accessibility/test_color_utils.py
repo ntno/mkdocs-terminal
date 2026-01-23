@@ -6,12 +6,14 @@ Reference: https://www.w3.org/TR/WCAG20-TECHS/G17.html
 """
 
 import pytest
+from pathlib import Path
 from tests.accessibility.color_utils import (
     normalize_color,
     get_relative_luminance,
     get_contrast_ratio,
     meets_wcag_aa,
 )
+from tests.accessibility.utils import extract_css_attributes
 
 
 class TestColorNormalization:
@@ -203,3 +205,160 @@ class TestIntegrationWithRealColors:
         ratio = get_contrast_ratio("#ffffff", "#333333")
         assert ratio is not None
         assert meets_wcag_aa(ratio, text_size=14) is True
+
+
+class TestExtractCSSAttributes:
+    """Tests for CSS attribute extraction utility."""
+
+    def test_extract_default_theme_attributes(self):
+        """Test extracting CSS attributes from default theme palette.
+        
+        The default palette inherits from terminal.css and defines core theme colors.
+        """
+        css_file = Path("terminal/css/terminal.css")
+        assert css_file.exists(), "CSS file not found"
+        
+        with open(css_file) as f:
+            css_content = f.read()
+        
+        result = extract_css_attributes(css_content)
+        
+        # Verify key attributes are extracted
+        assert result is not None
+        assert isinstance(result, dict)
+        
+        # Hard-coded expected values for default theme
+        expected = {
+            "background-color": "#fff",
+            "font-color": "#151515",
+            "primary-color": "#1a95e0",
+            "error-color": "#d20962",
+            "invert-font-color": "#fff",
+            "secondary-color": "#727578",
+            "progress-bar-background": "#727578",
+            "progress-bar-fill": "#151515",
+            "code-bg-color": "#e8eff2",
+            "input-style": "solid",
+            "display-h1-decoration": "none",
+            "global-font-size": "15px",
+            "global-line-height": "1.4em",
+            "global-space": "10px",
+            "page-width": "60em",
+        }
+        
+        for attr, expected_value in expected.items():
+            assert attr in result, f"Attribute '{attr}' not found in extracted attributes"
+            assert result[attr] == expected_value, \
+                f"Attribute '{attr}': expected {expected_value}, got {result[attr]}"
+
+    def test_extract_gruvbox_dark_theme_attributes(self):
+        """Test extracting CSS attributes from gruvbox_dark theme palette.
+        
+        The gruvbox_dark palette uses CSS variable references that need to be resolved.
+        This tests that the extraction utility properly handles variable resolution.
+        """
+        css_file = Path("terminal/css/palettes/gruvbox_dark.css")
+        assert css_file.exists(), "CSS file not found"
+        
+        with open(css_file) as f:
+            css_content = f.read()
+        
+        result = extract_css_attributes(css_content)
+        
+        # Verify key attributes are extracted and variables are resolved
+        assert result is not None
+        assert isinstance(result, dict)
+        
+        # Hard-coded expected values for gruvbox_dark theme
+        # Note: These values include resolved variable references
+        expected = {
+            "background-color": "#282828",
+            "font-color": "#ebdbb2",
+            "primary-color": "#fabd2f",
+            "error-color": "#fb4934",
+            "invert-font-color": "#1d2021",
+            "secondary-color": "#bdae93",
+            "tertiary-color": "#a89984",
+            "progress-bar-background": "#504945",
+            "progress-bar-fill": "#d5c4a1",
+            "code-bg-color": "#504945",
+            "input-style": "solid",
+            "display-h1-decoration": "none",
+        }
+        
+        for attr, expected_value in expected.items():
+            assert attr in result, f"Attribute '{attr}' not found in extracted attributes"
+            assert result[attr] == expected_value, \
+                f"Attribute '{attr}': expected {expected_value}, got {result[attr]}"
+
+    def test_extract_handles_variable_resolution(self):
+        """Test that CSS variable references are properly resolved.
+        
+        When a CSS attribute value references another variable (e.g., 
+        --background-color: var(--custom-bg)), the utility should resolve
+        the reference and return the final value.
+        """
+        css_content = '''
+            :root {
+                --base-color: #282828;
+                --background-color: var(--base-color);
+                --font-color: #ebdbb2;
+            }
+        '''
+        
+        result = extract_css_attributes(css_content)
+        
+        # Verify variable references are resolved
+        assert result["background-color"] == "#282828"
+        assert result["font-color"] == "#ebdbb2"
+
+    def test_extract_returns_only_requested_attributes(self):
+        """Test that extraction only returns requested attributes.
+        
+        CSS files may contain many variables, but extract_css_attributes
+        should only return attributes from the predefined list.
+        """
+        css_content = '''
+            :root {
+                --background-color: #fff;
+                --font-color: #000;
+                --unused-var-1: #abc;
+                --unused-var-2: #def;
+                --primary-color: #1a95e0;
+            }
+        '''
+        
+        result = extract_css_attributes(css_content)
+        
+        # Should have requested attributes
+        assert "background-color" in result
+        assert "font-color" in result
+        assert "primary-color" in result
+        
+        # Should NOT have unrequested attributes
+        assert "unused-var-1" not in result
+        assert "unused-var-2" not in result
+
+    def test_extract_missing_attributes_excluded(self):
+        """Test that missing attributes are not included in result.
+        
+        If a CSS file doesn't define all possible theme attributes,
+        only the defined ones should be in the result.
+        """
+        css_content = '''
+            :root {
+                --background-color: #fff;
+                --font-color: #000;
+            }
+        '''
+        
+        result = extract_css_attributes(css_content)
+        
+        # Should include defined attributes
+        assert "background-color" in result
+        assert "font-color" in result
+        
+        # Should not include undefined attributes
+        assert "primary-color" not in result
+        assert "error-color" not in result
+        assert "code-bg-color" not in result

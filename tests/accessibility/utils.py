@@ -670,4 +670,100 @@ def _resolve_css_variable(value: str, css_variables: dict, max_depth: int = 10) 
     return value
 
 
+def extract_css_attributes(css_content: str) -> dict:
+    """Extract theme CSS attribute variables and return as a map.
+    
+    Extracts CSS custom properties (variables) from the provided CSS content
+    and resolves variable references. Automatically resolves chained variable
+    references (e.g., --primary-color references another variable).
+    
+    Attributes extracted:
+    - global-font-size: Base font size
+    - global-line-height: Base line height
+    - global-space: Base spacing unit
+    - font-stack: Primary font family
+    - mono-font-stack: Monospace font family
+    - background-color: Page background color
+    - page-width: Max page width
+    - font-color: Primary text color
+    - invert-font-color: Inverted text color (for contrast)
+    - secondary-color: Secondary color variable
+    - tertiary-color: Tertiary color variable
+    - primary-color: Primary color for links/accents
+    - error-color: Error/alert color
+    - progress-bar-background: Progress bar background color
+    - progress-bar-fill: Progress bar fill color
+    - code-bg-color: Code block background color
+    - input-style: Input border style
+    - display-h1-decoration: H1 decoration setting
+    
+    Args:
+        css_content: CSS file content as a string
+    
+    Returns:
+        Dictionary mapping attribute names (without '--' prefix) to their resolved values.
+        Variables that reference other variables are recursively resolved.
+        Variables that cannot be resolved are not included in the output.
+    
+    Example:
+        css_content = '''
+            :root {
+                --background-color: #fff;
+                --font-color: #151515;
+                --primary-color: #1a95e0;
+                --error-color: #d20962;
+            }
+        '''
+        result = extract_css_attributes(css_content)
+        # Returns:
+        # {
+        #     'background-color': '#fff',
+        #     'font-color': '#151515',
+        #     'primary-color': '#1a95e0',
+        #     'error-color': '#d20962'
+        # }
+    """
+    # List of attributes to extract
+    attributes_to_extract = [
+        'global-font-size',
+        'global-line-height',
+        'global-space',
+        'font-stack',
+        'mono-font-stack',
+        'background-color',
+        'page-width',
+        'font-color',
+        'invert-font-color',
+        'secondary-color',
+        'tertiary-color',
+        'primary-color',
+        'error-color',
+        'progress-bar-background',
+        'progress-bar-fill',
+        'code-bg-color',
+        'input-style',
+        'display-h1-decoration',
+    ]
+    
+    # First pass: extract all CSS variables
+    all_variables = {}
+    var_pattern = r'--([a-z0-9\-]+):\s*([^;]+);'
+    for match in re.finditer(var_pattern, css_content, re.IGNORECASE):
+        var_name = match.group(1)
+        var_value = match.group(2).strip()
+        all_variables[f'--{var_name}'] = var_value
+    
+    # Second pass: extract and resolve requested attributes
+    result = {}
+    for attr in attributes_to_extract:
+        var_name = f'--{attr}'
+        if var_name in all_variables:
+            # Resolve the variable (in case it references another variable)
+            resolved_value = _resolve_css_variable(all_variables[var_name], all_variables)
+            if resolved_value:
+                result[attr] = resolved_value
+    
+    return result
+
+
 
