@@ -27,50 +27,6 @@ from tests.accessibility.color_utils import get_contrast_ratio, meets_wcag_aa
 from tests.interface.theme_features import DEFAULT_PALETTES
 import re
 
-
-# Expected color values for each palette (used to verify CSS loading)
-# These are resolved from the actual palette CSS files, including variable references
-# Note: This is kept for backward compatibility with generate_contrast_report.py
-PALETTE_COLORS = {
-    "default": {
-        "font-color": "#151515",  # from terminal.css - 18.3:1 contrast
-        "background-color": "#fff",
-        "primary-color": "#1a95e0",  # link color - 3.27:1 contrast (FAILS WCAG AA)
-        "error-color": "#d20962",  # alert/details error color - 5.31:1 contrast
-    },
-    "dark": {
-        "font-color": "#3f3f44",  # intentionally modified for testing - 1.5:1 contrast
-        "background-color": "#222225",
-        "primary-color": "#62c4ff",  # link color - 8.2:1 contrast
-        "error-color": "#ff3c74",  # alert/details error color - 4.65:1 contrast
-    },
-    "gruvbox_dark": {
-        "font-color": "#32302f",  # intentionally modified for testing - 1.1:1 contrast
-        "background-color": "#282828",
-        "primary-color": "#fabd2f",  # link color - 8.69:1 contrast
-        "error-color": "#fb4934",  # alert/details error color - 4.29:1 contrast (FAILS WCAG AA)
-    },
-    "pink": {
-        "font-color": "#f90d7a",  # intentionally modified for testing - 3.9:1 contrast
-        "background-color": "#ffffff",
-        "primary-color": "#f90d7a",  # link color - 3.91:1 contrast (FAILS WCAG AA)
-        "error-color": "#bb0047",  # alert/details error color - 6.55:1 contrast
-    },
-    "sans": {
-        "font-color": "#151515",  # inherits from terminal.css - 18.3:1 contrast
-        "background-color": "#fff",
-        "primary-color": "#1a95e0",  # link color (inherited from default) - 3.27:1 (FAILS WCAG AA)
-        "error-color": "#d20962",  # alert/details error color (inherited from default) - 5.31:1
-    },
-    "sans_dark": {
-        "font-color": "#62c4ff",  # intentionally modified for testing - 8.2:1 contrast
-        "background-color": "#222225",
-        "primary-color": "#62c4ff",  # link color (inherited from dark) - 8.2:1 contrast
-        "error-color": "#ff3c74",  # alert/details error color (inherited from dark) - 4.65:1
-    },
-}
-
-
 def _load_css_from_site(site_path: Path, html_content: str) -> str:
     """Load CSS files referenced in HTML head element and matching palette CSS.
     
