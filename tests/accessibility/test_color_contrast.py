@@ -543,6 +543,10 @@ class TestColorContrast:
         Error alerts use the error-color CSS variable for text. This test validates
         that the error color has sufficient contrast against the page background.
         
+        Note: This test uses global-font-size from palette attributes. Alert text elements
+        default to 'font-size: 1em', which inherits the global font size. This assumes
+        terminal-alert elements do not override their font-size from the global value.
+        
         Reference: https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum
         """
         palette_attributes = all_palette_css_attributes.get(palette_name)
@@ -550,19 +554,23 @@ class TestColorContrast:
         
         error_color = palette_attributes.get("error-color")
         background_color = palette_attributes.get("background-color")
+        font_size_str = palette_attributes.get("global-font-size", "14px")
         
         assert error_color is not None, f"No error color defined for palette: {palette_name}"
         assert background_color is not None, f"No background color defined for palette: {palette_name}"
+        
+        # Parse font size from string (e.g., "15px" -> 15.0)
+        font_size = float(font_size_str.replace("px", "").strip())
         
         # Calculate contrast ratio
         ratio = get_contrast_ratio(error_color, background_color)
         assert ratio is not None, f"Could not calculate contrast ratio for {error_color} on {background_color}"
         
-        # Validate using meets_wcag_aa (expects 4.5:1 minimum for normal text at 14px)
-        is_compliant = meets_wcag_aa(ratio, text_size=14, is_bold=False)
+        # Validate using meets_wcag_aa with actual palette font size
+        is_compliant = meets_wcag_aa(ratio, text_size=font_size, is_bold=False)
         assert is_compliant, \
             f"Palette '{palette_name}': Error color {error_color} on {background_color} " \
-            f"has contrast {ratio:.2f}:1, does not meet WCAG 2.1 AA minimum of 4.5:1"
+            f"has contrast {ratio:.2f}:1, does not meet WCAG 2.1 AA minimum for {font_size}px text"
 
     @pytest.mark.parametrize("palette_name", DEFAULT_PALETTES)
     def test_ghost_error_button_color_meets_wcag_aa(self, palette_name, all_palette_css_attributes):
@@ -572,6 +580,10 @@ class TestColorContrast:
         background (showing the page background). This test validates that the button
         text color has sufficient contrast against the page background.
         
+        Note: This test uses global-font-size from palette attributes. Button elements
+        default to 'font-size: 1em', which inherits the global font size. This assumes
+        .btn elements do not override their font-size from the global value.
+        
         Reference: https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum
         """
         palette_attributes = all_palette_css_attributes.get(palette_name)
@@ -580,20 +592,24 @@ class TestColorContrast:
         # Ghost error buttons use error-color for text on transparent background
         button_color = palette_attributes.get("error-color")
         background_color = palette_attributes.get("background-color")
+        font_size_str = palette_attributes.get("global-font-size", "14px")
         
         assert button_color is not None, f"No error color defined for palette: {palette_name}"
         assert background_color is not None, f"No background color defined for palette: {palette_name}"
+        
+        # Parse font size from string (e.g., "15px" -> 15.0)
+        font_size = float(font_size_str.replace("px", "").strip())
         
         # Calculate contrast ratio
         ratio = get_contrast_ratio(button_color, background_color)
         assert ratio is not None, f"Could not calculate contrast ratio for {button_color} on {background_color}"
         
-        # Validate using meets_wcag_aa (expects 4.5:1 minimum for normal text at 14px)
+        # Validate using meets_wcag_aa with actual palette font size
         # UI components can use 3:1 but button text is typically at normal size
-        is_compliant = meets_wcag_aa(ratio, text_size=14, is_bold=False)
+        is_compliant = meets_wcag_aa(ratio, text_size=font_size, is_bold=False)
         assert is_compliant, \
             f"Palette '{palette_name}': Ghost error button text color {button_color} on {background_color} " \
-            f"has contrast {ratio:.2f}:1, does not meet WCAG 2.1 AA minimum of 4.5:1"
+            f"has contrast {ratio:.2f}:1, does not meet WCAG 2.1 AA minimum for {font_size}px text"
 
     @pytest.mark.parametrize("built_example_site_with_palette", [
         ("minimal", palette) for palette in DEFAULT_PALETTES
