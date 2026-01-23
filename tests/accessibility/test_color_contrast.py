@@ -680,24 +680,27 @@ class TestColorContrast:
             f"Link contrast violations found:\n" + "\n".join(contrast_failures)
 
     @pytest.mark.parametrize("palette_name,expected_ratio", [
-        ("default", 18.3),  # High contrast dark on light
-        ("dark", 1.5),      # Low contrast (intentional test case)
-        ("gruvbox_dark", 1.1),  # Very low contrast (intentional test case)
-        ("pink", 3.9),      # Below 4.5 threshold
-        ("sans", 18.3),     # High contrast
-        ("sans_dark", 8.2),  # Good contrast
+        ("default", 18.26),
+        ("dark", 13.07),
+        ("gruvbox_dark", 10.74),
+        ("pink", 19.3),
+        ("sans", 18.26),
+        ("sans_dark", 13.07),
     ])
-    def test_link_contrast_ratio_calculations_are_accurate(self, palette_name, expected_ratio, all_palette_css_attributes):
+    def test_text_contrast_ratio_calculations_are_accurate(self, palette_name, expected_ratio, all_palette_css_attributes):
         """Verify contrast ratio calculations are mathematically accurate.
         
-        This test validates that contrast ratio calculations match expected values
-        for known color combinations. It serves as a regression test for the
+        This test validates that contrast ratio calculations match expected values. 
+        It serves as a regression test for the
         color_utils.get_contrast_ratio() function.
         
         Uses actual palette colors to ensure calculations are correct across
         different color ranges.
         
         Reference: https://www.w3.org/TR/WCAG20-TECHS/G17.html
+
+        Expected values calculated using an external WCAG contrast calculator.
+        1. https://webaim.org/resources/contrastchecker/
         """
         palette_attributes = all_palette_css_attributes.get(palette_name)
         assert palette_attributes is not None, f"No CSS attributes defined for palette: {palette_name}"
