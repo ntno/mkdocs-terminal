@@ -2,8 +2,10 @@ from pathlib import Path
 from jinja2 import loaders
 from jinja2.environment import Environment
 from tests.interface.tile import Tile
+from tests.interface.theme_features import DEFAULT_PALETTES
 from tests import defaults
 from tests.utils.filters import mock_url_filter, mock_markup_filter
+from tests.accessibility.utils import extract_css_attributes
 from terminal.plugins.md_to_html.plugin import DEFAULT_MARKUP_FILTER_NAME
 from terminal.pluglets.tile_grid.macro import TileGridMacroEnvironment
 from unittest.mock import MagicMock, PropertyMock
@@ -462,3 +464,48 @@ def built_example_site_with_palette(tmp_path_factory, request):
     config = load_config(**config_kwargs)
     build(config)
     return tmp_dir
+
+
+@pytest.fixture
+def palette_css_attributes(request):
+    """Extract CSS attributes for a given palette.
+
+    Returns a map of extracted CSS values for the specified palette by reading
+    the palette CSS file and the fallback terminal.css file, then calling
+    extract_css_attributes with both.
+
+    Args:
+        request: pytest request object for parametrization support
+                 Expects request.param = palette_name (string)
+
+    Returns:
+        Dictionary mapping CSS attribute names to their resolved values
+
+    Raises:
+        ValueError: If the palette name is not in DEFAULT_PALETTES
+    """
+    palette_name = getattr(request, "param", "default")
+
+    # Validate palette name
+    if palette_name not in DEFAULT_PALETTES:
+        raise ValueError(f"Palette '{palette_name}' not found in DEFAULT_PALETTES. Valid palettes: {DEFAULT_PALETTES}")
+
+    # Get paths to CSS files
+    project_dir = Path(__file__).parent.parent.resolve()
+    palette_css_path = project_dir / "terminal" / "css" / "palettes" / f"{palette_name}.css"
+    fallback_css_path = project_dir / "terminal" / "css" / "terminal.css"
+
+    # Read CSS files
+    if not palette_css_path.exists():
+        raise FileNotFoundError(f"Palette CSS file not found: {palette_css_path}")
+    if not fallback_css_path.exists():
+        raise FileNotFoundError(f"Fallback CSS file not found: {fallback_css_path}")
+
+    with open(palette_css_path, 'r') as f:
+        palette_content = f.read()
+
+    with open(fallback_css_path, 'r') as f:
+        fallback_content = f.read()
+
+    # Extract and return CSS attributes
+    return extract_css_attributes(palette_content, fallback_content)
