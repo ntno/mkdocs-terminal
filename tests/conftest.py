@@ -2,9 +2,9 @@ from pathlib import Path
 from jinja2 import loaders
 from jinja2.environment import Environment
 from tests.interface.tile import Tile
-from tests.interface.theme_features import DEFAULT_PALETTES
 from tests import defaults
 from tests.utils.filters import mock_url_filter, mock_markup_filter
+from tests.e2e_helper import build_example_site
 from terminal.plugins.md_to_html.plugin import DEFAULT_MARKUP_FILTER_NAME
 from terminal.pluglets.tile_grid.macro import TileGridMacroEnvironment
 from unittest.mock import MagicMock, PropertyMock
@@ -12,8 +12,6 @@ import pytest
 from mkdocs.structure.files import File, Files
 from mkdocs.structure.nav import get_navigation
 from tests.integration_helper import load_config
-import yaml
-from mkdocs.commands.build import build
 
 
 pytest_plugins = [
@@ -310,73 +308,10 @@ def build_flat_site_navigation_from_config(nav_cfg):
 
 @pytest.fixture(scope="session")
 def built_example_site(tmp_path_factory, request):
-    """Build any example site for testing.
+    """Build any example site for testing without overriding the palette."""
 
-    This fixture builds an example documentation site using the theme files
-    from terminal/ to ensure tests validate against the actual theme code.
-
-    The site name is extracted from the example site's mkdocs.yml file.
-
-    Usage:
-        def test_something(built_example_site):
-            # Returns path to default minimal site
-
-        # With parametrize to test different examples:
-        @pytest.mark.parametrize("built_example_site", ["minimal", "demo"], indirect=True)
-        def test_multiple_examples(built_example_site):
-            # Runs test with both minimal and demo sites
-
-    Args:
-        request: pytest request object for parametrization support
-
-    Returns:
-        Path to the built site directory
-    """
-
-    # Allow parametrization to specify which example to build
-    example_name = getattr(request, "param", "minimal")
-
-    tmp_dir = tmp_path_factory.mktemp(f"built_{example_name}_site")
-    example_dir = Path(__file__).parent / "examples" / example_name
-    docs_dir = example_dir / "docs"
-    theme_dir = Path(__file__).parent.parent / "terminal"
-
-    if not docs_dir.exists():
-        raise ValueError(f"Example site not found at {docs_dir}")
-
-    # Extract site_name, plugins, and markdown_extensions from mkdocs.yml
-    mkdocs_yml = example_dir / "mkdocs.yml"
-    site_name = "Test Site"
-    plugins = None
-    markdown_extensions = None
-    if mkdocs_yml.exists():
-        with open(mkdocs_yml) as f:
-            config_data = yaml.safe_load(f)
-            if config_data:
-                if "site_name" in config_data:
-                    site_name = config_data["site_name"]
-                if "plugins" in config_data:
-                    plugins = config_data["plugins"]
-                if "markdown_extensions" in config_data:
-                    markdown_extensions = config_data["markdown_extensions"]
-
-    config_kwargs = dict(
-        docs_dir=str(docs_dir.resolve()),
-        site_dir=str(tmp_dir.resolve()),
-        site_name=site_name,
-        theme={
-            "name": None,
-            "custom_dir": str(theme_dir.resolve())
-        }
-    )
-    if plugins is not None:
-        config_kwargs["plugins"] = plugins
-    if markdown_extensions is not None:
-        config_kwargs["markdown_extensions"] = markdown_extensions
-
-    config = load_config(**config_kwargs)
-    build(config)
-    return tmp_dir
+    example_site_name = getattr(request, "param", "minimal")
+    return build_example_site(tmp_path_factory, example_site_name)
 
 
 @pytest.fixture(scope="session")
