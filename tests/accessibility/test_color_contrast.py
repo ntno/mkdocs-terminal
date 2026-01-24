@@ -22,160 +22,15 @@ Reference: https://www.w3.org/TR/WCAG20-TECHS/G17.html
 import pytest
 import re
 from dataclasses import dataclass, field
-from pathlib import Path
-from typing import Dict, Iterator, List, Optional, Set, Tuple
+from typing import Dict, List, Optional, Set, Tuple
 
 from bs4 import BeautifulSoup, Tag
 
+from tests.accessibility.utilities import _get_element_computed_styles
 from tests.accessibility.utilities.color_utils import get_contrast_ratio, meets_wcag_aa
-from tests.accessibility.utils import (
-    _extract_css_variables,
-    _get_element_computed_styles,
-    validate_color_contrast,
-)
+from tests.accessibility.utilities.site_context import SiteContextBuilder
+from tests.accessibility.utils import validate_color_contrast
 from tests.interface.theme_features import DEFAULT_PALETTES
-
-
-# -----------------------------------------------------------------------------
-# Helper: CSS Loading
-# -----------------------------------------------------------------------------
-
-
-def load_css_from_site(site_path: Path, html_content: str) -> str:
-    """Load CSS files referenced in HTML head element and matching palette CSS.
-
-    Extracts the <link href="..."> CSS file references from the HTML head
-    and loads them in order. Detects which palette was used and only loads
-    that specific palette CSS (not all palettes) to avoid CSS variable conflicts.
-
-    Args:
-        site_path: Path to built site directory
-        html_content: HTML content of the page (to extract <link> tags from head)
-
-    Returns:
-        Concatenated CSS content from all theme CSS files plus the active palette
-    """
-    css_content = ""
-    loaded_paths: Set[Path] = set()
-    active_palette = None
-
-    soup = BeautifulSoup(html_content, "html.parser")
-    head = soup.find("head")
-
-    if head:
-        link_tags = head.find_all("link", rel="stylesheet")
-
-        for link in link_tags:
-            href = link.get("href")
-            if href and href.endswith(".css"):
-                css_file = href.split("?")[0]
-
-                palette_match = re.match(r".*/css/palettes/([^/]+)\.css$", css_file)
-                if palette_match:
-                    active_palette = palette_match.group(1)
-
-                if css_file.startswith("/"):
-                    css_path = site_path / css_file.lstrip("/")
-                else:
-                    css_path = site_path / css_file
-
-                if css_path.exists():
-                    try:
-                        with open(css_path, "r", encoding="utf-8") as f:
-                            css_content += f.read() + "\n"
-                        loaded_paths.add(css_path.resolve())
-                    except Exception:
-                        pass
-
-    if active_palette:
-        palette_css_path = site_path / "css" / "palettes" / f"{active_palette}.css"
-        resolved_path = palette_css_path.resolve()
-
-        if palette_css_path.exists() and resolved_path not in loaded_paths:
-            try:
-                with open(palette_css_path, "r", encoding="utf-8") as f:
-                    css_content += f.read() + "\n"
-            except Exception:
-                pass
-
-    return css_content
-
-
-# -----------------------------------------------------------------------------
-# Helper: Site Context
-# -----------------------------------------------------------------------------
-
-
-@dataclass
-class SiteContext:
-    """Context for a single HTML file in a built site."""
-
-    site_path: Path
-    html_file: Path
-    html_content: str
-    css_content: str
-    css_variables: Dict[str, str]
-    soup: BeautifulSoup
-
-    @property
-    def relative_path(self) -> str:
-        """File path relative to site root."""
-        return str(self.html_file.relative_to(self.site_path))
-
-
-def iter_site_html_files(site_path: Path) -> Iterator[SiteContext]:
-    """Iterate over all HTML files in a built site with parsed context.
-
-    Yields a SiteContext for each HTML file containing:
-    - Parsed HTML (BeautifulSoup)
-    - Loaded CSS content
-    - Extracted CSS variables
-
-    Args:
-        site_path: Path to built site directory
-
-    Yields:
-        SiteContext for each HTML file
-    """
-    html_files = list(site_path.glob("**/*.html"))
-
-    for html_file in html_files:
-        with open(html_file, "r", encoding="utf-8") as f:
-            html_content = f.read()
-
-        css_content = load_css_from_site(site_path, html_content)
-        css_variables = _extract_css_variables(html_content, css_content)
-        soup = BeautifulSoup(html_content, "html.parser")
-
-        yield SiteContext(
-            site_path=site_path,
-            html_file=html_file,
-            html_content=html_content,
-            css_content=css_content,
-            css_variables=css_variables,
-            soup=soup,
-        )
-
-
-def get_site_path(built_example_site_with_palette: str) -> Path:
-    """Get and validate the site path from fixture.
-
-    Args:
-        built_example_site_with_palette: Path string from fixture
-
-    Returns:
-        Validated Path object
-
-    Raises:
-        AssertionError: If site path doesn't exist or has no HTML files
-    """
-    site_path = Path(built_example_site_with_palette)
-    assert site_path.exists(), f"Built site not found at {site_path}"
-
-    html_files = list(site_path.glob("**/*.html"))
-    assert len(html_files) > 0, f"No HTML files found in {site_path}"
-
-    return site_path
 
 
 # -----------------------------------------------------------------------------
@@ -417,10 +272,10 @@ class TestColorContrast:
 
         Validates: Default text color has sufficient contrast with background.
         """
-        site_path = get_site_path(built_example_site_with_palette)
+        builder = SiteContextBuilder(built_example_site_with_palette)
 
         all_violations = []
-        for ctx in iter_site_html_files(site_path):
+        for ctx in builder.iter_html_files():
             violations = validate_color_contrast(
                 ctx.html_content,
                 filename=ctx.relative_path,
@@ -444,10 +299,10 @@ class TestColorContrast:
 
         Reference: https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum
         """
-        site_path = get_site_path(built_example_site_with_palette)
+        builder = SiteContextBuilder(built_example_site_with_palette)
         tracker = ColorCombinationTracker()
 
-        for ctx in iter_site_html_files(site_path):
+        for ctx in builder.iter_html_files():
             for link in ctx.soup.find_all("a"):
                 link_text = link.get_text(strip=True)[:40]
                 if not link_text:
@@ -478,12 +333,12 @@ class TestColorContrast:
 
         Reference: https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum
         """
-        site_path = get_site_path(built_example_site_with_palette)
+        builder = SiteContextBuilder(built_example_site_with_palette)
         tracker = ColorCombinationTracker()
 
         text_tags = ["p", "span", "h1", "h2", "h3", "h4", "h5", "h6", "li", "blockquote", "td", "th"]
 
-        for ctx in iter_site_html_files(site_path):
+        for ctx in builder.iter_html_files():
             for elem in ctx.soup.find_all(text_tags):
                 if not elem.get_text(strip=True):
                     continue
@@ -514,10 +369,10 @@ class TestColorContrast:
 
         Validates: Button and form element colors have sufficient contrast.
         """
-        site_path = get_site_path(built_example_site_with_palette)
+        builder = SiteContextBuilder(built_example_site_with_palette)
 
         all_violations = []
-        for ctx in iter_site_html_files(site_path):
+        for ctx in builder.iter_html_files():
             violations = validate_color_contrast(
                 ctx.html_content,
                 filename=ctx.relative_path,
@@ -544,33 +399,28 @@ class TestColorContrast:
         - CSS variables are correctly extracted from :root blocks
         - Expected palette colors are present in the extracted variables
         """
-        site_path = get_site_path(built_example_site_with_palette)
+        builder = SiteContextBuilder(built_example_site_with_palette)
 
-        html_file = site_path / "index.html"
+        html_file = builder.site_path / "index.html"
         assert html_file.exists(), f"HTML file not found at {html_file}"
 
-        with open(html_file, "r", encoding="utf-8") as f:
-            html_content = f.read()
-
-        css_content = load_css_from_site(site_path, html_content)
-        assert len(css_content) > 0, "No CSS content loaded from site"
-
-        css_variables = _extract_css_variables(html_content, css_content)
-        assert len(css_variables) > 0, "No CSS variables extracted"
+        ctx = builder.build_context(html_file)
+        assert len(ctx.css_content) > 0, "No CSS content loaded from site"
+        assert len(ctx.css_variables) > 0, "No CSS variables extracted"
 
         # Determine palette from site path
         palette_name = None
         for palette in sorted(DEFAULT_PALETTES, key=len, reverse=True):
-            if f"_{palette}_site" in str(site_path):
+            if f"_{palette}_site" in str(builder.site_path):
                 palette_name = palette
                 break
 
         assert palette_name is not None, f"Could not determine palette from site path: {site_path}"
 
-        assert css_variables.get("--font-color") is not None, (
+        assert ctx.css_variables.get("--font-color") is not None, (
             f"Palette '{palette_name}': CSS variable --font-color not found"
         )
-        assert css_variables.get("--background-color") is not None, (
+        assert ctx.css_variables.get("--background-color") is not None, (
             f"Palette '{palette_name}': CSS variable --background-color not found"
         )
 
@@ -590,10 +440,10 @@ class TestColorContrast:
 
         Reference: https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum
         """
-        site_path = get_site_path(built_example_site_with_palette)
+        builder = SiteContextBuilder(built_example_site_with_palette)
         contrast_failures = []
 
-        for ctx in iter_site_html_files(site_path):
+        for ctx in builder.iter_html_files():
             for link_index, link in enumerate(ctx.soup.find_all("a")):
                 link_text = link.get_text(strip=True)[:50]
                 style = link.get("style", "")
@@ -627,14 +477,14 @@ class TestColorContrast:
 
         Reference: https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum
         """
-        site_path = get_site_path(built_example_site_with_palette)
+        builder = SiteContextBuilder(built_example_site_with_palette)
 
         alert_trackers = {
             "error": ColorCombinationTracker(),
             "primary": ColorCombinationTracker(),
         }
 
-        for ctx in iter_site_html_files(site_path):
+        for ctx in builder.iter_html_files():
             for alert_type, class_name in [
                 ("error", "terminal-alert-error"),
                 ("primary", "terminal-alert-primary"),
