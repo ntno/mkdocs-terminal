@@ -1,0 +1,240 @@
+"""Site context utilities for accessibility testing.
+
+Provides a SiteContext dataclass and helpers for working with built MkDocs sites
+in tests. This module centralizes HTML parsing, CSS loading, and CSS variable
+extraction for reuse across accessibility test modules.
+"""
+
+import re
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Dict, Iterator, List, Optional, Set
+
+from bs4 import BeautifulSoup, Tag
+
+from tests.accessibility.utils import (
+    _extract_css_variables,
+    _get_element_computed_styles,
+)
+
+
+# -----------------------------------------------------------------------------
+# CSS Loading
+# -----------------------------------------------------------------------------
+
+
+def load_css_from_site(site_path: Path, html_content: str) -> str:
+    """Load CSS files referenced in HTML head element and matching palette CSS.
+
+    Extracts the <link href="..."> CSS file references from the HTML head
+    and loads them in order. Detects which palette was used and only loads
+    that specific palette CSS (not all palettes) to avoid CSS variable conflicts.
+
+    Args:
+        site_path: Path to built site directory
+        html_content: HTML content of the page (to extract <link> tags from head)
+
+    Returns:
+        Concatenated CSS content from all theme CSS files plus the active palette
+    """
+    css_content = ""
+    loaded_paths: Set[Path] = set()
+    active_palette = None
+
+    soup = BeautifulSoup(html_content, "html.parser")
+    head = soup.find("head")
+
+    if head:
+        link_tags = head.find_all("link", rel="stylesheet")
+
+        for link in link_tags:
+            href = link.get("href")
+            if href and href.endswith(".css"):
+                css_file = href.split("?")[0]
+
+                palette_match = re.match(r".*/css/palettes/([^/]+)\.css$", css_file)
+                if palette_match:
+                    active_palette = palette_match.group(1)
+
+                if css_file.startswith("/"):
+                    css_path = site_path / css_file.lstrip("/")
+                else:
+                    css_path = site_path / css_file
+
+                if css_path.exists():
+                    try:
+                        with open(css_path, "r", encoding="utf-8") as f:
+                            css_content += f.read() + "\n"
+                        loaded_paths.add(css_path.resolve())
+                    except Exception:
+                        pass
+
+    if active_palette:
+        palette_css_path = site_path / "css" / "palettes" / f"{active_palette}.css"
+        resolved_path = palette_css_path.resolve()
+
+        if palette_css_path.exists() and resolved_path not in loaded_paths:
+            try:
+                with open(palette_css_path, "r", encoding="utf-8") as f:
+                    css_content += f.read() + "\n"
+            except Exception:
+                pass
+
+    return css_content
+
+
+# -----------------------------------------------------------------------------
+# SiteContext
+# -----------------------------------------------------------------------------
+
+
+@dataclass
+class SiteContext:
+    """Context for a built MkDocs site with parsed HTML and CSS.
+
+    This class provides convenient access to:
+    - Site path and HTML files
+    - Parsed HTML (BeautifulSoup) for each file
+    - Loaded CSS content
+    - Extracted CSS variables
+
+    Can represent either the entire site or a single HTML file within the site.
+    """
+
+    site_path: Path
+    html_file: Optional[Path] = None
+    html_content: Optional[str] = None
+    css_content: Optional[str] = None
+    css_variables: Optional[Dict[str, str]] = None
+    soup: Optional[BeautifulSoup] = None
+
+    @property
+    def relative_path(self) -> str:
+        """File path relative to site root."""
+        if self.html_file:
+            return str(self.html_file.relative_to(self.site_path))
+        return ""
+
+    @property
+    def palette_name(self) -> Optional[str]:
+        """Extract palette name from site path if available."""
+        from tests.interface.theme_features import DEFAULT_PALETTES
+
+        for palette in sorted(DEFAULT_PALETTES, key=len, reverse=True):
+            if f"_{palette}_site" in str(self.site_path):
+                return palette
+        return None
+
+    def html_files(self) -> List[Path]:
+        """Get all HTML files in the site."""
+        return list(self.site_path.glob("**/*.html"))
+
+    def iter_html_files(self) -> Iterator["SiteContext"]:
+        """Iterate over all HTML files yielding a SiteContext for each.
+
+        Yields a new SiteContext for each HTML file with:
+        - Parsed HTML (BeautifulSoup)
+        - Loaded CSS content
+        - Extracted CSS variables
+
+        Yields:
+            SiteContext for each HTML file in the site
+        """
+        for html_file in self.html_files():
+            yield SiteContext.from_html_file(self.site_path, html_file)
+
+    @classmethod
+    def from_site_path(cls, site_path: Path) -> "SiteContext":
+        """Create a SiteContext from a site path.
+
+        Args:
+            site_path: Path to the built site directory
+
+        Returns:
+            SiteContext representing the entire site
+
+        Raises:
+            AssertionError: If site path doesn't exist or has no HTML files
+        """
+        assert site_path.exists(), f"Built site not found at {site_path}"
+
+        html_files = list(site_path.glob("**/*.html"))
+        assert len(html_files) > 0, f"No HTML files found in {site_path}"
+
+        return cls(site_path=site_path)
+
+    @classmethod
+    def from_html_file(cls, site_path: Path, html_file: Path) -> "SiteContext":
+        """Create a SiteContext for a specific HTML file.
+
+        Args:
+            site_path: Path to the built site directory
+            html_file: Path to the specific HTML file
+
+        Returns:
+            SiteContext with parsed HTML and CSS for the file
+        """
+        with open(html_file, "r", encoding="utf-8") as f:
+            html_content = f.read()
+
+        css_content = load_css_from_site(site_path, html_content)
+        css_variables = _extract_css_variables(html_content, css_content)
+        soup = BeautifulSoup(html_content, "html.parser")
+
+        return cls(
+            site_path=site_path,
+            html_file=html_file,
+            html_content=html_content,
+            css_content=css_content,
+            css_variables=css_variables,
+            soup=soup,
+        )
+
+
+# -----------------------------------------------------------------------------
+# Background Color Resolution
+# -----------------------------------------------------------------------------
+
+
+def resolve_background_color(
+    element: Tag,
+    css_variables: Dict[str, str],
+    soup: BeautifulSoup,
+    default: str = "#ffffff",
+) -> Optional[str]:
+    """Resolve the effective background color for an element.
+
+    Walks up the DOM tree to find the first non-transparent background color.
+    Falls back to body background or the provided default.
+
+    Args:
+        element: The element to resolve background for
+        css_variables: CSS variable definitions
+        soup: BeautifulSoup document (for finding body)
+        default: Default color if none found
+
+    Returns:
+        Resolved background color string
+    """
+    elem_styles = _get_element_computed_styles(element, css_variables)
+    bg_color = elem_styles.get("background-color")
+
+    if not bg_color or bg_color == "transparent":
+        parent = element.parent
+        while parent and (not bg_color or bg_color == "transparent"):
+            parent_styles = _get_element_computed_styles(parent, css_variables)
+            parent_bg = parent_styles.get("background-color")
+            if parent_bg and parent_bg != "transparent":
+                bg_color = parent_bg
+                break
+            parent = parent.parent
+
+    if not bg_color or bg_color == "transparent":
+        body = soup.find("body")
+        if body:
+            body_styles = _get_element_computed_styles(body, css_variables)
+            bg_color = body_styles.get("background-color") or default
+        else:
+            bg_color = default
+
+    return bg_color
