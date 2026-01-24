@@ -27,7 +27,7 @@ from typing import Dict, Iterator, List, Optional, Set, Tuple
 
 from bs4 import BeautifulSoup, Tag
 
-from tests.accessibility.color_utils import get_contrast_ratio, meets_wcag_aa
+from tests.accessibility.utilities.color_utils import get_contrast_ratio, meets_wcag_aa
 from tests.accessibility.utils import (
     _extract_css_variables,
     _get_element_computed_styles,
