@@ -18,6 +18,7 @@ from mkdocs.commands.build import build
 
 pytest_plugins = [
     "tests.accessibility.fixtures.palette",
+    "tests.accessibility.fixtures.site",
 ]
 
 
@@ -393,80 +394,5 @@ def built_demo_site(built_example_site):
     This is a simple wrapper around built_example_site for the demo example.
     """
     return built_example_site
-
-
-@pytest.fixture(scope="session")
-def built_example_site_with_palette(tmp_path_factory, request):
-    """Build an example site with a specific color palette.
-
-    This fixture builds an example documentation site with a specified color palette
-    to validate that all default palettes meet accessibility standards.
-
-    Usage:
-        @pytest.mark.parametrize("built_example_site_with_palette", [
-            ("minimal", "default"),
-            ("minimal", "dark"),
-            ("minimal", "gruvbox_dark"),
-        ], indirect=True)
-        def test_all_palettes(built_example_site_with_palette):
-            # Runs test with minimal site using each palette
-
-    Args:
-        tmp_path_factory: pytest fixture for temporary directory creation
-        request: pytest request object for parametrization support
-                 Expects request.param = (example_name, palette_name)
-
-    Returns:
-        Path to the built site directory
-    """
-    # Extract example name and palette from parametrize
-    example_name, palette_name = getattr(request, "param", ("minimal", "default"))
-
-    # Create temp directory with descriptive name
-    tmp_dir = tmp_path_factory.mktemp(f"built_{example_name}_{palette_name}_site")
-    example_dir = Path(__file__).parent / "examples" / example_name
-    docs_dir = example_dir / "docs"
-    theme_dir = Path(__file__).parent.parent / "terminal"
-
-    if not docs_dir.exists():
-        raise ValueError(f"Example site not found at {docs_dir}")
-
-    # Extract site_name, plugins, and markdown_extensions from mkdocs.yml
-    mkdocs_yml = example_dir / "mkdocs.yml"
-    site_name = "Test Site"
-    plugins = None
-    markdown_extensions = None
-    if mkdocs_yml.exists():
-        with open(mkdocs_yml) as f:
-            config_data = yaml.safe_load(f)
-            if config_data:
-                if "site_name" in config_data:
-                    site_name = config_data["site_name"]
-                if "plugins" in config_data:
-                    plugins = config_data["plugins"]
-                if "markdown_extensions" in config_data:
-                    markdown_extensions = config_data["markdown_extensions"]
-
-    # Build config with palette setting
-    theme_config = {
-        "name": None,
-        "custom_dir": str(theme_dir.resolve()),
-        "palette": palette_name
-    }
-
-    config_kwargs = dict(
-        docs_dir=str(docs_dir.resolve()),
-        site_dir=str(tmp_dir.resolve()),
-        site_name=site_name,
-        theme=theme_config
-    )
-    if plugins is not None:
-        config_kwargs["plugins"] = plugins
-    if markdown_extensions is not None:
-        config_kwargs["markdown_extensions"] = markdown_extensions
-
-    config = load_config(**config_kwargs)
-    build(config)
-    return tmp_dir
 
 
