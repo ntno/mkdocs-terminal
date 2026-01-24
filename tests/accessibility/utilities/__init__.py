@@ -7,6 +7,7 @@ from .css_parser import (
     _resolve_css_variable,
     extract_css_attributes,
 )
+from .palette_loader import load_all_palette_css_attributes, load_palette_css_attributes
 from .site_context import (
     SiteContext,
     SiteContextBuilder,
@@ -21,6 +22,8 @@ __all__ = [
     "_parse_css_variables",
     "_resolve_css_variable",
     "extract_css_attributes",
+    "load_palette_css_attributes",
+    "load_all_palette_css_attributes",
     "SiteContext",
     "SiteContextBuilder",
     "get_site_path",

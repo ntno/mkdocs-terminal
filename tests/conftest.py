@@ -5,7 +5,10 @@ from tests.interface.tile import Tile
 from tests.interface.theme_features import DEFAULT_PALETTES
 from tests import defaults
 from tests.utils.filters import mock_url_filter, mock_markup_filter
-from tests.accessibility.utils import extract_css_attributes
+from tests.accessibility.utilities.palette_loader import (
+    load_all_palette_css_attributes,
+    load_palette_css_attributes,
+)
 from terminal.plugins.md_to_html.plugin import DEFAULT_MARKUP_FILTER_NAME
 from terminal.pluglets.tile_grid.macro import TileGridMacroEnvironment
 from unittest.mock import MagicMock, PropertyMock
@@ -471,8 +474,8 @@ def palette_css_attributes(request):
     """Extract CSS attributes for a given palette.
 
     Returns a map of extracted CSS values for the specified palette by reading
-    the palette CSS file and the fallback terminal.css file, then calling
-    extract_css_attributes with both.
+    the palette CSS file and the fallback terminal.css file via the
+    ``load_palette_css_attributes`` helper.
 
     Args:
         request: pytest request object for parametrization support
@@ -486,29 +489,7 @@ def palette_css_attributes(request):
     """
     palette_name = getattr(request, "param", "default")
 
-    # Validate palette name
-    if palette_name not in DEFAULT_PALETTES:
-        raise ValueError(f"Palette '{palette_name}' not found in DEFAULT_PALETTES. Valid palettes: {DEFAULT_PALETTES}")
-
-    # Get paths to CSS files
-    project_dir = Path(__file__).parent.parent.resolve()
-    palette_css_path = project_dir / "terminal" / "css" / "palettes" / f"{palette_name}.css"
-    fallback_css_path = project_dir / "terminal" / "css" / "terminal.css"
-
-    # Read CSS files
-    if not palette_css_path.exists():
-        raise FileNotFoundError(f"Palette CSS file not found: {palette_css_path}")
-    if not fallback_css_path.exists():
-        raise FileNotFoundError(f"Fallback CSS file not found: {fallback_css_path}")
-
-    with open(palette_css_path, 'r') as f:
-        palette_content = f.read()
-
-    with open(fallback_css_path, 'r') as f:
-        fallback_content = f.read()
-
-    # Extract and return CSS attributes
-    return extract_css_attributes(palette_content, fallback_content)
+    return load_palette_css_attributes(palette_name)
 
 
 @pytest.fixture
@@ -536,28 +517,4 @@ def all_palette_css_attributes():
     Raises:
         FileNotFoundError: If any required CSS file is missing
     """
-    project_dir = Path(__file__).parent.parent.resolve()
-    fallback_css_path = project_dir / "terminal" / "css" / "terminal.css"
-
-    # Verify fallback CSS exists
-    if not fallback_css_path.exists():
-        raise FileNotFoundError(f"Fallback CSS file not found: {fallback_css_path}")
-
-    with open(fallback_css_path, 'r') as f:
-        fallback_content = f.read()
-
-    # Extract attributes for each palette
-    all_attributes = {}
-    for palette_name in DEFAULT_PALETTES:
-        palette_css_path = project_dir / "terminal" / "css" / "palettes" / f"{palette_name}.css"
-
-        if not palette_css_path.exists():
-            raise FileNotFoundError(f"Palette CSS file not found: {palette_css_path}")
-
-        with open(palette_css_path, 'r') as f:
-            palette_content = f.read()
-
-        # Extract CSS attributes for this palette
-        all_attributes[palette_name] = extract_css_attributes(palette_content, fallback_content)
-
-    return all_attributes
+    return load_all_palette_css_attributes()
