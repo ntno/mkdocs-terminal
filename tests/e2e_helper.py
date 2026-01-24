@@ -3,11 +3,14 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Optional
+from typing import Dict, Optional, Tuple
 
 import yaml
 from mkdocs.commands.build import build
 from tests.integration_helper import load_config
+
+
+_BUILT_SITES: Dict[Tuple[str, Optional[str]], Path] = {}
 
 
 def build_example_site(
@@ -16,6 +19,21 @@ def build_example_site(
     palette_name: Optional[str] = None,
 ):
     """Build the requested example site with an optional palette override."""
+    cache_key = (example_name, palette_name)
+    cached_path = _BUILT_SITES.get(cache_key)
+    if cached_path and cached_path.exists():
+        return cached_path
+
+    site_path = _build_example_site(tmp_path_factory, example_name, palette_name)
+    _BUILT_SITES[cache_key] = site_path
+    return site_path
+
+
+def _build_example_site(
+    tmp_path_factory,
+    example_name: str,
+    palette_name: Optional[str],
+):
     suffix = f"_{palette_name}" if palette_name else ""
     tmp_dir = tmp_path_factory.mktemp(f"built_{example_name}{suffix}_site")
 
