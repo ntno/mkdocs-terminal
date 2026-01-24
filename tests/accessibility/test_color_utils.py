@@ -7,13 +7,13 @@ Reference: https://www.w3.org/TR/WCAG20-TECHS/G17.html
 
 import pytest
 from pathlib import Path
+from tests.accessibility.utilities import extract_css_attributes
 from tests.accessibility.utilities.color_utils import (
     normalize_color,
     get_relative_luminance,
     get_contrast_ratio,
     meets_wcag_aa,
 )
-from tests.accessibility.utils import extract_css_attributes
 
 
 class TestColorNormalization:

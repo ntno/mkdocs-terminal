@@ -17,7 +17,7 @@ Out of Scope (User Content):
 These are content decisions made by site authors, not the theme.
 """
 import pytest
-from tests.accessibility.utils import (
+from tests.accessibility.validators import (
     validate_semantic_html,
     validate_html_structure,
     validate_duplicate_ids,

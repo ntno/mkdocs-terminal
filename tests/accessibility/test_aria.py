@@ -1,6 +1,6 @@
 import pytest
 from bs4 import BeautifulSoup
-from tests.accessibility.utils import (
+from tests.accessibility.validators import (
     validate_aria_buttons,
     validate_aria_hidden,
     validate_modal_accessibility,

@@ -6,7 +6,7 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Dict
 
-from tests.accessibility.utils import extract_css_attributes
+from tests.accessibility.utilities import extract_css_attributes
 from tests.interface.theme_features import DEFAULT_PALETTES
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]

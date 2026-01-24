@@ -7,8 +7,9 @@ from typing import Dict, List, Optional, Sequence, Set, Tuple
 
 from bs4 import BeautifulSoup, Tag
 
-from tests.accessibility.utilities import _get_element_computed_styles
+from tests.accessibility.utilities import _extract_css_variables, _get_element_computed_styles
 from tests.accessibility.utilities.color_utils import get_contrast_ratio, meets_wcag_aa
+from .helpers import _format_violation
 
 
 @dataclass
@@ -161,10 +162,79 @@ class ColorCombinationTracker:
         return failures
 
 
+def validate_color_contrast(html: str, filename: str = "index.html", css_content: str = "") -> List[str]:
+    """Validate color contrast meets WCAG 2.1 AA standards for theme elements."""
+    violations: List[str] = []
+    soup = BeautifulSoup(html, "html.parser")
+
+    css_variables = _extract_css_variables(html, css_content)
+
+    body = soup.find("body")
+    body_styles = _get_element_computed_styles(body, css_variables) if body else {}
+    body_bg_color = body_styles.get("background-color")
+
+    if not body_bg_color:
+        return violations
+
+    elements_to_check = soup.find_all([
+        "body",
+        "p",
+        "a",
+        "button",
+        "input",
+        "label",
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+    ])
+
+    for element in elements_to_check:
+        text_content = element.get_text(strip=True)
+        if not text_content:
+            continue
+
+        element_styles = _get_element_computed_styles(element, css_variables)
+        fg_color = element_styles.get("color")
+        if not fg_color:
+            continue
+
+        bg_color = element_styles.get("background-color") or body_bg_color
+
+        ratio = get_contrast_ratio(fg_color, bg_color)
+
+        is_large_text = element.name in ["h1", "h2", "h3"]
+        text_size = 24 if is_large_text else 14
+
+        if ratio is not None and not meets_wcag_aa(ratio, text_size=text_size):
+            element_desc = element.name
+            if element_desc == "a":
+                element_desc = f"link (text: {text_content[:30]})"
+            elif element_desc in ["h1", "h2", "h3", "h4", "h5", "h6"]:
+                element_desc = f"{element_desc} heading"
+            elif element_desc in ["button", "input", "label"]:
+                element_desc = f"{element_desc} element"
+
+            violations.append(
+                _format_violation(
+                    f"Insufficient color contrast on {element_desc}: {ratio:.2f}:1 "
+                    f"(need {4.5 if not is_large_text else 3.0}:1 for WCAG AA). "
+                    f"Color: {fg_color}, Background: {bg_color}",
+                    filename,
+                    element,
+                )
+            )
+
+    return violations
+
+
 __all__ = [
     "BackgroundColorResolver",
     "ColorCombination",
     "ColorCombinationTracker",
+    "validate_color_contrast",
     "PaletteColors",
     "assert_contrast_meets_wcag_aa",
     "get_palette_colors",

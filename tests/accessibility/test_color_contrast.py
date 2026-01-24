@@ -25,12 +25,12 @@ import re
 from tests.accessibility.utilities import _get_element_computed_styles
 from tests.accessibility.utilities.color_utils import get_contrast_ratio
 from tests.accessibility.utilities.site_context import SiteContextBuilder
-from tests.accessibility.utils import validate_color_contrast
 from tests.accessibility.validators import (
     BackgroundColorResolver,
     ColorCombinationTracker,
     assert_contrast_meets_wcag_aa,
     get_palette_colors,
+    validate_color_contrast,
 )
 from tests.interface.theme_features import DEFAULT_PALETTES
 

@@ -14,6 +14,7 @@ from .contrast_validator import (
     PaletteColors,
     assert_contrast_meets_wcag_aa,
     get_palette_colors,
+    validate_color_contrast,
 )
 from .helpers import _format_violation
 from .html_validator import (
@@ -27,6 +28,7 @@ __all__ = [
     "BackgroundColorResolver",
     "ColorCombination",
     "ColorCombinationTracker",
+    "validate_color_contrast",
     "PaletteColors",
     "assert_contrast_meets_wcag_aa",
     "get_palette_colors",
