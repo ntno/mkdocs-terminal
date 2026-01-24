@@ -5,10 +5,6 @@ from tests.interface.tile import Tile
 from tests.interface.theme_features import DEFAULT_PALETTES
 from tests import defaults
 from tests.utils.filters import mock_url_filter, mock_markup_filter
-from tests.accessibility.utilities.palette_loader import (
-    load_all_palette_css_attributes,
-    load_palette_css_attributes,
-)
 from terminal.plugins.md_to_html.plugin import DEFAULT_MARKUP_FILTER_NAME
 from terminal.pluglets.tile_grid.macro import TileGridMacroEnvironment
 from unittest.mock import MagicMock, PropertyMock
@@ -18,6 +14,11 @@ from mkdocs.structure.nav import get_navigation
 from tests.integration_helper import load_config
 import yaml
 from mkdocs.commands.build import build
+
+
+pytest_plugins = [
+    "tests.accessibility.fixtures.palette",
+]
 
 
 @pytest.fixture
@@ -469,52 +470,3 @@ def built_example_site_with_palette(tmp_path_factory, request):
     return tmp_dir
 
 
-@pytest.fixture
-def palette_css_attributes(request):
-    """Extract CSS attributes for a given palette.
-
-    Returns a map of extracted CSS values for the specified palette by reading
-    the palette CSS file and the fallback terminal.css file via the
-    ``load_palette_css_attributes`` helper.
-
-    Args:
-        request: pytest request object for parametrization support
-                 Expects request.param = palette_name (string)
-
-    Returns:
-        Dictionary mapping CSS attribute names to their resolved values
-
-    Raises:
-        ValueError: If the palette name is not in DEFAULT_PALETTES
-    """
-    palette_name = getattr(request, "param", "default")
-
-    return load_palette_css_attributes(palette_name)
-
-
-@pytest.fixture
-def all_palette_css_attributes():
-    """Extract CSS attributes for all DEFAULT_PALETTES.
-
-    Returns a map of all CSS attributes for each palette in DEFAULT_PALETTES.
-
-    Structure:
-        {
-            "default": {
-                "global-font-size": "16px",
-                "global-line-height": "1.6",
-                "primary-color": "#1a95e0",
-                ... (all CSS attributes)
-            },
-            "dark": { ... },
-            "gruvbox_dark": { ... },
-            ...
-        }
-
-    Returns:
-        Dictionary mapping palette_name -> {css_attr_name -> resolved_value}
-
-    Raises:
-        FileNotFoundError: If any required CSS file is missing
-    """
-    return load_all_palette_css_attributes()
