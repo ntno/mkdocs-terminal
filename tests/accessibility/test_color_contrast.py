@@ -275,11 +275,11 @@ class TestColorContrast:
         builder = SiteContextBuilder(built_example_site_with_palette)
 
         all_violations = []
-        for ctx in builder.iter_html_files():
+        for current_page_context in builder.iter_html_files():
             violations = validate_color_contrast(
-                ctx.html_content,
-                filename=ctx.relative_path,
-                css_content=ctx.css_content,
+                current_page_context.html_content,
+                filename=current_page_context.relative_path,
+                css_content=current_page_context.css_content,
             )
             all_violations.extend(violations)
 
@@ -302,21 +302,21 @@ class TestColorContrast:
         builder = SiteContextBuilder(built_example_site_with_palette)
         tracker = ColorCombinationTracker()
 
-        for ctx in builder.iter_html_files():
-            for link in ctx.soup.find_all("a"):
+        for current_page_context in builder.iter_html_files():
+            for link in current_page_context.soup.find_all("a"):
                 link_text = link.get_text(strip=True)[:40]
                 if not link_text:
                     continue
 
-                link_styles = _get_element_computed_styles(link, ctx.css_variables)
+                link_styles = _get_element_computed_styles(link, current_page_context.css_variables)
                 link_color = link_styles.get("color")
                 if not link_color:
                     continue
 
-                link_bg = resolve_background_color(link, ctx.css_variables, ctx.soup)
+                link_bg = resolve_background_color(link, current_page_context.css_variables, current_page_context.soup)
 
                 if link_color and link_bg:
-                    tracker.add(link_color, link_bg, f"{ctx.relative_path}: {link_text[:30]}")
+                    tracker.add(link_color, link_bg, f"{current_page_context.relative_path}: {link_text[:30]}")
 
         failures = tracker.get_failures(min_ratio=4.5)
         assert not failures, f"Link color contrast violations found:\n" + "\n".join(failures)
@@ -338,20 +338,20 @@ class TestColorContrast:
 
         text_tags = ["p", "span", "h1", "h2", "h3", "h4", "h5", "h6", "li", "blockquote", "td", "th"]
 
-        for ctx in builder.iter_html_files():
-            for elem in ctx.soup.find_all(text_tags):
+        for current_page_context in builder.iter_html_files():
+            for elem in current_page_context.soup.find_all(text_tags):
                 if not elem.get_text(strip=True):
                     continue
 
-                elem_styles = _get_element_computed_styles(elem, ctx.css_variables)
+                elem_styles = _get_element_computed_styles(elem, current_page_context.css_variables)
                 elem_color = elem_styles.get("color")
                 if not elem_color:
                     continue
 
-                elem_bg = resolve_background_color(elem, ctx.css_variables, ctx.soup)
+                elem_bg = resolve_background_color(elem, current_page_context.css_variables, current_page_context.soup)
 
                 if elem_color and elem_bg:
-                    tracker.add(elem_color, elem_bg, f"{ctx.relative_path}:{elem.name}", elem.name)
+                    tracker.add(elem_color, elem_bg, f"{current_page_context.relative_path}:{elem.name}", elem.name)
 
         failures = tracker.get_failures(min_ratio=4.5)
         assert not failures, f"Text element color contrast violations found:\n" + "\n".join(failures)
@@ -372,11 +372,11 @@ class TestColorContrast:
         builder = SiteContextBuilder(built_example_site_with_palette)
 
         all_violations = []
-        for ctx in builder.iter_html_files():
+        for current_page_context in builder.iter_html_files():
             violations = validate_color_contrast(
-                ctx.html_content,
-                filename=ctx.relative_path,
-                css_content=ctx.css_content,
+                current_page_context.html_content,
+                filename=current_page_context.relative_path,
+                css_content=current_page_context.css_content,
             )
             form_violations = [
                 v for v in violations if any(term in v.lower() for term in ["button", "input", "form", "label"])
@@ -404,9 +404,9 @@ class TestColorContrast:
         html_file = builder.site_path / "index.html"
         assert html_file.exists(), f"HTML file not found at {html_file}"
 
-        ctx = builder.build_context(html_file)
-        assert len(ctx.css_content) > 0, "No CSS content loaded from site"
-        assert len(ctx.css_variables) > 0, "No CSS variables extracted"
+        current_page_context = builder.build_context(html_file)
+        assert len(current_page_context.css_content) > 0, "No CSS content loaded from site"
+        assert len(current_page_context.css_variables) > 0, "No CSS variables extracted"
 
         # Determine palette from site path
         palette_name = None
@@ -417,10 +417,10 @@ class TestColorContrast:
 
         assert palette_name is not None, f"Could not determine palette from site path: {site_path}"
 
-        assert ctx.css_variables.get("--font-color") is not None, (
+        assert current_page_context.css_variables.get("--font-color") is not None, (
             f"Palette '{palette_name}': CSS variable --font-color not found"
         )
-        assert ctx.css_variables.get("--background-color") is not None, (
+        assert current_page_context.css_variables.get("--background-color") is not None, (
             f"Palette '{palette_name}': CSS variable --background-color not found"
         )
 
@@ -443,8 +443,8 @@ class TestColorContrast:
         builder = SiteContextBuilder(built_example_site_with_palette)
         contrast_failures = []
 
-        for ctx in builder.iter_html_files():
-            for link_index, link in enumerate(ctx.soup.find_all("a")):
+        for current_page_context in builder.iter_html_files():
+            for link_index, link in enumerate(current_page_context.soup.find_all("a")):
                 link_text = link.get_text(strip=True)[:50]
                 style = link.get("style", "")
 
@@ -458,7 +458,7 @@ class TestColorContrast:
                     ratio = get_contrast_ratio(link_color, bg_color)
                     if ratio and ratio < 4.5:
                         contrast_failures.append(
-                            f"{ctx.relative_path} (link {link_index}): '{link_text}' "
+                            f"{current_page_context.relative_path} (link {link_index}): '{link_text}' "
                             f"has contrast {ratio:.2f}:1 (need 4.5:1)"
                         )
 
@@ -484,21 +484,21 @@ class TestColorContrast:
             "primary": ColorCombinationTracker(),
         }
 
-        for ctx in builder.iter_html_files():
+        for current_page_context in builder.iter_html_files():
             for alert_type, class_name in [
                 ("error", "terminal-alert-error"),
                 ("primary", "terminal-alert-primary"),
             ]:
-                for elem_idx, elem in enumerate(ctx.soup.find_all(class_=class_name)):
-                    elem_styles = _get_element_computed_styles(elem, ctx.css_variables)
+                for elem_idx, elem in enumerate(current_page_context.soup.find_all(class_=class_name)):
+                    elem_styles = _get_element_computed_styles(elem, current_page_context.css_variables)
                     alert_color = elem_styles.get("color")
                     if not alert_color:
                         continue
 
-                    alert_bg = resolve_background_color(elem, ctx.css_variables, ctx.soup)
+                    alert_bg = resolve_background_color(elem, current_page_context.css_variables, current_page_context.soup)
 
                     if alert_color and alert_bg:
-                        location = f"{ctx.relative_path}:{alert_type} #{elem_idx}"
+                        location = f"{current_page_context.relative_path}:{alert_type} #{elem_idx}"
                         alert_trackers[alert_type].add(alert_color, alert_bg, location)
 
         all_failures = []
