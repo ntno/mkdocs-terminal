@@ -15,7 +15,7 @@ Implementation tasks for adding automated accessibility testing to the Terminal 
 - [x] Update `requirements.test.txt` with new test dependencies
 - [x] Create `tests/accessibility/` directory structure
 - [x] Create `tests/accessibility/__init__.py`
-- [x] Create `tests/accessibility/utils.py` with common accessibility check helpers
+- [x] Create dedicated validator modules under `tests/accessibility/validators/` (HTML, ARIA, contrast) and retire the interim `utils.py` facade
 
 ### Phase 2: HTML & Semantic Validation
 
@@ -34,14 +34,19 @@ Implementation tasks for adding automated accessibility testing to the Terminal 
 - [x] Add tests for aria-hidden on decorative elements (validation, updated to reflect aria-label preference)
 - [x] Add utility functions: validate_modal_accessibility, validate_form_labels, validate_link_text
 - [x] Improve validate_aria_hidden to encourage aria-label pattern instead of sr-only
+- [ ] Add ARIA role coverage for navigation landmarks (nav/header/footer/aside) and ensure skip-link destinations advertise roles/labels
+- [ ] Validate aria-live and status regions for dynamic components (search modal results, alerts)
+- [ ] Add assertions for aria-describedby relationships on complex controls (e.g., alert banners, search inputs)
 
 ### Phase 4: Color Contrast & Visual Accessibility
 
 - [x] Create `tests/accessibility/test_color_contrast.py`
 - [x] Implement color contrast ratio validation (WCAG AA standard)
 - [x] Add tests for text color vs background
-- [x] Add tests for focus indicators and visual clarity
-- [x] Document color contrast expectations
+- [x] Add palette fixture + utilities (`palette_loader.py`, `ColorCombinationTracker`, `BackgroundColorResolver`)
+- [ ] Add tests for focus indicators / outlines / hover states (requires DOM simulation or browser automation)
+- [ ] Document color contrast expectations and remediation guidance in developer docs
+- [ ] Track and remediate failing palettes (default, pink, sans, gruvbox_dark) or add follow-up issues before merge
 
 ### Phase 5: Theme Accessibility
 
@@ -134,64 +139,52 @@ Implementation tasks for adding automated accessibility testing to the Terminal 
 - **Template Fixes:** Removed empty nav element from top-nav/menu.html (semantic correctness)
 - Keep accessibility checks maintainable — prefer standard checks over custom validation
 
+### Remaining Gaps
+
+- Landmark navigation roles still need explicit assertions (aria-label / aria-labelledby on multiple navs, skip-link destinations)
+- Dynamic regions (search results, alert banners) should expose `aria-live` or appropriate descriptions
+- Composite controls (search input, modal close button) would benefit from aria-describedby coverage
+
 ## Phase 4 Implementation Details
 
-**Completed:** January 21, 2026
+**Current Focus:** Site-wide contrast validation is implemented and actively surfacing real palette defects (run completed January 24, 2026).
 
-### Files Created
+### Files Created / Updated
 
-1. **tests/accessibility/color_utils.py** — Color handling library
-   - Color parsing: hex, rgb, hsl, named colors, transparent
-   - Relative luminance calculation per WCAG 2.1 formula
-   - Contrast ratio calculation
-   - WCAG AA compliance checking
+1. **tests/accessibility/utilities/color_utils.py** — Shared color handling library
+   - Parses hex/rgb/hsl/named colors, computes relative luminance + contrast ratios, and exposes `meets_wcag_aa()`.
 
-2. **tests/accessibility/test_color_contrast.py** — Theme color contrast validation
-   - `TestColorContrast` class with 3 test methods:
-     - `test_theme_body_text_contrast_meets_wcag_aa()` — Body text color vs background (4.5:1)
-     - `test_theme_link_colors_meet_wcag_aa()` — Link colors vs background (4.5:1)
-     - `test_theme_button_and_form_contrast_meets_wcag_aa()` — Button/form colors (3:1 for UI)
+2. **tests/accessibility/utilities/palette_loader.py** — Palette fixtures
+   - Loads every CSS palette file plus the fallback theme CSS, caches results, and feeds parametrized tests via `load_all_palette_css_attributes()`.
 
-3. **tests/accessibility/test_color_utils.py** — Unit tests for color utilities
-   - 26 unit tests covering:
-     - Color format parsing (hex, rgb, hsl, named, transparent)
-     - Relative luminance calculation
-     - Contrast ratio calculation
-     - WCAG AA compliance checking
-     - Real-world color pair validation
+3. **tests/accessibility/validators/contrast_validator.py** — Contrast helpers
+   - Hosts `PaletteColors`, `assert_contrast_meets_wcag_aa()`, `ColorCombinationTracker`, `BackgroundColorResolver`, and `validate_color_contrast()`.
 
-### Utility Functions Updated
+4. **tests/accessibility/test_color_contrast.py** — Integration + palette tests
+   - Exercises built sites across all palettes (body text, arbitrary text nodes, buttons/forms, alerts, CSS extraction) and palette-only assertions (primary/error colors, regression ratios).
 
-1. **validate_color_contrast()** in utils.py — Theme color contrast validation
-   - Scoped to theme-controlled colors (body text, links, buttons, form controls)
-   - Validates against WCAG 2.1 AA standards (4.5:1 normal, 3:1 large)
-   - Reports detailed violations with calculated ratios and required thresholds
-   - Handles inline styles and color parsing
+5. **tests/accessibility/test_color_utils.py** — Unit coverage for parsing/luminance logic (33 tests spanning parsing, luminance, ratios, WCAG thresholds, CSS extraction).
+
+### Utility + Fixture Updates
+
+- `SiteContextBuilder` + new `built_example_site_with_palette` fixture share palette-aware site builds across tests.
+- Palette CSS attributes are cached via `palette_loader`, dramatically reducing repeated IO.
+- `validate_color_contrast()` moved out of the deprecated `utils.py` file into `contrast_validator.py` and now leverages `_get_element_computed_styles()` throughout.
 
 ### Key Implementation Decisions
 
-- **Library:** Used Python's standard library `colorsys` instead of external PyPI packages
-  - Reason: `wcag-contrast-ratio` (2015) and `colour` (2017) are unmaintained
-  - Custom WCAG formula is straightforward (well-documented by W3C)
-  - Reduces dependencies and ensures long-term maintainability
+- Continue relying on the in-repo WCAG math instead of external dependencies to minimize supply-chain risk.
+- Focus current coverage on static, theme-controlled colors (body text, links, buttons, alerts) while documenting hover/focus limitations.
+- Track exact foreground/background pairs so designers receive actionable violation summaries.
 
-- **Color Support:** Handles hex, rgb, hsl, named colors, and transparent
-  - Covers ~90% of real-world theme colors
-  - Extensible for additional formats if needed
+### Test Results (2026-01-24)
 
-- **Scope:** Theme-controlled colors only (body text, links, buttons)
-  - User-authored inline styles are explicitly out of scope
-  - Aligns with theme responsibility principle
+`pytest tests/accessibility/ -v` → 120 passed, 1 skipped, 5 expected failures:
 
-- **Limitations:** Static analysis only
-  - Cannot test hover/focus states (require browser automation)
-  - Cannot validate background images
-  - Cannot measure rendered contrast with actual fonts
-  - Documented in test docstrings
+1. `test_primary_link_color_meets_wcag_aa[default]`
+2. `test_primary_link_color_meets_wcag_aa[pink]`
+3. `test_primary_link_color_meets_wcag_aa[sans]`
+4. `test_alert_error_color_meets_wcag_aa[gruvbox_dark]`
+5. `test_ghost_error_button_color_meets_wcag_aa[gruvbox_dark]`
 
-### Test Results
-
-**All tests pass:**
-- 3 integration tests (color contrast on built minimal site)
-- 26 unit tests (color parsing, luminance, contrast, WCAG compliance)
-- Total: 37 accessibility tests + 1 skipped = 38 total passing
+These failures reflect real WCAG AA contrast gaps in the current palette values and must be addressed (or excepted with justification) before closing Phase 4.

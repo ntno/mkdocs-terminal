@@ -8,13 +8,13 @@
 
 ## Executive Summary
 
-The "add-accessibility-tests" change is **in active implementation** with Phase 1 and Phase 2 substantially complete. The implementation has established solid infrastructure and core validation logic. However, Phases 3-8 remain incomplete or have tasks that need updating to reflect actual progress.
+The "add-accessibility-tests" change is **in active implementation** with Phase 1 and Phase 2 substantially complete. The implementation has established solid infrastructure and core validation logic. Phase 3 is nearly finished, Phase 4 is implemented but currently flags real palette bugs, and Phases 5-8 still need attention or refreshed task tracking.
 
 **Current Status:** 
 - ✅ Infrastructure & Setup (Phase 1) — **COMPLETE**
 - ✅ HTML & Semantic Validation (Phase 2) — **LARGELY COMPLETE** (1 test skipped with known issue)
-- ❌ ARIA Validation (Phase 3) — **PARTIALLY COMPLETE** (basic checks, missing comprehensive tests)
-- ❌ Color Contrast (Phase 4) — **NOT STARTED**
+- ⚠️ ARIA Validation (Phase 3) — **SUBSTANTIALLY COMPLETE** (buttons, aria-hidden, modal roles, form labels, and link text checks live; still need deeper role coverage)
+- ⚠️ Color Contrast (Phase 4) — **IMPLEMENTED WITH KNOWN FAILURES** (5 failing palettes highlight real WCAG issues)
 - ❌ Theme Accessibility (Phase 5) — **NOT STARTED**
 - ❌ Coverage & Documentation (Phase 6) — **NOT STARTED**
 - ❌ CI/CD Integration (Phase 7) — **PARTIALLY COMPLETE** (runs in CI but needs verification)
@@ -32,7 +32,7 @@ All tasks completed:
 - [x] Update `requirements.test.txt` with new test dependencies
 - [x] Create `tests/accessibility/` directory structure
 - [x] Create `tests/accessibility/__init__.py`
-- [x] Create `tests/accessibility/utils.py` with common accessibility check helpers
+- [x] Create dedicated validator modules under `tests/accessibility/validators/` (HTML, ARIA, contrast) replacing the legacy utils facade
 
 **Implementation Details:**
 
@@ -88,9 +88,9 @@ Contains 3 test methods in 2 test classes:
    - `test_index_page_is_valid_html()`: ✅ **PASSING** — Validates HTML5 structure of index page
    - `test_all_generated_pages_have_valid_structure()`: ✅ **PASSING** — Validates all generated HTML files in built site
 
-**Validation Utilities in utils.py:**
+**Validation Utilities (`tests/accessibility/validators/html_validator.py`):**
 
-Three main validation functions:
+Three main validation functions (re-exported via `tests.accessibility.validators`):
 
 ```python
 def validate_duplicate_ids(html: str, filename: str) -> List[str]
@@ -125,13 +125,13 @@ def validate_html_structure(html: str, filename: str) -> List[str]
 
 ## In-Progress / Partially Complete Work
 
-### Phase 3: ARIA & Semantic Attributes ⚠️ (PARTIALLY COMPLETE)
+### Phase 3: ARIA & Semantic Attributes ⚠️ (SUBSTANTIALLY COMPLETE)
 
 **Status:** Basic checks implemented, but incomplete.
 
 **Completed:**
 - [x] Create `tests/accessibility/test_aria.py`
-- [x] Implement basic ARIA attribute validation (buttons, aria-hidden)
+- [x] Expand ARIA validation to buttons, aria-hidden, modal dialogs, form inputs, and theme-region links
 
 **Incomplete:**
 - [ ] Comprehensive ARIA role validation
@@ -142,33 +142,21 @@ def validate_html_structure(html: str, filename: str) -> List[str]
 
 File: `tests/accessibility/test_aria.py`
 
-Contains 2 test methods using fixtures:
+Contains five focused test classes (all parametrized to exercise the `search-enabled` example site):
 
-1. `test_buttons_have_text_or_aria_label()`:
-   - Tests all buttons across all HTML files in built site
-   - Validates button text content OR aria-label present
-   - **Key aspect:** Uses parametrize to test different example sites
-   - **Status:** ✅ Implemented and working
+1. `TestARIAButtons.test_buttons_have_text_or_aria_label()` — validates every `<button>` has visible text or `aria-label`.
+2. `TestARIAAttributes.test_aria_hidden_only_on_decorative()` — ensures `aria-hidden="true"` is applied only to decorative elements.
+3. `TestModalAccessibility.test_modal_has_correct_aria_attributes()` — verifies the search modal exposes `role="dialog"`, `aria-modal`, and an `aria-labelledby` hook.
+4. `TestFormAccessibility.test_form_inputs_have_labels()` — checks that text inputs/selects/textarea elements are labeled via `<label>`, `aria-label`, or `aria-labelledby`.
+5. `TestLinkAccessibility.test_theme_links_have_text_or_aria_label()` — enforces that links rendered in theme-controlled regions (nav/header/footer/aside) have descriptive text or `aria-label`.
 
-2. `test_aria_hidden_only_on_decorative()`:
-   - Validates aria-hidden="true" only on elements with no text content
-   - Prevents hiding content from screen readers unintentionally
-   - **Status:** ✅ Implemented and working
+**Validator Helpers (`tests/accessibility/validators/aria_validator.py`):**
 
-**Utility Functions in utils.py:**
-
-```python
-def validate_aria_buttons(html: str, filename: str) -> List[str]
-```
-- Checks all `<button>` elements for text content OR aria-label
-- **Out of scope:** User-provided buttons in documentation (e.g., in code examples)
-
-```python
-def validate_aria_hidden(html: str, filename: str) -> List[str]
-```
-- Finds all elements with `aria-hidden="true"`
-- Flags violations if element contains text content
-- Prevents accidentally hiding meaningful content from screen readers
+- `validate_aria_buttons()` — scans for buttons missing accessible names.
+- `validate_aria_hidden()` — asserts `aria-hidden` only decorates non-text content.
+- `validate_modal_accessibility()` — enforces dialog semantics for the search modal.
+- `validate_form_labels()` — ensures interactive form controls are labeled.
+- `validate_link_text()` — catches empty or non-descriptive theme-region links.
 
 **What's Missing:**
 
@@ -178,24 +166,39 @@ Based on the design document and spec, Phase 3 should also include:
 - ARIA live region usage for dynamic content
 - Form association ARIA checks
 
-### Phase 4: Color Contrast & Visual Accessibility ❌ (NOT STARTED)
+### Phase 4: Color Contrast & Visual Accessibility ⚠️ (IN PROGRESS)
 
-**Status:** No implementation yet.
+**Status:** Extensive contrast coverage has been implemented, and tests now fail only for five known palette combinations that genuinely violate WCAG AA.
 
-**Planned (from design doc):**
-- [ ] Create `tests/accessibility/test_color_contrast.py`
-- [ ] Implement WCAG AA contrast ratio validation (4.5:1 normal, 3:1 large)
-- [ ] Add tests for text color vs background
-- [ ] Add tests for focus indicators
-- [ ] Document color contrast expectations
+**Completed:**
+- [x] Create `tests/accessibility/test_color_contrast.py` with both site-level and palette-only suites
+- [x] Implement WCAG AA validation helpers in `tests/accessibility/validators/contrast_validator.py`
+- [x] Add palette-loading utilities in `tests/accessibility/utilities/palette_loader.py` and wire them into pytest fixtures
+- [x] Integrate `SiteContextBuilder` + `ColorCombinationTracker` + `BackgroundColorResolver` to exercise every built page across all palettes
 
-**Design Notes from design.md:**
+**Outstanding:**
+- [ ] Focus indicator / outline contrast testing (would require DOM simulation or browser automation)
+- [ ] Hover/active state validation
+- [ ] Documented guidance for theming teams on fixing the failing palettes
 
-The design document specifies:
-- **Implementation approach:** Static CSS analysis with color parsing
-- **Contrast formula:** Relative luminance (WCAG 2.1 AA standard)
-- **Limitations:** Cannot validate JavaScript-computed styles or hover/focus states requiring user interaction
-- **Color formats to handle:** hex, rgb, hsl, named colors
+**Current Implementation Highlights:**
+
+- **Site-level tests:** `TestColorContrast` now parametrizes `built_example_site_with_palette` to check body text, arbitrary text nodes, buttons/forms, alerts, CSS loading, and rendered links for each palette.
+- **Palette-level tests:** Directly validate extracted CSS variables (font, primary, error colors) via `assert_contrast_meets_wcag_aa()` and regression-test contrast ratios against WebAIM calculations.
+- **Helpers:** `ColorCombinationTracker` groups identical foreground/background pairs, `BackgroundColorResolver` walks the DOM to infer actual backgrounds, and `validate_color_contrast()` scans common elements using computed styles.
+- **Fixtures:** `load_all_palette_css_attributes()` caches CSS variable extraction so palette-based parametrized tests stay fast and deterministic.
+
+**Test Results:** Running `pytest tests/accessibility/ -v` on 2026-01-24 produced 120 passes, 1 skip, and 5 failures — all within `TestColorContrast`:
+
+1. `test_primary_link_color_meets_wcag_aa[default]`
+2. `test_primary_link_color_meets_wcag_aa[pink]`
+3. `test_primary_link_color_meets_wcag_aa[sans]`
+4. `test_alert_error_color_meets_wcag_aa[gruvbox_dark]`
+5. `test_ghost_error_button_color_meets_wcag_aa[gruvbox_dark]`
+
+These failures confirm that the default, pink, and sans palettes ship links at ~3.2–3.9:1 contrast on white backgrounds, and that `gruvbox_dark`'s error color renders at ~4.29:1 on `#282828`. The test suite is therefore behaving as intended and should remain red until the theme palettes are corrected.
+
+**Design Alignment:** Implementation matches the design doc’s static-analysis approach (relative luminance ratios, CSS variable extraction) while acknowledging the documented limitations (no hover/focus validation yet).
 
 ---
 
@@ -257,9 +260,9 @@ From `tasks.md`, here's the current state:
 [x] Update `requirements.test.txt` with new test dependencies
 [x] Create `tests/accessibility/` directory structure
 [x] Create `tests/accessibility/__init__.py`
-[x] Create `tests/accessibility/utils.py` with common accessibility check helpers
+[x] Create `tests/accessibility/validators/` modules (HTML, ARIA, contrast helpers) and retire the legacy utils facade
 ```
-**Status:** ✅ All complete. Tasks.md is accurate.
+**Status:** ✅ All complete. (Tasks.md still references `utils.py`; update pending so it matches the current validators package.)
 
 ### Phase 2: HTML & Semantic Validation
 ```
@@ -279,10 +282,10 @@ From `tasks.md`, here's the current state:
 [ ] Add tests for aria-label and aria-labelledby usage
 [ ] Add tests for aria-hidden on decorative elements
 ```
-**Status:** ⚠️ **INACCURATE** — File exists as `test_aria.py` (not `test_aria_attributes.py`), and some basic tests ARE implemented. However, comprehensive ARIA validation is incomplete. **Tasks.md needs update.**
+**Status:** ⚠️ **OUT OF DATE** — The actual file is `test_aria.py` and already covers buttons, aria-hidden, modal roles, form inputs, and theme-region links. Follow-up tasks should focus on deeper ARIA role coverage (landmarks, live regions) rather than file creation.
 
 ### Phases 4-8
-All marked as `[ ]` (not started). **Need review of accuracy.**
+Tasks.md still lists every Phase 4 item as `[ ]` even though the full color contrast suite now exists. Phases 5-8 remain accurate (not started) but Phase 4 needs a wholesale rewrite so contributors do not re-plan already-completed work.
 
 ---
 
@@ -291,42 +294,41 @@ All marked as `[ ]` (not started). **Need review of accuracy.**
 ### Created Files
 
 1. **tests/accessibility/__init__.py** ✅
-   - Empty module initialization
-   - Status: Complete
+   - Module marker so pytest can import the validators/utilities packages cleanly.
 
-2. **tests/accessibility/utils.py** ✅
-   - ~227 lines
-   - Helper functions for accessibility validation
-   - Contains: `validate_duplicate_ids()`, `validate_semantic_html()`, `validate_html_structure()`, `validate_aria_buttons()`, `validate_aria_hidden()`
-   - Status: Complete
+2. **tests/accessibility/test_html_validation.py** ✅
+   - ~90 lines across two classes; one semantic test intentionally skipped pending nav aria-label fixes.
 
-3. **tests/accessibility/test_html_validation.py** ✅
-   - ~90 lines
-   - Two test classes with 4 test methods
-   - One test currently skipped due to known nav aria-label issue
-   - Status: Complete
+3. **tests/accessibility/test_aria.py** ✅
+   - ~200 lines now covering buttons, aria-hidden usage, modal roles, form input labels, and theme-region links.
 
-4. **tests/accessibility/test_aria.py** ✅
-   - ~45 lines
-   - Two test methods validating button accessibility and aria-hidden usage
-   - Status: Complete (but could be expanded)
+4. **tests/accessibility/test_color_contrast.py** ✅
+   - ~450 lines of palette-level and site-level WCAG AA checks, powered by `SiteContextBuilder` + palette fixtures.
+
+5. **tests/accessibility/validators/** ✅
+   - `html_validator.py`, `aria_validator.py`, `contrast_validator.py`, and `helpers.py` encapsulate concern-specific logic while `__init__.py` re-exports a stable API for tests.
+
+6. **tests/accessibility/utilities/palette_loader.py** ✅
+   - Cached CSS variable extraction for every palette, sourcing data from `terminal/css/palettes/*.css` plus the fallback theme file.
 
 ### Modified Files
 
 1. **tests/conftest.py** ✅
-   - Added `built_example_site` fixture (session-scoped)
-   - Added `built_minimal_site` convenience fixture
-   - Added `built_demo_site` convenience fixture
-   - These fixtures build actual MkDocs sites for testing
-   - Status: Complete
+   - Hosts the `built_example_site`, `built_minimal_site`, and palette-aware fixtures used by the accessibility suites.
 
-2. **requirements.test.txt** ✅
-   - Added: `beautifulsoup4`
-   - Added: `pytidylib >= 0.3.2`
-   - Status: Complete
+2. **tests/e2e_helper.py** ✅
+   - Provides the cached `build_example_site()` helper that now underpins palette builds across tests.
 
-3. **pyproject.toml** ⚠️
-   - **Status: NEEDS VERIFICATION** — The design doc mentions updating pyproject.toml, but the read of pyproject.toml didn't show explicit test dependency additions. Need to check if dependencies are configured via `hatch-requirements-txt` plugin (which reads requirements.test.txt) or if direct entries are needed.
+3. **requirements.test.txt** ✅
+   - Added: `beautifulsoup4`, `pytidylib >= 0.3.2`.
+
+4. **pyproject.toml** ⚠️
+   - Still needs a verification pass to ensure accessibility dependencies are captured (most installs currently flow through `requirements.test.txt`).
+
+### Deleted / Retired Files
+
+- **tests/accessibility/utils.py** ❌
+  - All helpers were migrated into the dedicated validator modules; the compatibility shim has been removed to prevent new call sites.
 
 ---
 
@@ -343,6 +345,12 @@ All marked as `[ ]` (not started). **Need review of accuracy.**
      - https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/navigation.html
      - https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/
 
+2. **WCAG AA Failures in Default Palettes**
+   - **Severity:** High (links and alerts fail contrast requirements)
+   - **Location:** `terminal/css/palettes/default.css`, `pink.css`, `sans.css`, and `gruvbox_dark.css`
+   - **Current Status:** Five failing tests in `TestColorContrast` (primary link + error colors) highlight real palette issues; see latest pytest run on 2026-01-24.
+   - **Required Fix:** Adjust palette variables (`--primary-color`, `--error-color`) or background defaults so they meet ≥4.5:1 contrast for normal text.
+
 ### Planning Issues
 
 1. **tasks.md Phase 3 Inaccurate**
@@ -354,6 +362,10 @@ All marked as `[ ]` (not started). **Need review of accuracy.**
    - Spec requires 80%+ coverage for accessibility test code
    - No coverage reports generated yet
    - **Action needed:** Run coverage tool and verify target is met
+
+3. **tasks.md Phase 4 Still Marked "Not Started"**
+   - Checklist does not mention the implemented color contrast suite or supporting utilities.
+   - **Action needed:** Replace the placeholder tasks with verification, documentation, and remediation items so contributors know what remains.
 
 3. **Color Contrast Phase Not Started**
    - Significant gap: No implementation of WCAG AA contrast validation
