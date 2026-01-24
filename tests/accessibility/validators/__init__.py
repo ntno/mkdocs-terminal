@@ -1,27 +1,41 @@
 """Accessibility validator helpers exposed for tests."""
 
-from .html_validator import (
-    validate_duplicate_ids,
-    validate_semantic_html,
-    validate_html_structure,
-)
 from .aria_validator import (
     validate_aria_buttons,
     validate_aria_hidden,
-    validate_modal_accessibility,
     validate_form_labels,
     validate_link_text,
+    validate_modal_accessibility,
+)
+from .contrast_validator import (
+    BackgroundColorResolver,
+    ColorCombination,
+    ColorCombinationTracker,
+    PaletteColors,
+    assert_contrast_meets_wcag_aa,
+    get_palette_colors,
 )
 from .helpers import _format_violation
+from .html_validator import (
+    validate_duplicate_ids,
+    validate_html_structure,
+    validate_semantic_html,
+)
 
 __all__ = [
     "_format_violation",
+    "BackgroundColorResolver",
+    "ColorCombination",
+    "ColorCombinationTracker",
+    "PaletteColors",
+    "assert_contrast_meets_wcag_aa",
+    "get_palette_colors",
     "validate_duplicate_ids",
-    "validate_semantic_html",
     "validate_html_structure",
+    "validate_semantic_html",
     "validate_aria_buttons",
     "validate_aria_hidden",
-    "validate_modal_accessibility",
     "validate_form_labels",
     "validate_link_text",
+    "validate_modal_accessibility",
 ]

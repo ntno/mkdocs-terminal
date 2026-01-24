@@ -21,230 +21,18 @@ Reference: https://www.w3.org/TR/WCAG20-TECHS/G17.html
 
 import pytest
 import re
-from dataclasses import dataclass, field
-from typing import Dict, List, Optional, Set, Tuple
-
-from bs4 import BeautifulSoup, Tag
 
 from tests.accessibility.utilities import _get_element_computed_styles
-from tests.accessibility.utilities.color_utils import get_contrast_ratio, meets_wcag_aa
+from tests.accessibility.utilities.color_utils import get_contrast_ratio
 from tests.accessibility.utilities.site_context import SiteContextBuilder
 from tests.accessibility.utils import validate_color_contrast
+from tests.accessibility.validators import (
+    BackgroundColorResolver,
+    ColorCombinationTracker,
+    assert_contrast_meets_wcag_aa,
+    get_palette_colors,
+)
 from tests.interface.theme_features import DEFAULT_PALETTES
-
-
-# -----------------------------------------------------------------------------
-# Helper: Background Color Resolution
-# -----------------------------------------------------------------------------
-
-
-def resolve_background_color(
-    element: Tag,
-    css_variables: Dict[str, str],
-    soup: BeautifulSoup,
-    default: str = "#ffffff",
-) -> Optional[str]:
-    """Resolve the effective background color for an element.
-
-    Walks up the DOM tree to find the first non-transparent background color.
-    Falls back to body background or the provided default.
-
-    Args:
-        element: The element to resolve background for
-        css_variables: CSS variable definitions
-        soup: BeautifulSoup document (for finding body)
-        default: Default color if none found
-
-    Returns:
-        Resolved background color string
-    """
-    elem_styles = _get_element_computed_styles(element, css_variables)
-    bg_color = elem_styles.get("background-color")
-
-    if not bg_color or bg_color == "transparent":
-        parent = element.parent
-        while parent and (not bg_color or bg_color == "transparent"):
-            parent_styles = _get_element_computed_styles(parent, css_variables)
-            parent_bg = parent_styles.get("background-color")
-            if parent_bg and parent_bg != "transparent":
-                bg_color = parent_bg
-                break
-            parent = parent.parent
-
-    if not bg_color or bg_color == "transparent":
-        body = soup.find("body")
-        if body:
-            body_styles = _get_element_computed_styles(body, css_variables)
-            bg_color = body_styles.get("background-color") or default
-        else:
-            bg_color = default
-
-    return bg_color
-
-
-# -----------------------------------------------------------------------------
-# Helper: Palette Attribute Access
-# -----------------------------------------------------------------------------
-
-
-@dataclass
-class PaletteColors:
-    """Extracted color values from a palette's CSS attributes."""
-
-    palette_name: str
-    font_color: str
-    background_color: str
-    primary_color: Optional[str] = None
-    error_color: Optional[str] = None
-    font_size: float = 14.0
-
-
-def get_palette_colors(
-    palette_name: str,
-    all_palette_css_attributes: Dict[str, Dict[str, str]],
-    required_attrs: Optional[List[str]] = None,
-) -> PaletteColors:
-    """Extract and validate palette color attributes.
-
-    Args:
-        palette_name: Name of the palette
-        all_palette_css_attributes: Fixture with all palette attributes
-        required_attrs: Additional attributes to require (beyond font/background)
-
-    Returns:
-        PaletteColors with extracted values
-
-    Raises:
-        AssertionError: If required attributes are missing
-    """
-    palette_attributes = all_palette_css_attributes.get(palette_name)
-    assert palette_attributes is not None, f"No CSS attributes defined for palette: {palette_name}"
-
-    font_color = palette_attributes.get("font-color")
-    background_color = palette_attributes.get("background-color")
-
-    assert font_color is not None, f"No font-color defined for palette: {palette_name}"
-    assert background_color is not None, f"No background-color defined for palette: {palette_name}"
-
-    # Parse font size
-    font_size_str = palette_attributes.get("global-font-size", "14px")
-    font_size = float(font_size_str.replace("px", "").strip())
-
-    # Extract optional colors
-    primary_color = palette_attributes.get("primary-color")
-    error_color = palette_attributes.get("error-color")
-
-    # Validate any additional required attributes
-    if required_attrs:
-        for attr in required_attrs:
-            assert palette_attributes.get(attr) is not None, f"No {attr} defined for palette: {palette_name}"
-
-    return PaletteColors(
-        palette_name=palette_name,
-        font_color=font_color,
-        background_color=background_color,
-        primary_color=primary_color,
-        error_color=error_color,
-        font_size=font_size,
-    )
-
-
-# -----------------------------------------------------------------------------
-# Helper: Contrast Validation
-# -----------------------------------------------------------------------------
-
-
-def assert_contrast_meets_wcag_aa(
-    fg_color: str,
-    bg_color: str,
-    font_size: float,
-    context: str,
-    is_bold: bool = False,
-) -> None:
-    """Assert that a color combination meets WCAG AA contrast requirements.
-
-    Args:
-        fg_color: Foreground (text) color
-        bg_color: Background color
-        font_size: Font size in pixels
-        context: Description for error message (e.g., "Palette 'default': Primary link color")
-        is_bold: Whether text is bold
-
-    Raises:
-        AssertionError: If contrast ratio doesn't meet WCAG AA
-    """
-    ratio = get_contrast_ratio(fg_color, bg_color)
-    assert ratio is not None, f"Could not calculate contrast ratio for {fg_color} on {bg_color}"
-
-    is_compliant = meets_wcag_aa(ratio, text_size=font_size, is_bold=is_bold)
-    required = 3.0 if (font_size >= 24 or (is_bold and font_size >= 18.67)) else 4.5
-
-    assert is_compliant, (
-        f"{context} {fg_color} on {bg_color} has contrast {ratio:.2f}:1, "
-        f"does not meet WCAG 2.1 AA minimum of {required}:1 for {font_size}px text"
-    )
-
-
-# -----------------------------------------------------------------------------
-# Helper: Color Combination Tracking
-# -----------------------------------------------------------------------------
-
-
-@dataclass
-class ColorCombination:
-    """Tracks occurrences of a foreground/background color pair."""
-
-    fg_color: str
-    bg_color: str
-    count: int = 0
-    locations: List[str] = field(default_factory=list)
-    element_types: Set[str] = field(default_factory=set)
-
-    def add_occurrence(self, location: str, element_type: Optional[str] = None) -> None:
-        """Record an occurrence of this color combination."""
-        self.count += 1
-        self.locations.append(location)
-        if element_type:
-            self.element_types.add(element_type)
-
-
-class ColorCombinationTracker:
-    """Tracks unique color combinations found during site scanning."""
-
-    def __init__(self):
-        self._combinations: Dict[Tuple[str, str], ColorCombination] = {}
-
-    def add(
-        self,
-        fg_color: str,
-        bg_color: str,
-        location: str,
-        element_type: Optional[str] = None,
-    ) -> None:
-        """Add an occurrence of a color combination."""
-        key = (fg_color.lower(), bg_color.lower())
-        if key not in self._combinations:
-            self._combinations[key] = ColorCombination(fg_color=fg_color.lower(), bg_color=bg_color.lower())
-        self._combinations[key].add_occurrence(location, element_type)
-
-    def get_failures(self, min_ratio: float = 4.5) -> List[str]:
-        """Get list of failure messages for combinations below threshold."""
-        failures = []
-        for combo in self._combinations.values():
-            ratio = get_contrast_ratio(combo.fg_color, combo.bg_color)
-            if ratio and ratio < min_ratio:
-                locations_preview = ", ".join(combo.locations[:3])
-                if len(combo.locations) > 3:
-                    locations_preview += f" (+{len(combo.locations) - 3} more)"
-
-                msg = f"Color {combo.fg_color} on {combo.bg_color} = {ratio:.2f}:1 (need {min_ratio}:1)"
-                if combo.element_types:
-                    msg += f" - Elements: {', '.join(sorted(combo.element_types))}"
-                msg += f" - Found {combo.count} times"
-                if locations_preview:
-                    msg += f" - Examples: {locations_preview}"
-                failures.append(msg)
-        return failures
 
 
 # -----------------------------------------------------------------------------
@@ -303,6 +91,11 @@ class TestColorContrast:
         tracker = ColorCombinationTracker()
 
         for current_page_context in builder.iter_html_files():
+            background_resolver = BackgroundColorResolver(
+                current_page_context.css_variables,
+                current_page_context.soup,
+            )
+
             for link in current_page_context.soup.find_all("a"):
                 link_text = link.get_text(strip=True)[:40]
                 if not link_text:
@@ -313,7 +106,7 @@ class TestColorContrast:
                 if not link_color:
                     continue
 
-                link_bg = resolve_background_color(link, current_page_context.css_variables, current_page_context.soup)
+                link_bg = background_resolver.resolve(link)
 
                 if link_color and link_bg:
                     tracker.add(link_color, link_bg, f"{current_page_context.relative_path}: {link_text[:30]}")
@@ -339,6 +132,11 @@ class TestColorContrast:
         text_tags = ["p", "span", "h1", "h2", "h3", "h4", "h5", "h6", "li", "blockquote", "td", "th"]
 
         for current_page_context in builder.iter_html_files():
+            background_resolver = BackgroundColorResolver(
+                current_page_context.css_variables,
+                current_page_context.soup,
+            )
+
             for elem in current_page_context.soup.find_all(text_tags):
                 if not elem.get_text(strip=True):
                     continue
@@ -348,7 +146,7 @@ class TestColorContrast:
                 if not elem_color:
                     continue
 
-                elem_bg = resolve_background_color(elem, current_page_context.css_variables, current_page_context.soup)
+                elem_bg = background_resolver.resolve(elem)
 
                 if elem_color and elem_bg:
                     tracker.add(elem_color, elem_bg, f"{current_page_context.relative_path}:{elem.name}", elem.name)
@@ -485,6 +283,10 @@ class TestColorContrast:
         }
 
         for current_page_context in builder.iter_html_files():
+            background_resolver = BackgroundColorResolver(
+                current_page_context.css_variables,
+                current_page_context.soup,
+            )
             for alert_type, class_name in [
                 ("error", "terminal-alert-error"),
                 ("primary", "terminal-alert-primary"),
@@ -495,7 +297,7 @@ class TestColorContrast:
                     if not alert_color:
                         continue
 
-                    alert_bg = resolve_background_color(elem, current_page_context.css_variables, current_page_context.soup)
+                    alert_bg = background_resolver.resolve(elem)
 
                     if alert_color and alert_bg:
                         location = f"{current_page_context.relative_path}:{alert_type} #{elem_idx}"
