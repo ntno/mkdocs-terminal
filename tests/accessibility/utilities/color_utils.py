@@ -44,7 +44,7 @@ CSS_NAMED_COLORS = {
 
 
 def normalize_color(color_str: str) -> Optional[Tuple[float, float, float]]:
-    """Convert color string to RGB tuple (0.0-1.0 scale).
+    """Convert a CSS color string to an RGB tuple on the 0.0-1.0 scale.
 
     Supports multiple color formats:
     - Hex: #fff, #ffffff, #FFF, #FFFFFF
@@ -53,10 +53,12 @@ def normalize_color(color_str: str) -> Optional[Tuple[float, float, float]]:
     - Named colors: white, black, red, etc.
 
     Args:
-        color_str: Color string in any supported format
+        color_str: Color string in any supported format (hex/rgb/hsl/named value).
 
     Returns:
-        Tuple of (red, green, blue) with values 0.0-1.0, or None if transparent
+        Tuple of `(red, green, blue)` with float values 0.0-1.0, or `None` if the
+        color represents transparency or cannot be parsed. Example: `"#ff0000"`
+        returns `(1.0, 0.0, 0.0)`.
     """
     if not color_str or not isinstance(color_str, str):
         return None
@@ -111,13 +113,14 @@ def normalize_color(color_str: str) -> Optional[Tuple[float, float, float]]:
 
 
 def _parse_color_value(value_str: str) -> Optional[float]:
-    """Parse a single color value (for rgb notation).
+    """Parse a numeric RGB component from decimal or percentage notation.
 
     Args:
-        value_str: Value string like "255", "100%", "50"
+        value_str: Raw component value such as "255", "100%", or "50".
 
     Returns:
-        Normalized value 0.0-1.0, or None if invalid
+        Float between 0.0 and 1.0 when the value is valid, or `None` if parsing
+        fails. Example: `"128"` returns approximately `0.50196`.
     """
     value_str = value_str.strip()
     try:
@@ -130,7 +133,7 @@ def _parse_color_value(value_str: str) -> Optional[float]:
 
 
 def get_relative_luminance(rgb: Tuple[float, float, float]) -> float:
-    """Calculate relative luminance per WCAG 2.1 formula.
+    """Calculate relative luminance per the WCAG 2.1 definition.
 
     The relative luminance of a color is defined as:
     L = 0.2126 * R + 0.7152 * G + 0.0722 * B
@@ -141,10 +144,11 @@ def get_relative_luminance(rgb: Tuple[float, float, float]) -> float:
     Reference: https://www.w3.org/TR/WCAG20-TECHS/G17.html
 
     Args:
-        rgb: Tuple of (red, green, blue) with values 0.0-1.0
+        rgb: Tuple of `(red, green, blue)` values already normalized to 0.0-1.0.
 
     Returns:
-        Relative luminance value (0.0-1.0)
+        Relative luminance value between 0.0 and 1.0. Example: `(1.0, 1.0, 1.0)`
+        returns `1.0`, while `(0.0, 0.0, 0.0)` returns `0.0`.
     """
     r, g, b = rgb
 
@@ -159,13 +163,14 @@ def get_relative_luminance(rgb: Tuple[float, float, float]) -> float:
 
 
 def _linearize_color_component(value: float) -> float:
-    """Apply gamma correction to a single color component.
+    """Apply WCAG gamma correction to a single color component.
 
     Args:
-        value: Color component value (0.0-1.0)
+        value: Component value between 0.0 and 1.0 in sRGB space.
 
     Returns:
-        Linearized component value
+        Gamma-corrected component value suitable for luminance calculations.
+        Example: an input of `0.02` returns approximately `0.00154`.
     """
     if value <= 0.03928:
         return value / 12.92
@@ -174,7 +179,7 @@ def _linearize_color_component(value: float) -> float:
 
 
 def get_contrast_ratio(color1: str, color2: str) -> Optional[float]:
-    """Calculate contrast ratio between two colors per WCAG 2.1.
+    """Calculate the WCAG 2.1 contrast ratio for two CSS color strings.
 
     The contrast ratio is defined as:
     (L1 + 0.05) / (L2 + 0.05)
@@ -185,11 +190,12 @@ def get_contrast_ratio(color1: str, color2: str) -> Optional[float]:
     Reference: https://www.w3.org/TR/WCAG20-TECHS/G17.html
 
     Args:
-        color1: First color string
-        color2: Second color string
+        color1: First color string (hex, rgb, hsl, named, etc.).
+        color2: Second color string in any supported format.
 
     Returns:
-        Contrast ratio (e.g., 4.5 for 4.5:1 ratio), or None if colors couldn't be parsed
+        Float contrast ratio (e.g., `4.5` for a 4.5:1 ratio), or `None` if either
+        color cannot be parsed. Example: `("#000000", "#ffffff")` returns `21.0`.
     """
     rgb1 = normalize_color(color1)
     rgb2 = normalize_color(color2)
@@ -208,7 +214,7 @@ def get_contrast_ratio(color1: str, color2: str) -> Optional[float]:
 
 
 def meets_wcag_aa(ratio: Optional[float], text_size: int = 14, is_bold: bool = False) -> bool:
-    """Check if contrast ratio meets WCAG 2.1 AA standard.
+    """Check whether a contrast ratio satisfies the WCAG 2.1 AA thresholds.
 
     WCAG 2.1 AA standards:
     - Normal text (< 18pt or < 14pt bold): Minimum 4.5:1
@@ -216,12 +222,15 @@ def meets_wcag_aa(ratio: Optional[float], text_size: int = 14, is_bold: bool = F
     - UI components (buttons, form fields): Minimum 3:1
 
     Args:
-        ratio: Contrast ratio (e.g., 4.5), or None if couldn't be calculated
-        text_size: Font size in pixels (default 14)
-        is_bold: Whether text is bold (default False)
+        ratio: Contrast ratio (e.g., `4.5`), or `None` when calculation failed.
+        text_size: Font size in pixels (defaults to 14px for normal body text).
+        is_bold: Indicates whether the text uses bold weight (defaults to False).
 
     Returns:
-        True if contrast ratio meets WCAG AA standard, False otherwise
+        True when the ratio meets the appropriate WCAG AA threshold for the font
+        size/weight combination, otherwise False. Example: `ratio=4.5,
+        text_size=14` returns `True`, while `ratio=3.0, text_size=14` returns
+        `False`.
     """
     if ratio is None:
         return False
