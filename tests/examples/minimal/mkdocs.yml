@@ -2,6 +2,6 @@ INHERIT: ../base.yml
 site_name: MyTest
 
 nav:
-    - 'testing.md'
+    - 'index.md'
 
 site_author: "Tom Christie & Dougal Matthews"

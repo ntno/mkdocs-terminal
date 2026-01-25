@@ -88,7 +88,13 @@ quick-tests:
 
 #for developer use, assumes you have already installed prereqs
 generate-test-coverage:
-	pytest --cov=terminal --cov-branch --cov-report=html tests/
+	pytest \
+		--cov=terminal \
+ 		--cov=tests/interface \
+		--cov=tests/utils \
+        --cov=tests/accessibility \
+        --cov-branch \
+        --cov-report=html && \
 	rm -rf documentation/docs/about/coverage-report/.gitignore
 
 

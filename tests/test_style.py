@@ -1,3 +1,4 @@
+from pathlib import Path
 from tests.utils.html import assert_valid_html
 from tests.interface import theme_features
 from tests.utils.filters import MOCK_URL_PATH_PREFIX
@@ -82,3 +83,16 @@ class TestStyles():
         assert "grid-template-columns: auto;" in rendered_styles
         assert "grid-template-columns: 4fr 9fr;" not in rendered_styles
         assert_valid_html(rendered_styles)
+
+    def test_palette_css_files_registered_in_default_palettes(self):
+        """Ensure every CSS palette file is represented in DEFAULT_PALETTES."""
+        repo_root = Path(__file__).resolve().parent.parent
+        palettes_dir = repo_root / "terminal" / "css" / "palettes"
+        assert palettes_dir.is_dir(), f"Missing palettes directory: {palettes_dir}"
+
+        palette_files = sorted(p.stem for p in palettes_dir.glob("*.css"))
+        missing = [palette for palette in palette_files if palette not in theme_features.DEFAULT_PALETTES]
+
+        assert not missing, (
+            "Palette CSS files lack DEFAULT_PALETTES registration: " + ", ".join(missing)
+        )

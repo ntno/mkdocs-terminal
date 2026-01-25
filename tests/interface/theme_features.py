@@ -1,6 +1,16 @@
 # theme config options
 PALETTE_OPTION = "palette"
 
+# List of default color palettes available in the theme
+DEFAULT_PALETTES = [
+    "default",
+    "dark",
+    "gruvbox_dark",
+    "pink",
+    "sans",
+    "sans_dark",
+]
+
 # theme features
 FOOTER_PREV_NEXT = "footer.prev_next"
 SHOW_REVISION_DATE = "revision.date"
