@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="generator" content="mkdocs-1.6.1, mkdocs-terminal-4.7.7">
+     
+    
+    <meta name="author" content="ntno"> 
+    
+    <link rel="canonical" href="https://ntno.github.io/mkdocs-terminal/accessibility/">
+
+
+    
+ 
+<title>Accessibility - Terminal for MkDocs</title>
+
+
+<link href="../css/fontawesome/css/fontawesome.min.css" rel="stylesheet">
+<link href="../css/fontawesome/css/solid.min.css" rel="stylesheet">
+<link href="../css/normalize.css" rel="stylesheet">
+<link href="../css/terminal.css" rel="stylesheet">
+<link href="../css/theme.css" rel="stylesheet">
+<link href="../css/theme.tile_grid.css" rel="stylesheet">
+<link href="../css/theme.footer.css" rel="stylesheet">
+<!-- default color palette -->
+<link href="../css/palettes/default.css" rel="stylesheet">
+
+<!-- page layout -->
+<style>
+/* initially set page layout to a one column grid */
+.terminal-mkdocs-main-grid {
+    display: grid;
+    grid-column-gap: 1.4em;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+}
+
+/*  
+*   when side navigation is not hidden, use a two column grid.  
+*   if the screen is too narrow, fall back to the initial one column grid layout.
+*   in this case the main content will be placed under the navigation panel. 
+*/
+@media only screen and (min-width: 70em) {
+    .terminal-mkdocs-main-grid {
+        grid-template-columns: 4fr 9fr;
+    }
+}</style>
+
+
+
+    
+    <link href="../overrides/extra.css" rel="stylesheet">  
+    
+    
+
+    
+    <!-- search css support -->
+<link href="../css/search/bootstrap-modal.css" rel="stylesheet">
+<!-- search scripts -->
+<script>
+    var base_url = "..",
+    shortcuts = "{}";
+</script>
+<script src="../js/jquery/jquery-1.10.1.min.js" defer></script>
+<script src="../js/bootstrap/bootstrap.min.js" defer></script>
+<script src="../js/mkdocs/base.js" defer></script>
+    
+    
+    
+    
+    <script src="../search/main.js"></script>
+    
+
+    
+</head>
+
+<body class="terminal"><div class="container">
+    <div class="terminal-nav">
+        <header class="terminal-logo">
+            <div id="mkdocs-terminal-site-name" class="logo terminal-prompt"><a href="https://ntno.github.io/mkdocs-terminal/" class="no-style">Terminal for MkDocs</a></div>
+        </header>
+        
+        <nav class="terminal-menu">
+            
+            <ul vocab="https://schema.org/" typeof="BreadcrumbList">
+                
+                
+                <li property="itemListElement" typeof="ListItem">
+                    <a href=".." class="menu-item " property="item" typeof="WebPage">
+                        <span property="name">Home</span>
+                    </a>
+                    <meta property="position" content="0">
+                </li>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <li property="itemListElement" typeof="ListItem">
+                    <a href="../install/" class="menu-item " property="item" typeof="WebPage">
+                        <span property="name">Install</span>
+                    </a>
+                    <meta property="position" content="1">
+                </li>
+                
+                
+                <li property="itemListElement" typeof="ListItem">
+                    <a href="../releases/" class="menu-item " property="item" typeof="WebPage">
+                        <span property="name">Releases</span>
+                    </a>
+                    <meta property="position" content="2">
+                </li>
+                
+                
+                <li property="itemListElement" typeof="ListItem">
+                    <a href="./" class="menu-item active" property="item" typeof="WebPage">
+                        <span property="name">Accessibility</span>
+                    </a>
+                    <meta property="position" content="3">
+                </li>
+                
+                    
+                    
+
+
+<li property="itemListElement" typeof="ListItem">
+    <a href="#" class="menu-item" data-toggle="modal" data-target="#mkdocs_search_modal" property="item" typeof="SearchAction">
+        <i aria-hidden="true" class="fa fa-search"></i> <span property="name">Search</span>
+    </a>
+    <meta property="position" content="4">
+</li>
+                    
+            </ul>
+            
+        </nav>
+    </div>
+</div>
+        
+    <div class="container">
+        <div class="terminal-mkdocs-main-grid"><aside id="terminal-mkdocs-side-panel"><nav>
+    <ul class="terminal-mkdocs-side-nav-items">
+        
+          <li class="terminal-mkdocs-side-nav-li">
+    
+    
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="..">Home</a>
+        
+    
+    
+    
+       </li>
+        
+          <li class="terminal-mkdocs-side-nav-li">
+    
+        
+        
+            
+            
+                
+                
+        
+             
+            
+    
+        
+        <a class="terminal-mkdocs-side-nav-item" href="../configuration/">Configuration</a>
+    
+    
+        
+        
+            <ul class="terminal-mkdocs-side-nav-li-ul">
+        
+            
+            
+                
+                
+                    
+                
+            
+            
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        <a class="terminal-mkdocs-side-nav-item" href="../configuration/palettes/">Color Palettes</a>
+    
+    </li>
+            
+        
+            
+            
+                
+                
+                    
+                
+            
+            
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        <a class="terminal-mkdocs-side-nav-item" href="../configuration/code-highlighting/">Code Highlighting</a>
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../configuration/features/">Features</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../configuration/blocks/">Blocks</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../configuration/plugins/">Plugins</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../configuration/plugins/git-revision/">___Git Revision</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../configuration/plugins/macros/">___Macros</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../configuration/plugins/search/">___Search</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../configuration/extensions/">Extensions</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../configuration/extensions/python-markdown/">Markdown Extensions</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../configuration/extensions/pymdown-extensions/">PyMdown Extensions</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../configuration/extensions/snippets/">___Snippets</a>
+        
+    
+    </li>
+            
+            
+    </ul>
+        
+    
+       </li>
+        
+          <li class="terminal-mkdocs-side-nav-li">
+    
+        
+        
+            
+                
+        
+        
+            
+    
+        
+        
+            
+            
+            <span class="
+        
+            
+        
+    terminal-mkdocs-side-nav-item terminal-mkdocs-side-nav-section-no-index">Navigation</span>
+        
+    
+    
+        
+        
+            <ul class="terminal-mkdocs-side-nav-li-ul">
+        
+            
+            
+                
+                
+            
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../navigation/section-indexes/">Section Indexes</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../navigation/toc/">Table of Contents</a>
+        
+    
+    </li>
+            
+            
+    </ul>
+        
+    
+       </li>
+        
+          <li class="terminal-mkdocs-side-nav-li">
+    
+        
+        
+            
+            
+                
+                
+        
+             
+            
+    
+        
+        <a class="terminal-mkdocs-side-nav-item" href="../tile-grid/">Tile Grid</a>
+    
+    
+        
+        
+            <ul class="terminal-mkdocs-side-nav-li-ul">
+        
+            
+            
+                
+                
+            
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../tile-grid/tile/">Tile Reference</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../tile-grid/grid/">Grid Reference</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../tile-grid/pluglet/">Pluglet Reference</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../tile-grid/examples/example-page/">Example</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../tile-grid/examples/images-only/">Image Only</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../tile-grid/examples/links-only/">Link Only</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../tile-grid/examples/override-styling/">Override Styling</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../tile-grid/examples/inline/">Inline Example</a>
+        
+    
+    </li>
+            
+            
+    </ul>
+        
+    
+       </li>
+        
+          <li class="terminal-mkdocs-side-nav-li">
+    
+        
+        
+            
+                
+        
+        
+            
+    
+        
+        
+            
+            
+            <span class="
+        
+            
+        
+    terminal-mkdocs-side-nav-item terminal-mkdocs-side-nav-section-no-index">Elements</span>
+        
+    
+    
+        
+        
+            <ul class="terminal-mkdocs-side-nav-li-ul">
+        
+            
+            
+                
+                
+            
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../elements/blockquotes/">Blockquotes</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../elements/buttons/">Buttons</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../elements/code/">Code</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../elements/definitions/">Definitions</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../elements/details/">Details</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../elements/figure/">Figures</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../elements/footnotes/">Footnotes</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../elements/links/">Links</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../elements/lists/">Lists</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../elements/table/">Tables</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../elements/tooltips/">Tooltips</a>
+        
+    
+    </li>
+            
+        
+            
+            
+                
+                
+            
+             
+                <li class="terminal-mkdocs-side-nav-li-ul-li">
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../elements/typography/">Typography</a>
+        
+    
+    </li>
+            
+            
+    </ul>
+        
+    
+       </li>
+        
+          <li class="terminal-mkdocs-side-nav-li">
+    
+    
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../install/">Install</a>
+        
+    
+    
+    
+       </li>
+        
+          <li class="terminal-mkdocs-side-nav-li">
+    
+    
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../releases/">Releases</a>
+        
+    
+    
+    
+       </li>
+        
+          <li class="terminal-mkdocs-side-nav-li">
+    
+    
+    
+        
+        <span class="terminal-mkdocs-side-nav-item--active">Accessibility</span>
+    
+    
+    
+       </li>
+        
+    </ul>
+</nav><hr>
+<nav>
+    <ul>
+        <li><a href="#accessibility">Accessibility</a></li>
+        <li><a href="#known-issues">Known Issues</a></li><li><a href="#report-an-issue">Report An Issue</a></li>
+    </ul>
+</nav>
+</aside>
+            <main id="terminal-mkdocs-main-content">
+    
+    
+    
+    
+    
+
+<section id="mkdocs-terminal-content">
+    <h1 id="accessibility">Accessibility<a class="headerlink" href="#accessibility" title="Anchor link to this section for reference">#</a></h1>
+<h2 id="known-issues">Known Issues<a class="headerlink" href="#known-issues" title="Anchor link to this section for reference">#</a></h2>
+<h3 id="color-contrast">Color Contrast<a class="headerlink" href="#color-contrast" title="Anchor link to this section for reference">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Palette</th>
+<th>Primary Links</th>
+<th>Buttons</th>
+<th>Code Blocks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../configuration/palettes/default/">default</a></td>
+<td>x</td>
+<td>x</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../configuration/palettes/sans/">sans</a></td>
+<td>x</td>
+<td>x</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../configuration/palettes/pink/">pink</a></td>
+<td>x</td>
+<td>x</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../configuration/palettes/gruvbox-dark/">gruvbox_dark</a></td>
+<td></td>
+<td>x</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../configuration/palettes/dark/">dark</a></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../configuration/palettes/sans-dark/">sans_dark</a></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>'x' indicates an open WCAG 2.1 AA contrast failure detected by the <a href="https://github.com/ntno/mkdocs-terminal/blob/main/tests/accessibility/test_color_contrast.py">test_color_contrast.py</a> integration test.  </p>
+<p>See <a href="#color-contrast-failures">Color Contrast Failures</a> for the measured ratios and affected components.</p>
+<p>Future releases of the Terminal for MkDocs theme will include palettes which meet WCAG 2.1 AA contrast standards.  To track progress, see issue <a href="https://github.com/ntno/mkdocs-terminal/issues/119">#119</a>.</p>
+<h4 id="color-contrast-failures">Color Contrast Failures<a class="headerlink" href="#color-contrast-failures" title="Anchor link to this section for reference">#</a></h4>
+<p>Ratios and RGB hex pairs come from the January 25 2026 run of <a href="../tests/accessibility/test_color_contrast.py">tests/accessibility/test_color_contrast.py</a>.</p>
+<p>Expected contrast for all combinations is <code>4.5 : 1</code></p>
+<h5 id="default">default<a class="headerlink" href="#default" title="Anchor link to this section for reference">#</a></h5>
+<ul>
+<li>Primary links (#1a95e0 on #ffffff) measure <code>3.27 : 1</code> </li>
+<li>Primary buttons (#ffffff text on #1a95e0 background) also measure <code>3.27 : 1</code> </li>
+</ul>
+<h5 id="dark">dark<a class="headerlink" href="#dark" title="Anchor link to this section for reference">#</a></h5>
+<ul>
+<li>No open contrast failures as of January 25 2026.</li>
+</ul>
+<h5 id="gruvbox_dark">gruvbox_dark<a class="headerlink" href="#gruvbox_dark" title="Anchor link to this section for reference">#</a></h5>
+<ul>
+<li>Alert message accents (#fb4934 on #282828) measure <code>4.29 : 1</code></li>
+<li>Ghost error buttons (#fb4934 text on #282828 background) also measure <code>4.29 : 1</code> </li>
+</ul>
+<h5 id="pink">pink<a class="headerlink" href="#pink" title="Anchor link to this section for reference">#</a></h5>
+<ul>
+<li>Primary links (#f90d7a on #ffffff) measure <code>3.91 : 1</code> </li>
+<li>Primary buttons (#f7f7f7 on #f90d7a) measure <code>3.65 : 1</code> </li>
+</ul>
+<h5 id="sans">sans<a class="headerlink" href="#sans" title="Anchor link to this section for reference">#</a></h5>
+<ul>
+<li>Primary links (#1a95e0 on #ffffff) measure <code>3.27 : 1</code></li>
+<li>Primary buttons (#ffffff on #1a95e0) measure <code>3.27 : 1</code> </li>
+</ul>
+<h5 id="sans_dark">sans_dark<a class="headerlink" href="#sans_dark" title="Anchor link to this section for reference">#</a></h5>
+<ul>
+<li>No open contrast failures as of January 25 2026.</li>
+</ul>
+<h2 id="report-an-issue">Report An Issue<a class="headerlink" href="#report-an-issue" title="Anchor link to this section for reference">#</a></h2>
+<p>To report an issue, please create a new issue in the GitHub repository: <a href="https://github.com/ntno/mkdocs-terminal/issues/new/choose">mkdocs-terminal &gt; Create new issue</a></p>
+</section>
+
+<section id="mkdocs-terminal-after-content">
+    
+</section>
+<section id="mkdocs-terminal-revision">
+<br>
+<aside>
+    <p>
+        <small>
+            <i>Page last updated 2026-01-25. See revision history on <a href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/accessibility.md">GitHub</a>.</i>
+        </small>
+    </p>
+</aside>
+</section>
+            </main>
+        </div>
+        <hr><footer>
+    <div class="terminal-mkdocs-footer-grid">
+        <div id="terminal-mkdocs-footer-copyright-info">
+            
+            <p class="text-center text-muted">Copyright 2023-2026 Natan Organick, All rights reserved</p>
+             Site built with <a href="http://www.mkdocs.org">MkDocs</a> and <a href="https://github.com/ntno/mkdocs-terminal">Terminal for MkDocs</a>.
+        </div>
+        <div id="terminal-mkdocs-footer-prev-next">
+            <nav class="btn-group">
+                <a href="../releases/" title="Releases">Previous</a>
+                
+            </nav>
+        </div>
+    </div>
+</footer>
+    </div>
+
+    
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="alertdialog" aria-modal="true" aria-labelledby="searchModalLabel">
+    <div class="modal-dialog modal-lg" role="search">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="searchModalLabel">Search</h5>
+                <button type="button" class="close btn btn-default btn-ghost" data-dismiss="modal"><span aria-hidden="true">x</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p id="searchInputLabel">Type to start searching</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" aria-labelledby="searchInputLabel" placeholder="" id="mkdocs-search-query" title="Please enter search terms here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No document matches found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</body>
+
+</html>
