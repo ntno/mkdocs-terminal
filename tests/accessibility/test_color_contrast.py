@@ -107,6 +107,57 @@ class TestColorContrast:
         )
 
     @pytest.mark.parametrize("palette_name", DEFAULT_PALETTES)
+    def test_default_button_text_contrast_meets_wcag_aa(self, palette_name, all_palette_css_attributes):
+        """Ensure default buttons (--font-color background) keep text legible."""
+
+        colors = get_palette_colors(
+            palette_name,
+            all_palette_css_attributes,
+            required_attrs=["invert-font-color"],
+        )
+
+        assert_contrast_meets_wcag_aa(
+            colors.invert_font_color,
+            colors.font_color,
+            colors.font_size,
+            f"Palette '{palette_name}': Default button text color",
+        )
+
+    @pytest.mark.parametrize("palette_name", DEFAULT_PALETTES)
+    def test_primary_button_text_contrast_meets_wcag_aa(self, palette_name, all_palette_css_attributes):
+        """Ensure primary buttons (--primary-color background) meet WCAG contrast."""
+
+        colors = get_palette_colors(
+            palette_name,
+            all_palette_css_attributes,
+            required_attrs=["invert-font-color", "primary-color"],
+        )
+
+        assert_contrast_meets_wcag_aa(
+            colors.invert_font_color,
+            colors.primary_color,
+            colors.font_size,
+            f"Palette '{palette_name}': Primary button text color",
+        )
+
+    @pytest.mark.parametrize("palette_name", DEFAULT_PALETTES)
+    def test_error_button_text_contrast_meets_wcag_aa(self, palette_name, all_palette_css_attributes):
+        """Ensure error buttons (--error-color background) keep text contrast compliant."""
+
+        colors = get_palette_colors(
+            palette_name,
+            all_palette_css_attributes,
+            required_attrs=["invert-font-color", "error-color"],
+        )
+
+        assert_contrast_meets_wcag_aa(
+            colors.invert_font_color,
+            colors.error_color,
+            colors.font_size,
+            f"Palette '{palette_name}': Error button text color",
+        )
+
+    @pytest.mark.parametrize("palette_name", DEFAULT_PALETTES)
     def test_code_block_text_contrast_meets_wcag_aa(self, palette_name, all_palette_css_attributes):
         """Ensure code block text stays legible against the code background."""
 

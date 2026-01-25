@@ -19,6 +19,7 @@ class PaletteColors:
     palette_name: str
     font_color: str
     background_color: str
+    invert_font_color: Optional[str] = None
     primary_color: Optional[str] = None
     error_color: Optional[str] = None
     secondary_color: Optional[str] = None
@@ -38,6 +39,7 @@ def get_palette_colors(
 
     font_color = palette_attributes.get("font-color")
     background_color = palette_attributes.get("background-color")
+    invert_font_color = palette_attributes.get("invert-font-color")
 
     assert font_color is not None, f"No font-color defined for palette: {palette_name}"
     assert background_color is not None, f"No background-color defined for palette: {palette_name}"
@@ -59,6 +61,7 @@ def get_palette_colors(
         palette_name=palette_name,
         font_color=font_color,
         background_color=background_color,
+        invert_font_color=invert_font_color,
         primary_color=primary_color,
         error_color=error_color,
         secondary_color=secondary_color,
