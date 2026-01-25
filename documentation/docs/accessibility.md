@@ -29,7 +29,8 @@ Palettes are listed alphabetically. Ratios and RGB hex pairs come from the Janua
 - Code blocks render #151515 text on #3f3f44 and only reach 1.74 : 1 (needs 4.5 : 1).
 
 ##### gruvbox_dark
-- Alert/error accents and ghost error buttons (#fb4934 on #282828) measure 4.29 : 1, just shy of 4.5 : 1.
+- Alert/error message accents (#fb4934 on #282828) measure 4.29 : 1, just shy of 4.5 : 1.
+- Ghost error buttons (#fb4934 text on #282828 background) also measure 4.29 : 1 (< 4.5 : 1).
 - Code blocks use #151515 on #504945 and measure 2.07 : 1 (needs 4.5 : 1).
 
 ##### pink
