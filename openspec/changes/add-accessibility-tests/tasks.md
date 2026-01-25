@@ -78,21 +78,21 @@ _Status: ❌ Not started — coverage baseline and contributor docs outstanding.
 
 ### Phase 7: CI/CD Integration
 
-_Status: ⚠️ Partial — tests wired into pytest/make flows, but CI + multi-runtime verification still open._
+_Status: ⚠️ Partial — CI coverage landed for Python 3.8-3.12 on Ubuntu/macOS; Windows is blocked by [issue #59](https://github.com/ntno/mkdocs-terminal/issues/59)._ 
 
-- [ ] Verify accessibility tests run in CI pipeline
-- [ ] Ensure tests pass on all supported Python versions (3.8-3.12)
-- [ ] Ensure tests pass on all supported OS (ubuntu, macOS, windows)
+- [x] Verify accessibility tests run in CI pipeline
+- [x] Ensure tests pass on all supported Python versions (3.8-3.12)
+- [ ] Ensure tests pass on all supported OS (ubuntu, macOS, windows) — Ubuntu/macOS verified; Windows execution deferred pending dependency fix in [issue #59](https://github.com/ntno/mkdocs-terminal/issues/59)
 - [ ] Document how to run accessibility tests locally
-- [ ] Add accessibility test results to CI artifacts if needed
+- [ ] _(Future enhancement)_ Add accessibility test results to CI artifacts if needed
 
 ### Phase 8: Validation & Cleanup
 
-_Status: ❌ Not started — final validation steps deferred until earlier phases close._
+_Status: ⚠️ Partial — validation runs are complete; code review and final sign-off remain._
 
-- [ ] Run full test suite to ensure no regressions
-- [ ] Verify all accessibility tests pass locally
-- [ ] Validate that accessibility issues in templates are properly detected
+- [x] Run full test suite to ensure no regressions
+- [x] Verify all accessibility tests pass locally
+- [x] Validate that accessibility issues in templates are properly detected
 - [ ] Review test code for maintainability and clarity
 - [ ] Final review before merge
 
