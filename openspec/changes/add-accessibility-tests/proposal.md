@@ -126,6 +126,20 @@ Accessibility tests will use a multi-layered approach focused on theme component
 2. Should accessibility tests be required to pass in CI, or initially warnings only?
 3. What baseline accessibility level should we target? (WCAG 2.1 AA or higher)
 
+## Future Enhancements
+
+### Automated Contrast Reporting (Proposed)
+
+Add a follow-on feature that automatically captures every measured contrast ratio from the pytest suite and publishes it for documentation and CI visibility:
+
+1. Extend `tests/accessibility/test_color_contrast.py` (or a pytest plugin) to emit structured JSON for each evaluated palette/component pair, including palette name, component, foreground/background colors, and the measured ratio.
+2. Persist the aggregated JSON to `artifacts/accessibility/contrast_failures.json` (one entry per measurement) so CI can upload it and downstream tooling can reuse it.
+3. Create a CLI helper (for example `scripts/export_contrast_report.py`) that reads the JSON artifact and renders reusable outputs: Markdown fragments for docs, CSV for spreadsheets, or other formats.
+4. Update the docs build to include the generated Markdown fragment (e.g., `documentation/docs/includes/contrast_failures.md`) so the Accessibility page always reflects the latest ratios without manual editing.
+5. Optionally wire CI to comment on pull requests or fail builds when new failures appear by diffing the JSON artifact between branches.
+
+This enhancement would keep user-facing documentation synchronized with test output and reduce manual effort when palette contrast issues change over time.
+
 ## References
 
 - [WCAG 2.1 Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)

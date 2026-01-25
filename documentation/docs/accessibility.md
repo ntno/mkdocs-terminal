@@ -21,28 +21,30 @@ Future releases of the Terminal for MkDocs theme will include palettes which mee
 
 Palettes are listed alphabetically. Ratios and RGB hex pairs come from the January 25 2026 run of [tests/accessibility/test_color_contrast.py](../tests/accessibility/test_color_contrast.py).
 
+Expected contrast for all combinations is `4.5 : 1`
+
 ##### default
-- Primary links (#1a95e0 on #ffffff) measure 3.27 : 1 against the required 4.5 : 1.
-- Primary buttons (#ffffff text on #1a95e0 background) also measure 3.27 : 1 (< 4.5 : 1).
+- Primary links (#1a95e0 on #ffffff) measure `3.27 : 1` 
+- Primary buttons (#ffffff text on #1a95e0 background) also measure `3.27 : 1` 
 
 ##### dark
-- Code blocks render #151515 text on #3f3f44 and only reach 1.74 : 1 (needs 4.5 : 1).
+- Code blocks (#151515 text on #3f3f44) measure `1.74 : 1` 
 
 ##### gruvbox_dark
-- Alert/error message accents (#fb4934 on #282828) measure 4.29 : 1, just shy of 4.5 : 1.
-- Ghost error buttons (#fb4934 text on #282828 background) also measure 4.29 : 1 (< 4.5 : 1).
-- Code blocks use #151515 on #504945 and measure 2.07 : 1 (needs 4.5 : 1).
+- Alert message accents (#fb4934 on #282828) measure `4.29 : 1`
+- Ghost error buttons (#fb4934 text on #282828 background) also measure `4.29 : 1` 
+- Code blocks (#151515 text on #504945) measure `2.07 : 1` 
 
 ##### pink
-- Primary links (#f90d7a on #ffffff) measure 3.91 : 1 (< 4.5 : 1).
-- Primary buttons (#f7f7f7 on #f90d7a) measure 3.65 : 1 (< 4.5 : 1).
+- Primary links (#f90d7a on #ffffff) measure `3.91 : 1` 
+- Primary buttons (#f7f7f7 on #f90d7a) measure `3.65 : 1` 
 
 ##### sans
-- Primary links (#1a95e0 on #ffffff) measure 3.27 : 1 (< 4.5 : 1).
-- Primary buttons (#ffffff on #1a95e0) measure 3.27 : 1 (< 4.5 : 1).
+- Primary links (#1a95e0 on #ffffff) measure `3.27 : 1 `
+- Primary buttons (#ffffff on #1a95e0) measure `3.27 : 1` 
 
 ##### sans_dark
-- Code blocks use #151515 on #3f3f44, yielding 1.74 : 1 instead of 4.5 : 1.
+- Code blocks (#151515 text on #3f3f44) measure `1.74 : 1`
 
 ## Report An Issue
 
