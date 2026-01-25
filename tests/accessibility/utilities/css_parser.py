@@ -183,16 +183,19 @@ def extract_css_attributes(css_content: str, fallback_css_content: str = "") -> 
             fallback_variables[f"--{var_name}"] = var_value
 
     result: Dict[str, str] = {}
+
+    combined_variables: Dict[str, str] = dict(fallback_variables)
+    combined_variables.update(all_variables)
     for attr in attributes_to_extract:
         var_name = f"--{attr}"
         if var_name in all_variables:
-            resolved_value = resolve_css_variable(all_variables[var_name], all_variables)
+            resolved_value = resolve_css_variable(all_variables[var_name], combined_variables)
             if resolved_value:
                 result[attr] = resolved_value
                 continue
 
         if var_name in fallback_variables:
-            resolved_value = resolve_css_variable(fallback_variables[var_name], fallback_variables)
+            resolved_value = resolve_css_variable(fallback_variables[var_name], combined_variables)
             if resolved_value:
                 result[attr] = resolved_value
 
