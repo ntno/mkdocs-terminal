@@ -1,1 +1,0 @@
-"""Accessibility-specific pytest fixtures."""

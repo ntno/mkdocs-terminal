@@ -12,12 +12,10 @@ import pytest
 from mkdocs.structure.files import File, Files
 from mkdocs.structure.nav import get_navigation
 from tests.integration_helper import load_config
-
-
-pytest_plugins = [
-    "tests.accessibility.fixtures.palette",
-    "tests.accessibility.fixtures.site",
-]
+from tests.accessibility.utilities.palette_loader import (
+    load_all_palette_css_attributes,
+    load_palette_css_attributes,
+)
 
 
 @pytest.fixture
@@ -304,6 +302,25 @@ def build_flat_site_navigation_from_config(nav_cfg):
 # def prefix_loader(filesystem_loader, dict_loader):
 #     """returns a PrefixLoader"""
 #     return loaders.PrefixLoader({"a": filesystem_loader, "b": dict_loader})
+
+@pytest.fixture
+def palette_css_attributes(request):
+    """Return resolved CSS attributes for a specific palette."""
+    palette_name = getattr(request, "param", "default")
+    return load_palette_css_attributes(palette_name)
+
+
+@pytest.fixture
+def all_palette_css_attributes():
+    """Return resolved CSS attributes for every default palette."""
+    return load_all_palette_css_attributes()
+
+
+@pytest.fixture(scope="session")
+def built_example_site_with_palette(tmp_path_factory, request):
+    """Build an example site with a specified palette for accessibility tests."""
+    example_name, palette_name = getattr(request, "param", ("minimal", "default"))
+    return build_example_site(tmp_path_factory, example_name, palette_name)
 
 
 @pytest.fixture(scope="session")

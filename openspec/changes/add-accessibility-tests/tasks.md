@@ -51,7 +51,7 @@ _Status: ⚠️ In progress — contrast suite implemented (tests currently fail
 - [x] Create `tests/accessibility/test_color_contrast.py`
 - [x] Implement color contrast ratio validation (WCAG AA standard)
 - [x] Add tests for text color vs background
-- [x] Add palette fixture + utilities (`palette_loader.py`, `ColorCombinationTracker`, `BackgroundColorResolver`)
+- [x] Add palette fixture + utilities (`palette_loader.py` plus shared fixtures housed in `tests/conftest.py`)
 - [ ] Add tests for focus indicators / outlines / hover states (requires DOM simulation or browser automation)
 - [ ] Document color contrast expectations and remediation guidance in developer docs
 - [ ] Track and remediate failing palettes (default, pink, sans, gruvbox_dark) or add follow-up issues before merge
@@ -174,17 +174,18 @@ _Status: ❌ Not started — final validation steps deferred until earlier phase
    - Loads every CSS palette file plus the fallback theme CSS, caches results, and feeds parametrized tests via `load_all_palette_css_attributes()`.
 
 3. **tests/accessibility/validators/contrast_validator.py** — Contrast helpers
-   - Hosts `PaletteColors`, `assert_contrast_meets_wcag_aa()`, `ColorCombinationTracker`, `BackgroundColorResolver`, and `validate_color_contrast()`.
+   - Hosts `PaletteColors`, `assert_contrast_meets_wcag_aa()`, and `validate_color_contrast()` after retiring the DOM-only helpers that produced false positives.
 
-4. **tests/accessibility/test_color_contrast.py** — Integration + palette tests
-   - Exercises built sites across all palettes (body text, arbitrary text nodes, buttons/forms, alerts, CSS extraction) and palette-only assertions (primary/error colors, regression ratios).
+4. **tests/accessibility/test_color_contrast.py** — Palette-focused tests
+   - Now limited to palette-level assertions (primary/error colors, regression ratios); the DOM-scraping tests were removed once we discovered they could not reliably infer computed styles from the static HTML.
 
 5. **tests/accessibility/test_color_utils.py** — Unit coverage for parsing/luminance logic (33 tests spanning parsing, luminance, ratios, WCAG thresholds, CSS extraction).
 
 ### Utility + Fixture Updates
 
-- `SiteContextBuilder` + new `built_example_site_with_palette` fixture share palette-aware site builds across tests.
+- `SiteContextBuilder` + the shared `built_example_site_with_palette` fixture (now defined in the root `tests/conftest.py`) provide palette-aware site builds for tests that still need rendered HTML (e.g., `tests/accessibility/test_css_loading.py`).
 - Palette CSS attributes are cached via `palette_loader`, dramatically reducing repeated IO.
+- The `all_palette_css_attributes` fixture also lives in `tests/conftest.py`, keeping every accessibility test on a single shared fixture surface.
 - `validate_color_contrast()` moved out of the deprecated `utils.py` file into `contrast_validator.py` and now leverages `_get_element_computed_styles()` throughout.
 
 ### Key Implementation Decisions

@@ -117,27 +117,25 @@ The accessibility testing module (`tests/accessibility/`) currently contains ~2,
 - Update: `tests/accessibility/validators/__init__.py`
 - `tests/accessibility/test_color_contrast.py` (remove helper implementations, import from contrast_validator.py)
 
+**Current Status:** The palette helpers (`PaletteColors`, `get_palette_colors()`, `assert_contrast_meets_wcag_aa()`) remain in `contrast_validator.py`, while the DOM-oriented `BackgroundColorResolver`/`ColorCombinationTracker` classes were removed once we eliminated the site-scanning tests due to false positives.
+
 ---
 
-#### 2.2 Extract palette-related fixtures into dedicated conftest
-**Problem:** Palette testing logic and fixtures scattered; `all_palette_css_attributes` fixture is complex
+#### 2.2 Keep palette-related fixtures in the root `tests/conftest.py`
+**Problem:** Palette testing logic and fixtures were previously scattered between dedicated modules and ad-hoc helpers.
 
-**Proposed Solution:**
-- Create `tests/accessibility/conftest.py` with:
-  - `all_palette_css_attributes` fixture
-  - `built_example_site_with_palette` fixture (if moved from main conftest)
-  - Helper functions for palette operations
-  
-- Document fixture scope and usage in module docstring
+**Current Solution:**
+- Consolidate everything in the existing root-level `tests/conftest.py`, which now exposes `all_palette_css_attributes`, `built_example_site_with_palette`, and related helpers.
+- Document fixture scope and usage directly in that file to keep a single source of truth.
 
 **Benefits:**
-- Centralizes palette test infrastructure
-- Easier to understand palette fixture relationships
-- Can reuse in other test files
+- Centralizes palette test infrastructure without fragmenting pytest discovery.
+- Easier to understand fixture relationships (all consumers import from the same module).
+- Avoids maintaining multiple `conftest.py` files, which previously caused fixture duplication and circular import headaches.
 
 **Files Affected:**
-- New: `tests/accessibility/conftest.py`
-- Update imports in `test_color_contrast.py`
+- `tests/conftest.py`
+- Tests importing fixtures (e.g., `tests/accessibility/test_color_contrast.py`, `tests/accessibility/test_css_loading.py`)
 
 ---
 

@@ -75,10 +75,9 @@ Accessibility tests will use a multi-layered approach focused on theme component
 - `tests/accessibility/test_aria_attributes.py`
 - `tests/accessibility/test_color_contrast.py`
 - `tests/accessibility/utils.py`
-- `tests/accessibility/fixtures.py`
 
 **Modify:**
-- `tests/conftest.py` — Add accessibility test fixtures/utilities
+- `tests/conftest.py` — Add accessibility test fixtures/utilities (all shared fixtures now live here instead of a `tests/accessibility/fixtures.py` module)
 - `pyproject.toml` — Add accessibility testing dependencies
 - `requirements.test.txt` — Document test dependencies
 

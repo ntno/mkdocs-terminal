@@ -174,7 +174,7 @@ Based on the design document and spec, Phase 3 should also include:
 - [x] Create `tests/accessibility/test_color_contrast.py` with both site-level and palette-only suites
 - [x] Implement WCAG AA validation helpers in `tests/accessibility/validators/contrast_validator.py`
 - [x] Add palette-loading utilities in `tests/accessibility/utilities/palette_loader.py` and wire them into pytest fixtures
-- [x] Integrate `SiteContextBuilder` + `ColorCombinationTracker` + `BackgroundColorResolver` to exercise every built page across all palettes
+- [x] Centralize palette fixtures in `tests/conftest.py` and use `SiteContextBuilder` only for CSS loading sanity checks (DOM-level contrast helpers were removed after they produced false positives)
 
 **Outstanding:**
 - [ ] Focus indicator / outline contrast testing (would require DOM simulation or browser automation)
@@ -185,7 +185,7 @@ Based on the design document and spec, Phase 3 should also include:
 
 - **Site-level tests:** `TestColorContrast` now parametrizes `built_example_site_with_palette` to check body text, arbitrary text nodes, buttons/forms, alerts, CSS loading, and rendered links for each palette.
 - **Palette-level tests:** Directly validate extracted CSS variables (font, primary, error colors) via `assert_contrast_meets_wcag_aa()` and regression-test contrast ratios against WebAIM calculations.
-- **Helpers:** `ColorCombinationTracker` groups identical foreground/background pairs, `BackgroundColorResolver` walks the DOM to infer actual backgrounds, and `validate_color_contrast()` scans common elements using computed styles.
+- **Helpers:** Palette checks now rely on `get_palette_colors()`, `assert_contrast_meets_wcag_aa()`, and fixture-provided CSS attributes; DOM-level helpers were deleted when the site-scanning tests were removed.
 - **Fixtures:** `load_all_palette_css_attributes()` caches CSS variable extraction so palette-based parametrized tests stay fast and deterministic.
 
 **Test Results:** Running `pytest tests/accessibility/ -v` on 2026-01-24 produced 120 passes, 1 skip, and 5 failures — all within `TestColorContrast`:
