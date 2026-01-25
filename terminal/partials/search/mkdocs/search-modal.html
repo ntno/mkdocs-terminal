@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="searchModalLabel">{{ search_modal_ns.header }}</h5>
-                <button type="button" class="close btn btn-default btn-ghost" data-dismiss="modal" aria-label="{{ search_modal_ns.screen_reader_close_text }}">{{ search_modal_ns.close_text }}</button>
+                <button type="button" class="close btn btn-default btn-ghost" data-dismiss="modal"><span aria-hidden="true">{{ search_modal_ns.close_text }}</span><span class="sr-only">{{ search_modal_ns.screen_reader_close_text }}</span></button>
             </div>
             <div class="modal-body">
                 <p id="searchInputLabel">{{ search_modal_ns.instructions }}</p>
