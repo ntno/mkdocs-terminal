@@ -2,7 +2,7 @@ site_name: Terminal for MkDocs
 site_url: https://ntno.github.io/mkdocs-terminal
 repo_url: https://github.com/ntno/mkdocs-terminal
 edit_uri_template: https://github.com/ntno/mkdocs-terminal/edit/main/documentation/docs/{path}
-copyright: Copyright 2023 Natan Organick, All rights reserved
+copyright: Copyright 2023-2026 Natan Organick, All rights reserved
 site_author: ntno
 
 nav:
@@ -22,6 +22,8 @@ nav:
         - Sans Dark: 'configuration/palettes/sans-dark.md'
         - Soundside: 'configuration/palettes/soundside.md'
         - Volans: 'configuration/palettes/volans.md'
+      - Code Highlighting:
+        - Index: 'configuration/code-highlighting/index.md'
       - Features: 'configuration/features.md'
       - Blocks: 'configuration/blocks.md'
       - Plugins: 'configuration/plugins/index.md'
@@ -48,7 +50,9 @@ nav:
     - Elements:
       - Blockquotes: 'elements/blockquotes.md'
       - Buttons: 'elements/buttons.md'
+      - Code: 'elements/code.md'
       - Definitions: 'elements/definitions.md'
+      - Details: 'elements/details.md'
       - Figures: 'elements/figure.md'
       - Footnotes: 'elements/footnotes.md'
       - Links: 'elements/links.md'
@@ -58,6 +62,7 @@ nav:
       - Typography: 'elements/typography.md'
     - Install: 'install.md'
     - Releases: 'releases.md'
+    - Accessibility: 'accessibility.md'
 
 markdown_extensions:
   # Python Markdown  
@@ -77,6 +82,17 @@ markdown_extensions:
   - pymdownx.snippets:
       base_path: 
         - docs
+  - pymdownx.blocks.details:
+      types:
+        - name: info
+          class: terminal-alert
+          title: Info
+        - name: warning
+          class: 'terminal-alert terminal-alert-error'
+          title: Warning
+        - name: important
+          class: 'terminal-alert terminal-alert-primary'
+          title: Important
 
 plugins:
   - md-to-html

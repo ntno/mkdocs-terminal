@@ -1,0 +1,37 @@
+site_name: mkdocs-terminal theme with PyMdown and Pygments
+site_url: https://ntno.github.io/mkdocs-terminal-example-pymdown-pygments
+repo_url: https://github.com/ntno/mkdocs-terminal
+edit_uri_template: https://github.com/ntno/mkdocs-terminal/edit/main/tests/examples/pymdown-pygments/docs/{path}
+copyright: Copyright 2023-2026 Natan Organick, All rights reserved
+site_author: ntno
+
+nav:
+    - Configuration: 'index.md'
+    - Languages: 
+      - Bash: 'sample-languages/bash.md'
+      - Cobol: 'sample-languages/cobol.md'
+      - Javascript: 'sample-languages/javascript.md'
+      - Python: 'sample-languages/python.md'
+
+markdown_extensions:
+  - toc:
+      baselevel: "1"
+      toc_depth: "2-4"
+      permalink: "#"
+      permalink_title: Anchor link to this section for reference
+  - pymdownx.snippets:
+      base_path: 
+        - docs
+  - pymdownx.superfences              # required for pymdownx highlight/inlinehilite
+  - pymdownx.highlight:
+      use_pygments: true              # style code blocks using the pygments library    
+      pygments_style: default         # use the 'default' builtin pygments style
+      noclasses: true                 # write styles into the HTML style attribute
+  - pymdownx.inlinehilite             # style inline code
+
+theme:
+  name: terminal
+  features:
+    - footer.prev_next
+    - navigation.top.search_button.hide
+    - navigation.side.indexes

@@ -1,28 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Coverage report</title>
-    <link rel="icon" sizes="32x32" href="favicon_32.png">
-    <link rel="stylesheet" href="style.css" type="text/css">
-    <script type="text/javascript" src="coverage_html.js" defer></script>
+    <link rel="icon" sizes="32x32" href="favicon_32_cb_58284776.png">
+    <link rel="stylesheet" href="style_cb_8e611ae1.css" type="text/css">
+    <script src="coverage_html_cb_6fb7b396.js" defer></script>
 </head>
 <body class="indexfile">
 <header>
     <div class="content">
         <h1>Coverage report:
-            <span class="pc_cov">65%</span>
+            <span class="pc_cov">73%</span>
         </h1>
         <aside id="help_panel_wrapper">
             <input id="help_panel_state" type="checkbox">
             <label for="help_panel_state">
-                <img id="keyboard_icon" src="keybd_closed.png" alt="Show/hide keyboard shortcuts" />
+                <img id="keyboard_icon" src="keybd_closed_cb_ce680311.png" alt="Show/hide keyboard shortcuts">
             </label>
             <div id="help_panel">
                 <p class="legend">Shortcuts on this page</p>
                 <div class="keyhelp">
                     <p>
-                        <kbd>n</kbd>
+                        <kbd>f</kbd>
                         <kbd>s</kbd>
                         <kbd>m</kbd>
                         <kbd>x</kbd>
@@ -43,11 +43,20 @@
             </div>
         </aside>
         <form id="filter_container">
-            <input id="filter" type="text" value="" placeholder="filter..." />
+            <input id="filter" type="text" value="" placeholder="filter...">
+            <div>
+                <input id="hide100" type="checkbox" >
+                <label for="hide100">hide covered</label>
+            </div>
         </form>
+        <h2>
+                <a class="button current">Files</a>
+                <a class="button" href="function_index.html">Functions</a>
+                <a class="button" href="class_index.html">Classes</a>
+        </h2>
         <p class="text">
-            <a class="nav" href="https://coverage.readthedocs.io/en/7.2.3">coverage.py v7.2.3</a>,
-            created at 2023-04-15 04:24 +0000
+            <a class="nav" href="https://coverage.readthedocs.io/en/7.6.1">coverage.py v7.6.1</a>,
+            created at 2026-01-25 19:43 +0000
         </p>
     </div>
 </header>
@@ -55,18 +64,18 @@
     <table class="index" data-sortable>
         <thead>
             <tr class="tablehead" title="Click to sort">
-                <th class="name left" aria-sort="none" data-shortcut="n">Module</th>
-                <th aria-sort="none" data-default-sort-order="descending" data-shortcut="s">statements</th>
-                <th aria-sort="none" data-default-sort-order="descending" data-shortcut="m">missing</th>
-                <th aria-sort="none" data-default-sort-order="descending" data-shortcut="x">excluded</th>
-                <th aria-sort="none" data-default-sort-order="descending" data-shortcut="b">branches</th>
-                <th aria-sort="none" data-default-sort-order="descending" data-shortcut="p">partial</th>
-                <th class="right" aria-sort="none" data-shortcut="c">coverage</th>
+                <th id="file" class="name left" aria-sort="none" data-shortcut="f">File<span class="arrows"></span></th>
+                <th id="statements" aria-sort="none" data-default-sort-order="descending" data-shortcut="s">statements<span class="arrows"></span></th>
+                <th id="missing" aria-sort="none" data-default-sort-order="descending" data-shortcut="m">missing<span class="arrows"></span></th>
+                <th id="excluded" aria-sort="none" data-default-sort-order="descending" data-shortcut="x">excluded<span class="arrows"></span></th>
+                <th id="branches" aria-sort="none" data-default-sort-order="descending" data-shortcut="b">branches<span class="arrows"></span></th>
+                <th id="partial" aria-sort="none" data-default-sort-order="descending" data-shortcut="p">partial<span class="arrows"></span></th>
+                <th id="coverage" class="right" aria-sort="none" data-shortcut="c">coverage<span class="arrows"></span></th>
             </tr>
         </thead>
         <tbody>
-            <tr class="file">
-                <td class="name left"><a href="d_c926557d4617d0dd___init___py.html">terminal/__init__.py</a></td>
+            <tr class="region">
+                <td class="name left"><a href="z_c926557d4617d0dd___init___py.html">terminal/__init__.py</a></td>
                 <td>0</td>
                 <td>0</td>
                 <td>0</td>
@@ -74,8 +83,8 @@
                 <td>0</td>
                 <td class="right" data-ratio="0 0">100%</td>
             </tr>
-            <tr class="file">
-                <td class="name left"><a href="d_23bf7247bda4ebb4___init___py.html">terminal/plugins/md_to_html/__init__.py</a></td>
+            <tr class="region">
+                <td class="name left"><a href="z_23bf7247bda4ebb4___init___py.html">terminal/plugins/md_to_html/__init__.py</a></td>
                 <td>0</td>
                 <td>0</td>
                 <td>0</td>
@@ -83,8 +92,8 @@
                 <td>0</td>
                 <td class="right" data-ratio="0 0">100%</td>
             </tr>
-            <tr class="file">
-                <td class="name left"><a href="d_23bf7247bda4ebb4_plugin_py.html">terminal/plugins/md_to_html/plugin.py</a></td>
+            <tr class="region">
+                <td class="name left"><a href="z_23bf7247bda4ebb4_plugin_py.html">terminal/plugins/md_to_html/plugin.py</a></td>
                 <td>26</td>
                 <td>10</td>
                 <td>0</td>
@@ -92,8 +101,8 @@
                 <td>0</td>
                 <td class="right" data-ratio="16 26">62%</td>
             </tr>
-            <tr class="file">
-                <td class="name left"><a href="d_2583e640454d58aa___init___py.html">terminal/pluglets/__init__.py</a></td>
+            <tr class="region">
+                <td class="name left"><a href="z_2583e640454d58aa___init___py.html">terminal/pluglets/__init__.py</a></td>
                 <td>0</td>
                 <td>0</td>
                 <td>0</td>
@@ -101,8 +110,8 @@
                 <td>0</td>
                 <td class="right" data-ratio="0 0">100%</td>
             </tr>
-            <tr class="file">
-                <td class="name left"><a href="d_7e1d11d1cf628cf7___init___py.html">terminal/pluglets/tile_grid/__init__.py</a></td>
+            <tr class="region">
+                <td class="name left"><a href="z_7e1d11d1cf628cf7___init___py.html">terminal/pluglets/tile_grid/__init__.py</a></td>
                 <td>0</td>
                 <td>0</td>
                 <td>0</td>
@@ -110,8 +119,8 @@
                 <td>0</td>
                 <td class="right" data-ratio="0 0">100%</td>
             </tr>
-            <tr class="file">
-                <td class="name left"><a href="d_7e1d11d1cf628cf7_macro_py.html">terminal/pluglets/tile_grid/macro.py</a></td>
+            <tr class="region">
+                <td class="name left"><a href="z_7e1d11d1cf628cf7_macro_py.html">terminal/pluglets/tile_grid/macro.py</a></td>
                 <td>65</td>
                 <td>28</td>
                 <td>0</td>
@@ -119,8 +128,8 @@
                 <td>1</td>
                 <td class="right" data-ratio="44 77">57%</td>
             </tr>
-            <tr class="file">
-                <td class="name left"><a href="d_7e1d11d1cf628cf7_main_py.html">terminal/pluglets/tile_grid/main.py</a></td>
+            <tr class="region">
+                <td class="name left"><a href="z_7e1d11d1cf628cf7_main_py.html">terminal/pluglets/tile_grid/main.py</a></td>
                 <td>4</td>
                 <td>1</td>
                 <td>0</td>
@@ -128,8 +137,8 @@
                 <td>0</td>
                 <td class="right" data-ratio="3 4">75%</td>
             </tr>
-            <tr class="file">
-                <td class="name left"><a href="d_7e1d11d1cf628cf7_util_py.html">terminal/pluglets/tile_grid/util.py</a></td>
+            <tr class="region">
+                <td class="name left"><a href="z_7e1d11d1cf628cf7_util_py.html">terminal/pluglets/tile_grid/util.py</a></td>
                 <td>15</td>
                 <td>0</td>
                 <td>0</td>
@@ -137,16 +146,223 @@
                 <td>0</td>
                 <td class="right" data-ratio="17 17">100%</td>
             </tr>
+            <tr class="region">
+                <td class="name left"><a href="z_36852f7dd625cad3___init___py.html">tests/accessibility/__init__.py</a></td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="0 0">100%</td>
+            </tr>
+            <tr class="region">
+                <td class="name left"><a href="z_36852f7dd625cad3_test_aria_py.html">tests/accessibility/test_aria.py</a></td>
+                <td>94</td>
+                <td>0</td>
+                <td>0</td>
+                <td>28</td>
+                <td>4</td>
+                <td class="right" data-ratio="118 122">97%</td>
+            </tr>
+            <tr class="region">
+                <td class="name left"><a href="z_36852f7dd625cad3_test_color_contrast_py.html">tests/accessibility/test_color_contrast.py</a></td>
+                <td>63</td>
+                <td>0</td>
+                <td>0</td>
+                <td>2</td>
+                <td>0</td>
+                <td class="right" data-ratio="65 65">100%</td>
+            </tr>
+            <tr class="region">
+                <td class="name left"><a href="z_36852f7dd625cad3_test_color_utils_py.html">tests/accessibility/test_color_utils.py</a></td>
+                <td>191</td>
+                <td>0</td>
+                <td>0</td>
+                <td>8</td>
+                <td>0</td>
+                <td class="right" data-ratio="199 199">100%</td>
+            </tr>
+            <tr class="region">
+                <td class="name left"><a href="z_36852f7dd625cad3_test_css_loading_py.html">tests/accessibility/test_css_loading.py</a></td>
+                <td>23</td>
+                <td>1</td>
+                <td>0</td>
+                <td>10</td>
+                <td>2</td>
+                <td class="right" data-ratio="30 33">91%</td>
+            </tr>
+            <tr class="region">
+                <td class="name left"><a href="z_36852f7dd625cad3_test_html_validation_py.html">tests/accessibility/test_html_validation.py</a></td>
+                <td>27</td>
+                <td>0</td>
+                <td>0</td>
+                <td>2</td>
+                <td>0</td>
+                <td class="right" data-ratio="29 29">100%</td>
+            </tr>
+            <tr class="region">
+                <td class="name left"><a href="z_d708f3099eb6f853___init___py.html">tests/accessibility/utilities/__init__.py</a></td>
+                <td>4</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="4 4">100%</td>
+            </tr>
+            <tr class="region">
+                <td class="name left"><a href="z_d708f3099eb6f853_color_utils_py.html">tests/accessibility/utilities/color_utils.py</a></td>
+                <td>77</td>
+                <td>10</td>
+                <td>0</td>
+                <td>32</td>
+                <td>4</td>
+                <td class="right" data-ratio="95 109">87%</td>
+            </tr>
+            <tr class="region">
+                <td class="name left"><a href="z_d708f3099eb6f853_css_parser_py.html">tests/accessibility/utilities/css_parser.py</a></td>
+                <td>96</td>
+                <td>50</td>
+                <td>0</td>
+                <td>56</td>
+                <td>4</td>
+                <td class="right" data-ratio="64 152">42%</td>
+            </tr>
+            <tr class="region">
+                <td class="name left"><a href="z_d708f3099eb6f853_palette_loader_py.html">tests/accessibility/utilities/palette_loader.py</a></td>
+                <td>36</td>
+                <td>2</td>
+                <td>0</td>
+                <td>6</td>
+                <td>2</td>
+                <td class="right" data-ratio="38 42">90%</td>
+            </tr>
+            <tr class="region">
+                <td class="name left"><a href="z_d708f3099eb6f853_site_context_py.html">tests/accessibility/utilities/site_context.py</a></td>
+                <td>119</td>
+                <td>87</td>
+                <td>0</td>
+                <td>42</td>
+                <td>0</td>
+                <td class="right" data-ratio="34 161">21%</td>
+            </tr>
+            <tr class="region">
+                <td class="name left"><a href="z_703f3557eb049efc___init___py.html">tests/accessibility/validators/__init__.py</a></td>
+                <td>5</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="5 5">100%</td>
+            </tr>
+            <tr class="region">
+                <td class="name left"><a href="z_703f3557eb049efc_aria_validator_py.html">tests/accessibility/validators/aria_validator.py</a></td>
+                <td>84</td>
+                <td>12</td>
+                <td>0</td>
+                <td>42</td>
+                <td>15</td>
+                <td class="right" data-ratio="99 126">79%</td>
+            </tr>
+            <tr class="region">
+                <td class="name left"><a href="z_703f3557eb049efc_contrast_validator_py.html">tests/accessibility/validators/contrast_validator.py</a></td>
+                <td>77</td>
+                <td>31</td>
+                <td>0</td>
+                <td>22</td>
+                <td>0</td>
+                <td class="right" data-ratio="52 99">53%</td>
+            </tr>
+            <tr class="region">
+                <td class="name left"><a href="z_703f3557eb049efc_helpers_py.html">tests/accessibility/validators/helpers.py</a></td>
+                <td>8</td>
+                <td>0</td>
+                <td>0</td>
+                <td>2</td>
+                <td>1</td>
+                <td class="right" data-ratio="9 10">90%</td>
+            </tr>
+            <tr class="region">
+                <td class="name left"><a href="z_703f3557eb049efc_html_validator_py.html">tests/accessibility/validators/html_validator.py</a></td>
+                <td>51</td>
+                <td>6</td>
+                <td>0</td>
+                <td>30</td>
+                <td>11</td>
+                <td class="right" data-ratio="64 81">79%</td>
+            </tr>
+            <tr class="region">
+                <td class="name left"><a href="z_a6fc1bd7ab88fd9b_page_features_py.html">tests/interface/page_features.py</a></td>
+                <td>6</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="6 6">100%</td>
+            </tr>
+            <tr class="region">
+                <td class="name left"><a href="z_a6fc1bd7ab88fd9b_theme_features_py.html">tests/interface/theme_features.py</a></td>
+                <td>12</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="12 12">100%</td>
+            </tr>
+            <tr class="region">
+                <td class="name left"><a href="z_a6fc1bd7ab88fd9b_theme_plugins_py.html">tests/interface/theme_plugins.py</a></td>
+                <td>5</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="5 5">100%</td>
+            </tr>
+            <tr class="region">
+                <td class="name left"><a href="z_a6fc1bd7ab88fd9b_theme_pluglets_py.html">tests/interface/theme_pluglets.py</a></td>
+                <td>3</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="3 3">100%</td>
+            </tr>
+            <tr class="region">
+                <td class="name left"><a href="z_a6fc1bd7ab88fd9b_tile_py.html">tests/interface/tile.py</a></td>
+                <td>26</td>
+                <td>4</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="22 26">85%</td>
+            </tr>
+            <tr class="region">
+                <td class="name left"><a href="z_aee55b7cdf71401b_filters_py.html">tests/utils/filters.py</a></td>
+                <td>13</td>
+                <td>1</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td class="right" data-ratio="12 13">92%</td>
+            </tr>
+            <tr class="region">
+                <td class="name left"><a href="z_aee55b7cdf71401b_html_py.html">tests/utils/html.py</a></td>
+                <td>37</td>
+                <td>10</td>
+                <td>0</td>
+                <td>6</td>
+                <td>2</td>
+                <td class="right" data-ratio="29 43">67%</td>
+            </tr>
         </tbody>
         <tfoot>
             <tr class="total">
                 <td class="name left">Total</td>
-                <td>110</td>
-                <td>39</td>
+                <td>1167</td>
+                <td>253</td>
                 <td>0</td>
-                <td>14</td>
-                <td>1</td>
-                <td class="right" data-ratio="80 124">65%</td>
+                <td>302</td>
+                <td>46</td>
+                <td class="right" data-ratio="1074 1469">73%</td>
             </tr>
         </tfoot>
     </table>
@@ -157,16 +373,16 @@
 <footer>
     <div class="content">
         <p>
-            <a class="nav" href="https://coverage.readthedocs.io/en/7.2.3">coverage.py v7.2.3</a>,
-            created at 2023-04-15 04:24 +0000
+            <a class="nav" href="https://coverage.readthedocs.io/en/7.6.1">coverage.py v7.6.1</a>,
+            created at 2026-01-25 19:43 +0000
         </p>
     </div>
     <aside class="hidden">
-        <a id="prevFileLink" class="nav" href="d_7e1d11d1cf628cf7_util_py.html"/>
-        <a id="nextFileLink" class="nav" href="d_c926557d4617d0dd___init___py.html"/>
-        <button type="button" class="button_prev_file" data-shortcut="["/>
-        <button type="button" class="button_next_file" data-shortcut="]"/>
-        <button type="button" class="button_show_hide_help" data-shortcut="?"/>
+        <a id="prevFileLink" class="nav" href="z_aee55b7cdf71401b_html_py.html"></a>
+        <a id="nextFileLink" class="nav" href="z_c926557d4617d0dd___init___py.html"></a>
+        <button type="button" class="button_prev_file" data-shortcut="["></button>
+        <button type="button" class="button_next_file" data-shortcut="]"></button>
+        <button type="button" class="button_show_hide_help" data-shortcut="?"></button>
     </aside>
 </footer>
 </body>

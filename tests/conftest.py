@@ -4,10 +4,18 @@ from jinja2.environment import Environment
 from tests.interface.tile import Tile
 from tests import defaults
 from tests.utils.filters import mock_url_filter, mock_markup_filter
+from tests.e2e_helper import build_example_site
 from terminal.plugins.md_to_html.plugin import DEFAULT_MARKUP_FILTER_NAME
 from terminal.pluglets.tile_grid.macro import TileGridMacroEnvironment
 from unittest.mock import MagicMock, PropertyMock
 import pytest
+from mkdocs.structure.files import File, Files
+from mkdocs.structure.nav import get_navigation
+from tests.integration_helper import load_config
+from tests.accessibility.utilities.palette_loader import (
+    load_all_palette_css_attributes,
+    load_palette_css_attributes,
+)
 
 
 @pytest.fixture
@@ -104,6 +112,133 @@ def inactive_page_2(inactive_page_2_properties):
     return make_mock_nav_object(inactive_page_2_properties)
 
 
+@pytest.fixture
+def empty_nav():
+    nav_cfg = []
+    return build_flat_site_navigation_from_config(nav_cfg)
+
+
+@pytest.fixture
+def flat_nav():
+    nav_cfg = [
+        {'Home': 'index.md'},
+        {'About': 'about.md'},
+    ]
+    return build_flat_site_navigation_from_config(nav_cfg)
+
+
+@pytest.fixture
+def nest_one_nav():
+    nav_cfg = [
+        {'Home': 'index.md'},
+        {
+            'API Guide': [
+                {'Running': 'api-guide/running.md'},
+                {'Testing': 'api-guide/testing.md'},
+                {'Debugging': 'api-guide/debugging.md'},
+            ]
+        },
+        {
+            'About': [
+                {'Release notes': 'about/release-notes.md'},
+                {'License': 'about/license.md'},
+            ]
+        },
+    ]
+    cfg = load_config(nav=nav_cfg, site_url='http://example.com/')
+    fs = [
+        'index.md',
+        'api-guide/running.md',
+        'api-guide/testing.md',
+        'api-guide/debugging.md',
+        'about/release-notes.md',
+        'about/license.md',
+    ]
+    files = Files([File(s, cfg.docs_dir, cfg.site_dir, cfg.use_directory_urls) for s in fs])
+    return get_navigation(files, cfg)
+
+
+@pytest.fixture
+def nest_two_nav():
+    nav_cfg = [
+        {'Home': 'index.md'},
+        {
+            'API Guide': [
+                {'Running': 'api-guide/running.md'},
+                {'Testing': 'api-guide/testing.md'},
+                {'Debugging': 'api-guide/debugging.md'},
+                {
+                    'Advanced': [
+                        {'Part 1': 'api-guide/advanced/part-1.md'},
+                    ]
+                },
+            ]
+        },
+        {
+            'About': [
+                {'Release notes': 'about/release-notes.md'},
+                {'License': 'about/license.md'},
+            ]
+        },
+    ]
+    cfg = load_config(nav=nav_cfg, site_url='http://example.com/')
+    fs = [
+        'index.md',
+        'api-guide/running.md',
+        'api-guide/testing.md',
+        'api-guide/debugging.md',
+        'api-guide/advanced/part-1.md',
+        'about/release-notes.md',
+        'about/license.md',
+    ]
+    files = Files([File(s, cfg.docs_dir, cfg.site_dir, cfg.use_directory_urls) for s in fs])
+    return get_navigation(files, cfg)
+
+
+@pytest.fixture
+def nest_three_nav():
+    nav_cfg = [
+        {'Home': 'index.md'},
+        {
+            'API Guide': [
+                {'Running': 'api-guide/running.md'},
+                {'Testing': 'api-guide/testing.md'},
+                {'Debugging': 'api-guide/debugging.md'},
+                {
+                    'Advanced': [
+                        {'Part 1': 'api-guide/advanced/part-1.md'},
+                    ]
+                },
+            ]
+        },
+        {
+            'Release notes': [
+                {'Index': 'about/release-notes/index.md'},
+                {'v1.0': [
+                    {'Changelog': 'about/release-notes/v1.0.md'},
+                ]},
+                {'v2.0': [
+                    {'Changelog': 'about/release-notes/v2.0.md'},
+                ]},
+            ]
+        },
+    ]
+    cfg = load_config(nav=nav_cfg, site_url='http://example.com/')
+    fs = [
+        'index.md',
+        'api-guide/running.md',
+        'api-guide/testing.md',
+        'api-guide/debugging.md',
+        'api-guide/advanced/part-1.md',
+        'about/release-notes/index.md',
+        'about/release-notes/v1.0.md',
+        'about/release-notes/v2.0.md',
+
+    ]
+    files = Files([File(s, cfg.docs_dir, cfg.site_dir, cfg.use_directory_urls) for s in fs])
+    return get_navigation(files, cfg)
+
+
 def make_nav_object_property_mocks(is_section_value, title_value, url_value, active_value):
     properties = {}
     properties["is_section"] = PropertyMock(return_value=is_section_value)
@@ -121,6 +256,16 @@ def make_mock_nav_object(mock_properties):
     type(nav_object).active = mock_properties["active"]
     return nav_object
 
+
+def build_flat_site_navigation_from_config(nav_cfg):
+    cfg = load_config(nav=nav_cfg, site_url='http://example.com/')
+    fs = [
+        File(list(item.values())[0], cfg.docs_dir, cfg.site_dir, cfg.use_directory_urls)
+        for item in nav_cfg
+    ]
+    files = Files(fs)
+    site_navigation = get_navigation(files, cfg)
+    return site_navigation
 
 # @pytest.fixture
 # def dict_loader():
@@ -157,3 +302,30 @@ def make_mock_nav_object(mock_properties):
 # def prefix_loader(filesystem_loader, dict_loader):
 #     """returns a PrefixLoader"""
 #     return loaders.PrefixLoader({"a": filesystem_loader, "b": dict_loader})
+
+@pytest.fixture
+def palette_css_attributes(request):
+    """Return resolved CSS attributes for a specific palette."""
+    palette_name = getattr(request, "param", "default")
+    return load_palette_css_attributes(palette_name)
+
+
+@pytest.fixture
+def all_palette_css_attributes():
+    """Return resolved CSS attributes for every default palette."""
+    return load_all_palette_css_attributes()
+
+
+@pytest.fixture(scope="session")
+def built_example_site_with_palette(tmp_path_factory, request):
+    """Build an example site with a specified palette for accessibility tests."""
+    example_name, palette_name = getattr(request, "param", ("minimal", "default"))
+    return build_example_site(tmp_path_factory, example_name, palette_name)
+
+
+@pytest.fixture(scope="session")
+def built_example_site(tmp_path_factory, request):
+    """Build any example site for testing without overriding the palette."""
+
+    example_site_name = getattr(request, "param", "minimal")
+    return build_example_site(tmp_path_factory, example_site_name)

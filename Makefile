@@ -36,7 +36,7 @@ serve-local-theme:
 #########################################################
 
 install-build-requirements:
-	pip install --upgrade build
+	pip install --upgrade build packaging
 
 build-pip-dist:
 	python -m build --outdir ./dist
@@ -83,12 +83,18 @@ build-local-theme-and-serve: install-from-dist
 #for developer use, assumes you have already installed prereqs
 quick-tests:
 	flake8 --ignore E501 terminal && \
-	flake8 --ignore E501 tests && \
+	flake8 --ignore E501 --exclude tests/examples tests && \
 	pytest --color=yes --capture=no tests
 
 #for developer use, assumes you have already installed prereqs
 generate-test-coverage:
-	pytest --cov=terminal --cov-branch --cov-report=html tests/
+	pytest \
+		--cov=terminal \
+ 		--cov=tests/interface \
+		--cov=tests/utils \
+        --cov=tests/accessibility \
+        --cov-branch \
+        --cov-report=html && \
 	rm -rf documentation/docs/about/coverage-report/.gitignore
 
 

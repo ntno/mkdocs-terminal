@@ -23,7 +23,7 @@ Colons can be used to align columns.  Note that the "Release" column is centered
 |  0.0.0  | no         |
 
 ## Markdown
-```
+```markdown
 | Release | Supported? |
 | :-----: | ---------: |
 |  1.0.0  | yes        |

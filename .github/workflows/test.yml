@@ -7,15 +7,16 @@ on:
 jobs:
   test:
     strategy:
+      fail-fast: false
       matrix:
         python: ['3.8', '3.9', '3.10', '3.11', '3.12']
         platform: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.platform }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Set up Python ${{ matrix.python }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python }}
       - if: ${{ matrix.platform == 'ubuntu-latest' }} 
@@ -27,7 +28,7 @@ jobs:
         run: |
           git clone https://github.com/htacg/tidy-html5.git
           cd tidy-html5/build/cmake
-          cmake ../.. -DCMAKE_BUILD_TYPE=Release "-DCMAKE_OSX_ARCHITECTURES=x86_64;arm64"
+          cmake ../.. -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_BUILD_TYPE=Release "-DCMAKE_OSX_ARCHITECTURES=x86_64;arm64"
           make 
           sudo make install
       - name: Install Tox

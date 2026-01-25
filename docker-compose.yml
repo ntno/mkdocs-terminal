@@ -1,14 +1,16 @@
 services:
   ubuntu:
     image: ntno/ubuntu-build-base:1.0.0
+    platform: "linux/amd64"
     restart: "no"
     volumes:
       - $PWD:/usr/src
   local_examples_server:
     image: ntno/ubuntu-build-base:1.0.0
+    platform: "linux/amd64"
     restart: "no"
     ports:
-      - "5000:5000"
+      - "8080:8080"
     environment:
       LOG_LEVEL: info
     volumes:
@@ -16,6 +18,7 @@ services:
     working_dir: '/usr/src/tests/examples/'
   local_documentation_server:
     image: ntno/ubuntu-build-base:1.0.0
+    platform: "linux/amd64"
     restart: "no"
     ports:
       - "8080:8080"
@@ -26,6 +29,7 @@ services:
     working_dir: '/usr/src/documentation'
   local_theme_server:
     image: ntno/ubuntu-build-base:1.0.0
+    platform: "linux/amd64"
     restart: "no"
     ports:
       - "8080:8080"

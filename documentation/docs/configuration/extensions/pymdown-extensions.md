@@ -16,7 +16,7 @@ The [Caret], [Mark], and [Tilde] extensions add the ability to highlight text
 and define subscript and superscript using a simple syntax. Enable them together
 via `mkdocs.yml`:
 
-``` yaml
+```yaml
 markdown_extensions:
   - pymdownx.caret
   - pymdownx.mark
@@ -46,7 +46,7 @@ See reference for usage:
 
 The [Snippets] extension adds the ability to embed content from arbitrary files into a document, including other documents or source files, by using a simple syntax. Enable it via `mkdocs.yml`:
 
-``` yaml
+```yaml
 markdown_extensions:
   - pymdownx.snippets
 ```
@@ -63,6 +63,78 @@ See reference for usage:
 
   [Adding Snippets]: ./snippets.md
 
+## SuperFences
+
+The [SuperFences] extension allows fenced blocks to be nested inside block quotes, lists, or other block elements.  Enable it via `mkdocs.yml`:
+
+```yaml
+markdown_extensions:
+  - pymdownx.superfences
+```
+
+This extension is incompatible with the Python Markdown extension `markdown.extensions.fenced_code`.
+
+  [SuperFences]: https://facelessuser.github.io/pymdown-extensions/extensions/superfences/
+
+## Highlight and InlineHilite
+
+The [Highlight] and [InlineHilite] extensions can be used to highlight code blocks.  If used with the [PyMdown SuperFences](#superfences) extension line numbers can be added as well.  Enable them via `mkdocs.yml`:
+
+```yaml
+markdown_extensions:
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+```
+
+See reference for recommended configuration options:
+
+- [Code Highlighting > PyMdown and Pygments](../code-highlighting/index.md#pymdown-and-pygments)
+
+  [Highlight]: https://facelessuser.github.io/pymdown-extensions/extensions/highlight/
+  [InlineHilite]: https://facelessuser.github.io/pymdown-extensions/extensions/inlinehilite/
+
+## Details
+
+The [Details] extension can be used to create admonitions (sometimes called callouts). By default, Terminal for Mkdocs supports three categories. Enable them via `mkdocs.yml`:
+
+/// info
+This is an info block
+///
+
+/// warning
+This is a warning
+///
+
+/// important
+This is important
+///
+
+```yaml
+markdown_extensions:
+  - pymdownx.blocks.details:
+      types:
+        - name: info 
+          class: terminal-alert
+          title: Info
+        - name: warning
+          class: 'terminal-alert terminal-alert-error'
+          title: Warning
+        - name: important
+          class: 'terminal-alert terminal-alert-primary'
+          title: Important
+```
+
+* To use different categories, update the `name` attribute.
+* To use a custom style, update the `class` attribute to the name of your custom CSS class (remember to load the custom CSS via the [extra_css MkDocs feature]).
+  [Details]: https://facelessuser.github.io/pymdown-extensions/extensions/blocks/plugins/details/
+  [extra_css MkDocs feature]: https://www.mkdocs.org/user-guide/configuration/#extra_css
+
+See reference for usage:
+
+- [Adding Details]
+
+  [Adding Details]: ../../../elements/details
 
 # Credit
 

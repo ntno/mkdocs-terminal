@@ -46,7 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: ${{ inputs.tag }}
   call-metadata-workflow:
@@ -60,17 +60,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: ${{ inputs.tag }}
 
       - name: Set up Python runtime
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
       - name: Set up Python dependencies
-        run: pip install --upgrade build twine
+        run: pip install --upgrade build packaging twine
 
       - name: Build Python package
         run: python -m build

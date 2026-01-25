@@ -102,7 +102,7 @@ jobs:
           cat ${{ github.event_path }} > ./details/event-payload.json
           echo "artifact-name=details/event-payload.json" >> $GITHUB_OUTPUT
       - name: upload-event-payload-artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v6
         with:
           name: event-payload.json
           path: ./details/
