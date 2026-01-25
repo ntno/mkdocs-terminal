@@ -314,16 +314,3 @@ def built_example_site(tmp_path_factory, request):
     return build_example_site(tmp_path_factory, example_site_name)
 
 
-@pytest.fixture(scope="session")
-def built_minimal_site(built_example_site):
-    """Convenience fixture for the minimal example site.
-
-    This is a simple wrapper around built_example_site for the minimal example.
-    """
-    return built_example_site
-
-
-@pytest.fixture(scope="session")
-def built_demo_site(tmp_path_factory):
-    """Convenience fixture for the demo example site."""
-    return build_example_site(tmp_path_factory, "demo")
