@@ -329,6 +329,7 @@ Tasks.md still lists every Phase 4 item as `[ ]` even though the full color cont
 
 - **tests/accessibility/utils.py** ❌
   - All helpers were migrated into the dedicated validator modules; the compatibility shim has been removed to prevent new call sites.
+   - Verified on 2026-01-24 by running `pytest tests/accessibility -q`, which still reports 120 passed, 1 skipped, and the five known palette failures—confirming no imports reference the deleted module.
 
 ---
 
@@ -367,10 +368,9 @@ Tasks.md still lists every Phase 4 item as `[ ]` even though the full color cont
    - Checklist does not mention the implemented color contrast suite or supporting utilities.
    - **Action needed:** Replace the placeholder tasks with verification, documentation, and remediation items so contributors know what remains.
 
-3. **Color Contrast Phase Not Started**
-   - Significant gap: No implementation of WCAG AA contrast validation
-   - Required for spec compliance
-   - **Action needed:** Implement color contrast checking
+4. **Legacy utils references linger**
+   - Some planning notes still instruct contributors to keep `tests/accessibility/utils.py`, even though the compatibility shim has now been deleted.
+   - **Action needed:** Update the planning docs/tasks so future work keeps targeting the validator packages directly.
 
 ---
 
@@ -393,7 +393,7 @@ The implementation generally aligns with the design document:
 1. ✅ **Library Choice Rationale** — Well documented, matches implementation
 2. ✅ **Test Organization** — Organized by concern area as designed
 3. ✅ **Test Data Source** — Using built example sites as designed
-4. ⚠️ **Contrast Ratio Validation** — Designed but not implemented
+4. ⚠️ **Contrast Ratio Validation** — Implemented for palette + site checks but still missing hover/focus coverage
 5. ✅ **Dependency Management** — Clean minimal dependency approach
 6. ⚠️ **Configuration & Customization** — Not yet implemented
 7. ✅ **Testing Philosophy** — Clear scope boundaries (theme only, not user content)
@@ -409,7 +409,7 @@ The specification defines requirements for:
 1. ✅ **Automated Accessibility Validation** — Partially met (basic tests exist)
 2. ✅ **HTML Validation** — Met (with one skipped test for nav aria-labels)
 3. ⚠️ **ARIA Validation** — Partially met (buttons and aria-hidden, but missing role validation)
-4. ❌ **Color Contrast Validation** — Not started
+4. ⚠️ **Color Contrast Validation** — Implemented with palette + DOM checks, but five palettes still fail WCAG AA and interactive states lack coverage
 5. ✅ **Content Accessibility** — Properly scoped as out-of-scope
 
 ---
@@ -439,7 +439,7 @@ The specification defines requirements for:
 ### Before Final Deployment
 
 1. **Complete Remaining Phases**
-   - Phase 4: Color Contrast (significant gap)
+   - Phase 4: Color Contrast (add hover/focus coverage and document palette fixes)
    - Phase 5: Keyboard Navigation & Theme Accessibility
    - Phase 6: Documentation & Developer Guide
    - Phase 7: CI Verification
@@ -463,13 +463,13 @@ The specification defines requirements for:
 | 1 | Infrastructure & Setup | ✅ Complete | 100% | All tasks done, clean library choices |
 | 2 | HTML & Semantic Validation | ⚠️ Complete (with caveat) | 80% | 1 test skipped due to nav aria-labels issue |
 | 3 | ARIA Validation | ⚠️ Partial | 30% | Basic checks done, file exists, tasks.md inaccurate |
-| 4 | Color Contrast | ❌ Not Started | 0% | Significant gap, needs implementation |
+| 4 | Color Contrast | ⚠️ In Progress | 70% | Palette/site suites run; five WCAG AA failures flag real issues |
 | 5 | Theme Accessibility | ❌ Not Started | 0% | Keyboard navigation not yet addressed |
 | 6 | Coverage & Documentation | ❌ Not Started | 0% | Coverage unknown, no dev guide yet |
 | 7 | CI/CD Integration | ⚠️ Partial | 50% | Tests integrated but verification needed |
 | 8 | Validation & Cleanup | ❌ Not Started | 0% | Final checks not performed |
 
-**Overall Completion:** ~20% of planned work
+**Overall Completion:** ~35% of planned work
 
 ---
 
@@ -478,11 +478,11 @@ The specification defines requirements for:
 The "add-accessibility-tests" change has made solid progress on foundational infrastructure and initial HTML/ARIA validation. The implementation demonstrates good architectural decisions (BeautifulSoup + tidylib) and proper test organization.
 
 However, significant work remains:
-- Color contrast validation (Phase 4) is entirely missing
+- Color contrast validation (Phase 4) now runs end-to-end but still lacks hover/focus coverage and needs palette remediation guidance
 - Theme keyboard accessibility (Phase 5) not addressed
 - Documentation and coverage (Phase 6) incomplete
 - CI integration verification needed (Phase 7)
-- Overall, ~80% of planned work is incomplete
+- Overall, a majority of the planned work is still pending despite the stronger foundation
 
 **Readiness Assessment:** 
 - ✅ Not ready for approval as-is (core phases incomplete)
