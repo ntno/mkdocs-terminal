@@ -4,6 +4,33 @@
 **Date:** January 24, 2026  
 **Scope:** Improving readability and maintainability of accessibility tests and utilities
 
+## Implementation Progress (as of 2026-01-25)
+
+| Category / Step | Status | Notes |
+| --- | --- | --- |
+| **1. Utility Organization** |
+| 1.1 Split `utils.py` into focused modules | ✅ Completed | HTML/ARIA/contrast helpers already live under `tests/accessibility/validators/`; `css_parser.py`, `palette_loader.py`, and `site_context.py` exist in `utilities/`. Remaining work is to delete this doc’s references to the old `utils.py` shim and ensure imports no longer pass through it. |
+| 1.2 Extract CSS utilities into dedicated module | ✅ Completed | `tests/accessibility/utilities/css_parser.py` and `site_context.py` house CSS parsing and site-building helpers; `test_color_contrast.py` now imports from these modules. |
+| **2. Test File Organization** |
+| 2.1 Move color helper classes out of `test_color_contrast.py` | ✅ Completed | Palette helpers (`PaletteColors`, `get_palette_colors`, `assert_contrast_meets_wcag_aa`) live in `validators/contrast_validator.py`; DOM-oriented helpers were removed once DOM scanning tests were dropped. |
+| 2.2 Keep palette fixtures in root `tests/conftest.py` | ✅ Completed | `all_palette_css_attributes`, `built_example_site_with_palette`, and related helpers are centralized in `tests/conftest.py`. |
+| **3. Code Quality & Consistency** |
+| 3.1 Introduce common validator interface | ❌ Not started | Validators still expose free functions; no base class exists. |
+| 3.2 Improve docstrings/type hints | 🔄 In progress | Recent modules (e.g., `color_utils.py`, `css_parser.py`) already have detailed docstrings; older helpers still need pass to add type hints and inline docs. |
+| 3.3 Consolidate CSS variable extraction w/ better errors | 🔄 Partial | `css_parser.py` centralizes extraction and handles recursion, but there’s no logging or explicit error reporting yet. |
+| 3.4 Reduce `test_color_contrast.py` length | ✅ Completed | Test file now focuses on parametrized tests (~200 lines) because helper logic moved to utilities. |
+| **4. Test Pattern Improvements** |
+| 4.1 Extract common test patterns | ❌ Not started | No shared `test_utils.py` fixture wrappers yet; tests still open files manually. |
+| 4.2 Better assertion helpers | ❌ Not started | Tests still use ad-hoc `assert not violations` patterns. |
+| **5. Type Safety** |
+| 5.1 Use `TypedDict` for CSS schema | ❌ Not started | CSS variable dicts remain `Dict[str, str]`. |
+| 5.2 Enforce mypy on accessibility modules | ❌ Not started | No mypy config targeting these modules exists. |
+| **6. Documentation** | – | Explicit next actions were never drafted; still needs scoping. |
+
+**Won’t-do / superseded:**
+- Any references to `tests/accessibility/utils.py` are obsolete because the module has been removed; subsequent steps should assume validators/utilities are already split.
+- DOM-level color scans (mentioned indirectly in earlier notes) were intentionally removed due to false positives; no refactor work is needed there.
+
 ---
 
 ## Overview
