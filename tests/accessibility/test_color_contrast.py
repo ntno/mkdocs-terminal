@@ -46,7 +46,12 @@ class TestColorContrast:
         indirect=True,
     )
     def test_css_classes_loaded_correctly(self, built_example_site_with_palette):
-        """Verify that CSS classes and variables are loaded correctly for each palette."""
+        """Smoke-test built output to ensure palette CSS actually loads.
+
+        Catches regressions where MkDocs stops emitting theme CSS, the extractor
+        no longer finds variables, or palette naming drifts. Prevents palette-only
+        contrast checks from passing when the build pipeline is broken.
+        """
 
         builder = SiteContextBuilder(built_example_site_with_palette)
 
