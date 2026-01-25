@@ -32,9 +32,9 @@ class TestCSSLoading:
         link_tags = head.find_all('link', rel='stylesheet')
         css_links = [link.get('href') for link in link_tags if link.get('href', '').endswith('.css')]
 
-        print(f"\n\nCSS files in built site {site_path.name}:")
-        for link in css_links:
-            print(f"  {link}")
+        # print(f"\n\nCSS files in built site {site_path.name}:")
+        # for link in css_links:
+        #     print(f"  {link}")
 
         # Check for palette CSS
         palette_file = None
@@ -44,4 +44,4 @@ class TestCSSLoading:
                 break
 
         assert palette_file is not None, f"No palette CSS found in {css_links}"
-        print(f"\nPalette CSS: {palette_file}")
+        # print(f"\nPalette CSS: {palette_file}")
