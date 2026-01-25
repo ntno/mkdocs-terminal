@@ -16,7 +16,7 @@ build: check-site clean install-requirements
 
 serve: check-site clean build
 	cd $(site) && \
-	mkdocs serve -v --dev-addr=0.0.0.0:5000
+	mkdocs serve -v --dev-addr=0.0.0.0:8080
 
 clean: check-site
 	cd $(site) && \
