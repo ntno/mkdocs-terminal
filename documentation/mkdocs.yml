@@ -12,11 +12,16 @@ nav:
       - Color Palettes: 
         - Index: 'configuration/palettes/index.md'
         - Default: 'configuration/palettes/default.md'
+        - Blueberry: 'configuration/palettes/blueberry.md'
         - Gruvbox Dark: 'configuration/palettes/gruvbox-dark.md'
         - Dark: 'configuration/palettes/dark.md'
+        - Lightyear: 'configuration/palettes/lightyear.md'
         - Pink: 'configuration/palettes/pink.md'
+        - Red Drum: 'configuration/palettes/red_drum.md'
         - Sans: 'configuration/palettes/sans.md'
         - Sans Dark: 'configuration/palettes/sans-dark.md'
+        - Soundside: 'configuration/palettes/soundside.md'
+        - Volans: 'configuration/palettes/volans.md'
       - Code Highlighting:
         - Index: 'configuration/code-highlighting/index.md'
       - Features: 'configuration/features.md'
@@ -107,6 +112,11 @@ plugins:
         - configuration/palettes/pink.md#pink-palette
         - configuration/palettes/sans-dark.md#sans-dark-palette
         - configuration/palettes/sans.md#sans-palette
+        - configuration/palettes/blueberry.md#blueberry-palette
+        - configuration/palettes/lightyear.md#lightyear-palette
+        - configuration/palettes/red_drum.md#red_drum-palette
+        - configuration/palettes/soundside.md#soundside-palette
+        - configuration/palettes/volans.md#volans-palette
   - macros:
       modules: 
         - mkdocs-terminal:terminal.pluglets.tile_grid.main
@@ -114,6 +124,7 @@ plugins:
 ## deploy settings
 theme:
   name: terminal
+  palette: default
   custom_dir: theme_overrides
   features:
     - footer.prev_next

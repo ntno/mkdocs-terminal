@@ -1,0 +1,23 @@
+/*! lightyear.css | MIT License | https://github.com/ntno/mkdocs-terminal/issues/119 */
+
+:root {
+    --global-font-size: 15px;
+    --global-line-height: 1.4em;
+    --global-space: 10px;
+    --font-stack: 'Fira Code', Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+    --mono-font-stack: 'Fira Code', Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+    --background-color: #E0FFE0;
+    --page-width: 60em;
+    --font-color: #190910;
+    --invert-font-color: #f7f7f7;
+    --primary-color: #4B0082;
+    --secondary-color: #6e4e84;
+    --tertiary-color: #6e4e84;
+    --error-color: #db3030;
+    --progress-bar-background: #d4d4d4;
+    --progress-bar-fill: #5e5e5e;
+    --code-bg-color: #f7f7f7;
+    --input-style: solid;
+    --display-h1-decoration: none;
+    
+}
