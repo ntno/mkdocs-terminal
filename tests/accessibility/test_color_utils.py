@@ -393,6 +393,33 @@ class TestExtractCSSAttributes:
         assert result["background-color"] == "#282828"
         assert result["font-color"] == "#ebdbb2"
 
+    def test_fallback_variables_use_palette_overrides(self):
+        """Fallback values must resolve against palette overrides (regression).
+
+        This simulates the palette defining ``--font-color`` and the fallback
+        terminal.css defining ``--code-font-color: var(--font-color)``. The
+        extractor should resolve the fallback var using the palette-specific
+        font color instead of the fallback default.
+        """
+
+        palette_css = """
+            :root {
+                --font-color: #abcdef;
+            }
+        """
+
+        fallback_css = """
+            :root {
+                --font-color: #151515;
+                --code-font-color: var(--font-color);
+            }
+        """
+
+        result = extract_css_attributes(palette_css, fallback_css)
+
+        assert result["font-color"] == "#abcdef"
+        assert result["code-font-color"] == "#abcdef"
+
     def test_extract_returns_only_requested_attributes(self):
         """Test that extraction only returns requested attributes.
 
