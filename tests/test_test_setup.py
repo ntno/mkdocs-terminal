@@ -2,7 +2,8 @@ from jinja2 import TemplateNotFound
 import pytest
 from tests.interface.theme_features import DEFAULT_PALETTES
 
-class TestTestSetup():
+
+class TestTestSetup:
 
     def test_filesystem_terminal_loader_can_load_terminal_template(self, env_with_terminal_loader):
         try:
@@ -20,7 +21,6 @@ class TestTestSetup():
         expected_keys = {"font-stack", "background-color", "font-color", "primary-color"}
         assert expected_keys.issubset(palette_css_attributes.keys())
 
-
     def test_palette_css_attributes_default_palette(self, palette_css_attributes):
         """Test that default palette is used when no parameter is specified."""
         assert isinstance(palette_css_attributes, dict)
@@ -33,7 +33,7 @@ class TestTestSetup():
         """Test that all_palette_css_attributes contains entries for all DEFAULT_PALETTES."""
         assert isinstance(all_palette_css_attributes, dict)
         assert len(all_palette_css_attributes) == len(DEFAULT_PALETTES)
-        
+
         # Verify all default palettes are present
         for palette_name in DEFAULT_PALETTES:
             assert palette_name in all_palette_css_attributes
@@ -43,7 +43,7 @@ class TestTestSetup():
     def test_all_palette_css_attributes_contains_expected_keys(self, all_palette_css_attributes):
         """Test that each palette in all_palette_css_attributes contains expected CSS attributes."""
         expected_keys = {"font-stack", "background-color", "font-color", "primary-color", "error-color"}
-        
+
         for palette_name in DEFAULT_PALETTES:
             palette_attrs = all_palette_css_attributes[palette_name]
             assert expected_keys.issubset(palette_attrs.keys()), \
@@ -61,6 +61,3 @@ class TestTestSetup():
                 assert isinstance(attr_value, str)
                 assert len(attr_name) > 0
                 assert len(attr_value) > 0
-
-
-

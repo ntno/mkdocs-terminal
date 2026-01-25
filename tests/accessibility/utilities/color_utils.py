@@ -95,10 +95,10 @@ def normalize_color(color_str: str) -> Optional[Tuple[float, float, float]]:
     hsl_match = re.match(r"^hsla?\s*\(\s*([\d.]+)(?:deg)?\s*,\s*([\d.]+)%\s*,\s*([\d.]+)%\s*(?:,\s*[\d.]+)?\s*\)$", color_str)
     if hsl_match:
         h_str, s_str, l_str = hsl_match.groups()
-        h = float(h_str) / 360.0  # Convert to 0-1 range
-        s = float(s_str) / 100.0
-        l = float(l_str) / 100.0
-        r, g, b = colorsys.hls_to_rgb(h, l, s)
+        hue = float(h_str) / 360.0  # Convert to 0-1 range
+        saturation = float(s_str) / 100.0
+        lightness = float(l_str) / 100.0
+        r, g, b = colorsys.hls_to_rgb(hue, lightness, saturation)
         return (r, g, b)
 
     # Handle named colors

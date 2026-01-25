@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import List, Set
 
-from bs4 import BeautifulSoup, Tag
+from bs4 import BeautifulSoup
 from tidylib import tidy_document
 
 from .helpers import format_violation

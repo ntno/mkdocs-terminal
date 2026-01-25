@@ -5,7 +5,6 @@ Tests color parsing, contrast ratio calculation, and WCAG compliance checking.
 Reference: https://www.w3.org/TR/WCAG20-TECHS/G17.html
 """
 
-import pytest
 from pathlib import Path
 from tests.accessibility.utilities import extract_css_attributes
 from tests.accessibility.utilities.color_utils import (
@@ -159,18 +158,18 @@ class TestWCAGCompliance:
 
     def test_wcag_aa_bold_text(self):
         """Test bold text large text threshold.
-        
+
         Per WCAG 2.1 AA, "large text" is defined as:
         - 18pt (24px) or larger, OR
         - 14pt (18.67px) or larger and bold
-        
+
         When text_size is 14px, bold text needs at least 18.67px to qualify as large.
         Since we're passing 14 (not 18.67), it should still require 4.5:1.
         """
         # 14px bold is less than 18.67px, so needs 4.5:1
         assert meets_wcag_aa(3.0, text_size=14, is_bold=True) is False
         assert meets_wcag_aa(4.5, text_size=14, is_bold=True) is True
-        
+
         # 19px bold should use 3:1 threshold
         assert meets_wcag_aa(3.0, text_size=19, is_bold=True) is True
 
@@ -212,21 +211,21 @@ class TestExtractCSSAttributes:
 
     def test_extract_default_theme_attributes(self):
         """Test extracting CSS attributes from default theme palette.
-        
+
         The default palette inherits from terminal.css and defines core theme colors.
         """
         css_file = Path("terminal/css/terminal.css")
         assert css_file.exists(), "CSS file not found"
-        
+
         with open(css_file) as f:
             css_content = f.read()
-        
+
         result = extract_css_attributes(css_content)
-        
+
         # Verify key attributes are extracted
         assert result is not None
         assert isinstance(result, dict)
-        
+
         # Hard-coded expected values for default theme
         expected = {
             "background-color": "#fff",
@@ -245,7 +244,7 @@ class TestExtractCSSAttributes:
             "global-space": "10px",
             "page-width": "60em",
         }
-        
+
         for attr, expected_value in expected.items():
             assert attr in result, f"Attribute '{attr}' not found in extracted attributes"
             assert result[attr] == expected_value, \
@@ -253,22 +252,22 @@ class TestExtractCSSAttributes:
 
     def test_extract_gruvbox_dark_theme_attributes(self):
         """Test extracting CSS attributes from gruvbox_dark theme palette.
-        
+
         The gruvbox_dark palette uses CSS variable references that need to be resolved.
         This tests that the extraction utility properly handles variable resolution.
         """
         css_file = Path("terminal/css/palettes/gruvbox_dark.css")
         assert css_file.exists(), "CSS file not found"
-        
+
         with open(css_file) as f:
             css_content = f.read()
-        
+
         result = extract_css_attributes(css_content)
-        
+
         # Verify key attributes are extracted and variables are resolved
         assert result is not None
         assert isinstance(result, dict)
-        
+
         # Hard-coded expected values for gruvbox_dark theme
         # Note: These values include resolved variable references
         expected = {
@@ -285,7 +284,7 @@ class TestExtractCSSAttributes:
             "input-style": "solid",
             "display-h1-decoration": "none",
         }
-        
+
         for attr, expected_value in expected.items():
             assert attr in result, f"Attribute '{attr}' not found in extracted attributes"
             assert result[attr] == expected_value, \
@@ -293,22 +292,22 @@ class TestExtractCSSAttributes:
 
     def test_extract_sans_theme_attributes(self):
         """Test extracting CSS attributes from sans theme palette.
-        
+
         The sans palette minimally overrides the default theme, providing only
         a different font-stack. It inherits all other attributes from the default.
         """
         css_file = Path("terminal/css/palettes/sans.css")
         assert css_file.exists(), "CSS file not found"
-        
+
         with open(css_file) as f:
             css_content = f.read()
-        
+
         result = extract_css_attributes(css_content)
-        
+
         # Verify extracted attributes
         assert result is not None
         assert isinstance(result, dict)
-        
+
         # Hard-coded expected values for sans theme
         # Sans palette only defines font-stack and inherits other attributes
         expected = {
@@ -317,7 +316,7 @@ class TestExtractCSSAttributes:
             "global-line-height": "1.4em",
             "input-style": "solid",
         }
-        
+
         for attr, expected_value in expected.items():
             assert attr in result, f"Attribute '{attr}' not found in extracted attributes"
             assert result[attr] == expected_value, \
@@ -325,7 +324,7 @@ class TestExtractCSSAttributes:
 
     def test_extract_sans_with_terminal_fallback(self):
         """Test extracting sans theme attributes with terminal.css as fallback.
-        
+
         The sans palette only defines font-stack and global styles, inheriting all
         color-related attributes from the default theme. This test verifies that
         the fallback mechanism properly merges the two CSS sources.
@@ -334,20 +333,20 @@ class TestExtractCSSAttributes:
         terminal_file = Path("terminal/css/terminal.css")
         assert sans_file.exists(), "Sans CSS file not found"
         assert terminal_file.exists(), "Terminal CSS file not found"
-        
+
         with open(sans_file) as f:
             sans_content = f.read()
-        
+
         with open(terminal_file) as f:
             terminal_content = f.read()
-        
+
         # Extract with sans as primary and terminal as fallback
         result = extract_css_attributes(sans_content, terminal_content)
-        
+
         # Verify extracted attributes
         assert result is not None
         assert isinstance(result, dict)
-        
+
         # Hard-coded expected values combining sans overrides with terminal fallbacks
         expected = {
             # From sans.css (primary source, takes precedence)
@@ -367,7 +366,7 @@ class TestExtractCSSAttributes:
             "code-bg-color": "#e8eff2",
             "page-width": "60em",
         }
-        
+
         for attr, expected_value in expected.items():
             assert attr in result, f"Attribute '{attr}' not found in extracted attributes"
             assert result[attr] == expected_value, \
@@ -375,8 +374,8 @@ class TestExtractCSSAttributes:
 
     def test_extract_handles_variable_resolution(self):
         """Test that CSS variable references are properly resolved.
-        
-        When a CSS attribute value references another variable (e.g., 
+
+        When a CSS attribute value references another variable (e.g.,
         --background-color: var(--custom-bg)), the utility should resolve
         the reference and return the final value.
         """
@@ -387,16 +386,16 @@ class TestExtractCSSAttributes:
                 --font-color: #ebdbb2;
             }
         '''
-        
+
         result = extract_css_attributes(css_content)
-        
+
         # Verify variable references are resolved
         assert result["background-color"] == "#282828"
         assert result["font-color"] == "#ebdbb2"
 
     def test_extract_returns_only_requested_attributes(self):
         """Test that extraction only returns requested attributes.
-        
+
         CSS files may contain many variables, but extract_css_attributes
         should only return attributes from the predefined list.
         """
@@ -409,21 +408,21 @@ class TestExtractCSSAttributes:
                 --primary-color: #1a95e0;
             }
         '''
-        
+
         result = extract_css_attributes(css_content)
-        
+
         # Should have requested attributes
         assert "background-color" in result
         assert "font-color" in result
         assert "primary-color" in result
-        
+
         # Should NOT have unrequested attributes
         assert "unused-var-1" not in result
         assert "unused-var-2" not in result
 
     def test_extract_missing_attributes_excluded(self):
         """Test that missing attributes are not included in result.
-        
+
         If a CSS file doesn't define all possible theme attributes,
         only the defined ones should be in the result.
         """
@@ -433,13 +432,13 @@ class TestExtractCSSAttributes:
                 --font-color: #000;
             }
         '''
-        
+
         result = extract_css_attributes(css_content)
-        
+
         # Should include defined attributes
         assert "background-color" in result
         assert "font-color" in result
-        
+
         # Should not include undefined attributes
         assert "primary-color" not in result
         assert "error-color" not in result

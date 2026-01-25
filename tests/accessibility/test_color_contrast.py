@@ -72,7 +72,7 @@ class TestColorContrast:
             all_violations.extend(violations)
 
         if all_violations:
-            pytest.fail(f"Color contrast violations found:\n" + "\n".join(all_violations))
+            pytest.fail("Color contrast violations found:\n" + "\n".join(all_violations))
 
     @pytest.mark.parametrize(
         "built_example_site_with_palette",
@@ -112,7 +112,7 @@ class TestColorContrast:
                     tracker.add(link_color, link_bg, f"{current_page_context.relative_path}: {link_text[:30]}")
 
         failures = tracker.get_failures(min_ratio=4.5)
-        assert not failures, f"Link color contrast violations found:\n" + "\n".join(failures)
+        assert not failures, "Link color contrast violations found:\n" + "\n".join(failures)
 
     @pytest.mark.parametrize(
         "built_example_site_with_palette",
@@ -152,7 +152,7 @@ class TestColorContrast:
                     tracker.add(elem_color, elem_bg, f"{current_page_context.relative_path}:{elem.name}", elem.name)
 
         failures = tracker.get_failures(min_ratio=4.5)
-        assert not failures, f"Text element color contrast violations found:\n" + "\n".join(failures)
+        assert not failures, "Text element color contrast violations found:\n" + "\n".join(failures)
 
     @pytest.mark.parametrize(
         "built_example_site_with_palette",
@@ -182,7 +182,7 @@ class TestColorContrast:
             all_violations.extend(form_violations)
 
         if all_violations:
-            pytest.fail(f"Button/form color contrast violations found:\n" + "\n".join(all_violations))
+            pytest.fail("Button/form color contrast violations found:\n" + "\n".join(all_violations))
 
     @pytest.mark.parametrize(
         "built_example_site_with_palette",
@@ -213,7 +213,7 @@ class TestColorContrast:
                 palette_name = palette
                 break
 
-        assert palette_name is not None, f"Could not determine palette from site path: {site_path}"
+        assert palette_name is not None, f"Could not determine palette from site path: {builder.site_path}"
 
         assert current_page_context.css_variables.get("--font-color") is not None, (
             f"Palette '{palette_name}': CSS variable --font-color not found"
@@ -260,7 +260,7 @@ class TestColorContrast:
                             f"has contrast {ratio:.2f}:1 (need 4.5:1)"
                         )
 
-        assert not contrast_failures, f"Link contrast violations found:\n" + "\n".join(contrast_failures)
+        assert not contrast_failures, "Link contrast violations found:\n" + "\n".join(contrast_failures)
 
     @pytest.mark.parametrize(
         "built_example_site_with_palette",
@@ -309,7 +309,7 @@ class TestColorContrast:
                 all_failures.append(f"terminal-alert-{alert_type}: {failure}")
 
         assert not all_failures, (
-            f"Details/alert elements have insufficient contrast (need 4.5:1):\n" + "\n".join(all_failures)
+            "Details/alert elements have insufficient contrast (need 4.5:1):\n" + "\n".join(all_failures)
         )
 
     # -------------------------------------------------------------------------
@@ -435,6 +435,3 @@ class TestColorContrast:
             f"Palette '{palette_name}': Expected contrast {expected_ratio}:1, "
             f"got {ratio:.2f}:1 (colors: {colors.font_color} on {colors.background_color})"
         )
-
-
-

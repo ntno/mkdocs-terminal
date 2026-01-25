@@ -125,10 +125,9 @@ def validate_form_labels(html: str, filename: str = "index.html") -> List[str]:
             if label:
                 has_label = True
 
-        has_aria_name = bool(
-            input_elem.get("aria-label", "").strip()
-            or input_elem.get("aria-labelledby", "").strip()
-        )
+        aria_label = input_elem.get("aria-label", "").strip()
+        aria_labelledby = input_elem.get("aria-labelledby", "").strip()
+        has_aria_name = bool(aria_label or aria_labelledby)
 
         has_title = bool(input_elem.get("title", "").strip())
 
