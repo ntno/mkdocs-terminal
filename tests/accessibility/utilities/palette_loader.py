@@ -14,7 +14,7 @@ PALETTES_DIR = PROJECT_ROOT / "terminal" / "css" / "palettes"
 FALLBACK_CSS_PATH = PROJECT_ROOT / "terminal" / "css" / "terminal.css"
 
 
-def _validate_palette_name(palette_name: str) -> str:
+def validate_palette_name(palette_name: str) -> str:
     name = palette_name.strip()
     if name not in DEFAULT_PALETTES:
         raise ValueError(
@@ -24,32 +24,32 @@ def _validate_palette_name(palette_name: str) -> str:
 
 
 @lru_cache(maxsize=None)
-def _read_text_file(path: Path) -> str:
+def read_text_file(path: Path) -> str:
     if not path.exists():
         raise FileNotFoundError(f"CSS file not found: {path}")
     return path.read_text(encoding="utf-8")
 
 
 @lru_cache(maxsize=1)
-def _get_fallback_css() -> str:
-    return _read_text_file(FALLBACK_CSS_PATH)
+def get_fallback_css() -> str:
+    return read_text_file(FALLBACK_CSS_PATH)
 
 
 def load_palette_css_attributes(palette_name: str) -> Dict[str, str]:
     """Return resolved CSS attributes for a single palette."""
-    name = _validate_palette_name(palette_name)
+    name = validate_palette_name(palette_name)
     palette_css_path = PALETTES_DIR / f"{name}.css"
-    palette_content = _read_text_file(palette_css_path)
-    fallback_content = _get_fallback_css()
+    palette_content = read_text_file(palette_css_path)
+    fallback_content = get_fallback_css()
     return extract_css_attributes(palette_content, fallback_content)
 
 
 def load_all_palette_css_attributes() -> Dict[str, Dict[str, str]]:
     """Return resolved CSS attributes for every palette in DEFAULT_PALETTES."""
-    fallback_content = _get_fallback_css()
+    fallback_content = get_fallback_css()
     all_attributes: Dict[str, Dict[str, str]] = {}
     for palette_name in DEFAULT_PALETTES:
         palette_css_path = PALETTES_DIR / f"{palette_name}.css"
-        palette_content = _read_text_file(palette_css_path)
+        palette_content = read_text_file(palette_css_path)
         all_attributes[palette_name] = extract_css_attributes(palette_content, fallback_content)
     return all_attributes

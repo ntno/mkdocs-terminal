@@ -8,26 +8,26 @@ from typing import Dict, Optional
 from bs4 import BeautifulSoup, Tag
 
 
-def _extract_css_variables(html: str, css_content: str = "") -> Dict[str, str]:
+def extract_css_variables(html: str, css_content: str = "") -> Dict[str, str]:
     """Extract CSS custom properties (variables) from HTML and CSS content."""
     variables: Dict[str, str] = {}
 
     soup = BeautifulSoup(html, "html.parser")
     for style_tag in soup.find_all("style"):
         if style_tag.string:
-            variables.update(_parse_css_variables(style_tag.string))
+            variables.update(parse_css_variables(style_tag.string))
 
     if css_content:
-        variables.update(_parse_css_variables(css_content))
+        variables.update(parse_css_variables(css_content))
 
     resolved: Dict[str, str] = {}
     for var_name, var_value in variables.items():
-        resolved[var_name] = _resolve_css_variable(var_value, variables)
+        resolved[var_name] = resolve_css_variable(var_value, variables)
 
     return resolved
 
 
-def _parse_css_variables(css_text: str) -> Dict[str, str]:
+def parse_css_variables(css_text: str) -> Dict[str, str]:
     """Parse CSS variable definitions from CSS text."""
     variables: Dict[str, str] = {}
     root_pattern = r":root\s*\{([^{}]*(?:\{[^}]*\}[^{}]*)*)\}"
@@ -43,7 +43,7 @@ def _parse_css_variables(css_text: str) -> Dict[str, str]:
     return variables
 
 
-def _get_element_computed_styles(element: Optional[Tag], css_variables: Dict[str, str]) -> Dict[str, str]:
+def get_element_computed_styles(element: Optional[Tag], css_variables: Dict[str, str]) -> Dict[str, str]:
     """Get computed color styles for an element."""
     styles: Dict[str, str] = {}
 
@@ -56,7 +56,7 @@ def _get_element_computed_styles(element: Optional[Tag], css_variables: Dict[str
         match = re.search(r"(?<!background-)color:\s*([^;]+)", style_attr)
         if match:
             color_value = match.group(1).strip()
-            color_value = _resolve_css_variable(color_value, css_variables)
+            color_value = resolve_css_variable(color_value, css_variables)
             if color_value:
                 styles["color"] = color_value
 
@@ -64,24 +64,24 @@ def _get_element_computed_styles(element: Optional[Tag], css_variables: Dict[str
         match = re.search(r"background-color:\s*([^;]+)", style_attr)
         if match:
             bg_value = match.group(1).strip()
-            bg_value = _resolve_css_variable(bg_value, css_variables)
+            bg_value = resolve_css_variable(bg_value, css_variables)
             if bg_value:
                 styles["background-color"] = bg_value
 
     if "color" not in styles and "--font-color" in css_variables:
-        color_value = _resolve_css_variable("var(--font-color)", css_variables)
+        color_value = resolve_css_variable("var(--font-color)", css_variables)
         if color_value:
             styles["color"] = color_value
 
     if "background-color" not in styles and "--background-color" in css_variables:
-        bg_value = _resolve_css_variable("var(--background-color)", css_variables)
+        bg_value = resolve_css_variable("var(--background-color)", css_variables)
         if bg_value:
             styles["background-color"] = bg_value
 
     return styles
 
 
-def _resolve_css_variable(value: str, css_variables: Dict[str, str], max_depth: int = 10) -> Optional[str]:
+def resolve_css_variable(value: str, css_variables: Dict[str, str], max_depth: int = 10) -> Optional[str]:
     """Resolve CSS variable reference to its concrete value."""
     if max_depth <= 0:
         return None
@@ -91,7 +91,7 @@ def _resolve_css_variable(value: str, css_variables: Dict[str, str], max_depth: 
     if var_match:
         var_name = f"--{var_match.group(1)}"
         if var_name in css_variables:
-            return _resolve_css_variable(css_variables[var_name].strip(), css_variables, max_depth - 1)
+            return resolve_css_variable(css_variables[var_name].strip(), css_variables, max_depth - 1)
         return None
 
     return value
@@ -140,13 +140,13 @@ def extract_css_attributes(css_content: str, fallback_css_content: str = "") -> 
     for attr in attributes_to_extract:
         var_name = f"--{attr}"
         if var_name in all_variables:
-            resolved_value = _resolve_css_variable(all_variables[var_name], all_variables)
+            resolved_value = resolve_css_variable(all_variables[var_name], all_variables)
             if resolved_value:
                 result[attr] = resolved_value
                 continue
 
         if var_name in fallback_variables:
-            resolved_value = _resolve_css_variable(fallback_variables[var_name], fallback_variables)
+            resolved_value = resolve_css_variable(fallback_variables[var_name], fallback_variables)
             if resolved_value:
                 result[attr] = resolved_value
 
@@ -154,9 +154,9 @@ def extract_css_attributes(css_content: str, fallback_css_content: str = "") -> 
 
 
 __all__ = [
-    "_extract_css_variables",
-    "_parse_css_variables",
-    "_get_element_computed_styles",
-    "_resolve_css_variable",
+    "extract_css_variables",
+    "parse_css_variables",
+    "get_element_computed_styles",
+    "resolve_css_variable",
     "extract_css_attributes",
 ]

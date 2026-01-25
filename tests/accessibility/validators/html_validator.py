@@ -7,7 +7,7 @@ from typing import List, Set
 from bs4 import BeautifulSoup, Tag
 from tidylib import tidy_document
 
-from .helpers import _format_violation
+from .helpers import format_violation
 
 
 def validate_duplicate_ids(html: str, filename: str = "index.html") -> List[str]:
@@ -19,7 +19,7 @@ def validate_duplicate_ids(html: str, filename: str = "index.html") -> List[str]
     for element in soup.find_all(id=True):
         element_id = element.get("id", "")
         if element_id in all_ids:
-            violations.append(_format_violation(f"Duplicate ID found: {element_id}", filename, element))
+            violations.append(format_violation(f"Duplicate ID found: {element_id}", filename, element))
         all_ids.add(element_id)
 
     return violations
@@ -33,7 +33,7 @@ def validate_semantic_html(html: str, filename: str = "index.html") -> List[str]
     main_elements = soup.find_all("main")
     if len(main_elements) != 1:
         violations.append(
-            _format_violation(
+            format_violation(
                 f"Expected exactly 1 <main> element, found {len(main_elements)}",
                 filename,
             )
@@ -43,7 +43,7 @@ def validate_semantic_html(html: str, filename: str = "index.html") -> List[str]
         main_elem = main_elements[0]
         if main_elem.parent.name != "body":
             violations.append(
-                _format_violation(
+                format_violation(
                     f"<main> should be direct child of <body>, found parent: {main_elem.parent.name}",
                     filename,
                     main_elem,
@@ -55,7 +55,7 @@ def validate_semantic_html(html: str, filename: str = "index.html") -> List[str]
         for nav in nav_elements:
             if not nav.get("aria-label"):
                 violations.append(
-                    _format_violation(
+                    format_violation(
                         "Multiple <nav> elements should have aria-label to distinguish them",
                         filename,
                         nav,
@@ -68,7 +68,7 @@ def validate_semantic_html(html: str, filename: str = "index.html") -> List[str]
         header_in_main = main_elem.find("header")
         if header_in_main:
             violations.append(
-                _format_violation(
+                format_violation(
                     "<header> should not be nested inside <main> (should be theme header outside main content)",
                     filename,
                     header_in_main,
@@ -78,7 +78,7 @@ def validate_semantic_html(html: str, filename: str = "index.html") -> List[str]
         footer_in_main = main_elem.find("footer")
         if footer_in_main:
             violations.append(
-                _format_violation(
+                format_violation(
                     "<footer> should not be nested inside <main> (should be theme footer outside main content)",
                     filename,
                     footer_in_main,
@@ -114,6 +114,6 @@ def validate_html_structure(html: str, filename: str = "index.html") -> List[str
         )
 
         if is_structural_issue:
-            violations.append(_format_violation(error, filename))
+            violations.append(format_violation(error, filename))
 
     return violations

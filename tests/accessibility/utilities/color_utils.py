@@ -85,9 +85,9 @@ def normalize_color(color_str: str) -> Optional[Tuple[float, float, float]]:
     rgb_match = re.match(r"^rgba?\s*\(\s*(\d+(?:\.\d+)?%?)\s*,\s*(\d+(?:\.\d+)?%?)\s*,\s*(\d+(?:\.\d+)?%?)\s*(?:,\s*[\d.]+)?\s*\)$", color_str)
     if rgb_match:
         r_str, g_str, b_str = rgb_match.groups()
-        r = _parse_color_value(r_str)
-        g = _parse_color_value(g_str)
-        b = _parse_color_value(b_str)
+        r = parse_color_value(r_str)
+        g = parse_color_value(g_str)
+        b = parse_color_value(b_str)
         if r is not None and g is not None and b is not None:
             return (r, g, b)
 
@@ -112,7 +112,7 @@ def normalize_color(color_str: str) -> Optional[Tuple[float, float, float]]:
     return None
 
 
-def _parse_color_value(value_str: str) -> Optional[float]:
+def parse_color_value(value_str: str) -> Optional[float]:
     """Parse a numeric RGB component from decimal or percentage notation.
 
     Args:
@@ -153,16 +153,16 @@ def get_relative_luminance(rgb: Tuple[float, float, float]) -> float:
     r, g, b = rgb
 
     # Apply gamma correction
-    r = _linearize_color_component(r)
-    g = _linearize_color_component(g)
-    b = _linearize_color_component(b)
+    r = linearize_color_component(r)
+    g = linearize_color_component(g)
+    b = linearize_color_component(b)
 
     # Calculate relative luminance
     luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b
     return luminance
 
 
-def _linearize_color_component(value: float) -> float:
+def linearize_color_component(value: float) -> float:
     """Apply WCAG gamma correction to a single color component.
 
     Args:

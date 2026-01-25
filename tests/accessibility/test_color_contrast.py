@@ -22,7 +22,7 @@ Reference: https://www.w3.org/TR/WCAG20-TECHS/G17.html
 import pytest
 import re
 
-from tests.accessibility.utilities import _get_element_computed_styles
+from tests.accessibility.utilities import get_element_computed_styles
 from tests.accessibility.utilities.color_utils import get_contrast_ratio
 from tests.accessibility.utilities.site_context import SiteContextBuilder
 from tests.accessibility.validators import (
@@ -101,7 +101,7 @@ class TestColorContrast:
                 if not link_text:
                     continue
 
-                link_styles = _get_element_computed_styles(link, current_page_context.css_variables)
+                link_styles = get_element_computed_styles(link, current_page_context.css_variables)
                 link_color = link_styles.get("color")
                 if not link_color:
                     continue
@@ -141,7 +141,7 @@ class TestColorContrast:
                 if not elem.get_text(strip=True):
                     continue
 
-                elem_styles = _get_element_computed_styles(elem, current_page_context.css_variables)
+                elem_styles = get_element_computed_styles(elem, current_page_context.css_variables)
                 elem_color = elem_styles.get("color")
                 if not elem_color:
                     continue
@@ -292,7 +292,7 @@ class TestColorContrast:
                 ("primary", "terminal-alert-primary"),
             ]:
                 for elem_idx, elem in enumerate(current_page_context.soup.find_all(class_=class_name)):
-                    elem_styles = _get_element_computed_styles(elem, current_page_context.css_variables)
+                    elem_styles = get_element_computed_styles(elem, current_page_context.css_variables)
                     alert_color = elem_styles.get("color")
                     if not alert_color:
                         continue

@@ -7,7 +7,7 @@ from typing import Optional
 from bs4 import Tag
 
 
-def _format_violation(message: str, filename: str = "index.html", element: Optional[Tag] = None) -> str:
+def format_violation(message: str, filename: str = "index.html", element: Optional[Tag] = None) -> str:
     """Format an accessibility violation message consistently.
 
     Args:

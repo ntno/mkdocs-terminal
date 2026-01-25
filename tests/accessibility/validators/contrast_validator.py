@@ -7,9 +7,9 @@ from typing import Dict, List, Optional, Sequence, Set, Tuple
 
 from bs4 import BeautifulSoup, Tag
 
-from tests.accessibility.utilities import _extract_css_variables, _get_element_computed_styles
+from tests.accessibility.utilities import extract_css_variables, get_element_computed_styles
 from tests.accessibility.utilities.color_utils import get_contrast_ratio, meets_wcag_aa
-from .helpers import _format_violation
+from .helpers import format_violation
 
 
 @dataclass
@@ -101,14 +101,14 @@ class BackgroundColorResolver:
 
         body = self._soup.find("body")
         if body:
-            body_styles = _get_element_computed_styles(body, self._css_variables)
+            body_styles = get_element_computed_styles(body, self._css_variables)
             body_color = body_styles.get("background-color")
             if body_color:
                 return body_color
         return self._default
 
     def _resolve_from_element(self, element: Optional[Tag]) -> Optional[str]:
-        styles = _get_element_computed_styles(element, self._css_variables)
+        styles = get_element_computed_styles(element, self._css_variables)
         return styles.get("background-color")
 
 
@@ -167,10 +167,10 @@ def validate_color_contrast(html: str, filename: str = "index.html", css_content
     violations: List[str] = []
     soup = BeautifulSoup(html, "html.parser")
 
-    css_variables = _extract_css_variables(html, css_content)
+    css_variables = extract_css_variables(html, css_content)
 
     body = soup.find("body")
-    body_styles = _get_element_computed_styles(body, css_variables) if body else {}
+    body_styles = get_element_computed_styles(body, css_variables) if body else {}
     body_bg_color = body_styles.get("background-color")
 
     if not body_bg_color:
@@ -196,7 +196,7 @@ def validate_color_contrast(html: str, filename: str = "index.html", css_content
         if not text_content:
             continue
 
-        element_styles = _get_element_computed_styles(element, css_variables)
+        element_styles = get_element_computed_styles(element, css_variables)
         fg_color = element_styles.get("color")
         if not fg_color:
             continue
@@ -218,7 +218,7 @@ def validate_color_contrast(html: str, filename: str = "index.html", css_content
                 element_desc = f"{element_desc} element"
 
             violations.append(
-                _format_violation(
+                format_violation(
                     f"Insufficient color contrast on {element_desc}: {ratio:.2f}:1 "
                     f"(need {4.5 if not is_large_text else 3.0}:1 for WCAG AA). "
                     f"Color: {fg_color}, Background: {bg_color}",

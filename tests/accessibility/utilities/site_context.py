@@ -9,7 +9,7 @@ from typing import Dict, Iterator, List, Optional, Set, Union
 
 from bs4 import BeautifulSoup
 
-from .css_parser import _extract_css_variables
+from .css_parser import extract_css_variables
 
 PathLike = Union[str, Path]
 
@@ -35,7 +35,7 @@ class SiteContextBuilder:
     """Builds and caches :class:`SiteContext` objects for a built site."""
 
     def __init__(self, site_path: PathLike):
-        self.site_path = _ensure_site_path(site_path)
+        self.site_path = ensure_site_path(site_path)
         self._html_files: Optional[List[Path]] = None
         self._html_cache: Dict[Path, str] = {}
         self._css_cache: Dict[Path, str] = {}
@@ -49,7 +49,7 @@ class SiteContextBuilder:
 
     def build_context(self, html_file: PathLike) -> SiteContext:
         """Build a :class:`SiteContext` for ``html_file`` (cached when possible)."""
-        html_path = _resolve_html_file(self.site_path, html_file)
+        html_path = resolve_html_file(self.site_path, html_file)
         html_content = self._get_html_content(html_path)
         css_content = self._get_css_content(html_path, html_content)
         css_variables = self._get_css_variables(html_path, html_content, css_content)
@@ -83,7 +83,7 @@ class SiteContextBuilder:
 
     def _get_css_variables(self, html_file: Path, html_content: str, css_content: str) -> Dict[str, str]:
         if html_file not in self._css_variable_cache:
-            self._css_variable_cache[html_file] = _extract_css_variables(html_content, css_content)
+            self._css_variable_cache[html_file] = extract_css_variables(html_content, css_content)
         return self._css_variable_cache[html_file]
 
     def _get_soup(self, html_file: Path, html_content: str) -> BeautifulSoup:
@@ -112,7 +112,7 @@ def load_css_from_site(site_path: Path, html_content: str) -> str:
             if palette_match:
                 active_palette = palette_match.group(1)
 
-            css_path = _resolve_css_path(site_path, css_file)
+            css_path = resolve_css_path(site_path, css_file)
             if not css_path.exists():
                 continue
 
@@ -146,10 +146,10 @@ def iter_site_html_files(site_path: PathLike) -> Iterator[SiteContext]:
 
 def get_site_path(site_path: PathLike) -> Path:
     """Validate and return a :class:`Path` to the built site."""
-    return _ensure_site_path(site_path)
+    return ensure_site_path(site_path)
 
 
-def _ensure_site_path(site_path: PathLike) -> Path:
+def ensure_site_path(site_path: PathLike) -> Path:
     path = Path(site_path).resolve()
     if not path.exists():
         raise AssertionError(f"Built site not found at {path}")
@@ -159,7 +159,7 @@ def _ensure_site_path(site_path: PathLike) -> Path:
     return path
 
 
-def _resolve_html_file(site_path: Path, html_file: PathLike) -> Path:
+def resolve_html_file(site_path: Path, html_file: PathLike) -> Path:
     html_path = Path(html_file)
     if not html_path.is_absolute():
         html_path = site_path / html_path
@@ -169,7 +169,7 @@ def _resolve_html_file(site_path: Path, html_file: PathLike) -> Path:
     return html_path
 
 
-def _resolve_css_path(site_path: Path, css_reference: str) -> Path:
+def resolve_css_path(site_path: Path, css_reference: str) -> Path:
     """Resolve a CSS ``href`` reference to a path under ``site_path``."""
     css_path = Path(css_reference)
     if css_path.is_absolute():

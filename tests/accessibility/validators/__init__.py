@@ -16,7 +16,7 @@ from .contrast_validator import (
     get_palette_colors,
     validate_color_contrast,
 )
-from .helpers import _format_violation
+from .helpers import format_violation
 from .html_validator import (
     validate_duplicate_ids,
     validate_html_structure,
@@ -24,7 +24,7 @@ from .html_validator import (
 )
 
 __all__ = [
-    "_format_violation",
+    "format_violation",
     "BackgroundColorResolver",
     "ColorCombination",
     "ColorCombinationTracker",

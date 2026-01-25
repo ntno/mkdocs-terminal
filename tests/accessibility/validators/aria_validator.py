@@ -6,7 +6,7 @@ from typing import List
 
 from bs4 import BeautifulSoup
 
-from .helpers import _format_violation
+from .helpers import format_violation
 
 
 def validate_aria_buttons(html: str, filename: str = "index.html") -> List[str]:
@@ -18,7 +18,7 @@ def validate_aria_buttons(html: str, filename: str = "index.html") -> List[str]:
         aria_label = element.get("aria-label", "").strip()
         if not text and not aria_label:
             violations.append(
-                _format_violation(
+                format_violation(
                     "Button missing text content or aria-label",
                     filename,
                     element,
@@ -36,7 +36,7 @@ def validate_aria_hidden(html: str, filename: str = "index.html") -> List[str]:
         element_text = element.get_text(strip=True)
         if element_text:
             violations.append(
-                _format_violation(
+                format_violation(
                     "Element with aria-hidden='true' contains text. Use aria-label for icon buttons instead.",
                     filename,
                     element,
@@ -58,7 +58,7 @@ def validate_modal_accessibility(html: str, filename: str = "index.html") -> Lis
     modal_role = modal.get("role", "").lower()
     if modal_role not in ("alertdialog", "dialog"):
         violations.append(
-            _format_violation(
+            format_violation(
                 f"Modal should have role='alertdialog' or role='dialog', found role='{modal_role}'",
                 filename,
                 modal,
@@ -66,16 +66,16 @@ def validate_modal_accessibility(html: str, filename: str = "index.html") -> Lis
         )
 
     if modal.get("aria-modal", "").lower() != "true":
-        violations.append(_format_violation("Modal missing aria-modal='true'", filename, modal))
+        violations.append(format_violation("Modal missing aria-modal='true'", filename, modal))
 
     labelledby = modal.get("aria-labelledby", "").strip()
     if not labelledby:
-        violations.append(_format_violation("Modal missing aria-labelledby pointing to modal title", filename, modal))
+        violations.append(format_violation("Modal missing aria-labelledby pointing to modal title", filename, modal))
     else:
         label_elem = soup.find(id=labelledby)
         if not label_elem:
             violations.append(
-                _format_violation(
+                format_violation(
                     f"Modal aria-labelledby='{labelledby}' references non-existent element",
                     filename,
                     modal,
@@ -84,20 +84,20 @@ def validate_modal_accessibility(html: str, filename: str = "index.html") -> Lis
 
     close_button = modal.find("button", class_="close")
     if close_button and not close_button.get("aria-label", "").strip():
-        violations.append(_format_violation("Modal close button missing aria-label", filename, close_button))
+        violations.append(format_violation("Modal close button missing aria-label", filename, close_button))
 
     search_input = modal.find("input", {"type": "search"})
     if search_input:
         labelledby = search_input.get("aria-labelledby", "").strip()
         if not labelledby:
             violations.append(
-                _format_violation("Search input missing aria-labelledby association", filename, search_input)
+                format_violation("Search input missing aria-labelledby association", filename, search_input)
             )
         else:
             label_elem = soup.find(id=labelledby)
             if not label_elem:
                 violations.append(
-                    _format_violation(
+                    format_violation(
                         f"Search input aria-labelledby='{labelledby}' references non-existent element",
                         filename,
                         search_input,
@@ -134,7 +134,7 @@ def validate_form_labels(html: str, filename: str = "index.html") -> List[str]:
 
         if not (has_label or has_aria_name or has_title):
             violations.append(
-                _format_violation(
+                format_violation(
                     f"Form input of type '{input_type}' missing accessible label. "
                     f"Use <label for='{input_id}'>, aria-label, or aria-labelledby.",
                     filename,
@@ -159,6 +159,6 @@ def validate_link_text(html: str, filename: str = "index.html") -> List[str]:
         link_text = link.get_text(strip=True)
         aria_label = link.get("aria-label", "").strip()
         if not link_text and not aria_label:
-            violations.append(_format_violation("Link missing text content and aria-label", filename, link))
+            violations.append(format_violation("Link missing text content and aria-label", filename, link))
 
     return violations
