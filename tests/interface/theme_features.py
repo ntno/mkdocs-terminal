@@ -9,6 +9,11 @@ DEFAULT_PALETTES = [
     "pink",
     "sans",
     "sans_dark",
+    "blueberry",
+    "lightyear",
+    "red_drum",
+    "soundside",
+    "volans"
 ]
 
 # theme features
