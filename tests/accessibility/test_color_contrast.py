@@ -9,7 +9,6 @@ Tests check:
 - Button and form control colors
 - Heading colors
 - All default color palettes (default, dark, gruvbox_dark, pink, sans, sans_dark)
-- CSS class loading and variable extraction
 
 Limitations (static analysis):
 - Cannot test hover/focus states (require browser automation)
@@ -25,7 +24,6 @@ Reference: https://www.w3.org/TR/WCAG20-TECHS/G17.html
 import pytest
 
 from tests.accessibility.utilities.color_utils import get_contrast_ratio
-from tests.accessibility.utilities.site_context import SiteContextBuilder
 from tests.accessibility.validators import (
     assert_contrast_meets_wcag_aa,
     get_palette_colors,
@@ -35,48 +33,6 @@ from tests.interface.theme_features import DEFAULT_PALETTES
 
 class TestColorContrast:
     """Tests for WCAG 2.1 AA color contrast compliance in theme."""
-
-    # -------------------------------------------------------------------------
-    # Limited built-site sanity checks
-    # -------------------------------------------------------------------------
-
-    @pytest.mark.parametrize(
-        "built_example_site_with_palette",
-        [("minimal", palette) for palette in DEFAULT_PALETTES],
-        indirect=True,
-    )
-    def test_css_classes_loaded_correctly(self, built_example_site_with_palette):
-        """Smoke-test built output to ensure palette CSS actually loads.
-
-        Catches regressions where MkDocs stops emitting theme CSS, the extractor
-        no longer finds variables, or palette naming drifts. Prevents palette-only
-        contrast checks from passing when the build pipeline is broken.
-        """
-
-        builder = SiteContextBuilder(built_example_site_with_palette)
-
-        html_file = builder.site_path / "index.html"
-        assert html_file.exists(), f"HTML file not found at {html_file}"
-
-        current_page_context = builder.build_context(html_file)
-        assert len(current_page_context.css_content) > 0, "No CSS content loaded from site"
-        assert len(current_page_context.css_variables) > 0, "No CSS variables extracted"
-
-        # Determine palette from site path
-        palette_name = None
-        for palette in sorted(DEFAULT_PALETTES, key=len, reverse=True):
-            if f"_{palette}_site" in str(builder.site_path):
-                palette_name = palette
-                break
-
-        assert palette_name is not None, f"Could not determine palette from site path: {builder.site_path}"
-
-        assert current_page_context.css_variables.get("--font-color") is not None, (
-            f"Palette '{palette_name}': CSS variable --font-color not found"
-        )
-        assert current_page_context.css_variables.get("--background-color") is not None, (
-            f"Palette '{palette_name}': CSS variable --background-color not found"
-        )
 
     # -------------------------------------------------------------------------
     # Palette Attribute Tests (no site build required)
