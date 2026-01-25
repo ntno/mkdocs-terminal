@@ -57,6 +57,7 @@ nav:
       - Typography: 'elements/typography.md'
     - Install: 'install.md'
     - Releases: 'releases.md'
+    - Accessibility: 'accessibility.md'
 
 markdown_extensions:
   # Python Markdown  
