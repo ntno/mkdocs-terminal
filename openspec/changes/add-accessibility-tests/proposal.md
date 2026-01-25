@@ -35,7 +35,7 @@ This change creates a new testing capability for accessibility validation:
 1. **New test file:** `tests/accessibility/` directory with accessibility validation tests
 2. **Test utilities:** Helper functions for common accessibility checks
 3. **CI integration:** Accessibility tests run as part of the standard test suite (via pytest)
-4. **Documentation:** Developer guide for writing and maintaining accessibility tests
+4. **Documentation:** Developer guide for writing and maintaining accessibility tests, plus end-user guidance in `documentation/docs/accessibility.md` that enumerates current contrast failures detected by the automated suite.
 
 ### What's Out of Scope
 
