@@ -194,14 +194,8 @@ _Status: ⚠️ Partial — validation runs are complete; code review and final 
 - Focus current coverage on static, theme-controlled colors (body text, links, buttons, alerts) while documenting hover/focus limitations.
 - Track exact foreground/background pairs so designers receive actionable violation summaries.
 
-### Test Results (2026-01-24)
+### Test Results (2026-01-25)
 
-`pytest tests/accessibility/ -v` → 120 passed, 1 skipped, 5 expected failures:
+`pytest tests/accessibility/ -v` → 229 passed, 11 xfailed
 
-1. `test_primary_link_color_meets_wcag_aa[default]`
-2. `test_primary_link_color_meets_wcag_aa[pink]`
-3. `test_primary_link_color_meets_wcag_aa[sans]`
-4. `test_alert_error_color_meets_wcag_aa[gruvbox_dark]`
-5. `test_ghost_error_button_color_meets_wcag_aa[gruvbox_dark]`
-
-These failures reflect real WCAG AA contrast gaps in the current palette values and must be addressed (or excepted with justification) before closing Phase 4.
+Each `xfail` corresponds to a confirmed WCAG AA contrast gap recorded in `documentation/docs/accessibility.md`; they stay expected-failed only to prevent CI noise until the palettes are fixed or explicitly excepted.
