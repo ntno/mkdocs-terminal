@@ -196,6 +196,6 @@ _Status: ⚠️ Partial — validation runs are complete; code review and final 
 
 ### Test Results (2026-01-25)
 
-`pytest tests/accessibility/ -v` → 229 passed, 11 xfailed
+`pytest tests/accessibility/ -v` → 231 passed, 9 xfailed
 
 Each `xfail` corresponds to a confirmed WCAG AA contrast gap recorded in `documentation/docs/accessibility.md`; they stay expected-failed only to prevent CI noise until the palettes are fixed or explicitly excepted.

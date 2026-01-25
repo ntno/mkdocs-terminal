@@ -9,11 +9,6 @@ from tests.accessibility.validators import (
 )
 
 
-SEARCH_MODAL_XFAIL_REASON = (
-    "Search modal ARIA attributes are under active remediation; tracked in documentation/docs/accessibility.md."
-)
-
-
 class TestARIAButtons:
     """Tests for button ARIA attributes.
 
@@ -67,7 +62,6 @@ class TestARIAAttributes:
     """
 
     @pytest.mark.parametrize("built_example_site", ["search-enabled"], indirect=True)
-    @pytest.mark.xfail(reason=SEARCH_MODAL_XFAIL_REASON, strict=False)
     def test_aria_hidden_only_on_decorative(self, built_example_site):
         """Verify aria-hidden='true' only appears on genuinely decorative elements.
 
@@ -114,7 +108,6 @@ class TestModalAccessibility:
     """
 
     @pytest.mark.parametrize("built_example_site", ["search-enabled"], indirect=True)
-    @pytest.mark.xfail(reason=SEARCH_MODAL_XFAIL_REASON, strict=False)
     def test_modal_has_correct_aria_attributes(self, built_example_site):
         """Verify search modal has required ARIA attributes for accessibility.
 
