@@ -8,13 +8,6 @@ from tests.accessibility.validators import (
     validate_link_text,
 )
 
-
-@pytest.fixture
-def index_html(built_example_site):
-    index_file = built_example_site / "index.html"
-    return index_file.read_text(encoding="utf-8"), index_file.name
-
-
 class TestARIAButtons:
     """Tests for button ARIA attributes.
 

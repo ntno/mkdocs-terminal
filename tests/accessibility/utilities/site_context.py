@@ -34,18 +34,6 @@ class SiteContext:
     css_variables: Dict[str, str]
     soup: BeautifulSoup
 
-    @property
-    def relative_path(self) -> str:
-        """Return the file path relative to the built site root.
-
-        Args:
-            None.
-
-        Returns:
-            Path relative to ``site_path``. Example return: ``"docs/index.html"``.
-        """
-        return str(self.html_file.relative_to(self.site_path))
-
 
 class SiteContextBuilder:
     """Build and cache :class:`SiteContext` objects for a built site.
