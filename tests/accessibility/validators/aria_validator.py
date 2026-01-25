@@ -46,7 +46,7 @@ def validate_aria_hidden(html: str, filename: str = "index.html") -> List[str]:
     return violations
 
 
-def validate_modal_accessibility(html: str, filename: str = "index.html") -> List[str]:
+def validate_search_modal_accessibility(html: str, filename: str = "index.html") -> List[str]:
     """Validate search modal has proper ARIA attributes for accessibility."""
     violations: List[str] = []
     soup = BeautifulSoup(html, "html.parser")

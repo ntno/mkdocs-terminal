@@ -5,7 +5,7 @@ from .aria_validator import (
     validate_aria_hidden,
     validate_form_labels,
     validate_link_text,
-    validate_modal_accessibility,
+    validate_search_modal_accessibility,
 )
 from .contrast_validator import (
     PaletteColors,
@@ -33,5 +33,5 @@ __all__ = [
     "validate_aria_hidden",
     "validate_form_labels",
     "validate_link_text",
-    "validate_modal_accessibility",
+    "validate_search_modal_accessibility",
 ]

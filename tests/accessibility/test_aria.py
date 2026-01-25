@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 from tests.accessibility.validators import (
     validate_aria_buttons,
     validate_aria_hidden,
-    validate_modal_accessibility,
+    validate_search_modal_accessibility,
     validate_form_labels,
     validate_link_text,
 )
@@ -127,7 +127,7 @@ class TestModalAccessibility:
             if soup.find(id="mkdocs_search_modal"):
                 modal_found = True
 
-            violations = validate_modal_accessibility(html, html_file.name)
+            violations = validate_search_modal_accessibility(html, html_file.name)
             all_violations.extend(violations)
 
         # Verify test configuration: modal should exist in the site
