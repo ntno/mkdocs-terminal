@@ -106,6 +106,23 @@ class TestColorContrast:
             f"Palette '{palette_name}': Ghost error button text color",
         )
 
+    @pytest.mark.parametrize("palette_name", DEFAULT_PALETTES)
+    def test_code_block_text_contrast_meets_wcag_aa(self, palette_name, all_palette_css_attributes):
+        """Ensure code block text stays legible against the code background."""
+
+        colors = get_palette_colors(
+            palette_name,
+            all_palette_css_attributes,
+            required_attrs=["code-font-color", "code-bg-color"],
+        )
+
+        assert_contrast_meets_wcag_aa(
+            colors.code_font_color,
+            colors.code_background_color,
+            colors.font_size,
+            f"Palette '{palette_name}': Code block font color",
+        )
+
     @pytest.mark.parametrize(
         "palette_name,expected_ratio",
         [

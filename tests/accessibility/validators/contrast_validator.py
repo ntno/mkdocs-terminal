@@ -21,6 +21,8 @@ class PaletteColors:
     background_color: str
     primary_color: Optional[str] = None
     error_color: Optional[str] = None
+    code_font_color: Optional[str] = None
+    code_background_color: Optional[str] = None
     font_size: float = 14.0
 
 
@@ -44,6 +46,8 @@ def get_palette_colors(
 
     primary_color = palette_attributes.get("primary-color")
     error_color = palette_attributes.get("error-color")
+    code_font_color = palette_attributes.get("code-font-color")
+    code_background_color = palette_attributes.get("code-bg-color")
 
     if required_attrs:
         for attr in required_attrs:
@@ -55,6 +59,8 @@ def get_palette_colors(
         background_color=background_color,
         primary_color=primary_color,
         error_color=error_color,
+        code_font_color=code_font_color,
+        code_background_color=code_background_color,
         font_size=font_size,
     )
 
