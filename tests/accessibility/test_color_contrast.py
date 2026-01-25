@@ -39,7 +39,7 @@ class TestColorContrast:
     # -------------------------------------------------------------------------
 
     @pytest.mark.parametrize("palette_name", DEFAULT_PALETTES)
-    def test_link_contrast_ratios_meet_wcag_aa_minimum(self, palette_name, all_palette_css_attributes):
+    def test_text_contrast_ratios_meet_wcag_aa_minimum(self, palette_name, all_palette_css_attributes):
         """Verify palette font colors meet the 4.5:1 minimum contrast."""
 
         colors = get_palette_colors(palette_name, all_palette_css_attributes)
@@ -55,7 +55,7 @@ class TestColorContrast:
         )
 
     @pytest.mark.parametrize("palette_name", DEFAULT_PALETTES)
-    def test_link_contrast_passes_wcag_aa_validation(self, palette_name, all_palette_css_attributes):
+    def test_text_contrast_passes_wcag_aa_validation(self, palette_name, all_palette_css_attributes):
         """Validate font colors via `assert_contrast_meets_wcag_aa`."""
 
         colors = get_palette_colors(palette_name, all_palette_css_attributes)
