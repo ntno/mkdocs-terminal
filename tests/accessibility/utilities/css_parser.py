@@ -9,7 +9,16 @@ from bs4 import BeautifulSoup, Tag
 
 
 def extract_css_variables(html: str, css_content: str = "") -> Dict[str, str]:
-    """Extract CSS custom properties (variables) from HTML and CSS content."""
+    """Extract CSS custom properties (variables) from HTML and CSS text.
+
+    Args:
+        html: Raw HTML string that may include inline ``<style>`` tags.
+        css_content: Optional external CSS text to merge with inline styles.
+
+    Returns:
+        Dictionary mapping CSS variable names to their resolved values. Example
+        return: ``{"--font-color": "#1a1a1a", "--background-color": "#ffffff"}``.
+    """
     variables: Dict[str, str] = {}
 
     soup = BeautifulSoup(html, "html.parser")
@@ -28,7 +37,15 @@ def extract_css_variables(html: str, css_content: str = "") -> Dict[str, str]:
 
 
 def parse_css_variables(css_text: str) -> Dict[str, str]:
-    """Parse CSS variable definitions from CSS text."""
+    """Parse CSS variable definitions from a block of CSS text.
+
+    Args:
+        css_text: String containing one or more ``:root`` declarations.
+
+    Returns:
+        Dictionary of discovered variables without resolving references.
+        Example return: ``{"--font-color": "var(--secondary-color)", "--secondary-color": "#222"}``.
+    """
     variables: Dict[str, str] = {}
     root_pattern = r":root\s*\{([^{}]*(?:\{[^}]*\}[^{}]*)*)\}"
 
@@ -44,7 +61,16 @@ def parse_css_variables(css_text: str) -> Dict[str, str]:
 
 
 def get_element_computed_styles(element: Optional[Tag], css_variables: Dict[str, str]) -> Dict[str, str]:
-    """Get computed color styles for an element."""
+    """Return basic computed styles for ``color`` and ``background-color``.
+
+    Args:
+        element: BeautifulSoup ``Tag`` to inspect. When ``None`` an empty dict is returned.
+        css_variables: Map of CSS custom properties used to resolve ``var()`` references.
+
+    Returns:
+        Dictionary containing any discovered ``color`` / ``background-color`` values.
+        Example return: ``{"color": "#111111", "background-color": "#ffffff"}``.
+    """
     styles: Dict[str, str] = {}
 
     if not element:
@@ -82,7 +108,18 @@ def get_element_computed_styles(element: Optional[Tag], css_variables: Dict[str,
 
 
 def resolve_css_variable(value: str, css_variables: Dict[str, str], max_depth: int = 10) -> Optional[str]:
-    """Resolve CSS variable reference to its concrete value."""
+    """Resolve nested ``var()`` references to their concrete values.
+
+    Args:
+        value: Either a raw CSS value (e.g., ``"#fff"``) or ``var(--token)``.
+        css_variables: Dictionary of available variable definitions.
+        max_depth: Safety ceiling for recursive resolution (defaults to 10).
+
+    Returns:
+        Resolved string value or ``None`` when the reference cannot be satisfied.
+        Example return: passing ``"var(--font-color)"`` with ``{"--font-color": "#000"}``
+        yields ``"#000"``.
+    """
     if max_depth <= 0:
         return None
 
@@ -98,7 +135,16 @@ def resolve_css_variable(value: str, css_variables: Dict[str, str], max_depth: i
 
 
 def extract_css_attributes(css_content: str, fallback_css_content: str = "") -> Dict[str, str]:
-    """Extract theme CSS attribute variables and return them as a map."""
+    """Resolve theme CSS attributes (font/color tokens) from CSS content.
+
+    Args:
+        css_content: Palette-specific CSS text that may override defaults.
+        fallback_css_content: Base theme CSS used when an attribute is missing.
+
+    Returns:
+        Dictionary keyed by attribute name (no leading ``--``) with resolved values.
+        Example return: ``{"background-color": "#0d1117", "font-color": "#e6edf3"}``.
+    """
     attributes_to_extract = [
         "global-font-size",
         "global-line-height",
