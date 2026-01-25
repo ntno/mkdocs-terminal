@@ -6,12 +6,12 @@
 
 | Palette      | Primary Links | Error Buttons | Code Blocks |
 | ------------ | ------------- | ------------- | ----------- |
-| default      | x             |               |             |
-| sans         | x             |               |             |
-| pink         | x             |               |             |
-| gruvbox_dark |               | x             | x           |
-| dark         |               |               | x           |
-| sans_dark    |               |               | x           |
+| [default](../configuration/palettes/default/) | x |  |  |
+| [sans](../configuration/palettes/sans/) | x |  |  |
+| [pink](../configuration/palettes/pink/) | x |  |  |
+| [gruvbox_dark](../configuration/palettes/gruvbox-dark/) |  | x | x |
+| [dark](../configuration/palettes/dark/) |  |  | x |
+| [sans_dark](../configuration/palettes/sans-dark/) |  |  | x |
 
 x indicates an open WCAG 2.1 AA contrast failure
 
