@@ -393,7 +393,7 @@ The implementation generally aligns with the design document:
 1. ✅ **Library Choice Rationale** — Well documented, matches implementation
 2. ✅ **Test Organization** — Organized by concern area as designed
 3. ✅ **Test Data Source** — Using built example sites as designed
-4. ⚠️ **Contrast Ratio Validation** — Implemented for palette + site checks but still missing hover/focus coverage
+4. ⚠️ **Contrast Ratio Validation** — Implemented but failing for five palettes (tests surface real WCAG violations)
 5. ✅ **Dependency Management** — Clean minimal dependency approach
 6. ⚠️ **Configuration & Customization** — Not yet implemented
 7. ✅ **Testing Philosophy** — Clear scope boundaries (theme only, not user content)
@@ -409,7 +409,7 @@ The specification defines requirements for:
 1. ✅ **Automated Accessibility Validation** — Partially met (basic tests exist)
 2. ✅ **HTML Validation** — Met (with one skipped test for nav aria-labels)
 3. ⚠️ **ARIA Validation** — Partially met (buttons and aria-hidden, but missing role validation)
-4. ⚠️ **Color Contrast Validation** — Implemented with palette + DOM checks, but five palettes still fail WCAG AA and interactive states lack coverage
+4. ⚠️ **Color Contrast Validation** — Implemented but currently blocked by palette color bugs
 5. ✅ **Content Accessibility** — Properly scoped as out-of-scope
 
 ---
@@ -439,7 +439,7 @@ The specification defines requirements for:
 ### Before Final Deployment
 
 1. **Complete Remaining Phases**
-   - Phase 4: Color Contrast (add hover/focus coverage and document palette fixes)
+   - Phase 4: Color Contrast (fix failing palettes and add focus/hover validation)
    - Phase 5: Keyboard Navigation & Theme Accessibility
    - Phase 6: Documentation & Developer Guide
    - Phase 7: CI Verification
@@ -463,13 +463,13 @@ The specification defines requirements for:
 | 1 | Infrastructure & Setup | ✅ Complete | 100% | All tasks done, clean library choices |
 | 2 | HTML & Semantic Validation | ⚠️ Complete (with caveat) | 80% | 1 test skipped due to nav aria-labels issue |
 | 3 | ARIA Validation | ⚠️ Partial | 30% | Basic checks done, file exists, tasks.md inaccurate |
-| 4 | Color Contrast | ⚠️ In Progress | 70% | Palette/site suites run; five WCAG AA failures flag real issues |
+| 4 | Color Contrast | ⚠️ Partial | 70% | Suite built; five palettes still violate WCAG AA |
 | 5 | Theme Accessibility | ❌ Not Started | 0% | Keyboard navigation not yet addressed |
 | 6 | Coverage & Documentation | ❌ Not Started | 0% | Coverage unknown, no dev guide yet |
 | 7 | CI/CD Integration | ⚠️ Partial | 50% | Tests integrated but verification needed |
 | 8 | Validation & Cleanup | ❌ Not Started | 0% | Final checks not performed |
 
-**Overall Completion:** ~35% of planned work
+**Overall Completion:** ~40% of planned work
 
 ---
 
@@ -478,11 +478,11 @@ The specification defines requirements for:
 The "add-accessibility-tests" change has made solid progress on foundational infrastructure and initial HTML/ARIA validation. The implementation demonstrates good architectural decisions (BeautifulSoup + tidylib) and proper test organization.
 
 However, significant work remains:
-- Color contrast validation (Phase 4) now runs end-to-end but still lacks hover/focus coverage and needs palette remediation guidance
+- Color contrast validation (Phase 4) still blocks on palette fixes and focus state coverage
 - Theme keyboard accessibility (Phase 5) not addressed
 - Documentation and coverage (Phase 6) incomplete
 - CI integration verification needed (Phase 7)
-- Overall, a majority of the planned work is still pending despite the stronger foundation
+- Overall, ~80% of planned work is incomplete
 
 **Readiness Assessment:** 
 - ✅ Not ready for approval as-is (core phases incomplete)

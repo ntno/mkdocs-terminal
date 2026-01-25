@@ -10,6 +10,8 @@ Implementation tasks for adding automated accessibility testing to the Terminal 
 
 ### Phase 1: Infrastructure & Setup
 
+_Status: ✅ Complete — finished during Phase 1 bring-up; no remaining work tracked here._
+
 - [x] Review and document accessibility library choices (axe-core vs pytest-a11y vs custom)
 - [x] Update `pyproject.toml` with accessibility testing dependencies
 - [x] Update `requirements.test.txt` with new test dependencies
@@ -19,6 +21,8 @@ Implementation tasks for adding automated accessibility testing to the Terminal 
 
 ### Phase 2: HTML & Semantic Validation
 
+_Status: ✅ Complete — semantic tests land with known nav aria-label skip awaiting template fix._
+
 - [x] Create `tests/accessibility/test_html_validation.py`
 - [x] Implement HTML5 structure validation tests
 - [x] Add tests for semantic HTML elements (headings, nav, main, etc.)
@@ -26,6 +30,8 @@ Implementation tasks for adding automated accessibility testing to the Terminal 
 - [x] Document HTML validation requirements in test docstrings
 
 ### Phase 3: ARIA & Semantic Attributes
+
+_Status: ⚠️ In progress — buttons/modals/forms/links covered; landmarks/live regions/complex associations pending._
 
 - [x] Create `tests/accessibility/test_aria.py` (note: named test_aria.py, not test_aria_attributes.py)
 - [x] Implement ARIA attribute validation tests (buttons, modal, forms, links)
@@ -40,6 +46,8 @@ Implementation tasks for adding automated accessibility testing to the Terminal 
 
 ### Phase 4: Color Contrast & Visual Accessibility
 
+_Status: ⚠️ In progress — contrast suite implemented (tests currently fail on five palettes until remediated)._ 
+
 - [x] Create `tests/accessibility/test_color_contrast.py`
 - [x] Implement color contrast ratio validation (WCAG AA standard)
 - [x] Add tests for text color vs background
@@ -50,6 +58,8 @@ Implementation tasks for adding automated accessibility testing to the Terminal 
 
 ### Phase 5: Theme Accessibility
 
+_Status: ❌ Not started — keyboard navigation and focus checks still to be scoped._
+
 - [ ] Verify theme templates support keyboard navigation
 - [ ] Add tests for keyboard focus indicators (visible focus states)
 - [ ] Verify skip-to-content links work properly
@@ -57,6 +67,8 @@ Implementation tasks for adding automated accessibility testing to the Terminal 
 - [ ] Document theme-specific accessibility requirements
 
 ### Phase 6: Test Coverage & Documentation
+
+_Status: ❌ Not started — coverage baseline and contributor docs outstanding._
 
 - [ ] Ensure test coverage reaches 80%+ for accessibility tests
 - [ ] Create developer documentation for adding new accessibility checks to theme
@@ -66,6 +78,8 @@ Implementation tasks for adding automated accessibility testing to the Terminal 
 
 ### Phase 7: CI/CD Integration
 
+_Status: ⚠️ Partial — tests wired into pytest/make flows, but CI + multi-runtime verification still open._
+
 - [ ] Verify accessibility tests run in CI pipeline
 - [ ] Ensure tests pass on all supported Python versions (3.8-3.12)
 - [ ] Ensure tests pass on all supported OS (ubuntu, macOS, windows)
@@ -73,6 +87,8 @@ Implementation tasks for adding automated accessibility testing to the Terminal 
 - [ ] Add accessibility test results to CI artifacts if needed
 
 ### Phase 8: Validation & Cleanup
+
+_Status: ❌ Not started — final validation steps deferred until earlier phases close._
 
 - [ ] Run full test suite to ensure no regressions
 - [ ] Verify all accessibility tests pass locally
