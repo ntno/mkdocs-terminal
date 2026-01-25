@@ -8,6 +8,7 @@ from tests.accessibility.validators import (
     validate_link_text,
 )
 
+
 class TestARIAButtons:
     """Tests for button ARIA attributes.
 

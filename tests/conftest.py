@@ -312,5 +312,3 @@ def built_example_site(tmp_path_factory, request):
 
     example_site_name = getattr(request, "param", "minimal")
     return build_example_site(tmp_path_factory, example_site_name)
-
-
