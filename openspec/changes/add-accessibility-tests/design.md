@@ -228,7 +228,7 @@ Reference: WCAG 2.1 AA 1.1.1 Non-text Content
 
 The accessibility test suite itself must be tested:
 
-1. **Coverage:** 80%+ line coverage of test code
+1. **Coverage:** 80%+ line coverage of test code (current `tests/accessibility` coverage is ~73% from `pytest --cov=tests/accessibility --cov-branch --cov-report=html`)
 2. **False Positives:** Manual review of check results against WCAG guidelines
 3. **Regressions:** Ensure existing accessible sites continue to pass
 4. **Edge Cases:** Test with various HTML structures, CSS patterns, color schemes

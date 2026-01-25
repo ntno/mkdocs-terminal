@@ -17,6 +17,7 @@ Add automated accessibility testing to ensure the Terminal for MkDocs theme main
 - Palette-focused WCAG 2.1 AA contrast tests run through `tests/accessibility/test_color_contrast.py`, `tests/accessibility/utilities/color_utils.py`, and `tests/accessibility/utilities/palette_loader.py`. Known palette failures (default, sans, pink, gruvbox_dark) are explicitly documented and expected-failed until new palette values are delivered.
 - Supporting utilities (`css_parser.py`, `palette_loader.py`, `site_context.py`) and validators (`html_validator.py`, `contrast_validator.py`, `helpers.py`) centralize parsing logic, enabling reuse across tests.
 - Accessibility tests run in CI for Python 3.8–3.12 on Ubuntu and macOS. Windows execution is blocked by dependency issue [#59](https://github.com/ntno/mkdocs-terminal/issues/59) and will be re-enabled once the upstream fix lands.
+- Current coverage for the shared accessibility test utilities sits at 73%, measured via `pytest --cov=tests/accessibility --cov-branch --cov-report=html`.
 
 ## Motivation
 
@@ -99,7 +100,7 @@ The implemented suite relies on static analysis of built example sites plus pale
 - [x] Documentation is provided for extending/maintaining accessibility tests (`documentation/docs/accessibility.md` + inline test docstrings)
 - [x] New dependencies are documented and added to `pyproject.toml`
 - [x] CI runs accessibility tests automatically on all PRs across Python 3.8–3.12
-- [ ] Test coverage is 80%+ for accessibility test code (coverage data still pending)
+- [ ] Test coverage is 80%+ for accessibility test code (currently ~73% for `tests/accessibility` measured via `pytest --cov=tests/accessibility --cov-branch --cov-report=html`)
 
 ## Dependencies
 

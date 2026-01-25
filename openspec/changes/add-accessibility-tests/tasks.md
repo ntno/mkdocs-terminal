@@ -70,7 +70,7 @@ _Status: ❌ Not started — keyboard navigation and focus checks still to be sc
 
 _Status: ❌ Not started — coverage baseline and contributor docs outstanding._
 
-- [ ] Ensure test coverage reaches 80%+ for accessibility tests
+- [ ] Ensure test coverage reaches 80%+ for accessibility tests (currently ~73% for `tests/accessibility` via `pytest --cov=tests/accessibility --cov-branch --cov-report=html`)
 - [ ] Create developer documentation for adding new accessibility checks to theme
 - [ ] Document known limitations: tests validate theme only, not user content
 - [ ] Add examples of how to write accessibility checks for theme components
