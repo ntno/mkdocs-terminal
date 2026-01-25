@@ -44,7 +44,7 @@ class TestThemeStructure:
     # TODO: fix the nav violation, see:
     # https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/navigation.html
     # https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/
-    @pytest.mark.skip(reason="Nav elements missing aria-labels in theme templates")
+    @pytest.mark.xfail(reason="Nav elements missing aria-labels in theme templates", strict=False)
     def test_semantic_element_structure(self, built_example_site):
         """Verify theme uses semantic elements correctly.
 
