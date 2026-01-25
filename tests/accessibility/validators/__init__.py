@@ -8,9 +8,6 @@ from .aria_validator import (
     validate_modal_accessibility,
 )
 from .contrast_validator import (
-    BackgroundColorResolver,
-    ColorCombination,
-    ColorCombinationTracker,
     PaletteColors,
     assert_contrast_meets_wcag_aa,
     get_palette_colors,
@@ -25,9 +22,6 @@ from .html_validator import (
 
 __all__ = [
     "format_violation",
-    "BackgroundColorResolver",
-    "ColorCombination",
-    "ColorCombinationTracker",
     "validate_color_contrast",
     "PaletteColors",
     "assert_contrast_meets_wcag_aa",
