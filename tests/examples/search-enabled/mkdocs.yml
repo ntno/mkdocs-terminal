@@ -2,7 +2,7 @@ INHERIT: ../base.yml
 
 
 
-site_name: Terminal Theme Simple
+site_name: Terminal Theme Search Enabled Example
 nav:
     - Home: 'index.md'
     - Elements: 'elements.md'
@@ -17,7 +17,7 @@ nav:
         - v2: 'about/release-notes/version-2.md'
     - User Guide:
       - Configuration: 'user-guide/configuration.md'
-      - Custom Themes: 'user-guide/custom-themes.md'
+      - Tiles: 'user-guide/tiles.md'
       - Deployment: 'user-guide/deploying-your-docs.md'
       - Styling: 'user-guide/styling-your-docs.md'
       - Writing: 'user-guide/writing-your-docs.md'
