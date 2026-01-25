@@ -123,6 +123,23 @@ class TestColorContrast:
             f"Palette '{palette_name}': Code block font color",
         )
 
+    @pytest.mark.parametrize("palette_name", DEFAULT_PALETTES)
+    def test_top_nav_link_contrast_meets_wcag_aa(self, palette_name, all_palette_css_attributes):
+        """Top navigation links use --secondary-color; ensure they meet contrast on background."""
+
+        colors = get_palette_colors(
+            palette_name,
+            all_palette_css_attributes,
+            required_attrs=["secondary-color"],
+        )
+
+        assert_contrast_meets_wcag_aa(
+            colors.secondary_color,
+            colors.background_color,
+            colors.font_size,
+            f"Palette '{palette_name}': Top nav link color",
+        )
+
     @pytest.mark.parametrize(
         "palette_name,expected_ratio",
         [
