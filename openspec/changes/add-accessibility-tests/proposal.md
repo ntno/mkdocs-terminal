@@ -2,13 +2,21 @@
 
 **Change ID:** `add-accessibility-tests`
 
-**Status:** Pending Review
+**Status:** In Progress — core HTML/ARIA/contrast suites landed; Windows CI + remaining ARIA/focus coverage still outstanding.
 
 **Created:** 2026-01-19
 
 ## Summary
 
 Add automated accessibility testing to ensure the Terminal for MkDocs theme maintains WCAG 2.1 AA compliance and follows web accessibility best practices. This includes HTML validation, semantic structure verification, ARIA attribute checks, and color contrast validation of theme components only.
+
+## Current State (2026-01-25)
+
+- HTML structural and semantic checks live in `tests/accessibility/test_html_validation.py`, combining BeautifulSoup-based duplicate ID detection with HTML Tidy validation. Landmark coverage for multiple `<nav>` regions is implemented but currently marked `xfail` pending template fixes.
+- ARIA coverage (buttons, aria-hidden, modal, forms, link text) ships via `tests/accessibility/test_aria.py` and shared helpers in `tests/accessibility/validators/aria_validator.py`. Search modal regressions are tracked through `pytest.xfail` with documentation references.
+- Palette-focused WCAG 2.1 AA contrast tests run through `tests/accessibility/test_color_contrast.py`, `tests/accessibility/utilities/color_utils.py`, and `tests/accessibility/utilities/palette_loader.py`. Known palette failures (default, sans, pink, gruvbox_dark) are explicitly documented and expected-failed until new palette values are delivered.
+- Supporting utilities (`css_parser.py`, `palette_loader.py`, `site_context.py`) and validators (`html_validator.py`, `contrast_validator.py`, `helpers.py`) centralize parsing logic, enabling reuse across tests.
+- Accessibility tests run in CI for Python 3.8–3.12 on Ubuntu and macOS. Windows execution is blocked by dependency issue [#59](https://github.com/ntno/mkdocs-terminal/issues/59) and will be re-enabled once the upstream fix lands.
 
 ## Motivation
 
@@ -49,58 +57,62 @@ This change creates a new testing capability for accessibility validation:
 
 ### Testing Strategy
 
-Accessibility tests will use a multi-layered approach focused on theme components:
+The implemented suite relies on static analysis of built example sites plus palette-level CSS inspection:
 
-1. **HTML Validation** — Use `html5lib` to validate semantic HTML5 structure of theme templates
-2. **ARIA Validation** — Check ARIA attributes on theme interactive components (navigation, search, modals, buttons)
-3. **Color Contrast** — Validate text/background contrast ratios in theme CSS meet WCAG AA standards (body text, links, buttons, form controls)
-4. **Semantic HTML** — Verify theme uses proper semantic elements (`<nav>`, `<main>`, `<aside>`, `<header>`, `<footer>`)
-5. **Theme Accessibility** — Ensure theme templates support keyboard navigation, focus indicators, and screen reader compatibility
+1. **HTML validity + semantics** — `tests/accessibility/test_html_validation.py` calls helpers in `validators/html_validator.py` to run duplicate-ID checks with BeautifulSoup and structural validation via `tidylib`. The semantic landmark test is currently marked `xfail` until `<nav>` elements receive unique labels.
+2. **ARIA + interactive patterns** — `tests/accessibility/test_aria.py` feeds all built HTML through validators in `validators/aria_validator.py`, covering buttons, aria-hidden usage, search modal attributes, form labeling, and navigation links. Search modal regressions are tracked with explicit `pytest.xfail` markers referencing the accessibility documentation.
+3. **Palette-level WCAG contrast** — `tests/accessibility/test_color_contrast.py`, `utilities/color_utils.py`, `utilities/css_parser.py`, and `validators/contrast_validator.py` compute WCAG 2.1 AA ratios directly from the palette CSS files. CSS variables are resolved via `palette_loader.py`, ensuring every palette in `terminal/css/palettes/` is exercised.
+4. **CSS + parser regression coverage** — `tests/accessibility/test_css_loading.py` ensures palettes can still be injected into built sites, while `tests/accessibility/test_color_utils.py` unit-tests color parsing, luminance math, and regression ratios.
 
-**In Scope:** Theme-controlled colors (body text, link colors, button colors, form control styling) since these are provided by the theme CSS, not by users
-**Out of Scope:** User-authored content styling (custom text colors, inline styles set by content authors, user-defined color overrides) — these are the responsibility of content authors
+**In Scope:** Theme-controlled HTML templates and CSS variables (body text, primary/secondary colors, buttons, form controls). The suite purposely stops at static analysis; hover/focus states and runtime keyboard interactions remain future work.
+**Out of Scope:** User-authored Markdown/HTML, inline colors, or JavaScript extensions supplied by documentation authors. Those remain the responsibility of site maintainers.
 
 ### Implementation Approach
 
-- Use pytest-a11y or axe-core-python libraries for automated checks
-- Create test fixtures that render example sites and validate output HTML
-- Integrate with existing test infrastructure (`conftest.py`, test utilities)
-- Run as part of standard CI/CD pipeline
+- Shared fixtures in `tests/conftest.py` build the “search-enabled” example site once per test module and expose palette attribute dictionaries via `palette_loader` to keep runtime low.
+- Accessibility validators live under `tests/accessibility/validators/` so pytest modules remain declarative and easy to extend.
+- Known regressions (nav aria-labels, search modal aria-hidden usage, palette contrast gaps) are tracked with `pytest.xfail` to keep CI signal high while preventing accidental noise.
+- CI executes the full `pytest tests/accessibility` matrix inside tox for Python 3.8–3.12 on Ubuntu and macOS; Windows runs are paused until dependency issue [#59](https://github.com/ntno/mkdocs-terminal/issues/59) is resolved.
 
 ### Files to Create/Modify
 
 **Create:**
 - `tests/accessibility/__init__.py`
 - `tests/accessibility/test_html_validation.py`
-- `tests/accessibility/test_aria_attributes.py`
+- `tests/accessibility/test_aria.py`
 - `tests/accessibility/test_color_contrast.py`
-- `tests/accessibility/utils.py`
+- `tests/accessibility/test_color_utils.py`
+- `tests/accessibility/test_css_loading.py`
+- `tests/accessibility/utilities/` (`color_utils.py`, `css_parser.py`, `palette_loader.py`, `site_context.py`)
+- `tests/accessibility/validators/` (`aria_validator.py`, `html_validator.py`, `contrast_validator.py`, `helpers.py`)
 
 **Modify:**
-- `tests/conftest.py` — Add accessibility test fixtures/utilities (all shared fixtures now live here instead of a `tests/accessibility/fixtures.py` module)
-- `pyproject.toml` — Add accessibility testing dependencies
-- `requirements.test.txt` — Document test dependencies
+- `tests/conftest.py` — Share site-building fixtures and palette loaders across modules
+- `documentation/docs/accessibility.md` — Document known failures surfaced by the suite
+- `pyproject.toml` / `requirements.test.txt` — Add `beautifulsoup4`, `tidylib`, and related testing dependencies
+- GitHub Actions / tox configuration — Ensure accessibility tests are part of every Python-version matrix run
 
 ## Acceptance Criteria
 
-- [ ] All accessibility tests pass for at least one example configuration
-- [ ] Tests detect common accessibility violations (missing alt text, poor contrast, etc.)
-- [ ] Documentation is provided for extending/maintaining accessibility tests
-- [ ] New dependencies are documented and added to `pyproject.toml`
-- [ ] CI runs accessibility tests automatically on all PRs
-- [ ] Test coverage is 80%+ for accessibility test code
+- [ ] All accessibility tests pass for at least one example configuration (current suite relies on documented `xfail`s for nav landmarks, modal ARIA gaps, and palette contrast issues)
+- [x] Tests detect common accessibility violations (buttons without labels, invalid modal structure, insufficient contrast, duplicate IDs)
+- [x] Documentation is provided for extending/maintaining accessibility tests (`documentation/docs/accessibility.md` + inline test docstrings)
+- [x] New dependencies are documented and added to `pyproject.toml`
+- [x] CI runs accessibility tests automatically on all PRs across Python 3.8–3.12
+- [ ] Test coverage is 80%+ for accessibility test code (coverage data still pending)
 
 ## Dependencies
 
 ### New Dependencies
 
-- `html5lib` or `beautifulsoup4` (for HTML parsing)
-- `axe-core-python` or `pytest-a11y` (for accessibility checks)
-- `wcag-contrast-ratio` (for color contrast validation)
+- `beautifulsoup4` — HTML traversal for validators, CSS parsing, and palette extraction (already shared by multiple tests)
+- `tidylib` + system `tidy` binary — structural HTML validation used by `validate_html_structure`
+- `pytest` plugins already in tree (no axe-core or pytest-a11y dependency was added; contrast math is handled in-house via `color_utils.py`)
 
 ### Compatibility
 
 - All dependencies must support Python 3.8+
+- `tidylib` requires the `tidy` binary; Windows CI remains blocked until dependency issue [#59](https://github.com/ntno/mkdocs-terminal/issues/59) is resolved
 - No breaking changes to existing test infrastructure
 - All existing tests must continue to pass
 
@@ -112,6 +124,7 @@ Accessibility tests will use a multi-layered approach focused on theme component
 | False positives in automated checks | Medium | Manual review of check results, document known limitations |
 | Performance impact on CI | Low | Run accessibility tests in parallel with other tests |
 | Complexity of setting up HTML rendering for tests | Medium | Reuse existing integration test infrastructure |
+| Windows CI blocked by tidy dependency | Medium | Track [issue #59](https://github.com/ntno/mkdocs-terminal/issues/59); rerun Windows matrix once the upstream dependency is fixed |
 
 ## Timeline
 
@@ -122,9 +135,9 @@ Accessibility tests will use a multi-layered approach focused on theme component
 
 ## Open Questions
 
-1. Which accessibility testing library is preferred? (axe-core-python vs pytest-a11y vs custom checks)
-2. Should accessibility tests be required to pass in CI, or initially warnings only?
-3. What baseline accessibility level should we target? (WCAG 2.1 AA or higher)
+1. What is the timeline for fixing the remaining `xfail`s (nav aria-labels, search modal aria-hidden usage, out-of-compliance palettes) so the suite can run fully green?
+2. How should we surface accessibility artifacts in CI (e.g., publish JSON summaries vs rely on pytest output)?
+3. When the Windows tidy dependency is resolved, do we run the full accessibility matrix on Windows or keep it Linux/macOS-only?
 
 ## Future Enhancements
 
