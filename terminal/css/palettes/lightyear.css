@@ -1,23 +1,31 @@
 /*! lightyear.css | MIT License | https://github.com/ntno/mkdocs-terminal/issues/119 */
 
 :root {
+    --mint: #E0FFE0;
+    --black: #190910;
+    --white: #f7f7f7;
+    --dark-purple: #4B0082;
+    --grape: #805b9c;
+    --red: #cc2517;
+    --light-grey: #d4d4d4;
+    --dark-grey: #5e5e5e;
+
     --global-font-size: 15px;
     --global-line-height: 1.4em;
     --global-space: 10px;
     --font-stack: 'Fira Code', Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
     --mono-font-stack: 'Fira Code', Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
-    --background-color: #E0FFE0;
+    --background-color: var(--mint);
     --page-width: 60em;
-    --font-color: #190910;
-    --invert-font-color: #f7f7f7;
-    --primary-color: #4B0082;
-    --secondary-color: #6e4e84;
-    --tertiary-color: #6e4e84;
-    --error-color: #db3030;
-    --progress-bar-background: #d4d4d4;
-    --progress-bar-fill: #5e5e5e;
-    --code-bg-color: #f7f7f7;
+    --font-color: var(--black);
+    --invert-font-color: var(--white);
+    --primary-color: var(--dark-purple);
+    --secondary-color: var(--grape);
+    --tertiary-color: var(--grape);
+    --error-color: var(--red);
+    --progress-bar-background: var(--light-grey);
+    --progress-bar-fill: var(--dark-grey);
+    --code-bg-color: var(--white);
     --input-style: solid;
     --display-h1-decoration: none;
-    
 }
