@@ -11,9 +11,7 @@ DEFAULT_PALETTES = [
     "sans_dark",
     "blueberry",
     "lightyear",
-    "red_drum",
-    "soundside",
-    "volans"
+    "red_drum"
 ]
 
 # theme features
