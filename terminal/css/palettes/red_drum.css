@@ -1,23 +1,31 @@
 /*! red_drum.css | MIT License | https://github.com/ntno/mkdocs-terminal/issues/119 */
 
 :root {
+    --pale-goldenrod: #EEE8AA;
+    --black: #190910;
+    --white: #f7f7f7;
+    --dark-red: #8B0000;
+    --old-rose: #8b5a5b;
+    --sea-blue: #00678c;
+    --light-grey: #d4d4d4;
+    --dark-grey: #5e5e5e;
+
     --global-font-size: 15px;
     --global-line-height: 1.4em;
     --global-space: 10px;
     --font-stack: 'Fira Code', Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
     --mono-font-stack: 'Fira Code', Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
-    --background-color: #EEE8AA;
+    --background-color: var(--pale-goldenrod);
     --page-width: 60em;
-    --font-color: #190910;
-    --invert-font-color: #f7f7f7;
-    --primary-color: #8B0000;
-    --secondary-color: #976161;
-    --tertiary-color: #976161;
-    --error-color: #FFA07A;
-    --progress-bar-background: #d4d4d4;
-    --progress-bar-fill: #5e5e5e;
-    --code-bg-color: #f7f7f7;
+    --font-color: var(--black);
+    --invert-font-color: var(--white);
+    --primary-color: var(--dark-red);
+    --secondary-color: var(--old-rose);
+    --tertiary-color: var(--old-rose);
+    --error-color: var(--sea-blue);
+    --progress-bar-background: var(--light-grey);
+    --progress-bar-fill: var(--dark-grey);
+    --code-bg-color: var(--white);
     --input-style: solid;
     --display-h1-decoration: none;
-    
 }
