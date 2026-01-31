@@ -35,7 +35,7 @@ tiles:
     img_src: ../../img/palettes/red_drum.png
     tooltip: to Red Drum Demo Page
     alt_text: Red Drum Demo Page
-    link_href: ./red_drum/
+    link_href: ./red-drum/
   - caption: <a id="fnref:8" class="footnote-ref" title="to image description" alt="to Sans palette description." href="#fn:8">Sans</a>
     img_src: ../../img/palettes/sans.png
     tooltip: to Sans Demo Page
@@ -57,7 +57,7 @@ Terminal for MkDocs supports the following color palettes by default:
   - [dark](dark.md)
   - [lightyear](lightyear.md)
   - [pink](pink.md)
-  - [red_drum](red_drum.md)
+  - [red_drum](red-drum.md)
   - [sans](sans.md)
   - [sans_dark](sans-dark.md)
 

@@ -17,7 +17,7 @@ nav:
         - Dark: 'configuration/palettes/dark.md'
         - Lightyear: 'configuration/palettes/lightyear.md'
         - Pink: 'configuration/palettes/pink.md'
-        - Red Drum: 'configuration/palettes/red_drum.md'
+        - Red Drum: 'configuration/palettes/red-drum.md'
         - Sans: 'configuration/palettes/sans.md'
         - Sans Dark: 'configuration/palettes/sans-dark.md'
       - Code Highlighting:
@@ -112,7 +112,7 @@ plugins:
         - configuration/palettes/sans.md#sans-palette
         - configuration/palettes/blueberry.md#blueberry-palette
         - configuration/palettes/lightyear.md#lightyear-palette
-        - configuration/palettes/red_drum.md#red_drum-palette
+        - configuration/palettes/red-drum.md#red-drum-palette
   - macros:
       modules: 
         - mkdocs-terminal:terminal.pluglets.tile_grid.main

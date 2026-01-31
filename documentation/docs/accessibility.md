@@ -12,7 +12,7 @@ The [default], [sans], [pink], and [gruvbox_dark] color palettes currently have 
 [sans_dark]: ../configuration/palettes/sans-dark/
 [blueberry]: ../configuration/palettes/blueberry/
 [lightyear]: ../configuration/palettes/lightyear/
-[red_drum]: ../configuration/palettes/red_drum/
+[red_drum]: ../configuration/palettes/red-drum/
 
 ## Known Issues
 

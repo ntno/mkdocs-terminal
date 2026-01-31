@@ -5,7 +5,7 @@
 [Dark](dark.md) |
 [Lightyear](lightyear.md) |
 [Pink](pink.md) |
-[Red Drum](red_drum.md) |
+[Red Drum](red-drum.md) |
 [Sans](sans.md) |
 [Sans Dark](sans-dark.md)
 </nav>

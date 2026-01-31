@@ -24,7 +24,7 @@ configuration/palettes/links.md
 
 # Red Drum Palette
 
-To use the dark color palette, add the `palette` attribute to your theme configuration in `mkdocs.yml`:
+To use the red_drum color palette, add the `palette` attribute to your theme configuration in `mkdocs.yml`:
 
 ```yaml
 theme:
