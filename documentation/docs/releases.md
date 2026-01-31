@@ -24,6 +24,7 @@ See [Version Identification and Dependency Specification] for additional constra
 
 | Release | Theme Status | Supported? |
 | :-----: | :----------: | :--------: |
+| [4.8.0] |     Beta     |    yes     |
 | [4.7.0] |     Beta     |    yes     |
 | [4.3.0] |     Beta     |    yes     |
 | [4.1.0] |     Beta     |    yes     |
@@ -34,6 +35,7 @@ See [Version Identification and Dependency Specification] for additional constra
 
 
 <br>
+[4.8.0]: https://github.com/ntno/mkdocs-terminal/releases/tag/4.8.0
 [4.7.0]: https://github.com/ntno/mkdocs-terminal/releases/tag/4.7.0
 [4.3.0]: https://github.com/ntno/mkdocs-terminal/releases/tag/4.3.0
 [4.1.0]: https://github.com/ntno/mkdocs-terminal/releases/tag/4.1.0
