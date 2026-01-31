@@ -94,6 +94,7 @@ markdown_extensions:
 
 plugins:
   - md-to-html
+  - palette
   - git-revision-date
   - search
   - exclude-search:      
