@@ -45,23 +45,4 @@ Before beginning any task, review the documentation (`DEVELOPER_README.md`, `doc
 * Tests should be incorporated into every phase of a plan, not just added at the end
 * Tests should pass before starting the next plan phase
 * Ensure all fixtures are defined or imported into the `conftest.py` file so that they are available to all tests
-* When adding new code you should also add the appropriate tests to cover the added functionality.  
-
-<!-- OPENSPEC:START -->
-# OpenSpec Instructions
-
-These instructions are for AI assistants working in this project.
-
-Always open `@/openspec/AGENTS.md` when the request:
-- Mentions planning or proposals (words like proposal, spec, change, plan)
-- Introduces new capabilities, breaking changes, architecture shifts, or big performance/security work
-- Sounds ambiguous and you need the authoritative spec before coding
-
-Use `@/openspec/AGENTS.md` to learn:
-- How to create and apply change proposals
-- Spec format and conventions
-- Project structure and guidelines
-
-Keep this managed block so 'openspec update' can refresh the instructions.
-
-<!-- OPENSPEC:END -->
+* When adding new code you should also add the appropriate tests to cover the added functionality.
