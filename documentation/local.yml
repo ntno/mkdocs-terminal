@@ -3,6 +3,15 @@ INHERIT: ./mkdocs.yml
 theme:
   name: null
   custom_dir: '../terminal'
+  palette:
+    default: dark
+    selector:
+      enabled: true
+      ui: auto
+      options:
+        - dark
+        - default
+
   features:
     - footer.prev_next
     # - navigation.side.hide
