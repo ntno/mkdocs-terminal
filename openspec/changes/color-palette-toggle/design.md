@@ -321,19 +321,19 @@ palette:
 1. **Should the selector UI be keyboard navigable via custom key bindings (e.g., Ctrl+P for palette)?**
    - Current design: Standard keyboard navigation (Tab, Enter, arrow keys)
    - Alternative: Add global keyboard shortcut for power users
-   - Resolution: Defer to user testing feedback post-launch
+   - **Resolution: Standard accessible keyboard navigation is sufficient. Custom key bindings are not necessary.**
 
 2. **How to handle palette selector on mobile devices with limited screen space?**
    - Current design: Same UI as desktop (toggle or select)
    - Alternative: Collapse into hamburger menu or modal
-   - Resolution: Test on mobile breakpoints; may need responsive adjustments
+   - **Resolution: Use same adaptive UI on mobile (toggle/select) with responsive CSS adjustments. Select dropdowns have optimized native mobile implementations; toggle buttons work well on touch screens. Both controls are compact enough for mobile navigation without collapsing. Apply responsive CSS to ensure WCAG-compliant touch targets (minimum 44x44px) and appropriate spacing. Consistent UI across devices reduces complexity.**
 
 3. **Should palette option labels be translatable via MkDocs i18n?**
    - Current design: Palette names from config displayed as-is
    - Alternative: Support i18n keys for palette labels (e.g., `dark: { label: "theme.dark" }`)
-   - Resolution: Defer to future enhancement—requires i18n infrastructure analysis
+   - **Resolution: Deferred to future enhancement. i18n support requires infrastructure analysis and is out of scope for initial implementation.**
 
 4. **What happens if a user's saved palette is no longer available (author removed it from config)?**
    - Current design: Fall back to configured default palette
    - Alternative: Show notification to user that preference is invalid
-   - Resolution: Silent fallback is less disruptive; document behavior for authors
+   - **Resolution: Silent fallback to configured default palette. JavaScript checks if saved palette exists in available options; if not, applies default and updates localStorage. Less disruptive than notifications; documented for site authors.**
