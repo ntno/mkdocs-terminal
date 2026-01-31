@@ -17,6 +17,7 @@ Example:
     tasks:
       - Break tasks into phases
       - Each phase should include testing and documentation steps
+      - "Interleave implementation and testing (ex: implement feature A, test feature A, implement feature B, test feature B)"
       - Do not generate estimation times
     specs:
       - Use Given/When/Then format for scenarios
