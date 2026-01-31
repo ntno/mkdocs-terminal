@@ -74,14 +74,23 @@ _Status: ❌ Not started — foundation for all subsequent work._
 - [ ] Document configuration schema
   - [ ] Add inline code documentation/docstrings
   - [ ] Create configuration reference in `documentation/docs/configuration/`
+- [ ] **Write tests for configuration logic**
+  - [ ] Test legacy string config normalization during theme initialization
+  - [ ] Test new object config parsing
+  - [ ] Test invalid palette option filtering at build time
+  - [ ] Test build warning emission for misconfigured options (via MkDocs logging)
+  - [ ] Test custom palette CSS path validation against extra_css list
+  - [ ] Test that invalid palettes are excluded from normalized config
+  - [ ] Ensure all configuration tests pass before proceeding to Phase 2
 
 **Dependencies:** None  
-**Blocks:** Phase 2, 3, 4, 5
+**Blocks:** Phase 2
 
 **Acceptance:**
 - Configuration loads successfully for both legacy and new formats
 - Invalid palette options are filtered with appropriate warnings
 - Normalized config structure is available to template context
+- **All configuration tests pass with ≥80% coverage**
 
 ---
 
@@ -108,15 +117,23 @@ _Status: ❌ Not started — establishes theming foundation._
   - [ ] Document CSS variable structure for palette authors
   - [ ] Provide example custom palette file
   - [ ] Add WCAG AA contrast requirements to palette guidelines
+- [ ] **Write tests for CSS architecture**
+  - [ ] Test CSS variable extraction from palette files
+  - [ ] Verify all bundled palettes define required CSS variables
+  - [ ] Test data-palette attribute scoping works correctly
+  - [ ] Verify bundled palettes meet WCAG AA contrast (leverage existing `tests/accessibility/test_color_contrast.py`)
+  - [ ] Test palette CSS files are correctly linked in build output
+  - [ ] Ensure all CSS tests pass before proceeding to Phase 3
 
 **Dependencies:** Phase 1  
-**Blocks:** Phase 3, 4
+**Blocks:** Phase 3
 
 **Acceptance:**
 - All bundled palettes use consistent CSS variable structure
 - Palette switching mechanism works via data attribute
 - Documentation exists for creating custom palettes
 - No visual flash when switching palettes
+- **All CSS/palette tests pass with ≥80% coverage**
 
 ---
 
@@ -147,9 +164,22 @@ _Status: ❌ Not started — UI surface for user interaction._
 - [ ] Update theme templates for palette CSS variable usage
   - [ ] Replace hardcoded colors with CSS variables where needed
   - [ ] Test all theme components render correctly with each bundled palette
+- [ ] **Write tests for template rendering**
+  - [ ] Test selector renders in HTML when enabled
+  - [ ] Test selector absent from HTML when disabled
+  - [ ] Test binary toggle UI markup with 2 options
+  - [ ] Test select UI markup with >2 options
+  - [ ] Test `ui: auto` logic produces correct HTML
+  - [ ] Test `ui: toggle` and `ui: select` explicit settings
+  - [ ] Test build-time default palette application (data-palette in <html>)
+  - [ ] Test palette options embedded in HTML data attributes
+  - [ ] Test all palette CSS files linked in <head>
+  - [ ] Test selector has proper ARIA attributes
+  - [ ] Test override mechanism via `theme.custom_dir`
+  - [ ] Ensure all template tests pass before proceeding to Phase 4
 
 **Dependencies:** Phase 1, Phase 2  
-**Blocks:** Phase 4, 5
+**Blocks:** Phase 4
 
 **Acceptance:**
 - Selector UI renders when enabled, hidden when disabled
@@ -157,6 +187,7 @@ _Status: ❌ Not started — UI surface for user interaction._
 - Server-side default palette works without JavaScript
 - Override mechanism allows custom selector implementations
 - All ARIA attributes present for screen reader support
+- **All template rendering tests pass with ≥80% coverage**
 
 ---
 
@@ -188,9 +219,19 @@ _Status: ❌ Not started — client-side interactivity and persistence._
   - [ ] Log validation warnings (warn level)
   - [ ] Log errors (error level)
   - [ ] Make logging optional/configurable
+- [ ] **Write tests for JavaScript behavior**
+  - [ ] Test palette switching updates data attribute
+  - [ ] Test localStorage save/restore
+  - [ ] Test invalid saved selection handling
+  - [ ] Test palette restoration on page load
+  - [ ] Mock localStorage for testing
+  - [ ] Test event listeners attach correctly to selector UI
+  - [ ] Test keyboard navigation works (integration with template ARIA)
+  - [ ] Test console logging output (different log levels)
+  - [ ] Ensure all JavaScript tests pass before proceeding to Phase 5
 
 **Dependencies:** Phase 3  
-**Blocks:** Phase 5, 6
+**Blocks:** Phase 5
 
 **Acceptance:**
 - Palette switches immediately on user interaction
@@ -198,61 +239,53 @@ _Status: ❌ Not started — client-side interactivity and persistence._
 - No FOUC when restoring saved palette
 - Invalid saved selections fallback gracefully to default
 - Console logging aids debugging without being verbose
+- **All JavaScript behavior tests pass with ≥80% coverage**
 
 ---
 
-### Phase 5: Testing
+### Phase 5: Integration & End-to-End Testing
 
-_Status: ❌ Not started — ensure quality and prevent regressions._
+_Status: ❌ Not started — validate complete feature works end-to-end._
 
-- [ ] Unit tests for configuration validation (build-time logic)
-  - [ ] Test legacy string config normalization during theme initialization
-  - [ ] Test new object config parsing
-  - [ ] Test invalid palette option filtering at build time
-  - [ ] Test build warning emission for misconfigured options (via MkDocs logging)
-  - [ ] Test custom palette CSS path validation against extra_css list
-  - [ ] Test that invalid palettes are excluded from rendered HTML
-- [ ] Integration tests for template rendering (static HTML output)
-  - [ ] Test selector renders in HTML when enabled
-  - [ ] Test selector absent from HTML when disabled
-  - [ ] Test binary toggle UI markup with 2 options
-  - [ ] Test select UI markup with >2 options
-  - [ ] Test `ui: auto` logic produces correct HTML
-  - [ ] Test `ui: toggle` and `ui: select` explicit settings
-  - [ ] Test build-time default palette application (data-palette in <html>)
-  - [ ] Test palette options embedded in HTML data attributes
-  - [ ] Test all palette CSS files linked in <head>
-- [ ] Integration tests for JavaScript behavior
-  - [ ] Test palette switching updates data attribute
-  - [ ] Test localStorage save/restore
-  - [ ] Test invalid saved selection handling
-  - [ ] Test palette restoration on page load
-  - [ ] Mock localStorage for testing
-- [ ] Accessibility tests
-  - [ ] Test selector has proper ARIA attributes
-  - [ ] Test keyboard navigation works
+- [ ] End-to-end integration tests
+  - [ ] Test complete flow: config → build → HTML → JS → palette switch → localStorage
+  - [ ] Test multiple palettes configured together (3+ options)
+  - [ ] Test custom palette integration with bundled palettes
+  - [ ] Test legacy config compatibility with modern features
+  - [ ] Test selector disabled mode (ensure no JS or UI artifacts)
+- [ ] Cross-feature integration tests
+  - [ ] Test palette selector works with all theme components (nav, search, footer, etc.)
+  - [ ] Test palette switching doesn't break existing theme features
+  - [ ] Verify no regressions in non-palette functionality
+- [ ] Accessibility validation (full suite)
+  - [ ] Test keyboard navigation works end-to-end (tab through UI, activate, persist)
   - [ ] Test screen reader announcements (manual or automated)
-  - [ ] Test focus indicators visible
-  - [ ] Verify bundled palettes meet WCAG AA contrast (leverage existing accessibility tests from `tests/accessibility/test_color_contrast.py`)
+  - [ ] Test focus indicators visible in all configured palettes
+  - [ ] Verify ARIA attributes work correctly with JavaScript interactions
 - [ ] Visual regression tests
-  - [ ] Test each bundled palette renders correctly
-  - [ ] Test custom palette integration
-  - [ ] Smoke test major theme components with each palette
+  - [ ] Test each bundled palette renders correctly across major theme components
+  - [ ] Smoke test custom palette integration
+  - [ ] Visual diff testing for palette switching (if tooling available)
 - [ ] Browser compatibility tests
   - [ ] Test in modern browsers (Chrome, Firefox, Safari, Edge)
   - [ ] Test localStorage behavior across browsers
   - [ ] Test CSS custom property support
-  - [ ] Verify no-JS fallback works
+  - [ ] Verify no-JS fallback works (default palette renders)
+- [ ] Performance testing
+  - [ ] Measure impact of multiple palette CSS files on page load
+  - [ ] Test FOUC prevention (inline script effectiveness)
+  - [ ] Verify localStorage operations don't block rendering
 
-**Dependencies:** Phase 1, 2, 3, 4  
-**Blocks:** Phase 7
+**Dependencies:** Phase 1, 2, 3, 4 (all unit tests must pass)  
+**Blocks:** Phase 6
 
 **Acceptance:**
-- Test coverage ≥80% for new code
-- All tests pass in CI pipeline
-- Accessibility tests validate ARIA compliance
+- **Overall test coverage ≥80% for palette selector feature**
+- All integration tests pass in CI pipeline
+- Accessibility validation confirms WCAG AA compliance
 - Visual tests catch palette rendering issues
 - No regressions in existing theme functionality
+- Feature works seamlessly across all supported browsers and configurations
 
 ---
 
@@ -293,7 +326,7 @@ _Status: ❌ Not started — enable users to adopt the feature._
   - [ ] Include examples in `tests/examples/` for testing
   - [ ] Create example with custom palette
 
-**Dependencies:** Phase 1, 2, 3, 4  
+**Dependencies:** Phase 5 (feature must be fully tested before documenting)  
 **Blocks:** Phase 7
 
 **Acceptance:**
@@ -302,6 +335,7 @@ _Status: ❌ Not started — enable users to adopt the feature._
 - Override mechanism is documented with examples
 - Documentation site demonstrates the feature live
 - All examples are tested and working
+- Documentation accurately reflects tested behavior (informed by test suite)
 
 ---
 
@@ -333,7 +367,7 @@ _Status: ❌ Not started — prepare for production deployment._
   - [ ] Verify documentation builds and deploys correctly
   - [ ] Monitor for user-reported issues
 
-**Dependencies:** Phase 5, 6  
+**Dependencies:** Phase 5, 6 (all tests pass + documentation complete)  
 **Blocks:** None
 
 **Acceptance:**
@@ -382,11 +416,14 @@ _Status: ❌ Future work — nice-to-have improvements._
 
 ### Critical Dependencies
 
-- **Phase 1** must complete first — all other phases depend on configuration schema
-- **Phase 2** establishes CSS foundation — required before template/JS work
-- **Phase 3 & 4** are coupled — templates provide UI hooks for JavaScript
-- **Phase 5 & 6** can proceed in parallel once Phase 4 completes
-- **Phase 7** requires Phase 5 & 6 to complete
+- **Phase 1** must complete first (config + tests) — all other phases depend on configuration schema
+- **Phase 2** establishes CSS foundation (with tests) — required before template/JS work
+- **Phase 3 & 4** are coupled — templates provide UI hooks for JavaScript (each phase includes tests)
+- **Phase 5** validates end-to-end integration (requires all prior phases + their tests to pass)
+- **Phase 6** documents tested behavior (requires Phase 5 complete)
+- **Phase 7** releases only after all tests pass (requires Phase 5 & 6 complete)
+
+**Test-Driven Workflow:** Each implementation phase includes writing tests for that phase's code. Tests must pass before proceeding to the next phase. This prevents accumulating untested code and catches issues early.
 
 ### Risk Areas
 
@@ -423,17 +460,35 @@ _Status: ❌ Future work — nice-to-have improvements._
 
 1. Create feature branch: `feature/color-palette-toggle`
 2. Work through phases sequentially (1 → 2 → 3 → 4 → 5 → 6 → 7)
-3. Commit after each major milestone within a phase
-4. Run full test suite before moving to next phase
-5. Create PR for review before Phase 7 (release)
+3. **For each phase:**
+   - Implement functionality
+   - Write tests for that functionality
+   - Ensure tests pass before moving on
+   - Commit implementation + tests together
+4. Run full test suite before moving to next phase (includes all prior phase tests)
+5. Phase 5 validates all phases work together end-to-end
+6. Create PR for review before Phase 7 (release)
+
+**Key principle:** Never proceed to the next phase with untested code from the current phase.
 
 ### Testing Strategy
 
-- **Unit tests:** Configuration validation, helper functions
-- **Integration tests:** Template rendering, JS behavior, localStorage
+**Test-as-you-go approach:** Tests are written immediately after implementing each phase's functionality.
+
+- **Phase 1 tests:** Configuration validation, normalization logic, build warnings
+- **Phase 2 tests:** CSS variable extraction, palette contrast validation, scoping mechanisms
+- **Phase 3 tests:** Template rendering, ARIA attributes, HTML structure, override mechanism
+- **Phase 4 tests:** JavaScript behavior, localStorage, event handlers, console logging
+- **Phase 5 tests:** End-to-end flows, cross-browser, accessibility validation, visual regression
+
+**Test types:**
+- **Unit tests:** Isolated logic (config parsing, CSS extraction)
+- **Integration tests:** Combined components (template + JS, config + build)
 - **Accessibility tests:** ARIA compliance, keyboard navigation, contrast (leverage existing `tests/accessibility/` infrastructure)
-- **Visual tests:** Smoke test each palette with major components
-- **Manual tests:** Browser compatibility, no-JS fallback, override mechanism
+- **Visual tests:** Palette rendering, component smoke tests
+- **E2E tests:** Complete user workflows
+
+**Coverage goal:** ≥80% per phase, ≥80% overall
 
 ### Success Criteria
 
