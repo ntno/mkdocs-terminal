@@ -20,6 +20,7 @@ theme:
 
 plugins:
   - terminal/md-to-html
+  - terminal/palette
   - git-revision-date
   # - search
   # - exclude-search:      
