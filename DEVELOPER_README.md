@@ -164,3 +164,131 @@ See [Work On Pull Request](https://github.com/susam/gitpr#work-on-pull-request) 
 ### Review PR Build
 
 Pull Requests are tested using a [GitHub Action workflow](https://github.com/ntno/mkdocs-terminal/actions/workflows/test.yml).  Check the status of your PR build and resolve any reported issues.
+
+## Plugin Architecture
+
+The Terminal theme includes MkDocs plugins that extend build-time functionality. Plugins follow standard MkDocs plugin patterns similar to mkdocs-material.
+
+### Palette Plugin
+
+The `terminal/palette` plugin processes palette configuration during the MkDocs build process.
+
+**Location:** `terminal/plugins/palette/`
+
+**Files:**
+- `config.py` — Configuration parsing and validation logic
+- `plugin.py` — MkDocs plugin implementation
+
+**Architecture:**
+
+The plugin follows the standard MkDocs `BasePlugin` pattern:
+
+```python
+from mkdocs.plugins import BasePlugin
+from mkdocs.config.base import Config
+from mkdocs.config.config_options import Type
+
+class PalettePlugin(BasePlugin):
+    def on_config(self, config, **kwargs):
+        """Process palette configuration during build."""
+        # Parse theme.palette from mkdocs.yml
+        # Validate bundled and custom palette options
+        # Store normalized configuration
+        
+    def on_env(self, env, config, files, **kwargs):
+        """Expose configuration to Jinja2 templates."""
+        # Add palette_config to env.globals
+        # Templates can access via {{ palette_config }}
+```
+
+**Configuration Schema:**
+
+Uses MkDocs `Config` classes for type-safe configuration:
+
+```python
+from mkdocs.config.base import Config
+from mkdocs.config.config_options import Type, Optional
+
+class PaletteOption(Config):
+    """Single palette option (bundled or custom)."""
+    name = Type(str)
+    css = Optional(Type(str))
+
+class SelectorConfig(Config):
+    """Palette selector UI configuration."""
+    enabled = Type(bool, default=False)
+    ui = Type(str, default="auto")
+    options = ListOfItems(SubConfig(PaletteOption), default=[])
+```
+
+**Build-Time Processing:**
+
+1. **Parse** `theme.palette` from `mkdocs.yml`
+   - Supports legacy string format: `palette: "dark"`
+   - Supports new object format with selector configuration
+   - Normalizes both formats to consistent internal structure
+
+2. **Validate** palette options
+   - Bundled palettes verified against `terminal/css/palettes/*.css`
+   - Custom palettes verified against `extra_css` list
+   - Invalid options filtered with build warnings
+   - Selector UI constraints enforced (toggle requires 2 options)
+
+3. **Expose** to templates
+   - Normalized configuration added to Jinja2 `env.globals`
+   - Templates access via `{{ palette_config }}`
+   - Available fields: `default`, `selector_enabled`, `selector_ui`, `valid_options`
+
+**Legacy Format Normalization:**
+
+The plugin maintains backwards compatibility with the simple string format:
+
+```yaml
+# Legacy format
+theme:
+  palette: "dark"
+
+# Normalized internally to:
+{
+  "default": "dark",
+  "selector_enabled": false,
+  "selector_ui": "auto",
+  "options": [],
+  "valid_options": []
+}
+```
+
+**Testing:**
+
+Comprehensive test coverage in `tests/plugins/`:
+
+- `test_palette.py` — Configuration parsing and validation (28 tests)
+- `test_palette_plugin.py` — Plugin lifecycle integration (9 tests)
+
+Run tests:
+```bash
+pytest tests/plugins/ -v
+```
+
+**Registration:**
+
+Plugins are registered via setuptools entry points in `pyproject.toml`:
+
+```toml
+[project.entry-points."mkdocs.plugins"]
+"terminal/palette" = "terminal.plugins.palette.plugin:PalettePlugin"
+```
+
+Users activate by adding to their `mkdocs.yml`:
+
+```yaml
+plugins:
+  - terminal/palette
+```
+
+**Key Design Decisions:**
+
+- **Build-time validation only**: Static sites have no runtime server, so all validation must occur during `mkdocs build`
+- **CSS pre-linking**: All palette CSS files linked in `<head>` at build time (cannot lazy-load)
+- **Data attribute scoping**: Palette switching works via CSS `[data-palette="name"]` selectors
+- **Template globals**: Configuration exposed via Jinja2 globals for flexible template access
