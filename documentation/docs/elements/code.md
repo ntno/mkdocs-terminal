@@ -6,6 +6,11 @@ If the backtick groups are *not* given their own lines, the code block will be r
 
 For convenience, inline code blocks can also be specified by enclosing text between one backtick (<code>\`</code>) instead of three.
 
+## Code Highlighting
+
+Code highlighting can be implemented in multiple ways, for a full discussion and examples see [Configuration > Code Highlighting](../configuration/code-highlighting/index.md)
+
+
 ## Code Block
 
 ```javascript

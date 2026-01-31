@@ -2,7 +2,7 @@ site_name: Terminal for MkDocs
 site_url: https://ntno.github.io/mkdocs-terminal
 repo_url: https://github.com/ntno/mkdocs-terminal
 edit_uri_template: https://github.com/ntno/mkdocs-terminal/edit/main/documentation/docs/{path}
-copyright: Copyright 2023-2025 Natan Organick, All rights reserved
+copyright: Copyright 2023-2026 Natan Organick, All rights reserved
 site_author: ntno
 
 nav:
@@ -12,9 +12,12 @@ nav:
       - Color Palettes: 
         - Index: 'configuration/palettes/index.md'
         - Default: 'configuration/palettes/default.md'
+        - Blueberry: 'configuration/palettes/blueberry.md'
         - Gruvbox Dark: 'configuration/palettes/gruvbox-dark.md'
         - Dark: 'configuration/palettes/dark.md'
+        - Lightyear: 'configuration/palettes/lightyear.md'
         - Pink: 'configuration/palettes/pink.md'
+        - Red Drum: 'configuration/palettes/red-drum.md'
         - Sans: 'configuration/palettes/sans.md'
         - Sans Dark: 'configuration/palettes/sans-dark.md'
       - Code Highlighting:
@@ -57,6 +60,7 @@ nav:
       - Typography: 'elements/typography.md'
     - Install: 'install.md'
     - Releases: 'releases.md'
+    - Accessibility: 'accessibility.md'
 
 markdown_extensions:
   # Python Markdown  
@@ -106,6 +110,9 @@ plugins:
         - configuration/palettes/pink.md#pink-palette
         - configuration/palettes/sans-dark.md#sans-dark-palette
         - configuration/palettes/sans.md#sans-palette
+        - configuration/palettes/blueberry.md#blueberry-palette
+        - configuration/palettes/lightyear.md#lightyear-palette
+        - configuration/palettes/red-drum.md#red-drum-palette
   - macros:
       modules: 
         - mkdocs-terminal:terminal.pluglets.tile_grid.main

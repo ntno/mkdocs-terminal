@@ -1,0 +1,57 @@
+INHERIT: ../base.yml
+
+
+
+site_name: Terminal Theme Search Enabled Example
+nav:
+    - Home: 'index.md'
+    - Elements: 'elements.md'
+    - Troubleshooting: 'help.md'
+    - About: 
+      - Index: 'about/index.md'
+      - Contributing: 'about/contributing.md'
+      - License: 'about/license.md'
+      - Release Notes:
+        - Index: 'about/release-notes/index.md'
+        - v1: 'about/release-notes/version-1.md'
+        - v2: 'about/release-notes/version-2.md'
+    - User Guide:
+      - Configuration: 'user-guide/configuration.md'
+      - Tiles: 'user-guide/tiles.md'
+      - Deployment: 'user-guide/deploying-your-docs.md'
+      - Styling: 'user-guide/styling-your-docs.md'
+      - Writing: 'user-guide/writing-your-docs.md'
+
+
+plugins:
+  - search
+
+markdown_extensions:
+  # Python Markdown  
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - meta
+  - toc:
+      permalink: "#"
+      permalink_title: Anchor link to this section for reference
+
+  # PyMdown Extensions
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.snippets:
+      base_path: 
+        - docs
+  - pymdownx.blocks.details:
+      types:
+        - name: info
+          class: terminal-alert
+          title: Info
+        - name: warning
+          class: 'terminal-alert terminal-alert-error'
+          title: Warning
+        - name: important
+          class: 'terminal-alert terminal-alert-primary'
+          title: Important
