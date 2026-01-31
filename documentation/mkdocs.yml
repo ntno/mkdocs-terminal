@@ -120,7 +120,6 @@ plugins:
 ## deploy settings
 theme:
   name: terminal
-  palette: default
   custom_dir: theme_overrides
   features:
     - footer.prev_next
