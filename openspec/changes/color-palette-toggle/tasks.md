@@ -90,14 +90,13 @@ _Status: ✅ Complete — plugin foundation implemented with 37 passing tests._
   - [x] Test normalized config available in template context
   - [x] Test palette options correctly formatted for HTML embedding
   - [x] Verify all normalization tests pass before proceeding
-- [ ] Document configuration schema
-  - [ ] Add inline code documentation/docstrings
-  - [ ] Create configuration reference in `documentation/docs/configuration/`
-- [ ] **Update documentation for Phase 1 changes**
-  - [ ] Document `ThemePaletteConfig` class in code comments/docstrings
-  - [ ] Add configuration schema examples to `DEVELOPER_README.md` (for theme developers)
-  - [ ] Update any affected developer documentation to reflect new config structure
-  - [ ] Document legacy config normalization behavior
+- [x] **Document plugin architecture (developer-facing)**
+  - [x] Add inline code documentation/docstrings to config.py and plugin.py
+  - [x] Add Plugin Architecture section to `DEVELOPER_README.md`
+  - [x] Document configuration schema classes (PaletteConfig, SelectorConfig, PaletteOption)
+  - [x] Document build-time processing and validation approach
+  - [x] Document legacy config normalization behavior
+  - [x] Document template globals exposure mechanism
 
 **Dependencies:** None  
 **Blocks:** Phase 2
@@ -107,7 +106,8 @@ _Status: ✅ Complete — plugin foundation implemented with 37 passing tests._
 - ✅ Invalid palette options are filtered with appropriate warnings
 - ✅ Normalized config structure is available to template context (via Jinja2 env.globals)
 - ✅ **All configuration tests pass (37/37 passing, 100%)**
-- ⏳ Configuration behavior documented in code (inline docstrings present, external docs pending)
+- ✅ **Plugin architecture documented in DEVELOPER_README.md**
+- ⏳ User-facing documentation deferred to Phase 6 (after feature is complete)
 
 ---
 
@@ -361,12 +361,15 @@ _Status: ❌ Not started — validate complete feature works end-to-end._
 
 _Status: ❌ Not started — enable users to adopt the feature._
 
-- [ ] User-facing configuration documentation
+- [ ] **User-facing configuration documentation**
   - [ ] Create `documentation/docs/configuration/palette-selector.md`
-  - [ ] Document `theme.palette` configuration schema
-  - [ ] Provide examples: minimal, multi-palette, custom palettes
-  - [ ] Explain `selector.ui` options and their behavior
-  - [ ] Document legacy string config support
+  - [ ] Document `theme.palette` configuration schema (all options)
+  - [ ] Provide examples: legacy format, minimal selector, multi-palette, custom palettes
+  - [ ] Explain `selector.ui` options (`auto`, `toggle`, `select`) and their behavior
+  - [ ] Document `selector.enabled` and `default` options
+  - [ ] Document legacy string config support for backwards compatibility
+  - [ ] Explain build-time validation and warning messages
+  - [ ] Document localStorage persistence behavior
   - [ ] Add troubleshooting section for common issues
 - [ ] Custom palette creation guide
   - [ ] Document required CSS variables
@@ -384,11 +387,11 @@ _Status: ❌ Not started — enable users to adopt the feature._
   - [ ] Update theme features list
   - [ ] Add palette selector to configuration overview in `documentation/docs/configuration/`
   - [ ] Link to palette selector from relevant sections
-- [ ] Developer documentation
-  - [ ] Document CSS variable architecture
-  - [ ] Explain palette application mechanism
+- [ ] **Advanced developer documentation**
+  - [ ] Document CSS variable architecture for palette authors
+  - [ ] Explain data-palette attribute mechanism in detail
   - [ ] Document JavaScript API (if exposing any hooks)
-  - [ ] Add section to DEVELOPER_README.md if needed
+  - [ ] Document FOUC prevention approach
 - [ ] Create live examples
   - [ ] Add palette selector to documentation site (`documentation/`)
   - [ ] Include examples in `tests/examples/` for testing
