@@ -8,27 +8,69 @@ Implementation tasks for adding an optional, built-in color palette selector to 
 
 **Specification:** [2026-01-18-color-palette-toggle.md](./2026-01-18-color-palette-toggle.md)
 
+### Static Site Architecture Impact
+
+**Critical Constraint:** MkDocs generates static HTML sites. All pages are pre-rendered once during the build process.
+
+**Implications:**
+
+1. **Build-time vs Runtime:**
+   - Configuration processing: **Build-time only** (mkdocs.yml is read during `mkdocs build`)
+   - Palette validation: **Build-time only** (must verify CSS files exist before generating HTML)
+   - Template rendering: **Build-time only** (Jinja templates → static HTML once)
+   - Palette switching: **Runtime only** (JavaScript modifies DOM in user's browser)
+
+2. **No Server-Side Logic:**
+   - Cannot dynamically fetch palette CSS files on demand
+   - Cannot validate user's localStorage selection server-side
+   - All palette CSS files must be included in built site assets
+   - All selector options must be pre-rendered into the static HTML
+
+3. **JavaScript is Essential (for switching only):**
+   - Default palette works without JavaScript (rendered in HTML at build time)
+   - User preference switching requires JavaScript (changes data-palette attribute)
+   - localStorage persistence is purely client-side
+   - No server to coordinate state across page loads
+
+4. **Template Context:**
+   - Configuration available via Jinja2 context during build
+   - Must embed selector options as data attributes or JSON in HTML
+   - JavaScript reads embedded data to know available palettes
+
+5. **CSS Asset Management:**
+   - All palette CSS files must be linked in <head> at build time
+   - MkDocs handles copying CSS to build output (via extra_css or theme files)
+   - Palette switching is CSS scoping via data attribute, not file loading
+   - Cannot lazy-load CSS files (no server to fetch from)
+
+**Simplified Mental Model:**
+- **Build phase (Python/Jinja):** Validate config → render static HTML with all palettes embedded → copy assets
+- **Runtime phase (Browser/JS):** Read localStorage → change data-palette attribute → CSS scoping handles visual change
+
 ## Task Checklist
 
 ### Phase 1: Configuration Schema & Validation
 
 _Status: ❌ Not started — foundation for all subsequent work._
 
-- [ ] Define configuration schema structure in theme code
+- [ ] Define configuration schema structure in theme code (build-time processing)
   - [ ] Add `ThemePaletteConfig` class/dataclass to handle palette configuration
   - [ ] Support legacy string format: `palette: "dark"` → normalize to object shape
   - [ ] Support new object format with `default`, `selector.enabled`, `selector.ui`, `selector.options`
-  - [ ] Add configuration validation on theme load
-- [ ] Implement palette option validation
+  - [ ] Add configuration validation during MkDocs build (not runtime - static site has no runtime server)
+  - [ ] Hook into MkDocs theme's `on_config` or equivalent event to process palette config early
+- [ ] Implement palette option validation (build-time only)
   - [ ] Validate bundled palette names against available CSS files in `terminal/css/palettes/`
   - [ ] Validate custom palette entries (name + css path)
-  - [ ] Check custom CSS files exist in `config.extra_css` or built assets
-  - [ ] Emit non-blocking warnings for missing/invalid palettes
-  - [ ] Filter out invalid options from selector UI
+  - [ ] Check custom CSS files exist in `config.extra_css` (checked during mkdocs build)
+  - [ ] Emit build warnings (via MkDocs logging) for missing/invalid palettes
+  - [ ] Filter out invalid options from selector UI during template rendering
+  - [ ] **Critical:** All validation must complete before templates render (no runtime validation possible)
 - [ ] Add configuration normalization logic
   - [ ] Convert legacy string config to new object shape internally
   - [ ] Set defaults: `selector.enabled: false`, `selector.ui: "auto"`
-  - [ ] Ensure normalized config is available to templates and JS
+  - [ ] Ensure normalized config is available to Jinja template context (for HTML rendering)
+  - [ ] Ensure palette options are embedded in HTML for JavaScript access (as data attributes or JSON)
 - [ ] Document configuration schema
   - [ ] Add inline code documentation/docstrings
   - [ ] Create configuration reference in `documentation/docs/configuration/`
@@ -58,8 +100,10 @@ _Status: ❌ Not started — establishes theming foundation._
   - [ ] Document required CSS variables for custom palettes
 - [ ] Implement palette application mechanism
   - [ ] Add CSS to scope palette styles under `[data-palette="<name>"]` attribute selector
-  - [ ] Ensure palette CSS loads efficiently (avoid FOUC - Flash of Unstyled Content)
-  - [ ] Add fallback for no-JS environments (use default palette from config)
+  - [ ] Ensure all palette CSS files are linked in <head> at build time (cannot lazy-load - static site)
+  - [ ] Use CSS scoping to show/hide palette-specific styles based on data-palette attribute
+  - [ ] Add fallback for no-JS environments (render default palette's data-palette attribute in HTML)
+  - [ ] Avoid FOUC: inline critical JS in <head> to apply localStorage palette before first paint
 - [ ] Create palette documentation
   - [ ] Document CSS variable structure for palette authors
   - [ ] Provide example custom palette file
@@ -85,8 +129,9 @@ _Status: ❌ Not started — UI surface for user interaction._
   - [ ] Render UI based on `selector.ui` setting and option count
   - [ ] Binary toggle UI for 2 options (when `ui: auto` or `ui: toggle`)
   - [ ] Select/dropdown UI for >2 options (when `ui: auto` or `ui: select`)
-  - [ ] Fallback behavior when `ui: toggle` with >2 options (use select, log warning)
+  - [ ] Fallback behavior when `ui: toggle` with >2 options (use select, emit build warning)
   - [ ] Add ARIA attributes for accessibility (role, labels, keyboard navigation)
+  - [ ] Embed available palette options as data attributes (e.g., `data-palettes='["dark","light"]'`) for JS
 - [ ] Create Jinja block for override capability
   - [ ] Add `{% block palette_selector %}{% endblock %}` in appropriate location
   - [ ] Ensure block includes default partial implementation
@@ -95,9 +140,10 @@ _Status: ❌ Not started — UI surface for user interaction._
   - [ ] Add selector to `terminal/partials/top-nav` or appropriate partial
   - [ ] Ensure selector placement is consistent and accessible
   - [ ] Add data attributes for JavaScript hooks (`data-palette-selector`, `data-palette-option`)
-- [ ] Server-side default palette application
-  - [ ] Apply `data-palette` attribute to `<html>` element based on config default
-  - [ ] Ensure default palette renders correctly without JavaScript
+- [ ] Build-time default palette application ("server-side" for static sites)
+  - [ ] Apply `data-palette` attribute to `<html>` element based on config default during template rendering
+  - [ ] Ensure default palette renders correctly without JavaScript (static HTML includes data-palette)
+  - [ ] Ensure all palette CSS files are already linked in <head> (no dynamic loading)
 - [ ] Update theme templates for palette CSS variable usage
   - [ ] Replace hardcoded colors with CSS variables where needed
   - [ ] Test all theme components render correctly with each bundled palette
@@ -129,12 +175,14 @@ _Status: ❌ Not started — client-side interactivity and persistence._
   - [ ] Validate saved selection against available options
   - [ ] Fallback to config default if saved selection invalid
 - [ ] Add palette restoration logic
-  - [ ] Check localStorage on DOM ready
-  - [ ] Apply saved palette before first paint if possible
-  - [ ] Avoid FOUC by applying early in page lifecycle
-- [ ] Handle dynamic CSS loading (if needed for custom palettes)
-  - [ ] Ensure custom palette CSS files are loaded
-  - [ ] Handle loading errors gracefully
+  - [ ] Check localStorage on DOMContentLoaded or earlier (inline script in <head>)
+  - [ ] Apply saved palette before first paint to avoid FOUC
+  - [ ] Validate saved palette exists in available options (read from data attribute)
+  - [ ] Fallback to build-time default if saved palette is invalid/unavailable
+- [ ] **No dynamic CSS loading** (static site constraint)
+  - [ ] All palette CSS files must be pre-linked in <head> during build
+  - [ ] Palette switching only changes data-palette attribute (CSS scoping handles visual change)
+  - [ ] Cannot fetch CSS files on demand (no server)
 - [ ] Add developer console logging
   - [ ] Log palette switches (info level)
   - [ ] Log validation warnings (warn level)
@@ -157,20 +205,23 @@ _Status: ❌ Not started — client-side interactivity and persistence._
 
 _Status: ❌ Not started — ensure quality and prevent regressions._
 
-- [ ] Unit tests for configuration validation
-  - [ ] Test legacy string config normalization
+- [ ] Unit tests for configuration validation (build-time logic)
+  - [ ] Test legacy string config normalization during theme initialization
   - [ ] Test new object config parsing
-  - [ ] Test invalid palette option filtering
-  - [ ] Test warning emission for misconfigured options
-  - [ ] Test custom palette CSS path validation
-- [ ] Integration tests for template rendering
-  - [ ] Test selector renders when enabled
-  - [ ] Test selector hidden when disabled
-  - [ ] Test binary toggle UI with 2 options
-  - [ ] Test select UI with >2 options
-  - [ ] Test `ui: auto` logic
+  - [ ] Test invalid palette option filtering at build time
+  - [ ] Test build warning emission for misconfigured options (via MkDocs logging)
+  - [ ] Test custom palette CSS path validation against extra_css list
+  - [ ] Test that invalid palettes are excluded from rendered HTML
+- [ ] Integration tests for template rendering (static HTML output)
+  - [ ] Test selector renders in HTML when enabled
+  - [ ] Test selector absent from HTML when disabled
+  - [ ] Test binary toggle UI markup with 2 options
+  - [ ] Test select UI markup with >2 options
+  - [ ] Test `ui: auto` logic produces correct HTML
   - [ ] Test `ui: toggle` and `ui: select` explicit settings
-  - [ ] Test server-side default palette application
+  - [ ] Test build-time default palette application (data-palette in <html>)
+  - [ ] Test palette options embedded in HTML data attributes
+  - [ ] Test all palette CSS files linked in <head>
 - [ ] Integration tests for JavaScript behavior
   - [ ] Test palette switching updates data attribute
   - [ ] Test localStorage save/restore
@@ -339,23 +390,31 @@ _Status: ❌ Future work — nice-to-have improvements._
 
 ### Risk Areas
 
-1. **FOUC (Flash of Unstyled Content)**
-   - Critical to apply palette before first paint
-   - localStorage read must happen early in page lifecycle
-   - Consider inlining minimal JS in `<head>` for palette restoration
+1. **Static Site Architecture Constraints**
+   - All configuration processing must happen at build time (no runtime server)
+   - Cannot dynamically load CSS files (must pre-link all palettes)
+   - Cannot validate localStorage selections server-side (client-side JS only)
+   - Templates render once to static HTML (no dynamic content generation)
 
-2. **Backwards Compatibility**
-   - Legacy string config must continue working indefinitely
-   - Existing sites with custom CSS must not break
-   - Theme updates should not require configuration changes
+2. **FOUC (Flash of Unstyled Content)**
+   - **CRITICAL for static sites:** Cannot apply localStorage palette server-side
+   - Must inline palette restoration JS in `<head>` (before CSS loads)
+   - localStorage read must happen before first paint
+   - Default palette in HTML prevents blank page if JS fails
 
-3. **Accessibility**
+3. **Backwards Compatibility**
+   - Legacy string config must continue working indefinitely (normalized at build time)
+   - Existing sites with custom CSS must not break (palette CSS is additive)
+   - Theme updates should not require mkdocs.yml changes
+   - Sites without palette config should build identically to current behavior
+
+4. **Accessibility**
    - Selector must be fully keyboard accessible
    - ARIA attributes critical for screen reader support
    - Palette contrast must meet WCAG AA standards
    - Focus indicators must be visible in all palettes
 
-4. **Performance**
+5. **Performance**
    - Multiple palette CSS files could increase page weight
    - CSS custom properties have good browser support but verify performance
    - localStorage operations should be synchronous but fast
@@ -398,23 +457,29 @@ _Status: ❌ Future work — nice-to-have improvements._
 ## Open Questions
 
 1. **Inline JS for FOUC prevention?**
-   - Should we inline palette restoration JS in `<head>` to prevent flash?
-   - Trade-off: Slightly larger HTML vs better UX
+   - **Decision: YES** — Must inline palette restoration JS in `<head>` to prevent flash
+   - Trade-off: Slightly larger HTML (minor) vs better UX (critical for static site)
+   - Static sites cannot apply localStorage palette server-side, so inline JS is required
 
-2. **Palette CSS loading strategy?**
-   - Load all palette CSS files upfront (simpler, larger initial load)
-   - Load only default, fetch others on demand (complex, better performance)
-   - Recommendation: Start with upfront loading, optimize later if needed
+2. ~~**Palette CSS loading strategy?**~~ **RESOLVED by static site constraint**
+   - **Must load all palette CSS files upfront** (only option for static sites)
+   - Cannot fetch CSS on demand (no server to fetch from)
+   - All CSS linked in <head> during build, switching via data-palette attribute
 
-3. **Configuration validation timing?**
-   - Validate at build time (fail fast, better DX)
-   - Validate at runtime (more flexible, harder to debug)
-   - Recommendation: Both — build-time warnings, runtime fallbacks
+3. ~~**Configuration validation timing?**~~ **RESOLVED by static site constraint**
+   - **Must validate at build time only** (no runtime server)
+   - MkDocs build emits warnings for invalid palettes
+   - JavaScript validates localStorage selections against embedded options (client-side fallback)
 
 4. **Custom palette file paths?**
    - Support relative paths only (simpler)
    - Support URLs for CDN-hosted palettes (more flexible)
-   - Recommendation: Start with relative paths, consider URLs as enhancement
+   - Recommendation: Start with relative paths, consider URLs as enhancement (would still need to be linked in extra_css)
+
+5. **NEW: CSS file inclusion strategy?**
+   - Option A: Automatically add bundled palettes to CSS output (simpler for users)
+   - Option B: Require users to list palettes in extra_css (more explicit, lighter builds)
+   - Recommendation: Auto-include bundled palettes, require extra_css for custom palettes
 
 ## Timeline Estimate
 
