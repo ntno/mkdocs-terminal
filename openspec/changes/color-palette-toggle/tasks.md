@@ -59,6 +59,12 @@ _Status: ❌ Not started — foundation for all subsequent work._
   - [ ] Support new object format with `default`, `selector.enabled`, `selector.ui`, `selector.options`
   - [ ] Add configuration validation during MkDocs build (not runtime - static site has no runtime server)
   - [ ] Hook into MkDocs theme's `on_config` or equivalent event to process palette config early
+- [ ] **Test configuration schema**
+  - [ ] Test `ThemePaletteConfig` class initialization and properties
+  - [ ] Test legacy string config normalization (e.g., `palette: "dark"` → object)
+  - [ ] Test new object config parsing (validate all fields)
+  - [ ] Test MkDocs build hook integration (`on_config` fires correctly)
+  - [ ] Verify all schema tests pass before proceeding
 - [ ] Implement palette option validation (build-time only)
   - [ ] Validate bundled palette names against available CSS files in `terminal/css/palettes/`
   - [ ] Validate custom palette entries (name + css path)
@@ -66,22 +72,27 @@ _Status: ❌ Not started — foundation for all subsequent work._
   - [ ] Emit build warnings (via MkDocs logging) for missing/invalid palettes
   - [ ] Filter out invalid options from selector UI during template rendering
   - [ ] **Critical:** All validation must complete before templates render (no runtime validation possible)
+- [ ] **Test palette option validation**
+  - [ ] Test bundled palette name validation (valid names pass, invalid fail)
+  - [ ] Test custom palette entry validation (name + path structure)
+  - [ ] Test custom CSS file existence check (file in extra_css → valid, missing → invalid)
+  - [ ] Test build warning emission for misconfigured options (via MkDocs logging)
+  - [ ] Test invalid palettes are filtered from selector UI
+  - [ ] Verify all validation tests pass before proceeding
 - [ ] Add configuration normalization logic
   - [ ] Convert legacy string config to new object shape internally
   - [ ] Set defaults: `selector.enabled: false`, `selector.ui: "auto"`
   - [ ] Ensure normalized config is available to Jinja template context (for HTML rendering)
   - [ ] Ensure palette options are embedded in HTML for JavaScript access (as data attributes or JSON)
+- [ ] **Test configuration normalization**
+  - [ ] Test legacy config converts to object shape correctly
+  - [ ] Test default values applied when fields missing
+  - [ ] Test normalized config available in template context
+  - [ ] Test palette options correctly formatted for HTML embedding
+  - [ ] Verify all normalization tests pass before proceeding
 - [ ] Document configuration schema
   - [ ] Add inline code documentation/docstrings
   - [ ] Create configuration reference in `documentation/docs/configuration/`
-- [ ] **Write tests for configuration logic**
-  - [ ] Test legacy string config normalization during theme initialization
-  - [ ] Test new object config parsing
-  - [ ] Test invalid palette option filtering at build time
-  - [ ] Test build warning emission for misconfigured options (via MkDocs logging)
-  - [ ] Test custom palette CSS path validation against extra_css list
-  - [ ] Test that invalid palettes are excluded from normalized config
-  - [ ] Ensure all configuration tests pass before proceeding to Phase 2
 
 **Dependencies:** None  
 **Blocks:** Phase 2
@@ -107,23 +118,29 @@ _Status: ❌ Not started — establishes theming foundation._
   - [ ] Create CSS variable naming convention (e.g., `--terminal-color-primary`, `--terminal-bg-body`)
   - [ ] Update all existing palette files to use standardized variables
   - [ ] Document required CSS variables for custom palettes
+- [ ] **Test CSS variable standardization**
+  - [ ] Test CSS variable extraction from palette files
+  - [ ] Verify all bundled palettes define required CSS variables (no missing vars)
+  - [ ] Test naming convention compliance across all palettes
+  - [ ] Verify all CSS standardization tests pass before proceeding
 - [ ] Implement palette application mechanism
   - [ ] Add CSS to scope palette styles under `[data-palette="<name>"]` attribute selector
   - [ ] Ensure all palette CSS files are linked in <head> at build time (cannot lazy-load - static site)
   - [ ] Use CSS scoping to show/hide palette-specific styles based on data-palette attribute
   - [ ] Add fallback for no-JS environments (render default palette's data-palette attribute in HTML)
   - [ ] Avoid FOUC: inline critical JS in <head> to apply localStorage palette before first paint
+- [ ] **Test palette application mechanism**
+  - [ ] Test data-palette attribute scoping works correctly (styles apply/unapply)
+  - [ ] Test palette CSS files are correctly linked in build output
+  - [ ] Test no-JS fallback (default palette data-attribute renders)
+  - [ ] Test inline FOUC prevention script executes before CSS load
+  - [ ] Verify all application mechanism tests pass before proceeding
+- [ ] Validate palette accessibility
+  - [ ] Verify bundled palettes meet WCAG AA contrast (leverage existing `tests/accessibility/test_color_contrast.py`)
+  - [ ] Add WCAG AA contrast requirements to palette guidelines
 - [ ] Create palette documentation
   - [ ] Document CSS variable structure for palette authors
   - [ ] Provide example custom palette file
-  - [ ] Add WCAG AA contrast requirements to palette guidelines
-- [ ] **Write tests for CSS architecture**
-  - [ ] Test CSS variable extraction from palette files
-  - [ ] Verify all bundled palettes define required CSS variables
-  - [ ] Test data-palette attribute scoping works correctly
-  - [ ] Verify bundled palettes meet WCAG AA contrast (leverage existing `tests/accessibility/test_color_contrast.py`)
-  - [ ] Test palette CSS files are correctly linked in build output
-  - [ ] Ensure all CSS tests pass before proceeding to Phase 3
 
 **Dependencies:** Phase 1  
 **Blocks:** Phase 3
@@ -149,34 +166,44 @@ _Status: ❌ Not started — UI surface for user interaction._
   - [ ] Fallback behavior when `ui: toggle` with >2 options (use select, emit build warning)
   - [ ] Add ARIA attributes for accessibility (role, labels, keyboard navigation)
   - [ ] Embed available palette options as data attributes (e.g., `data-palettes='["dark","light"]'`) for JS
-- [ ] Create Jinja block for override capability
-  - [ ] Add `{% block palette_selector %}{% endblock %}` in appropriate location
-  - [ ] Ensure block includes default partial implementation
-  - [ ] Test override mechanism via `theme.custom_dir`
-- [ ] Integrate selector into theme layout
-  - [ ] Add selector to `terminal/partials/top-nav` or appropriate partial
-  - [ ] Ensure selector placement is consistent and accessible
-  - [ ] Add data attributes for JavaScript hooks (`data-palette-selector`, `data-palette-option`)
-- [ ] Build-time default palette application ("server-side" for static sites)
-  - [ ] Apply `data-palette` attribute to `<html>` element based on config default during template rendering
-  - [ ] Ensure default palette renders correctly without JavaScript (static HTML includes data-palette)
-  - [ ] Ensure all palette CSS files are already linked in <head> (no dynamic loading)
-- [ ] Update theme templates for palette CSS variable usage
-  - [ ] Replace hardcoded colors with CSS variables where needed
-  - [ ] Test all theme components render correctly with each bundled palette
-- [ ] **Write tests for template rendering**
+- [ ] **Test selector partial rendering**
   - [ ] Test selector renders in HTML when enabled
   - [ ] Test selector absent from HTML when disabled
   - [ ] Test binary toggle UI markup with 2 options
   - [ ] Test select UI markup with >2 options
   - [ ] Test `ui: auto` logic produces correct HTML
   - [ ] Test `ui: toggle` and `ui: select` explicit settings
-  - [ ] Test build-time default palette application (data-palette in <html>)
+  - [ ] Test fallback behavior when `ui: toggle` with >2 options (select + warning)
   - [ ] Test palette options embedded in HTML data attributes
+  - [ ] Test selector has proper ARIA attributes (role, labels, keyboard hints)
+  - [ ] Verify all selector rendering tests pass before proceeding
+- [ ] Create Jinja block for override capability
+  - [ ] Add `{% block palette_selector %}{% endblock %}` in appropriate location
+  - [ ] Ensure block includes default partial implementation
+- [ ] **Test override mechanism**
+  - [ ] Test override mechanism via `theme.custom_dir` (custom partial replaces default)
+  - [ ] Test default partial renders when no override present
+  - [ ] Verify override tests pass before proceeding
+- [ ] Integrate selector into theme layout
+  - [ ] Add selector to `terminal/partials/top-nav` or appropriate partial
+  - [ ] Ensure selector placement is consistent and accessible
+  - [ ] Add data attributes for JavaScript hooks (`data-palette-selector`, `data-palette-option`)
+- [ ] **Test layout integration**
+  - [ ] Test selector appears in expected location (top-nav)
+  - [ ] Test data attributes for JS hooks are present
+  - [ ] Verify layout integration tests pass before proceeding
+- [ ] Build-time default palette application ("server-side" for static sites)
+  - [ ] Apply `data-palette` attribute to `<html>` element based on config default during template rendering
+  - [ ] Ensure default palette renders correctly without JavaScript (static HTML includes data-palette)
+  - [ ] Ensure all palette CSS files are already linked in <head> (no dynamic loading)
+- [ ] **Test build-time palette application**
+  - [ ] Test build-time default palette application (data-palette in <html>)
   - [ ] Test all palette CSS files linked in <head>
-  - [ ] Test selector has proper ARIA attributes
-  - [ ] Test override mechanism via `theme.custom_dir`
-  - [ ] Ensure all template tests pass before proceeding to Phase 4
+  - [ ] Test correct default palette used from config
+  - [ ] Verify build-time application tests pass before proceeding
+- [ ] Update theme templates for palette CSS variable usage
+  - [ ] Replace hardcoded colors with CSS variables where needed
+  - [ ] Visually verify all theme components render correctly with each bundled palette
 
 **Dependencies:** Phase 1, Phase 2  
 **Blocks:** Phase 4
@@ -200,16 +227,35 @@ _Status: ❌ Not started — client-side interactivity and persistence._
   - [ ] Apply palette by setting `data-palette` attribute on `<html>` element
   - [ ] Remove previous palette data attribute before applying new one
   - [ ] Handle edge cases (missing options, invalid selections)
+- [ ] **Test event listeners and palette switching**
+  - [ ] Test event listeners attach correctly to selector UI
+  - [ ] Test palette switching updates data attribute on <html>
+  - [ ] Test previous palette data attribute removed before applying new
+  - [ ] Test edge case handling (missing options, invalid selections)
+  - [ ] Test keyboard navigation works (integration with template ARIA)
+  - [ ] Verify event listener tests pass before proceeding
 - [ ] Implement localStorage persistence
   - [ ] Save user selection to `localStorage` on palette change
   - [ ] Read saved selection on page load
   - [ ] Validate saved selection against available options
   - [ ] Fallback to config default if saved selection invalid
+- [ ] **Test localStorage persistence**
+  - [ ] Test localStorage save on palette change
+  - [ ] Test localStorage restore on page load
+  - [ ] Test invalid saved selection handling (fallback to default)
+  - [ ] Mock localStorage for testing (avoid browser dependency)
+  - [ ] Verify localStorage tests pass before proceeding
 - [ ] Add palette restoration logic
   - [ ] Check localStorage on DOMContentLoaded or earlier (inline script in <head>)
   - [ ] Apply saved palette before first paint to avoid FOUC
   - [ ] Validate saved palette exists in available options (read from data attribute)
   - [ ] Fallback to build-time default if saved palette is invalid/unavailable
+- [ ] **Test palette restoration**
+  - [ ] Test palette restoration on page load (reads localStorage early)
+  - [ ] Test FOUC prevention (palette applied before first paint)
+  - [ ] Test validation against available options (embedded in HTML)
+  - [ ] Test fallback to build-time default when saved palette invalid
+  - [ ] Verify restoration tests pass before proceeding
 - [ ] **No dynamic CSS loading** (static site constraint)
   - [ ] All palette CSS files must be pre-linked in <head> during build
   - [ ] Palette switching only changes data-palette attribute (CSS scoping handles visual change)
@@ -219,16 +265,10 @@ _Status: ❌ Not started — client-side interactivity and persistence._
   - [ ] Log validation warnings (warn level)
   - [ ] Log errors (error level)
   - [ ] Make logging optional/configurable
-- [ ] **Write tests for JavaScript behavior**
-  - [ ] Test palette switching updates data attribute
-  - [ ] Test localStorage save/restore
-  - [ ] Test invalid saved selection handling
-  - [ ] Test palette restoration on page load
-  - [ ] Mock localStorage for testing
-  - [ ] Test event listeners attach correctly to selector UI
-  - [ ] Test keyboard navigation works (integration with template ARIA)
-  - [ ] Test console logging output (different log levels)
-  - [ ] Ensure all JavaScript tests pass before proceeding to Phase 5
+- [ ] **Test console logging**
+  - [ ] Test console logging output at different log levels (info, warn, error)
+  - [ ] Test logging can be disabled/configured
+  - [ ] Verify logging tests pass before proceeding to Phase 5
 
 **Dependencies:** Phase 3  
 **Blocks:** Phase 5
