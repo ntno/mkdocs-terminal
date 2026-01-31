@@ -15,7 +15,7 @@ from .config import parse_palette_config, validate_palette_options
 
 class PalettePlugin(BasePlugin):
     """Plugin to handle palette configuration for mkdocs-terminal theme.
-    
+
     This plugin:
     - Parses palette configuration (legacy string or new object format)
     - Validates bundled palette names against available CSS files
@@ -29,57 +29,57 @@ class PalettePlugin(BasePlugin):
 
     def on_config(self, config, **kwargs):
         """Process palette configuration during MkDocs build.
-        
+
         Args:
             config: MkDocs configuration object
-            
+
         Returns:
             Modified config with palette_config added to theme
         """
         # Get theme directory path
         theme_dirs = config.theme.dirs
         theme_dir = Path(theme_dirs[0]) if theme_dirs else Path(__file__).parent.parent.parent
-        
+
         # Get palette config from theme settings
         palette_value = config.theme.get("palette")
-        
+
         # Parse palette configuration
         logger.debug("Parsing palette config: %s", palette_value)
         palette_config = parse_palette_config(palette_value, theme_dir)
         logger.debug("Parsed palette config: %s", palette_config)
-        
+
         # Validate palette options
         extra_css = config.extra_css or []
         palette_config = validate_palette_options(palette_config, extra_css)
-        
+
         # Log validation results
         if palette_config.get("warnings"):
             for warning in palette_config["warnings"]:
                 logger.warning(warning)
-        
+
         logger.info(
             "Palette config: default='%s', selector=%s, valid_options=%d",
             palette_config["default"],
             palette_config["selector_enabled"],
             len(palette_config.get("valid_options", []))
         )
-        
+
         # Store for use in templates
         self.palette_config = palette_config
-        
+
         return config
 
     def on_env(self, env, config, files, **kwargs):
         """Add palette configuration to Jinja2 environment.
-        
+
         Makes palette config available in templates as:
         - config.palette_config
-        
+
         Args:
             env: Jinja2 environment
             config: MkDocs configuration
             files: Site files
-            
+
         Returns:
             Modified Jinja2 environment
         """
@@ -87,7 +87,7 @@ class PalettePlugin(BasePlugin):
         if self.palette_config:
             env.globals['palette_config'] = self.palette_config
             logger.debug("Added palette_config to Jinja2 environment")
-        
+
         return env
 
 

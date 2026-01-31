@@ -7,7 +7,7 @@ Configuration format:
     Legacy (string):
         theme:
           palette: "dark"
-    
+
     New (object):
         theme:
           palette:
@@ -23,9 +23,8 @@ Configuration format:
 """
 
 import logging
-import os
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List
 
 from mkdocs.config.base import Config
 from mkdocs.config.config_options import ListOfItems, Optional as OptionalType, Type
@@ -34,9 +33,10 @@ from mkdocs.config.config_options import ListOfItems, Optional as OptionalType, 
 # Classes
 # -----------------------------------------------------------------------------
 
+
 class PaletteOption(Config):
     """Configuration for a single palette option.
-    
+
     Attributes:
         name: Palette identifier (required)
         css: Optional custom CSS file path for non-bundled palettes
@@ -47,7 +47,7 @@ class PaletteOption(Config):
 
 class SelectorConfig(Config):
     """Configuration for palette selector UI.
-    
+
     Attributes:
         enabled: Whether to show selector UI
         ui: Control type ("auto", "toggle", or "select")
@@ -60,9 +60,9 @@ class SelectorConfig(Config):
 
 class PaletteConfig(Config):
     """Main palette configuration for mkdocs-terminal theme.
-    
+
     Supports both legacy string format and new object format.
-    
+
     Attributes:
         default: Default palette name
         selector: Selector configuration (when using object format)
@@ -77,15 +77,15 @@ class PaletteConfig(Config):
 
 def parse_palette_config(config_value: Any, theme_dir: Path) -> Dict[str, Any]:
     """Parse and normalize palette configuration.
-    
+
     Handles both legacy string format and new object format, validates
     palette names and CSS paths, and returns normalized configuration
     for use in templates.
-    
+
     Args:
         config_value: Raw palette config from mkdocs.yml theme section
         theme_dir: Path to theme directory for validating bundled palettes
-        
+
     Returns:
         Normalized palette configuration dict with keys:
             - default: str
@@ -101,7 +101,7 @@ def parse_palette_config(config_value: Any, theme_dir: Path) -> Dict[str, Any]:
         bundled_palettes = [
             p.stem for p in palettes_dir.glob("*.css")
         ]
-    
+
     # Handle None or missing config
     if config_value is None:
         return {
@@ -111,7 +111,7 @@ def parse_palette_config(config_value: Any, theme_dir: Path) -> Dict[str, Any]:
             "options": [],
             "bundled_palettes": bundled_palettes
         }
-    
+
     # Handle legacy string format: palette: "dark"
     if isinstance(config_value, str):
         return {
@@ -121,7 +121,7 @@ def parse_palette_config(config_value: Any, theme_dir: Path) -> Dict[str, Any]:
             "options": [],
             "bundled_palettes": bundled_palettes
         }
-    
+
     # Handle new object format
     if not isinstance(config_value, dict):
         log.warning(
@@ -135,21 +135,21 @@ def parse_palette_config(config_value: Any, theme_dir: Path) -> Dict[str, Any]:
             "options": [],
             "bundled_palettes": bundled_palettes
         }
-    
+
     # Extract values
     default_palette = config_value.get("default", "default")
     selector_config = config_value.get("selector", {})
-    
+
     if not isinstance(selector_config, dict):
         log.warning(
             f"Invalid selector config type: {type(selector_config).__name__}. "
             "Expected dict. Using defaults."
         )
         selector_config = {}
-    
+
     selector_enabled = selector_config.get("enabled", False)
     selector_ui = selector_config.get("ui", "auto")
-    
+
     # Validate selector UI value
     valid_ui_types = ["auto", "toggle", "select"]
     if selector_ui not in valid_ui_types:
@@ -158,11 +158,11 @@ def parse_palette_config(config_value: Any, theme_dir: Path) -> Dict[str, Any]:
             f"Must be one of: {', '.join(valid_ui_types)}. Using 'auto'."
         )
         selector_ui = "auto"
-    
+
     # Parse palette options
     options_raw = selector_config.get("options", [])
     options = []
-    
+
     for opt in options_raw:
         if isinstance(opt, str):
             # Simple string option
@@ -182,7 +182,7 @@ def parse_palette_config(config_value: Any, theme_dir: Path) -> Dict[str, Any]:
             log.warning(
                 f"Invalid palette option type: {type(opt).__name__}, skipping: {opt}"
             )
-    
+
     return {
         "default": default_palette,
         "selector_enabled": selector_enabled,
@@ -197,16 +197,16 @@ def validate_palette_options(
     extra_css: List[str]
 ) -> Dict[str, Any]:
     """Validate palette options and filter invalid entries.
-    
+
     Checks that:
     - Bundled palette names exist in theme's palettes directory
     - Custom palette CSS paths are listed in extra_css
     - At least one valid option exists if selector is enabled
-    
+
     Args:
         palette_config: Normalized palette config from parse_palette_config
         extra_css: List of extra CSS files from MkDocs config
-        
+
     Returns:
         Updated palette config with:
             - Invalid options removed from options list
@@ -217,11 +217,11 @@ def validate_palette_options(
     options = palette_config["options"]
     valid_options = []
     warnings = []
-    
+
     for opt in options:
         name = opt["name"]
         css = opt.get("css")
-        
+
         if css:
             # Custom palette - check if CSS path is in extra_css
             if css not in extra_css:
@@ -238,21 +238,21 @@ def validate_palette_options(
                     f"Available palettes: {', '.join(bundled_palettes)}"
                 )
                 continue
-        
+
         valid_options.append(opt)
-    
+
     # Validate default palette
     default_name = palette_config["default"]
     default_in_options = any(opt["name"] == default_name for opt in valid_options)
     default_is_bundled = default_name in bundled_palettes
-    
+
     if not default_is_bundled and not default_in_options:
         warnings.append(
             f"Default palette '{default_name}' is not a valid bundled palette "
             f"and not in selector options. Using 'default'."
         )
         palette_config["default"] = "default"
-    
+
     # Check selector has valid options
     if palette_config["selector_enabled"]:
         if not valid_options:
@@ -267,14 +267,14 @@ def validate_palette_options(
                 f"Using 'select' UI instead."
             )
             palette_config["selector_ui"] = "select"
-    
+
     # Log all warnings
     for warning in warnings:
         log.warning(warning)
-    
+
     palette_config["valid_options"] = valid_options
     palette_config["warnings"] = warnings
-    
+
     return palette_config
 
 
