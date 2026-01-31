@@ -471,15 +471,21 @@ _Status: ❌ Future work — nice-to-have improvements._
    - MkDocs build emits warnings for invalid palettes
    - JavaScript validates localStorage selections against embedded options (client-side fallback)
 
-4. **Custom palette file paths?**
-   - Support relative paths only (simpler)
-   - Support URLs for CDN-hosted palettes (more flexible)
-   - Recommendation: Start with relative paths, consider URLs as enhancement (would still need to be linked in extra_css)
+4. **Custom palette file paths** — **Decision: Relative paths only (v1)**
+   - **Support relative paths only** for initial implementation (simpler, covers 95% of use cases)
+   - Paths resolved relative to docs directory or theme static directory
+   - Custom palette CSS files must also be listed in `extra_css` for MkDocs to copy them
+   - **Future enhancement:** CDN URLs for externally-hosted palettes (low priority, adds complexity)
 
-5. **NEW: CSS file inclusion strategy?**
-   - Option A: Automatically add bundled palettes to CSS output (simpler for users)
-   - Option B: Require users to list palettes in extra_css (more explicit, lighter builds)
-   - Recommendation: Auto-include bundled palettes, require extra_css for custom palettes
+5. **CSS file inclusion strategy** — **Decision: Smart auto-include**
+   - **Built-in palettes:** Automatically included when named in `selector.options`
+     - User just lists palette names (e.g., `dark`, `light`, `gruvbox_dark`)
+     - Theme automatically links the corresponding CSS files from `terminal/css/palettes/`
+     - No need to list built-in palettes in `extra_css`
+   - **Custom palettes:** Must be listed in `extra_css`
+     - User provides name + css path in config
+     - User must also add the CSS file to `extra_css` so MkDocs copies it
+   - **Optimization:** Only include CSS for palettes actually listed in options (not all 9 bundled files)
 
 ## Timeline Estimate
 
