@@ -1,0 +1,114 @@
+# Capability: Testing
+
+## Purpose
+
+Automated testing capabilities for the Terminal for MkDocs theme, focusing on accessibility validation, HTML structure validation, and WCAG 2.1 AA compliance. Tests validate theme-generated output, not user-authored content.
+
+## Requirements
+
+### Requirement: Automated Accessibility Validation
+
+MUST include automated tests that validate HTML structure, semantic markup, ARIA attributes, and visual accessibility compliance with WCAG 2.1 AA standards.
+
+#### Scenario: Developer runs accessibility tests locally
+- Developer runs: `pytest tests/accessibility/`
+- Tests build example documentation sites
+- Tests validate HTML5 structure, semantic elements, ARIA attributes
+- Test results show clear violations with line numbers and suggestions
+- Exit code is 0 if all tests pass, non-zero if failures exist
+
+#### Scenario: CI validates accessibility on every PR
+- GitHub Actions workflow runs accessibility tests automatically
+- Tests must pass for PR to be mergeable (unless marked experimental)
+- Failures block merge with clear error messages
+- Reports generated show which specific elements violate standards
+
+#### Scenario: Theme developer detects missing alt text during development
+- Developer updates image in theme template
+- Runs `pytest tests/accessibility/test_image_validation.py`
+- Test fails with message: "Image logo.png missing alt attribute"
+- Developer adds alt text and test passes
+
+#### Scenario: Color contrast issue is caught before release
+- Designer changes search box background color in CSS
+- CI accessibility tests run
+- Test detects contrast ratio 3.2:1 < required 4.5:1
+- Developer adjusts color to meet WCAG AA standard
+- Test passes and change can be merged
+
+### Requirement: HTML Validation
+
+MUST validate that theme-generated HTML conforms to HTML5 specification and uses semantic markup appropriately for theme components.
+
+#### Scenario: Verify semantic structure of theme templates
+- Tests scan theme templates for proper use of semantic elements
+- Verify `<nav>`, `<main>`, `<aside>`, `<header>`, `<footer>` are used appropriately in theme
+- Navigation regions have proper semantic structure
+- No duplicate IDs within a theme's generated output
+- **Out of scope:** User content heading structure, forms, or content markup
+
+### Requirement: ARIA Validation
+
+MUST validate that ARIA attributes are used correctly according to ARIA Authoring Practices Guide specifications.
+
+#### Scenario: Verify search modal ARIA attributes
+- Search modal has `role="alertdialog"` or `role="dialog"`
+- Modal has `aria-modal="true"`
+- Modal has `aria-labelledby` pointing to modal title
+- Close button has `aria-hidden="true"` or descriptive aria-label
+
+#### Scenario: Check interactive element ARIA compliance
+- Buttons have proper `role="button"` or are `<button>` elements
+- Links have descriptive text or `aria-label`
+- Navigation regions have `role="navigation"` or are `<nav>`
+- ARIA roles match interactive behavior
+
+### Requirement: Color Contrast Validation
+
+MUST validate that text and interactive elements meet WCAG 2.1 AA color contrast standards (4.5:1 minimum for normal text, 3:1 for large text or UI components).
+
+**Scope includes all theme-controlled colors:**
+- Body text and paragraph text
+- Links (unvisited, visited, focus, hover states)
+- Buttons and interactive elements
+- Form controls (input fields, select, textarea)
+- Headers and other themed content structure elements
+
+**Out of scope:** User-authored inline styles or custom text colors added via content markdown or custom CSS.
+
+#### Scenario: Detect low contrast text in theme
+- Theme CSS defines body text color: `#666` on background `#fff`
+- Contrast ratio: 5.74:1 → PASS
+- Developer changes to `#888` on `#fff`
+- Contrast ratio: 3.16:1 → FAIL
+- Test reports violation with suggestion to use darker color
+
+#### Scenario: Verify link contrast
+- Theme link colors meet 4.5:1 contrast with background
+- Link focus states have visible, sufficient contrast
+- Visited link colors (if used) meet contrast requirements
+
+#### Scenario: Verify focus indicator contrast
+- Focus state on buttons has sufficient contrast
+- Focus indicators are visible (not removed with `outline: none`)
+- Keyboard navigation focus states meet contrast requirements
+
+### Requirement: Content Accessibility
+
+**EXPLICITLY OUT OF SCOPE** — User-authored content accessibility (image alt text from user images, user-written link text, user-created heading structure, user-provided form labels, user-defined custom styles) is the responsibility of site authors, not the theme. The theme cannot enforce how users structure or style their documentation content.
+
+**IN SCOPE:** Theme-provided styling for content elements (body text color, link colors, default heading styles, interactive element colors). The theme MUST provide sufficient contrast ratios and support accessibility best practices through proper HTML structure so that when site authors implement accessible content, the theme does not hinder it.
+
+Example: The theme provides the blue color for links (#0066cc)—this is in scope and must meet 4.5:1 contrast with the page background. If a content author manually adds inline `style="color: #999"` to text in their markdown, that is out of scope and the author's responsibility.
+
+## Related Capabilities
+
+- **Theme** — Affects HTML structure generated by theme templates
+- **Plugins** — Some plugins may be validated for accessibility output
+
+## Notes
+
+- Accessibility testing is automated and covers static structure only
+- Runtime accessibility behavior requires additional integration tests
+- Screen reader testing requires manual testing with actual screen readers
+- Accessibility standards may be updated; tests should be reviewed annually
