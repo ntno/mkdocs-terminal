@@ -24,7 +24,7 @@ configuration/palettes/links.md
 
 # Lightyear Palette
 
-To use the dark color palette, add the `palette` attribute to your theme configuration in `mkdocs.yml`:
+To use the lightyear color palette, add the `palette` attribute to your theme configuration in `mkdocs.yml`:
 
 ```yaml
 theme:
