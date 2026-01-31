@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.6.1, mkdocs-terminal-4.7.7">
+    <meta name="generator" content="mkdocs-1.6.1, mkdocs-terminal-4.8.0">
      
     
     <meta name="author" content="ntno"> 
@@ -872,6 +872,8 @@
 
 <section id="mkdocs-terminal-content">
     <h1 id="accessibility">Accessibility<a class="headerlink" href="#accessibility" title="Anchor link to this section for reference">#</a></h1>
+<p>The <a href="../configuration/palettes/dark/">dark</a>, <a href="../configuration/palettes/sans-dark/">sans_dark</a>, <a href="../configuration/palettes/blueberry/">blueberry</a>, <a href="../configuration/palettes/lightyear/">lightyear</a>, and <a href="../configuration/palettes/red-drum/">red_drum</a> color palettes meet WCAG 2.1 AA color contrast standards.  </p>
+<p>The <a href="../configuration/palettes/default/">default</a>, <a href="../configuration/palettes/sans/">sans</a>, <a href="../configuration/palettes/pink/">pink</a>, and <a href="../configuration/palettes/gruvbox-dark/">gruvbox_dark</a> color palettes currently have the contrast issues noted below.  These palettes will be updated in the next major release and their current settings moved to a legacy version.</p>
 <h2 id="known-issues">Known Issues<a class="headerlink" href="#known-issues" title="Anchor link to this section for reference">#</a></h2>
 <h3 id="color-contrast">Color Contrast<a class="headerlink" href="#color-contrast" title="Anchor link to this section for reference">#</a></h3>
 <table>
@@ -920,18 +922,35 @@
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td><a href="../configuration/palettes/blueberry/">blueberry</a></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../configuration/palettes/lightyear/">lightyear</a></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="../configuration/palettes/red-drum/">red_drum</a></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
 </tbody>
 </table>
-<p>'x' indicates an open WCAG 2.1 AA contrast failure detected by the <a href="https://github.com/ntno/mkdocs-terminal/blob/main/tests/accessibility/test_color_contrast.py">test_color_contrast.py</a> integration test.  </p>
+<p>'x' indicates an open WCAG 2.1 AA contrast failure detected by the <a href="https://github.com/ntno/mkdocs-terminal/blob/main/tests/accessibility/test_color_contrast.py">test_color_contrast.py</a> integration test.</p>
 <p>See <a href="#color-contrast-failures">Color Contrast Failures</a> for the measured ratios and affected components.</p>
-<p>Future releases of the Terminal for MkDocs theme will include palettes which meet WCAG 2.1 AA contrast standards.  To track progress, see issue <a href="https://github.com/ntno/mkdocs-terminal/issues/119">#119</a>.</p>
 <h4 id="color-contrast-failures">Color Contrast Failures<a class="headerlink" href="#color-contrast-failures" title="Anchor link to this section for reference">#</a></h4>
 <p>Ratios and RGB hex pairs come from the January 25 2026 run of <a href="../tests/accessibility/test_color_contrast.py">tests/accessibility/test_color_contrast.py</a>.</p>
 <p>Expected contrast for all combinations is <code>4.5 : 1</code></p>
 <h5 id="default">default<a class="headerlink" href="#default" title="Anchor link to this section for reference">#</a></h5>
 <ul>
-<li>Primary links (#1a95e0 on #ffffff) measure <code>3.27 : 1</code> </li>
-<li>Primary buttons (#ffffff text on #1a95e0 background) also measure <code>3.27 : 1</code> </li>
+<li>Primary links (#1a95e0 on #ffffff) measure <code>3.27 : 1</code></li>
+<li>Primary buttons (#ffffff text on #1a95e0 background) also measure <code>3.27 : 1</code></li>
 </ul>
 <h5 id="dark">dark<a class="headerlink" href="#dark" title="Anchor link to this section for reference">#</a></h5>
 <ul>
@@ -940,17 +959,17 @@
 <h5 id="gruvbox_dark">gruvbox_dark<a class="headerlink" href="#gruvbox_dark" title="Anchor link to this section for reference">#</a></h5>
 <ul>
 <li>Alert message accents (#fb4934 on #282828) measure <code>4.29 : 1</code></li>
-<li>Ghost error buttons (#fb4934 text on #282828 background) also measure <code>4.29 : 1</code> </li>
+<li>Ghost error buttons (#fb4934 text on #282828 background) also measure <code>4.29 : 1</code></li>
 </ul>
 <h5 id="pink">pink<a class="headerlink" href="#pink" title="Anchor link to this section for reference">#</a></h5>
 <ul>
-<li>Primary links (#f90d7a on #ffffff) measure <code>3.91 : 1</code> </li>
-<li>Primary buttons (#f7f7f7 on #f90d7a) measure <code>3.65 : 1</code> </li>
+<li>Primary links (#f90d7a on #ffffff) measure <code>3.91 : 1</code></li>
+<li>Primary buttons (#f7f7f7 on #f90d7a) measure <code>3.65 : 1</code></li>
 </ul>
 <h5 id="sans">sans<a class="headerlink" href="#sans" title="Anchor link to this section for reference">#</a></h5>
 <ul>
 <li>Primary links (#1a95e0 on #ffffff) measure <code>3.27 : 1</code></li>
-<li>Primary buttons (#ffffff on #1a95e0) measure <code>3.27 : 1</code> </li>
+<li>Primary buttons (#ffffff on #1a95e0) measure <code>3.27 : 1</code></li>
 </ul>
 <h5 id="sans_dark">sans_dark<a class="headerlink" href="#sans_dark" title="Anchor link to this section for reference">#</a></h5>
 <ul>
@@ -968,7 +987,7 @@
 <aside>
     <p>
         <small>
-            <i>Page last updated 2026-01-25. See revision history on <a href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/accessibility.md">GitHub</a>.</i>
+            <i>Page last updated 2026-01-30. See revision history on <a href="https://github.com/ntno/mkdocs-terminal/commits/main/documentation/docs/accessibility.md">GitHub</a>.</i>
         </small>
     </p>
 </aside>
@@ -998,7 +1017,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="searchModalLabel">Search</h5>
-                <button type="button" class="close btn btn-default btn-ghost" data-dismiss="modal"><span aria-hidden="true">x</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close btn btn-default btn-ghost" data-dismiss="modal" aria-label="Close">x</button>
             </div>
             <div class="modal-body">
                 <p id="searchInputLabel">Type to start searching</p>
