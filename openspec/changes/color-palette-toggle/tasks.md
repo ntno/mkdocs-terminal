@@ -93,6 +93,11 @@ _Status: ❌ Not started — foundation for all subsequent work._
 - [ ] Document configuration schema
   - [ ] Add inline code documentation/docstrings
   - [ ] Create configuration reference in `documentation/docs/configuration/`
+- [ ] **Update documentation for Phase 1 changes**
+  - [ ] Document `ThemePaletteConfig` class in code comments/docstrings
+  - [ ] Add configuration schema examples to `DEVELOPER_README.md` (for theme developers)
+  - [ ] Update any affected developer documentation to reflect new config structure
+  - [ ] Document legacy config normalization behavior
 
 **Dependencies:** None  
 **Blocks:** Phase 2
@@ -102,6 +107,7 @@ _Status: ❌ Not started — foundation for all subsequent work._
 - Invalid palette options are filtered with appropriate warnings
 - Normalized config structure is available to template context
 - **All configuration tests pass with ≥80% coverage**
+- **Configuration behavior is documented in code and developer docs**
 
 ---
 
@@ -141,6 +147,12 @@ _Status: ❌ Not started — establishes theming foundation._
 - [ ] Create palette documentation
   - [ ] Document CSS variable structure for palette authors
   - [ ] Provide example custom palette file
+- [ ] **Update documentation for Phase 2 changes**
+  - [ ] Document CSS variable naming convention in code comments
+  - [ ] Update `DEVELOPER_README.md` with palette architecture overview
+  - [ ] Document data-palette attribute mechanism for theme developers
+  - [ ] Add inline CSS comments explaining scoping approach
+  - [ ] Document FOUC prevention approach in code/developer docs
 
 **Dependencies:** Phase 1  
 **Blocks:** Phase 3
@@ -151,6 +163,7 @@ _Status: ❌ Not started — establishes theming foundation._
 - Documentation exists for creating custom palettes
 - No visual flash when switching palettes
 - **All CSS/palette tests pass with ≥80% coverage**
+- **CSS architecture and palette mechanism are documented**
 
 ---
 
@@ -204,6 +217,12 @@ _Status: ❌ Not started — UI surface for user interaction._
 - [ ] Update theme templates for palette CSS variable usage
   - [ ] Replace hardcoded colors with CSS variables where needed
   - [ ] Visually verify all theme components render correctly with each bundled palette
+- [ ] **Update documentation for Phase 3 changes**
+  - [ ] Document `palette_selector.html` partial in code comments
+  - [ ] Add Jinja block override examples to developer docs
+  - [ ] Document template data attributes for JavaScript integration
+  - [ ] Update `DEVELOPER_README.md` with template structure and extension points
+  - [ ] Document ARIA implementation approach in accessibility section (if exists)
 
 **Dependencies:** Phase 1, Phase 2  
 **Blocks:** Phase 4
@@ -215,6 +234,7 @@ _Status: ❌ Not started — UI surface for user interaction._
 - Override mechanism allows custom selector implementations
 - All ARIA attributes present for screen reader support
 - **All template rendering tests pass with ≥80% coverage**
+- **Template structure and override mechanism are documented**
 
 ---
 
@@ -269,6 +289,13 @@ _Status: ❌ Not started — client-side interactivity and persistence._
   - [ ] Test console logging output at different log levels (info, warn, error)
   - [ ] Test logging can be disabled/configured
   - [ ] Verify logging tests pass before proceeding to Phase 5
+- [ ] **Update documentation for Phase 4 changes**
+  - [ ] Document JavaScript API and event flow in code comments
+  - [ ] Add JSDoc comments to `palette_selector.js` functions
+  - [ ] Document localStorage schema and key names
+  - [ ] Update `DEVELOPER_README.md` with JavaScript architecture overview
+  - [ ] Document inline script approach for FOUC prevention
+  - [ ] Add troubleshooting notes for common JavaScript issues
 
 **Dependencies:** Phase 3  
 **Blocks:** Phase 5
@@ -280,6 +307,7 @@ _Status: ❌ Not started — client-side interactivity and persistence._
 - Invalid saved selections fallback gracefully to default
 - Console logging aids debugging without being verbose
 - **All JavaScript behavior tests pass with ≥80% coverage**
+- **JavaScript behavior and integration points are documented**
 
 ---
 
