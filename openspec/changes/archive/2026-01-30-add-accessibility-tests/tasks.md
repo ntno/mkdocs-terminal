@@ -6,6 +6,28 @@ Change ID: `add-accessibility-tests`
 
 Implementation tasks for adding automated accessibility testing to the Terminal for MkDocs theme.
 
+## Archive Summary
+
+**Archiving Date:** 2026-01-30
+
+**What's Complete:**
+- ✅ Core accessibility testing infrastructure (Phase 1)
+- ✅ HTML5 semantic validation (Phase 2)
+- ✅ Basic ARIA validation for buttons, modals, forms, links (Phase 3 - partial)
+- ✅ Color contrast validation framework and palette testing (Phase 4 - partial)
+- ✅ CI/CD integration for Ubuntu/macOS with Python 3.8-3.12 (Phase 7 - partial)
+
+**What's Deferred:**
+The following work is being deferred to a future enhancement change:
+- Phase 3 remaining: Navigation landmark roles, aria-live regions, aria-describedby relationships
+- Phase 4 remaining: Focus/hover state testing, contrast documentation, palette remediation (5 palettes failing)
+- Phase 5: Keyboard navigation testing (entire phase)
+- Phase 6: Coverage baseline (currently 73%, target 80%+) and contributor documentation (entire phase)
+- Phase 7 remaining: Windows CI support (blocked by issue #59)
+- Phase 8 remaining: Code review and final sign-off
+
+**Rationale:** Core accessibility testing infrastructure is production-ready. Remaining enhancements (keyboard navigation, documentation, Windows support, palette fixes) are valuable but can be completed independently without blocking the foundation work from being archived.
+
 ## Task Checklist
 
 ### Phase 1: Infrastructure & Setup
