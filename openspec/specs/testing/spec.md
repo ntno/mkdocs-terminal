@@ -23,12 +23,6 @@ MUST include automated tests that validate HTML structure, semantic markup, ARIA
 - Failures block merge with clear error messages
 - Reports generated show which specific elements violate standards
 
-#### Scenario: Theme developer detects missing alt text during development
-- Developer updates image in theme template
-- Runs `pytest tests/accessibility/test_image_validation.py`
-- Test fails with message: "Image logo.png missing alt attribute"
-- Developer adds alt text and test passes
-
 #### Scenario: Color contrast issue is caught before release
 - Designer changes search box background color in CSS
 - CI accessibility tests run
@@ -88,10 +82,6 @@ MUST validate that text and interactive elements meet WCAG 2.1 AA color contrast
 - Link focus states have visible, sufficient contrast
 - Visited link colors (if used) meet contrast requirements
 
-#### Scenario: Verify focus indicator contrast
-- Focus state on buttons has sufficient contrast
-- Focus indicators are visible (not removed with `outline: none`)
-- Keyboard navigation focus states meet contrast requirements
 
 ### Requirement: Content Accessibility
 
