@@ -20,8 +20,6 @@ nav:
         - Red Drum: 'configuration/palettes/red_drum.md'
         - Sans: 'configuration/palettes/sans.md'
         - Sans Dark: 'configuration/palettes/sans-dark.md'
-        - Soundside: 'configuration/palettes/soundside.md'
-        - Volans: 'configuration/palettes/volans.md'
       - Code Highlighting:
         - Index: 'configuration/code-highlighting/index.md'
       - Features: 'configuration/features.md'
@@ -115,8 +113,6 @@ plugins:
         - configuration/palettes/blueberry.md#blueberry-palette
         - configuration/palettes/lightyear.md#lightyear-palette
         - configuration/palettes/red_drum.md#red_drum-palette
-        - configuration/palettes/soundside.md#soundside-palette
-        - configuration/palettes/volans.md#volans-palette
   - macros:
       modules: 
         - mkdocs-terminal:terminal.pluglets.tile_grid.main

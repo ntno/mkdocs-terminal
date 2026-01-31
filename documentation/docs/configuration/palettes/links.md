@@ -7,7 +7,5 @@
 [Pink](pink.md) |
 [Red Drum](red_drum.md) |
 [Sans](sans.md) |
-[Sans Dark](sans-dark.md) |
-[Soundside](soundside.md) |
-[Volans](volans.md)
+[Sans Dark](sans-dark.md)
 </nav>
