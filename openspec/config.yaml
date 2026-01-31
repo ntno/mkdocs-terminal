@@ -3,18 +3,22 @@ schema: spec-driven
 # Project context (optional)
 # This is shown to AI when creating artifacts.
 # Add your tech stack, conventions, style guides, domain knowledge, etc.
-# Example:
-#   context: |
-#     Tech stack: TypeScript, React, Node.js
-#     We use conventional commits
-#     Domain: e-commerce platform
+Example:
+  context: |
+    Tech stack: Python, MkDocs, Jinja2, JavaScript, CSS, HTML, Markdown, Pytest
+    Domain: MkDocs theme and plugin
 
 # Per-artifact rules (optional)
 # Add custom rules for specific artifacts.
-# Example:
-#   rules:
-#     proposal:
-#       - Keep proposals under 500 words
-#       - Always include a "Non-goals" section
-#     tasks:
-#       - Break tasks into chunks of max 2 hours
+Example:
+  rules:
+    proposal:
+      - Always include a "Non-goals" section
+    tasks:
+      - Break tasks into phases
+      - Each phase should include testing and documentation steps
+    specs:
+      - Use Given/When/Then format for scenarios
+      - Reference existing patterns before inventing new ones
+    design:
+      - Include sequence diagrams for complex flows
