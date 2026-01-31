@@ -39,8 +39,10 @@ plugins:
 
 theme:
   name: terminal
+  # name: null
+  # custom_dir: '../../../terminal'
   # custom_dir: 'overrides'
-  # palette: gruvbox_dark
+  # palette: red_drum
   features:
     # - toc.hide
     # - navigation.side.hide
