@@ -30,6 +30,7 @@ Documentation = "https://ntno.github.io/mkdocs-terminal"
 
 [project.entry-points."mkdocs.plugins"]
 "terminal/md-to-html" = "terminal.plugins.md_to_html.plugin:MarkdownToHtmlFilterPlugin"
+"terminal/palette" = "terminal.plugins.palette.plugin:PalettePlugin"
 
 [project.entry-points."mkdocs.themes"]
 terminal = "terminal"
