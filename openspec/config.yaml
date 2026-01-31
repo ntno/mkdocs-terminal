@@ -17,6 +17,7 @@ Example:
     tasks:
       - Break tasks into phases
       - Each phase should include testing and documentation steps
+      - Do not generate estimation times
     specs:
       - Use Given/When/Then format for scenarios
       - Reference existing patterns before inventing new ones
