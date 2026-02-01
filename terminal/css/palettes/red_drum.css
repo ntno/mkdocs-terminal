@@ -3,14 +3,18 @@
 /**
  * Red Drum Palette for mkdocs-terminal
  * 
- * This palette uses data-palette scoping for runtime switching via the
- * palette selector feature. Variables are defined using the namespaced
- * convention (--mkdocs-terminal-*) with legacy aliases for backwards
- * compatibility.
+ * Color constants are defined once in :root to eliminate duplication.
+ * The namespaced variable mappings appear in both :root and [data-palette]
+ * blocks because they serve different purposes:
+ * 
+ * - :root mappings: Enable inline <link href="red_drum.css"> usage in docs
+ * - [data-palette] mappings: Enable runtime palette switching (higher specificity)
+ * 
+ * Both reference the same color constants, so each hex code appears only once.
  */
 
-[data-palette="red_drum"] {
-  /* Palette-specific color constants */
+:root {
+  /* Palette-specific color constants (defined once) */
   --pale-goldenrod: #eee8aa;
   --black: #190910;
   --white: #f7f7f7;
@@ -20,7 +24,7 @@
   --light-grey: #d4d4d4;
   --dark-grey: #5e5e5e;
 
-  /* Namespaced color variables (primary definitions) */
+  /* Namespaced variable mappings (for inline <link> fallback) */
   --mkdocs-terminal-bg-color: var(--pale-goldenrod);
   --mkdocs-terminal-font-color: var(--black);
   --mkdocs-terminal-invert-font-color: var(--white);
@@ -33,8 +37,48 @@
   --mkdocs-terminal-code-bg-color: var(--white);
   --mkdocs-terminal-input-style: solid;
   --mkdocs-terminal-h1-decoration: none;
+  --mkdocs-terminal-font-size: 15px;
+  --mkdocs-terminal-line-height: 1.4em;
+  --mkdocs-terminal-spacing: 10px;
+  --mkdocs-terminal-font-family: "Fira Code", Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+  --mkdocs-terminal-mono-font-family: "Fira Code", Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+  --mkdocs-terminal-page-width: 60em;
   
-  /* Namespaced typography variables */
+  /* Legacy variable aliases (for backwards compatibility) */
+  --background-color: var(--mkdocs-terminal-bg-color);
+  --font-color: var(--mkdocs-terminal-font-color);
+  --invert-font-color: var(--mkdocs-terminal-invert-font-color);
+  --primary-color: var(--mkdocs-terminal-primary-color);
+  --secondary-color: var(--mkdocs-terminal-secondary-color);
+  --tertiary-color: var(--mkdocs-terminal-tertiary-color);
+  --error-color: var(--mkdocs-terminal-error-color);
+  --progress-bar-background: var(--mkdocs-terminal-progress-bar-bg);
+  --progress-bar-fill: var(--mkdocs-terminal-progress-bar-fill);
+  --code-bg-color: var(--mkdocs-terminal-code-bg-color);
+  --input-style: var(--mkdocs-terminal-input-style);
+  --display-h1-decoration: var(--mkdocs-terminal-h1-decoration);
+  --global-font-size: var(--mkdocs-terminal-font-size);
+  --global-line-height: var(--mkdocs-terminal-line-height);
+  --global-space: var(--mkdocs-terminal-spacing);
+  --font-stack: var(--mkdocs-terminal-font-family);
+  --mono-font-stack: var(--mkdocs-terminal-mono-font-family);
+  --page-width: var(--mkdocs-terminal-page-width);
+}
+
+[data-palette="red_drum"] {
+  /* Namespaced variable mappings (references same constants from :root) */
+  --mkdocs-terminal-bg-color: var(--pale-goldenrod);
+  --mkdocs-terminal-font-color: var(--black);
+  --mkdocs-terminal-invert-font-color: var(--white);
+  --mkdocs-terminal-primary-color: var(--dark-red);
+  --mkdocs-terminal-secondary-color: var(--old-rose);
+  --mkdocs-terminal-tertiary-color: var(--old-rose);
+  --mkdocs-terminal-error-color: var(--sea-blue);
+  --mkdocs-terminal-progress-bar-bg: var(--light-grey);
+  --mkdocs-terminal-progress-bar-fill: var(--dark-grey);
+  --mkdocs-terminal-code-bg-color: var(--white);
+  --mkdocs-terminal-input-style: solid;
+  --mkdocs-terminal-h1-decoration: none;
   --mkdocs-terminal-font-size: 15px;
   --mkdocs-terminal-line-height: 1.4em;
   --mkdocs-terminal-spacing: 10px;

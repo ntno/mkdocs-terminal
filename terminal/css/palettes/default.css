@@ -3,28 +3,84 @@
 /**
  * Default Palette for mkdocs-terminal
  * 
- * This palette uses data-palette scoping for runtime switching via the
- * palette selector feature. It replicates the original terminal.css defaults
- * using the namespaced convention (--mkdocs-terminal-*) with legacy aliases
- * for backwards compatibility.
+ * This palette replicates the original terminal.css defaults.
+ * Color constants are defined once in :root to eliminate duplication.
+ * The namespaced variable mappings appear in both :root and [data-palette]
+ * blocks because they serve different purposes:
+ * 
+ * - :root mappings: Enable inline <link href="default.css"> usage in docs  
+ * - [data-palette] mappings: Enable runtime palette switching (higher specificity)
+ * 
+ * Both reference the same color constants, so each hex code appears only once.
  */
 
-[data-palette="default"] {
-  /* Namespaced color variables (primary definitions) */
-  --mkdocs-terminal-bg-color: #fff;
-  --mkdocs-terminal-font-color: #151515;
-  --mkdocs-terminal-invert-font-color: #fff;
-  --mkdocs-terminal-primary-color: #1a95e0;
-  --mkdocs-terminal-secondary-color: #727578;
-  --mkdocs-terminal-tertiary-color: #727578;
-  --mkdocs-terminal-error-color: #d20962;
-  --mkdocs-terminal-progress-bar-bg: #727578;
-  --mkdocs-terminal-progress-bar-fill: #151515;
-  --mkdocs-terminal-code-bg-color: #e8eff2;
+:root {
+  /* Default palette color constants (defined once) */
+  --default-bg: #fff;
+  --default-fg: #151515;
+  --default-invert-fg: #fff;
+  --default-primary: #1a95e0;
+  --default-secondary: #727578;
+  --default-error: #d20962;
+  --default-progress-bg: #727578;
+  --default-progress-fill: #151515;
+  --default-code-bg: #e8eff2;
+
+  /* Namespaced variable mappings (for inline <link> fallback) */
+  --mkdocs-terminal-bg-color: var(--default-bg);
+  --mkdocs-terminal-font-color: var(--default-fg);
+  --mkdocs-terminal-invert-font-color: var(--default-invert-fg);
+  --mkdocs-terminal-primary-color: var(--default-primary);
+  --mkdocs-terminal-secondary-color: var(--default-secondary);
+  --mkdocs-terminal-tertiary-color: var(--default-secondary);
+  --mkdocs-terminal-error-color: var(--default-error);
+  --mkdocs-terminal-progress-bar-bg: var(--default-progress-bg);
+  --mkdocs-terminal-progress-bar-fill: var(--default-progress-fill);
+  --mkdocs-terminal-code-bg-color: var(--default-code-bg);
   --mkdocs-terminal-input-style: solid;
   --mkdocs-terminal-h1-decoration: none;
+  --mkdocs-terminal-font-size: 15px;
+  --mkdocs-terminal-line-height: 1.4em;
+  --mkdocs-terminal-spacing: 10px;
+  --mkdocs-terminal-font-family: "Menlo", "Monaco", "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", serif;
+  --mkdocs-terminal-mono-font-family: "Menlo", "Monaco", "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", serif;
+  --mkdocs-terminal-page-width: 60em;
   
-  /* Namespaced typography variables */
+  /* Legacy variable aliases (for backwards compatibility) */
+  --background-color: var(--mkdocs-terminal-bg-color);
+  --font-color: var(--mkdocs-terminal-font-color);
+  --invert-font-color: var(--mkdocs-terminal-invert-font-color);
+  --primary-color: var(--mkdocs-terminal-primary-color);
+  --secondary-color: var(--mkdocs-terminal-secondary-color);
+  --tertiary-color: var(--mkdocs-terminal-tertiary-color);
+  --error-color: var(--mkdocs-terminal-error-color);
+  --progress-bar-background: var(--mkdocs-terminal-progress-bar-bg);
+  --progress-bar-fill: var(--mkdocs-terminal-progress-bar-fill);
+  --code-bg-color: var(--mkdocs-terminal-code-bg-color);
+  --input-style: var(--mkdocs-terminal-input-style);
+  --display-h1-decoration: var(--mkdocs-terminal-h1-decoration);
+  --global-font-size: var(--mkdocs-terminal-font-size);
+  --global-line-height: var(--mkdocs-terminal-line-height);
+  --global-space: var(--mkdocs-terminal-spacing);
+  --font-stack: var(--mkdocs-terminal-font-family);
+  --mono-font-stack: var(--mkdocs-terminal-mono-font-family);
+  --page-width: var(--mkdocs-terminal-page-width);
+}
+
+[data-palette="default"] {
+  /* Namespaced variable mappings (references same constants from :root) */
+  --mkdocs-terminal-bg-color: var(--default-bg);
+  --mkdocs-terminal-font-color: var(--default-fg);
+  --mkdocs-terminal-invert-font-color: var(--default-invert-fg);
+  --mkdocs-terminal-primary-color: var(--default-primary);
+  --mkdocs-terminal-secondary-color: var(--default-secondary);
+  --mkdocs-terminal-tertiary-color: var(--default-secondary);
+  --mkdocs-terminal-error-color: var(--default-error);
+  --mkdocs-terminal-progress-bar-bg: var(--default-progress-bg);
+  --mkdocs-terminal-progress-bar-fill: var(--default-progress-fill);
+  --mkdocs-terminal-code-bg-color: var(--default-code-bg);
+  --mkdocs-terminal-input-style: solid;
+  --mkdocs-terminal-h1-decoration: none;
   --mkdocs-terminal-font-size: 15px;
   --mkdocs-terminal-line-height: 1.4em;
   --mkdocs-terminal-spacing: 10px;
