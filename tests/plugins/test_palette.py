@@ -387,6 +387,21 @@ class TestValidation:
         
         assert result["selector_ui"] == "toggle"
         assert len(result["warnings"]) == 0
+    
+    def test_validate_select_ui_with_two_options(self, theme_dir):
+        """Test user can explicitly choose select UI even with 2 options."""
+        config = parse_palette_config({
+            "selector": {
+                "enabled": True,
+                "ui": "select",
+                "options": ["dark", "light"]
+            }
+        }, theme_dir)
+        
+        result = validate_palette_options(config, [])
+        
+        assert result["selector_ui"] == "select"
+        assert len(result["warnings"]) == 0
 
 
 class TestBundledPalettesDetection:
