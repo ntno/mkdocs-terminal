@@ -27,7 +27,7 @@ def theme_dir(tmp_path):
     # Create bundled palette files from DEFAULT_PALETTES
     for palette in DEFAULT_PALETTES:
         palette_file = palettes_dir / f"{palette}.css"
-        css_content = f"/* {palette} palette */"
+        css_content = f"/* Test {palette} Palette */"
         palette_file.write_text(css_content)
     
     return tmp_path

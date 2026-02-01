@@ -21,7 +21,7 @@ def mock_mkdocs_config(tmp_path):
     # Create palette files
     for palette in ["default", "dark", "lightyear"]:
         palette_file = palettes_dir / f"{palette}.css"
-        css_content = f"/* {palette} */"
+        css_content = f"/* Test {palette} Palette */"
         palette_file.write_text(css_content)
     
     config = MagicMock()
