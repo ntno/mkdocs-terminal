@@ -279,7 +279,7 @@ class TestValidation:
         """Test validation accepts valid bundled palettes."""
         config = parse_palette_config({
             "selector": {
-                "options": ["dark", "light", "blueberry"]
+                "options": ["dark", "lightyear", "blueberry"]
             }
         }, theme_dir)
         
@@ -292,7 +292,7 @@ class TestValidation:
         """Test validation rejects non-existent bundled palette."""
         config = parse_palette_config({
             "selector": {
-                "options": ["dark", "nonexistent", "light"]
+                "options": ["blueberry", "nonexistent", "lightyear"]
             }
         }, theme_dir)
         
@@ -339,7 +339,7 @@ class TestValidation:
         config = parse_palette_config({
             "default": "nonexistent",
             "selector": {
-                "options": ["dark", "light"]
+                "options": ["dark", "red_drum"]
             }
         }, theme_dir)
         
@@ -369,7 +369,7 @@ class TestValidation:
             "selector": {
                 "enabled": True,
                 "ui": "toggle",
-                "options": ["dark", "light", "pink"]
+                "options": ["dark", "lightyear", "pink"]
             }
         }, theme_dir)
         
@@ -384,7 +384,7 @@ class TestValidation:
             "selector": {
                 "enabled": True,
                 "ui": "toggle",
-                "options": ["dark", "light"]
+                "options": ["dark", "lightyear"]
             }
         }, theme_dir)
         
@@ -399,7 +399,7 @@ class TestValidation:
             "selector": {
                 "enabled": True,
                 "ui": "select",
-                "options": ["dark", "light"]
+                "options": ["sans_dark", "sans"]
             }
         }, theme_dir)
         
