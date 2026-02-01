@@ -4,7 +4,7 @@ theme:
   name: null
   custom_dir: '../terminal'
   palette:
-    default: dark
+    default: gruvbox_dark
     selector:
       enabled: true
       ui: auto
