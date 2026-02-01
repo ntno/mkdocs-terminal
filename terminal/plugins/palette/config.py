@@ -224,10 +224,19 @@ def validate_palette_options(
     options = palette_config["options"]
     valid_options = []
     warnings = []
+    seen_names = set()
 
     for opt in options:
         name = opt["name"]
         css = opt.get("css")
+
+        # Check for duplicate palette names
+        if name in seen_names:
+            warnings.append(
+                f"Duplicate palette name '{name}' found. "
+                f"Using first valid occurrence, skipping duplicate."
+            )
+            continue
 
         if css:
             # Custom palette - check if CSS path is in extra_css
@@ -246,7 +255,9 @@ def validate_palette_options(
                 )
                 continue
 
+        # Valid option - add to results and mark name as seen
         valid_options.append(opt)
+        seen_names.add(name)
 
     # Validate default palette
     default_name = palette_config["default"]

@@ -368,6 +368,71 @@ class TestValidation:
         assert result["default"] == "default"  # Falls back
         assert any("nonexistent" in w for w in result["warnings"])
     
+    def test_validate_duplicate_palette_names_keeps_first_valid(self, theme_dir):
+        """Test duplicate palette names - keeps first valid occurrence."""
+        config = parse_palette_config({
+            "selector": {
+                "options": [
+                    {"name": "dark"},
+                    {"name": "default"},
+                    {"name": "dark"},  # Duplicate
+                ]
+            }
+        }, theme_dir)
+        
+        result = validate_palette_options(config, [])
+        
+        # Should only have 2 valid options (dark, default)
+        assert len(result["valid_options"]) == 2
+        assert result["valid_options"][0]["name"] == "dark"
+        assert result["valid_options"][1]["name"] == "default"
+        # Should have warning about duplicate
+        assert any("Duplicate palette name 'dark'" in w for w in result["warnings"])
+    
+    def test_validate_duplicate_names_skips_invalid_uses_next_valid(self, theme_dir):
+        """Test duplicate names - if first is invalid, use next valid occurrence."""
+        config = parse_palette_config({
+            "selector": {
+                "options": [
+                    {"name": "custom", "css": "missing.css"},  # Invalid custom
+                    {"name": "custom", "css": "valid.css"},     # Valid custom
+                    {"name": "default"}
+                ]
+            }
+        }, theme_dir)
+        
+        result = validate_palette_options(config, ["valid.css"])
+        
+        # Should have 2 valid options (custom with valid.css, default)
+        assert len(result["valid_options"]) == 2
+        assert result["valid_options"][0] == {"name": "custom", "css": "valid.css"}
+        assert result["valid_options"][1] == {"name": "default"}
+        # Should have warning about missing CSS for first occurrence
+        assert any("missing.css" in w for w in result["warnings"])
+        # Should NOT have duplicate warning (first was invalid, didn't get added)
+        assert not any("Duplicate palette name" in w for w in result["warnings"])
+    
+    def test_validate_duplicate_bundled_and_custom_palette(self, theme_dir):
+        """Test duplicate where first is valid bundled, second is custom."""
+        config = parse_palette_config({
+            "selector": {
+                "options": [
+                    {"name": "dark"},  # Valid bundled
+                    {"name": "dark", "css": "my-dark.css"},  # Custom with same name
+                    {"name": "default"}
+                ]
+            }
+        }, theme_dir)
+        
+        result = validate_palette_options(config, ["my-dark.css"])
+        
+        # Should keep first valid occurrence (bundled dark)
+        assert len(result["valid_options"]) == 2
+        assert result["valid_options"][0] == {"name": "dark"}  # No CSS = bundled
+        assert result["valid_options"][1] == {"name": "default"}
+        # Should warn about duplicate
+        assert any("Duplicate palette name 'dark'" in w for w in result["warnings"])
+    
     def test_validate_selector_disabled_when_no_valid_options(self, theme_dir):
         """Test selector disabled when all options are invalid."""
         config = parse_palette_config({
