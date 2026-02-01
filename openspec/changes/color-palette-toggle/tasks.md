@@ -113,23 +113,23 @@ _Status: ✅ Complete — plugin foundation implemented with 37 passing tests._
 
 ### Phase 2: CSS Architecture & Palette Files
 
-_Status: ❌ Not started — establishes theming foundation._
+_Status: 🔄 In progress — establishes theming foundation._
 
-- [ ] Review existing palette files in `terminal/css/palettes/`
-  - [ ] Audit current palette CSS structure (9 existing: blueberry, dark, default, gruvbox_dark, lightyear, pink, red_drum, sans, sans_dark)
-  - [ ] Document current CSS variable patterns used across palettes
-  - [ ] Identify all 17 palette variables (from dark.css as reference)
-  - [ ] Verify variable consistency across all 9 bundled palettes
-- [ ] Add compatibility layer to `terminal/css/theme.css`
-  - [ ] Add `:root` block with fallback variable definitions at top of file
-  - [ ] Map each legacy variable to namespaced version with fallback: `--font-color: var(--mkdocs-terminal-font-color, var(--font-color));`
-  - [ ] Include all 17 palette variables in compatibility layer
-  - [ ] Document inline why compatibility layer exists (support legacy custom palettes in extra_css)
-- [ ] **Test compatibility layer**
-  - [ ] Test legacy variable resolution (palette defines only `--font-color`, theme resolves correctly)
-  - [ ] Test namespaced variable resolution (palette defines only `--mkdocs-terminal-font-color`, theme resolves correctly)
-  - [ ] Test mixed resolution (palette defines both, namespaced takes precedence)
-  - [ ] Verify compatibility layer tests pass before proceeding
+- [x] Review existing palette files in `terminal/css/palettes/`
+  - [x] Audit current palette CSS structure (9 existing: blueberry, dark, default, gruvbox_dark, lightyear, pink, red_drum, sans, sans_dark)
+  - [x] Document current CSS variable patterns used across palettes
+  - [x] Identify all 17 palette variables (from dark.css as reference)
+  - [x] Verify variable consistency across all 9 bundled palettes
+- [x] Add compatibility layer to `terminal/css/theme.css`
+  - [x] Add `:root` block with fallback variable definitions at top of file
+  - [x] Map each legacy variable to namespaced version with fallback: `--font-color: var(--mkdocs-terminal-font-color, var(--font-color));`
+  - [x] Include all 17 palette variables in compatibility layer
+  - [x] Document inline why compatibility layer exists (support legacy custom palettes in extra_css)
+- [x] **Test compatibility layer**
+  - [x] Test legacy variable resolution (palette defines only `--font-color`, theme resolves correctly)
+  - [x] Test namespaced variable resolution (palette defines only `--mkdocs-terminal-font-color`, theme resolves correctly)
+  - [x] Test mixed resolution (palette defines both, namespaced takes precedence)
+  - [x] Verify compatibility layer tests pass before proceeding
 - [ ] Standardize bundled palette CSS structure
   - [ ] Define CSS variable naming convention: `--mkdocs-terminal-*` for all palette variables
   - [ ] Create standard variable list with namespaced names (e.g., `--mkdocs-terminal-font-color`)

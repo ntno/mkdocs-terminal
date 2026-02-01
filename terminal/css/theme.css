@@ -3,6 +3,49 @@
 
 /*! terminal.css 0.7.5  | MIT License | github.com/Gioni06/terminal.css */
 
+/*
+ * CSS Variable Compatibility Layer
+ * 
+ * This layer maps legacy variable names (--font-color, --background-color, etc.)
+ * to new namespaced versions (--mkdocs-terminal-*) with fallback support.
+ * 
+ * Purpose: Enables palette selector feature while maintaining backwards compatibility
+ * with existing custom palettes loaded via extra_css.
+ * 
+ * Resolution chain:
+ * 1. Try namespaced variable (--mkdocs-terminal-font-color) from active palette
+ * 2. Fall back to legacy variable (--font-color) from palette or terminal.css defaults
+ * 3. If neither defined, terminal.css :root provides ultimate fallback
+ * 
+ * This allows three scenarios to work simultaneously:
+ * - New bundled palettes with [data-palette] scoping (preferred)
+ * - Custom palettes in extra_css using :root (backwards compatible)
+ * - Mixed/hybrid palettes with both naming conventions
+ */
+:root {
+  /* Color variables */
+  --font-color: var(--mkdocs-terminal-font-color, var(--font-color));
+  --background-color: var(--mkdocs-terminal-bg-color, var(--background-color));
+  --invert-font-color: var(--mkdocs-terminal-invert-font-color, var(--invert-font-color));
+  --primary-color: var(--mkdocs-terminal-primary-color, var(--primary-color));
+  --secondary-color: var(--mkdocs-terminal-secondary-color, var(--secondary-color));
+  --tertiary-color: var(--mkdocs-terminal-tertiary-color, var(--tertiary-color));
+  --error-color: var(--mkdocs-terminal-error-color, var(--error-color));
+  --progress-bar-background: var(--mkdocs-terminal-progress-bar-bg, var(--progress-bar-background));
+  --progress-bar-fill: var(--mkdocs-terminal-progress-bar-fill, var(--progress-bar-fill));
+  --code-bg-color: var(--mkdocs-terminal-code-bg-color, var(--code-bg-color));
+  --input-style: var(--mkdocs-terminal-input-style, var(--input-style));
+  --display-h1-decoration: var(--mkdocs-terminal-h1-decoration, var(--display-h1-decoration));
+  
+  /* Typography variables */
+  --global-font-size: var(--mkdocs-terminal-font-size, var(--global-font-size));
+  --global-line-height: var(--mkdocs-terminal-line-height, var(--global-line-height));
+  --global-space: var(--mkdocs-terminal-spacing, var(--global-space));
+  --font-stack: var(--mkdocs-terminal-font-family, var(--font-stack));
+  --mono-font-stack: var(--mkdocs-terminal-mono-font-family, var(--mono-font-stack));
+  --page-width: var(--mkdocs-terminal-page-width, var(--page-width));
+}
+
 body {
     padding-top: 50px;
     padding-bottom: 50px;
