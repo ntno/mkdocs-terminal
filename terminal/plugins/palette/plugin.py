@@ -65,30 +65,10 @@ class PalettePlugin(BasePlugin):
         )
 
         # Store for use in templates
-        self.palette_config = palette_config
-
+        #self.palette_config = palette_config
+        config.theme.palette_config = palette_config
+        config.theme.palette = palette_config["default"]
         return config
-
-    def on_env(self, env, config, files, **kwargs):
-        """Add palette configuration to Jinja2 environment.
-
-        Makes palette config available in templates as:
-        - config.palette_config
-
-        Args:
-            env: Jinja2 environment
-            config: MkDocs configuration
-            files: Site files
-
-        Returns:
-            Modified Jinja2 environment
-        """
-        # Add palette_config to template globals
-        if self.palette_config:
-            env.globals['palette_config'] = self.palette_config
-            logger.debug("Added palette_config to Jinja2 environment")
-
-        return env
 
 
 # Set up logging

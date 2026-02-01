@@ -129,38 +129,6 @@ class TestOnConfig:
         assert plugin.palette_config["valid_options"][0]["name"] == "ocean"
 
 
-class TestOnEnv:
-    """Tests for on_env event handler."""
-    
-    def test_on_env_adds_palette_config_to_globals(self, mock_mkdocs_config):
-        """Test on_env adds palette_config to Jinja2 globals."""
-        plugin = PalettePlugin()
-        plugin.on_config(mock_mkdocs_config)
-        
-        # Create mock Jinja2 environment
-        env = MagicMock()
-        env.globals = {}
-        
-        result = plugin.on_env(env, mock_mkdocs_config, None)
-        
-        assert result == env
-        assert "palette_config" in env.globals
-        assert env.globals["palette_config"] == plugin.palette_config
-    
-    def test_on_env_handles_no_palette_config(self, mock_mkdocs_config):
-        """Test on_env handles case when palette_config is None."""
-        plugin = PalettePlugin()
-        # Don't call on_config, so palette_config remains None
-        
-        env = MagicMock()
-        env.globals = {}
-        
-        result = plugin.on_env(env, mock_mkdocs_config, None)
-        
-        assert result == env
-        assert "palette_config" not in env.globals
-
-
 class TestPluginIntegration:
     """Integration tests for plugin lifecycle."""
     
