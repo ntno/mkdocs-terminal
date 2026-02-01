@@ -258,6 +258,48 @@ Result: Equal specificity → cascade order wins → extra_css wins
 - Must add compatibility layer to theme.css
 - Must update templates to link all palettes
 
+## Known Limitations
+
+### Inline Link Override Specificity Issue
+
+**Problem**: When a site has a palette configured in `mkdocs.yml` (e.g., `palette: gruvbox_dark`), the `data-palette="gruvbox_dark"` attribute is set on the `<html>` element. If a documentation page then tries to override this by including an inline `<link href="../../css/palettes/default.css" rel="stylesheet">`, the styles don't apply because:
+
+- `[data-palette="gruvbox_dark"]` has specificity (0,1,0)
+- `:root` has specificity (0,0,1)
+- The configured palette's `[data-palette]` selector wins
+
+**Example Scenario**:
+```yaml
+# mkdocs.yml
+theme:
+  palette: gruvbox_dark
+```
+
+```markdown
+<!-- some-page.md -->
+# Special Page
+
+<link href="../../css/palettes/default.css" rel="stylesheet">
+
+This page should be light themed, but gruvbox_dark still applies.
+```
+
+**Considered Solutions**:
+1. Add `[data-palette-override="name"]` selectors to all palettes + JavaScript detection
+2. Add higher-specificity selectors for inline usage
+3. Document workaround: Don't configure a default palette if inline overrides are needed
+
+**Decision**: **Not implementing** - This is an extreme edge case. The recommended pattern is:
+- Use palette selector feature for theme-wide switching
+- Don't configure a default palette if individual pages need different palettes
+- For per-page customization, use CSS variables in page-level `<style>` blocks instead
+
+This limitation is acceptable because:
+- Very rare use case (configured palette + inline link override)
+- Simple workaround exists (don't configure default palette)
+- Adding support would require additional JavaScript complexity
+- CSS specificity is working as designed
+
 ## Testing Strategy
 
 To validate this architecture:
