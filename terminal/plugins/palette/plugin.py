@@ -65,7 +65,6 @@ class PalettePlugin(BasePlugin):
         )
 
         # Store for use in templates
-        #self.palette_config = palette_config
         config.theme.palette_config = palette_config
         config.theme.palette = palette_config["default"]
         return config
