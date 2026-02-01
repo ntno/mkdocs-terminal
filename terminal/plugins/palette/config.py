@@ -79,12 +79,12 @@ class PaletteConfig(Config):
 
 def generate_label(name: str) -> str:
     """Generate a display label from a palette name.
-    
+
     Converts identifier names like "gruvbox_dark" to "Gruvbox Dark".
-    
+
     Args:
         name: Palette identifier name
-        
+
     Returns:
         Human-readable label
     """
@@ -195,25 +195,25 @@ def parse_palette_config(config_value: Any, theme_dir: Path) -> Dict[str, Any]:
             name = opt.get("name")
             css = opt.get("css")
             label = opt.get("label")
-            
+
             # If no name but CSS provided, derive name from CSS filename
             if not name and css:
                 # Extract basename without extension (e.g., "assets/ocean.css" -> "ocean")
                 name = Path(css).stem
                 log.debug(f"Auto-derived palette name '{name}' from CSS path '{css}'")
-            
+
             if name:
                 opt_dict = {"name": name}
-                
+
                 # Add label (auto-generate if not provided)
                 if label:
                     opt_dict["label"] = label
                 else:
                     opt_dict["label"] = generate_label(name)
-                
+
                 if css:
                     opt_dict["css"] = css
-                
+
                 options.append(opt_dict)
             else:
                 log.warning(f"Palette option missing 'name' field and 'css' field, skipping: {opt}")
