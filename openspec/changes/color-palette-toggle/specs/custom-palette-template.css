@@ -1,0 +1,169 @@
+/*! custom-palette-template.css | Example custom palette for mkdocs-terminal */
+
+/**
+ * Custom Palette Template for mkdocs-terminal Theme
+ * 
+ * This template demonstrates the recommended structure for creating custom
+ * palettes that work with the palette selector feature.
+ * 
+ * USAGE:
+ * 1. Copy this file and rename it (e.g., custom.css)
+ * 2. Replace "custom" with your palette name throughout
+ * 3. Update color values to match your design
+ * 4. Add to mkdocs.yml:
+ *    theme:
+ *      palette:
+ *        selector:
+ *          enabled: true
+ *          options:
+ *            - name: custom
+ *              css: css/custom.css
+ *    extra_css:
+ *      - css/custom.css
+ * 
+ * ARCHITECTURE:
+ * - Uses [data-palette="custom"] scoping for runtime palette switching
+ * - Defines namespaced variables (--mkdocs-terminal-*) as primary values
+ * - Includes legacy variable aliases (--font-color, etc.) for consistency
+ * 
+ * BACKWARDS COMPATIBILITY:
+ * If you're not using the palette selector feature and just want to override
+ * the default palette, you can use :root instead of [data-palette]:
+ * 
+ *   :root {
+ *     --font-color: #003366;
+ *     --background-color: #e6f2ff;
+ *     ...
+ *   }
+ * 
+ * However, this will NOT work with the palette selector dropdown.
+ */
+
+[data-palette="custom"] {
+  /* ================================================================
+   * REQUIRED COLOR VARIABLES
+   * These control the visual appearance of your palette.
+   * All values should meet WCAG AA contrast requirements.
+   * ================================================================ */
+  
+  /* Primary text color - used for body text, headings, etc. */
+  --mkdocs-terminal-font-color: #003366;
+  
+  /* Background color - main page background */
+  --mkdocs-terminal-bg-color: #e6f2ff;
+  
+  /* Inverted font color - used on elements with --font-color background */
+  --mkdocs-terminal-invert-font-color: #ffffff;
+  
+  /* Primary accent color - links, buttons, highlights */
+  --mkdocs-terminal-primary-color: #0066cc;
+  
+  /* Secondary accent color - muted elements, metadata */
+  --mkdocs-terminal-secondary-color: #5599dd;
+  
+  /* Tertiary accent color - alternative muted elements */
+  --mkdocs-terminal-tertiary-color: #5599dd;
+  
+  /* Error/warning color - validation messages, alerts */
+  --mkdocs-terminal-error-color: #cc3300;
+  
+  /* Progress bar background */
+  --mkdocs-terminal-progress-bar-bg: #ccddee;
+  
+  /* Progress bar fill color */
+  --mkdocs-terminal-progress-bar-fill: #003366;
+  
+  /* Code block background color */
+  --mkdocs-terminal-code-bg-color: #f0f8ff;
+  
+  /* Input field style: solid, dashed, dotted */
+  --mkdocs-terminal-input-style: solid;
+  
+  /* H1 decoration: none, underline */
+  --mkdocs-terminal-h1-decoration: none;
+  
+  
+  /* ================================================================
+   * OPTIONAL TYPOGRAPHY VARIABLES
+   * Override these if you want custom fonts/sizing.
+   * If omitted, defaults from terminal.css will be used.
+   * ================================================================ */
+  
+  /* Base font size */
+  --mkdocs-terminal-font-size: 15px;
+  
+  /* Line height */
+  --mkdocs-terminal-line-height: 1.4em;
+  
+  /* Global spacing unit */
+  --mkdocs-terminal-spacing: 10px;
+  
+  /* Font family stack */
+  --mkdocs-terminal-font-family: "Fira Code", Menlo, Monaco, "Courier New", monospace, serif;
+  
+  /* Monospace font family stack */
+  --mkdocs-terminal-mono-font-family: "Fira Code", Menlo, Monaco, "Courier New", monospace, serif;
+  
+  /* Maximum page width */
+  --mkdocs-terminal-page-width: 60em;
+  
+  
+  /* ================================================================
+   * LEGACY VARIABLE ALIASES
+   * These map legacy variable names to the new namespaced versions.
+   * 
+   * RECOMMENDED: Include these for consistency with bundled palettes.
+   * 
+   * WHY INCLUDE ALIASES?
+   * - Ensures palette participates in the designed fallback mechanism
+   * - Future-proof against direct references to namespaced variables
+   * - Maintains single source of truth (define color once, alias it)
+   * - Clear intent for maintainers
+   * 
+   * WHAT HAPPENS WITHOUT ALIASES?
+   * - Palette still works (CSS specificity: [data-palette] > :root)
+   * - BUT: Creates separate definitions of colors in different places
+   * - AND: Less clear intent; harder to maintain
+   * - AND: If namespaced and legacy vars ever diverge, unpredictable
+   * 
+   * VERDICT: Include aliases unless you have a specific reason not to.
+   * ================================================================ */
+  
+  /* Color aliases */
+  --font-color: var(--mkdocs-terminal-font-color);
+  --background-color: var(--mkdocs-terminal-bg-color);
+  --invert-font-color: var(--mkdocs-terminal-invert-font-color);
+  --primary-color: var(--mkdocs-terminal-primary-color);
+  --secondary-color: var(--mkdocs-terminal-secondary-color);
+  --tertiary-color: var(--mkdocs-terminal-tertiary-color);
+  --error-color: var(--mkdocs-terminal-error-color);
+  --progress-bar-background: var(--mkdocs-terminal-progress-bar-bg);
+  --progress-bar-fill: var(--mkdocs-terminal-progress-bar-fill);
+  --code-bg-color: var(--mkdocs-terminal-code-bg-color);
+  --input-style: var(--mkdocs-terminal-input-style);
+  --display-h1-decoration: var(--mkdocs-terminal-h1-decoration);
+  
+  /* Typography aliases */
+  --global-font-size: var(--mkdocs-terminal-font-size);
+  --global-line-height: var(--mkdocs-terminal-line-height);
+  --global-space: var(--mkdocs-terminal-spacing);
+  --font-stack: var(--mkdocs-terminal-font-family);
+  --mono-font-stack: var(--mkdocs-terminal-mono-font-family);
+  --page-width: var(--mkdocs-terminal-page-width);
+  
+  
+  /* ================================================================
+   * INTERMEDIATE COLOR DEFINITIONS (OPTIONAL)
+   * You can define your own named colors and reference them in the
+   * variables above. This is useful for creating a consistent color
+   * system and makes it easier to adjust colors later.
+   * 
+   * Example from bundled palettes:
+   * 
+   *   --ocean-blue: #003366;
+   *   --sky-blue: #e6f2ff;
+   *   --mkdocs-terminal-font-color: var(--ocean-blue);
+   *   --mkdocs-terminal-bg-color: var(--sky-blue);
+   * 
+   * ================================================================ */
+}

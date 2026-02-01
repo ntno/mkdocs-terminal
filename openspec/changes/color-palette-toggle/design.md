@@ -47,33 +47,61 @@ The mkdocs-terminal theme is a static site generator theme for MkDocs that rende
 
 ### Decision 1: CSS Custom Properties Architecture
 
-**Choice:** Migrate all palette CSS files to use CSS custom properties (variables) scoped under `[data-palette="<name>"]` attribute selectors.
+**Choice:** Migrate all palette CSS files to use CSS custom properties (variables) scoped under `[data-palette="<name>"]` attribute selectors with namespaced variable names (`--mkdocs-terminal-*`). Add compatibility layer in `theme.css` to support legacy variable names.
 
 **Rationale:**
 - **Why this approach:** Enables palette switching by changing a single `data-palette` attribute on the `<html>` element, triggering cascading variable updates across the entire page. No need to load/unload stylesheets or manipulate multiple DOM elements.
+- **Why namespace variables:** Prevents collision with user's `extra_css`, provides clear ownership, improves debugging/grep-ability.
+- **Why compatibility layer:** Allows existing custom palettes (using legacy `:root` and `--font-color` naming) to continue working without modification.
 - **Alternatives considered:**
   - **Class-based scoping (`class="palette-dark"`):** Works similarly but pollutes global class namespace; data attributes are semantically clearer for state management.
   - **Dynamic stylesheet loading:** Incompatible with static site constraint—no server to fetch CSS from; all assets must be pre-linked at build time.
   - **Inline style injection:** Poor performance (recalculating styles for thousands of elements); doesn't support pseudo-elements or media queries.
+  - **No namespacing:** Simpler but increases collision risk; existing palettes already use generic names like `--font-color`.
 
 **Implementation:**
-```css
-/* Example: terminal/css/palettes/dark.css */
-[data-palette="dark"] {
-  --color-background: #1a1a1a;
-  --color-text: #e0e0e0;
-  --color-primary: #00ff00;
-  /* ...other variables */
-}
 
-/* Theme CSS references variables */
-body {
-  background-color: var(--color-background);
-  color: var(--color-text);
+**Bundled palettes** use namespaced variables:
+```css
+/* terminal/css/palettes/dark.css */
+[data-palette="dark"] {
+  --mkdocs-terminal-font-color: #e8e9ed;
+  --mkdocs-terminal-bg-color: #222225;
+  --mkdocs-terminal-primary-color: #62c4ff;
+  /* ...other namespaced variables */
+  
+  /* Alias legacy names for internal consistency */
+  --font-color: var(--mkdocs-terminal-font-color);
+  --background-color: var(--mkdocs-terminal-bg-color);
+  --primary-color: var(--mkdocs-terminal-primary-color);
 }
 ```
 
-**Impact:** Requires refactoring all 9 existing palette CSS files to standardize variable names and scoping mechanism.
+**Compatibility layer** in `theme.css`:
+```css
+/* terminal/css/theme.css */
+:root {
+  /* Fallback mapping: prefer namespaced, fall back to legacy */
+  --font-color: var(--mkdocs-terminal-font-color, var(--font-color));
+  --background-color: var(--mkdocs-terminal-bg-color, var(--background-color));
+  --primary-color: var(--mkdocs-terminal-primary-color, var(--primary-color));
+  /* ...all palette variables... */
+}
+```
+
+**Theme consumption** remains unchanged:
+```css
+/* terminal.css continues using legacy variable names */
+body {
+  color: var(--font-color);
+  background: var(--background-color);
+}
+```
+
+**Impact:** 
+- Requires refactoring all 9 existing palette CSS files to standardize variable names and scoping mechanism.
+- Requires adding compatibility layer to `theme.css` (one-time, ~20 lines).
+- **No breaking changes:** existing custom palettes in `extra_css` continue working via cascade override of `:root` variables.
 
 ---
 
@@ -197,6 +225,136 @@ palette:
 ```
 
 **Internal Representation:** `ThemePaletteConfig` dataclass with fields: `default`, `selector_enabled`, `selector_ui`, `options` (list of dicts with `name` and optional `css` path).
+
+## Custom Palette Migration Guide
+
+This section documents how users with existing custom palettes can migrate to support the new selector feature.
+
+### Scenario 1: Custom Palette Without Selector (No Migration Needed)
+
+**Current setup (continues working):**
+```yaml
+# mkdocs.yml
+theme:
+  name: terminal
+  palette: dark  # Legacy format
+extra_css:
+  - css/custom-ocean.css
+```
+
+```css
+/* css/custom-ocean.css - uses legacy variable names in :root */
+:root {
+  --font-color: #003366;
+  --background-color: #e6f2ff;
+  --primary-color: #0066cc;
+  /* ...other variables... */
+}
+```
+
+**Resolution:** `extra_css` loads last, `:root` overrides theme.css compatibility layer. Custom palette applies. **No changes needed.**
+
+---
+
+### Scenario 2: Migrate Custom Palette to Work With Selector
+
+**Goal:** Add custom palette to selector dropdown alongside bundled options.
+
+**Step 1:** Update `mkdocs.yml` to register custom palette:
+```yaml
+theme:
+  name: terminal
+  palette:
+    default: dark
+    selector:
+      enabled: true
+      options:
+        - name: dark
+        - name: lightyear
+        - name: ocean
+          css: css/custom-ocean.css  # Register custom palette
+extra_css:
+  - css/custom-ocean.css  # Must also be in extra_css
+```
+
+**Step 2:** Update `custom-ocean.css` to use data-palette scoping:
+
+**Recommended approach** (namespaced variables with legacy aliases):
+```css
+/* css/custom-ocean.css */
+[data-palette="ocean"] {
+  /* Define namespaced variables (preferred) */
+  --mkdocs-terminal-font-color: #003366;
+  --mkdocs-terminal-bg-color: #e6f2ff;
+  --mkdocs-terminal-primary-color: #0066cc;
+  --mkdocs-terminal-secondary-color: #5599dd;
+  --mkdocs-terminal-tertiary-color: #5599dd;
+  --mkdocs-terminal-error-color: #cc3300;
+  --mkdocs-terminal-invert-font-color: #ffffff;
+  --mkdocs-terminal-progress-bar-bg: #ccddee;
+  --mkdocs-terminal-progress-bar-fill: #003366;
+  --mkdocs-terminal-code-bg-color: #f0f8ff;
+  --mkdocs-terminal-input-style: solid;
+  --mkdocs-terminal-h1-decoration: none;
+  
+  /* Alias legacy variable names for consistency */
+  --font-color: var(--mkdocs-terminal-font-color);
+  --background-color: var(--mkdocs-terminal-bg-color);
+  --primary-color: var(--mkdocs-terminal-primary-color);
+  --secondary-color: var(--mkdocs-terminal-secondary-color);
+  --tertiary-color: var(--mkdocs-terminal-tertiary-color);
+  --error-color: var(--mkdocs-terminal-error-color);
+  --invert-font-color: var(--mkdocs-terminal-invert-font-color);
+  --progress-bar-background: var(--mkdocs-terminal-progress-bar-bg);
+  --progress-bar-fill: var(--mkdocs-terminal-progress-bar-fill);
+  --code-bg-color: var(--mkdocs-terminal-code-bg-color);
+  --input-style: var(--mkdocs-terminal-input-style);
+  --display-h1-decoration: var(--mkdocs-terminal-h1-decoration);
+  
+  /* Typography variables (optional overrides) */
+  --mkdocs-terminal-font-size: 15px;
+  --mkdocs-terminal-line-height: 1.4em;
+  --mkdocs-terminal-spacing: 10px;
+  --mkdocs-terminal-font-family: "Fira Code", monospace;
+  --mkdocs-terminal-mono-font-family: "Fira Code", monospace;
+  --mkdocs-terminal-page-width: 60em;
+  
+  --global-font-size: var(--mkdocs-terminal-font-size);
+  --global-line-height: var(--mkdocs-terminal-line-height);
+  --global-space: var(--mkdocs-terminal-spacing);
+  --font-stack: var(--mkdocs-terminal-font-family);
+  --mono-font-stack: var(--mkdocs-terminal-mono-font-family);
+  --page-width: var(--mkdocs-terminal-page-width);
+}
+```
+
+**Minimal approach** (legacy variables only, works but not recommended):
+```css
+/* css/custom-ocean.css */
+[data-palette="ocean"] {
+  /* Define legacy variables directly */
+  --font-color: #003366;
+  --background-color: #e6f2ff;
+  --primary-color: #0066cc;
+  /* ...other variables... */
+}
+```
+
+**⚠️ Important:** Legacy-only approach works but bypasses the namespaced variable architecture. If theme internals ever reference namespaced variables directly (future enhancement), this palette may not work correctly. **Recommended to include both namespaced and legacy aliases.**
+
+**Why include legacy aliases?**
+- Ensures palette participates in the designed fallback mechanism (via `theme.css` compatibility layer)
+- Maintains consistency with bundled palettes
+- Future-proof against potential direct references to namespaced variables
+- Single source of truth (color defined once in namespaced var, aliased to legacy name)
+
+**What happens without legacy aliases?**
+- Palette still works via CSS specificity (`[data-palette]` has higher specificity than `:root`)
+- Creates two separate definitions of colors (namespaced in `[data-palette]`, legacy nowhere)
+- If namespaced and legacy vars ever need to diverge, behavior becomes unpredictable
+- Less clear intent: harder for maintainers to understand palette structure
+
+---
 
 ## Risks / Trade-offs
 

@@ -118,41 +118,53 @@ _Status: ❌ Not started — establishes theming foundation._
 - [ ] Review existing palette files in `terminal/css/palettes/`
   - [ ] Audit current palette CSS structure (9 existing: blueberry, dark, default, gruvbox_dark, lightyear, pink, red_drum, sans, sans_dark)
   - [ ] Document current CSS variable patterns used across palettes
-  - [ ] Identify missing or inconsistent variables
-- [ ] Standardize palette CSS structure
-  - [ ] Define complete CSS custom property set for all theme elements
-  - [ ] Create CSS variable naming convention (e.g., `--terminal-color-primary`, `--terminal-bg-body`)
-  - [ ] Update all existing palette files to use standardized variables
-  - [ ] Document required CSS variables for custom palettes
-- [ ] **Test CSS variable standardization**
-  - [ ] Test CSS variable extraction from palette files
-  - [ ] Verify all bundled palettes define required CSS variables (no missing vars)
-  - [ ] Test naming convention compliance across all palettes
+  - [ ] Identify all 17 palette variables (from dark.css as reference)
+  - [ ] Verify variable consistency across all 9 bundled palettes
+- [ ] Add compatibility layer to `terminal/css/theme.css`
+  - [ ] Add `:root` block with fallback variable definitions at top of file
+  - [ ] Map each legacy variable to namespaced version with fallback: `--font-color: var(--mkdocs-terminal-font-color, var(--font-color));`
+  - [ ] Include all 17 palette variables in compatibility layer
+  - [ ] Document inline why compatibility layer exists (support legacy custom palettes in extra_css)
+- [ ] **Test compatibility layer**
+  - [ ] Test legacy variable resolution (palette defines only `--font-color`, theme resolves correctly)
+  - [ ] Test namespaced variable resolution (palette defines only `--mkdocs-terminal-font-color`, theme resolves correctly)
+  - [ ] Test mixed resolution (palette defines both, namespaced takes precedence)
+  - [ ] Verify compatibility layer tests pass before proceeding
+- [ ] Standardize bundled palette CSS structure
+  - [ ] Define CSS variable naming convention: `--mkdocs-terminal-*` for all palette variables
+  - [ ] Create standard variable list with namespaced names (e.g., `--mkdocs-terminal-font-color`)
+  - [ ] Update all 9 existing palette files to use `[data-palette="<name>"]` scoping
+  - [ ] Define both namespaced variables AND legacy aliases in each palette for consistency
+  - [ ] Document variable structure in inline comments within palette files
+- [ ] **Test palette CSS structure standardization**
+  - [ ] Test each bundled palette defines all required namespaced variables
+  - [ ] Test each bundled palette includes legacy variable aliases
+  - [ ] Test `[data-palette]` scoping works correctly (only applies when attribute matches)
+  - [ ] Test variable naming convention compliance across all palettes
   - [ ] Verify all CSS standardization tests pass before proceeding
 - [ ] Implement palette application mechanism
-  - [ ] Add CSS to scope palette styles under `[data-palette="<name>"]` attribute selector
-  - [ ] Ensure all palette CSS files are linked in <head> at build time (cannot lazy-load - static site)
-  - [ ] Use CSS scoping to show/hide palette-specific styles based on data-palette attribute
-  - [ ] Add fallback for no-JS environments (render default palette's data-palette attribute in HTML)
-  - [ ] Avoid FOUC: inline critical JS in <head> to apply localStorage palette before first paint
+  - [ ] Update `terminal/partials/styles.html` to link all configured palette CSS files (not just default)
+  - [ ] Add build-time `data-palette` attribute to `<html>` element based on config default
+  - [ ] Embed available palette options as `data-available-palettes` attribute on `<html>` for JS validation
+  - [ ] Add inline FOUC prevention script in `<head>` (before CSS links)
+  - [ ] Script validates localStorage value against available palettes before applying
 - [ ] **Test palette application mechanism**
-  - [ ] Test data-palette attribute scoping works correctly (styles apply/unapply)
-  - [ ] Test palette CSS files are correctly linked in build output
-  - [ ] Test no-JS fallback (default palette data-attribute renders)
+  - [ ] Test all configured palette CSS files are linked in build output
+  - [ ] Test build-time `data-palette` attribute renders correctly
+  - [ ] Test `data-available-palettes` attribute contains correct JSON array
   - [ ] Test inline FOUC prevention script executes before CSS load
+  - [ ] Test invalid localStorage value doesn't override default (validation works)
   - [ ] Verify all application mechanism tests pass before proceeding
 - [ ] Validate palette accessibility
   - [ ] Verify bundled palettes meet WCAG AA contrast (leverage existing `tests/accessibility/test_color_contrast.py`)
   - [ ] Add WCAG AA contrast requirements to palette guidelines
-- [ ] Create palette documentation
-  - [ ] Document CSS variable structure for palette authors
-  - [ ] Provide example custom palette file
 - [ ] **Update documentation for Phase 2 changes**
-  - [ ] Document CSS variable naming convention in code comments
+  - [ ] Document CSS variable naming convention in inline comments (palette files)
+  - [ ] Document compatibility layer rationale in `theme.css` inline comments
   - [ ] Update `DEVELOPER_README.md` with palette architecture overview
   - [ ] Document data-palette attribute mechanism for theme developers
-  - [ ] Add inline CSS comments explaining scoping approach
-  - [ ] Document FOUC prevention approach in code/developer docs
+  - [ ] Add custom palette migration guide (design.md already includes this)
+  - [ ] Document why legacy variable aliases are recommended (inline in palette files)
 
 **Dependencies:** Phase 1  
 **Blocks:** Phase 3
