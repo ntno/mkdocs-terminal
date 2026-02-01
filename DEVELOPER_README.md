@@ -260,10 +260,10 @@ theme:
 
 **Testing:**
 
-Comprehensive test coverage in `tests/plugins/`:
+Comprehensive test coverage in `tests/plugins/palette/`:
 
-- `test_palette.py` — Configuration parsing and validation (28 tests)
-- `test_palette_plugin.py` — Plugin lifecycle integration (9 tests)
+- `test_palette.py` — Configuration parsing and validation
+- `test_palette_plugin.py` — Plugin lifecycle integration
 
 Run tests:
 ```bash
@@ -283,7 +283,7 @@ Users activate by adding to their `mkdocs.yml`:
 
 ```yaml
 plugins:
-  - terminal/palette
+  - palette
 ```
 
 **Key Design Decisions:**
