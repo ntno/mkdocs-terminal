@@ -19,7 +19,7 @@ def mock_mkdocs_config(tmp_path):
     palettes_dir.mkdir(parents=True)
     
     # Create palette files
-    for palette in ["default", "dark", "light"]:
+    for palette in ["default", "dark", "lightyear"]:
         palette_file = palettes_dir / f"{palette}.css"
         css_content = f"/* {palette} */"
         palette_file.write_text(css_content)
@@ -73,7 +73,7 @@ class TestOnConfig:
                 "ui": "toggle",
                 "options": [
                     {"name": "dark"},
-                    {"name": "light"}
+                    {"name": "lightyear"}
                 ]
             }
         }
@@ -95,7 +95,7 @@ class TestOnConfig:
                 "options": [
                     {"name": "dark"},
                     {"name": "invalid"},  # Should be filtered
-                    {"name": "light"}
+                    {"name": "lightyear"}
                 ]
             }
         }
@@ -107,7 +107,7 @@ class TestOnConfig:
         # Invalid palette should be filtered out
         assert len(plugin.palette_config["valid_options"]) == 2
         assert plugin.palette_config["valid_options"][0]["name"] == "dark"
-        assert plugin.palette_config["valid_options"][1]["name"] == "light"
+        assert plugin.palette_config["valid_options"][1]["name"] == "lightyear"
     
     def test_on_config_with_custom_palette(self, mock_mkdocs_config):
         """Test on_config with custom palette in extra_css."""
@@ -176,7 +176,7 @@ class TestPluginIntegration:
             "selector": {
                 "enabled": True,
                 "ui": "auto",
-                "options": ["dark", "light"]
+                "options": ["dark", "lightyear"]
             }
         }
         mock_mkdocs_config.theme.get = MagicMock(return_value=palette_config)
