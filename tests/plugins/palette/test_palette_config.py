@@ -9,6 +9,7 @@ from pathlib import Path
 from terminal.plugins.palette.config import (
     parse_palette_config,
     validate_palette_options,
+    generate_label,
     PaletteOption,
     SelectorConfig,
     PaletteConfig
@@ -41,6 +42,7 @@ class TestConfigClasses:
         # Note: Config classes are used by MkDocs for validation
         # We're just verifying they're defined correctly
         assert hasattr(PaletteOption, 'name')
+        assert hasattr(PaletteOption, 'label')
         assert hasattr(PaletteOption, 'css')
     
     def test_selector_config(self):
@@ -53,6 +55,33 @@ class TestConfigClasses:
         """Test PaletteConfig Config class."""
         assert hasattr(PaletteConfig, 'default')
         assert hasattr(PaletteConfig, 'selector')
+
+
+class TestLabelGeneration:
+    """Tests for automatic label generation."""
+    
+    def test_generate_label_from_underscored_name(self):
+        """Test label generation converts underscores to spaces and title cases."""
+        assert generate_label("gruvbox_dark") == "Gruvbox Dark"
+        assert generate_label("sans_dark") == "Sans Dark"
+        assert generate_label("red_drum") == "Red Drum"
+    
+    def test_generate_label_from_hyphenated_name(self):
+        """Test label generation converts hyphens to spaces."""
+        assert generate_label("custom-theme") == "Custom Theme"
+        assert generate_label("my-ocean") == "My Ocean"
+    
+    def test_generate_label_from_simple_name(self):
+        """Test label generation with single word."""
+        assert generate_label("dark") == "Dark"
+        assert generate_label("default") == "Default"
+        assert generate_label("ocean") == "Ocean"
+    
+    def test_generate_label_preserves_case_per_word(self):
+        """Test label generation title cases each word."""
+        assert generate_label("blueberry") == "Blueberry"
+        assert generate_label("lightyear") == "Lightyear"
+
 
 
 class TestLegacyStringFormat:
@@ -99,7 +128,7 @@ class TestNewObjectFormat:
                 "ui": "select",
                 "options": [
                     {"name": "dark"},
-                    {"name": "light"}
+                    {"name": "lightyear"}
                 ]
             }
         }
@@ -109,8 +138,8 @@ class TestNewObjectFormat:
         assert result["selector_enabled"] is True
         assert result["selector_ui"] == "select"
         assert len(result["options"]) == 2
-        assert result["options"][0] == {"name": "dark"}
-        assert result["options"][1] == {"name": "light"}
+        assert result["options"][0] == {"name": "dark", "label": "Dark"}
+        assert result["options"][1] == {"name": "lightyear", "label": "Lightyear"}
     
     def test_custom_palette_option(self, theme_dir):
         """Test config with custom palette CSS path."""
@@ -125,22 +154,22 @@ class TestNewObjectFormat:
         result = parse_palette_config(config_value, theme_dir)
         
         assert len(result["options"]) == 2
-        assert result["options"][0] == {"name": "ocean", "css": "assets/ocean.css"}
-        assert result["options"][1] == {"name": "dark"}
+        assert result["options"][0] == {"name": "ocean", "label": "Ocean", "css": "assets/ocean.css"}
+        assert result["options"][1] == {"name": "dark", "label": "Dark"}
     
     def test_string_options_format(self, theme_dir):
         """Test simple string format for options."""
         config_value = {
             "selector": {
-                "options": ["dark", "light", "pink"]
+                "options": ["dark", "lightyear", "pink"]
             }
         }
         result = parse_palette_config(config_value, theme_dir)
         
         assert len(result["options"]) == 3
-        assert result["options"][0] == {"name": "dark"}
-        assert result["options"][1] == {"name": "light"}
-        assert result["options"][2] == {"name": "pink"}
+        assert result["options"][0] == {"name": "dark", "label": "Dark"}
+        assert result["options"][1] == {"name": "lightyear", "label": "Lightyear"}
+        assert result["options"][2] == {"name": "pink", "label": "Pink"}
     
     def test_auto_derive_name_from_css_path(self, theme_dir):
         """Test automatic name derivation from CSS filename."""
@@ -156,9 +185,9 @@ class TestNewObjectFormat:
         result = parse_palette_config(config_value, theme_dir)
         
         assert len(result["options"]) == 3
-        assert result["options"][0] == {"name": "ocean", "css": "assets/ocean.css"}
-        assert result["options"][1] == {"name": "custom-theme", "css": "styles/custom-theme.css"}
-        assert result["options"][2] == {"name": "dark"}
+        assert result["options"][0] == {"name": "ocean", "label": "Ocean", "css": "assets/ocean.css"}
+        assert result["options"][1] == {"name": "custom-theme", "label": "Custom Theme", "css": "styles/custom-theme.css"}
+        assert result["options"][2] == {"name": "dark", "label": "Dark"}
     
     def test_explicit_name_overrides_css_basename(self, theme_dir):
         """Test that explicit name takes precedence over CSS basename."""
@@ -172,7 +201,39 @@ class TestNewObjectFormat:
         result = parse_palette_config(config_value, theme_dir)
         
         assert len(result["options"]) == 1
-        assert result["options"][0] == {"name": "my-ocean", "css": "assets/ocean.css"}
+        assert result["options"][0] == {"name": "my-ocean", "label": "My Ocean", "css": "assets/ocean.css"}
+    
+    def test_custom_label_for_palette(self, theme_dir):
+        """Test user can specify custom UI label for palette."""
+        config_value = {
+            "selector": {
+                "options": [
+                    {"name": "gruvbox_dark", "label": "Gruvbox Dark"},
+                    {"name": "sans_dark", "label": "Sans Serif Dark"},
+                    {"name": "dark"}  # No custom label, auto-generated
+                ]
+            }
+        }
+        result = parse_palette_config(config_value, theme_dir)
+        
+        assert len(result["options"]) == 3
+        assert result["options"][0] == {"name": "gruvbox_dark", "label": "Gruvbox Dark"}
+        assert result["options"][1] == {"name": "sans_dark", "label": "Sans Serif Dark"}
+        assert result["options"][2] == {"name": "dark", "label": "Dark"}
+    
+    def test_auto_generated_label_for_underscored_names(self, theme_dir):
+        """Test auto-generated labels convert underscores to spaces."""
+        config_value = {
+            "selector": {
+                "options": ["gruvbox_dark", "sans_dark", "red_drum"]
+            }
+        }
+        result = parse_palette_config(config_value, theme_dir)
+        
+        assert len(result["options"]) == 3
+        assert result["options"][0] == {"name": "gruvbox_dark", "label": "Gruvbox Dark"}
+        assert result["options"][1] == {"name": "sans_dark", "label": "Sans Dark"}
+        assert result["options"][2] == {"name": "red_drum", "label": "Red Drum"}
 
 
 class TestDefaultValues:
@@ -350,8 +411,8 @@ class TestValidation:
         # Both options should be valid
         assert len(result["valid_options"]) == 2
         # Custom palette should be treated as custom (not bundled)
-        assert result["valid_options"][0] == {"name": "dark", "css": "my-custom-dark.css"}
-        assert result["valid_options"][1] == {"name": "default"}
+        assert result["valid_options"][0] == {"name": "dark", "label": "Dark", "css": "my-custom-dark.css"}
+        assert result["valid_options"][1] == {"name": "default", "label": "Default"}
         assert len(result["warnings"]) == 0
     
     def test_validate_invalid_default_palette(self, theme_dir):
@@ -405,8 +466,8 @@ class TestValidation:
         
         # Should have 2 valid options (custom with valid.css, default)
         assert len(result["valid_options"]) == 2
-        assert result["valid_options"][0] == {"name": "custom", "css": "valid.css"}
-        assert result["valid_options"][1] == {"name": "default"}
+        assert result["valid_options"][0] == {"name": "custom", "css": "valid.css", "label": "Custom"}
+        assert result["valid_options"][1] == {"name": "default", "label": "Default"}
         # Should have warning about missing CSS for first occurrence
         assert any("missing.css" in w for w in result["warnings"])
         # Should NOT have duplicate warning (first was invalid, didn't get added)
@@ -428,8 +489,8 @@ class TestValidation:
         
         # Should keep first valid occurrence (bundled dark)
         assert len(result["valid_options"]) == 2
-        assert result["valid_options"][0] == {"name": "dark"}  # No CSS = bundled
-        assert result["valid_options"][1] == {"name": "default"}
+        assert result["valid_options"][0] == {"name": "dark", "label": "Dark"}  # No CSS = bundled
+        assert result["valid_options"][1] == {"name": "default", "label": "Default"}
         # Should warn about duplicate
         assert any("Duplicate palette name 'dark'" in w for w in result["warnings"])
     

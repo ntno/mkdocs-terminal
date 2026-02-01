@@ -39,9 +39,11 @@ class PaletteOption(Config):
 
     Attributes:
         name: Palette identifier (required)
+        label: Display label for UI (optional, auto-generated from name if not provided)
         css: Optional custom CSS file path for non-bundled palettes
     """
     name = Type(str)
+    label = OptionalType(Type(str))
     css = OptionalType(Type(str))
 
 
@@ -74,6 +76,24 @@ class PaletteConfig(Config):
 # -----------------------------------------------------------------------------
 # Functions
 # -----------------------------------------------------------------------------
+
+def generate_label(name: str) -> str:
+    """Generate a display label from a palette name.
+    
+    Converts identifier names like "gruvbox_dark" to "Gruvbox Dark".
+    
+    Args:
+        name: Palette identifier name
+        
+    Returns:
+        Human-readable label
+    """
+    # Replace underscores and hyphens with spaces
+    label = name.replace("_", " ").replace("-", " ")
+    # Title case each word
+    label = label.title()
+    return label
+
 
 def parse_palette_config(config_value: Any, theme_dir: Path) -> Dict[str, Any]:
     """Parse and normalize palette configuration.
@@ -165,12 +185,16 @@ def parse_palette_config(config_value: Any, theme_dir: Path) -> Dict[str, Any]:
 
     for opt in options_raw:
         if isinstance(opt, str):
-            # Simple string option
-            options.append({"name": opt})
+            # Simple string option - generate label from name
+            options.append({
+                "name": opt,
+                "label": generate_label(opt)
+            })
         elif isinstance(opt, dict):
-            # Object option with name and optional css
+            # Object option with name and optional css/label
             name = opt.get("name")
             css = opt.get("css")
+            label = opt.get("label")
             
             # If no name but CSS provided, derive name from CSS filename
             if not name and css:
@@ -180,8 +204,16 @@ def parse_palette_config(config_value: Any, theme_dir: Path) -> Dict[str, Any]:
             
             if name:
                 opt_dict = {"name": name}
+                
+                # Add label (auto-generate if not provided)
+                if label:
+                    opt_dict["label"] = label
+                else:
+                    opt_dict["label"] = generate_label(name)
+                
                 if css:
                     opt_dict["css"] = css
+                
                 options.append(opt_dict)
             else:
                 log.warning(f"Palette option missing 'name' field and 'css' field, skipping: {opt}")
