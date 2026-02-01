@@ -11,7 +11,7 @@ from terminal.plugins.palette.plugin import PalettePlugin
 
 
 @pytest.fixture
-def mock_config(tmp_path):
+def mock_mkdocs_config(tmp_path):
     """Create mock MkDocs config."""
     # Create theme directory structure
     theme_dir = tmp_path / "theme"
@@ -44,27 +44,27 @@ class TestPalettePluginInitialization:
 class TestOnConfig:
     """Tests for on_config event handler."""
     
-    def test_on_config_with_no_palette_config(self, mock_config):
+    def test_on_config_with_no_palette_config(self, mock_mkdocs_config):
         """Test on_config with no palette configuration."""
         plugin = PalettePlugin()
-        result = plugin.on_config(mock_config)
+        result = plugin.on_config(mock_mkdocs_config)
         
-        assert result == mock_config
+        assert result == mock_mkdocs_config
         assert plugin.palette_config is not None
         assert plugin.palette_config["default"] == "default"
         assert plugin.palette_config["selector_enabled"] is False
     
-    def test_on_config_with_legacy_string(self, mock_config):
+    def test_on_config_with_legacy_string(self, mock_mkdocs_config):
         """Test on_config with legacy string format."""
-        mock_config.theme.get = MagicMock(return_value="dark")
+        mock_mkdocs_config.theme.get = MagicMock(return_value="dark")
         
         plugin = PalettePlugin()
-        plugin.on_config(mock_config)
+        plugin.on_config(mock_mkdocs_config)
         
         assert plugin.palette_config["default"] == "dark"
         assert plugin.palette_config["selector_enabled"] is False
     
-    def test_on_config_with_new_format(self, mock_config):
+    def test_on_config_with_new_format(self, mock_mkdocs_config):
         """Test on_config with new object format."""
         palette_config = {
             "default": "dark",
@@ -77,17 +77,17 @@ class TestOnConfig:
                 ]
             }
         }
-        mock_config.theme.get = MagicMock(return_value=palette_config)
+        mock_mkdocs_config.theme.get = MagicMock(return_value=palette_config)
         
         plugin = PalettePlugin()
-        plugin.on_config(mock_config)
+        plugin.on_config(mock_mkdocs_config)
         
         assert plugin.palette_config["default"] == "dark"
         assert plugin.palette_config["selector_enabled"] is True
         assert plugin.palette_config["selector_ui"] == "toggle"
         assert len(plugin.palette_config["valid_options"]) == 2
     
-    def test_on_config_validates_options(self, mock_config):
+    def test_on_config_validates_options(self, mock_mkdocs_config):
         """Test on_config validates palette options."""
         palette_config = {
             "selector": {
@@ -99,17 +99,17 @@ class TestOnConfig:
                 ]
             }
         }
-        mock_config.theme.get = MagicMock(return_value=palette_config)
+        mock_mkdocs_config.theme.get = MagicMock(return_value=palette_config)
         
         plugin = PalettePlugin()
-        plugin.on_config(mock_config)
+        plugin.on_config(mock_mkdocs_config)
         
         # Invalid palette should be filtered out
         assert len(plugin.palette_config["valid_options"]) == 2
         assert plugin.palette_config["valid_options"][0]["name"] == "dark"
         assert plugin.palette_config["valid_options"][1]["name"] == "light"
     
-    def test_on_config_with_custom_palette(self, mock_config):
+    def test_on_config_with_custom_palette(self, mock_mkdocs_config):
         """Test on_config with custom palette in extra_css."""
         palette_config = {
             "selector": {
@@ -119,11 +119,11 @@ class TestOnConfig:
                 ]
             }
         }
-        mock_config.theme.get = MagicMock(return_value=palette_config)
-        mock_config.extra_css = ["assets/ocean.css"]
+        mock_mkdocs_config.theme.get = MagicMock(return_value=palette_config)
+        mock_mkdocs_config.extra_css = ["assets/ocean.css"]
         
         plugin = PalettePlugin()
-        plugin.on_config(mock_config)
+        plugin.on_config(mock_mkdocs_config)
         
         assert len(plugin.palette_config["valid_options"]) == 2
         assert plugin.palette_config["valid_options"][0]["name"] == "ocean"
@@ -132,22 +132,22 @@ class TestOnConfig:
 class TestOnEnv:
     """Tests for on_env event handler."""
     
-    def test_on_env_adds_palette_config_to_globals(self, mock_config):
+    def test_on_env_adds_palette_config_to_globals(self, mock_mkdocs_config):
         """Test on_env adds palette_config to Jinja2 globals."""
         plugin = PalettePlugin()
-        plugin.on_config(mock_config)
+        plugin.on_config(mock_mkdocs_config)
         
         # Create mock Jinja2 environment
         env = MagicMock()
         env.globals = {}
         
-        result = plugin.on_env(env, mock_config, None)
+        result = plugin.on_env(env, mock_mkdocs_config, None)
         
         assert result == env
         assert "palette_config" in env.globals
         assert env.globals["palette_config"] == plugin.palette_config
     
-    def test_on_env_handles_no_palette_config(self, mock_config):
+    def test_on_env_handles_no_palette_config(self, mock_mkdocs_config):
         """Test on_env handles case when palette_config is None."""
         plugin = PalettePlugin()
         # Don't call on_config, so palette_config remains None
@@ -155,7 +155,7 @@ class TestOnEnv:
         env = MagicMock()
         env.globals = {}
         
-        result = plugin.on_env(env, mock_config, None)
+        result = plugin.on_env(env, mock_mkdocs_config, None)
         
         assert result == env
         assert "palette_config" not in env.globals
@@ -164,7 +164,7 @@ class TestOnEnv:
 class TestPluginIntegration:
     """Integration tests for plugin lifecycle."""
     
-    def test_full_plugin_lifecycle(self, mock_config):
+    def test_full_plugin_lifecycle(self, mock_mkdocs_config):
         """Test complete plugin lifecycle: init -> on_config -> on_env."""
         # Initialize plugin
         plugin = PalettePlugin()
@@ -179,8 +179,8 @@ class TestPluginIntegration:
                 "options": ["dark", "light"]
             }
         }
-        mock_config.theme.get = MagicMock(return_value=palette_config)
-        plugin.on_config(mock_config)
+        mock_mkdocs_config.theme.get = MagicMock(return_value=palette_config)
+        plugin.on_config(mock_mkdocs_config)
         
         assert plugin.palette_config is not None
         assert plugin.palette_config["default"] == "dark"
@@ -188,7 +188,7 @@ class TestPluginIntegration:
         # Setup Jinja2 environment
         env = MagicMock()
         env.globals = {}
-        plugin.on_env(env, mock_config, None)
+        plugin.on_env(env, mock_mkdocs_config, None)
         
         assert "palette_config" in env.globals
         assert env.globals["palette_config"]["default"] == "dark"
