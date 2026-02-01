@@ -13,17 +13,22 @@ from terminal.plugins.palette.config import (
     SelectorConfig,
     PaletteConfig
 )
+from tests.interface.theme_features import DEFAULT_PALETTES
 
 
 @pytest.fixture
 def theme_dir(tmp_path):
     """Create temporary theme directory with palette CSS files."""
     palettes_dir = tmp_path / "css" / "palettes"
+
+    # create directory including parent directories (-p flag)
     palettes_dir.mkdir(parents=True)
     
-    # Create bundled palette files
-    for palette in ["default", "dark", "light", "blueberry", "pink"]:
-        (palettes_dir / f"{palette}.css").write_text(f"/* {palette} palette */")
+    # Create bundled palette files from DEFAULT_PALETTES
+    for palette in DEFAULT_PALETTES:
+        palette_file = palettes_dir / f"{palette}.css"
+        css_content = f"/* {palette} palette */"
+        palette_file.write_text(css_content)
     
     return tmp_path
 
@@ -412,12 +417,12 @@ class TestBundledPalettesDetection:
         result = parse_palette_config(None, theme_dir)
         
         bundled = result["bundled_palettes"]
-        assert "default" in bundled
-        assert "dark" in bundled
-        assert "light" in bundled
-        assert "blueberry" in bundled
-        assert "pink" in bundled
-        assert len(bundled) == 5
+        
+        # Verify all DEFAULT_PALETTES are detected
+        for palette in DEFAULT_PALETTES:
+            assert palette in bundled, f"Expected palette '{palette}' not found in bundled palettes"
+        
+        assert len(bundled) == len(DEFAULT_PALETTES)
     
     def test_handles_missing_palettes_directory(self, tmp_path):
         """Test graceful handling when palettes directory doesn't exist."""
