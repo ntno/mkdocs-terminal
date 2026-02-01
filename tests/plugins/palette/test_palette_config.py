@@ -334,6 +334,26 @@ class TestValidation:
         assert result["valid_options"][0]["name"] == "dark"
         assert any("ocean.css" in w for w in result["warnings"])
     
+    def test_validate_custom_palette_overrides_bundled_name(self, theme_dir):
+        """Test user can create custom palette with same name as bundled palette."""
+        config = parse_palette_config({
+            "selector": {
+                "options": [
+                    {"name": "dark", "css": "my-custom-dark.css"},
+                    {"name": "default"}
+                ]
+            }
+        }, theme_dir)
+        
+        result = validate_palette_options(config, ["my-custom-dark.css"])
+        
+        # Both options should be valid
+        assert len(result["valid_options"]) == 2
+        # Custom palette should be treated as custom (not bundled)
+        assert result["valid_options"][0] == {"name": "dark", "css": "my-custom-dark.css"}
+        assert result["valid_options"][1] == {"name": "default"}
+        assert len(result["warnings"]) == 0
+    
     def test_validate_invalid_default_palette(self, theme_dir):
         """Test validation fixes invalid default palette."""
         config = parse_palette_config({
