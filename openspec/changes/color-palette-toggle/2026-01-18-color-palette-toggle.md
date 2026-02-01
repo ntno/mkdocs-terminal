@@ -57,7 +57,24 @@ theme:
 
   - Default bundled palettes: the theme will ship a curated set of palette files under `terminal/css/palettes/`. These files are the default options exposed by the selector unless a site overrides `selector.options` in its `mkdocs.yml`.
 
-  - Custom palettes: site authors must be able to specify custom palette CSS files in `mkdocs.yml`. The `theme.palette.selector.options` list may include either named bundled palettes or mappings that point to a CSS file path (relative to the documentation or theme static directories). Example:
+  - Custom palettes: site authors must be able to specify custom palette CSS files in `mkdocs.yml`. The `theme.palette.selector.options` list may include either named bundled palettes or mappings that point to a CSS file path (relative to the documentation or theme static directories). 
+  
+  - Palette name auto-derivation: when a palette option specifies only a `css` path without an explicit `name`, the theme will automatically derive the palette name from the CSS filename (e.g., `ocean.css` → name: `ocean`). This allows simplified configuration:
+
+```yaml
+theme:
+  name: terminal
+  palette:
+    default: dark
+    selector:
+      enabled: true
+      ui: auto
+      options:
+        - dark
+        - css: assets/css/ocean.css  # Auto-derives name: ocean
+```
+
+  - Custom UI labels: each palette option can specify a `label` field to control the display name shown in the selector UI. If no label is provided, the theme auto-generates one from the palette name by replacing underscores and hyphens with spaces and applying title case (e.g., `gruvbox_dark` → "Gruvbox Dark"). This allows technical identifiers internally while showing friendly names to users:
 
 ```yaml
 theme:
@@ -71,8 +88,11 @@ theme:
         - dark
         - light
         - solarized
+        - name: gruvbox_dark
+          label: Gruvbox Dark  # Custom display name
         - name: mysite
           css: assets/css/mysite-palette.css
+          label: My Custom Theme
 ```
 
   The theme will not automatically inject arbitrary user files into MkDocs' `extra_css` — therefore site authors must include any custom palette CSS in their `mkdocs.yml` `extra_css` list so MkDocs will copy and link the file into the built site. For example:
@@ -100,6 +120,8 @@ If a custom CSS path is provided in `selector.options`, the selector will list t
     - omit the invalid option from the selector UI,
     - surface a non-blocking warning for developers (console log during runtime and/or builder-time warning in docs build output), and
     - continue using the configured `default` palette so end-users are not affected.
+
+  - Duplicate palette handling: if multiple palette options share the same name, the theme keeps the first valid occurrence and issues a warning about the duplicate. This prevents selector UI confusion and ensures predictable behavior when users or bundled palettes unintentionally create naming conflicts.
 
 Accessibility
 -------------
@@ -150,6 +172,9 @@ Acceptance Criteria
 - Template renders the selector UI when `theme.palette.selector.enabled` is truthy and lists options from `theme.palette.selector.options`.
 - Legacy string config `palette: "<name>"` continues to set the server-side default palette and does not enable the selector UI. The theme internally normalizes legacy config to the new object shape.
 - Custom palette entries referencing CSS files are only exposed when the referenced file is present in `config.extra_css` (or otherwise available in built site assets); missing files are omitted from the selector, a non-blocking warning is surfaced, and the `default` palette is used.
+- Palette names auto-derive from CSS filenames when only `css` field is provided (e.g., `ocean.css` → `ocean`).
+- Each palette option has both a technical identifier (`name`) and display label (`label`). Labels auto-generate from names (replacing `_`/`-` with spaces, title-casing) unless explicitly provided.
+- Duplicate palette names are handled by keeping the first valid occurrence and issuing a warning.
 - Selector respects `selector.ui` and adapts: binary toggle for two options, select/menu for >2; fallbacks behave as specified (e.g., `ui: toggle` falls back to select when incompatible).
 - Client-side selection is applied immediately, persisted to `localStorage`, and restored on subsequent page loads.
 - The selector UI is overridable: a site can replace the partial `terminal/partials/palette_selector.html` or a provided `{% block palette_selector %}` and the theme falls back to the default implementation when no override is present.
