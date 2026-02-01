@@ -1,8 +1,22 @@
 /*! sans.css 0.7.5 | MIT License | github.com/Gioni06/terminal.css */
 
-:root {
-    --global-font-size: 15px;
-    --global-line-height: 1.4em;
-    --font-stack: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
-    --input-style: solid;
+/**
+ * Sans Palette for mkdocs-terminal
+ * 
+ * This palette primarily changes the font family to a sans-serif stack while
+ * maintaining other defaults. It uses data-palette scoping for runtime switching.
+ */
+
+[data-palette="sans"] {
+    /* Namespaced typography variables */
+    --mkdocs-terminal-font-size: 15px;
+    --mkdocs-terminal-line-height: 1.4em;
+    --mkdocs-terminal-font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+    --mkdocs-terminal-input-style: solid;
+    
+    /* Legacy variable aliases (for backwards compatibility) */
+    --global-font-size: var(--mkdocs-terminal-font-size);
+    --global-line-height: var(--mkdocs-terminal-line-height);
+    --font-stack: var(--mkdocs-terminal-font-family);
+    --input-style: var(--mkdocs-terminal-input-style);
 }

@@ -1,4 +1,14 @@
 /*! terminal.css 0.7.5 | MIT License | github.com/Gioni06/terminal.css */
 
+/**
+ * Default Palette for mkdocs-terminal
+ * 
+ * This palette uses the base defaults from terminal.css without overriding any values.
+ * It exists primarily to provide a named palette option that matches the original theme.
+ * The data-palette='default' selector is intentionally empty to allow terminal.css
+ * defaults to apply through the CSS cascade.
+ */
 
-/* this document is intentionally left empty.  for root configuration, see terminal/css/terminal.css */
+[data-palette="default"] {
+  /* Intentionally empty - uses terminal.css defaults */
+}

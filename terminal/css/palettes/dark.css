@@ -1,22 +1,54 @@
 /*! dark.css 0.7.5 | MIT License | github.com/Gioni06/terminal.css */
 
-:root {
-    --global-font-size: 15px;
-    --global-line-height: 1.4em;
-    --global-space: 10px;
-    --font-stack: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
-    --mono-font-stack: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
-    --background-color: #222225;
-    --page-width: 60em;
-    --font-color: #e8e9ed;
-    --invert-font-color: #222225;
-    --secondary-color: #a3abba;
-    --tertiary-color: #a3abba;
-    --primary-color: #62c4ff;
-    --error-color: #ff3c74;
-    --progress-bar-background: #3f3f44;
-    --progress-bar-fill: #62c4ff;
-    --code-bg-color: #3f3f44;
-    --input-style: solid;
-    --display-h1-decoration: none;
+/**
+ * Dark Palette for mkdocs-terminal
+ * 
+ * This palette uses data-palette scoping for runtime switching via the
+ * palette selector feature. Variables are defined using the namespaced
+ * convention (--mkdocs-terminal-*) with legacy aliases for backwards
+ * compatibility.
+ */
+
+[data-palette="dark"] {
+    /* Namespaced color variables (primary definitions) */
+    --mkdocs-terminal-bg-color: #222225;
+    --mkdocs-terminal-font-color: #e8e9ed;
+    --mkdocs-terminal-invert-font-color: #222225;
+    --mkdocs-terminal-primary-color: #62c4ff;
+    --mkdocs-terminal-secondary-color: #a3abba;
+    --mkdocs-terminal-tertiary-color: #a3abba;
+    --mkdocs-terminal-error-color: #ff3c74;
+    --mkdocs-terminal-progress-bar-bg: #3f3f44;
+    --mkdocs-terminal-progress-bar-fill: #62c4ff;
+    --mkdocs-terminal-code-bg-color: #3f3f44;
+    --mkdocs-terminal-input-style: solid;
+    --mkdocs-terminal-h1-decoration: none;
+    
+    /* Namespaced typography variables */
+    --mkdocs-terminal-font-size: 15px;
+    --mkdocs-terminal-line-height: 1.4em;
+    --mkdocs-terminal-spacing: 10px;
+    --mkdocs-terminal-font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+    --mkdocs-terminal-mono-font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+    --mkdocs-terminal-page-width: 60em;
+    
+    /* Legacy variable aliases (for backwards compatibility) */
+    --background-color: var(--mkdocs-terminal-bg-color);
+    --font-color: var(--mkdocs-terminal-font-color);
+    --invert-font-color: var(--mkdocs-terminal-invert-font-color);
+    --primary-color: var(--mkdocs-terminal-primary-color);
+    --secondary-color: var(--mkdocs-terminal-secondary-color);
+    --tertiary-color: var(--mkdocs-terminal-tertiary-color);
+    --error-color: var(--mkdocs-terminal-error-color);
+    --progress-bar-background: var(--mkdocs-terminal-progress-bar-bg);
+    --progress-bar-fill: var(--mkdocs-terminal-progress-bar-fill);
+    --code-bg-color: var(--mkdocs-terminal-code-bg-color);
+    --input-style: var(--mkdocs-terminal-input-style);
+    --display-h1-decoration: var(--mkdocs-terminal-h1-decoration);
+    --global-font-size: var(--mkdocs-terminal-font-size);
+    --global-line-height: var(--mkdocs-terminal-line-height);
+    --global-space: var(--mkdocs-terminal-spacing);
+    --font-stack: var(--mkdocs-terminal-font-family);
+    --mono-font-stack: var(--mkdocs-terminal-mono-font-family);
+    --page-width: var(--mkdocs-terminal-page-width);
 }
