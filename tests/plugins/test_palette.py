@@ -136,6 +136,38 @@ class TestNewObjectFormat:
         assert result["options"][0] == {"name": "dark"}
         assert result["options"][1] == {"name": "light"}
         assert result["options"][2] == {"name": "pink"}
+    
+    def test_auto_derive_name_from_css_path(self, theme_dir):
+        """Test automatic name derivation from CSS filename."""
+        config_value = {
+            "selector": {
+                "options": [
+                    {"css": "assets/ocean.css"},
+                    {"css": "styles/custom-theme.css"},
+                    {"name": "dark"}
+                ]
+            }
+        }
+        result = parse_palette_config(config_value, theme_dir)
+        
+        assert len(result["options"]) == 3
+        assert result["options"][0] == {"name": "ocean", "css": "assets/ocean.css"}
+        assert result["options"][1] == {"name": "custom-theme", "css": "styles/custom-theme.css"}
+        assert result["options"][2] == {"name": "dark"}
+    
+    def test_explicit_name_overrides_css_basename(self, theme_dir):
+        """Test that explicit name takes precedence over CSS basename."""
+        config_value = {
+            "selector": {
+                "options": [
+                    {"name": "my-ocean", "css": "assets/ocean.css"}
+                ]
+            }
+        }
+        result = parse_palette_config(config_value, theme_dir)
+        
+        assert len(result["options"]) == 1
+        assert result["options"][0] == {"name": "my-ocean", "css": "assets/ocean.css"}
 
 
 class TestDefaultValues:
@@ -201,13 +233,13 @@ class TestEdgeCases:
         
         assert result["selector_ui"] == "auto"
     
-    def test_option_missing_name_skipped(self, theme_dir):
-        """Test option without name is skipped."""
+    def test_option_missing_both_name_and_css_skipped(self, theme_dir):
+        """Test option without name or CSS is skipped."""
         config_value = {
             "selector": {
                 "options": [
                     {"name": "dark"},
-                    {"css": "missing.css"},  # No name
+                    {},  # No name, no CSS
                     {"name": "light"}
                 ]
             }

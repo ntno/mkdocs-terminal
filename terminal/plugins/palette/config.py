@@ -171,13 +171,20 @@ def parse_palette_config(config_value: Any, theme_dir: Path) -> Dict[str, Any]:
             # Object option with name and optional css
             name = opt.get("name")
             css = opt.get("css")
+            
+            # If no name but CSS provided, derive name from CSS filename
+            if not name and css:
+                # Extract basename without extension (e.g., "assets/ocean.css" -> "ocean")
+                name = Path(css).stem
+                log.debug(f"Auto-derived palette name '{name}' from CSS path '{css}'")
+            
             if name:
                 opt_dict = {"name": name}
                 if css:
                     opt_dict["css"] = css
                 options.append(opt_dict)
             else:
-                log.warning(f"Palette option missing 'name' field, skipping: {opt}")
+                log.warning(f"Palette option missing 'name' field and 'css' field, skipping: {opt}")
         else:
             log.warning(
                 f"Invalid palette option type: {type(opt).__name__}, skipping: {opt}"
