@@ -1,6 +1,24 @@
 {% set features = config.theme.features or [] %}
 {% set palette_name = config.theme.palette or "default" %}
-{% set palette = "css/palettes/" ~ palette_name ~ ".css" %}
+{% set palette_config = config.theme.palette_config or {} %}
+{% set valid_options = palette_config.get("valid_options", []) %}
+
+<!-- FOUC prevention: restore saved palette before CSS loads -->
+<script>
+(function() {
+  try {
+    var saved = localStorage.getItem('mkdocs-terminal-palette');
+    var available = {{ valid_options | map(attribute='name') | list | tojson }};
+    // Validate saved palette is in available options
+    if (saved && available.indexOf(saved) !== -1) {
+      document.documentElement.setAttribute('data-palette', saved);
+    }
+  } catch (e) {
+    // localStorage may be blocked, fail silently
+  }
+})();
+</script>
+
 <link href="{{ 'css/fontawesome/css/fontawesome.min.css' | url }}" rel="stylesheet">
 <link href="{{ 'css/fontawesome/css/solid.min.css' | url }}" rel="stylesheet">
 <link href="{{ 'css/normalize.css' | url }}" rel="stylesheet">
@@ -8,8 +26,22 @@
 <link href="{{ 'css/theme.css' | url }}" rel="stylesheet">
 <link href="{{ 'css/theme.tile_grid.css' | url }}" rel="stylesheet">
 <link href="{{ 'css/theme.footer.css' | url }}" rel="stylesheet">
-<!-- {{ palette_name }} color palette -->
-<link href="{{ palette | url }}" rel="stylesheet">
+
+{%- if palette_config.get("selector_enabled") and valid_options %}
+<!-- Palette selector enabled - link all configured palette CSS files -->
+{%- for option in valid_options %}
+{%- if option.get("css") %}
+<!-- Custom palette: {{ option.name }} -->
+<link href="{{ option.css | url }}" rel="stylesheet">
+{%- else %}
+<!-- Bundled palette: {{ option.name }} -->
+<link href="{{ ('css/palettes/' ~ option.name ~ '.css') | url }}" rel="stylesheet">
+{%- endif %}
+{%- endfor %}
+{%- else %}
+<!-- Palette selector disabled - link default palette only -->
+<link href="{{ ('css/palettes/' ~ palette_name ~ '.css') | url }}" rel="stylesheet">
+{%- endif %}
 
 <!-- page layout -->
 <style>

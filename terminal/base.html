@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html {% block site_lang %}lang="en"{% endblock site_lang %} data-palette="{{ config.theme.palette or 'default' }}">
+{%- set palette_config = config.theme.palette_config or {} -%}
+{%- set valid_palette_options = palette_config.get("valid_options", []) -%}
+{%- set available_palettes = valid_palette_options | map(attribute='name') | list -%}
+<html {% block site_lang %}lang="en"{% endblock site_lang %} data-palette="{{ config.theme.palette or 'default' }}" data-available-palettes="{{ available_palettes | tojson }}">
 <head>
     {% set features = config.theme.features or [] %}
     {%- block site_meta %}

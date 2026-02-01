@@ -130,24 +130,27 @@ _Status: 🔄 In progress — establishes theming foundation._
   - [x] Test namespaced variable resolution (palette defines only `--mkdocs-terminal-font-color`, theme resolves correctly)
   - [x] Test mixed resolution (palette defines both, namespaced takes precedence)
   - [x] Verify compatibility layer tests pass before proceeding
-- [ ] Standardize bundled palette CSS structure
-  - [ ] Define CSS variable naming convention: `--mkdocs-terminal-*` for all palette variables
-  - [ ] Create standard variable list with namespaced names (e.g., `--mkdocs-terminal-font-color`)
-  - [ ] Update all 9 existing palette files to use `[data-palette="<name>"]` scoping
-  - [ ] Define both namespaced variables AND legacy aliases in each palette for consistency
-  - [ ] Document variable structure in inline comments within palette files
-- [ ] **Test palette CSS structure standardization**
-  - [ ] Test each bundled palette defines all required namespaced variables
-  - [ ] Test each bundled palette includes legacy variable aliases
-  - [ ] Test `[data-palette]` scoping works correctly (only applies when attribute matches)
-  - [ ] Test variable naming convention compliance across all palettes
-  - [ ] Verify all CSS standardization tests pass before proceeding
-- [ ] Implement palette application mechanism
-  - [ ] Update `terminal/partials/styles.html` to link all configured palette CSS files (not just default)
-  - [ ] Add build-time `data-palette` attribute to `<html>` element based on config default
-  - [ ] Embed available palette options as `data-available-palettes` attribute on `<html>` for JS validation
-  - [ ] Add inline FOUC prevention script in `<head>` (before CSS links)
-  - [ ] Script validates localStorage value against available palettes before applying
+- [x] Standardize bundled palette CSS structure
+  - [x] Define CSS variable naming convention: `--mkdocs-terminal-*` for all palette variables
+  - [x] Create standard variable list with namespaced names (e.g., `--mkdocs-terminal-font-color`)
+  - [x] Update all 9 existing palette files to use `[data-palette="<name>"]` scoping
+  - [x] Define both namespaced variables AND legacy aliases in each palette for consistency
+  - [x] Document variable structure in inline comments within palette files
+  - [x] Implement shared color constants pattern (each hex code appears only once)
+  - [x] Add `:root` fallback blocks for inline `<link>` support
+  - [x] Update custom-palette-template.css with shared constants architecture
+- [x] **Test palette CSS structure standardization**
+  - [x] Test each bundled palette defines all required namespaced variables
+  - [x] Test each bundled palette includes legacy variable aliases
+  - [x] Test `[data-palette]` scoping works correctly (only applies when attribute matches)
+  - [x] Test variable naming convention compliance across all palettes
+  - [x] Verify all CSS standardization tests pass before proceeding
+- [x] Implement palette application mechanism
+  - [x] Update `terminal/partials/styles.html` to link all configured palette CSS files (not just default)
+  - [x] Add build-time `data-palette` attribute to `<html>` element based on config default
+  - [x] Embed available palette options as `data-available-palettes` attribute on `<html>` for JS validation
+  - [x] Add inline FOUC prevention script in `<head>` (before CSS links)
+  - [x] Script validates localStorage value against available palettes before applying
 - [ ] **Test palette application mechanism**
   - [ ] Test all configured palette CSS files are linked in build output
   - [ ] Test build-time `data-palette` attribute renders correctly
