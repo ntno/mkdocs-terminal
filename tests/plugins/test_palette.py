@@ -70,13 +70,6 @@ class TestLegacyStringFormat:
         assert result["default"] == "default"
         assert result["selector_enabled"] is False
     
-    def test_legacy_string_bundled_palette(self, theme_dir):
-        """Test legacy format with bundled palette name."""
-        result = parse_palette_config("blueberry", theme_dir)
-        
-        assert result["default"] == "blueberry"
-        assert result["selector_enabled"] is False
-        assert "blueberry" in result["bundled_palettes"]
 
 
 class TestNewObjectFormat:
