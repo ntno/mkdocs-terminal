@@ -41,9 +41,21 @@
 
 [data-palette="custom"] {
   /* ================================================================
-   * REQUIRED COLOR VARIABLES
-   * These control the visual appearance of your palette.
-   * All values should meet WCAG AA contrast requirements.
+   * PALETTE VARIABLES
+   * 
+   * NOTE: You are NOT required to define all of these variables.
+   * Only define the variables you want to customize. Any variables
+   * you don't define will fall back to the default values from
+   * terminal.css (the built-in light theme).
+   * 
+   * For example, to create a purple theme instead of the default
+   * blue theme, you might only define:
+   *   --mkdocs-terminal-primary-color: #663399;
+   *   --primary-color: var(--mkdocs-terminal-primary-color);
+   * 
+   * And leave all other variables undefined (they'll use defaults).
+   * 
+   * All color values should meet WCAG AA contrast requirements.
    * ================================================================ */
   
   /* Primary text color - used for body text, headings, etc. */
