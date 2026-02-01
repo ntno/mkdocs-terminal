@@ -20,7 +20,9 @@ def mock_config(tmp_path):
     
     # Create palette files
     for palette in ["default", "dark", "light"]:
-        (palettes_dir / f"{palette}.css").write_text(f"/* {palette} */")
+        palette_file = palettes_dir / f"{palette}.css"
+        css_content = f"/* {palette} */"
+        palette_file.write_text(css_content)
     
     config = MagicMock()
     config.theme.dirs = [str(theme_dir)]
