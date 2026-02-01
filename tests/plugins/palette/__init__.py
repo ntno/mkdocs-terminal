@@ -1,0 +1,1 @@
+# Palette plugin tests package
