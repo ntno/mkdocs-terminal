@@ -151,13 +151,13 @@ _Status: 🔄 In progress — establishes theming foundation._
   - [x] Embed available palette options as `data-available-palettes` attribute on `<html>` for JS validation
   - [x] Add inline FOUC prevention script in `<head>` (before CSS links)
   - [x] Script validates localStorage value against available palettes before applying
-- [ ] **Test palette application mechanism**
-  - [ ] Test all configured palette CSS files are linked in build output
-  - [ ] Test build-time `data-palette` attribute renders correctly
-  - [ ] Test `data-available-palettes` attribute contains correct JSON array
-  - [ ] Test inline FOUC prevention script executes before CSS load
-  - [ ] Test invalid localStorage value doesn't override default (validation works)
-  - [ ] Verify all application mechanism tests pass before proceeding
+- [x] **Test palette application mechanism**
+  - [x] Test all configured palette CSS files are linked in build output
+  - [x] Test build-time `data-palette` attribute renders correctly
+  - [x] Test `data-available-palettes` attribute contains correct JSON array
+  - [x] Test inline FOUC prevention script executes before CSS load
+  - [x] Test invalid localStorage value doesn't override default (validation works)
+  - [x] Verify all application mechanism tests pass before proceeding
 - [ ] Validate palette accessibility
   - [ ] Verify bundled palettes meet WCAG AA contrast (leverage existing `tests/accessibility/test_color_contrast.py`)
   - [ ] Add WCAG AA contrast requirements to palette guidelines
