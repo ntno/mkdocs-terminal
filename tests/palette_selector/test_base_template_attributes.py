@@ -139,6 +139,7 @@ class TestDataAvailablePalettesAttribute:
 
     def test_handles_missing_palette_config(self, base_template, minimal_context):
         """Should handle missing palette_config gracefully."""
+        # Remove the palette_config key from the theme config
         minimal_context["config"]["theme"].pop("palette_config", None)
         rendered = base_template.render(minimal_context)
         
@@ -168,11 +169,10 @@ class TestAttributeInteraction:
         
         # But available should only contain "light"
         match = re.search(r'data-available-palettes="([^"]*)"', rendered)
-        attr_value = match.group(1).replace('&quot;', '"')
-        if attr_value:
-            palettes = attr_value.split(',')
-        else:
-            palettes = []
+        attr_value = match.group(1)
+        palettes = attr_value.split(',') if attr_value else []
+        assert palettes == ["light"]
+        assert "dark" not in palettes
         assert_valid_html(rendered, ALLOW_EMPTY_ELEMENTS)
 
     def test_default_palette_can_be_in_available(self, base_template, minimal_context):
@@ -189,11 +189,9 @@ class TestAttributeInteraction:
         assert 'data-palette="dark"' in rendered
         
         match = re.search(r'data-available-palettes="([^"]*)"', rendered)
-        attr_value = match.group(1).replace('&quot;', '"')
-        if attr_value:
-            palettes = attr_value.split(',')
-        else:
-            palettes = []
+        attr_value = match.group(1)
+        palettes = attr_value.split(',') if attr_value else []
+        assert "dark" in palettes
         assert "light" in palettes
         assert_valid_html(rendered, ALLOW_EMPTY_ELEMENTS)
 
