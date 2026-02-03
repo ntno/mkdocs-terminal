@@ -9,7 +9,6 @@ Tests verify that:
 from tests.utils.html import assert_valid_html, ALLOW_EMPTY_ELEMENTS
 from tests.interface.theme_features import DEFAULT_PALETTES
 import pytest
-import json
 import re
 
 
@@ -84,11 +83,11 @@ class TestDataAvailablePalettesAttribute:
             "valid_options": []
         }
         rendered = base_template.render(minimal_context)
-        
+
         # Extract the attribute value
         match = re.search(r'data-available-palettes="([^"]*)"', rendered)
         assert match, "data-available-palettes attribute should be present"
-        
+
         # Should be empty string
         attr_value = match.group(1)
         assert attr_value == ""
@@ -104,13 +103,13 @@ class TestDataAvailablePalettesAttribute:
             ]
         }
         rendered = base_template.render(minimal_context)
-        
+
         # Extract and parse the attribute
         match = re.search(r'data-available-palettes="([^"]*)"', rendered)
         assert match
         attr_value = match.group(1)
         palettes = attr_value.split(',') if attr_value else []
-        
+
         assert len(palettes) == 3
         assert "dark" in palettes
         assert "light" in palettes
@@ -126,11 +125,11 @@ class TestDataAvailablePalettesAttribute:
             ]
         }
         rendered = base_template.render(minimal_context)
-        
+
         match = re.search(r'data-available-palettes="([^"]*)"', rendered)
         attr_value = match.group(1)
         palettes = attr_value.split(',') if attr_value else []
-        
+
         # Should be simple list of strings, not objects
         assert isinstance(palettes, list)
         assert all(isinstance(p, str) for p in palettes)
@@ -142,7 +141,7 @@ class TestDataAvailablePalettesAttribute:
         # Remove the palette_config key from the theme config
         minimal_context["config"]["theme"].pop("palette_config", None)
         rendered = base_template.render(minimal_context)
-        
+
         # Should still render with empty string
         match = re.search(r'data-available-palettes="([^"]*)"', rendered)
         assert match
@@ -163,10 +162,10 @@ class TestAttributeInteraction:
             ]
         }
         rendered = base_template.render(minimal_context)
-        
+
         # data-palette should be "dark"
         assert 'data-palette="dark"' in rendered
-        
+
         # But available should only contain "light"
         match = re.search(r'data-available-palettes="([^"]*)"', rendered)
         attr_value = match.group(1)
@@ -185,9 +184,9 @@ class TestAttributeInteraction:
             ]
         }
         rendered = base_template.render(minimal_context)
-        
+
         assert 'data-palette="dark"' in rendered
-        
+
         match = re.search(r'data-available-palettes="([^"]*)"', rendered)
         attr_value = match.group(1)
         palettes = attr_value.split(',') if attr_value else []
@@ -212,11 +211,11 @@ class TestHTMLElementStructure:
             "valid_options": [{"name": "dark", "label": "Dark"}]
         }
         rendered = base_template.render(minimal_context)
-        
+
         # Find the <html> opening tag
         html_tag_match = re.search(r'<html[^>]+>', rendered)
         assert html_tag_match, "Should find opening html tag"
-        
+
         html_tag = html_tag_match.group(0)
         assert 'data-palette=' in html_tag
         assert 'data-available-palettes=' in html_tag

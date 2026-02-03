@@ -9,7 +9,6 @@ Tests verify that:
 
 from tests.utils.html import assert_valid_html
 import pytest
-import json
 
 
 @pytest.fixture
@@ -86,10 +85,10 @@ class TestSelectorDisabled:
             "valid_options": []
         }
         rendered = styles_partial.render(base_context)
-        
+
         # Should include dark palette
         assert 'css/palettes/dark.css' in rendered
-        
+
         # Should not include other palettes
         assert 'css/palettes/light.css' not in rendered
         assert 'css/palettes/gruvbox_dark.css' not in rendered
@@ -120,17 +119,17 @@ class TestSelectorEnabled:
             ]
         }
         rendered = styles_partial.render(base_context)
-        
+
         # All configured palettes should be linked
         assert 'css/palettes/dark.css' in rendered
         assert 'css/palettes/light.css' in rendered
         assert 'css/palettes/gruvbox_dark.css' in rendered
-        
+
         # Comment annotations should be present
         assert 'Bundled palette: dark' in rendered
         assert 'Bundled palette: light' in rendered
         assert 'Bundled palette: gruvbox_dark' in rendered
-        
+
         assert_valid_html(rendered)
 
     def test_custom_palette_css_path_used(self, styles_partial, base_context):
@@ -143,15 +142,15 @@ class TestSelectorEnabled:
             ]
         }
         rendered = styles_partial.render(base_context)
-        
+
         # Bundled palette should use standard path
         assert 'css/palettes/dark.css' in rendered
         assert 'Bundled palette: dark' in rendered
-        
+
         # Custom palette should use custom path
         assert 'css/custom-palette.css' in rendered
         assert 'Custom palette: custom' in rendered
-        
+
         assert_valid_html(rendered)
 
     def test_mixed_bundled_and_custom_palettes(self, styles_partial, base_context):
@@ -166,15 +165,15 @@ class TestSelectorEnabled:
             ]
         }
         rendered = styles_partial.render(base_context)
-        
+
         # Bundled palettes
         assert 'css/palettes/dark.css' in rendered
         assert 'css/palettes/light.css' in rendered
-        
+
         # Custom palettes
         assert 'css/custom1.css' in rendered
         assert 'css/custom2.css' in rendered
-        
+
         assert_valid_html(rendered)
 
 
@@ -189,7 +188,7 @@ class TestSelectorEnabledButNoValidOptions:
             "valid_options": []  # No valid options
         }
         rendered = styles_partial.render(base_context)
-        
+
         # Should fall back to linking default palette
         assert 'css/palettes/dark.css' in rendered
         assert_valid_html(rendered)
@@ -201,7 +200,7 @@ class TestHTMLStructure:
     def test_core_css_files_always_linked(self, styles_partial, base_context):
         """Core CSS files should always be linked regardless of palette config."""
         rendered = styles_partial.render(base_context)
-        
+
         # Core CSS files
         assert 'css/fontawesome/css/fontawesome.min.css' in rendered
         assert 'css/fontawesome/css/solid.min.css' in rendered
@@ -210,17 +209,17 @@ class TestHTMLStructure:
         assert 'css/theme.css' in rendered
         assert 'css/theme.tile_grid.css' in rendered
         assert 'css/theme.footer.css' in rendered
-        
+
         assert_valid_html(rendered)
 
     def test_css_load_order_correct(self, styles_partial, base_context):
         """CSS files should load in correct order: core → palettes."""
         rendered = styles_partial.render(base_context)
-        
+
         terminal_css_pos = rendered.find('css/terminal.css')
         theme_css_pos = rendered.find('css/theme.css')
         palette_css_pos = rendered.find('css/palettes/')
-        
+
         assert terminal_css_pos < theme_css_pos, "terminal.css before theme.css"
         assert theme_css_pos < palette_css_pos, "theme.css before palettes"
 
@@ -265,7 +264,7 @@ class TestPaletteComments:
         }
         rendered_enabled = styles_partial.render(base_context)
         assert 'Palette selector enabled' in rendered_enabled
-        
+
         base_context["config"]["theme"]["palette_config"]["selector_enabled"] = False
         rendered_disabled = styles_partial.render(base_context)
         assert 'Palette selector disabled' in rendered_disabled
