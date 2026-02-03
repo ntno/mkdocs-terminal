@@ -28,8 +28,9 @@ Open http://localhost:8000 in your browser.
 
 ### Expected Results:
 - [ ] Page loads with dark palette immediately (no flash of light theme)
-- [ ] No JavaScript errors in console
-- [ ] Inspect `<html>` element: `data-palette="dark"` is set
+  - actual behavior: page did not reload with dark palette
+- [x] No JavaScript errors in console
+- [x] Inspect `<html>` element: `data-palette="dark"` is set
 
 ### Notes:
 - Clear localStorage and test again with different palette names
@@ -49,9 +50,9 @@ Open http://localhost:8000 in your browser.
 5. Navigate back
 
 ### Expected Results:
-- [ ] Palette remains 'gruvbox_dark' after reload
-- [ ] Palette remains 'gruvbox_dark' when navigating between pages
-- [ ] Inspect localStorage: `localStorage.getItem('mkdocs-terminal-palette')` returns `"gruvbox_dark"`
+- [x] Palette remains 'gruvbox_dark' after reload
+- [x] Palette remains 'gruvbox_dark' when navigating between pages
+- [x] Inspect localStorage: `localStorage.getItem('mkdocs-terminal-palette')` returns `"gruvbox_dark"`
 
 ---
 
@@ -66,9 +67,9 @@ Open http://localhost:8000 in your browser.
 4. Check `data-palette` attribute on `<html>` element
 
 ### Expected Results:
-- [ ] Page loads with build-time default palette (from mkdocs.yml)
-- [ ] Invalid value is NOT applied to `data-palette` attribute
-- [ ] No JavaScript errors in console
+- [x] Page loads with build-time default palette (from mkdocs.yml)
+- [x] Invalid value is NOT applied to `data-palette` attribute
+- [x] No JavaScript errors in console
 
 ---
 
@@ -87,6 +88,7 @@ Open http://localhost:8000 in your browser.
 
 ### Expected Results:
 - [ ] Colors change instantly when attribute is modified
+  - actual behavior: colors do not change
 - [ ] No page reload required
 - [ ] All theme elements update (background, text, links, navigation, etc.)
 - [ ] Transitions are smooth with no layout shift
@@ -108,7 +110,7 @@ Open http://localhost:8000 in your browser.
          enabled: true
          options:
            - dark
-           - light
+           - lightyear
            - gruvbox_dark
    ```
 2. Open page in browser
@@ -117,11 +119,11 @@ Open http://localhost:8000 in your browser.
 5. Filter by "CSS"
 
 ### Expected Results:
-- [ ] `dark.css` is loaded
-- [ ] `light.css` is loaded
-- [ ] `gruvbox_dark.css` is loaded
-- [ ] All three CSS files return 200 OK status
-- [ ] CSS files load in parallel (not blocking)
+- [x] `dark.css` is loaded
+- [x] `lightyear.css` is loaded
+- [x] `gruvbox_dark.css` is loaded
+- [x] All three CSS files return 200 OK status
+- [x] CSS files load in parallel (not blocking)
 
 ---
 
@@ -141,9 +143,9 @@ Open http://localhost:8000 in your browser.
 4. Reload page
 
 ### Expected Results:
-- [ ] Only `dark.css` is loaded
-- [ ] `default.css`, `light.css`, etc. are NOT loaded
-- [ ] `data-available-palettes` attribute is empty array: `[]`
+- [x] Only `dark.css` is loaded
+- [x] `default.css`, `lightyear.css`, etc. are NOT loaded
+- [x] `data-available-palettes` attribute is empty string: `""`
 
 ---
 
