@@ -27,7 +27,7 @@
 }
 
 [data-palette="dark"] {
-    /* Namespaced variable mappings (references same constants from :root) */
+    /* Color variable overrides only - typography/structural vars use theme.css defaults */
     --mkdocs-terminal-bg-color: var(--dark-bg);
     --mkdocs-terminal-font-color: var(--dark-fg);
     --mkdocs-terminal-invert-font-color: var(--dark-invert-fg);
@@ -38,16 +38,8 @@
     --mkdocs-terminal-progress-bar-bg: var(--dark-progress-bg);
     --mkdocs-terminal-progress-bar-fill: var(--dark-progress-fill);
     --mkdocs-terminal-code-bg-color: var(--dark-code-bg);
-    --mkdocs-terminal-input-style: solid;
-    --mkdocs-terminal-h1-decoration: none;
-    --mkdocs-terminal-font-size: 15px;
-    --mkdocs-terminal-line-height: 1.4em;
-    --mkdocs-terminal-spacing: 10px;
-    --mkdocs-terminal-font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
-    --mkdocs-terminal-mono-font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
-    --mkdocs-terminal-page-width: 60em;
     
-    /* Legacy variable aliases (for backwards compatibility) */
+    /* Legacy color variable aliases (for backwards compatibility) */
     --background-color: var(--mkdocs-terminal-bg-color);
     --font-color: var(--mkdocs-terminal-font-color);
     --invert-font-color: var(--mkdocs-terminal-invert-font-color);
@@ -58,12 +50,4 @@
     --progress-bar-background: var(--mkdocs-terminal-progress-bar-bg);
     --progress-bar-fill: var(--mkdocs-terminal-progress-bar-fill);
     --code-bg-color: var(--mkdocs-terminal-code-bg-color);
-    --input-style: var(--mkdocs-terminal-input-style);
-    --display-h1-decoration: var(--mkdocs-terminal-h1-decoration);
-    --global-font-size: var(--mkdocs-terminal-font-size);
-    --global-line-height: var(--mkdocs-terminal-line-height);
-    --global-space: var(--mkdocs-terminal-spacing);
-    --font-stack: var(--mkdocs-terminal-font-family);
-    --mono-font-stack: var(--mkdocs-terminal-mono-font-family);
-    --page-width: var(--mkdocs-terminal-page-width);
 }

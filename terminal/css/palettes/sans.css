@@ -40,14 +40,10 @@
     --mkdocs-terminal-progress-bar-bg: var(--sans-progress-bg);
     --mkdocs-terminal-progress-bar-fill: var(--sans-progress-fill);
     --mkdocs-terminal-code-bg-color: var(--sans-code-bg);
-    --mkdocs-terminal-input-style: solid;
-    --mkdocs-terminal-h1-decoration: none;
-    --mkdocs-terminal-font-size: 15px;
-    --mkdocs-terminal-line-height: 1.4em;
-    --mkdocs-terminal-spacing: 10px;
+    
+    /* Typography override - sans palette uses system fonts instead of monospace */
     --mkdocs-terminal-font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
     --mkdocs-terminal-mono-font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
-    --mkdocs-terminal-page-width: 60em;
     
     /* Legacy variable aliases (for backwards compatibility) */
     --background-color: var(--mkdocs-terminal-bg-color);
@@ -60,12 +56,8 @@
     --progress-bar-background: var(--mkdocs-terminal-progress-bar-bg);
     --progress-bar-fill: var(--mkdocs-terminal-progress-bar-fill);
     --code-bg-color: var(--mkdocs-terminal-code-bg-color);
-    --input-style: var(--mkdocs-terminal-input-style);
-    --display-h1-decoration: var(--mkdocs-terminal-h1-decoration);
-    --global-font-size: var(--mkdocs-terminal-font-size);
-    --global-line-height: var(--mkdocs-terminal-line-height);
-    --global-space: var(--mkdocs-terminal-spacing);
+    
+    /* Legacy typography aliases - sans palette overrides fonts */
     --font-stack: var(--mkdocs-terminal-font-family);
     --mono-font-stack: var(--mkdocs-terminal-mono-font-family);
-    --page-width: var(--mkdocs-terminal-page-width);
 }
