@@ -3,158 +3,131 @@
 /**
  * Custom Palette Template for mkdocs-terminal Theme
  * 
- * This template demonstrates the recommended structure for creating custom
- * palettes that work with both the palette selector AND inline <link> usage.
+ * This template demonstrates the CORRECT structure for creating custom
+ * palettes that work with the palette selector feature.
  * 
  * USAGE:
- * 1. Copy this file and rename it (e.g., custom.css)
+ * 1. Copy this file and rename it (e.g., mypalette.css)
  * 2. Replace "custom" with your palette name throughout
- * 3. Update color constants in :root block
+ * 3. Update color constants in :root block with your hex values
  * 4. Add to mkdocs.yml:
  *    theme:
  *      palette:
+ *        default: custom
  *        selector:
  *          enabled: true
  *          options:
+ *            - dark  # bundled palette
  *            - name: custom
  *              css: css/custom.css
  *    extra_css:
  *      - css/custom.css
  * 
- * ARCHITECTURE:
- * Color constants are defined once in :root to eliminate duplication.
- * The namespaced variable mappings appear in both :root and [data-palette]
- * blocks because they serve different purposes:
+ * CRITICAL ARCHITECTURE RULES:
  * 
- * - :root mappings: Enable inline <link href="custom.css"> usage in docs
- * - [data-palette] mappings: Enable runtime palette switching (higher specificity)
+ * 1. :root block = Color constants ONLY
+ *    - Define each hex code exactly once
+ *    - Use descriptive palette-specific names (e.g., --custom-ocean-blue)
+ *    - DO NOT define --mkdocs-terminal-* or --font-color variables here!
+ *    - When multiple palettes load, their :root blocks don't conflict
  * 
- * Both reference the same color constants, so each hex code appears only once.
- * This prevents drift between the two methods while supporting both use cases.
+ * 2. [data-palette] block = ALL variable mappings
+ *    - Map your constants to --mkdocs-terminal-* namespaced variables
+ *    - Include legacy variable aliases for backwards compatibility
+ *    - Only applies when data-palette attribute matches your palette name
+ *    - Higher specificity than :root ensures palette switching works
+ * 
+ * WHY THIS STRUCTURE?
+ * When the palette selector is enabled, multiple palette CSS files load
+ * simultaneously. If each palette's :root defined --mkdocs-terminal-font-color,
+ * the last-loaded file would win globally, breaking palette switching.
+ * By keeping constants in :root and mappings in [data-palette], only the
+ * matching palette applies based on the data-palette attribute value.
  */
 
 :root {
   /* ================================================================
-   * COLOR CONSTANTS (DEFINE ONCE)
+   * COLOR CONSTANTS ONLY - Each hex code defined exactly once
    * 
-   * Define your palette's colors here. Use descriptive names that
-   * make sense for your color scheme. These constants are referenced
-   * by both the :root mappings (for inline <link>) and [data-palette]
-   * mappings (for palette selector).
+   * CRITICAL: Do NOT define --mkdocs-terminal-* or --font-color here!
    * 
-   * All color values should meet WCAG AA contrast requirements.
+   * Use palette-specific names (e.g., --custom-ocean-blue) to avoid
+   * conflicts when multiple palette CSS files load simultaneously.
+   * 
+   * These constants are referenced ONLY by the [data-palette] block
+   * below. When the palette selector is enabled, multiple palettes
+   * load at once, so :root blocks must contain ONLY constants to
+   * prevent the last-loaded palette from overriding everything.
+   * 
+   * All color values should meet WCAG AA contrast requirements. 
+   * Test color contrast with tests/accessibility/test_color_contrast.py
    * ================================================================ */
   
-  --ocean-blue: #003366;
-  --sky-blue: #e6f2ff;
-  --bright-white: #ffffff;
-  --deep-blue: #0066cc;
-  --slate-blue: #5599dd;
-  --warning-red: #cc3300;
-  --soft-blue: #f0f8ff;
-  --muted-blue: #ccddee;
+  --custom-ocean-blue: #003366;
+  --custom-sky-blue: #e6f2ff;
+  --custom-bright-white: #ffffff;
+  --custom-deep-blue: #0066cc;
+  --custom-slate-blue: #5599dd;
+  --custom-warning-red: #cc3300;
+  --custom-soft-blue: #f0f8ff;
+  --custom-muted-blue: #ccddee;
   
-  /* ================================================================
-   * NAMESPACED VARIABLE MAPPINGS (FOR INLINE <LINK> FALLBACK)
+  /* ❌ DO NOT ADD THESE TO :root:
+   * --mkdocs-terminal-bg-color: var(--custom-sky-blue);     ← WRONG!
+   * --mkdocs-terminal-font-color: var(--custom-ocean-blue); ← WRONG!
+   * --background-color: ...                                  ← WRONG!
+   * --font-color: ...                                        ← WRONG!
    * 
-   * Map your color constants to the theme's namespaced variables.
-   * These provide fallback when someone uses:
-   *   <link href="css/custom.css" rel="stylesheet">
-   * in a documentation page.
-   * ================================================================ */
-  
-  /* Color mappings */
-  --mkdocs-terminal-font-color: var(--ocean-blue);
-  --mkdocs-terminal-bg-color: var(--sky-blue);
-  --mkdocs-terminal-invert-font-color: var(--bright-white);
-  --mkdocs-terminal-primary-color: var(--deep-blue);
-  --mkdocs-terminal-secondary-color: var(--slate-blue);
-  --mkdocs-terminal-tertiary-color: var(--slate-blue);
-  --mkdocs-terminal-error-color: var(--warning-red);
-  --mkdocs-terminal-progress-bar-bg: var(--muted-blue);
-  --mkdocs-terminal-progress-bar-fill: var(--ocean-blue);
-  --mkdocs-terminal-code-bg-color: var(--soft-blue);
-  --mkdocs-terminal-input-style: solid;
-  --mkdocs-terminal-h1-decoration: none;
-  
-  /* Typography mappings (optional - omit to use defaults) */
-  --mkdocs-terminal-font-size: 15px;
-  --mkdocs-terminal-line-height: 1.4em;
-  --mkdocs-terminal-spacing: 10px;
-  --mkdocs-terminal-font-family: "Fira Code", Menlo, Monaco, "Courier New", monospace, serif;
-  --mkdocs-terminal-mono-font-family: "Fira Code", Menlo, Monaco, "Courier New", monospace, serif;
-  --mkdocs-terminal-page-width: 60em;
-  
-  /* ================================================================
-   * LEGACY VARIABLE ALIASES
-   * 
-   * These map legacy variable names to the new namespaced versions.
-   * Include these for consistency with bundled palettes and to
-   * participate in the designed fallback mechanism.
-   * ================================================================ */
-  
-  --font-color: var(--mkdocs-terminal-font-color);
-  --background-color: var(--mkdocs-terminal-bg-color);
-  --invert-font-color: var(--mkdocs-terminal-invert-font-color);
-  --primary-color: var(--mkdocs-terminal-primary-color);
-  --secondary-color: var(--mkdocs-terminal-secondary-color);
-  --tertiary-color: var(--mkdocs-terminal-tertiary-color);
-  --error-color: var(--mkdocs-terminal-error-color);
-  --progress-bar-background: var(--mkdocs-terminal-progress-bar-bg);
-  --progress-bar-fill: var(--mkdocs-terminal-progress-bar-fill);
-  --code-bg-color: var(--mkdocs-terminal-code-bg-color);
-  --input-style: var(--mkdocs-terminal-input-style);
-  --display-h1-decoration: var(--mkdocs-terminal-h1-decoration);
-  --global-font-size: var(--mkdocs-terminal-font-size);
-  --global-line-height: var(--mkdocs-terminal-line-height);
-  --global-space: var(--mkdocs-terminal-spacing);
-  --font-stack: var(--mkdocs-terminal-font-family);
-  --mono-font-stack: var(--mkdocs-terminal-mono-font-family);
-  --page-width: var(--mkdocs-terminal-page-width);
+   * These MUST be in [data-palette="custom"] block below!
+   */
 }
 
 [data-palette="custom"] {
   /* ================================================================
-   * NAMESPACED VARIABLE MAPPINGS (FOR PALETTE SELECTOR)
+   * ALL VARIABLE MAPPINGS GO HERE
    * 
-   * These are the SAME mappings as in :root above, but scoped to
-   * [data-palette="custom"]. When the palette selector is active,
-   * these override the :root defaults due to higher CSS specificity.
+   * This block has higher specificity than :root, so it wins when
+   * <html data-palette="custom">. Only applies when the attribute
+   * matches, enabling instant palette switching.
    * 
-   * NOTE: The duplication of mappings (appearing in both :root and
-   * [data-palette] blocks) is NECESSARY to support both:
-   * 1. Inline <link> usage (needs :root fallback)
-   * 2. Runtime palette switching (needs [data-palette] scoping)
-   * 
-   * However, each hex code appears only ONCE (in the constants above),
-   * preventing color drift between the two methods.
+   * Map color constants (from :root above) to theme variables.
+   * Each constant is referenced here, maintaining single source of
+   * truth for each color value.
    * ================================================================ */
   
-  /* Color mappings (references same constants from :root) */
-  --mkdocs-terminal-font-color: var(--ocean-blue);
-  --mkdocs-terminal-bg-color: var(--sky-blue);
-  --mkdocs-terminal-invert-font-color: var(--bright-white);
-  --mkdocs-terminal-primary-color: var(--deep-blue);
-  --mkdocs-terminal-secondary-color: var(--slate-blue);
-  --mkdocs-terminal-tertiary-color: var(--slate-blue);
-  --mkdocs-terminal-error-color: var(--warning-red);
-  --mkdocs-terminal-progress-bar-bg: var(--muted-blue);
-  --mkdocs-terminal-progress-bar-fill: var(--ocean-blue);
-  --mkdocs-terminal-code-bg-color: var(--soft-blue);
+  /* Required namespaced variables */
+  --mkdocs-terminal-bg-color: var(--custom-sky-blue);
+  --mkdocs-terminal-font-color: var(--custom-ocean-blue);
+  --mkdocs-terminal-invert-font-color: var(--custom-bright-white);
+  --mkdocs-terminal-primary-color: var(--custom-deep-blue);
+  --mkdocs-terminal-secondary-color: var(--custom-slate-blue);
+  --mkdocs-terminal-tertiary-color: var(--custom-slate-blue);
+  --mkdocs-terminal-error-color: var(--custom-warning-red);
+  --mkdocs-terminal-progress-bar-bg: var(--custom-muted-blue);
+  --mkdocs-terminal-progress-bar-fill: var(--custom-ocean-blue);
+  --mkdocs-terminal-code-bg-color: var(--custom-soft-blue);
   --mkdocs-terminal-input-style: solid;
   --mkdocs-terminal-h1-decoration: none;
   
-  /* Typography mappings (optional) */
+  /* Typography (optional - omit to use defaults from theme.css) */
   --mkdocs-terminal-font-size: 15px;
   --mkdocs-terminal-line-height: 1.4em;
   --mkdocs-terminal-spacing: 10px;
-  --mkdocs-terminal-font-family: "Fira Code", Menlo, Monaco, "Courier New", monospace, serif;
-  --mkdocs-terminal-mono-font-family: "Fira Code", Menlo, Monaco, "Courier New", monospace, serif;
+  --mkdocs-terminal-font-family: "Fira Code", Menlo, Monaco, "Courier New", monospace;
+  --mkdocs-terminal-mono-font-family: "Fira Code", Menlo, Monaco, "Courier New", monospace;
   --mkdocs-terminal-page-width: 60em;
   
-  /* Legacy variable aliases (for backwards compatibility) */
-  --font-color: var(--mkdocs-terminal-font-color);
+  /* ================================================================
+   * LEGACY VARIABLE ALIASES (for backwards compatibility)
+   * 
+   * Map old variable names to new namespaced versions. This ensures
+   * custom palettes work consistently with the compatibility layer
+   * in theme.css and supports sites with custom CSS that still uses
+   * legacy variable names.
+   * ================================================================ */
+  
   --background-color: var(--mkdocs-terminal-bg-color);
+  --font-color: var(--mkdocs-terminal-font-color);
   --invert-font-color: var(--mkdocs-terminal-invert-font-color);
   --primary-color: var(--mkdocs-terminal-primary-color);
   --secondary-color: var(--mkdocs-terminal-secondary-color);

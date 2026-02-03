@@ -67,9 +67,11 @@ LOAD ORDER:
 1. terminal.css
    ┌────────────────────────────────────────┐
    │ :root {                                │
-   │   --font-color: #151515;             │ ← Default values
-   │   --background-color: #fff;          │
-   │   /* ...other defaults... */           │
+   │   /* Structural variables ONLY */      │
+   │   --global-font-size: 15px;            │
+   │   --global-line-height: 1.4em;         │
+   │   --page-width: 60em;                  │
+   │   /* NO color variables */             │
    │ }                                      │
    └────────────────────────────────────────┘
 
@@ -79,7 +81,11 @@ LOAD ORDER:
    │   /* Compatibility layer */            │
    │   --font-color: var(                   │
    │     --mkdocs-terminal-font-color,      │ ← Prefer namespaced
-   │     var(--font-color)                  │ ← Fall back to legacy
+   │     #151515                          │ ← Actual default value
+   │   );                                   │   (NOT circular ref!)
+   │   --background-color: var(             │
+   │     --mkdocs-terminal-bg-color,        │
+   │     #fff                             │
    │   );                                   │
    │   /* ...all variables... */            │
    │ }                                      │
@@ -87,25 +93,49 @@ LOAD ORDER:
 
 3. palettes/dark.css
    ┌────────────────────────────────────────┐
+   │ :root {                                │
+   │   /* Color constants only */           │
+   │   --dark-bg: #222225;                │
+   │   --dark-fg: #e8e9ed;                │
+   │   /* ... other constants ... */        │
+   │ }                                      │ ← No variable mappings!
+   │                                        │   (prevents conflicts)
    │ [data-palette="dark"] {                │ ← Only applies when
    │   /* Namespaced (primary) */           │   data-palette="dark"
    │   --mkdocs-terminal-font-color:        │
-   │     #e8e9ed;                         │
+   │     var(--dark-fg);                    │
+   │   --mkdocs-terminal-bg-color:          │
+   │     var(--dark-bg);                    │
    │                                        │
    │   /* Legacy alias (consistency) */     │
    │   --font-color: var(                   │
    │     --mkdocs-terminal-font-color       │
+   │   );                                   │
+   │   --background-color: var(             │
+   │     --mkdocs-terminal-bg-color         │
    │   );                                   │
    │ }                                      │
    └────────────────────────────────────────┘
 
 4. palettes/light.css
    ┌────────────────────────────────────────┐
+   │ :root {                                │
+   │   /* Color constants only */           │
+   │   --light-bg: #fff;                  │
+   │   --light-fg: #151515;               │
+   │   /* ... other constants ... */        │
+   │ }                                      │ ← No variable mappings!
+   │                                        │
    │ [data-palette="light"] {               │ ← Only applies when
    │   --mkdocs-terminal-font-color:        │   data-palette="light"
-   │     #151515;                         │
+   │     var(--light-fg);                   │
+   │   --mkdocs-terminal-bg-color:          │
+   │     var(--light-bg);                   │
    │   --font-color: var(                   │
    │     --mkdocs-terminal-font-color       │
+   │   );                                   │
+   │   --background-color: var(             │
+   │     --mkdocs-terminal-bg-color         │
    │   );                                   │
    │ }                                      │
    └────────────────────────────────────────┘
@@ -147,11 +177,10 @@ Example C: No palette active, no custom CSS
 ────────────────────────────────────────────
 
 var(--font-color)
-→ theme.css: var(--mkdocs-terminal-font-color, var(--font-color))
-→ --mkdocs-terminal-font-color undefined
-→ Fallback: var(--font-color)
-→ terminal.css :root defines --font-color: #151515
-→ Result: #151515 ✅ (default from terminal.css)
+→ theme.css: var(--mkdocs-terminal-font-color, #151515)
+→ --mkdocs-terminal-font-color undefined (no matching [data-palette])
+→ Fallback: #151515
+→ Result: #151515 ✅ (default from theme.css fallback)
 ```
 
 ## Specificity Analysis
@@ -212,6 +241,120 @@ SCENARIO: Multiple :root definitions
 Result: Equal specificity → cascade order wins → extra_css wins
 ```
 
+## Critical Architecture Decision: Palette :root Blocks
+
+**IMPORTANT**: When the palette selector is enabled and multiple palette CSS files are loaded simultaneously, palette files MUST NOT define variable mappings in their `:root` blocks.
+
+**What is a "variable mapping"?** Any CSS variable definition that assigns theme variables (like `--mkdocs-terminal-bg-color`, `--font-color`, `--background-color`, etc.) to color values or other variables. These MUST only exist in `[data-palette]` blocks.
+
+**What IS allowed in `:root`?** Only palette-specific color constants that are then referenced by the `[data-palette]` block.
+
+### ❌ WRONG: Variable Mappings in :root
+
+```css
+/* dark.css - DO NOT DO THIS! */
+:root {
+  /* Color constants (OK) */
+  --dark-bg: #222225;
+  --dark-fg: #e8e9ed;
+  
+  /* ❌ WRONG: Variable mappings in :root */
+  --mkdocs-terminal-bg-color: var(--dark-bg);
+  --mkdocs-terminal-font-color: var(--dark-fg);
+  --background-color: var(--mkdocs-terminal-bg-color);
+  --font-color: var(--mkdocs-terminal-font-color);
+  /* These will conflict when multiple palettes load! */
+}
+
+[data-palette="dark"] {
+  /* Duplicate mappings here won't help - :root already broke it */
+  --mkdocs-terminal-bg-color: var(--dark-bg);
+  --font-color: var(--mkdocs-terminal-font-color);
+}
+```
+
+### ✅ CORRECT: Constants Only in :root
+
+```css
+/* dark.css - THIS IS CORRECT */
+:root {
+  /* ✅ Color constants ONLY - no assignments to theme variables */
+  --dark-bg: #222225;
+  --dark-fg: #e8e9ed;
+  --dark-primary: #62c4ff;
+  /* Just the hex values, nothing else */
+}
+
+[data-palette="dark"] {
+  /* ✅ ALL variable mappings go here */
+  --mkdocs-terminal-bg-color: var(--dark-bg);
+  --mkdocs-terminal-font-color: var(--dark-fg);
+  --mkdocs-terminal-primary-color: var(--dark-primary);
+  
+  /* Legacy aliases */
+  --background-color: var(--mkdocs-terminal-bg-color);
+  --font-color: var(--mkdocs-terminal-font-color);
+  --primary-color: var(--mkdocs-terminal-primary-color);
+}
+```
+
+### The Problem
+
+When multiple palettes are loaded:
+```css
+/* dark.css */
+:root {
+  --mkdocs-terminal-font-color: #e8e9ed;  /* Grabs global :root */
+}
+
+/* light.css */  
+:root {
+  --mkdocs-terminal-font-color: #151515;  /* Overrides dark.css! */
+}
+
+/* gruvbox_dark.css (loads last) */
+:root {
+  --mkdocs-terminal-font-color: #ebdbb2;  /* Wins globally! */
+}
+```
+
+**Result**: The last-loaded palette's `:root` block sets variables globally, completely ignoring the `data-palette` attribute. Changing `data-palette="dark"` has no effect because gruvbox already set everything in `:root`.
+
+### The Solution
+
+Palette `:root` blocks ONLY define color constants:
+```css
+/* dark.css */
+:root {
+  /* Color constants (no conflicts, just values) */
+  --dark-bg: #222225;
+  --dark-fg: #e8e9ed;
+}
+
+[data-palette="dark"] {
+  /* Variable mappings ONLY in attribute selector */
+  --mkdocs-terminal-font-color: var(--dark-fg);
+  --mkdocs-terminal-bg-color: var(--dark-bg);
+  --font-color: var(--mkdocs-terminal-font-color);
+  --background-color: var(--mkdocs-terminal-bg-color);
+}
+```
+
+**Why This Works**:
+- `:root` color constants don't conflict (just hex values)
+- `[data-palette="dark"]` has higher specificity than `:root`
+- Only the matching palette's `[data-palette]` block applies
+- Changing the attribute instantly switches palettes
+
+### Inline `<link>` Support
+
+The `:root` block in palette files exists to support inline `<link href="palettes/dark.css">` usage when the selector is **disabled**. In this case:
+- Only ONE palette CSS file is loaded
+- No `:root` conflicts
+- Theme.css compatibility layer handles the mapping
+
+When selector is **enabled**, the `:root` blocks are ignored (only constants used by `[data-palette]` blocks).
+
 ## Why This Architecture?
 
 ### ✅ Advantages
@@ -252,6 +395,8 @@ Result: Equal specificity → cascade order wins → extra_css wins
 - Three-layer variable resolution (terminal → theme → palette)
 - Fallback chain requires understanding CSS custom properties
 - More documentation needed for custom palette authors
+- **Critical**: Palette :root blocks must ONLY contain color constants (not variable mappings)
+- Easy to accidentally break by adding variables to :root when multiple palettes load
 
 **Migration Effort**
 - All 9 bundled palettes need refactoring
@@ -299,6 +444,102 @@ This limitation is acceptable because:
 - Simple workaround exists (don't configure default palette)
 - Adding support would require additional JavaScript complexity
 - CSS specificity is working as designed
+
+## Custom Palette Template
+
+Authors creating custom palettes should follow this exact structure:
+
+```css
+/**
+ * Custom Palette Template for mkdocs-terminal
+ * Replace "mypalette" and colors with your values
+ */
+
+/* CRITICAL: Define color constants in :root, NOT variable mappings!
+ * When multiple palettes load (selector enabled), only the last :root
+ * block wins. Variable mappings MUST be in [data-palette] only. */
+
+:root {
+    /* Color constants - each hex code defined once */
+    --mypalette-bg: #yourcolor;
+    --mypalette-fg: #yourcolor;
+    --mypalette-primary: #yourcolor;
+    --mypalette-secondary: #yourcolor;
+    --mypalette-error: #yourcolor;
+    --mypalette-code-bg: #yourcolor;
+    
+    /* DO NOT define --mkdocs-terminal-* or --font-color here! */
+}
+
+/* Palette scoping - only applies when data-palette="mypalette" */
+[data-palette="mypalette"] {
+    /* Required namespaced variables */
+    --mkdocs-terminal-bg-color: var(--mypalette-bg);
+    --mkdocs-terminal-font-color: var(--mypalette-fg);
+    --mkdocs-terminal-invert-font-color: var(--mypalette-bg);
+    --mkdocs-terminal-primary-color: var(--mypalette-primary);
+    --mkdocs-terminal-secondary-color: var(--mypalette-secondary);
+    --mkdocs-terminal-tertiary-color: var(--mypalette-secondary);
+    --mkdocs-terminal-error-color: var(--mypalette-error);
+    --mkdocs-terminal-progress-bar-bg: var(--mypalette-secondary);
+    --mkdocs-terminal-progress-bar-fill: var(--mypalette-fg);
+    --mkdocs-terminal-code-bg-color: var(--mypalette-code-bg);
+    --mkdocs-terminal-input-style: solid;
+    --mkdocs-terminal-h1-decoration: none;
+    
+    /* Typography (optional, use defaults if omitted) */
+    --mkdocs-terminal-font-size: 15px;
+    --mkdocs-terminal-line-height: 1.4em;
+    --mkdocs-terminal-spacing: 10px;
+    --mkdocs-terminal-font-family: Menlo, Monaco, monospace;
+    --mkdocs-terminal-mono-font-family: Menlo, Monaco, monospace;
+    --mkdocs-terminal-page-width: 60em;
+    
+    /* Legacy variable aliases (for backwards compatibility) */
+    --background-color: var(--mkdocs-terminal-bg-color);
+    --font-color: var(--mkdocs-terminal-font-color);
+    --invert-font-color: var(--mkdocs-terminal-invert-font-color);
+    --primary-color: var(--mkdocs-terminal-primary-color);
+    --secondary-color: var(--mkdocs-terminal-secondary-color);
+    --tertiary-color: var(--mkdocs-terminal-tertiary-color);
+    --error-color: var(--mkdocs-terminal-error-color);
+    --progress-bar-background: var(--mkdocs-terminal-progress-bar-bg);
+    --progress-bar-fill: var(--mkdocs-terminal-progress-bar-fill);
+    --code-bg-color: var(--mkdocs-terminal-code-bg-color);
+    --input-style: var(--mkdocs-terminal-input-style);
+    --display-h1-decoration: var(--mkdocs-terminal-h1-decoration);
+    --global-font-size: var(--mkdocs-terminal-font-size);
+    --global-line-height: var(--mkdocs-terminal-line-height);
+    --global-space: var(--mkdocs-terminal-spacing);
+    --font-stack: var(--mkdocs-terminal-font-family);
+    --mono-font-stack: var(--mkdocs-terminal-mono-font-family);
+    --page-width: var(--mkdocs-terminal-page-width);
+}
+```
+
+**Usage in mkdocs.yml**:
+```yaml
+theme:
+  name: terminal
+  palette:
+    default: mypalette
+    selector:
+      enabled: true
+      options:
+        - dark  # bundled palette
+        - name: mypalette
+          css: css/mypalette.css  # custom palette
+
+extra_css:
+  - css/mypalette.css  # Required for MkDocs to copy the file
+```
+
+**Key Points**:
+1. `:root` = color constants ONLY (no variable mappings)
+2. `[data-palette]` = ALL variable mappings (namespaced + legacy)
+3. Reference constants via `var(--mypalette-name)` for DRY
+4. Include legacy aliases for backwards compatibility
+5. Add file to `extra_css` in mkdocs.yml
 
 ## Testing Strategy
 

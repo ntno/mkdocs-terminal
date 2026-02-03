@@ -26,41 +26,7 @@
     --sans-dark-progress-fill: #62c4ff;
     --sans-dark-code-bg: #3f3f44;
 
-    /* Namespaced variable mappings (for inline <link> fallback) */
-    --mkdocs-terminal-bg-color: var(--sans-dark-bg);
-    --mkdocs-terminal-font-color: var(--sans-dark-fg);
-    --mkdocs-terminal-invert-font-color: var(--sans-dark-invert-fg);
-    --mkdocs-terminal-primary-color: var(--sans-dark-primary);
-    --mkdocs-terminal-secondary-color: var(--sans-dark-secondary);
-    --mkdocs-terminal-tertiary-color: var(--sans-dark-secondary);
-    --mkdocs-terminal-error-color: var(--sans-dark-error);
-    --mkdocs-terminal-progress-bar-bg: var(--sans-dark-progress-bg);
-    --mkdocs-terminal-progress-bar-fill: var(--sans-dark-progress-fill);
-    --mkdocs-terminal-code-bg-color: var(--sans-dark-code-bg);
-    --mkdocs-terminal-input-style: solid;
-    --mkdocs-terminal-h1-decoration: none;
-    --mkdocs-terminal-font-size: 15px;
-    --mkdocs-terminal-line-height: 1.4em;
-    --mkdocs-terminal-font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
-    --mkdocs-terminal-page-width: 60em;
     
-    /* Legacy variable aliases (for backwards compatibility) */
-    --background-color: var(--mkdocs-terminal-bg-color);
-    --font-color: var(--mkdocs-terminal-font-color);
-    --invert-font-color: var(--mkdocs-terminal-invert-font-color);
-    --primary-color: var(--mkdocs-terminal-primary-color);
-    --secondary-color: var(--mkdocs-terminal-secondary-color);
-    --tertiary-color: var(--mkdocs-terminal-tertiary-color);
-    --error-color: var(--mkdocs-terminal-error-color);
-    --progress-bar-background: var(--mkdocs-terminal-progress-bar-bg);
-    --progress-bar-fill: var(--mkdocs-terminal-progress-bar-fill);
-    --code-bg-color: var(--mkdocs-terminal-code-bg-color);
-    --input-style: var(--mkdocs-terminal-input-style);
-    --display-h1-decoration: var(--mkdocs-terminal-h1-decoration);
-    --global-font-size: var(--mkdocs-terminal-font-size);
-    --global-line-height: var(--mkdocs-terminal-line-height);
-    --font-stack: var(--mkdocs-terminal-font-family);
-    --page-width: var(--mkdocs-terminal-page-width);
 }
 
 [data-palette="sans_dark"] {
