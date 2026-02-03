@@ -78,12 +78,26 @@ Open http://localhost:8000 in your browser.
 **Purpose:** Verify palette switching works via CSS attribute selectors.
 
 ### Steps:
+1. Build site with selector enabled and multiple options in mkdocs.yml:
+   ```yaml
+   theme:
+     name: terminal
+     palette:
+       default: dark
+       selector:
+         enabled: true
+         options:
+           - dark
+           - lightyear
+           - gruvbox_dark
+   ```
+
 1. Open page in browser
 2. Open DevTools → Elements tab
 3. Inspect `<html>` element
 4. Manually change `data-palette` attribute:
    - In Elements panel, edit attribute: `data-palette="dark"`
-   - Change to: `data-palette="light"`
+   - Change to: `data-palette="lightyear"`
    - Change to: `data-palette="gruvbox_dark"`
 
 ### Expected Results:
