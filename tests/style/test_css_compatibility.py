@@ -36,7 +36,15 @@ class TestCompatibilityLayerPresence:
 
 
 class TestVariableMappings:
-    """Tests that all required variable mappings are present."""
+    """Tests that all required variable mappings use actual default values.
+    
+    The compatibility layer should map legacy variables to namespaced versions
+    with ACTUAL default values as fallbacks (from default.css), not circular
+    references. This prevents issues when palette CSS files load.
+    
+    Pattern: --font-color: var(--mkdocs-terminal-font-color, #151515);
+    NOT: --font-color: var(--mkdocs-terminal-font-color, var(--font-color));
+    """
 
     REQUIRED_COLOR_VARS = [
         ('--font-color', '--mkdocs-terminal-font-color'),
@@ -64,18 +72,31 @@ class TestVariableMappings:
 
     @pytest.mark.parametrize("legacy_var,namespaced_var", REQUIRED_COLOR_VARS)
     def test_color_variable_mapping(self, theme_css_content, legacy_var, namespaced_var):
-        """Test each color variable has correct fallback mapping."""
-        # Pattern: --legacy: var(--namespaced, var(--legacy));
-        pattern = rf'{re.escape(legacy_var)}:\s*var\({re.escape(namespaced_var)},\s*var\({re.escape(legacy_var)}\)\)'
+        """Test each color variable has correct fallback to actual default values."""
+        # Pattern: --legacy: var(--namespaced, <actual-value>);
+        # Fallback should be a real value (hex color, keyword, etc.), not a circular reference
+        pattern = rf'{re.escape(legacy_var)}:\s*var\({re.escape(namespaced_var)},\s*[^)]+\)'
         assert re.search(pattern, theme_css_content), \
             f"Missing or incorrect mapping for {legacy_var} → {namespaced_var}"
+        
+        # Verify it's NOT a circular reference
+        circular_pattern = rf'{re.escape(legacy_var)}:\s*var\({re.escape(namespaced_var)},\s*var\({re.escape(legacy_var)}\)\)'
+        assert not re.search(circular_pattern, theme_css_content), \
+            f"Circular reference detected for {legacy_var} - should use actual default value instead"
 
     @pytest.mark.parametrize("legacy_var,namespaced_var", REQUIRED_TYPOGRAPHY_VARS)
     def test_typography_variable_mapping(self, theme_css_content, legacy_var, namespaced_var):
-        """Test each typography variable has correct fallback mapping."""
-        pattern = rf'{re.escape(legacy_var)}:\s*var\({re.escape(namespaced_var)},\s*var\({re.escape(legacy_var)}\)\)'
+        """Test each typography variable has correct fallback to actual default values."""
+        # Pattern: --legacy: var(--namespaced, <actual-value>);
+        # Fallback should be a real value (15px, 1.4em, etc.), not a circular reference
+        pattern = rf'{re.escape(legacy_var)}:\s*var\({re.escape(namespaced_var)},\s*[^)]+\)'
         assert re.search(pattern, theme_css_content), \
             f"Missing or incorrect mapping for {legacy_var} → {namespaced_var}"
+        
+        # Verify it's NOT a circular reference
+        circular_pattern = rf'{re.escape(legacy_var)}:\s*var\({re.escape(namespaced_var)},\s*var\({re.escape(legacy_var)}\)\)'
+        assert not re.search(circular_pattern, theme_css_content), \
+            f"Circular reference detected for {legacy_var} - should use actual default value instead"
 
     def test_all_required_variables_mapped(self, theme_css_content):
         """Test that all 18 required variables are mapped."""
@@ -86,14 +107,35 @@ class TestVariableMappings:
             assert re.search(pattern, theme_css_content), \
                 f"Missing mapping for {legacy_var}"
 
+    def test_actual_default_values(self, theme_css_content):
+        """Test that fallbacks use actual values from default.css, not circular references."""
+        # These are the expected default values from default.css
+        expected_defaults = {
+            '--font-color': '#151515',
+            '--background-color': '#fff',
+            '--primary-color': '#1a95e0',
+            '--secondary-color': '#727578',
+            '--error-color': '#d20962',
+            '--global-font-size': '15px',
+            '--global-line-height': '1.4em',
+            '--global-space': '10px',
+            '--page-width': '60em',
+        }
+        
+        for legacy_var, expected_default in expected_defaults.items():
+            # Pattern: --legacy: var(--namespaced, expected_default);
+            pattern = rf'{re.escape(legacy_var)}:\s*var\([^,]+,\s*{re.escape(expected_default)}\)'
+            assert re.search(pattern, theme_css_content), \
+                f"{legacy_var} should have fallback value {expected_default}"
+
 
 class TestFallbackChainStructure:
     """Tests the structure of fallback chains."""
 
     def test_fallback_chain_format(self, theme_css_content):
-        """Test fallback chains use correct var() nesting."""
-        # Should be: var(--namespaced, var(--legacy))
-        # Not: var(--namespaced, --legacy) or var(--namespaced)
+        """Test fallback chains use actual default values, not circular references."""
+        # Should be: var(--namespaced, <actual-value>)
+        # NOT: var(--namespaced, var(--legacy))
 
         # Find all variable definitions in :root block
         root_block_match = re.search(r':root\s*\{([^}]+)\}', theme_css_content, re.DOTALL)
@@ -102,17 +144,26 @@ class TestFallbackChainStructure:
         root_content = root_block_match.group(1)
 
         # Look for variable definitions with fallbacks
-        var_definitions = re.findall(r'--[\w-]+:\s*var\([^;]+\);', root_content)
+        var_definitions = re.findall(r'(--[\w-]+):\s*var\(([^)]+)\);', root_content)
 
         # Should have at least 18 variable definitions
         assert len(var_definitions) >= 18, f"Expected at least 18 variable definitions, found {len(var_definitions)}"
 
-        # Each should follow pattern: var(--namespace, var(--legacy))
-        for var_def in var_definitions:
-            if 'mkdocs-terminal' in var_def:
-                # Should have nested var() for fallback
-                assert var_def.count('var(') >= 2, \
-                    f"Variable definition missing nested fallback: {var_def}"
+        # Each should follow pattern: var(--namespace, <actual-default>)
+        # NOT circular references like var(--namespace, var(--legacy))
+        for var_name, var_value in var_definitions:
+            # Skip if not a legacy variable (already namespaced)
+            if 'mkdocs-terminal' in var_name:
+                continue
+                
+            # Should have exactly 1 var() (the outer one), not nested
+            var_value_full = f"var({var_value})"
+            assert var_value_full.count('var(') == 1, \
+                f"Circular reference detected in {var_name}: var({var_value}) - should use actual default value"
+            
+            # Verify it references a namespaced variable
+            assert '--mkdocs-terminal-' in var_value, \
+                f"{var_name} should reference namespaced variable, got: var({var_value})"
 
 
 class TestCSSLoadOrder:
@@ -166,12 +217,13 @@ class TestIntegration:
         var_defs = re.findall(r'(--[\w-]+):\s*var\(([^)]+)\)', root_content)
 
         for var_name, var_value in var_defs:
-            # Fallback should reference the same legacy variable name
-            # Pattern: --font-color: var(--mkdocs-terminal-font-color, var(--font-color))
-            # The var_name should appear in var_value fallback
-            if 'mkdocs-terminal' not in var_name:
-                continue  # Skip if not a legacy var
+            # Skip namespaced variables
+            if 'mkdocs-terminal' in var_name:
+                continue
 
-            # Should contain nested var() with same variable name
-            assert var_name in var_value, \
-                f"Fallback for {var_name} should reference itself in fallback chain"
+            # Legacy variables should NOT reference themselves in fallback
+            # Pattern should be: --font-color: var(--mkdocs-terminal-font-color, #151515)
+            # NOT: --font-color: var(--mkdocs-terminal-font-color, var(--font-color))
+            circular_self_ref = f"var({var_name}"
+            assert circular_self_ref not in var_value, \
+                f"Circular reference detected: {var_name} references itself in fallback. Should use actual default value instead."
