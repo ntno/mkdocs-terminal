@@ -173,9 +173,9 @@ Open http://localhost:8000 in your browser.
 4. Check DevTools → Network tab
 
 ### Expected Results:
-- [ ] `css/ocean.css` loads successfully (200 OK)
-- [ ] Can switch to ocean palette via: `document.documentElement.setAttribute('data-palette', 'ocean')`
-- [ ] Custom palette styles apply correctly
+- [x] `css/ocean.css` loads successfully (200 OK)
+- [x] Can switch to ocean palette via: `document.documentElement.setAttribute('data-palette', 'ocean')`
+- [x] Custom palette styles apply correctly
 
 ---
 
@@ -194,10 +194,10 @@ Open http://localhost:8000 in your browser.
 5. Reload page
 
 ### Expected Results:
-- [ ] If 'pink' is NOT in `data-available-palettes`, it should NOT be applied
-- [ ] Page loads with build-time default palette instead
-- [ ] Console shows no errors
-- [ ] `data-palette` attribute matches the default, not 'pink'
+- [x] If 'pink' is NOT in `data-available-palettes`, it should NOT be applied
+- [x] Page loads with build-time default palette instead
+- [x] Console shows no errors
+- [x] `data-palette` attribute matches the default, not 'pink'
 
 ---
 
@@ -245,7 +245,7 @@ Open http://localhost:8000 in your browser.
 
 ### Browsers to Test:
 - [ ] Chrome/Chromium
-- [ ] Firefox
+- [x] Firefox
 - [ ] Safari (macOS)
 - [ ] Edge
 
@@ -361,6 +361,8 @@ For each configured palette:
 ---
 
 ## Summary
+
+tested basic functionality on Firefox 2/2/26
 
 **Tests Completed:** _____ / 15
 
