@@ -158,12 +158,48 @@ _Status: 🔄 In progress — establishes theming foundation._
   - [x] Test inline FOUC prevention script executes before CSS load
   - [x] Test invalid localStorage value doesn't override default (validation works)
   - [x] Verify all application mechanism tests pass before proceeding
+- [ ] **Refactor test utilities for new CSS architecture** (Phase 2.5)
+  - [ ] Enhance `tests/accessibility/utilities/css_parser.py::extract_css_attributes()`
+    - [ ] Add support for parsing `[data-palette="name"]` attribute selectors (not just `:root` blocks)
+    - [ ] Add `data_palette` parameter to specify which palette context to extract
+    - [ ] Update regex patterns to handle attribute selector syntax
+    - [ ] Preserve backwards compatibility for `:root` block parsing
+    - [ ] Add inline documentation explaining attribute selector parsing
+  - [ ] Create CSS cascade loader utility
+    - [ ] Implement `load_palette_context()` helper in css_parser.py
+    - [ ] Function loads full CSS cascade: terminal.css → theme.css → palette file
+    - [ ] Mimics browser CSS resolution behavior (later specificity wins)
+    - [ ] Resolves namespaced variables (`--mkdocs-terminal-*`) to legacy variables
+    - [ ] Returns merged variable context with proper precedence
+    - [ ] Document cascade resolution algorithm inline
+  - [ ] **Test enhanced CSS parser utilities**
+    - [ ] Test `extract_css_attributes()` with `[data-palette]` blocks
+    - [ ] Test extraction with both `:root` and attribute selectors in same file
+    - [ ] Test `data_palette` parameter correctly filters to specific palette
+    - [ ] Test backwards compatibility with existing `:root`-only palettes
+    - [ ] Test `load_palette_context()` cascade resolution
+    - [ ] Verify theme.css defaults appear when palette doesn't override
+    - [ ] Verify palette overrides take precedence over theme defaults
+    - [ ] Verify all parser utility tests pass before updating accessibility tests
+  - [ ] Update failing accessibility tests
+    - [ ] Update `test_extract_default_theme_attributes` to use theme.css as source (not terminal.css)
+    - [ ] Update `test_extract_gruvbox_dark_theme_attributes` to use `load_palette_context()`
+    - [ ] Update `test_extract_sans_theme_attributes` to handle optional typography overrides
+    - [ ] Update `test_extract_sans_with_terminal_fallback` to use cascade loader
+    - [ ] Verify all 34 accessibility tests pass after updates
+  - [ ] **Document test utility changes**
+    - [ ] Add section to DEVELOPER_README.md explaining CSS parser utilities
+    - [ ] Document when to use `extract_css_attributes()` vs `load_palette_context()`
+    - [ ] Include examples for testing custom palettes
+    - [ ] Note backwards compatibility considerations
 - [ ] Validate palette accessibility
   - [ ] Verify bundled palettes meet WCAG AA contrast (leverage existing `tests/accessibility/test_color_contrast.py`)
   - [ ] Add WCAG AA contrast requirements to palette guidelines
 - [ ] **Update documentation for Phase 2 changes**
-  - [ ] Document CSS variable naming convention in inline comments (palette files)
-  - [ ] Document compatibility layer rationale in `theme.css` inline comments
+  - [x] Document CSS variable naming convention in inline comments (palette files) ✅
+  - [x] Document compatibility layer rationale in `theme.css` inline comments ✅
+  - [x] Update CSS architecture documentation (`documentation/docs/design/css-architecture.md`) ✅
+  - [x] Update custom palette template (`terminal/css/palettes/custom-palette-template.css`) ✅
   - [ ] Update `DEVELOPER_README.md` with palette architecture overview
   - [ ] Document data-palette attribute mechanism for theme developers
   - [ ] Add custom palette migration guide (design.md already includes this)
@@ -177,7 +213,8 @@ _Status: 🔄 In progress — establishes theming foundation._
 - Palette switching mechanism works via data attribute
 - Documentation exists for creating custom palettes
 - No visual flash when switching palettes
-- **All CSS/palette tests pass with ≥80% coverage**
+- **All CSS/palette tests pass with ≥80% coverage (64/68 tests passing, 94%)**
+- **Test utilities support new CSS architecture (`[data-palette]` blocks, cascade resolution)**
 - **CSS architecture and palette mechanism are documented**
 
 ---
