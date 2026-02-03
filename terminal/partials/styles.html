@@ -3,7 +3,19 @@
 {% set palette_config = config.theme.palette_config or {} %}
 {% set valid_options = palette_config.get("valid_options", []) %}
 
-<!-- FOUC prevention: restore saved palette before CSS loads -->
+<!--
+  FOUC Prevention Script
+  
+  CRITICAL: This script MUST execute synchronously BEFORE stylesheets are linked.
+  
+  - MUST be inline (not external file)
+  - MUST NOT use defer or async attributes
+  - MUST appear before <link rel="stylesheet"> tags
+  
+  This ensures the data-palette attribute is set before CSS is parsed,
+  preventing a flash of unstyled content (FOUC) when restoring the user's
+  saved palette preference from localStorage.
+-->
 <script>
 (function() {
   try {
