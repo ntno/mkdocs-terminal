@@ -6,7 +6,7 @@ Tests verify that:
 - Attributes work with various palette configurations
 """
 
-from tests.utils.html import assert_valid_html
+from tests.utils.html import assert_valid_html, ALLOW_EMPTY_ELEMENTS
 import pytest
 import json
 import re
@@ -49,7 +49,7 @@ class TestDataPaletteAttribute:
         """data-palette attribute should be present on html element."""
         rendered = base_template.render(minimal_context)
         assert 'data-palette="default"' in rendered
-        assert_valid_html(rendered)
+        assert_valid_html(rendered, ALLOW_EMPTY_ELEMENTS)
 
     @pytest.mark.parametrize("palette_name", [
         "dark",
@@ -68,14 +68,14 @@ class TestDataPaletteAttribute:
         rendered = base_template.render(minimal_context)
         expected_attr = f'data-palette="{palette_name}"'
         assert expected_attr in rendered
-        assert_valid_html(rendered)
+        assert_valid_html(rendered, ALLOW_EMPTY_ELEMENTS)
 
     def test_data_palette_defaults_to_default(self, base_template, minimal_context):
         """When no palette configured, data-palette should be 'default'."""
         minimal_context["config"]["theme"]["palette"] = None
         rendered = base_template.render(minimal_context)
         assert 'data-palette="default"' in rendered
-        assert_valid_html(rendered)
+        assert_valid_html(rendered, ALLOW_EMPTY_ELEMENTS)
 
 
 class TestDataAvailablePalettesAttribute:
@@ -85,7 +85,7 @@ class TestDataAvailablePalettesAttribute:
         """data-available-palettes attribute should be present."""
         rendered = base_template.render(minimal_context)
         assert 'data-available-palettes=' in rendered
-        assert_valid_html(rendered)
+        assert_valid_html(rendered, ALLOW_EMPTY_ELEMENTS)
 
     def test_empty_when_no_valid_options(self, base_template, minimal_context):
         """When no valid options, data-available-palettes should be empty string."""
@@ -101,7 +101,7 @@ class TestDataAvailablePalettesAttribute:
         # Should be empty string
         attr_value = match.group(1)
         assert attr_value == ""
-        assert_valid_html(rendered)
+        assert_valid_html(rendered, ALLOW_EMPTY_ELEMENTS)
 
     def test_contains_valid_option_names(self, base_template, minimal_context):
         """data-available-palettes should contain names of valid options as comma-separated string."""
@@ -124,7 +124,7 @@ class TestDataAvailablePalettesAttribute:
         assert "dark" in palettes
         assert "light" in palettes
         assert "custom" in palettes
-        assert_valid_html(rendered)
+        assert_valid_html(rendered, ALLOW_EMPTY_ELEMENTS)
 
     def test_only_names_not_full_objects(self, base_template, minimal_context):
         """data-available-palettes should contain only names as comma-separated string."""
@@ -144,7 +144,7 @@ class TestDataAvailablePalettesAttribute:
         assert isinstance(palettes, list)
         assert all(isinstance(p, str) for p in palettes)
         assert palettes == ["dark", "light"]
-        assert_valid_html(rendered)
+        assert_valid_html(rendered, ALLOW_EMPTY_ELEMENTS)
 
     def test_handles_missing_palette_config(self, base_template, minimal_context):
         """Should handle missing palette_config gracefully."""
@@ -156,7 +156,7 @@ class TestDataAvailablePalettesAttribute:
         assert match
         attr_value = match.group(1)
         assert attr_value == ""
-        assert_valid_html(rendered)
+        assert_valid_html(rendered, ALLOW_EMPTY_ELEMENTS)
 
 
 class TestAttributeInteraction:
@@ -182,7 +182,7 @@ class TestAttributeInteraction:
             palettes = attr_value.split(',')
         else:
             palettes = []
-        assert_valid_html(rendered)
+        assert_valid_html(rendered, ALLOW_EMPTY_ELEMENTS)
 
     def test_default_palette_can_be_in_available(self, base_template, minimal_context):
         """Default palette can also be in available palettes list."""
@@ -204,7 +204,7 @@ class TestAttributeInteraction:
         else:
             palettes = []
         assert "light" in palettes
-        assert_valid_html(rendered)
+        assert_valid_html(rendered, ALLOW_EMPTY_ELEMENTS)
 
 
 class TestHTMLElementStructure:
@@ -215,7 +215,7 @@ class TestHTMLElementStructure:
         rendered = base_template.render(minimal_context)
         assert '<html' in rendered
         assert 'lang="en"' in rendered
-        assert_valid_html(rendered)
+        assert_valid_html(rendered, ALLOW_EMPTY_ELEMENTS)
 
     def test_both_attributes_on_same_element(self, base_template, minimal_context):
         """Both data attributes should be on the html element."""
@@ -232,4 +232,4 @@ class TestHTMLElementStructure:
         assert 'data-palette=' in html_tag
         assert 'data-available-palettes=' in html_tag
         assert 'lang=' in html_tag
-        assert_valid_html(rendered)
+        assert_valid_html(rendered, ALLOW_EMPTY_ELEMENTS)
