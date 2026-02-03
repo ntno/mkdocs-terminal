@@ -20,7 +20,8 @@
 (function() {
   try {
     var saved = localStorage.getItem('mkdocs-terminal-palette');
-    var available = {{ valid_options | map(attribute='name') | list | tojson }};
+    var availableStr = '{{ valid_options | map(attribute='name') | join(',') }}';
+    var available = availableStr ? availableStr.split(',') : [];
     // Validate saved palette is in available options
     if (saved && available.indexOf(saved) !== -1) {
       document.documentElement.setAttribute('data-palette', saved);

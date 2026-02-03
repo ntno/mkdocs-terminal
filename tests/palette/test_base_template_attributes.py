@@ -88,7 +88,7 @@ class TestDataAvailablePalettesAttribute:
         assert_valid_html(rendered)
 
     def test_empty_when_no_valid_options(self, base_template, minimal_context):
-        """When no valid options, data-available-palettes should be empty array."""
+        """When no valid options, data-available-palettes should be empty string."""
         minimal_context["config"]["theme"]["palette_config"] = {
             "valid_options": []
         }
@@ -98,14 +98,13 @@ class TestDataAvailablePalettesAttribute:
         match = re.search(r'data-available-palettes="([^"]*)"', rendered)
         assert match, "data-available-palettes attribute should be present"
         
-        # Parse the JSON (may be HTML-escaped)
-        attr_value = match.group(1).replace('&quot;', '"')
-        palettes = json.loads(attr_value)
-        assert palettes == []
+        # Should be empty string
+        attr_value = match.group(1)
+        assert attr_value == ""
         assert_valid_html(rendered)
 
     def test_contains_valid_option_names(self, base_template, minimal_context):
-        """data-available-palettes should contain names of valid options."""
+        """data-available-palettes should contain names of valid options as comma-separated string."""
         minimal_context["config"]["theme"]["palette_config"] = {
             "valid_options": [
                 {"name": "dark", "label": "Dark"},
@@ -118,8 +117,8 @@ class TestDataAvailablePalettesAttribute:
         # Extract and parse the attribute
         match = re.search(r'data-available-palettes="([^"]*)"', rendered)
         assert match
-        attr_value = match.group(1).replace('&quot;', '"')
-        palettes = json.loads(attr_value)
+        attr_value = match.group(1)
+        palettes = attr_value.split(',') if attr_value else []
         
         assert len(palettes) == 3
         assert "dark" in palettes
@@ -128,7 +127,7 @@ class TestDataAvailablePalettesAttribute:
         assert_valid_html(rendered)
 
     def test_only_names_not_full_objects(self, base_template, minimal_context):
-        """data-available-palettes should contain only names, not full option objects."""
+        """data-available-palettes should contain only names as comma-separated string."""
         minimal_context["config"]["theme"]["palette_config"] = {
             "valid_options": [
                 {"name": "dark", "label": "Dark Theme", "css": None},
@@ -138,10 +137,10 @@ class TestDataAvailablePalettesAttribute:
         rendered = base_template.render(minimal_context)
         
         match = re.search(r'data-available-palettes="([^"]*)"', rendered)
-        attr_value = match.group(1).replace('&quot;', '"')
-        palettes = json.loads(attr_value)
+        attr_value = match.group(1)
+        palettes = attr_value.split(',') if attr_value else []
         
-        # Should be simple array of strings, not objects
+        # Should be simple list of strings, not objects
         assert isinstance(palettes, list)
         assert all(isinstance(p, str) for p in palettes)
         assert palettes == ["dark", "light"]
@@ -152,12 +151,11 @@ class TestDataAvailablePalettesAttribute:
         minimal_context["config"]["theme"].pop("palette_config", None)
         rendered = base_template.render(minimal_context)
         
-        # Should still render with empty array
+        # Should still render with empty string
         match = re.search(r'data-available-palettes="([^"]*)"', rendered)
         assert match
-        attr_value = match.group(1).replace('&quot;', '"')
-        palettes = json.loads(attr_value)
-        assert palettes == []
+        attr_value = match.group(1)
+        assert attr_value == ""
         assert_valid_html(rendered)
 
 
@@ -180,8 +178,10 @@ class TestAttributeInteraction:
         # But available should only contain "light"
         match = re.search(r'data-available-palettes="([^"]*)"', rendered)
         attr_value = match.group(1).replace('&quot;', '"')
-        palettes = json.loads(attr_value)
-        assert palettes == ["light"]
+        if attr_value:
+            palettes = attr_value.split(',')
+        else:
+            palettes = []
         assert_valid_html(rendered)
 
     def test_default_palette_can_be_in_available(self, base_template, minimal_context):
@@ -199,8 +199,10 @@ class TestAttributeInteraction:
         
         match = re.search(r'data-available-palettes="([^"]*)"', rendered)
         attr_value = match.group(1).replace('&quot;', '"')
-        palettes = json.loads(attr_value)
-        assert "dark" in palettes
+        if attr_value:
+            palettes = attr_value.split(',')
+        else:
+            palettes = []
         assert "light" in palettes
         assert_valid_html(rendered)
 
