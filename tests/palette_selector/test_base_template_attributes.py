@@ -7,6 +7,7 @@ Tests verify that:
 """
 
 from tests.utils.html import assert_valid_html, ALLOW_EMPTY_ELEMENTS
+from tests.interface.theme_features import DEFAULT_PALETTES
 import pytest
 import json
 import re
@@ -51,17 +52,7 @@ class TestDataPaletteAttribute:
         assert 'data-palette="default"' in rendered
         assert_valid_html(rendered, ALLOW_EMPTY_ELEMENTS)
 
-    @pytest.mark.parametrize("palette_name", [
-        "dark",
-        "light", 
-        "gruvbox_dark",
-        "sans",
-        "sans_dark",
-        "pink",
-        "blueberry",
-        "lightyear",
-        "red_drum"
-    ])
+    @pytest.mark.parametrize("palette_name", DEFAULT_PALETTES)
     def test_data_palette_reflects_configured_palette(self, base_template, minimal_context, palette_name):
         """data-palette should match the configured palette name."""
         minimal_context["config"]["theme"]["palette"] = palette_name
