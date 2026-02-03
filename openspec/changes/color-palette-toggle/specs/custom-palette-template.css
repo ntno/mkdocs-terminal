@@ -109,23 +109,54 @@
   --mkdocs-terminal-input-style: solid;
   --mkdocs-terminal-h1-decoration: none;
   
-  /* Typography (optional - omit to use defaults from theme.css) */
-  --mkdocs-terminal-font-size: 15px;
-  --mkdocs-terminal-line-height: 1.4em;
-  --mkdocs-terminal-spacing: 10px;
-  --mkdocs-terminal-font-family: "Fira Code", Menlo, Monaco, "Courier New", monospace;
-  --mkdocs-terminal-mono-font-family: "Fira Code", Menlo, Monaco, "Courier New", monospace;
-  --mkdocs-terminal-page-width: 60em;
+  /* ================================================================
+   * TYPOGRAPHY OVERRIDES (OPTIONAL)
+   * 
+   * Only include variables you want to customize. If omitted, the
+   * palette will use default values from theme.css (15px font, 1.4em
+   * line-height, monospace font stack, etc.).
+   * 
+   * Common use cases:
+   *   - Change font-family (sans-serif instead of monospace)
+   *   - Adjust font-size for accessibility
+   *   - Modify spacing for compact/spacious variants
+   * 
+   * Example: Sans-serif palette
+   *   --mkdocs-terminal-font-family: -apple-system, sans-serif;
+   *   --mkdocs-terminal-mono-font-family: -apple-system, sans-serif;
+   * 
+   * Example: Fira Code palette
+   *   --mkdocs-terminal-font-family: "Fira Code", Menlo, monospace;
+   * 
+   * Example: Accessibility palette
+   *   --mkdocs-terminal-font-size: 18px;
+   *   --mkdocs-terminal-line-height: 1.6em;
+   *   --mkdocs-terminal-spacing: 14px;
+   * 
+   * Uncomment only what you need:
+   * ================================================================ */
+  
+  /* Uncomment to customize typography:
+  --mkdocs-terminal-font-family: "Your Font", sans-serif;
+  --mkdocs-terminal-mono-font-family: "Your Mono Font", monospace;
+  --mkdocs-terminal-font-size: 16px;
+  --mkdocs-terminal-line-height: 1.5em;
+  --mkdocs-terminal-spacing: 12px;
+  --mkdocs-terminal-page-width: 70em;
+  */
   
   /* ================================================================
    * LEGACY VARIABLE ALIASES (for backwards compatibility)
    * 
-   * Map old variable names to new namespaced versions. This ensures
-   * custom palettes work consistently with the compatibility layer
-   * in theme.css and supports sites with custom CSS that still uses
-   * legacy variable names.
+   * These maintain compatibility with existing custom CSS that uses
+   * the old variable names. Only include aliases for variables you've
+   * defined above.
+   * 
+   * REQUIRED: Color aliases (if you defined colors above)
+   * OPTIONAL: Typography aliases (only if you customized typography)
    * ================================================================ */
   
+  /* Color aliases (required) */
   --background-color: var(--mkdocs-terminal-bg-color);
   --font-color: var(--mkdocs-terminal-font-color);
   --invert-font-color: var(--mkdocs-terminal-invert-font-color);
@@ -138,10 +169,13 @@
   --code-bg-color: var(--mkdocs-terminal-code-bg-color);
   --input-style: var(--mkdocs-terminal-input-style);
   --display-h1-decoration: var(--mkdocs-terminal-h1-decoration);
+  
+  /* Typography aliases (uncomment ONLY if you customized typography above)
+  --font-stack: var(--mkdocs-terminal-font-family);
+  --mono-font-stack: var(--mkdocs-terminal-mono-font-family);
   --global-font-size: var(--mkdocs-terminal-font-size);
   --global-line-height: var(--mkdocs-terminal-line-height);
   --global-space: var(--mkdocs-terminal-spacing);
-  --font-stack: var(--mkdocs-terminal-font-family);
-  --mono-font-stack: var(--mkdocs-terminal-mono-font-family);
   --page-width: var(--mkdocs-terminal-page-width);
+  */
 }

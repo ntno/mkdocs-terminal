@@ -67,18 +67,21 @@ LOAD ORDER:
 1. terminal.css
    ┌────────────────────────────────────────┐
    │ :root {                                │
-   │   /* Structural variables ONLY */      │
-   │   --global-font-size: 15px;            │
-   │   --global-line-height: 1.4em;         │
-   │   --page-width: 60em;                  │
-   │   /* NO color variables */             │
+   │   /* Legacy glue variables ONLY */     │
+   │   --code-font-color:                   │
+   │     var(--font-color);                 │
+   │   --block-background-color:            │
+   │     var(--background-color);           │
+   │   /* ALL other variables moved to */   │
+   │   /* theme.css compatibility layer */  │
    │ }                                      │
    └────────────────────────────────────────┘
 
 2. theme.css
    ┌────────────────────────────────────────┐
    │ :root {                                │
-   │   /* Compatibility layer */            │
+   │   /* Compatibility layer for ALL */    │
+   │   /* variables (colors + typography) */│
    │   --font-color: var(                   │
    │     --mkdocs-terminal-font-color,      │ ← Prefer namespaced
    │     #151515                          │ ← Actual default value
@@ -87,7 +90,11 @@ LOAD ORDER:
    │     --mkdocs-terminal-bg-color,        │
    │     #fff                             │
    │   );                                   │
-   │   /* ...all variables... */            │
+   │   --global-font-size: var(             │
+   │     --mkdocs-terminal-font-size,       │
+   │     15px                               │
+   │   );                                   │
+   │   /* ...all other variables... */      │
    │ }                                      │
    └────────────────────────────────────────┘
 
@@ -487,15 +494,27 @@ Authors creating custom palettes should follow this exact structure:
     --mkdocs-terminal-input-style: solid;
     --mkdocs-terminal-h1-decoration: none;
     
-    /* Typography (optional, use defaults if omitted) */
-    --mkdocs-terminal-font-size: 15px;
-    --mkdocs-terminal-line-height: 1.4em;
-    --mkdocs-terminal-spacing: 10px;
-    --mkdocs-terminal-font-family: Menlo, Monaco, monospace;
-    --mkdocs-terminal-mono-font-family: Menlo, Monaco, monospace;
-    --mkdocs-terminal-page-width: 60em;
+    /* Typography overrides (OPTIONAL - omit to use theme.css defaults)
+     * Only include variables you want to customize.
+     * Common use cases:
+     *   - Change font-family (sans-serif instead of monospace)
+     *   - Adjust font-size for accessibility
+     *   - Modify spacing for compact/spacious variants
+     */
+    /* Uncomment only what you need:
+    --mkdocs-terminal-font-family: "Your Font", sans-serif;
+    --mkdocs-terminal-mono-font-family: "Your Font", monospace;
+    --mkdocs-terminal-font-size: 16px;
+    --mkdocs-terminal-line-height: 1.5em;
+    --mkdocs-terminal-spacing: 12px;
+    --mkdocs-terminal-page-width: 70em;
+    */
     
-    /* Legacy variable aliases (for backwards compatibility) */
+    /* Legacy color variable aliases (for backwards compatibility)
+     * Only define aliases for variables you've customized above.
+     * If you only customized colors, only include color aliases.
+     * If you also customized typography, include those aliases too.
+     */
     --background-color: var(--mkdocs-terminal-bg-color);
     --font-color: var(--mkdocs-terminal-font-color);
     --invert-font-color: var(--mkdocs-terminal-invert-font-color);
@@ -506,14 +525,15 @@ Authors creating custom palettes should follow this exact structure:
     --progress-bar-background: var(--mkdocs-terminal-progress-bar-bg);
     --progress-bar-fill: var(--mkdocs-terminal-progress-bar-fill);
     --code-bg-color: var(--mkdocs-terminal-code-bg-color);
-    --input-style: var(--mkdocs-terminal-input-style);
-    --display-h1-decoration: var(--mkdocs-terminal-h1-decoration);
+    
+    /* Include typography aliases ONLY if you customized them above:
+    --font-stack: var(--mkdocs-terminal-font-family);
+    --mono-font-stack: var(--mkdocs-terminal-mono-font-family);
     --global-font-size: var(--mkdocs-terminal-font-size);
     --global-line-height: var(--mkdocs-terminal-line-height);
     --global-space: var(--mkdocs-terminal-spacing);
-    --font-stack: var(--mkdocs-terminal-font-family);
-    --mono-font-stack: var(--mkdocs-terminal-mono-font-family);
     --page-width: var(--mkdocs-terminal-page-width);
+    */
 }
 ```
 
@@ -538,8 +558,9 @@ extra_css:
 1. `:root` = color constants ONLY (no variable mappings)
 2. `[data-palette]` = ALL variable mappings (namespaced + legacy)
 3. Reference constants via `var(--mypalette-name)` for DRY
-4. Include legacy aliases for backwards compatibility
-5. Add file to `extra_css` in mkdocs.yml
+4. **Typography variables are OPTIONAL** - omit to use theme.css defaults
+5. Only include legacy aliases for variables you've customized
+6. Add file to `extra_css` in mkdocs.yml
 
 ## Testing Strategy
 
