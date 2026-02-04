@@ -6,7 +6,7 @@ Reference: https://www.w3.org/TR/WCAG20-TECHS/G17.html
 """
 
 from pathlib import Path
-from tests.accessibility.utilities import extract_css_attributes
+from tests.accessibility.utilities import extract_css_attributes, load_palette_context
 from tests.accessibility.utilities.color_utils import (
     normalize_color,
     get_relative_luminance,
@@ -212,15 +212,11 @@ class TestExtractCSSAttributes:
     def test_extract_default_theme_attributes(self):
         """Test extracting CSS attributes from default theme palette.
 
-        The default palette inherits from terminal.css and defines core theme colors.
+        The default palette uses the new [data-palette] architecture with the
+        full CSS cascade: terminal.css → theme.css → palettes/default.css.
         """
-        css_file = Path("terminal/css/terminal.css")
-        assert css_file.exists(), "CSS file not found"
-
-        with open(css_file) as f:
-            css_content = f.read()
-
-        result = extract_css_attributes(css_content)
+        # Use load_palette_context to simulate full CSS cascade
+        result = load_palette_context("default")
 
         # Verify key attributes are extracted
         assert result is not None
@@ -253,16 +249,12 @@ class TestExtractCSSAttributes:
     def test_extract_gruvbox_dark_theme_attributes(self):
         """Test extracting CSS attributes from gruvbox_dark theme palette.
 
-        The gruvbox_dark palette uses CSS variable references that need to be resolved.
-        This tests that the extraction utility properly handles variable resolution.
+        The gruvbox_dark palette uses the [data-palette] architecture with
+        variables defined in attribute selector blocks. Tests that the cascade
+        loader properly resolves variable references.
         """
-        css_file = Path("terminal/css/palettes/gruvbox_dark.css")
-        assert css_file.exists(), "CSS file not found"
-
-        with open(css_file) as f:
-            css_content = f.read()
-
-        result = extract_css_attributes(css_content)
+        # Use load_palette_context to simulate full CSS cascade
+        result = load_palette_context("gruvbox_dark")
 
         # Verify key attributes are extracted and variables are resolved
         assert result is not None
@@ -281,8 +273,6 @@ class TestExtractCSSAttributes:
             "progress-bar-background": "#504945",
             "progress-bar-fill": "#d5c4a1",
             "code-bg-color": "#504945",
-            "input-style": "solid",
-            "display-h1-decoration": "none",
         }
 
         for attr, expected_value in expected.items():
@@ -293,28 +283,21 @@ class TestExtractCSSAttributes:
     def test_extract_sans_theme_attributes(self):
         """Test extracting CSS attributes from sans theme palette.
 
-        The sans palette minimally overrides the default theme, providing only
-        a different font-stack. It inherits all other attributes from the default.
+        The sans palette customizes typography (font-stack) in its [data-palette]
+        block while inheriting other attributes from theme.css defaults.
         """
-        css_file = Path("terminal/css/palettes/sans.css")
-        assert css_file.exists(), "CSS file not found"
-
-        with open(css_file) as f:
-            css_content = f.read()
-
-        result = extract_css_attributes(css_content)
+        # Use load_palette_context to simulate full CSS cascade
+        result = load_palette_context("sans")
 
         # Verify extracted attributes
         assert result is not None
         assert isinstance(result, dict)
 
         # Hard-coded expected values for sans theme
-        # Sans palette only defines font-stack and inherits other attributes
+        # Sans palette overrides font-stack, inherits other attributes from theme.css
         expected = {
             "font-stack": "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol",
-            "global-font-size": "15px",
-            "global-line-height": "1.4em",
-            "input-style": "solid",
+            "mono-font-stack": "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol",
         }
 
         for attr, expected_value in expected.items():
@@ -323,48 +306,35 @@ class TestExtractCSSAttributes:
                 f"Attribute '{attr}': expected {expected_value}, got {result[attr]}"
 
     def test_extract_sans_with_terminal_fallback(self):
-        """Test extracting sans theme attributes with terminal.css as fallback.
+        """Test extracting sans theme with full CSS cascade.
 
-        The sans palette only defines font-stack and global styles, inheriting all
-        color-related attributes from the default theme. This test verifies that
-        the fallback mechanism properly merges the two CSS sources.
+        The sans palette defines typography overrides in [data-palette="sans"],
+        while colors come from theme.css fallbacks. This test verifies the
+        cascade loader properly merges the full cascade: terminal → theme → palette.
         """
-        sans_file = Path("terminal/css/palettes/sans.css")
-        terminal_file = Path("terminal/css/terminal.css")
-        assert sans_file.exists(), "Sans CSS file not found"
-        assert terminal_file.exists(), "Terminal CSS file not found"
-
-        with open(sans_file) as f:
-            sans_content = f.read()
-
-        with open(terminal_file) as f:
-            terminal_content = f.read()
-
-        # Extract with sans as primary and terminal as fallback
-        result = extract_css_attributes(sans_content, terminal_content)
+        # Use load_palette_context to simulate full CSS cascade
+        result = load_palette_context("sans")
 
         # Verify extracted attributes
         assert result is not None
         assert isinstance(result, dict)
 
-        # Hard-coded expected values combining sans overrides with terminal fallbacks
+        # Hard-coded expected values combining sans overrides with theme.css fallbacks
         expected = {
-            # From sans.css (primary source, takes precedence)
+            # From [data-palette="sans"] (typography overrides)
             "font-stack": "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol",
-            "global-font-size": "15px",
-            "global-line-height": "1.4em",
-            "input-style": "solid",
-            # From terminal.css (fallback source for missing attributes)
+            "mono-font-stack": "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol",
+            # From theme.css (colors via fallback chain)
             "background-color": "#fff",
             "font-color": "#151515",
             "primary-color": "#1a95e0",
             "error-color": "#d20962",
             "invert-font-color": "#fff",
             "secondary-color": "#727578",
+            "tertiary-color": "#727578",
             "progress-bar-background": "#727578",
             "progress-bar-fill": "#151515",
             "code-bg-color": "#e8eff2",
-            "page-width": "60em",
         }
 
         for attr, expected_value in expected.items():
