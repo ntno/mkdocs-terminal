@@ -51,7 +51,7 @@ class TestFOUCPreventionScript:
         }
         rendered = styles_partial.render(base_context)
         assert "available.indexOf(saved)" in rendered
-        assert '["dark","light"]' in rendered or '["dark", "light"]' in rendered
+        assert "'dark,light'" in rendered
         assert_valid_html(rendered)
 
     def test_fouc_script_handles_empty_options(self, styles_partial, base_context):
