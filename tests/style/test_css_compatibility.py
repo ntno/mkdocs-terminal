@@ -37,11 +37,11 @@ class TestCompatibilityLayerPresence:
 
 class TestVariableMappings:
     """Tests that all required variable mappings use actual default values.
-    
+
     The compatibility layer should map legacy variables to namespaced versions
     with ACTUAL default values as fallbacks (from default.css), not circular
     references. This prevents issues when palette CSS files load.
-    
+
     Pattern: --font-color: var(--mkdocs-terminal-font-color, #151515);
     NOT: --font-color: var(--mkdocs-terminal-font-color, var(--font-color));
     """
@@ -78,7 +78,7 @@ class TestVariableMappings:
         pattern = rf'{re.escape(legacy_var)}:\s*var\({re.escape(namespaced_var)},\s*[^)]+\)'
         assert re.search(pattern, theme_css_content), \
             f"Missing or incorrect mapping for {legacy_var} → {namespaced_var}"
-        
+
         # Verify it's NOT a circular reference
         circular_pattern = rf'{re.escape(legacy_var)}:\s*var\({re.escape(namespaced_var)},\s*var\({re.escape(legacy_var)}\)\)'
         assert not re.search(circular_pattern, theme_css_content), \
@@ -92,7 +92,7 @@ class TestVariableMappings:
         pattern = rf'{re.escape(legacy_var)}:\s*var\({re.escape(namespaced_var)},\s*[^)]+\)'
         assert re.search(pattern, theme_css_content), \
             f"Missing or incorrect mapping for {legacy_var} → {namespaced_var}"
-        
+
         # Verify it's NOT a circular reference
         circular_pattern = rf'{re.escape(legacy_var)}:\s*var\({re.escape(namespaced_var)},\s*var\({re.escape(legacy_var)}\)\)'
         assert not re.search(circular_pattern, theme_css_content), \
@@ -121,7 +121,7 @@ class TestVariableMappings:
             '--global-space': '10px',
             '--page-width': '60em',
         }
-        
+
         for legacy_var, expected_default in expected_defaults.items():
             # Pattern: --legacy: var(--namespaced, expected_default);
             pattern = rf'{re.escape(legacy_var)}:\s*var\([^,]+,\s*{re.escape(expected_default)}\)'
@@ -155,12 +155,12 @@ class TestFallbackChainStructure:
             # Skip if not a legacy variable (already namespaced)
             if 'mkdocs-terminal' in var_name:
                 continue
-                
+
             # Should have exactly 1 var() (the outer one), not nested
             var_value_full = f"var({var_value})"
             assert var_value_full.count('var(') == 1, \
                 f"Circular reference detected in {var_name}: var({var_value}) - should use actual default value"
-            
+
             # Verify it references a namespaced variable
             assert '--mkdocs-terminal-' in var_value, \
                 f"{var_name} should reference namespaced variable, got: var({var_value})"

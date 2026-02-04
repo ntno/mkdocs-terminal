@@ -5,8 +5,8 @@ cascade behavior for testing the palette selector architecture.
 
 Key concepts:
 
-1. **Attribute Selector Parsing**: With the introduction of a palette selector, 
-    the new palette architecture uses `[data-palette="name"]` scoping instead of 
+1. **Attribute Selector Parsing**: With the introduction of a palette selector,
+    the new palette architecture uses `[data-palette="name"]` scoping instead of
     `:root` blocks. The parser must extract variables from both selector types.
 
 2. **CSS Cascade Simulation**: To test a palette, we load the full cascade:
@@ -116,7 +116,7 @@ def parse_data_palette_variables(css_text: str, palette_name: str) -> Dict[str, 
         {'--mkdocs-terminal-font-color': '#e8e9ed', '--font-color': 'var(--mkdocs-terminal-font-color)'}
     """
     variables: Dict[str, str] = {}
-    
+
     # Match [data-palette="name"] { ... } blocks
     # Pattern explanation:
     # - \[data-palette="palette_name"\]: Match the attribute selector
@@ -124,7 +124,7 @@ def parse_data_palette_variables(css_text: str, palette_name: str) -> Dict[str, 
     # - ([^{}]*(?:\{[^}]*\}[^{}]*)*): Capture block content (allows nested braces)
     # - \}: Match closing brace
     pattern = rf'\[data-palette="{re.escape(palette_name)}"\]\s*\{{([^{{}}]*(?:\{{[^}}]*\}}[^{{}}]*)*)\}}'
-    
+
     for match in re.finditer(pattern, css_text, re.DOTALL):
         block_content = match.group(1)
         var_pattern = r"--([a-z0-9-]+)\s*:\s*([^;]+);"
@@ -132,7 +132,7 @@ def parse_data_palette_variables(css_text: str, palette_name: str) -> Dict[str, 
             var_name = f"--{var_match.group(1)}"
             var_value = var_match.group(2).strip()
             variables[var_name] = var_value
-    
+
     return variables
 
 
@@ -204,13 +204,13 @@ def resolve_css_variable(value: str, css_variables: Dict[str, str], max_depth: i
         return None
 
     value = value.strip()
-    
+
     # Match var() with optional fallback: var(--name) or var(--name, fallback)
     var_match = re.match(r"var\(--([a-z0-9-]+)(?:\s*,\s*([^)]+))?\)", value)
     if var_match:
         var_name = f"--{var_match.group(1)}"
         fallback_value = var_match.group(2)  # Can be None if no fallback
-        
+
         if var_name in css_variables:
             # Variable found, resolve it (may itself contain var references)
             return resolve_css_variable(css_variables[var_name].strip(), css_variables, max_depth - 1)
@@ -276,13 +276,13 @@ def load_palette_context(palette_name: str) -> Dict[str, str]:
     # Start with lowest specificity (:root from terminal.css)
     all_variables: Dict[str, str] = {}
     all_variables.update(parse_css_variables(terminal_content))
-    
+
     # Layer 2: theme.css :root (same specificity, but loads later → wins)
     all_variables.update(parse_css_variables(theme_content))
-    
+
     # Layer 3: palette :root (color constants - same specificity, loads later)
     all_variables.update(parse_css_variables(palette_content))
-    
+
     # Layer 4: [data-palette] block (HIGHER specificity → always wins)
     palette_vars = parse_data_palette_variables(palette_content, palette_name)
     all_variables.update(palette_vars)
@@ -357,14 +357,14 @@ def extract_css_attributes_from_palette(
 
     # Collect variables with CSS cascade specificity in mind
     all_variables: Dict[str, str] = {}
-    
+
     # Layer 1: Fallback CSS :root blocks (lowest precedence)
     if fallback_css_content:
         all_variables.update(parse_css_variables(fallback_css_content))
-    
+
     # Layer 2: Current CSS :root blocks (higher precedence)
     all_variables.update(parse_css_variables(css_content))
-    
+
     # Layer 3: [data-palette] block (highest precedence if specified)
     if data_palette:
         palette_vars = parse_data_palette_variables(css_content, data_palette)
@@ -392,7 +392,7 @@ def extract_css_attributes(css_content: str, fallback_css_content: str = "") -> 
 
     **DEPRECATED**: This function only parses :root blocks and doesn't understand
     the new [data-palette] architecture. For testing palettes, use:
-    
+
     - `load_palette_context(palette_name)` for full cascade simulation
     - `extract_css_attributes_from_palette(css, data_palette="name")` for scoped extraction
 
@@ -403,7 +403,7 @@ def extract_css_attributes(css_content: str, fallback_css_content: str = "") -> 
     Returns:
         Dictionary keyed by attribute name (no leading ``--``) with resolved values.
         Example return: ``{"background-color": "#0d1117", "font-color": "#e6edf3"}``.
-        
+
     Note:
         This function maintains backward compatibility for old-style palettes
         that define variables in :root blocks. New palette tests should use

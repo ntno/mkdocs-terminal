@@ -5,7 +5,6 @@ Tests color parsing, contrast ratio calculation, and WCAG compliance checking.
 Reference: https://www.w3.org/TR/WCAG20-TECHS/G17.html
 """
 
-from pathlib import Path
 from tests.accessibility.utilities import extract_css_attributes, load_palette_context
 from tests.accessibility.utilities.color_utils import (
     normalize_color,
