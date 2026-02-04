@@ -86,6 +86,16 @@ quick-tests:
 	flake8 --ignore E501 --exclude tests/examples tests && \
 	pytest --color=yes --capture=no tests
 
+#for developer use, fix W293 flake8 errors (blank lines with whitespace)
+#usage: make fix-blank-lines dir=./tests/accessibility/
+fix-blank-lines:
+ifndef dir
+	$(error dir is not set. Usage: make fix-blank-lines dir=./path/to/directory)
+endif
+	@echo "Fixing blank lines with whitespace in $(dir)"
+	@find $(dir) -type f -name "*.py" -exec sed -i 's/^[[:space:]]*$$//' {} +
+	@echo "Done. Run 'flake8 $(dir) --ignore E501' to verify."
+
 #for developer use, assumes you have already installed prereqs
 generate-test-coverage:
 	pytest \

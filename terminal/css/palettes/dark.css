@@ -1,22 +1,53 @@
 /*! dark.css 0.7.5 | MIT License | github.com/Gioni06/terminal.css */
 
+/**
+ * Dark Palette for mkdocs-terminal
+ * 
+ * Color constants are defined once in :root to eliminate duplication.
+ * Both the :root mappings (for inline <link> usage) and [data-palette]
+ * mappings (for palette selector) reference the same constants.
+ * Since [data-palette] has higher specificity, it takes precedence when active.
+ */
+
 :root {
-    --global-font-size: 15px;
-    --global-line-height: 1.4em;
-    --global-space: 10px;
-    --font-stack: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
-    --mono-font-stack: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
-    --background-color: #222225;
-    --page-width: 60em;
-    --font-color: #e8e9ed;
-    --invert-font-color: #222225;
-    --secondary-color: #a3abba;
-    --tertiary-color: #a3abba;
-    --primary-color: #62c4ff;
-    --error-color: #ff3c74;
-    --progress-bar-background: #3f3f44;
-    --progress-bar-fill: #62c4ff;
-    --code-bg-color: #3f3f44;
-    --input-style: solid;
-    --display-h1-decoration: none;
+    /* Dark palette color constants (defined once) */
+    --dark-bg: #222225;
+    --dark-fg: #e8e9ed;
+    --dark-invert-fg: #222225;
+    --dark-primary: #62c4ff;
+    --dark-secondary: #a3abba;
+    --dark-error: #ff3c74;
+    --dark-progress-bg: #3f3f44;
+    --dark-progress-fill: #62c4ff;
+    --dark-code-bg: #3f3f44;
+
+    
+    /* Namespaced typography variables */
+    
+}
+
+[data-palette="dark"] {
+    /* Color variable overrides only - typography/structural vars use theme.css defaults */
+    --mkdocs-terminal-bg-color: var(--dark-bg);
+    --mkdocs-terminal-font-color: var(--dark-fg);
+    --mkdocs-terminal-invert-font-color: var(--dark-invert-fg);
+    --mkdocs-terminal-primary-color: var(--dark-primary);
+    --mkdocs-terminal-secondary-color: var(--dark-secondary);
+    --mkdocs-terminal-tertiary-color: var(--dark-secondary);
+    --mkdocs-terminal-error-color: var(--dark-error);
+    --mkdocs-terminal-progress-bar-bg: var(--dark-progress-bg);
+    --mkdocs-terminal-progress-bar-fill: var(--dark-progress-fill);
+    --mkdocs-terminal-code-bg-color: var(--dark-code-bg);
+    
+    /* Legacy color variable aliases (for backwards compatibility) */
+    --background-color: var(--mkdocs-terminal-bg-color);
+    --font-color: var(--mkdocs-terminal-font-color);
+    --invert-font-color: var(--mkdocs-terminal-invert-font-color);
+    --primary-color: var(--mkdocs-terminal-primary-color);
+    --secondary-color: var(--mkdocs-terminal-secondary-color);
+    --tertiary-color: var(--mkdocs-terminal-tertiary-color);
+    --error-color: var(--mkdocs-terminal-error-color);
+    --progress-bar-background: var(--mkdocs-terminal-progress-bar-bg);
+    --progress-bar-fill: var(--mkdocs-terminal-progress-bar-fill);
+    --code-bg-color: var(--mkdocs-terminal-code-bg-color);
 }

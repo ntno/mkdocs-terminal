@@ -2,9 +2,12 @@
 
 from .css_parser import (
     extract_css_attributes,
+    extract_css_attributes_from_palette,
     extract_css_variables,
     get_element_computed_styles,
+    load_palette_context,
     parse_css_variables,
+    parse_data_palette_variables,
     resolve_css_variable,
 )
 from .palette_loader import load_all_palette_css_attributes, load_palette_css_attributes
@@ -18,9 +21,12 @@ from .site_context import (
 
 __all__ = [
     "extract_css_attributes",
+    "extract_css_attributes_from_palette",
     "extract_css_variables",
     "get_element_computed_styles",
+    "load_palette_context",
     "parse_css_variables",
+    "parse_data_palette_variables",
     "resolve_css_variable",
     "load_palette_css_attributes",
     "load_all_palette_css_attributes",

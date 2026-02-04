@@ -9,6 +9,7 @@ Use this readme to add a feature to this theme or to update the theme documentat
     - [Prerequisites](#prerequisites)
     - [Fork and Clone Repository](#fork-and-clone-repository)
     - [Confirm Setup](#confirm-setup)
+  - [Palette Architecture Overview](#palette-architecture-overview)
   - [Documentation Updates](#documentation-updates)
     - [Create a Feature Branch](#create-a-feature-branch)
     - [Push Local Branch to Remote Repository](#push-local-branch-to-remote-repository)
@@ -66,6 +67,80 @@ Open the Docker Desktop application and wait until the application indicates tha
 <img src="documentation/docs/img/developer-setup/engine-starting.png" width="600" title="Docker Engine Starting" alt="orange starting indicator at bottom left of Docker Desktop">
 
 <img src="documentation/docs/img/developer-setup/engine-running.png" width="600" title="Docker Engine Starting" alt="green running indicator at bottom left of Docker Desktop">
+
+## Palette Architecture Overview
+
+The theme uses a **data-attribute scoping** architecture for runtime palette switching in static sites.
+
+### How It Works
+
+**Build Time:**
+1. All configured palette CSS files are linked in `<head>`
+2. Default palette set via `<html data-palette="dark">` attribute
+3. Available palettes embedded in `data-available-palettes` attribute
+
+**Runtime:**
+1. User changes palette via selector UI
+2. JavaScript updates `data-palette` attribute value
+3. CSS cascade instantly switches colors (no file loading needed)
+
+### CSS Architecture
+
+Palettes use attribute selector scoping for multi-palette support:
+
+```css
+/* Color constants in :root (no conflicts between palettes) */
+:root {
+  --dark-bg: #222225;
+  --dark-fg: #e8e9ed;
+}
+
+/* Variable mappings in [data-palette] (higher specificity) */
+[data-palette="dark"] {
+  --mkdocs-terminal-bg-color: var(--dark-bg);
+  --mkdocs-terminal-font-color: var(--dark-fg);
+  
+  /* Legacy aliases for backwards compatibility */
+  --background-color: var(--mkdocs-terminal-bg-color);
+  --font-color: var(--mkdocs-terminal-font-color);
+}
+```
+
+**Key Points:**
+
+- **`:root` blocks:** Color constants only (prevents conflicts when multiple palettes load)
+- **`[data-palette]` blocks:** Variable mappings (only applies when attribute matches)
+- **Specificity:** `[data-palette]` (0,1,0) beats `:root` (0,0,1)
+- **Compatibility layer:** `theme.css` maps legacy variables to namespaced ones with fallbacks
+
+### CSS Cascade Order
+
+```
+terminal.css → theme.css → palettes/*.css → consuming code
+```
+
+1. **terminal.css** — Legacy glue variables only
+2. **theme.css** — Compatibility layer with fallbacks  
+3. **palettes/\*.css** — Color constants + scoped mappings
+4. **Consuming code** — Uses variables from the cascade
+
+### For Theme Developers
+
+**Adding a new palette:**
+- Use `openspec/changes/color-palette-toggle/specs/custom-palette-template.css` as a template
+- Define color constants in `:root`
+- Define variable mappings in `[data-palette="your-name"]`
+- Test with `load_palette_context("your-name")` (see CSS Parser Utilities)
+
+**Testing palettes:**
+- See [CSS Parser Utilities](#css-parser-utilities-testing) section below
+- Use `load_palette_context(name)` to simulate full cascade
+- All color combinations must meet WCAG AA contrast requirements
+
+**Migration guide:**
+- Existing custom palettes in `extra_css` continue working
+- New palettes should use `[data-palette]` architecture
+- See `openspec/changes/color-palette-toggle/design.md` for details
 
 ## Documentation Updates
 
@@ -292,3 +367,126 @@ plugins:
 - **CSS pre-linking**: All palette CSS files linked in `<head>` at build time (cannot lazy-load)
 - **Data attribute scoping**: Palette switching works via CSS `[data-palette="name"]` selectors
 - **Template globals**: Configuration exposed via Jinja2 globals for flexible template access
+
+## CSS Parser Utilities (Testing)
+
+The theme uses a custom CSS parsing system to test palette variables and simulate browser CSS cascade behavior. This is necessary because palettes use the `[data-palette="name"]` attribute selector architecture for runtime switching.
+
+**Location:** `tests/accessibility/utilities/css_parser.py`
+
+### Key Functions
+
+**`load_palette_context(palette_name: str)`** — Full cascade simulation
+
+Use this to test how a palette appears in the browser. Automatically loads all three CSS files and resolves variables through the complete cascade.
+
+```python
+from tests.accessibility.utilities import load_palette_context
+
+# Test the "dark" palette as it appears in browser
+context = load_palette_context("dark")
+assert context["font-color"] == "#e8e9ed"
+assert context["background-color"] == "#222225"
+```
+
+**CSS cascade order:**
+1. `terminal.css` :root (legacy glue variables)
+2. `theme.css` :root (compatibility layer with fallbacks)
+3. `palette.css` :root (color constants)
+4. `palette.css` [data-palette] (variable mappings — highest specificity)
+
+**`parse_data_palette_variables(css_text: str, palette_name: str)`** — Extract from attribute selectors
+
+Parses variables from `[data-palette="name"]` blocks. Used internally by `load_palette_context()`.
+
+```python
+from tests.accessibility.utilities import parse_data_palette_variables
+
+css = '''
+[data-palette="dark"] {
+  --mkdocs-terminal-font-color: #e8e9ed;
+  --font-color: var(--mkdocs-terminal-font-color);
+}
+'''
+vars = parse_data_palette_variables(css, "dark")
+# Returns: {'--mkdocs-terminal-font-color': '#e8e9ed', '--font-color': 'var(...)'}
+```
+
+**`resolve_css_variable(value: str, css_variables: dict)`** — Resolve `var()` references
+
+Handles nested variable references and CSS fallback syntax `var(--name, fallback)`.
+
+```python
+from tests.accessibility.utilities import resolve_css_variable
+
+variables = {
+    '--mkdocs-terminal-font-size': '15px',
+    '--global-font-size': 'var(--mkdocs-terminal-font-size, 14px)'
+}
+
+# Resolves through chain
+resolved = resolve_css_variable('var(--global-font-size)', variables)
+# Returns: '15px'
+
+# Uses fallback when variable missing
+resolved = resolve_css_variable('var(--missing, 12px)', variables)
+# Returns: '12px'
+```
+
+### When to Use Which Function
+
+| Scenario | Function | Why |
+|----------|----------|-----|
+| Testing a complete palette | `load_palette_context("dark")` | Simulates full browser cascade, easiest to use |
+| Testing CSS snippets | `extract_css_attributes_from_palette(css, data_palette="dark")` | More control, manual CSS loading |
+| Parsing attribute selectors | `parse_data_palette_variables(css, "dark")` | Low-level, used internally |
+| Resolving variables | `resolve_css_variable(value, vars)` | Low-level, used internally |
+
+### Testing Custom Palettes
+
+To test a custom palette that uses the `[data-palette]` architecture:
+
+```python
+# Option 1: If the palette file exists in terminal/css/palettes/
+context = load_palette_context("my-custom-palette")
+
+# Option 2: Test CSS strings directly
+from tests.accessibility.utilities import extract_css_attributes_from_palette
+
+with open("my-custom-palette.css") as f:
+    palette_css = f.read()
+
+attrs = extract_css_attributes_from_palette(
+    css_content=palette_css,
+    data_palette="my-custom-palette"
+)
+```
+
+### Backwards Compatibility
+
+The parser supports both old-style (variables in `:root`) and new-style (variables in `[data-palette]`) palettes:
+
+- **Old style:** `extract_css_attributes(css_content)` — parses `:root` only
+- **New style:** `load_palette_context(name)` — parses full cascade with `[data-palette]`
+
+Existing tests using `extract_css_attributes()` continue to work for legacy palettes that define variables directly in `:root` blocks.
+
+### Architecture Notes
+
+**Why not use a CSS parser library?**
+
+We need to simulate browser-specific CSS cascade behavior including:
+- CSS specificity rules (`:root` vs `[data-palette]`)
+- Load order precedence (terminal → theme → palette)
+- Variable fallback syntax `var(--name, fallback)`
+
+Standard CSS parsers don't simulate this cascade behavior, so we built lightweight utilities tailored to our architecture.
+
+**How does this relate to the palette selector feature?**
+
+The palette selector enables runtime switching by:
+1. Loading ALL palette CSS files at build time
+2. Using `[data-palette="name"]` selectors to scope variables
+3. Changing the `<html data-palette>` attribute value with JavaScript
+
+The CSS parser utilities test that this architecture works correctly by simulating the browser's variable resolution when a specific `data-palette` is active.
