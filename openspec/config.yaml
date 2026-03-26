@@ -1,24 +1,31 @@
 schema: spec-driven
 
-# Project context (optional)
-# This is shown to AI when creating artifacts.
-# Add your tech stack, conventions, style guides, domain knowledge, etc.
-Example:
-  context: |
-    Tech stack: Python, MkDocs, Jinja2, JavaScript, CSS, HTML, Markdown, Pytest
-    Domain: MkDocs theme and plugin
+context: |
+  Tech stack: Python (>=3.7), MkDocs, Jinja2, CSS (Terminal.css), JavaScript, Hatch/hatchling, Markdown, Pytest
+  Domain: MkDocs theme and plugin suite providing a terminal-inspired documentation style
+  Packaging: pyproject.toml only (no setup.py/setup.cfg), hatch-nodejs for version metadata
+  Testing: pytest, tox (envs: py, pytest-linux, pytest-darwin), CI matrix across Python 3.8-3.12 on ubuntu/macOS/windows
+  Linting: flake8 (E501 ignored)
+  Dev workflow: Docker-first via Makefile targets (make ubuntu, make serve-docs, make serve-local-theme)
+  Theme assets live in terminal/; templates in terminal/partials/ and terminal/macros/
+  Plugin code in terminal/plugins/ — should be small, isolated, and well-tested
+  Dependencies defined in pyproject.toml; static assets must be included in wheel/sdist
+  Versioning: semver, version sourced from package.json via hatch-nodejs
+  CI/CD: GitHub Actions (matrix testing, pages deploy, publish)
+  Git: feature/<desc> or fix/<desc> branches, PRs against main
+  Docs site sources in documentation/docs/; update for any user-facing changes
 
-# Per-artifact rules (optional)
-# Add custom rules for specific artifacts.
-Example:
-  rules:
-    proposal:
-      - Always include a "Non-goals" section
-    tasks:
-      - Break tasks into phases
-      - Each phase should include testing and documentation steps
-    specs:
-      - Use Given/When/Then format for scenarios
-      - Reference existing patterns before inventing new ones
-    design:
-      - Include sequence diagrams for complex flows
+rules:
+  proposal:
+    - Always include a "Non-goals" section
+    - Identify impact on theme templates, plugins, and static assets separately
+  tasks:
+    - Break tasks into phases
+    - Each phase should include testing and documentation steps
+    - Include platform-specific considerations where relevant (macOS, Linux, Windows)
+  specs:
+    - Use Given/When/Then format
+    - Reference existing patterns in tests/ before inventing new ones
+  design:
+    - Note which files under terminal/ are affected (templates, CSS, JS, plugins)
+    - Consider accessibility and semantic HTML implications for template changes
