@@ -3,7 +3,7 @@ import pytest
 DEBUG = False
 VERBOSE = False
 DEFAULT_TIDY_OPTIONS = {"numeric-entities": 1}
-ALLOW_EMPTY_ELEMENTS = {"numeric-entities": 1, "drop-empty-elements": "no"}
+ALLOW_EMPTY_ELEMENTS = {"numeric-entities": 1, "drop-empty-elements": "no", "doctype": "html5"}
 
 
 def check_html(fragment, tidy_options=DEFAULT_TIDY_OPTIONS):

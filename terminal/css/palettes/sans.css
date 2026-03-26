@@ -1,8 +1,63 @@
 /*! sans.css 0.7.5 | MIT License | github.com/Gioni06/terminal.css */
 
+/**
+ * Sans Palette for mkdocs-terminal
+ * 
+ * This palette primarily changes the font family to a sans-serif stack while
+ * maintaining other defaults from terminal.css.
+ * 
+ * The namespaced variable mappings appear in both :root and [data-palette]
+ * blocks because they serve different purposes:
+ * 
+ * - :root mappings: Enable inline <link href="sans.css"> usage in docs
+ * - [data-palette] mappings: Enable runtime palette switching (higher specificity)
+ */
+
 :root {
-    --global-font-size: 15px;
-    --global-line-height: 1.4em;
-    --font-stack: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
-    --input-style: solid;
+    /* Sans palette color constants (defined once, inherit from terminal.css defaults) */
+    --sans-bg: #fff;
+    --sans-fg: #151515;
+    --sans-invert-fg: #fff;
+    --sans-primary: #1a95e0;
+    --sans-secondary: #727578;
+    --sans-error: #d20962;
+    --sans-progress-bg: #727578;
+    --sans-progress-fill: #151515;
+    --sans-code-bg: #e8eff2;
+
+    
+}
+
+[data-palette="sans"] {
+    /* Namespaced variable mappings (references same constants from :root) */
+    --mkdocs-terminal-bg-color: var(--sans-bg);
+    --mkdocs-terminal-font-color: var(--sans-fg);
+    --mkdocs-terminal-invert-font-color: var(--sans-invert-fg);
+    --mkdocs-terminal-primary-color: var(--sans-primary);
+    --mkdocs-terminal-secondary-color: var(--sans-secondary);
+    --mkdocs-terminal-tertiary-color: var(--sans-secondary);
+    --mkdocs-terminal-error-color: var(--sans-error);
+    --mkdocs-terminal-progress-bar-bg: var(--sans-progress-bg);
+    --mkdocs-terminal-progress-bar-fill: var(--sans-progress-fill);
+    --mkdocs-terminal-code-bg-color: var(--sans-code-bg);
+    
+    /* Typography override - sans palette uses system fonts instead of monospace */
+    --mkdocs-terminal-font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+    --mkdocs-terminal-mono-font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+    
+    /* Legacy variable aliases (for backwards compatibility) */
+    --background-color: var(--mkdocs-terminal-bg-color);
+    --font-color: var(--mkdocs-terminal-font-color);
+    --invert-font-color: var(--mkdocs-terminal-invert-font-color);
+    --primary-color: var(--mkdocs-terminal-primary-color);
+    --secondary-color: var(--mkdocs-terminal-secondary-color);
+    --tertiary-color: var(--mkdocs-terminal-tertiary-color);
+    --error-color: var(--mkdocs-terminal-error-color);
+    --progress-bar-background: var(--mkdocs-terminal-progress-bar-bg);
+    --progress-bar-fill: var(--mkdocs-terminal-progress-bar-fill);
+    --code-bg-color: var(--mkdocs-terminal-code-bg-color);
+    
+    /* Legacy typography aliases - sans palette overrides fonts */
+    --font-stack: var(--mkdocs-terminal-font-family);
+    --mono-font-stack: var(--mkdocs-terminal-mono-font-family);
 }

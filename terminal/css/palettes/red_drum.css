@@ -1,6 +1,20 @@
 /*! red_drum.css | MIT License | github.com/ntno/mkdocs-terminal */
 
+/**
+ * Red Drum Palette for mkdocs-terminal
+ * 
+ * Color constants are defined once in :root to eliminate duplication.
+ * The namespaced variable mappings appear in both :root and [data-palette]
+ * blocks because they serve different purposes:
+ * 
+ * - :root mappings: Enable inline <link href="red_drum.css"> usage in docs
+ * - [data-palette] mappings: Enable runtime palette switching (higher specificity)
+ * 
+ * Both reference the same color constants, so each hex code appears only once.
+ */
+
 :root {
+  /* Palette-specific color constants (defined once) */
   --pale-goldenrod: #eee8aa;
   --black: #190910;
   --white: #f7f7f7;
@@ -10,22 +24,39 @@
   --light-grey: #d4d4d4;
   --dark-grey: #5e5e5e;
 
-  --global-font-size: 15px;
-  --global-line-height: 1.4em;
-  --global-space: 10px;
-  --font-stack: "Fira Code", Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
-  --mono-font-stack: "Fira Code", Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
-  --background-color: var(--pale-goldenrod);
-  --page-width: 60em;
-  --font-color: var(--black);
-  --invert-font-color: var(--white);
-  --primary-color: var(--dark-red);
-  --secondary-color: var(--old-rose);
-  --tertiary-color: var(--old-rose);
-  --error-color: var(--sea-blue);
-  --progress-bar-background: var(--light-grey);
-  --progress-bar-fill: var(--dark-grey);
-  --code-bg-color: var(--white);
-  --input-style: solid;
-  --display-h1-decoration: none;
+  
+}
+
+[data-palette="red_drum"] {
+  /* Namespaced variable mappings (references same constants from :root) */
+  --mkdocs-terminal-bg-color: var(--pale-goldenrod);
+  --mkdocs-terminal-font-color: var(--black);
+  --mkdocs-terminal-invert-font-color: var(--white);
+  --mkdocs-terminal-primary-color: var(--dark-red);
+  --mkdocs-terminal-secondary-color: var(--old-rose);
+  --mkdocs-terminal-tertiary-color: var(--old-rose);
+  --mkdocs-terminal-error-color: var(--sea-blue);
+  --mkdocs-terminal-progress-bar-bg: var(--light-grey);
+  --mkdocs-terminal-progress-bar-fill: var(--dark-grey);
+  --mkdocs-terminal-code-bg-color: var(--white);
+  
+  /* Typography override - red_drum palette uses Fira Code font */
+  --mkdocs-terminal-font-family: "Fira Code", Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+  --mkdocs-terminal-mono-font-family: "Fira Code", Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+  
+  /* Legacy variable aliases (for backwards compatibility) */
+  --background-color: var(--mkdocs-terminal-bg-color);
+  --font-color: var(--mkdocs-terminal-font-color);
+  --invert-font-color: var(--mkdocs-terminal-invert-font-color);
+  --primary-color: var(--mkdocs-terminal-primary-color);
+  --secondary-color: var(--mkdocs-terminal-secondary-color);
+  --tertiary-color: var(--mkdocs-terminal-tertiary-color);
+  --error-color: var(--mkdocs-terminal-error-color);
+  --progress-bar-background: var(--mkdocs-terminal-progress-bar-bg);
+  --progress-bar-fill: var(--mkdocs-terminal-progress-bar-fill);
+  --code-bg-color: var(--mkdocs-terminal-code-bg-color);
+  
+  /* Legacy typography aliases - red_drum palette overrides fonts */
+  --font-stack: var(--mkdocs-terminal-font-family);
+  --mono-font-stack: var(--mkdocs-terminal-mono-font-family);
 }

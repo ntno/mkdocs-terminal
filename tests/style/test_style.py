@@ -86,7 +86,7 @@ class TestStyles():
 
     def test_palette_css_files_registered_in_default_palettes(self):
         """Ensure every CSS palette file is represented in DEFAULT_PALETTES."""
-        repo_root = Path(__file__).resolve().parent.parent
+        repo_root = Path(__file__).resolve().parent.parent.parent
         palettes_dir = repo_root / "terminal" / "css" / "palettes"
         assert palettes_dir.is_dir(), f"Missing palettes directory: {palettes_dir}"
 

@@ -1,6 +1,20 @@
 /*! gruvbox_dark.css | MIT License | github.com/Gioni06/terminal.css/issues/9 */
 
+/**
+ * Gruvbox Dark Palette for mkdocs-terminal
+ * 
+ * Color constants are defined once in :root to eliminate duplication.
+ * The namespaced variable mappings appear in both :root and [data-palette]
+ * blocks because they serve different purposes:
+ * 
+ * - :root mappings: Enable inline <link href="dark.css"> usage in docs
+ * - [data-palette] mappings: Enable runtime palette switching (higher specificity)
+ * 
+ * Both reference the same color constants, so each hex code appears only once.
+ */
+
 :root {
+    /* Gruvbox-specific color constants (defined once) */
     --gb-dm-bg0: #282828;
     --gb-dm-bg0-hard: #1d2021;
     --gb-dm-bg0-soft: #32302f;
@@ -29,22 +43,32 @@
     --gb-dm-light-aqua: #8ec07c;
     --gb-dm-light-orange: #f38019;
     --gb-dm-light-gray: #a89984;
-    --global-font-size: 15px;
-    --global-line-height: 1.4em;
-    --global-space: 10px;
-    --font-stack: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
-    --mono-font-stack: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
-    --background-color: var(--gb-dm-bg0);
-    --page-width: 60em;
-    --font-color: var(--gb-dm-fg1);
-    --invert-font-color: var(--gb-dm-bg0-hard);
-    --primary-color: var(--gb-dm-light-yellow);
-    --secondary-color: var(--gb-dm-fg3);
-    --tertiary-color: var(--gb-dm-light-gray);
-    --error-color: var(--gb-dm-light-red);
-    --progress-bar-background: var(--gb-dm-bg2);
-    --progress-bar-fill: var(--gb-dm-fg2);
-    --code-bg-color: var(--gb-dm-bg2);
-    --input-style: solid;
-    --display-h1-decoration: none;
+
+    
+}
+
+[data-palette="gruvbox_dark"] {
+    /* Namespaced variable mappings (references same constants from :root) */
+    --mkdocs-terminal-bg-color: var(--gb-dm-bg0);
+    --mkdocs-terminal-font-color: var(--gb-dm-fg1);
+    --mkdocs-terminal-invert-font-color: var(--gb-dm-bg0-hard);
+    --mkdocs-terminal-primary-color: var(--gb-dm-light-yellow);
+    --mkdocs-terminal-secondary-color: var(--gb-dm-fg3);
+    --mkdocs-terminal-tertiary-color: var(--gb-dm-light-gray);
+    --mkdocs-terminal-error-color: var(--gb-dm-light-red);
+    --mkdocs-terminal-progress-bar-bg: var(--gb-dm-bg2);
+    --mkdocs-terminal-progress-bar-fill: var(--gb-dm-fg2);
+    --mkdocs-terminal-code-bg-color: var(--gb-dm-bg2);
+    
+    /* Legacy color variable aliases (for backwards compatibility) */
+    --background-color: var(--mkdocs-terminal-bg-color);
+    --font-color: var(--mkdocs-terminal-font-color);
+    --invert-font-color: var(--mkdocs-terminal-invert-font-color);
+    --primary-color: var(--mkdocs-terminal-primary-color);
+    --secondary-color: var(--mkdocs-terminal-secondary-color);
+    --tertiary-color: var(--mkdocs-terminal-tertiary-color);
+    --error-color: var(--mkdocs-terminal-error-color);
+    --progress-bar-background: var(--mkdocs-terminal-progress-bar-bg);
+    --progress-bar-fill: var(--mkdocs-terminal-progress-bar-fill);
+    --code-bg-color: var(--mkdocs-terminal-code-bg-color);
 }
