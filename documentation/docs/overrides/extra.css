@@ -1,7 +1,35 @@
 /* add extra space before h2/h3/h4 */
+
 h2::before,
 h3::before,
 h4::before {
     content: "\A";
     white-space: pre;
-  }
+}
+
+
+/* sticky side panel - https://github.com/ntno/mkdocs-terminal/issues/140 */
+
+#terminal-mkdocs-side-panel {
+    top: calc(var(--global-space) * 2);
+    position: sticky;
+    overflow-y: scroll;
+    max-height: 90vh;
+}
+
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+
+#terminal-mkdocs-side-panel::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* Hide scrollbar for IE, Edge and Firefox */
+
+#terminal-mkdocs-side-panel {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
