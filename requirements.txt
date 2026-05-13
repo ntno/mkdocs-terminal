@@ -1,5 +1,5 @@
 jinja2>=2.10
-mkdocs>=1.4.2
+mkdocs-ng
 markdown
 pygments
 pymdown-extensions
